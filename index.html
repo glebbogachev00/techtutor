@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechTutor Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              sky: {
+                light: '#E8F1FD',
+                DEFAULT: '#1E66F5',
+                deep: '#144bb3',
+              },
+              leaf: '#16A34A',
+              ink: '#0F172A',
+              mist: '#F8FAFC',
+            },
+            fontFamily: {
+              sans: ['Lato', 'system-ui', 'sans-serif'],
+            },
+            maxWidth: {
+              wrap: '1040px',
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #F8FAFC;
+        font-feature-settings: 'lnum' 1, 'tnum' 1;
+      }
+    </style>
+  </head>
+  <body class="font-sans text-ink antialiased">
+    <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
+      <div class="mx-auto flex max-w-wrap items-center justify-between gap-4 px-6 py-4 md:px-8">
+        <a href="#hero" class="flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">
+          <img src="images/logo-no-bg.png" alt="TechTutor logo" class="h-16 w-auto origin-left scale-125 md:h-20 md:scale-150" />
+        </a>
+        <nav class="hidden items-center gap-8 text-sm font-semibold text-slate-600 md:flex">
+          <a data-i18n="nav.programs" href="#programs" class="transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Programs</a>
+          <a data-i18n="nav.pricing" href="#pricing" class="transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Pricing</a>
+          <a data-i18n="nav.trial" href="#trial" class="transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Free trial</a>
+          <a data-i18n="nav.contact" href="#contact" class="transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Contact</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1">
+            <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-sky text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">🇬🇧</button>
+            <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-slate-500 transition hover:bg-sky-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">🇻🇳</button>
+          </div>
+          <button data-i18n="header.menu" id="menu-button" type="button" class="inline-flex items-center justify-center rounded-md border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-600 transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky md:hidden">
+            Menu
+          </button>
+        </div>
+      </div>
+      <nav id="mobile-nav" class="hidden border-t border-slate-200 bg-white md:hidden">
+        <div class="mx-auto flex max-w-wrap flex-col gap-2 px-6 py-4 text-sm font-semibold text-slate-600">
+          <a data-i18n="nav.programs" href="#programs" class="py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Programs</a>
+          <a data-i18n="nav.pricing" href="#pricing" class="py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Pricing</a>
+          <a data-i18n="nav.trial" href="#trial" class="py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Free trial</a>
+          <a data-i18n="nav.contact" href="#contact" class="py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="mx-auto max-w-wrap px-6 py-20 md:px-8 md:py-24" id="hero">
+      <section class="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+        <div class="space-y-6 md:max-w-[460px]">
+          <h1 data-i18n="hero.title" class="text-4xl font-semibold leading-tight text-ink md:text-5xl">Future-ready learning for curious minds.</h1>
+          <p data-i18n="hero.subtitle" class="text-lg leading-relaxed text-slate-600">Live tech coaching that turns curiosity into projects your child can be proud of.</p>
+          <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+            <a data-i18n="hero.ctaPrimary" href="#trial" class="inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Book free trial</a>
+            <a data-i18n="hero.ctaSecondary" href="https://wa.me/84931140736" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink transition hover:border-sky hover:text-sky focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on WhatsApp</a>
+            <a data-i18n="hero.ctaTertiary" href="tel:0931140736" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink transition hover:border-sky hover:text-sky focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on Zalo</a>
+          </div>
+          <p data-i18n="hero.contact" class="text-sm text-slate-500">Zalo / WhatsApp: 0931140736</p>
+        </div>
+        <div class="space-y-4 md:max-w-[360px]">
+          <p data-i18n="hero.snapshotLabel" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Parent snapshot</p>
+          <div class="flex flex-wrap gap-3">
+            <span data-i18n="hero.stat1" class="inline-flex items-center rounded-full bg-sky-light px-4 py-2 text-xs font-semibold text-sky">80-90% retention</span>
+            <span data-i18n="hero.stat2" class="inline-flex items-center rounded-full bg-sky-light px-4 py-2 text-xs font-semibold text-sky">Project-first lessons</span>
+            <span data-i18n="hero.stat3" class="inline-flex items-center rounded-full bg-sky-light px-4 py-2 text-xs font-semibold text-sky">Coaches 3+ yrs</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-20 grid gap-10 border-t border-slate-200 pt-10 md:grid-cols-[0.8fr_1fr] md:items-start">
+        <div class="space-y-3">
+          <h2 data-i18n="why.heading" class="text-2xl font-semibold text-ink md:text-3xl">Why families choose TechTutor</h2>
+          <p data-i18n="why.copy" class="text-base leading-relaxed text-slate-600">Built for busy Vietnam-based families who want tech lessons that feel calm, personal, and useful.</p>
+        </div>
+        <ul class="space-y-3 text-base text-slate-600">
+          <li data-i18n="why.item1">3+ years designing programs with 80-90% learner retention</li>
+          <li data-i18n="why.item2">Generative AI, coding, design, and game development in one place</li>
+          <li data-i18n="why.item3">Every learner completes a real project they can show to friends</li>
+          <li data-i18n="why.item4">Flexible 1:1 or small group formats with personal feedback</li>
+        </ul>
+      </section>
+
+      <section class="mt-20 border-t border-slate-200 pt-10">
+        <h2 data-i18n="benefits.heading" class="text-2xl font-semibold text-ink md:text-3xl">What students get</h2>
+        <div class="mt-8 grid gap-4 md:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 bg-white/90 p-6 text-slate-600" data-i18n="benefits.item1">1:1 personalized tutoring (90-minute sessions)</div>
+          <div class="rounded-2xl border border-slate-200 bg-white/90 p-6 text-slate-600" data-i18n="benefits.item2">Project-based courses with a finished creation</div>
+          <div class="rounded-2xl border border-slate-200 bg-white/90 p-6 text-slate-600" data-i18n="benefits.item3">Ongoing feedback and bilingual EN/VN summaries</div>
+          <div class="rounded-2xl border border-slate-200 bg-white/90 p-6 text-slate-600" data-i18n="benefits.item4">Portfolio guidance plus flexible rescheduling (24h notice)</div>
+        </div>
+      </section>
+
+      <section id="programs" class="mt-20 border-t border-slate-200 pt-10">
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <h2 data-i18n="programs.heading" class="text-2xl font-semibold text-ink md:text-3xl">Programs for every age</h2>
+          <p data-i18n="programs.copy" class="text-sm text-slate-500">Simple cards show focus, ages, and core skills.</p>
+        </div>
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
+            <h3 data-i18n="programs.steamTitle" class="text-lg font-semibold text-ink">STEAM Discovery (Ages 5-8)</h3>
+            <p data-i18n="programs.steamDesc" class="mt-2 text-sm">Create games, learn Lua basics, explore 3D modelling, tell stories.</p>
+            <p data-i18n="programs.steamSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: typing, block coding, problem solving, communication</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
+            <h3 data-i18n="programs.techTitle" class="text-lg font-semibold text-ink">Tech Discovery (Ages 8-11)</h3>
+            <p data-i18n="programs.techDesc" class="mt-2 text-sm">Scratch coding and TinkerCAD 3D projects for confident makers.</p>
+            <p data-i18n="programs.techSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: basic coding, spatial awareness, computational thinking</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
+            <h3 data-i18n="programs.gdevelopTitle" class="text-lg font-semibold text-ink">GDevelop Game Design World (Ages 8-15)</h3>
+            <p data-i18n="programs.gdevelopDesc" class="mt-2 text-sm">Build 2D games while learning design, logic, and playtesting basics.</p>
+            <p data-i18n="programs.gdevelopSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: game design, project management, creative thinking</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
+            <h3 data-i18n="programs.robloxTitle" class="text-lg font-semibold text-ink">Roblox Game Design World (Ages 9-15)</h3>
+            <p data-i18n="programs.robloxDesc" class="mt-2 text-sm">Use Roblox Studio and Lua to launch immersive, shared worlds.</p>
+            <p data-i18n="programs.robloxSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: Lua, 3D design, creative storytelling</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
+            <h3 data-i18n="programs.appTitle" class="text-lg font-semibold text-ink">App Development World (Ages 9-15)</h3>
+            <p data-i18n="programs.appDesc" class="mt-2 text-sm">Prototype and ship real apps without needing prior code experience.</p>
+            <p data-i18n="programs.appSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: UI/UX, app design, API integration, project management</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
+            <h3 data-i18n="programs.designTitle" class="text-lg font-semibold text-ink">3D Design Adventure (Ages 9-15)</h3>
+            <p data-i18n="programs.designDesc" class="mt-2 text-sm">Learn Blender workflows for professional-grade 3D scenes.</p>
+            <p data-i18n="programs.designSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: 3D modelling, design workflow, Python basics</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
+            <h3 data-i18n="programs.aiGameTitle" class="text-lg font-semibold text-ink">AI & Game Adventure (Ages 9-15)</h3>
+            <p data-i18n="programs.aiGameDesc" class="mt-2 text-sm">Blend Python coding with machine learning to power smart games.</p>
+            <p data-i18n="programs.aiGameSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: Python, machine learning, computational thinking</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
+            <h3 data-i18n="programs.genAiTitle" class="text-lg font-semibold text-ink">Generative AI Adventure (Ages 9-15)</h3>
+            <p data-i18n="programs.genAiDesc" class="mt-2 text-sm">Use AI tools as creative partners and build responsible AI projects.</p>
+            <p data-i18n="programs.genAiSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: prompt engineering, AI integration, creative expression</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="mt-20 grid gap-10 border-t border-slate-200 pt-10 md:grid-cols-2">
+        <div class="space-y-3">
+          <h2 data-i18n="format.heading" class="text-2xl font-semibold text-ink md:text-3xl">Lesson format</h2>
+          <p data-i18n="format.copy" class="text-base leading-relaxed text-slate-600">Each 90-minute session keeps things light: short theory, hands-on build, quick recap.</p>
+        </div>
+        <div class="space-y-3">
+          <h2 data-i18n="flex.heading" class="text-2xl font-semibold text-ink md:text-3xl">Flexible learning</h2>
+          <ul class="space-y-2 text-base text-slate-600">
+            <li data-i18n="flex.item1">Choose 1-5 lessons per week to suit your calendar.</li>
+            <li data-i18n="flex.item2">Start with 2 sessions weekly for a steady rhythm.</li>
+            <li data-i18n="flex.item3">Need a boost? Fast-track options are ready.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="pricing" class="mt-20 border-t border-slate-200 pt-10">
+        <h2 data-i18n="pricing.heading" class="text-2xl font-semibold text-ink md:text-3xl">Flexible pricing</h2>
+        <p data-i18n="pricing.copy" class="mt-3 text-base text-slate-600">Pick private or group lessons. Every plan includes feedback, recaps, and portfolio help.</p>
+        <div class="mt-10 grid gap-8 md:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 bg-white/95 p-6">
+            <h3 data-i18n="pricing.privateTitle" class="text-lg font-semibold text-ink">Private (1 on 1)</h3>
+            <dl class="mt-4 space-y-3 text-sm text-slate-600">
+              <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
+                <dt data-i18n="pricing.privateWeekly">Weekly</dt>
+                <dd class="font-semibold text-ink">800K VND / ~$32</dd>
+              </div>
+              <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
+                <dt data-i18n="pricing.privateCourse">1 course (8 lessons)</dt>
+                <dd class="font-semibold text-ink">5.6M VND / ~$225 <span data-i18n="pricing.privateCourseSave" class="text-sm text-slate-500">save 800K (~$32)</span></dd>
+              </div>
+              <div class="flex items-baseline justify-between">
+                <dt data-i18n="pricing.privateProgram">Full program (24 lessons)</dt>
+                <dd class="font-semibold text-ink">15M VND / ~$600 <span data-i18n="pricing.privateProgramSave" class="text-sm text-slate-500">save 4.2M (~$168)</span></dd>
+              </div>
+            </dl>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white/95 p-6">
+            <h3 data-i18n="pricing.groupTitle" class="text-lg font-semibold text-ink">Small group (2-4 students)</h3>
+            <dl class="mt-4 space-y-3 text-sm text-slate-600">
+              <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
+                <dt data-i18n="pricing.groupWeekly">Weekly</dt>
+                <dd class="font-semibold text-ink">450K VND / ~$18</dd>
+              </div>
+              <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
+                <dt data-i18n="pricing.groupCourse">1 course (8 lessons)</dt>
+                <dd class="font-semibold text-ink">3.2M VND / ~$128 <span data-i18n="pricing.groupCourseSave" class="text-sm text-slate-500">save 400K (~$16)</span></dd>
+              </div>
+              <div class="flex items-baseline justify-between">
+                <dt data-i18n="pricing.groupProgram">Full program (24 lessons)</dt>
+                <dd class="font-semibold text-ink">8.4M VND / ~$336 <span data-i18n="pricing.groupProgramSave" class="text-sm text-slate-500">save 2.4M (~$96)</span></dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section id="trial" class="mt-20 border-t border-slate-200 pt-10">
+        <div class="rounded-2xl border border-sky-light bg-white/90 p-8 md:p-10">
+          <h2 data-i18n="trial.heading" class="text-2xl font-semibold text-ink md:text-3xl">Book your free 60-minute trial</h2>
+          <p data-i18n="trial.copy" class="mt-3 text-base text-slate-600">Meet a coach, explore interests, and confirm fit before the first lesson.</p>
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <a data-i18n="trial.ctaPrimary" href="#trial" class="inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Book free trial</a>
+            <a data-i18n="trial.ctaSecondary" href="https://wa.me/84931140736" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink transition hover:border-sky hover:text-sky focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on WhatsApp</a>
+            <a data-i18n="trial.ctaTertiary" href="tel:0931140736" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink transition hover:border-sky hover:text-sky focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on Zalo</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-20 border-t border-slate-200 pt-10">
+        <h2 data-i18n="outcomes.heading" class="text-2xl font-semibold text-ink md:text-3xl">What success looks like</h2>
+        <ul class="mt-6 grid gap-4 text-base text-slate-600 md:grid-cols-3">
+          <li data-i18n="outcomes.item1" class="rounded-2xl border border-slate-200 bg-white/90 p-6 text-center">Learners grasp real tech concepts with calm, guided practice</li>
+          <li data-i18n="outcomes.item2" class="rounded-2xl border border-slate-200 bg-white/90 p-6 text-center">Projects are launched - games, apps, designs, or AI tools</li>
+          <li data-i18n="outcomes.item3" class="rounded-2xl border border-slate-200 bg-white/90 p-6 text-center">Portfolios grow and students share their work with confidence</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer id="contact" class="border-t border-slate-200 bg-white py-16">
+      <div class="mx-auto flex max-w-wrap flex-col gap-6 px-6 md:px-8">
+        <h2 data-i18n="contact.heading" class="text-2xl font-semibold text-ink md:text-3xl">Talk with our team</h2>
+        <p data-i18n="contact.copy" class="text-base text-slate-600">Zalo / WhatsApp: 0931140736  -  Email: hello@techtutors.com</p>
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a data-i18n="contact.whatsapp" href="https://wa.me/84931140736" class="inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on WhatsApp</a>
+          <a data-i18n="contact.zalo" href="tel:0931140736" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink transition hover:border-sky hover:text-sky focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on Zalo</a>
+        </div>
+        <p data-i18n="contact.support" class="text-sm text-slate-500">English / Vietnamese bilingual support</p>
+        <p class="text-xs text-slate-400">2025 TechTutor Academy</p>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var toggles = document.querySelectorAll('[data-lang]');
+        var textNodes = document.querySelectorAll('[data-i18n]');
+        var translations = {
+          en: {
+            'nav.programs': 'Programs',
+            'nav.pricing': 'Pricing',
+            'nav.trial': 'Free trial',
+            'nav.contact': 'Contact',
+            'header.menu': 'Menu',
+            'hero.title': 'Future-ready learning for curious minds.',
+            'hero.subtitle': 'Live tech coaching that turns curiosity into projects your child can be proud of.',
+            'hero.ctaPrimary': 'Book free trial',
+            'hero.ctaSecondary': 'Chat on WhatsApp',
+            'hero.ctaTertiary': 'Chat on Zalo',
+            'hero.contact': 'Zalo / WhatsApp: 0931140736',
+            'hero.snapshotLabel': 'Parent snapshot',
+            'hero.stat1': '80-90% retention',
+            'hero.stat2': 'Project-first lessons',
+            'hero.stat3': 'Coaches 3+ yrs',
+            'why.heading': 'Why families choose TechTutor',
+            'why.copy': 'Built for busy Vietnam-based families who want tech lessons that feel calm, personal, and useful.',
+            'why.item1': '3+ years designing programs with 80-90% learner retention',
+            'why.item2': 'Generative AI, coding, design, and game development in one place',
+            'why.item3': 'Every learner completes a real project they can show to friends',
+            'why.item4': 'Flexible 1:1 or small group formats with personal feedback',
+            'benefits.heading': 'What students get',
+            'benefits.item1': '1:1 personalized tutoring (90-minute sessions)',
+            'benefits.item2': 'Project-based courses with a finished creation',
+            'benefits.item3': 'Ongoing feedback and bilingual EN/VN summaries',
+            'benefits.item4': 'Portfolio guidance plus flexible rescheduling (24h notice)',
+            'programs.heading': 'Programs for every age',
+            'programs.copy': 'Simple cards show focus, ages, and core skills.',
+            'programs.steamTitle': 'STEAM Discovery (Ages 5-8)',
+            'programs.steamDesc': 'Create games, learn Lua basics, explore 3D modelling, tell stories.',
+            'programs.steamSkills': 'Skills: typing, block coding, problem solving, communication',
+            'programs.techTitle': 'Tech Discovery (Ages 8-11)',
+            'programs.techDesc': 'Scratch coding and TinkerCAD 3D projects for confident makers.',
+            'programs.techSkills': 'Skills: basic coding, spatial awareness, computational thinking',
+            'programs.gdevelopTitle': 'GDevelop Game Design World (Ages 8-15)',
+            'programs.gdevelopDesc': 'Build 2D games while learning design, logic, and playtesting basics.',
+            'programs.gdevelopSkills': 'Skills: game design, project management, creative thinking',
+            'programs.robloxTitle': 'Roblox Game Design World (Ages 9-15)',
+            'programs.robloxDesc': 'Use Roblox Studio and Lua to launch immersive, shared worlds.',
+            'programs.robloxSkills': 'Skills: Lua, 3D design, creative storytelling',
+            'programs.appTitle': 'App Development World (Ages 9-15)',
+            'programs.appDesc': 'Prototype and ship real apps without needing prior code experience.',
+            'programs.appSkills': 'Skills: UI/UX, app design, API integration, project management',
+            'programs.designTitle': '3D Design Adventure (Ages 9-15)',
+            'programs.designDesc': 'Learn Blender workflows for professional-grade 3D scenes.',
+            'programs.designSkills': 'Skills: 3D modelling, design workflow, Python basics',
+            'programs.aiGameTitle': 'AI & Game Adventure (Ages 9-15)',
+            'programs.aiGameDesc': 'Blend Python coding with machine learning to power smart games.',
+            'programs.aiGameSkills': 'Skills: Python, machine learning, computational thinking',
+            'programs.genAiTitle': 'Generative AI Adventure (Ages 9-15)',
+            'programs.genAiDesc': 'Use AI tools as creative partners and build responsible AI projects.',
+            'programs.genAiSkills': 'Skills: prompt engineering, AI integration, creative expression',
+            'format.heading': 'Lesson format',
+            'format.copy': 'Each 90-minute session keeps things light: short theory, hands-on build, quick recap.',
+            'flex.heading': 'Flexible learning',
+            'flex.item1': 'Choose 1-5 lessons per week to suit your calendar.',
+            'flex.item2': 'Start with 2 sessions weekly for a steady rhythm.',
+            'flex.item3': 'Need a boost? Fast-track options are ready.',
+            'pricing.heading': 'Flexible pricing',
+            'pricing.copy': 'Pick private or group lessons. Every plan includes feedback, recaps, and portfolio help.',
+            'pricing.privateTitle': 'Private (1 on 1)',
+            'pricing.privateWeekly': 'Weekly',
+            'pricing.privateCourse': '1 course (8 lessons)',
+            'pricing.privateCourseSave': 'save 800K (~$32)',
+            'pricing.privateProgram': 'Full program (24 lessons)',
+            'pricing.privateProgramSave': 'save 4.2M (~$168)',
+            'pricing.groupTitle': 'Small group (2-4 students)',
+            'pricing.groupWeekly': 'Weekly',
+            'pricing.groupCourse': '1 course (8 lessons)',
+            'pricing.groupCourseSave': 'save 400K (~$16)',
+            'pricing.groupProgram': 'Full program (24 lessons)',
+            'pricing.groupProgramSave': 'save 2.4M (~$96)',
+            'trial.heading': 'Book your free 60-minute trial',
+            'trial.copy': 'Meet a coach, explore interests, and confirm fit before the first lesson.',
+            'trial.ctaPrimary': 'Book free trial',
+            'trial.ctaSecondary': 'Chat on WhatsApp',
+            'trial.ctaTertiary': 'Chat on Zalo',
+            'outcomes.heading': 'What success looks like',
+            'outcomes.item1': 'Learners grasp real tech concepts with calm, guided practice',
+            'outcomes.item2': 'Projects are launched - games, apps, designs, or AI tools',
+            'outcomes.item3': 'Portfolios grow and students share their work with confidence',
+            'contact.heading': 'Talk with our team',
+            'contact.copy': 'Zalo / WhatsApp: 0931140736  -  Email: hello@techtutors.com',
+            'contact.whatsapp': 'Chat on WhatsApp',
+            'contact.zalo': 'Chat on Zalo',
+            'contact.support': 'English / Vietnamese bilingual support'
+          },
+          vi: {
+            'nav.programs': 'Chương trình',
+            'nav.pricing': 'Học phí',
+            'nav.trial': 'Học thử',
+            'nav.contact': 'Liên hệ',
+            'header.menu': 'Menu',
+            'hero.title': 'Học tập tương lai cho những tâm hồn tò mò.',
+            'hero.subtitle': 'Huấn luyện công nghệ trực tiếp giúp con biến tò mò thành sản phẩm tự hào.',
+            'hero.ctaPrimary': 'Đặt lịch học thử',
+            'hero.ctaSecondary': 'Chat WhatsApp',
+            'hero.ctaTertiary': 'Chat Zalo',
+            'hero.contact': 'Zalo / WhatsApp: 0931140736',
+            'hero.snapshotLabel': 'Phụ huynh tin tưởng',
+            'hero.stat1': 'Giữ chân 80-90%',
+            'hero.stat2': 'Bài học ưu tiên dự án',
+            'hero.stat3': 'Huấn luyện viên 3+ năm',
+            'why.heading': 'Vì sao gia đình chọn TechTutor',
+            'why.copy': 'Thiết kế cho gia đình Việt Nam bận rộn, muốn giờ học công nghệ nhẹ nhàng và thực tế.',
+            'why.item1': 'Hơn 3 năm xây dựng chương trình với 80-90% học viên quay lại',
+            'why.item2': 'Generative AI, lập trình, thiết kế, làm game trong một lộ trình',
+            'why.item3': 'Mỗi học viên hoàn thiện sản phẩm thật để khoe cùng bạn bè',
+            'why.item4': 'Linh hoạt 1:1 hoặc nhóm nhỏ kèm phản hồi cá nhân hóa',
+            'benefits.heading': 'Học viên nhận được gì',
+            'benefits.item1': 'Gia sư 1:1 cá nhân hóa (90 phút/buổi)',
+            'benefits.item2': 'Khóa học theo dự án với sản phẩm hoàn chỉnh',
+            'benefits.item3': 'Phản hồi liên tục và bản tóm tắt song ngữ EN/VN',
+            'benefits.item4': 'Hỗ trợ portfolio và dời lịch linh hoạt (báo trước 24h)',
+            'programs.heading': 'Chương trình cho mọi độ tuổi',
+            'programs.copy': 'Thẻ thông tin gọn nhẹ về độ tuổi, nội dung và kỹ năng.',
+            'programs.steamTitle': 'STEAM Discovery (5-8 tuổi)',
+            'programs.steamDesc': 'Tạo trò chơi, làm quen Lua, khám phá 3D, kể chuyện.',
+            'programs.steamSkills': 'Kỹ năng: gõ phím, lập trình khối, giải quyết vấn đề, giao tiếp',
+            'programs.techTitle': 'Tech Discovery (8-11 tuổi)',
+            'programs.techDesc': 'Lập trình Scratch và dự án TinkerCAD cho nhà sáng tạo nhí.',
+            'programs.techSkills': 'Kỹ năng: lập trình cơ bản, tư duy không gian, tư duy tính toán',
+            'programs.gdevelopTitle': 'GDevelop Game Design World (8-15 tuổi)',
+            'programs.gdevelopDesc': 'Xây game 2D, học thiết kế, logic và thử nghiệm.',
+            'programs.gdevelopSkills': 'Kỹ năng: thiết kế game, quản lý dự án, sáng tạo',
+            'programs.robloxTitle': 'Roblox Game Design World (9-15 tuổi)',
+            'programs.robloxDesc': 'Dùng Roblox Studio và Lua để tạo thế giới sống động.',
+            'programs.robloxSkills': 'Kỹ năng: Lua, thiết kế 3D, kể chuyện sáng tạo',
+            'programs.appTitle': 'App Development World (9-15 tuổi)',
+            'programs.appDesc': 'Làm app thật mà không cần kinh nghiệm lập trình trước.',
+            'programs.appSkills': 'Kỹ năng: UI/UX, thiết kế app, tích hợp API, quản lý dự án',
+            'programs.designTitle': '3D Design Adventure (9-15 tuổi)',
+            'programs.designDesc': 'Làm chủ Blender để dựng cảnh 3D chuyên nghiệp.',
+            'programs.designSkills': 'Kỹ năng: mô hình 3D, quy trình thiết kế, Python cơ bản',
+            'programs.aiGameTitle': 'AI & Game Adventure (9-15 tuổi)',
+            'programs.aiGameDesc': 'Kết hợp Python và máy học để làm game thông minh.',
+            'programs.aiGameSkills': 'Kỹ năng: Python, máy học, tư duy tính toán',
+            'programs.genAiTitle': 'Generative AI Adventure (9-15 tuổi)',
+            'programs.genAiDesc': 'Dùng công cụ AI như trợ lý sáng tạo và làm dự án có trách nhiệm.',
+            'programs.genAiSkills': 'Kỹ năng: viết prompt, tích hợp AI, sáng tạo nội dung',
+            'format.heading': 'Cách mỗi buổi học diễn ra',
+            'format.copy': '90 phút nhẹ nhàng: lý thuyết ngắn, thực hành ngay, chốt kế hoạch.',
+            'flex.heading': 'Lịch học linh hoạt',
+            'flex.item1': 'Chọn 1-5 buổi/tuần tùy lịch gia đình.',
+            'flex.item2': 'Khởi đầu với 2 buổi/tuần để giữ nhịp ổn định.',
+            'flex.item3': 'Cần tăng tốc? Có sẵn lộ trình nhanh.',
+            'pricing.heading': 'Học phí linh hoạt',
+            'pricing.copy': 'Chọn lớp riêng hoặc nhóm nhỏ. Mọi gói đều có phản hồi, ghi chú và hỗ trợ portfolio.',
+            'pricing.privateTitle': 'Lớp riêng (1 kèm 1)',
+            'pricing.privateWeekly': 'Theo tuần',
+            'pricing.privateCourse': '1 khóa (8 buổi)',
+            'pricing.privateCourseSave': 'tiết kiệm 800K (~$32)',
+            'pricing.privateProgram': 'Chương trình đầy đủ (24 buổi)',
+            'pricing.privateProgramSave': 'tiết kiệm 4.2M (~$168)',
+            'pricing.groupTitle': 'Lớp nhóm nhỏ (2-4 học viên)',
+            'pricing.groupWeekly': 'Theo tuần',
+            'pricing.groupCourse': '1 khóa (8 buổi)',
+            'pricing.groupCourseSave': 'tiết kiệm 400K (~$16)',
+            'pricing.groupProgram': 'Chương trình đầy đủ (24 buổi)',
+            'pricing.groupProgramSave': 'tiết kiệm 2.4M (~$96)',
+            'trial.heading': 'Đặt lịch học thử 60 phút miễn phí',
+            'trial.copy': 'Gặp huấn luyện viên, khám phá sở thích và xác nhận phù hợp trước khi học.',
+            'trial.ctaPrimary': 'Đặt lịch học thử',
+            'trial.ctaSecondary': 'Chat WhatsApp',
+            'trial.ctaTertiary': 'Chat Zalo',
+            'outcomes.heading': 'Thành quả đạt được',
+            'outcomes.item1': 'Hiểu khái niệm công nghệ qua luyện tập dẫn hướng',
+            'outcomes.item2': 'Ra mắt sản phẩm - game, ứng dụng, thiết kế hoặc công cụ AI',
+            'outcomes.item3': 'Phát triển portfolio và tự tin chia sẻ thành quả',
+            'contact.heading': 'Liên hệ đội ngũ',
+            'contact.copy': 'Zalo / WhatsApp: 0931140736  -  Email: hello@techtutors.com',
+            'contact.whatsapp': 'Chat WhatsApp',
+            'contact.zalo': 'Chat Zalo',
+            'contact.support': 'Hỗ trợ song ngữ Anh / Việt'
+          }
+        };
+
+        function setLanguage(lang) {
+          document.documentElement.setAttribute('lang', lang === 'vi' ? 'vi' : 'en');
+          textNodes.forEach(function (node) {
+            var key = node.dataset.i18n;
+            var value = translations[lang] && translations[lang][key];
+            if (typeof value === 'string') {
+              node.textContent = value;
+            }
+          });
+          toggles.forEach(function (btn) {
+            var isActive = btn.dataset.lang === lang;
+            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            btn.classList.toggle('bg-sky', isActive);
+            btn.classList.toggle('text-white', isActive);
+          });
+        }
+
+        toggles.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            setLanguage(btn.dataset.lang);
+          });
+        });
+
+        setLanguage('en');
+
+        var menuButton = document.getElementById('menu-button');
+        var mobileNav = document.getElementById('mobile-nav');
+        if (menuButton && mobileNav) {
+          menuButton.addEventListener('click', function () {
+            mobileNav.classList.toggle('hidden');
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
