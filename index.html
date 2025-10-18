@@ -43,7 +43,7 @@
     <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
       <div class="mx-auto flex max-w-wrap items-center justify-between gap-4 px-6 py-4 md:px-8">
         <a href="#hero" class="flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">
-          <img src="images/logo-no-bg.png" alt="TechTutor logo" class="h-16 w-auto origin-left scale-125 md:h-20 md:scale-150" />
+          <img src="images/logo-no-bg.png" alt="TechTutor logo" class="h-20 w-auto origin-left scale-125 md:h-24 md:scale-150" />
         </a>
         <nav class="hidden items-center gap-8 text-sm font-semibold text-slate-600 md:flex">
           <a data-i18n="nav.programs" href="#programs" class="transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Programs</a>
@@ -76,10 +76,9 @@
         <div class="space-y-6 md:max-w-[460px]">
           <h1 data-i18n="hero.title" class="text-4xl font-semibold leading-tight text-ink md:text-5xl">Future-ready learning for curious minds.</h1>
           <p data-i18n="hero.subtitle" class="text-lg leading-relaxed text-slate-600">Live tech instruction that turns curiosity into projects your child can be proud of.</p>
-          <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-            <a data-i18n="hero.ctaPrimary" href="#trial" class="inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Book free trial</a>
-            <a data-i18n="hero.ctaSecondary" href="https://wa.me/84931140736" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink transition hover:border-sky hover:text-sky focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on WhatsApp</a>
-            <a data-i18n="hero.ctaTertiary" href="tel:0931140736" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink transition hover:border-sky hover:text-sky focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on Zalo</a>
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+            <a data-i18n="hero.ctaSecondary" href="https://wa.me/84931140736" class="inline-flex items-center justify-center rounded-full bg-leaf px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf">Chat on WhatsApp</a>
+            <a data-i18n="hero.ctaTertiary" href="tel:0931140736" class="inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on Zalo</a>
           </div>
           <p data-i18n="hero.contact" class="text-sm text-slate-500">Zalo / WhatsApp: 0931140736</p>
         </div>
@@ -116,56 +115,99 @@
       <section class="mt-20 border-t border-slate-200 pt-10">
         <h2 data-i18n="benefits.heading" class="text-2xl font-semibold text-ink md:text-3xl">What students get</h2>
         <div class="mt-8 grid gap-4 md:grid-cols-2">
-          <div class="rounded-2xl border border-slate-200 bg-white/90 p-6 text-slate-600" data-i18n="benefits.item1">1:1 personalized tutoring (90-minute sessions)</div>
-          <div class="rounded-2xl border border-slate-200 bg-white/90 p-6 text-slate-600" data-i18n="benefits.item2">Project-based courses with a finished creation</div>
-          <div class="rounded-2xl border border-slate-200 bg-white/90 p-6 text-slate-600" data-i18n="benefits.item3">Ongoing feedback and bilingual EN/VN summaries</div>
-          <div class="rounded-2xl border border-slate-200 bg-white/90 p-6 text-slate-600" data-i18n="benefits.item4">Portfolio guidance plus flexible rescheduling (24h notice)</div>
+          <div class="rounded-2xl border border-slate-200 bg-white/90 p-6 text-slate-600">
+            <div class="flex items-start gap-3">
+              <span class="text-2xl">⏰</span>
+              <span data-i18n="benefits.item1">1:1 personalized tutoring (90-minute sessions)</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white/90 p-6 text-slate-600">
+            <div class="flex items-start gap-3">
+              <span class="text-2xl">🚀</span>
+              <span data-i18n="benefits.item2">Project-based courses with a finished creation</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white/90 p-6 text-slate-600">
+            <div class="flex items-start gap-3">
+              <span class="text-2xl">💬</span>
+              <span data-i18n="benefits.item3">Ongoing feedback and bilingual EN/VN summaries</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white/90 p-6 text-slate-600">
+            <div class="flex items-start gap-3">
+              <span class="text-2xl">📂</span>
+              <span data-i18n="benefits.item4">Portfolio guidance plus flexible rescheduling (24h notice)</span>
+            </div>
+          </div>
         </div>
       </section>
 
       <section id="programs" class="mt-20 border-t border-slate-200 pt-10">
         <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <h2 data-i18n="programs.heading" class="text-2xl font-semibold text-ink md:text-3xl">Programs for every age</h2>
-          <p data-i18n="programs.copy" class="text-sm text-slate-500">Simple cards show focus, ages, and core skills.</p>
         </div>
         <div class="mt-10 grid gap-6 md:grid-cols-2">
           <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
-            <h3 data-i18n="programs.steamTitle" class="text-lg font-semibold text-ink">STEAM Discovery (Ages 5-8)</h3>
+            <div class="mb-4">
+              <img src="images/scrathc-logo.png" alt="Scratch" class="w-20 h-auto mb-3" />
+              <h3 data-i18n="programs.steamTitle" class="text-lg font-semibold text-ink">STEAM Discovery (Ages 5-8)</h3>
+            </div>
             <p data-i18n="programs.steamDesc" class="mt-2 text-sm">Create games, learn Lua basics, explore 3D modelling, tell stories.</p>
             <p data-i18n="programs.steamSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: typing, block coding, problem solving, communication</p>
           </article>
           <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
-            <h3 data-i18n="programs.techTitle" class="text-lg font-semibold text-ink">Tech Discovery (Ages 8-11)</h3>
+            <div class="mb-4">
+              <img src="images/scrathc-logo.png" alt="Scratch" class="w-20 h-auto mb-3" />
+              <h3 data-i18n="programs.techTitle" class="text-lg font-semibold text-ink">Tech Discovery (Ages 8-11)</h3>
+            </div>
             <p data-i18n="programs.techDesc" class="mt-2 text-sm">Scratch coding and TinkerCAD 3D projects for confident makers.</p>
             <p data-i18n="programs.techSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: basic coding, spatial awareness, computational thinking</p>
           </article>
           <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
-            <h3 data-i18n="programs.gdevelopTitle" class="text-lg font-semibold text-ink">GDevelop Game Design World (Ages 8-15)</h3>
+            <div class="mb-4">
+              <img src="images/gdeve-logo.png" alt="GDevelop" class="w-20 h-auto mb-3" />
+              <h3 data-i18n="programs.gdevelopTitle" class="text-lg font-semibold text-ink">GDevelop Game Design World (Ages 8-15)</h3>
+            </div>
             <p data-i18n="programs.gdevelopDesc" class="mt-2 text-sm">Build 2D games while learning design, logic, and playtesting basics.</p>
             <p data-i18n="programs.gdevelopSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: game design, project management, creative thinking</p>
           </article>
           <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
-            <h3 data-i18n="programs.robloxTitle" class="text-lg font-semibold text-ink">Roblox Game Design World (Ages 9-15)</h3>
+            <div class="mb-4">
+              <img src="images/robox-logo.png" alt="Roblox" class="w-20 h-auto mb-3" />
+              <h3 data-i18n="programs.robloxTitle" class="text-lg font-semibold text-ink">Roblox Game Design World (Ages 9-15)</h3>
+            </div>
             <p data-i18n="programs.robloxDesc" class="mt-2 text-sm">Use Roblox Studio and Lua to launch immersive, shared worlds.</p>
             <p data-i18n="programs.robloxSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: Lua, 3D design, creative storytelling</p>
           </article>
           <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
-            <h3 data-i18n="programs.appTitle" class="text-lg font-semibold text-ink">App Development World (Ages 9-15)</h3>
+            <div class="mb-4">
+              <img src="images/app-dev-logo.png" alt="App Development" class="w-20 h-auto mb-3" />
+              <h3 data-i18n="programs.appTitle" class="text-lg font-semibold text-ink">App Development World (Ages 9-15)</h3>
+            </div>
             <p data-i18n="programs.appDesc" class="mt-2 text-sm">Prototype and ship real apps without needing prior code experience.</p>
             <p data-i18n="programs.appSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: UI/UX, app design, API integration, project management</p>
           </article>
           <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
-            <h3 data-i18n="programs.designTitle" class="text-lg font-semibold text-ink">3D Design Adventure (Ages 9-15)</h3>
+            <div class="mb-4">
+              <img src="images/blender.png" alt="Blender" class="w-20 h-auto mb-3" />
+              <h3 data-i18n="programs.designTitle" class="text-lg font-semibold text-ink">3D Design Adventure (Ages 9-15)</h3>
+            </div>
             <p data-i18n="programs.designDesc" class="mt-2 text-sm">Learn Blender workflows for professional-grade 3D scenes.</p>
             <p data-i18n="programs.designSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: 3D modelling, design workflow, Python basics</p>
           </article>
           <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
-            <h3 data-i18n="programs.aiGameTitle" class="text-lg font-semibold text-ink">AI & Game Adventure (Ages 9-15)</h3>
+            <div class="mb-4">
+              <img src="images/ai-logo.png" alt="AI" class="w-20 h-auto mb-3" />
+              <h3 data-i18n="programs.aiGameTitle" class="text-lg font-semibold text-ink">AI & Game Adventure (Ages 9-15)</h3>
+            </div>
             <p data-i18n="programs.aiGameDesc" class="mt-2 text-sm">Blend Python coding with machine learning to power smart games.</p>
             <p data-i18n="programs.aiGameSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: Python, machine learning, computational thinking</p>
           </article>
           <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
-            <h3 data-i18n="programs.genAiTitle" class="text-lg font-semibold text-ink">Generative AI Adventure (Ages 9-15)</h3>
+            <div class="mb-4">
+              <img src="images/chatgpt-logo.jpg" alt="ChatGPT" class="w-20 h-auto mb-3" />
+              <h3 data-i18n="programs.genAiTitle" class="text-lg font-semibold text-ink">Generative AI Adventure (Ages 9-15)</h3>
+            </div>
             <p data-i18n="programs.genAiDesc" class="mt-2 text-sm">Use AI tools as creative partners and build responsible AI projects.</p>
             <p data-i18n="programs.genAiSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: prompt engineering, AI integration, creative expression</p>
           </article>
@@ -315,7 +357,7 @@
             <a id="waLink" href="https://wa.me/84931140736" target="_blank" class="inline-flex items-center justify-center rounded-full bg-leaf px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf">
               Chat on WhatsApp
             </a>
-            <a id="zaloLink" href="https://zalo.me/84931140736" target="_blank" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink transition hover:border-sky hover:text-sky focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">
+            <a id="zaloLink" href="https://zalo.me/84931140736" target="_blank" class="inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">
               Chat on Zalo
             </a>
           </div>
@@ -342,8 +384,8 @@
         <h2 data-i18n="contact.heading" class="text-2xl font-semibold text-ink md:text-3xl">Talk with our team</h2>
         <p data-i18n="contact.copy" class="text-base text-slate-600">Zalo / WhatsApp: 0931140736</p>
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <a data-i18n="contact.whatsapp" href="https://wa.me/84931140736" class="inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on WhatsApp</a>
-          <a data-i18n="contact.zalo" href="tel:0931140736" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink transition hover:border-sky hover:text-sky focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on Zalo</a>
+          <a data-i18n="contact.whatsapp" href="https://wa.me/84931140736" class="inline-flex items-center justify-center rounded-full bg-leaf px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf">Chat on WhatsApp</a>
+          <a data-i18n="contact.zalo" href="tel:0931140736" class="inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on Zalo</a>
         </div>
         <p data-i18n="contact.support" class="text-sm text-slate-500">English / Vietnamese bilingual support</p>
         <p class="text-xs text-slate-400">2025 TechTutor Academy</p>
