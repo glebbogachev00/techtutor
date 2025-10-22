@@ -7,8 +7,5 @@
   "routes": [
     { "handle": "filesystem" },
     { "src": "/.*", "dest": "/index.html" }
-  ],
-  "analytics": {
-    "enable": true
-  }
+  ]
 }
