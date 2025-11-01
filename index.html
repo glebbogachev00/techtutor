@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TechTutor Academy</title>
-    <link rel="icon" type="image/png" href="images/icon-tt.png" />
+    <link rel="icon" type="image/png" href="images/tt-mascot.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -44,7 +44,7 @@
     <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
       <div class="mx-auto flex max-w-wrap items-center justify-between gap-4 px-6 py-4 md:px-8">
         <a href="#hero" class="flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">
-          <img src="images/logo-no-bg.png" alt="TechTutor logo" class="h-20 w-auto origin-left scale-125 md:h-24 md:scale-150" />
+          <img src="images/tt-new.png" alt="TechTutor logo" class="h-20 w-auto origin-left scale-125 md:h-24 md:scale-150" />
         </a>
         <nav class="hidden items-center gap-8 text-sm font-semibold text-slate-600 md:flex">
           <a data-i18n="nav.programs" href="#programs" class="transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Programs</a>
@@ -170,6 +170,22 @@
           </article>
           <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
             <div class="mb-4">
+              <img src="images/app-dev-logo.png" alt="App Development" class="w-20 h-auto mb-3" />
+              <h3 data-i18n="programs.appTitle" class="text-lg font-semibold text-ink">App Development (Ages 9-15)</h3>
+            </div>
+            <p data-i18n="programs.appDesc" class="mt-2 text-sm">Build real mobile apps with Thunkable's visual interface and publish to app stores.</p>
+            <p data-i18n="programs.appSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: Thunkable, app design, UI/UX, project management</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
+            <div class="mb-4">
+              <img src="images/gdeve-logo.png" alt="GDevelop" class="w-20 h-auto mb-3" />
+              <h3 data-i18n="programs.gdevelopTitle" class="text-lg font-semibold text-ink">GDevelop Game Designer (Ages 8-15)</h3>
+            </div>
+            <p data-i18n="programs.gdevelopDesc" class="mt-2 text-sm">Create 2D games with visual scripting and publish across multiple platforms.</p>
+            <p data-i18n="programs.gdevelopSkills" class="mt-4 text-xs uppercase tracking-wide text-slate-500">Skills: GDevelop, game design, visual scripting, publishing</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 bg-white p-6 text-slate-700">
+            <div class="mb-4">
               <img src="images/ai-logo.png" alt="AI" class="w-20 h-auto mb-3" />
               <h3 data-i18n="programs.aiGameTitle" class="text-lg font-semibold text-ink">AI & Programming Quest (Ages 9-15)</h3>
             </div>
@@ -242,6 +258,34 @@
                 <dd class="font-semibold text-ink">8.4M VND / ~$336 <span data-i18n="pricing.groupProgramSave" class="text-sm text-slate-500">save 2.4M (~$96)</span></dd>
               </div>
             </dl>
+          </div>
+        </div>
+        
+        <div class="mt-8 border-t border-slate-200 pt-8">
+          <h3 data-i18n="pricing.ondemandHeading" class="text-lg font-semibold text-ink mb-6">On-demand courses</h3>
+          <div class="grid gap-8 md:grid-cols-2">
+            <div class="rounded-2xl border border-slate-200 bg-white/95 p-6">
+              <h4 data-i18n="pricing.ondemandPrivateTitle" class="text-lg font-semibold text-ink">Private (1 on 1)</h4>
+              <dl class="mt-4 space-y-3 text-sm text-slate-600">
+                <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
+                  <dt data-i18n="pricing.ondemandCourse">10-lesson course</dt>
+                  <dd class="font-semibold text-ink">8.8M VND / ~$352</dd>
+                </div>
+              </dl>
+              <p data-i18n="pricing.ondemandPrivateDesc1" class="mt-3 text-sm text-slate-600">Tailored 10-lesson course created for individual learning goals.</p>
+              <p data-i18n="pricing.ondemandPrivateDesc2" class="text-sm text-slate-600">Includes progress tracking and final project review.</p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-white/95 p-6">
+              <h4 data-i18n="pricing.ondemandGroupTitle" class="text-lg font-semibold text-ink">Small group (2–4 students)</h4>
+              <dl class="mt-4 space-y-3 text-sm text-slate-600">
+                <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
+                  <dt data-i18n="pricing.ondemandCourse">10-lesson course</dt>
+                  <dd class="font-semibold text-ink">5M VND / ~$200</dd>
+                </div>
+              </dl>
+              <p data-i18n="pricing.ondemandGroupDesc1" class="mt-3 text-sm text-slate-600">Custom program adapted for small groups with similar interests or skill levels.</p>
+              <p data-i18n="pricing.ondemandGroupDesc2" class="text-sm text-slate-600">Includes shared projects and group feedback.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -410,12 +454,15 @@
             'programs.robloxTitle': 'Roblox World Creator (Ages 9-15)',
             'programs.robloxDesc': 'Use Roblox Studio and Lua to launch immersive, shared worlds.',
             'programs.robloxSkills': 'Skills: Lua, 3D design, creative storytelling',
-            'programs.appTitle': 'App Development World (Ages 9-15)',
-            'programs.appDesc': 'Prototype and ship real apps without needing prior code experience.',
-            'programs.appSkills': 'Skills: UI/UX, app design, API integration, project management',
             'programs.designTitle': '3D Designer (Ages 9-15)',
             'programs.designDesc': 'Learn Blender workflows for professional-grade 3D scenes.',
             'programs.designSkills': 'Skills: 3D modelling, design workflow, Python basics',
+            'programs.appTitle': 'App Development (Ages 9-15)',
+            'programs.appDesc': 'Build real mobile apps with Thunkable\'s visual interface and publish to app stores.',
+            'programs.appSkills': 'Skills: Thunkable, app design, UI/UX, project management',
+            'programs.gdevelopTitle': 'GDevelop Game Designer (Ages 8-15)',
+            'programs.gdevelopDesc': 'Create 2D games with visual scripting and publish across multiple platforms.',
+            'programs.gdevelopSkills': 'Skills: GDevelop, game design, visual scripting, publishing',
             'programs.aiGameTitle': 'AI & Programming Quest (Ages 9-15)',
             'programs.aiGameDesc': 'Blend Python coding with machine learning to power smart games.',
             'programs.aiGameSkills': 'Skills: Python, machine learning, computational thinking',
@@ -442,6 +489,14 @@
             'pricing.groupCourseSave': 'save 400K (~$16)',
             'pricing.groupProgram': 'Full program (24 lessons)',
             'pricing.groupProgramSave': 'save 2.4M (~$96)',
+            'pricing.ondemandHeading': 'On-demand courses',
+            'pricing.ondemandPrivateTitle': 'Private (1 on 1)',
+            'pricing.ondemandGroupTitle': 'Small group (2–4 students)',
+            'pricing.ondemandCourse': '10-lesson course',
+            'pricing.ondemandPrivateDesc1': 'Tailored 10-lesson course created for individual learning goals.',
+            'pricing.ondemandPrivateDesc2': 'Includes progress tracking and final project review.',
+            'pricing.ondemandGroupDesc1': 'Custom program adapted for small groups with similar interests or skill levels.',
+            'pricing.ondemandGroupDesc2': 'Includes shared projects and group feedback.',
             'trial.heading': 'Book your free 60-minute trial',
             'trial.copy': 'Meet an instructor, explore interests, and confirm fit before the first lesson.',
             'trial.ctaPrimary': 'Book free trial',
@@ -498,12 +553,15 @@
             'programs.robloxTitle': 'Roblox World Creator (9-15 tuổi)',
             'programs.robloxDesc': 'Dùng Roblox Studio và Lua để tạo thế giới sống động.',
             'programs.robloxSkills': 'Kỹ năng: Lua, thiết kế 3D, kể chuyện sáng tạo',
-            'programs.appTitle': 'App Development World (9-15 tuổi)',
-            'programs.appDesc': 'Làm app thật mà không cần kinh nghiệm lập trình trước.',
-            'programs.appSkills': 'Kỹ năng: UI/UX, thiết kế app, tích hợp API, quản lý dự án',
             'programs.designTitle': '3D Designer (9-15 tuổi)',
             'programs.designDesc': 'Làm chủ Blender để dựng cảnh 3D chuyên nghiệp.',
             'programs.designSkills': 'Kỹ năng: mô hình 3D, quy trình thiết kế, Python cơ bản',
+            'programs.appTitle': 'Phát triển ứng dụng (9-15 tuổi)',
+            'programs.appDesc': 'Xây dựng ứng dụng di động thật với giao diện trực quan Thunkable và xuất bản lên cửa hàng ứng dụng.',
+            'programs.appSkills': 'Kỹ năng: Thunkable, thiết kế app, UI/UX, quản lý dự án',
+            'programs.gdevelopTitle': 'Thiết kế game GDevelop (8-15 tuổi)',
+            'programs.gdevelopDesc': 'Tạo game 2D với lập trình trực quan và xuất bản trên nhiều nền tảng.',
+            'programs.gdevelopSkills': 'Kỹ năng: GDevelop, thiết kế game, lập trình trực quan, xuất bản',
             'programs.aiGameTitle': 'AI & Programming Quest (9-15 tuổi)',
             'programs.aiGameDesc': 'Kết hợp Python và máy học để làm game thông minh.',
             'programs.aiGameSkills': 'Kỹ năng: Python, máy học, tư duy tính toán',
@@ -530,6 +588,14 @@
             'pricing.groupCourseSave': 'tiết kiệm 400K (~$16)',
             'pricing.groupProgram': 'Chương trình đầy đủ (24 buổi)',
             'pricing.groupProgramSave': 'tiết kiệm 2.4M (~$96)',
+            'pricing.ondemandHeading': 'Khóa học theo yêu cầu',
+            'pricing.ondemandPrivateTitle': 'Lớp riêng (1 kèm 1)',
+            'pricing.ondemandGroupTitle': 'Lớp nhóm nhỏ (2–4 học viên)',
+            'pricing.ondemandCourse': 'Khóa 10 buổi',
+            'pricing.ondemandPrivateDesc1': 'Khóa học 10 buổi được thiết kế riêng theo mục tiêu học tập cá nhân.',
+            'pricing.ondemandPrivateDesc2': 'Bao gồm theo dõi tiến độ và đánh giá dự án cuối khóa.',
+            'pricing.ondemandGroupDesc1': 'Chương trình tùy chỉnh cho nhóm nhỏ có sở thích và trình độ tương đồng.',
+            'pricing.ondemandGroupDesc2': 'Bao gồm dự án nhóm và phản hồi chung.',
             'trial.heading': 'Đặt lịch học thử 60 phút miễn phí',
             'trial.copy': 'Gặp giảng viên, khám phá sở thích và xác nhận phù hợp trước khi học.',
             'trial.ctaPrimary': 'Đặt lịch học thử',
