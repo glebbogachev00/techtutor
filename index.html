@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GSY6KM066N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-GSY6KM066N');
+    </script>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TechTutor Academy</title>
@@ -283,6 +293,65 @@
         opacity: 1;
         transform: translateX(0);
       }
+
+      /* Testimonial carousel */
+      .testimonial-carousel-container {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .testimonial-carousel {
+        position: relative;
+        overflow: hidden;
+        min-height: 300px;
+      }
+
+      .testimonial-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        transform: translateX(-100%);
+        transition: all 1.2s ease-in-out;
+      }
+
+      .testimonial-slide.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .testimonial-slide.prev {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+
+      .testimonial-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 24px;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: none;
+        background-color: #cbd5e1;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .dot.active {
+        background-color: #1E66F5;
+        transform: scale(1.2);
+      }
+
+      .dot:hover {
+        background-color: #64748b;
+      }
     </style>
   </head>
   <body class="font-sans text-ink antialiased">
@@ -372,36 +441,6 @@
           <li data-i18n="why.item3">Every learner completes a real project they can show to friends</li>
           <li data-i18n="why.item4">Flexible 1:1 or small group formats with personal feedback</li>
         </ul>
-      </section>
-
-      <section class="fade-in-section mt-20 border-t border-slate-200 pt-10">
-        <h2 data-i18n="benefits.heading" class="text-2xl font-semibold md:text-3xl" style="color: #1E66F5;">What students get</h2>
-        <div class="mt-8 grid gap-4 md:grid-cols-2">
-          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-slate-600">
-            <div class="flex items-start gap-3">
-              <span class="text-2xl">⏰</span>
-              <span data-i18n="benefits.item1">1:1 personalized tutoring (90-minute sessions)</span>
-            </div>
-          </div>
-          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-slate-600">
-            <div class="flex items-start gap-3">
-              <span class="text-2xl">🚀</span>
-              <span data-i18n="benefits.item2">Project-based courses with a finished creation</span>
-            </div>
-          </div>
-          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-slate-600">
-            <div class="flex items-start gap-3">
-              <span class="text-2xl">💬</span>
-              <span data-i18n="benefits.item3">Ongoing feedback and bilingual EN/VN summaries</span>
-            </div>
-          </div>
-          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-slate-600">
-            <div class="flex items-start gap-3">
-              <span class="text-2xl">📂</span>
-              <span data-i18n="benefits.item4">Portfolio guidance plus flexible rescheduling (24h notice)</span>
-            </div>
-          </div>
-        </div>
       </section>
 
       <section id="programs" class="fade-in-section mt-20 border-t border-slate-200 pt-10">
@@ -661,6 +700,65 @@
       </section>
 
       <section class="fade-in-section mt-20 border-t border-slate-200 pt-10">
+        <h2 data-i18n="testimonials.heading" class="text-2xl font-semibold md:text-3xl" style="color: #1E66F5;">Testimonials</h2>
+        <p data-i18n="testimonials.subtitle" class="mt-3 text-base text-slate-600">What our parents say</p>
+        <div class="mt-10 testimonial-carousel-container">
+          <div class="testimonial-carousel">
+            <div class="testimonial-slide active rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+              <div class="flex items-start gap-2 mb-4">
+                <span class="text-yellow-500 text-lg">⭐</span>
+                <div class="flex-1">
+                  <p data-i18n="testimonials.test1.parent" class="text-sm font-semibold text-slate-700">Nguyễn Thị Lan Anh – mother of Bảo Minh (10 years old)</p>
+                  <p data-i18n="testimonials.test1.teacher" class="text-xs text-slate-500">Teacher: Teacher Gleb</p>
+                </div>
+              </div>
+              <blockquote data-i18n="testimonials.test1.quote" class="text-slate-600 leading-relaxed">"Bảo Minh has been learning with Teacher Gleb for almost a year now, focusing on Generative AI. At first, my son was shy and didn't know where to start with computers. Now he confidently builds small games and even created an AI chatbot for his science project! I really appreciate how Teacher Gleb makes every lesson fun and easy to follow. TechTutor truly brings international-level education to Vietnamese kids."</blockquote>
+            </div>
+
+            <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+              <div class="flex items-start gap-2 mb-4">
+                <span class="text-yellow-500 text-lg">⭐</span>
+                <div class="flex-1">
+                  <p data-i18n="testimonials.test2.parent" class="text-sm font-semibold text-slate-700">Lê Hoàng Phúc – father of Gia Hân (12 years old)</p>
+                  <p data-i18n="testimonials.test2.teacher" class="text-xs text-slate-500">Teacher: Teacher Mantan</p>
+                </div>
+              </div>
+              <blockquote data-i18n="testimonials.test2.quote" class="text-slate-600 leading-relaxed">"My daughter Gia Hân studied 3D Design and Roblox Game Development with Teacher Mantan for over a year and a half. Under his guidance, she created two complete playable games and learned teamwork, coding logic, and creativity. Now she proudly shows her portfolio to her friends. As parents, we can see how her confidence and English have both improved. Thank you, TechTutor!"</blockquote>
+            </div>
+
+            <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+              <div class="flex items-start gap-2 mb-4">
+                <span class="text-yellow-500 text-lg">⭐</span>
+                <div class="flex-1">
+                  <p data-i18n="testimonials.test3.parent" class="text-sm font-semibold text-slate-700">Thomas Reed – father of Kian Reed (13 years old, British-Vietnamese)</p>
+                  <p data-i18n="testimonials.test3.teacher" class="text-xs text-slate-500">Teacher: Teacher Mantan</p>
+                </div>
+              </div>
+              <blockquote data-i18n="testimonials.test3.quote" class="text-slate-600 leading-relaxed">"Kian has been working with Teacher Mantan for about one and a half years. Together they explored Generative AI and Python programming, and Kian now has two solid projects in his portfolio — one AI image generator and one chatbot app. We love the structured approach of TechTutor and the way lessons encourage creative problem-solving. Highly recommended for international families in Vietnam!"</blockquote>
+            </div>
+
+            <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+              <div class="flex items-start gap-2 mb-4">
+                <span class="text-yellow-500 text-lg">⭐</span>
+                <div class="flex-1">
+                  <p data-i18n="testimonials.test4.parent" class="text-sm font-semibold text-slate-700">Trần Minh Quân – father of Khánh Ngọc (9 years old)</p>
+                  <p data-i18n="testimonials.test4.teacher" class="text-xs text-slate-500">Teacher: Teacher Gleb</p>
+                </div>
+              </div>
+              <blockquote data-i18n="testimonials.test4.quote" class="text-slate-600 leading-relaxed">"Our daughter started at TechTutor just three months ago, learning 3D Design with Teacher Gleb. Even in a short time, she has made her first 3D model and keeps asking when the next class will be. The lessons are fun, inspiring, and help her think independently. We're so happy to have found TechTutor."</blockquote>
+            </div>
+          </div>
+          
+          <div class="testimonial-dots mt-6 flex justify-center gap-2">
+            <button class="dot active" data-slide="0"></button>
+            <button class="dot" data-slide="1"></button>
+            <button class="dot" data-slide="2"></button>
+            <button class="dot" data-slide="3"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="fade-in-section mt-20 border-t border-slate-200 pt-10">
         <h2 data-i18n="team.heading" class="text-2xl font-semibold md:text-3xl" style="color: #16A34A;">Our Teaching Team</h2>
         <p data-i18n="team.copy" class="mt-3 text-base text-slate-600">Meet our experienced instructors who guide students through their tech learning journey.</p>
         <div class="mt-10 grid gap-8 md:grid-cols-2">
@@ -778,11 +876,14 @@
             'why.item2': 'Generative AI, coding, design, and game development in one place',
             'why.item3': 'Every learner completes a <span style="color: #3B4CCA; font-weight: 600;">real project</span> they can show to friends',
             'why.item4': 'Flexible 1:1 or small group formats with personal feedback',
-            'benefits.heading': 'What students get',
-            'benefits.item1': '1:1 personalized tutoring (90-minute sessions)',
-            'benefits.item2': 'Project-based courses with a finished creation',
-            'benefits.item3': 'Ongoing feedback and bilingual EN/VN summaries',
-            'benefits.item4': 'Portfolio guidance plus flexible rescheduling (24h notice)',
+            'love.portfolio.title': 'Real Portfolios, Real Proof of Work',
+            'love.portfolio.desc': 'Every student builds high-quality, shareable projects — from AI chatbots to 3D worlds. By the end of each course, they have a portfolio they can proudly show to schools or future opportunities.',
+            'love.homework.title': 'Homework That Kids Actually Enjoy',
+            'love.homework.desc': 'Our "homework" feels like a challenge, not a chore. Students apply what they learned through mini creative tasks, like designing a new game feature or improving an AI prompt.',
+            'love.impact.title': 'Creative Projects with Real-World Impact',
+            'love.impact.desc': 'Every project connects to something meaningful — from using AI for storytelling to creating virtual cities that solve real-life problems. We nurture imagination and responsibility.',
+            'love.teachers.title': 'Highly Qualified, Passionate Teachers',
+            'love.teachers.desc': 'Our teachers combine technical expertise and child-friendly communication. Each class is guided by experienced mentors who inspire curiosity and confidence in every student.',
             'programs.heading': 'Programs for every age',
             'programs.copy': 'Simple cards show focus, ages, and core skills.',
             'programs.steamTitle': 'STEAM Discovery (Ages 5-8)',
@@ -866,6 +967,20 @@
             'outcomes.item1': 'Learners grasp real tech concepts with calm, guided practice',
             'outcomes.item2': 'Projects are launched - games, apps, designs, or AI tools',
             'outcomes.item3': 'Portfolios grow and students share their work with confidence',
+            'testimonials.heading': 'Testimonials',
+            'testimonials.subtitle': 'What our parents say',
+            'testimonials.test1.parent': 'Nguyễn Thị Lan Anh – mother of Bảo Minh (10 years old)',
+            'testimonials.test1.teacher': 'Teacher: Teacher Gleb',
+            'testimonials.test1.quote': '"Bảo Minh has been learning with Teacher Gleb for almost a year now, focusing on Generative AI. At first, my son was shy and didn\'t know where to start with computers. Now he confidently builds small games and even created an AI chatbot for his science project! I really appreciate how Teacher Gleb makes every lesson fun and easy to follow. TechTutor truly brings international-level education to Vietnamese kids."',
+            'testimonials.test2.parent': 'Lê Hoàng Phúc – father of Gia Hân (12 years old)',
+            'testimonials.test2.teacher': 'Teacher: Teacher Mantan',
+            'testimonials.test2.quote': '"My daughter Gia Hân studied 3D Design and Roblox Game Development with Teacher Mantan for over a year and a half. Under his guidance, she created two complete playable games and learned teamwork, coding logic, and creativity. Now she proudly shows her portfolio to her friends. As parents, we can see how her confidence and English have both improved. Thank you, TechTutor!"',
+            'testimonials.test3.parent': 'Thomas Reed – father of Kian Reed (13 years old, British-Vietnamese)',
+            'testimonials.test3.teacher': 'Teacher: Teacher Mantan',
+            'testimonials.test3.quote': '"Kian has been working with Teacher Mantan for about one and a half years. Together they explored Generative AI and Python programming, and Kian now has two solid projects in his portfolio — one AI image generator and one chatbot app. We love the structured approach of TechTutor and the way lessons encourage creative problem-solving. Highly recommended for international families in Vietnam!"',
+            'testimonials.test4.parent': 'Trần Minh Quân – father of Khánh Ngọc (9 years old)',
+            'testimonials.test4.teacher': 'Teacher: Teacher Gleb',
+            'testimonials.test4.quote': '"Our daughter started at TechTutor just three months ago, learning 3D Design with Teacher Gleb. Even in a short time, she has made her first 3D model and keeps asking when the next class will be. The lessons are fun, inspiring, and help her think independently. We\'re so happy to have found TechTutor."',
             'team.heading': 'Our Teaching Team',
             'team.copy': 'Meet our experienced instructors who guide students through their tech learning journey.',
             'team.glebName': 'Gleb Bogachev',
@@ -902,11 +1017,15 @@
             'why.item2': 'Generative AI, lập trình, thiết kế, làm game trong một lộ trình',
             'why.item3': 'Mỗi học viên hoàn thiện <span style="color: #3B4CCA; font-weight: 600;">sản phẩm thật</span> để khoe cùng bạn bè',
             'why.item4': 'Linh hoạt 1:1 hoặc nhóm nhỏ kèm phản hồi cá nhân hóa',
-            'benefits.heading': 'Học viên nhận được gì',
-            'benefits.item1': 'Gia sư 1:1 cá nhân hóa (90 phút/buổi)',
-            'benefits.item2': 'Khóa học theo dự án với sản phẩm hoàn chỉnh',
-            'benefits.item3': 'Phản hồi liên tục và bản tóm tắt song ngữ EN/VN',
-            'benefits.item4': 'Hỗ trợ portfolio và dời lịch linh hoạt (báo trước 24h)',
+            'love.heading': 'Tại Sao Phụ Huynh và Học Viên Yêu Thích TechTutor',
+            'love.portfolio.title': 'Portfolio Thật, Bằng Chứng Thành Quả Thật',
+            'love.portfolio.desc': 'Mỗi học viên xây dựng những dự án chất lượng cao, có thể chia sẻ — từ chatbot AI đến thế giới 3D. Kết thúc khóa học, các em có portfolio để tự hào khoe với trường học hoặc cơ hội tương lai.',
+            'love.homework.title': 'Bài Tập Về Nhà Mà Trẻ Em Thích Thú',
+            'love.homework.desc': '"Bài tập" của chúng tôi giống thử thách hơn là gánh nặng. Học viên áp dụng kiến thức qua các nhiệm vụ sáng tạo nhỏ, như thiết kế tính năng game mới hoặc cải thiện prompt AI.',
+            'love.impact.title': 'Dự Án Sáng Tạo Có Tác Động Thực Tế',
+            'love.impact.desc': 'Mỗi dự án kết nối với điều gì đó có ý nghĩa — từ sử dụng AI để kể chuyện đến tạo thành phố ảo giải quyết vấn đề thực tế. Chúng tôi nuôi dưỡng trí tưởng tượng và tinh thần trách nhiệm.',
+            'love.teachers.title': 'Giáo Viên Tâm Huyết, Trình Độ Cao',
+            'love.teachers.desc': 'Giáo viên của chúng tôi kết hợp chuyên môn kỹ thuật và giao tiếp thân thiện với trẻ em. Mỗi lớp học được dẫn dắt bởi những người cố vấn giàu kinh nghiệm, truyền cảm hứng tò mò và tự tin cho từng học viên.',
             'programs.heading': 'Chương trình cho mọi độ tuổi',
             'programs.copy': 'Thẻ thông tin gọn nhẹ về độ tuổi, nội dung và kỹ năng.',
             'programs.steamTitle': 'STEAM Discovery (5-8 tuổi)',
@@ -990,6 +1109,20 @@
             'outcomes.item1': 'Hiểu khái niệm công nghệ qua luyện tập dẫn hướng',
             'outcomes.item2': 'Ra mắt sản phẩm - game, ứng dụng, thiết kế hoặc công cụ AI',
             'outcomes.item3': 'Phát triển portfolio và tự tin chia sẻ thành quả',
+            'testimonials.heading': 'Nhận xét từ phụ huynh',
+            'testimonials.subtitle': 'Phụ huynh nói gì về chúng tôi',
+            'testimonials.test1.parent': 'Nguyễn Thị Lan Anh – mẹ của Bảo Minh (10 tuổi)',
+            'testimonials.test1.teacher': 'Giáo viên: Thầy Gleb',
+            'testimonials.test1.quote': '"Bảo Minh đã học với thầy Gleb được gần một năm, tập trung vào AI Tạo Sinh. Ban đầu, con tôi rất nhút nhát và không biết bắt đầu từ đâu với máy tính. Giờ con đã tự tin xây dựng các trò chơi nhỏ và thậm chí tạo ra một chatbot AI cho dự án khoa học! Tôi thực sự đánh giá cao cách thầy Gleb làm cho mỗi bài học trở nên thú vị và dễ hiểu. TechTutor thực sự mang giáo dục tầm quốc tế đến với trẻ em Việt Nam."',
+            'testimonials.test2.parent': 'Lê Hoàng Phúc – bố của Gia Hân (12 tuổi)',
+            'testimonials.test2.teacher': 'Giáo viên: Thầy Mantan',
+            'testimonials.test2.quote': '"Con gái tôi Gia Hân đã học Thiết kế 3D và Phát triển Game Roblox với thầy Mantan trong hơn một năm rưỡi. Dưới sự hướng dẫn của thầy, con đã tạo ra hai trò chơi hoàn chỉnh có thể chơi được và học được tinh thần đồng đội, logic lập trình và sự sáng tạo. Giờ con tự hào khoe portfolio với bạn bè. Là phụ huynh, chúng tôi có thể thấy sự tự tin và khả năng tiếng Anh của con đều được cải thiện. Cảm ơn TechTutor!"',
+            'testimonials.test3.parent': 'Thomas Reed – bố của Kian Reed (13 tuổi, người Anh-Việt)',
+            'testimonials.test3.teacher': 'Giáo viên: Thầy Mantan',
+            'testimonials.test3.quote': '"Kian đã làm việc với thầy Mantan khoảng một năm rưỡi. Cùng nhau họ khám phá AI Tạo Sinh và lập trình Python, và giờ Kian có hai dự án vững chắc trong portfolio — một trình tạo hình ảnh AI và một ứng dụng chatbot. Chúng tôi yêu thích cách tiếp cận có cấu trúc của TechTutor và cách các bài học khuyến khích giải quyết vấn đề sáng tạo. Rất khuyến nghị cho các gia đình quốc tế tại Việt Nam!"',
+            'testimonials.test4.parent': 'Trần Minh Quân – bố của Khánh Ngọc (9 tuổi)',
+            'testimonials.test4.teacher': 'Giáo viên: Thầy Gleb',
+            'testimonials.test4.quote': '"Con gái chúng tôi mới bắt đầu học tại TechTutor cách đây ba tháng, học Thiết kế 3D với thầy Gleb. Chỉ trong thời gian ngắn, con đã làm ra mô hình 3D đầu tiên và luôn hỏi khi nào có tiết học tiếp theo. Các bài học thú vị, truyền cảm hứng và giúp con suy nghĩ độc lập. Chúng tôi rất vui khi tìm thấy TechTutor."',
             'team.heading': 'Đội Ngũ Giảng Viên',
             'team.copy': 'Gặp gỡ các giảng viên giàu kinh nghiệm dẫn dắt học viên trong hành trình học công nghệ.',
             'team.glebName': 'Gleb Bogachev',
@@ -1092,6 +1225,49 @@
       // Observe all sections with animation classes
       document.querySelectorAll('.fade-in-section, .fade-in-left, .fade-in-right').forEach(el => {
         observer.observe(el);
+      });
+
+      // Testimonial carousel
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.testimonial-slide');
+      const dots = document.querySelectorAll('.dot');
+      const totalSlides = slides.length;
+
+      function showSlide(index) {
+        // Remove active classes
+        slides.forEach(slide => {
+          slide.classList.remove('active', 'prev');
+        });
+        dots.forEach(dot => {
+          dot.classList.remove('active');
+        });
+
+        // Add prev class to current slide
+        if (slides[currentSlide]) {
+          slides[currentSlide].classList.add('prev');
+        }
+
+        // Update current slide
+        currentSlide = index;
+
+        // Add active class to new slide
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+      }
+
+      function nextSlide() {
+        const next = (currentSlide + 1) % totalSlides;
+        showSlide(next);
+      }
+
+      // Auto-advance slides (slow - every 6 seconds)
+      setInterval(nextSlide, 6000);
+
+      // Dot click handlers
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          showSlide(index);
+        });
       });
     </script>
   </body>
