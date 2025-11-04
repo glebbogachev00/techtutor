@@ -780,75 +780,154 @@
       <section class="fade-in-section mt-20 border-t border-slate-200 pt-10">
         <h2 data-i18n="team.heading" class="text-2xl font-semibold md:text-3xl" style="color: #16A34A;">Our Teaching Team</h2>
         <p data-i18n="team.copy" class="mt-3 text-base text-slate-600">Meet our experienced instructors who guide students through their tech learning journey.</p>
-        <div class="mt-10 grid gap-8 md:grid-cols-2">
-          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-center">
-            <img src="images/gleb.jpg" alt="Gleb" class="mx-auto mb-4 w-full h-96 rounded-lg object-cover object-center" />
-            <h3 data-i18n="team.glebName" class="text-lg font-semibold text-ink">Gleb Bogachev</h3>
-            <p data-i18n="team.glebTitle" class="mt-1 text-sm font-medium text-sky">Lead Instructor</p>
-            <div data-i18n="team.glebBio" class="mt-3 text-sm text-slate-600 text-left space-y-4">
-              <p>With 3.5+ years of teaching experience, I specialize in project-based learning that helps students learn by building real things — not just by following theory.</p>
-              
-              <div>
-                <h4 class="font-semibold text-ink mb-2">What I Teach</h4>
-                <ul class="list-disc list-inside space-y-1 ml-4">
-                  <li>Generative AI</li>
-                  <li>Game Development</li>
-                  <li>3D Design with Blender</li>
-                  <li>Scratch Programming</li>
-                  <li>Python Programming</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h4 class="font-semibold text-ink mb-2">My Approach</h4>
-                <p>I believe the best way to learn is by starting with a project in mind and discovering new skills along the way. My classes focus on creativity, curiosity, and hands-on exploration.</p>
-              </div>
-              
-              <div>
-                <h4 class="font-semibold text-ink mb-2">Projects & Achievements</h4>
-                <ul class="list-disc list-inside space-y-1 ml-4">
-                  <li>Created three apps and several interactive projects</li>
-                  <li>Developed a publicly available web app as part of my personal portfolio</li>
-                  <li>Successfully trained 100+ students in coding and technology</li>
-                  <li>Bachelor's in Information Technology from RMIT University</li>
-                </ul>
+        
+        <div class="mt-10 space-y-8">
+          <!-- Gleb Teacher Card -->
+          <section class="rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-center md:gap-8">
+              <img src="images/gleb.jpg" alt="Gleb Bogachev" class="w-full md:w-72 h-72 object-cover rounded-xl mb-4 md:mb-0" />
+              <div class="flex-1">
+                <h3 data-i18n="team.glebName" class="text-xl font-semibold text-ink">Gleb Bogachev</h3>
+                <p data-i18n="team.glebTitle" class="text-sm font-medium text-sky">Lead Instructor</p>
+                <p data-i18n="team.glebIntro" class="mt-3 text-slate-600">
+                  With 3.5+ years of teaching, I help students learn by building real projects—not just theory. I teach Generative AI, Game Development, Blender 3D, Scratch, and Python. My classes are calm, structured, and hands-on so kids stay engaged and see progress fast.
+                </p>
+
+                <div class="mt-4 flex flex-wrap gap-3">
+                  <!-- Video button -->
+                  <button
+                    class="btn-enhanced inline-flex items-center justify-center rounded-full bg-sky px-4 py-2 text-sm font-semibold text-white hover:bg-sky-deep"
+                    data-open-video
+                    data-video="IkIr80JvsN0">
+                    ▶&nbsp;&nbsp;<span data-i18n="team.watchIntro">Teacher Introduction</span>
+                  </button>
+
+                  <!-- Toggle all button -->
+                  <button
+                    class="inline-flex items-center justify-center rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-sky-light"
+                    data-toggle-all="#gleb-acc">
+                    <span data-i18n="team.toggleAll">Toggle all</span>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-center">
-            <img src="images/Manthan.jpg" alt="Manthan" class="mx-auto mb-4 w-full h-96 rounded-lg object-cover object-center" />
-            <h3 data-i18n="team.manthanName" class="text-lg font-semibold text-ink">Manthan Chittora</h3>
-            <p data-i18n="team.manthanTitle" class="mt-1 text-sm font-medium text-sky">Lead Instructor</p>
-            <div data-i18n="team.manthanBio" class="mt-3 text-sm text-slate-600 text-left space-y-4">
-              <p>With 4+ years of teaching experience, I specialize in project-based learning that turns complex tech concepts into fun, hands-on lessons.</p>
-              
-              <div>
-                <h4 class="font-semibold text-ink mb-2">What I Teach</h4>
-                <ul class="list-disc list-inside space-y-1 ml-4">
-                  <li>Generative AI</li>
-                  <li>Python & Machine Learning</li>
-                  <li>Game Development (GDevelop 5, Roblox)</li>
-                  <li>Scratch Programming</li>
-                  <li>3D Design with Blender</li>
-                  <li>App Development</li>
+
+            <!-- Accordions -->
+            <div id="gleb-acc" class="mt-8 space-y-3">
+              <details class="group rounded-2xl border border-slate-200 bg-white p-4 hover:bg-sky-light/20">
+                <summary class="flex cursor-pointer list-none items-center justify-between">
+                  <span data-i18n="team.whatITeach" class="text-ink font-semibold">What I Teach</span>
+                  <svg class="h-5 w-5 text-slate-500 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.19l3.71-3.96a.75.75 0 111.08 1.04l-4.25 4.54a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"/></svg>
+                </summary>
+                <div class="mt-3 text-slate-600">
+                  <ul data-i18n="team.glebSubjects" class="list-disc list-inside space-y-1">
+                    <li>Generative AI</li>
+                    <li>Game Development</li>
+                    <li>3D Design with Blender</li>
+                    <li>Scratch Programming</li>
+                    <li>Python Programming</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="group rounded-2xl border border-slate-200 bg-white p-4 hover:bg-sky-light/20">
+                <summary class="flex cursor-pointer list-none items-center justify-between">
+                  <span data-i18n="team.myApproach" class="text-ink font-semibold">My Approach</span>
+                  <svg class="h-5 w-5 text-slate-500 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.19l3.71-3.96a.75.75 0 111.08 1.04l-4.25 4.54a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"/></svg>
+                </summary>
+                <p data-i18n="team.glebApproach" class="mt-3 text-slate-600">
+                  I believe the best way to learn is by starting with a project in mind and discovering new skills along the way. My classes focus on creativity, curiosity, and hands-on exploration.
+                </p>
+              </details>
+
+              <details class="group rounded-2xl border border-slate-200 bg-white p-4 hover:bg-sky-light/20">
+                <summary class="flex cursor-pointer list-none items-center justify-between">
+                  <span data-i18n="team.projectsAchievements" class="text-ink font-semibold">Projects & Achievements</span>
+                  <svg class="h-5 w-5 text-slate-500 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.19l3.71-3.96a.75.75 0 111.08 1.04l-4.25 4.54a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"/></svg>
+                </summary>
+                <ul data-i18n="team.glebAchievements" class="mt-3 list-disc list-inside space-y-1 text-slate-600">
+                  <li>Built 3 apps + interactive projects</li>
+                  <li>Published a public web app</li>
+                  <li>Trained 100+ students in coding/tech</li>
+                  <li>BSc IT, RMIT University</li>
                 </ul>
+              </details>
+            </div>
+          </section>
+          <!-- Manthan Teacher Card -->
+          <section class="rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-center md:gap-8">
+              <img src="images/Manthan.jpg" alt="Manthan Chittora" class="w-full md:w-72 h-72 object-cover rounded-xl mb-4 md:mb-0" />
+              <div class="flex-1">
+                <h3 data-i18n="team.manthanName" class="text-xl font-semibold text-ink">Manthan Chittora</h3>
+                <p data-i18n="team.manthanTitle" class="text-sm font-medium text-sky">Lead Instructor</p>
+                <p data-i18n="team.manthanIntro" class="mt-3 text-slate-600">
+                  With 4+ years of teaching, I turn complex tech into fun, hands-on lessons. I teach Generative AI, Python & Machine Learning, Game Development (GDevelop 5, Roblox), Scratch, Blender 3D, and App Development. Students build confidence through real projects.
+                </p>
+
+                <div class="mt-4 flex flex-wrap gap-3">
+                  <!-- Video button placeholder -->
+                  <button
+                    class="btn-enhanced inline-flex items-center justify-center rounded-full bg-slate-300 px-4 py-2 text-sm font-semibold text-slate-600 cursor-not-allowed"
+                    disabled>
+                    ▶&nbsp;<span data-i18n="team.videoSoon">Video coming soon</span>
+                  </button>
+
+                  <!-- Toggle all button -->
+                  <button
+                    class="inline-flex items-center justify-center rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-sky-light"
+                    data-toggle-all="#manthan-acc">
+                    <span data-i18n="team.toggleAll">Toggle all</span>
+                  </button>
+                </div>
               </div>
-              
-              <div>
-                <h4 class="font-semibold text-ink mb-2">My Approach</h4>
-                <p>I believe learning should feel like creating something exciting, not memorizing rules. My goal is to help students think creatively, solve problems, and develop confidence through coding.</p>
-              </div>
-              
-              <div>
-                <h4 class="font-semibold text-ink mb-2">Projects & Achievements</h4>
-                <ul class="list-disc list-inside space-y-1 ml-4">
+            </div>
+
+            <!-- Accordions -->
+            <div id="manthan-acc" class="mt-8 space-y-3">
+              <details class="group rounded-2xl border border-slate-200 bg-white p-4 hover:bg-sky-light/20">
+                <summary class="flex cursor-pointer list-none items-center justify-between">
+                  <span data-i18n="team.whatITeach" class="text-ink font-semibold">What I Teach</span>
+                  <svg class="h-5 w-5 text-slate-500 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.19l3.71-3.96a.75.75 0 111.08 1.04l-4.25 4.54a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"/></svg>
+                </summary>
+                <div class="mt-3 text-slate-600">
+                  <ul data-i18n="team.manthanSubjects" class="list-disc list-inside space-y-1">
+                    <li>Generative AI</li>
+                    <li>Python & Machine Learning</li>
+                    <li>Game Development (GDevelop 5, Roblox)</li>
+                    <li>Scratch Programming</li>
+                    <li>3D Design with Blender</li>
+                    <li>App Development</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="group rounded-2xl border border-slate-200 bg-white p-4 hover:bg-sky-light/20">
+                <summary class="flex cursor-pointer list-none items-center justify-between">
+                  <span data-i18n="team.myApproach" class="text-ink font-semibold">My Approach</span>
+                  <svg class="h-5 w-5 text-slate-500 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.19l3.71-3.96a.75.75 0 111.08 1.04l-4.25 4.54a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"/></svg>
+                </summary>
+                <p data-i18n="team.manthanApproach" class="mt-3 text-slate-600">
+                  I believe learning should feel like creating something exciting, not memorizing rules. My goal is to help students think creatively, solve problems, and develop confidence through coding.
+                </p>
+              </details>
+
+              <details class="group rounded-2xl border border-slate-200 bg-white p-4 hover:bg-sky-light/20">
+                <summary class="flex cursor-pointer list-none items-center justify-between">
+                  <span data-i18n="team.projectsAchievements" class="text-ink font-semibold">Projects & Achievements</span>
+                  <svg class="h-5 w-5 text-slate-500 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.19l3.71-3.96a.75.75 0 111.08 1.04l-4.25 4.54a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"/></svg>
+                </summary>
+                <ul data-i18n="team.manthanAchievements" class="mt-3 list-disc list-inside space-y-1 text-slate-600">
                   <li>Built multiple apps and AI/game projects</li>
                   <li>Developed public Generative AI projects</li>
-                  <li>Successfully trained 100+ students in coding and technology</li>
-                  <li>Former Teacher at Apollo Education, Vietnam</li>
-                  <li>B.E. in Computer Science & Engineering, TEFL Certified</li>
+                  <li>Trained 100+ students in coding/tech</li>
+                  <li>Former Apollo Education teacher; B.E. CSE, TEFL</li>
                 </ul>
-              </div>
+              </details>
+            </div>
+          </section>
             </div>
           </div>
         </div>
@@ -1290,6 +1369,56 @@
       dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
           showSlide(index);
+        });
+      });
+    </script>
+    <!-- VIDEO MODAL (single global modal for the page) -->
+    <div id="videoModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4">
+      <div class="relative w-full max-w-3xl rounded-2xl bg-white shadow-xl">
+        <button class="absolute right-3 top-3 rounded-full border border-slate-200 px-3 py-1 text-sm text-slate-600 hover:bg-slate-100" data-close-video>✕</button>
+        <div class="aspect-video w-full">
+          <iframe id="ytFrame" class="h-full w-full rounded-b-2xl"
+            src=""
+            title="Teacher intro"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Open modal with privacy-friendly YouTube URL
+      document.querySelectorAll('[data-open-video]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-video'); // e.g., IkIr80JvsN0
+          const modal = document.getElementById('videoModal');
+          const frame = document.getElementById('ytFrame');
+          frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+        });
+      });
+
+      // Close modal & stop video
+      function closeVideo() {
+        const modal = document.getElementById('videoModal');
+        const frame = document.getElementById('ytFrame');
+        frame.src = ""; // unload to stop audio
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+      document.querySelector('[data-close-video]').addEventListener('click', closeVideo);
+      document.getElementById('videoModal').addEventListener('click', (e) => {
+        if (e.target.id === 'videoModal') closeVideo();
+      });
+
+      // Optional: Toggle all accordions inside a container
+      document.querySelectorAll('[data-toggle-all]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const sel = btn.getAttribute('data-toggle-all');
+          document.querySelectorAll(`${sel} details`).forEach(d => d.open = !d.open);
         });
       });
     </script>
