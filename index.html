@@ -563,6 +563,12 @@
           </div>
         </div>
         
+        <!-- Discount Section -->
+        <div class="mt-8 pt-8 text-left">
+          <h3 data-i18n="discount.title" class="text-sm font-semibold text-ink mb-2">A Little Thank-You from Us</h3>
+          <p data-i18n="discount.desc" class="text-sm text-slate-700">Bring a friend or enroll a sibling and enjoy <span class="font-bold text-ink">10% off any course package</span> — our way of saying thanks for helping good learning grow.</p>
+        </div>
+        
       </section>
 
       <section class="fade-in-section mt-20 border-t border-slate-200 pt-10">
@@ -592,6 +598,12 @@
               <p data-i18n="pricing.ondemandGroupDesc2" class="text-sm text-slate-600">Includes shared projects and group feedback.</p>
             </div>
           </div>
+        </div>
+        
+        <!-- Discount Section -->
+        <div class="mt-8 pt-8 text-left">
+          <h3 data-i18n="discount.title" class="text-sm font-semibold text-ink mb-2">A Little Thank-You from Us</h3>
+          <p data-i18n="discount.desc" class="text-sm text-slate-700">Bring a friend or enroll a sibling and enjoy <span class="font-bold text-ink">10% off any course package</span> — our way of saying thanks for helping good learning grow.</p>
         </div>
       </section>
 
@@ -944,6 +956,8 @@
             'pricing.ondemandPrivateDesc2': 'Includes progress tracking and final project review.',
             'pricing.ondemandGroupDesc1': 'Custom program adapted for small groups with similar interests or skill levels.',
             'pricing.ondemandGroupDesc2': 'Includes shared projects and group feedback.',
+            'discount.title': 'A Little Thank-You from Us',
+            'discount.desc': 'Bring a friend or enroll a sibling and enjoy <span class="font-bold text-ink">10% off any course package</span> — our way of saying thanks for helping good learning grow.',
             'trial.heading': 'Book a free 60-minute trial',
             'trial.copy': 'Pick a course, share your child\'s age and preferred times. We\'ll confirm within 24 hours.',
             'trial.formTitle': 'Book via Form',
@@ -1086,6 +1100,8 @@
             'pricing.ondemandPrivateDesc2': 'Bao gồm theo dõi tiến độ và đánh giá dự án cuối khóa.',
             'pricing.ondemandGroupDesc1': 'Chương trình tùy chỉnh cho nhóm nhỏ có sở thích và trình độ tương đồng.',
             'pricing.ondemandGroupDesc2': 'Bao gồm dự án nhóm và phản hồi chung.',
+            'discount.title': 'Món Quà Nhỏ Từ Chúng Tôi',
+            'discount.desc': 'Giới thiệu bạn bè hoặc đăng ký cho anh chị em và nhận <span class="font-bold text-ink">giảm 10% bất kỳ gói khóa học nào</span> — cách chúng tôi cảm ơn bạn đã giúp lan tỏa việc học tốt.',
             'trial.heading': 'Đặt lịch học thử 60 phút miễn phí',
             'trial.copy': 'Chọn khóa học, chia sẻ tuổi con và thời gian ưa thích. Chúng tôi sẽ xác nhận trong 24 giờ.',
             'trial.formTitle': 'Đặt lịch qua Form',
@@ -1150,7 +1166,7 @@
                   key === 'why.heading' || key === 'benefits.heading' || key === 'programs.heading' ||
                   key === 'pricing.heading' || key === 'trial.heading' || key === 'outcomes.heading' ||
                   key === 'team.heading' || key === 'contact.heading' || key === 'trial.pace' || key === 'trial.phone' ||
-                  key === 'flex.item2') {
+                  key === 'flex.item2' || key === 'discount.desc') {
                 node.innerHTML = value;
               } else {
                 node.textContent = value;
