@@ -358,6 +358,62 @@
         padding-bottom: 0 !important;
         margin-bottom: 0 !important;
       }
+
+      /* Course Cards */
+      .course-card {
+        transition: all 0.3s ease;
+      }
+
+      .course-card__brochure-note {
+        opacity: 0.8;
+        font-style: italic;
+      }
+
+      .course-card__learn-more {
+        transition: all 0.3s ease;
+      }
+
+      /* Modal Enhancements */
+      .modal {
+        backdrop-filter: blur(4px);
+      }
+
+      .modal__dialog {
+        animation: modalSlideIn 0.3s ease-out;
+      }
+
+      @keyframes modalSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .modal__hero {
+        min-height: 120px;
+      }
+
+      .modal__section:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Ensure good spacing for modal content */
+      .modal__list li {
+        line-height: 1.6;
+      }
+
+      /* Enhanced focus states for accessibility */
+      .course-card__learn-more:focus-visible {
+        transform: translateY(-2px);
+      }
+
+      .modal__close:focus-visible {
+        background-color: #f1f5f9;
+      }
     </style>
   </head>
   <body class="font-sans text-ink antialiased">
@@ -417,7 +473,7 @@
             <a data-i18n="hero.ctaSecondary" href="https://wa.me/84902776753" class="btn-enhanced inline-flex items-center justify-center rounded-full bg-leaf px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf">Chat on WhatsApp</a>
             <a data-i18n="hero.ctaTertiary" href="tel:0902776753" class="btn-enhanced inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on Zalo</a>
           </div>
-          <p data-i18n="hero.contact" class="text-sm text-slate-500">Zalo / WhatsApp: 0902776753</p>
+          <p data-i18n="hero.contact" class="text-sm text-slate-500">Zalo / WhatsApp: 0902776753 · hello@techtutor.academy</p>
         </div>
         <div class="space-y-4 md:max-w-[360px]">
           <div class="flex justify-center md:justify-start -mt-8 md:-mt-12">
@@ -425,9 +481,10 @@
           </div>
           <p data-i18n="hero.snapshotLabel" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Parent snapshot</p>
           <div class="flex flex-wrap gap-3">
-            <span data-i18n="hero.stat1" class="stat-badge inline-flex items-center rounded-full bg-sky-light px-4 py-2 text-xs font-semibold text-sky">80-90% retention</span>
+            <span data-i18n="hero.stat1" class="stat-badge inline-flex items-center rounded-full bg-sky-light px-4 py-2 text-xs font-semibold text-sky">80–90% retention</span>
             <span data-i18n="hero.stat2" class="stat-badge inline-flex items-center rounded-full bg-sky-light px-4 py-2 text-xs font-semibold text-sky">Project-first lessons</span>
             <span data-i18n="hero.stat3" class="stat-badge inline-flex items-center rounded-full bg-sky-light px-4 py-2 text-xs font-semibold text-sky">Instructors 3+ yrs</span>
+            <span data-i18n="hero.stat4" class="stat-badge inline-flex items-center rounded-full bg-sky-light px-4 py-2 text-xs font-semibold text-sky">Cutting-edge curriculum</span>
           </div>
         </div>
       </section>
@@ -436,16 +493,16 @@
         <div class="space-y-3">
           <div class="flex items-start gap-4">
             <div class="flex-1">
-              <h2 data-i18n="why.heading" class="text-2xl font-semibold md:text-3xl" style="color: #16A34A;">Why families choose TechTutor</h2>
-              <p data-i18n="why.copy" class="mt-3 text-base leading-relaxed text-slate-600">Built for busy Vietnam-based families who want tech lessons that feel calm, personal, and useful.</p>
+              <h2 data-i18n="why.heading" class="text-2xl font-semibold md:text-3xl" style="color: #16A34A;">Why Families Choose TechTutor</h2>
+              <p data-i18n="why.copy" class="mt-3 text-base leading-relaxed text-slate-600">Built for busy families who want tech lessons that feel calm, personal, and useful.</p>
             </div>
           </div>
         </div>
         <ul class="space-y-3 text-base text-slate-600">
-          <li data-i18n="why.item1">3+ years designing programs with 80-90% learner retention</li>
-          <li data-i18n="why.item2">Generative AI, coding, design, and game development in one place</li>
-          <li data-i18n="why.item3">Every learner completes a real project they can show to friends</li>
-          <li data-i18n="why.item4">Flexible 1:1 or small group formats with personal feedback</li>
+          <li data-i18n="why.item1">✅ 3+ years designing programs with 80–90% learner retention</li>
+          <li data-i18n="why.item2">✅ Generative AI, coding, design, and game development in one place</li>
+          <li data-i18n="why.item3">✅ Every learner completes a real project they can show to friends</li>
+          <li data-i18n="why.item4">✅ Flexible 1:1 or small group formats with personal feedback</li>
         </ul>
       </section>
 
@@ -460,30 +517,58 @@
         <!-- First row: 2 programs -->
         <div class="mt-10 grid gap-4 md:grid-cols-2">
           <!-- ========== Roblox World Creator ========== -->
-          <section class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
-            <div class="text-left">
-              <div class="mb-4">
-                <img src="images/robox-logo.png" alt="Roblox" class="w-16 h-16 object-contain" />
-              </div>
-              <h3 data-i18n="programs.robloxTitle" class="text-xl font-bold text-ink mb-3">Roblox World Creator (Ages 9–15)</h3>
-              <p data-i18n="programs.robloxDesc" class="text-slate-600 mb-4">Use Roblox Studio and Lua to launch immersive, shared worlds.</p>
-              <p class="text-xs uppercase tracking-wide text-slate-500">
-                <span class="font-medium">SKILLS:</span> <span data-i18n="programs.robloxSkills">LUA, 3D DESIGN, CREATIVE STORYTELLING</span>
+          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg" data-course-id="roblox-world-creator">
+            <div class="course-card__media mb-4">
+              <img src="images/robox-logo.png" alt="Roblox" class="w-16 h-16 object-contain" />
+            </div>
+            
+            <div class="course-card__body text-left">
+              <h3 class="course-card__title text-xl font-bold text-ink mb-3" data-i18n="programs.robloxTitle">
+                Roblox World Creator
+              </h3>
+              <p data-i18n="programs.robloxDesc" class="course-card__summary text-slate-600 mb-4">Use Roblox Studio and Lua to launch immersive, shared worlds.</p>
+              <p class="course-card__skills text-xs uppercase tracking-wide text-slate-500 mb-3">
+                <span class="course-card__skills-label font-medium">SKILLS:</span> <span data-i18n="programs.robloxSkills">Lua, 3D design, creative storytelling</span>
               </p>
+              
+              
+            </div>
+
+            <div class="course-card__actions">
+              <button class="btn btn-secondary course-card__learn-more inline-flex items-center justify-center rounded-full border border-sky bg-white px-4 py-2 text-sm font-semibold text-sky transition hover:bg-sky hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky"
+                      data-open-modal="roblox-world-creator"
+                      aria-haspopup="dialog"
+                      aria-controls="modal-roblox-world-creator">
+                <span data-i18n="card.learnMore">Learn More</span>
+              </button>
             </div>
           </section>
 
           <!-- ========== 3D Designer (Blender) ========== -->
-          <section class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
-            <div class="text-left">
-              <div class="mb-4">
-                <img src="images/blender.png" alt="Blender" class="w-16 h-16 object-contain" />
-              </div>
-              <h3 data-i18n="programs.designTitle" class="text-xl font-bold text-ink mb-3">3D Designer (Ages 9–15)</h3>
-              <p data-i18n="programs.designDesc" class="text-slate-600 mb-4">Learn Blender workflows for professional-grade 3D scenes.</p>
-              <p class="text-xs uppercase tracking-wide text-slate-500">
-                <span class="font-medium">SKILLS:</span> <span data-i18n="programs.designSkills">3D MODELLING, DESIGN WORKFLOW, PYTHON BASICS</span>
+          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg" data-course-id="3d-designer">
+            <div class="course-card__media mb-4">
+              <img src="images/blender.png" alt="Blender" class="w-16 h-16 object-contain" />
+            </div>
+            
+            <div class="course-card__body text-left">
+              <h3 class="course-card__title text-xl font-bold text-ink mb-3" data-i18n="programs.designTitle">
+                3D Designer
+              </h3>
+              <p data-i18n="programs.designDesc" class="course-card__summary text-slate-600 mb-4">Learn Blender workflows for professional-grade 3D scenes.</p>
+              <p class="course-card__skills text-xs uppercase tracking-wide text-slate-500 mb-3">
+                <span class="course-card__skills-label font-medium">SKILLS:</span> <span data-i18n="programs.designSkills">3D modelling, design workflow, Python basics</span>
               </p>
+              
+              
+            </div>
+
+            <div class="course-card__actions">
+              <button class="btn btn-secondary course-card__learn-more inline-flex items-center justify-center rounded-full border border-sky bg-white px-4 py-2 text-sm font-semibold text-sky transition hover:bg-sky hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky"
+                      data-open-modal="3d-designer"
+                      aria-haspopup="dialog"
+                      aria-controls="modal-3d-designer">
+                <span data-i18n="card.learnMore">Learn More</span>
+              </button>
             </div>
           </section>
         </div>
@@ -491,58 +576,114 @@
         <!-- Second row: 4 programs in 2x2 grid -->
         <div class="mt-6 grid gap-4 md:grid-cols-2">
           <!-- ========== App Development (Thunkable) ========== -->
-          <section class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
-            <div class="text-left">
-              <div class="mb-4">
-                <img src="images/app-dev-logo.png" alt="App Development" class="w-16 h-16 object-contain" />
-              </div>
-              <h3 data-i18n="programs.appTitle" class="text-xl font-bold text-ink mb-3">App Development (Ages 9–15)</h3>
-              <p data-i18n="programs.appDesc" class="text-slate-600 mb-4">Build real mobile apps with Thunkable's visual interface and publish to app stores.</p>
-              <p class="text-xs uppercase tracking-wide text-slate-500">
-                <span class="font-medium">SKILLS:</span> <span data-i18n="programs.appSkills">THUNKABLE, APP DESIGN, UI/UX, PROJECT MANAGEMENT</span>
+          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg" data-course-id="app-development">
+            <div class="course-card__media mb-4">
+              <img src="images/app-dev-logo.png" alt="App Development" class="w-16 h-16 object-contain" />
+            </div>
+            
+            <div class="course-card__body text-left">
+              <h3 class="course-card__title text-xl font-bold text-ink mb-3" data-i18n="programs.appTitle">
+                App Development
+              </h3>
+              <p data-i18n="programs.appDesc" class="course-card__summary text-slate-600 mb-4">Build real mobile apps with Thunkable's visual interface and publish to app stores.</p>
+              <p class="course-card__skills text-xs uppercase tracking-wide text-slate-500 mb-3">
+                <span class="course-card__skills-label font-medium">SKILLS:</span> <span data-i18n="programs.appSkills">Thunkable, app design, UI/UX, project management</span>
               </p>
+              
+              
+            </div>
+
+            <div class="course-card__actions">
+              <button class="btn btn-secondary course-card__learn-more inline-flex items-center justify-center rounded-full border border-sky bg-white px-4 py-2 text-sm font-semibold text-sky transition hover:bg-sky hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky"
+                      data-open-modal="app-development"
+                      aria-haspopup="dialog"
+                      aria-controls="modal-app-development">
+                <span data-i18n="card.learnMore">Learn More</span>
+              </button>
             </div>
           </section>
 
           <!-- ========== GDevelop Game Designer ========== -->
-          <section class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
-            <div class="text-left">
-              <div class="mb-4">
-                <img src="images/gdeve-logo.png" alt="GDevelop" class="w-16 h-16 object-contain" />
-              </div>
-              <h3 data-i18n="programs.gdevelopTitle" class="text-xl font-bold text-ink mb-3">GDevelop Game Designer (Ages 8–15)</h3>
-              <p data-i18n="programs.gdevelopDesc" class="text-slate-600 mb-4">Create 2D games with visual scripting and publish across multiple platforms.</p>
-              <p class="text-xs uppercase tracking-wide text-slate-500">
-                <span class="font-medium">SKILLS:</span> <span data-i18n="programs.gdevelopSkills">GDEVELOP, GAME DESIGN, VISUAL SCRIPTING, PUBLISHING</span>
+          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg" data-course-id="gdevelop-game-designer">
+            <div class="course-card__media mb-4">
+              <img src="images/gdeve-logo.png" alt="GDevelop" class="w-16 h-16 object-contain" />
+            </div>
+            
+            <div class="course-card__body text-left">
+              <h3 class="course-card__title text-xl font-bold text-ink mb-3" data-i18n="programs.gdevelopTitle">
+                GDevelop Game Designer
+              </h3>
+              <p data-i18n="programs.gdevelopDesc" class="course-card__summary text-slate-600 mb-4">Create 2D games with visual scripting and publish across multiple platforms.</p>
+              <p class="course-card__skills text-xs uppercase tracking-wide text-slate-500 mb-3">
+                <span class="course-card__skills-label font-medium">SKILLS:</span> <span data-i18n="programs.gdevelopSkills">GDevelop, game design, visual scripting, publishing</span>
               </p>
+              
+              
+            </div>
+
+            <div class="course-card__actions">
+              <button class="btn btn-secondary course-card__learn-more inline-flex items-center justify-center rounded-full border border-sky bg-white px-4 py-2 text-sm font-semibold text-sky transition hover:bg-sky hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky"
+                      data-open-modal="gdevelop-game-designer"
+                      aria-haspopup="dialog"
+                      aria-controls="modal-gdevelop-game-designer">
+                <span data-i18n="card.learnMore">Learn More</span>
+              </button>
             </div>
           </section>
 
           <!-- ========== AI & Programming Quest ========== -->
-          <section class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
-            <div class="text-left">
-              <div class="mb-4">
-                <img src="images/ai-logo.png" alt="AI & Programming Quest" class="w-16 h-16 object-contain" />
-              </div>
-              <h3 data-i18n="programs.aiGameTitle" class="text-xl font-bold text-ink mb-3">AI & Programming Quest (Ages 9–15)</h3>
-              <p data-i18n="programs.aiGameDesc" class="text-slate-600 mb-4">Blend Python coding with machine learning to power smart games.</p>
-              <p class="text-xs uppercase tracking-wide text-slate-500">
-                <span class="font-medium">SKILLS:</span> <span data-i18n="programs.aiGameSkills">PYTHON, MACHINE LEARNING, COMPUTATIONAL THINKING</span>
+          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg" data-course-id="ai-programming-quest">
+            <div class="course-card__media mb-4">
+              <img src="images/ai-logo.png" alt="AI & Programming Quest" class="w-16 h-16 object-contain" />
+            </div>
+            
+            <div class="course-card__body text-left">
+              <h3 class="course-card__title text-xl font-bold text-ink mb-3" data-i18n="programs.aiGameTitle">
+                AI & Programming Quest
+              </h3>
+              <p data-i18n="programs.aiGameDesc" class="course-card__summary text-slate-600 mb-4">Blend Python coding with machine learning to power smart games.</p>
+              <p class="course-card__skills text-xs uppercase tracking-wide text-slate-500 mb-3">
+                <span class="course-card__skills-label font-medium">SKILLS:</span> <span data-i18n="programs.aiGameSkills">Python, machine learning, computational thinking</span>
               </p>
+              
+              
+            </div>
+
+            <div class="course-card__actions">
+              <button class="btn btn-secondary course-card__learn-more inline-flex items-center justify-center rounded-full border border-sky bg-white px-4 py-2 text-sm font-semibold text-sky transition hover:bg-sky hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky"
+                      data-open-modal="ai-programming-quest"
+                      aria-haspopup="dialog"
+                      aria-controls="modal-ai-programming-quest">
+                <span data-i18n="card.learnMore">Learn More</span>
+              </button>
             </div>
           </section>
 
           <!-- ========== Generative AI Magic ========== -->
-          <section class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
-            <div class="text-left">
-              <div class="mb-4">
-                <img src="images/chatgpt-logo.jpg" alt="Generative AI Magic" class="w-16 h-16 object-contain" />
-              </div>
-              <h3 data-i18n="programs.genAiTitle" class="text-xl font-bold text-ink mb-3">Generative AI Magic (Ages 9–15)</h3>
-              <p data-i18n="programs.genAiDesc" class="text-slate-600 mb-4">Use AI tools as creative partners and build responsible AI projects.</p>
-              <p class="text-xs uppercase tracking-wide text-slate-500">
-                <span class="font-medium">SKILLS:</span> <span data-i18n="programs.genAiSkills">PROMPT ENGINEERING, AI INTEGRATION, CREATIVE EXPRESSION</span>
+          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg" data-course-id="generative-ai-magic">
+            <div class="course-card__media mb-4">
+              <img src="images/chatgpt-logo.jpg" alt="Generative AI Magic" class="w-16 h-16 object-contain" />
+            </div>
+            
+            <div class="course-card__body text-left">
+              <h3 class="course-card__title text-xl font-bold text-ink mb-3" data-i18n="programs.genAiTitle">
+                Generative AI Magic
+              </h3>
+              <p data-i18n="programs.genAiDesc" class="course-card__summary text-slate-600 mb-4">Use AI tools as creative partners and build responsible AI projects.</p>
+              <p class="course-card__skills text-xs uppercase tracking-wide text-slate-500 mb-3">
+                <span class="course-card__skills-label font-medium">SKILLS:</span> <span data-i18n="programs.genAiSkills">Prompt engineering, AI integration, creative expression</span>
               </p>
+              
+              
+            </div>
+
+            <div class="course-card__actions">
+              <button class="btn btn-secondary course-card__learn-more inline-flex items-center justify-center rounded-full border border-sky bg-white px-4 py-2 text-sm font-semibold text-sky transition hover:bg-sky hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky"
+                      data-open-modal="generative-ai-magic"
+                      aria-haspopup="dialog"
+                      aria-controls="modal-generative-ai-magic">
+                <span data-i18n="card.learnMore">Learn More</span>
+              </button>
             </div>
           </section>
 
@@ -550,7 +691,7 @@
       </section>
 
       <section class="fade-in-section mt-20 border-t border-slate-200 pt-10">
-        <h2 data-i18n="lessons.heading" class="text-2xl font-semibold md:text-3xl mb-6" style="color: #1E66F5;">How our lessons work</h2>
+        <h2 data-i18n="lessons.heading" class="text-2xl font-semibold md:text-3xl mb-6" style="color: #1E66F5;">How Our Lessons Work</h2>
         <p data-i18n="lessons.copy" class="text-base text-slate-600 mb-10">Structured yet flexible sessions designed for effective learning and steady progress.</p>
         <div class="grid gap-6 md:grid-cols-2">
           <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
@@ -570,7 +711,7 @@
       </section>
 
       <section id="pricing" class="fade-in-section mt-20 mb-4 border-t border-slate-200 pt-10 pb-4">
-        <h2 data-i18n="pricing.heading" class="text-2xl font-semibold md:text-3xl" style="color: #16A34A;">Flexible pricing</h2>
+        <h2 data-i18n="pricing.heading" class="text-2xl font-semibold md:text-3xl" style="color: #16A34A;">Flexible Pricing</h2>
         <p data-i18n="pricing.copy" class="mt-3 text-base text-slate-600">Pick private or group lessons. Every plan includes feedback, recaps, and portfolio help.</p>
         <div class="mt-10 grid gap-4 md:grid-cols-2">
           <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
@@ -610,15 +751,17 @@
         </div>
         
         <!-- Discount Section -->
-        <div class="mt-6 pt-2 pb-0 text-left">
-          <h3 data-i18n="discount.title" class="text-sm font-semibold text-ink mb-2">A Little Thank-You from Us</h3>
-          <p data-i18n="discount.desc" class="text-sm text-slate-700 mb-0">Bring a friend or enroll a sibling and enjoy <span class="font-bold text-ink">10% off any course package</span> — our way of saying thanks for helping good learning grow.</p>
-        </div>
+        <section class="mt-8">
+          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg flex flex-col gap-2">
+            <h3 data-i18n="discount.title" class="text-xl font-semibold text-ink">🚀 Sibling & Referral Bonus: Get 10% Off!</h3>
+            <p data-i18n="discount.desc" class="text-base text-slate-600 mb-0">Refer a friend or sign up a sibling to receive a 10% discount on any course.</p>
+          </div>
+        </section>
         
       </section>
 
       <section class="fade-in-section mt-8 mb-4 border-t border-slate-200 pt-10 pb-4">
-        <h2 data-i18n="pricing.ondemandHeading" class="text-2xl font-semibold md:text-3xl mb-3" style="color: #14B8A6;">On-demand courses</h2>
+        <h2 data-i18n="pricing.ondemandHeading" class="text-2xl font-semibold md:text-3xl mb-3" style="color: #14B8A6;">On-demand Courses</h2>
         <p data-i18n="pricing.ondemandCopy" class="mt-3 text-base text-slate-600 mb-10">For parents who want their children to have a tailored-made program with progress tracking.</p>
           <div class="grid gap-4 md:grid-cols-2">
             <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
@@ -644,20 +787,19 @@
               <p data-i18n="pricing.ondemandGroupDesc2" class="text-sm text-slate-600">Includes shared projects and group feedback.</p>
             </div>
           </div>
+
+          <div class="mt-8 hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
+            <h3 data-i18n="discount.title" class="text-xl font-semibold text-ink mb-2">🚀 Sibling & Referral Bonus: Get 10% Off!</h3>
+            <p data-i18n="discount.desc" class="text-base text-slate-600 mb-0">Refer a friend or sign up a sibling to receive a 10% discount on any course.</p>
+          </div>
         </div>
-        
-        <!-- Discount Section -->
-        <div class="mt-8 text-left">
-          <h3 data-i18n="discount.title" class="text-sm font-semibold text-ink mb-2">A Little Thank-You from Us</h3>
-          <p data-i18n="discount.desc" class="text-sm text-slate-700 mb-0">Bring a friend or enroll a sibling and enjoy <span class="font-bold text-ink">10% off any course package</span> — our way of saying thanks for helping good learning grow.</p>
-        </div>
-        
+
       </section>
 
       <section id="trial" class="fade-in-section mt-10
        border-t border-slate-200 pt-10">
-        <h2 data-i18n="trial.heading" class="text-2xl font-semibold md:text-3xl" style="color: #1E66F5;">Book a free 60-minute trial</h2>
-        <p data-i18n="trial.copy" class="mt-3 text-base text-slate-600">Pick a course, share your child's age and preferred times. We'll confirm within 24 hours.</p>
+        <h2 data-i18n="trial.heading" class="text-2xl font-semibold md:text-3xl" style="color: #1E66F5;">Start With a FREE Lesson</h2>
+        <p data-i18n="trial.copy" class="mt-3 text-base text-slate-600">In just 60 minutes: receive a free, in-depth consultation and roadmap from our instructor. Share your details below and we'll schedule within 24 hours.</p>
         <!-- WEB FORM -->
         <form id="trialForm" action="https://formspree.io/f/xqaynogk" method="POST" class="mt-10 hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
           <h3 data-i18n="trial.formTitle" class="mb-4 text-lg font-semibold text-ink">Book via Form</h3>
@@ -667,8 +809,17 @@
               <input name="parent_name" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky">
             </label>
             <label class="block">
-              <span data-i18n="trial.contact" class="mb-1 block text-sm font-medium text-slate-700">Contact (email or phone)</span>
-              <input name="contact" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky">
+              <span data-i18n="trial.childName" class="mb-1 block text-sm font-medium text-slate-700">Child's name</span>
+              <input name="child_name" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky">
+            </label>
+            <label class="block">
+              <span data-i18n="trial.contact" class="mb-1 block text-sm font-medium text-slate-700">Parent email</span>
+              <input name="email" type="email" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky">
+            </label>
+
+            <label class="block">
+              <span data-i18n="trial.phoneField" class="mb-1 block text-sm font-medium text-slate-700">Phone number</span>
+              <input name="phone" type="tel" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky">
             </label>
 
             <label class="block">
@@ -734,12 +885,8 @@
         <div class="mt-6 text-center">
           <p data-i18n="trial.orChat" class="mb-4 text-slate-600">Or book instantly via chat:</p>
           <div class="flex justify-center gap-3">
-            <a id="waLink" href="https://wa.me/84902776753" target="_blank" class="btn-enhanced inline-flex items-center justify-center rounded-full bg-leaf px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf">
-              Chat on WhatsApp
-            </a>
-            <a id="zaloLink" href="https://zalo.me/84931140736" target="_blank" class="btn-enhanced inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">
-              Chat on Zalo
-            </a>
+            <a id="waLink" data-i18n="trial.ctaSecondary" href="https://wa.me/84902776753" target="_blank" class="btn-enhanced inline-flex items-center justify-center rounded-full bg-leaf px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf">Chat on WhatsApp</a>
+            <a id="zaloLink" data-i18n="trial.ctaTertiary" href="https://zalo.me/84931140736" target="_blank" class="btn-enhanced inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on Zalo</a>
           </div>
           <small data-i18n="trial.phone" class="mt-2 block text-slate-500">Zalo / WhatsApp: <strong>0902776753</strong></small>
         </div>
@@ -750,16 +897,16 @@
       </section>
 
       <section class="fade-in-section mt-20 border-t border-slate-200 pt-10">
-        <h2 data-i18n="outcomes.heading" class="text-2xl font-semibold md:text-3xl" style="color: #14B8A6;">What success looks like</h2>
+        <h2 data-i18n="outcomes.heading" class="text-2xl font-semibold md:text-3xl" style="color: #14B8A6;">What Success Looks Like</h2>
         <ul class="mt-6 grid gap-4 text-base text-slate-600 md:grid-cols-3">
-          <li data-i18n="outcomes.item1" class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-center">Learners grasp real tech concepts with calm, guided practice</li>
-          <li data-i18n="outcomes.item2" class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-center">Projects are launched - games, apps, designs, or AI tools</li>
-          <li data-i18n="outcomes.item3" class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-center">Portfolios grow and students share their work with confidence</li>
+          <li data-i18n="outcomes.item1" class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-center">Learners grasp real tech concepts with calm, guided practice.</li>
+          <li data-i18n="outcomes.item2" class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-center">Projects launch — games, apps, designs, or AI tools.</li>
+          <li data-i18n="outcomes.item3" class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-center">Portfolios grow and students share their work with confidence.</li>
         </ul>
       </section>
 
       <section class="fade-in-section mt-20 border-t border-slate-200 pt-10">
-        <h2 data-i18n="testimonials.heading" class="text-2xl font-semibold md:text-3xl" style="color: #1E66F5;">Testimonials</h2>
+        <h2 data-i18n="testimonials.heading" class="text-2xl font-semibold md:text-3xl" style="color: #1E66F5;">Testimonials — What Our Parents Say</h2>
         <p data-i18n="testimonials.subtitle" class="mt-3 text-base text-slate-600">What our parents say</p>
         <div class="mt-10 testimonial-carousel-container">
           <div class="testimonial-carousel">
@@ -768,10 +915,10 @@
                 <span class="text-yellow-500 text-lg">⭐</span>
                 <div class="flex-1">
                   <p data-i18n="testimonials.test1.parent" class="text-sm font-semibold text-slate-700">Nguyễn Thị Lan Anh – mother of Bảo Minh (10 years old)</p>
-                  <p data-i18n="testimonials.test1.teacher" class="text-xs text-slate-500">Teacher: Teacher Gleb</p>
+                  <p data-i18n="testimonials.test1.teacher" class="text-xs text-slate-500">Teacher: Gleb</p>
                 </div>
               </div>
-              <blockquote data-i18n="testimonials.test1.quote" class="text-slate-600 leading-relaxed">"Bảo Minh has been learning with Teacher Gleb for almost a year now, focusing on Generative AI. At first, my son was shy and didn't know where to start with computers. Now he confidently builds small games and even created an AI chatbot for his science project! I really appreciate how Teacher Gleb makes every lesson fun and easy to follow. TechTutor truly brings international-level education to Vietnamese kids."</blockquote>
+              <blockquote data-i18n="testimonials.test1.quote" class="text-slate-600 leading-relaxed">"Bảo Minh has been learning with Teacher Gleb for almost a year now, focusing on Generative AI. At first, my son was shy and didn't know where to start with computers. Now he confidently builds small games and even created an AI chatbot for his science project!"</blockquote>
             </div>
 
             <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
@@ -779,10 +926,10 @@
                 <span class="text-yellow-500 text-lg">⭐</span>
                 <div class="flex-1">
                   <p data-i18n="testimonials.test2.parent" class="text-sm font-semibold text-slate-700">Lê Hoàng Phúc – father of Gia Hân (12 years old)</p>
-                  <p data-i18n="testimonials.test2.teacher" class="text-xs text-slate-500">Teacher: Teacher Mantan</p>
+                  <p data-i18n="testimonials.test2.teacher" class="text-xs text-slate-500">Teacher: Mantan</p>
                 </div>
               </div>
-              <blockquote data-i18n="testimonials.test2.quote" class="text-slate-600 leading-relaxed">"My daughter Gia Hân studied 3D Design and Roblox Game Development with Teacher Mantan for over a year and a half. Under his guidance, she created two complete playable games and learned teamwork, coding logic, and creativity. Now she proudly shows her portfolio to her friends. As parents, we can see how her confidence and English have both improved. Thank you, TechTutor!"</blockquote>
+              <blockquote data-i18n="testimonials.test2.quote" class="text-slate-600 leading-relaxed">"My daughter studied 3D Design and Roblox Game Development with Teacher Mantan for over a year and a half. She created two complete games and improved both teamwork and confidence."</blockquote>
             </div>
 
             <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
@@ -790,10 +937,10 @@
                 <span class="text-yellow-500 text-lg">⭐</span>
                 <div class="flex-1">
                   <p data-i18n="testimonials.test3.parent" class="text-sm font-semibold text-slate-700">Thomas Reed – father of Kian Reed (13 years old, British-Vietnamese)</p>
-                  <p data-i18n="testimonials.test3.teacher" class="text-xs text-slate-500">Teacher: Teacher Mantan</p>
+                  <p data-i18n="testimonials.test3.teacher" class="text-xs text-slate-500">Teacher: Mantan</p>
                 </div>
               </div>
-              <blockquote data-i18n="testimonials.test3.quote" class="text-slate-600 leading-relaxed">"Kian has been working with Teacher Mantan for about one and a half years. Together they explored Generative AI and Python programming, and Kian now has two solid projects in his portfolio — one AI image generator and one chatbot app. We love the structured approach of TechTutor and the way lessons encourage creative problem-solving. Highly recommended for international families in Vietnam!"</blockquote>
+              <blockquote data-i18n="testimonials.test3.quote" class="text-slate-600 leading-relaxed">"Kian explored Generative AI and Python programming with Teacher Mantan and now has two solid portfolio projects. TechTutor's structured and creative approach is perfect for international families."</blockquote>
             </div>
 
             <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
@@ -801,10 +948,10 @@
                 <span class="text-yellow-500 text-lg">⭐</span>
                 <div class="flex-1">
                   <p data-i18n="testimonials.test4.parent" class="text-sm font-semibold text-slate-700">Trần Minh Quân – father of Khánh Ngọc (9 years old)</p>
-                  <p data-i18n="testimonials.test4.teacher" class="text-xs text-slate-500">Teacher: Teacher Gleb</p>
+                  <p data-i18n="testimonials.test4.teacher" class="text-xs text-slate-500">Teacher: Gleb</p>
                 </div>
               </div>
-              <blockquote data-i18n="testimonials.test4.quote" class="text-slate-600 leading-relaxed">"Our daughter started at TechTutor just three months ago, learning 3D Design with Teacher Gleb. Even in a short time, she has made her first 3D model and keeps asking when the next class will be. The lessons are fun, inspiring, and help her think independently. We're so happy to have found TechTutor."</blockquote>
+              <blockquote data-i18n="testimonials.test4.quote" class="text-slate-600 leading-relaxed">"Our daughter started 3D Design three months ago and already built her first model. She's excited for every class!"</blockquote>
             </div>
           </div>
           
@@ -977,7 +1124,7 @@
     <footer id="contact" class="border-t border-slate-200 bg-white py-16">
       <div class="mx-auto flex max-w-wrap flex-col gap-6 px-6 md:px-8">
         <h2 data-i18n="contact.heading" class="text-2xl font-semibold md:text-3xl" style="color: #1E66F5;">Talk with our team</h2>
-        <p data-i18n="contact.copy" class="text-base text-slate-600">Zalo / WhatsApp: 0902776753</p>
+        <p data-i18n="contact.copy" class="text-base text-slate-600">Zalo / WhatsApp: 0902776753 · hello@techtutor.academy</p>
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
           <a data-i18n="contact.whatsapp" href="https://wa.me/84902776753" class="btn-enhanced inline-flex items-center justify-center rounded-full bg-leaf px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf">Chat on WhatsApp</a>
           <a data-i18n="contact.zalo" href="tel:0902776753" class="btn-enhanced inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on Zalo</a>
@@ -991,6 +1138,7 @@
       (function () {
         var toggles = document.querySelectorAll('[data-lang]');
         var textNodes = document.querySelectorAll('[data-i18n]');
+        var currentLanguage = 'en';
         var translations = {
           en: {
             'nav.programs': 'Programs',
@@ -1007,17 +1155,18 @@
             'hero.ctaPrimary': 'Book free trial',
             'hero.ctaSecondary': 'Chat on WhatsApp',
             'hero.ctaTertiary': 'Chat on Zalo',
-            'hero.contact': 'Zalo / WhatsApp: 0902776753',
+            'hero.contact': 'Zalo / WhatsApp: 0902776753 · hello@techtutor.academy',
             'hero.snapshotLabel': 'Parent snapshot',
-            'hero.stat1': '80-90% retention',
+            'hero.stat1': '80–90% retention',
             'hero.stat2': 'Project-first lessons',
-            'hero.stat3': 'Instructors 3+ yrs',
-            'why.heading': 'Why families choose TechTutor',
+            'hero.stat3': 'Instructors 3+ years',
+            'hero.stat4': 'Cutting-edge curriculum',
+            'why.heading': 'Why Families Choose TechTutor',
             'why.copy': 'Built for busy families who want tech lessons that feel calm, personal, and useful.',
-            'why.item1': '3+ years designing programs with 80-90% learner retention',
-            'why.item2': 'Generative AI, coding, design, and game development in one place',
-            'why.item3': 'Every learner completes a real project they can show to friends',
-            'why.item4': 'Flexible 1:1 or small group formats with personal feedback',
+            'why.item1': '✅ 3+ years designing programs with 80–90% learner retention',
+            'why.item2': '✅ Generative AI, coding, design, and game development in one place',
+            'why.item3': '✅ Every learner completes a real project they can show to friends',
+            'why.item4': '✅ Flexible 1:1 or small group formats with personal feedback',
             'love.portfolio.title': 'Real Portfolios, Real Proof of Work',
             'love.portfolio.desc': 'Every student builds high-quality, shareable projects — from AI chatbots to 3D worlds. By the end of each course, they have a portfolio they can proudly show to schools or future opportunities.',
             'love.homework.title': 'Homework That Kids Actually Enjoy',
@@ -1026,7 +1175,7 @@
             'love.impact.desc': 'Every project connects to something meaningful — from using AI for storytelling to creating virtual cities that solve real-life problems. We nurture imagination and responsibility.',
             'love.teachers.title': 'Highly Qualified, Passionate Teachers',
             'love.teachers.desc': 'Our teachers combine technical expertise and child-friendly communication. Each class is guided by experienced mentors who inspire curiosity and confidence in every student.',
-            'programs.heading': 'Programs for every age',
+            'programs.heading': 'Programs for Every Age',
             'programs.copy': 'Simple cards show focus, ages, and core skills.',
             'programs.steamTitle': 'STEAM Discovery (Ages 5-8)',
             'programs.steamDesc': 'Create games, learn Lua basics, explore 3D modelling, tell stories.',
@@ -1034,25 +1183,25 @@
             'programs.techTitle': 'Tech Discovery (Ages 8-11)',
             'programs.techDesc': 'Scratch coding and TinkerCAD 3D projects for confident makers.',
             'programs.techSkills': 'Skills: basic coding, spatial awareness, computational thinking',
-            'programs.robloxTitle': 'Roblox World Creator (Ages 9-15)',
+            'programs.robloxTitle': 'Roblox World Creator',
             'programs.robloxDesc': 'Use Roblox Studio and Lua to launch immersive, shared worlds.',
             'programs.robloxSkills': 'Lua, 3D design, creative storytelling',
-            'programs.designTitle': '3D Designer (Ages 9-15)',
+            'programs.designTitle': '3D Designer',
             'programs.designDesc': 'Learn Blender workflows for professional-grade 3D scenes.',
             'programs.designSkills': '3D modelling, design workflow, Python basics',
-            'programs.appTitle': 'App Development (Ages 9-15)',
+            'programs.appTitle': 'App Development',
             'programs.appDesc': 'Build real mobile apps with Thunkable\'s visual interface and publish to app stores.',
             'programs.appSkills': 'Thunkable, app design, UI/UX, project management',
-            'programs.gdevelopTitle': 'GDevelop Game Designer (Ages 8-15)',
+            'programs.gdevelopTitle': 'GDevelop Game Designer',
             'programs.gdevelopDesc': 'Create 2D games with visual scripting and publish across multiple platforms.',
             'programs.gdevelopSkills': 'GDevelop, game design, visual scripting, publishing',
-            'programs.aiGameTitle': 'AI & Programming Quest (Ages 9-15)',
+            'programs.aiGameTitle': 'AI & Programming Quest',
             'programs.aiGameDesc': 'Blend Python coding with machine learning to power smart games.',
             'programs.aiGameSkills': 'Python, machine learning, computational thinking',
-            'programs.genAiTitle': 'Generative AI Magic (Ages 9-15)',
+            'programs.genAiTitle': 'Generative AI Magic',
             'programs.genAiDesc': 'Use AI tools as creative partners and build responsible AI projects.',
             'programs.genAiSkills': 'Prompt engineering, AI integration, creative expression',
-            'lessons.heading': 'How our lessons work',
+            'lessons.heading': 'How Our Lessons Work',
             'lessons.copy': 'Structured yet flexible sessions designed for effective learning and steady progress.',
             'format.heading': 'Lesson format',
             'format.copy': 'Each 90-minute session flows naturally: quick theory dive, hands-on building, and a wrap-up that sticks.',
@@ -1060,7 +1209,7 @@
             'flex.item1': 'Pick 1–5 lessons per week that work with your life.',
             'flex.item2': 'Start with 2–3 sessions weekly — the sweet spot for steady progress.',
             'flex.item3': 'Ready to accelerate? Fast-track options available.',
-            'pricing.heading': 'Flexible pricing',
+            'pricing.heading': 'Flexible Pricing',
             'pricing.copy': 'Pick private or group lessons. Every plan includes feedback, recaps, and portfolio help.',
             'pricing.privateTitle': 'Private (1 on 1)',
             'pricing.privateWeekly': 'Weekly',
@@ -1074,7 +1223,7 @@
             'pricing.groupCourseSave': 'save 400K (~$16)',
             'pricing.groupProgram': 'Full program (24 lessons)',
             'pricing.groupProgramSave': 'save 2.4M (~$96)',
-            'pricing.ondemandHeading': 'On-demand courses',
+            'pricing.ondemandHeading': 'On-demand Courses',
             'pricing.ondemandCopy': 'For parents who want their children to have a tailored-made program with progress tracking.',
             'pricing.ondemandPrivateTitle': 'Private (1 on 1)',
             'pricing.ondemandGroupTitle': 'Small group (2–4 students)',
@@ -1083,13 +1232,16 @@
             'pricing.ondemandPrivateDesc2': 'Includes progress tracking and final project review.',
             'pricing.ondemandGroupDesc1': 'Custom program adapted for small groups with similar interests or skill levels.',
             'pricing.ondemandGroupDesc2': 'Includes shared projects and group feedback.',
-            'discount.title': 'A Little Thank-You from Us',
-            'discount.desc': 'Bring a friend or enroll a sibling and enjoy 10% off any course package — our way of saying thanks for helping good learning grow.',
-            'trial.heading': 'Book a free 60-minute trial',
-            'trial.copy': 'Pick a course, share your child\'s age and preferred times. We\'ll confirm within 24 hours.',
+            'discount.title': '🚀 Sibling & Referral Bonus: Get 10% Off!',
+            'discount.desc': 'Refer a friend or sign up a sibling to receive a 10% discount on any course.',
+            'discount.cta': 'Scroll to lead form',
+            'trial.heading': 'Start With a FREE Lesson',
+            'trial.copy': 'In just 60 minutes: receive a free, in-depth consultation and curriculum roadmap from our instructor. Share your details below and we\'ll schedule your session within 24 hours.',
             'trial.formTitle': 'Book via Form',
             'trial.parentName': 'Parent name',
-            'trial.contact': 'Contact (email or phone)',
+            'trial.childName': "Child's name",
+            'trial.contact': 'Parent email',
+            'trial.phoneField': 'Phone number',
             'trial.channel': 'Preferred channel',
             'trial.age': 'Child\'s age',
             'trial.course': 'Course',
@@ -1104,37 +1256,125 @@
             'trial.ctaPrimary': 'Book free trial',
             'trial.ctaSecondary': 'Chat on WhatsApp',
             'trial.ctaTertiary': 'Chat on Zalo',
-            'outcomes.heading': 'What success looks like',
-            'outcomes.item1': 'Learners grasp real tech concepts with calm, guided practice',
-            'outcomes.item2': 'Projects are launched - games, apps, designs, or AI tools',
-            'outcomes.item3': 'Portfolios grow and students share their work with confidence',
-            'testimonials.heading': 'Testimonials',
+            'outcomes.heading': 'What Success Looks Like',
+            'outcomes.item1': 'Learners grasp real tech concepts with calm, guided practice.',
+            'outcomes.item2': 'Projects launch — games, apps, designs, or AI tools.',
+            'outcomes.item3': 'Portfolios grow and students share their work with confidence.',
+            'testimonials.heading': 'Testimonials — What Our Parents Say',
             'testimonials.subtitle': 'What our parents say',
             'testimonials.test1.parent': 'Nguyễn Thị Lan Anh – mother of Bảo Minh (10 years old)',
-            'testimonials.test1.teacher': 'Teacher: Teacher Gleb',
-            'testimonials.test1.quote': '"Bảo Minh has been learning with Teacher Gleb for almost a year now, focusing on Generative AI. At first, my son was shy and didn\'t know where to start with computers. Now he confidently builds small games and even created an AI chatbot for his science project! I really appreciate how Teacher Gleb makes every lesson fun and easy to follow. TechTutor truly brings international-level education to Vietnamese kids."',
+            'testimonials.test1.teacher': 'Teacher: Gleb',
+            'testimonials.test1.quote': '"Bảo Minh has been learning with Teacher Gleb for almost a year now, focusing on Generative AI. At first, my son was shy and didn\'t know where to start with computers. Now he confidently builds small games and even created an AI chatbot for his science project!"',
             'testimonials.test2.parent': 'Lê Hoàng Phúc – father of Gia Hân (12 years old)',
-            'testimonials.test2.teacher': 'Teacher: Teacher Mantan',
-            'testimonials.test2.quote': '"My daughter Gia Hân studied 3D Design and Roblox Game Development with Teacher Mantan for over a year and a half. Under his guidance, she created two complete playable games and learned teamwork, coding logic, and creativity. Now she proudly shows her portfolio to her friends. As parents, we can see how her confidence and English have both improved. Thank you, TechTutor!"',
-            'testimonials.test3.parent': 'Thomas Reed – father of Kian Reed (13 years old, British-Vietnamese)',
-            'testimonials.test3.teacher': 'Teacher: Teacher Mantan',
-            'testimonials.test3.quote': '"Kian has been working with Teacher Mantan for about one and a half years. Together they explored Generative AI and Python programming, and Kian now has two solid projects in his portfolio — one AI image generator and one chatbot app. We love the structured approach of TechTutor and the way lessons encourage creative problem-solving. Highly recommended for international families in Vietnam!"',
+            'testimonials.test2.teacher': 'Teacher: Mantan',
+            'testimonials.test2.quote': '"My daughter studied 3D Design and Roblox Game Development with Teacher Mantan for over a year and a half. She created two complete games and improved both teamwork and confidence."',
+            'testimonials.test3.parent': 'Thomas Reed – father of Kian (13 years old, British-Vietnamese)',
+            'testimonials.test3.teacher': 'Teacher: Mantan',
+            'testimonials.test3.quote': '"Kian explored Generative AI and Python programming with Teacher Mantan and now has two solid portfolio projects. TechTutor\'s structured and creative approach is perfect for international families."',
             'testimonials.test4.parent': 'Trần Minh Quân – father of Khánh Ngọc (9 years old)',
-            'testimonials.test4.teacher': 'Teacher: Teacher Gleb',
-            'testimonials.test4.quote': '"Our daughter started at TechTutor just three months ago, learning 3D Design with Teacher Gleb. Even in a short time, she has made her first 3D model and keeps asking when the next class will be. The lessons are fun, inspiring, and help her think independently. We\'re so happy to have found TechTutor."',
+            'testimonials.test4.teacher': 'Teacher: Gleb',
+            'testimonials.test4.quote': '"Our daughter started 3D Design three months ago and already built her first model. She\'s excited for every class!"',
             'team.heading': 'Our Teaching Team',
             'team.copy': 'Meet our experienced instructors who guide students through their tech learning journey.',
             'team.glebName': 'Gleb Bogachev',
             'team.glebTitle': 'Lead Instructor',
             'team.glebBio': 'With 3.5+ years of teaching experience, I specialize in project-based learning that helps students learn by building real things — not just by following theory.',
+            'team.glebIntro': 'With 3.5+ years of teaching, I help students learn by building real projects—not just theory. I teach Generative AI, Game Development, Blender 3D, Scratch, and Python. My classes are calm, structured, and hands-on so kids stay engaged and see progress fast.',
             'team.manthanName': 'Manthan Chittora',
             'team.manthanTitle': 'Lead Instructor',
             'team.manthanBio': 'With 4+ years of teaching experience, I specialize in project-based learning that turns complex tech concepts into fun, hands-on lessons.',
+            'team.manthanIntro': 'With 4+ years of teaching experience, I turn complex tech into fun, hands-on lessons. I teach Generative AI, Python & Machine Learning, Game Development (GDevelop 5, Roblox), Scratch, Blender 3D, and App Development. Students build confidence and creativity through coding.',
+            'team.whatITeach': 'What I Teach',
+            'team.myApproach': 'My Approach',
+            'team.projectsAchievements': 'Projects & Achievements',
+            'team.glebSubjects': 'Generative AI, Game Development, 3D Design with Blender, Scratch Programming, Python Programming',
+            'team.glebApproach': 'I believe the best way to learn is by starting with a project in mind and discovering new skills along the way. My classes focus on creativity, curiosity, and hands-on exploration.',
+            'team.glebAchievements': 'Built 3 apps + interactive projects; Published a public web app; Trained 100+ students in coding/tech; BSc IT, RMIT University',
+            'team.manthanSubjects': 'Generative AI, Python & Machine Learning, Game Development (GDevelop 5, Roblox), Scratch Programming, 3D Design with Blender, App Development',
+            'team.manthanApproach': 'I believe learning should feel like creating something exciting, not memorizing rules. My goal is to help students think creatively, solve problems, and develop confidence through coding.',
+            'team.manthanAchievements': 'Built multiple apps and AI/game projects; Developed public Generative AI projects; Trained 100+ students in coding/tech; Former Apollo Education teacher; B.E. CSE, TEFL',
+            'team.watchIntro': 'Teacher Introduction',
+            'team.toggleAll': 'Toggle all',
+            'team.videoSoon': 'Video coming soon',
             'contact.heading': 'Talk with our team',
-            'contact.copy': 'Zalo / WhatsApp: 0902776753',
+            'contact.copy': 'Zalo / WhatsApp: 0902776753 · hello@techtutor.academy',
             'contact.whatsapp': 'Chat on WhatsApp',
             'contact.zalo': 'Chat on Zalo',
-            'contact.support': 'English / Vietnamese bilingual support'
+            'contact.support': 'English / Vietnamese bilingual support',
+            
+            // Card translations
+            'card.learnMore': 'Learn More',
+            
+            // Modal translations
+            'modal.overview': 'Overview',
+            'modal.whatBuild': 'What They\'ll Build',
+            'modal.skillsLevel': 'Skills & Level',
+            'modal.skills': 'Skills:',
+            'modal.age': 'Age:',
+            'modal.experience': 'Experience:',
+            'modal.support.title': 'Course Information & Support',
+            'modal.support.info': '📋 Want detailed course information? Our team is here to help answer all your questions.',
+            'modal.support.contact': 'Contact us:',
+            'modal.support.message': 'Message the TechTutor Team',
+            'modal.bookTrial': 'Book a Free Trial',
+            
+            // Roblox modal
+            'modal.roblox.title': 'Roblox World Creator',
+            'modal.roblox.overview': 'Use Roblox Studio and Lua to launch immersive, shared worlds. Students learn programming fundamentals while creating engaging multiplayer experiences that can be shared with friends and the global Roblox community.',
+            'modal.roblox.project1': 'Platformer with custom levels and game mechanics',
+            'modal.roblox.project2': 'Interactive story adventure with branching narratives',
+            'modal.roblox.project3': 'Multiplayer map with team-based objectives',
+            'modal.roblox.skills': 'LUA, 3D Design, Creative Storytelling',
+            'modal.roblox.age': '9–15 years',
+            
+            // 3D Designer modal
+            'modal.3d.title': '3D Designer',
+            'modal.3d.overview': 'Learn Blender workflows for professional-grade 3D scenes. Students master the fundamentals of 3D modeling, animation, and rendering using industry-standard tools.',
+            'modal.3d.project1': 'Animated 3D characters and objects',
+            'modal.3d.project2': 'Realistic architectural scenes and environments',
+            'modal.3d.project3': 'Product visualization and digital art pieces',
+            'modal.3d.skills': '3D Modelling, Design Workflow, Python Basics',
+            'modal.3d.age': '9–15 years',
+
+            // App Development modal
+            'modal.app.title': 'App Development',
+            'modal.app.overview': 'Build real mobile apps with Thunkable\'s visual interface and publish to app stores. Students learn app design principles, user experience, and project management skills.',
+            'modal.app.project1': 'Interactive mobile games and utilities',
+            'modal.app.project2': 'Social apps with user authentication',
+            'modal.app.project3': 'Published apps on app stores',
+            'modal.app.skills': 'Thunkable, App Design, UI/UX, Project Management',
+            'modal.app.age': 'Ages 9–15',
+            'modal.app.experience': 'Beginner–Intermediate',
+
+            // GDevelop modal
+            'modal.gdevelop.title': 'GDevelop Game Designer',
+            'modal.gdevelop.overview': 'Create 2D games with visual scripting and publish across multiple platforms. Students learn game design principles, logic building, and publishing workflows.',
+            'modal.gdevelop.project1': '2D platformer and puzzle games',
+            'modal.gdevelop.project2': 'Interactive storytelling games',
+            'modal.gdevelop.project3': 'Published games on multiple platforms',
+            'modal.gdevelop.skills': 'GDevelop, Game Design, Visual Scripting, Publishing',
+            'modal.gdevelop.age': 'Ages 8–15',
+            'modal.gdevelop.experience': 'Beginner–Intermediate',
+
+            // AI & Programming Quest modal
+            'modal.aiGame.title': 'AI & Programming Quest',
+            'modal.aiGame.overview': 'Blend Python coding with machine learning to power smart games. Students learn programming fundamentals while exploring AI concepts and building intelligent applications.',
+            'modal.aiGame.project1': 'AI-powered games and interactive experiences',
+            'modal.aiGame.project2': 'Machine learning models for data analysis',
+            'modal.aiGame.project3': 'Python automation and data visualization projects',
+            'modal.aiGame.skills': 'Python, Machine Learning, Computational Thinking',
+            'modal.aiGame.age': 'Ages 9–15',
+            'modal.aiGame.experience': 'Intermediate–Advanced',
+
+            // Generative AI modal
+            'modal.genAi.title': 'Generative AI Magic',
+            'modal.genAi.overview': 'Use AI tools as creative partners and build responsible AI projects. Students explore the cutting-edge world of generative AI while learning ethical considerations and practical applications.',
+            'modal.genAi.project1': 'AI-powered creative content and artwork',
+            'modal.genAi.project2': 'Custom chatbots and AI assistants',
+            'modal.genAi.project3': 'Responsible AI projects with ethical guidelines',
+            'modal.genAi.skills': 'Prompt Engineering, AI Integration, Creative Expression',
+            'modal.genAi.age': 'Ages 9–15',
+            'modal.genAi.experience': 'Beginner–Intermediate'
           },
           vi: {
             'nav.programs': 'Chương trình',
@@ -1142,26 +1382,27 @@
             'nav.trial': 'Học thử',
             'nav.contact': 'Liên hệ',
             'header.menu': 'Menu',
-            'hero.word1': 'Học tập',
-            'hero.word2': 'tương lai',
-            'hero.word3': 'cho những',
-            'hero.word4': 'tâm hồn',
-            'hero.word5': 'tò mò.',
-            'hero.subtitle': 'Huấn luyện công nghệ trực tiếp giúp con biến tò mò thành sản phẩm tự hào.',
+            'hero.word1': 'Khơi dậy',
+            'hero.word2': 'tiềm năng',
+            'hero.word3': 'tò mò',
+            'hero.word4': 'trong',
+            'hero.word5': 'con',
+            'hero.subtitle': 'Chuyển hóa trí tưởng tượng của trẻ thành sản phẩm công nghệ cùng chuyên gia ngay tại nhà.',
             'hero.ctaPrimary': 'Đặt lịch học thử',
-            'hero.ctaSecondary': 'Chat WhatsApp',
-            'hero.ctaTertiary': 'Chat Zalo',
-            'hero.contact': 'Zalo / WhatsApp: 0902776753',
-            'hero.snapshotLabel': 'Phụ huynh tin tưởng',
-            'hero.stat1': 'Giữ chân 80-90%',
-            'hero.stat2': 'Bài học ưu tiên dự án',
-            'hero.stat3': 'Giảng viên 3+ năm',
-            'why.heading': 'Vì sao gia đình chọn TechTutor',
-            'why.copy': 'Thiết kế cho gia đình bận rộn, muốn giờ học công nghệ nhẹ nhàng và thực tế.',
-            'why.item1': 'Hơn 3 năm xây dựng chương trình với 80-90% học viên quay lại',
-            'why.item2': 'Generative AI, lập trình, thiết kế, làm game trong một lộ trình',
-            'why.item3': 'Mỗi học viên hoàn thiện sản phẩm thật để khoe cùng bạn bè',
-            'why.item4': 'Linh hoạt 1:1 hoặc nhóm nhỏ kèm phản hồi cá nhân hóa',
+            'hero.ctaSecondary': 'Nhắn WhatsApp',
+            'hero.ctaTertiary': 'Nhắn Zalo',
+            'hero.contact': 'Hoặc gọi trực tiếp đến 0902776753 · hello@techtutor.academy',
+            'hero.snapshotLabel': 'Được phụ huynh tin tưởng',
+            'hero.stat1': 'Giữ chân 80–90% học viên',
+            'hero.stat2': 'Học qua dự án thực tế',
+            'hero.stat3': 'Giáo viên 3+ năm kinh nghiệm',
+            'hero.stat4': 'Chương trình tiên tiến',
+            'why.heading': 'Vì Sao Các Gia Đình Lựa Chọn TechTutor?',
+            'why.copy': 'Xây dựng dành riêng cho những gia đình bận rộn đang tìm kiếm khoá học công nghệ dễ tiếp cận, phù hợp với các bạn nhỏ.',
+            'why.item1': '✅ Gắn bó dài lâu: Tỉ lệ giữ chân học viên 80–90% với 3 năm kinh nghiệm triển khai chương trình',
+            'why.item2': '✅ Kiến thức xu hướng: Tiếp cận Coding, Thiết kế, Game Development và Generative AI ngay tại nhà',
+            'why.item3': '✅ Dự án thực tế: Mọi học viên đều hoàn thành sản phẩm có thể tự tin chia sẻ với bạn bè',
+            'why.item4': '✅ Cá nhân hóa: Định dạng 1:1 hoặc nhóm nhỏ linh hoạt, giáo viên phản hồi chuyên sâu kịp thời',
             'love.heading': 'Tại Sao Phụ Huynh và Học Viên Yêu Thích TechTutor',
             'love.portfolio.title': 'Portfolio Thật, Bằng Chứng Thành Quả Thật',
             'love.portfolio.desc': 'Mỗi học viên xây dựng những dự án chất lượng cao, có thể chia sẻ — từ chatbot AI đến thế giới 3D. Kết thúc khóa học, các em có portfolio để tự hào khoe với trường học hoặc cơ hội tương lai.',
@@ -1171,7 +1412,7 @@
             'love.impact.desc': 'Mỗi dự án kết nối với điều gì đó có ý nghĩa — từ sử dụng AI để kể chuyện đến tạo thành phố ảo giải quyết vấn đề thực tế. Chúng tôi nuôi dưỡng trí tưởng tượng và tinh thần trách nhiệm.',
             'love.teachers.title': 'Giáo Viên Tâm Huyết, Trình Độ Cao',
             'love.teachers.desc': 'Giáo viên của chúng tôi kết hợp chuyên môn kỹ thuật và giao tiếp thân thiện với trẻ em. Mỗi lớp học được dẫn dắt bởi những người cố vấn giàu kinh nghiệm, truyền cảm hứng tò mò và tự tin cho từng học viên.',
-            'programs.heading': 'Chương trình cho mọi độ tuổi',
+            'programs.heading': 'Chương Trình Cho Mọi Độ Tuổi',
             'programs.copy': 'Thẻ thông tin gọn nhẹ về độ tuổi, nội dung và kỹ năng.',
             'programs.steamTitle': 'STEAM Discovery (5-8 tuổi)',
             'programs.steamDesc': 'Tạo trò chơi, làm quen Lua, khám phá 3D, kể chuyện.',
@@ -1179,34 +1420,34 @@
             'programs.techTitle': 'Tech Discovery (8-11 tuổi)',
             'programs.techDesc': 'Lập trình Scratch và dự án TinkerCAD cho nhà sáng tạo nhí.',
             'programs.techSkills': 'Kỹ năng: lập trình cơ bản, tư duy không gian, tư duy tính toán',
-            'programs.robloxTitle': 'Roblox Tạo Thế Giới (9-15 tuổi)',
-            'programs.robloxDesc': 'Dùng Roblox Studio và Lua để tạo thế giới sống động.',
-            'programs.robloxSkills': 'Lua, thiết kế 3D, kể chuyện sáng tạo',
-            'programs.designTitle': 'Thiết Kế 3D (9-15 tuổi)',
-            'programs.designDesc': 'Làm chủ Blender để dựng cảnh 3D chuyên nghiệp.',
-            'programs.designSkills': 'Mô hình 3D, quy trình thiết kế, Python cơ bản',
-            'programs.appTitle': 'Phát triển ứng dụng (9-15 tuổi)',
-            'programs.appDesc': 'Xây dựng ứng dụng di động thật với giao diện trực quan Thunkable và xuất bản lên cửa hàng ứng dụng.',
-            'programs.appSkills': 'Thunkable, thiết kế app, UI/UX, quản lý dự án',
-            'programs.gdevelopTitle': 'Thiết kế game GDevelop (8-15 tuổi)',
-            'programs.gdevelopDesc': 'Tạo game 2D với lập trình trực quan và xuất bản trên nhiều nền tảng.',
-            'programs.gdevelopSkills': 'GDevelop, thiết kế game, lập trình trực quan, xuất bản',
-            'programs.aiGameTitle': 'Hành Trình AI & Lập Trình (9-15 tuổi)',
-            'programs.aiGameDesc': 'Kết hợp Python và máy học để làm game thông minh.',
-            'programs.aiGameSkills': 'Python, máy học, tư duy tính toán',
-            'programs.genAiTitle': 'Phép Thuật AI Tạo Sinh (9-15 tuổi)',
-            'programs.genAiDesc': 'Dùng công cụ AI như trợ lý sáng tạo và làm dự án có trách nhiệm.',
-            'programs.genAiSkills': 'Viết prompt, tích hợp AI, sáng tạo nội dung',
-            'lessons.heading': 'Cách thức học tập',
-            'lessons.copy': 'Các buổi học có cấu trúc nhưng linh hoạt, được thiết kế để học hiệu quả và tiến bộ đều đặn.',
+            'programs.robloxTitle': 'Roblox Tạo Thế Giới',
+            'programs.robloxDesc': 'Sáng Tạo Roblox — Học Roblox Studio và Lua để tạo thế giới ảo riêng.',
+            'programs.robloxSkills': 'Lua, Thiết kế 3D, Kể chuyện sáng tạo',
+            'programs.designTitle': 'Thiết Kế 3D',
+            'programs.designDesc': 'Thiết Kế 3D — Làm quen Blender để dựng mô hình và bối cảnh 3D đẹp như phim.',
+            'programs.designSkills': 'Mô hình 3D, Quy trình thiết kế, Python cơ bản',
+            'programs.appTitle': 'Phát triển ứng dụng',
+            'programs.appDesc': 'Lập Trình Ứng Dụng — Xây dựng ứng dụng bằng Thunkable và đưa lên kho ứng dụng.',
+            'programs.appSkills': 'Thunkable, Thiết kế ứng dụng, UI/UX, Quản lý dự án',
+            'programs.gdevelopTitle': 'Thiết kế game GDevelop',
+            'programs.gdevelopDesc': 'Thiết Kế Game 2D GDevelop — Tạo game 2D bằng lập trình kéo thả và xuất bản đa nền tảng.',
+            'programs.gdevelopSkills': 'GDevelop, Thiết kế game, Lập trình kéo thả, Xuất bản',
+            'programs.aiGameTitle': 'Hành Trình AI & Lập Trình',
+            'programs.aiGameDesc': 'Khám Phá AI & Lập Trình Python — Kết hợp Python và Machine Learning để tạo dự án thông minh.',
+            'programs.aiGameSkills': 'Python, Máy học, Tư duy máy tính',
+            'programs.genAiTitle': 'Phép Thuật AI Tạo Sinh',
+            'programs.genAiDesc': 'Khám Phá Generative AI — Dùng AI như trợ lý sáng tạo để tạo sản phẩm có trách nhiệm.',
+            'programs.genAiSkills': 'Kỹ thuật viết prompt, Tích hợp AI, Thể hiện sáng tạo',
+            'lessons.heading': 'Hình Thức Học',
+            'lessons.copy': 'Các khoá học có cấu trúc rõ ràng để đảm bảo hiệu quả và linh hoạt tối đa cho lịch sinh hoạt của gia đình.',
             'format.heading': 'Cách mỗi buổi học diễn ra',
-            'format.copy': 'Mỗi buổi học 90 phút diễn ra tự nhiên: lý thuyết ngắn, thực hành ngay, và tổng kết hiệu quả.',
+            'format.copy': 'Mỗi buổi kéo dài 90 phút chia thành 3 phần: Lý thuyết - Thực hành (trọng tâm) - Tổng kết nhắc lại.',
             'flex.heading': 'Nhịp độ đề xuất',
-            'flex.item1': 'Chọn 1–5 buổi/tuần phù hợp với cuộc sống của bạn.',
-            'flex.item2': 'Bắt đầu với 2–3 buổi mỗi tuần — nhịp độ lý tưởng cho tiến bộ đều đặn.',
-            'flex.item3': 'Sẵn sàng tăng tốc? Có lựa chọn học nhanh.',
-            'pricing.heading': 'Học phí linh hoạt',
-            'pricing.copy': 'Chọn lớp riêng hoặc nhóm nhỏ. Mọi gói đều có phản hồi, ghi chú và hỗ trợ portfolio.',
+            'flex.item1': 'Lịch học linh hoạt từ 1–5 buổi/tuần, dễ dàng sắp xếp theo gia đình.',
+            'flex.item2': 'Khuyến nghị 2–3 buổi/tuần để duy trì nhịp độ tiến bộ ổn định.',
+            'flex.item3': 'Hoặc tham khảo Lộ trình tăng tốc với TechTutor ngay hôm nay!',
+            'pricing.heading': 'Học Phí Linh Hoạt',
+            'pricing.copy': 'Bạn có thể chọn học 1 kèm 1 hoặc nhóm nhỏ. Mọi gói đều có phản hồi chi tiết, ghi chú buổi học và hỗ trợ portfolio.',
             'pricing.privateTitle': 'Lớp riêng (1 kèm 1)',
             'pricing.privateWeekly': 'Theo tuần',
             'pricing.privateCourse': '1 khóa (8 buổi)',
@@ -1219,22 +1460,25 @@
             'pricing.groupCourseSave': 'tiết kiệm 400K (~$16)',
             'pricing.groupProgram': 'Chương trình đầy đủ (24 buổi)',
             'pricing.groupProgramSave': 'tiết kiệm 2.4M (~$96)',
-            'pricing.ondemandHeading': 'Khóa học theo yêu cầu',
-            'pricing.ondemandCopy': 'Dành cho phụ huynh muốn con có chương trình học riêng biệt với theo dõi tiến độ.',
+            'pricing.ondemandHeading': 'Khoá Theo Yêu Cầu',
+            'pricing.ondemandCopy': 'Khóa học độc quyền, thiết kế riêng cho từng bé với theo dõi tiến độ.',
             'pricing.ondemandPrivateTitle': 'Lớp riêng (1 kèm 1)',
             'pricing.ondemandGroupTitle': 'Lớp nhóm nhỏ (2–4 học viên)',
             'pricing.ondemandCourse': 'Khóa 10 buổi',
-            'pricing.ondemandPrivateDesc1': 'Khóa học 10 buổi được thiết kế riêng theo mục tiêu học tập cá nhân.',
-            'pricing.ondemandPrivateDesc2': 'Bao gồm theo dõi tiến độ và đánh giá dự án cuối khóa.',
-            'pricing.ondemandGroupDesc1': 'Chương trình tùy chỉnh cho nhóm nhỏ có sở thích và trình độ tương đồng.',
-            'pricing.ondemandGroupDesc2': 'Bao gồm dự án nhóm và phản hồi chung.',
-            'discount.title': 'Món Quà Nhỏ Từ Chúng Tôi',
-            'discount.desc': 'Giới thiệu bạn bè hoặc đăng ký cho anh chị em và nhận giảm 10% bất kỳ gói khóa học nào — cách chúng tôi cảm ơn bạn đã giúp lan tỏa việc học tốt.',
-            'trial.heading': 'Đặt lịch học thử 60 phút miễn phí',
-            'trial.copy': 'Chọn khóa học, chia sẻ tuổi con và thời gian ưa thích. Chúng tôi sẽ xác nhận trong 24 giờ.',
+            'pricing.ondemandPrivateDesc1': 'Lộ trình 10 buổi cá nhân hóa theo mục tiêu học tập của học sinh.',
+            'pricing.ondemandPrivateDesc2': 'Bao gồm theo dõi tiến độ và đánh giá dự án cuối khóa chuyên sâu.',
+            'pricing.ondemandGroupDesc1': 'Điều chỉnh linh hoạt cho nhóm nhỏ có trình độ tương đồng.',
+            'pricing.ondemandGroupDesc2': 'Bao gồm dự án chung và phản hồi chuyên môn dành cho nhóm.',
+            'discount.title': '🚀 Món Quà Tri Ân Đặc Biệt: Giới Thiệu Nhận Ưu Đãi!',
+            'discount.desc': 'Giới thiệu bạn bè hoặc đăng ký cho anh chị em ruột để nhận giảm 10% bất kỳ khóa học nào.',
+            'discount.cta': 'Đến form đăng ký',
+            'trial.heading': 'Đặt lịch học thử MIỄN PHÍ',
+            'trial.copy': 'Chỉ 60 phút trải nghiệm: giáo viên định hướng chuyên sâu miễn phí. Để lại thông tin và TechTutor sẽ liên hệ trong 24 giờ.',
             'trial.formTitle': 'Đặt lịch qua Form',
             'trial.parentName': 'Tên phụ huynh',
-            'trial.contact': 'Liên hệ (email hoặc điện thoại)',
+            'trial.childName': 'Tên học viên',
+            'trial.contact': 'Email phụ huynh',
+            'trial.phoneField': 'Số điện thoại',
             'trial.channel': 'Kênh ưa thích',
             'trial.age': 'Tuổi con',
             'trial.course': 'Khóa học',
@@ -1247,27 +1491,27 @@
             'trial.phone': 'Zalo / WhatsApp: 0902776753',
             'trial.terms': 'Bằng việc đặt lịch, bạn đồng ý với chính sách dời lịch 24h và điều khoản riêng tư. Hỗ trợ song ngữ (EN/VN).',
             'trial.ctaPrimary': 'Đặt lịch học thử',
-            'trial.ctaSecondary': 'Chat WhatsApp',
-            'trial.ctaTertiary': 'Chat Zalo',
-            'outcomes.heading': 'Thành quả đạt được',
-            'outcomes.item1': 'Hiểu khái niệm công nghệ qua luyện tập dẫn hướng',
-            'outcomes.item2': 'Ra mắt sản phẩm - game, ứng dụng, thiết kế hoặc công cụ AI',
-            'outcomes.item3': 'Phát triển portfolio và tự tin chia sẻ thành quả',
-            'testimonials.heading': 'Nhận xét từ phụ huynh',
+            'trial.ctaSecondary': 'Nhắn WhatsApp',
+            'trial.ctaTertiary': 'Nhắn Zalo',
+            'outcomes.heading': 'Kết Quả Đạt Được Sau Mỗi Khoá',
+            'outcomes.item1': 'Nắm chắc khái niệm công nghệ thực tế nhờ hướng dẫn chi tiết, nhẹ nhàng.',
+            'outcomes.item2': 'Hoàn thành sản phẩm: Game, Ứng dụng, Thiết kế hoặc công cụ AI.',
+            'outcomes.item3': 'Portfolio được bổ sung liên tục giúp các em tự tin chia sẻ thành quả.',
+            'testimonials.heading': 'Nhận Xét Từ Phụ Huynh',
             'testimonials.subtitle': 'Phụ huynh nói gì về chúng tôi',
             'testimonials.test1.parent': 'Nguyễn Thị Lan Anh – mẹ của Bảo Minh (10 tuổi)',
             'testimonials.test1.teacher': 'Giáo viên: Thầy Gleb',
-            'testimonials.test1.quote': '"Bảo Minh đã học với thầy Gleb được gần một năm, tập trung vào AI Tạo Sinh. Ban đầu, con tôi rất nhút nhát và không biết bắt đầu từ đâu với máy tính. Giờ con đã tự tin xây dựng các trò chơi nhỏ và thậm chí tạo ra một chatbot AI cho dự án khoa học! Tôi thực sự đánh giá cao cách thầy Gleb làm cho mỗi bài học trở nên thú vị và dễ hiểu. TechTutor thực sự mang giáo dục tầm quốc tế đến với trẻ em Việt Nam."',
+            'testimonials.test1.quote': '"Bảo Minh học với thầy Gleb gần một năm về AI Tạo Sinh. Con từ nhút nhát nay đã tự tin làm game nhỏ và tạo chatbot AI cho dự án khoa học!"',
             'testimonials.test2.parent': 'Lê Hoàng Phúc – bố của Gia Hân (12 tuổi)',
             'testimonials.test2.teacher': 'Giáo viên: Thầy Mantan',
-            'testimonials.test2.quote': '"Con gái tôi Gia Hân đã học Thiết kế 3D và Phát triển Game Roblox với thầy Mantan trong hơn một năm rưỡi. Dưới sự hướng dẫn của thầy, con đã tạo ra hai trò chơi hoàn chỉnh có thể chơi được và học được tinh thần đồng đội, logic lập trình và sự sáng tạo. Giờ con tự hào khoe portfolio với bạn bè. Là phụ huynh, chúng tôi có thể thấy sự tự tin và khả năng tiếng Anh của con đều được cải thiện. Cảm ơn TechTutor!"',
-            'testimonials.test3.parent': 'Thomas Reed – bố của Kian Reed (13 tuổi, người Anh-Việt)',
+            'testimonials.test2.quote': '"Gia Hân học Thiết kế 3D và Roblox với thầy Mantan hơn 1,5 năm, hoàn thành hai game trọn vẹn và tự tin hơn hẳn."',
+            'testimonials.test3.parent': 'Thomas Reed – bố của Kian (13 tuổi, Anh-Việt)',
             'testimonials.test3.teacher': 'Giáo viên: Thầy Mantan',
-            'testimonials.test3.quote': '"Kian đã làm việc với thầy Mantan khoảng một năm rưỡi. Cùng nhau họ khám phá AI Tạo Sinh và lập trình Python, và giờ Kian có hai dự án vững chắc trong portfolio — một trình tạo hình ảnh AI và một ứng dụng chatbot. Chúng tôi yêu thích cách tiếp cận có cấu trúc của TechTutor và cách các bài học khuyến khích giải quyết vấn đề sáng tạo. Rất khuyến nghị cho các gia đình quốc tế tại Việt Nam!"',
+            'testimonials.test3.quote': '"Kian học Generative AI và Python với thầy Mantan, hiện có hai dự án portfolio. Cách học của TechTutor rất hợp với gia đình quốc tế."',
             'testimonials.test4.parent': 'Trần Minh Quân – bố của Khánh Ngọc (9 tuổi)',
             'testimonials.test4.teacher': 'Giáo viên: Thầy Gleb',
-            'testimonials.test4.quote': '"Con gái chúng tôi mới bắt đầu học tại TechTutor cách đây ba tháng, học Thiết kế 3D với thầy Gleb. Chỉ trong thời gian ngắn, con đã làm ra mô hình 3D đầu tiên và luôn hỏi khi nào có tiết học tiếp theo. Các bài học thú vị, truyền cảm hứng và giúp con suy nghĩ độc lập. Chúng tôi rất vui khi tìm thấy TechTutor."',
-            'team.heading': 'Đội Ngũ Giảng Viên',
+            'testimonials.test4.quote': '"Con gái chúng tôi học 3D Design ba tháng đã dựng được mô hình đầu tiên và luôn háo hức đến lớp."',
+            'team.heading': 'Đội Ngũ Giáo Viên',
             'team.copy': 'Gặp gỡ các giảng viên giàu kinh nghiệm dẫn dắt học viên trong hành trình học công nghệ.',
             'team.glebName': 'Gleb Bogachev',
             'team.glebTitle': 'Giảng Viên Chính',
@@ -1276,8 +1520,8 @@
             'team.manthanTitle': 'Giảng Viên Chính',
             'team.manthanBio': 'Với hơn 4 năm kinh nghiệm giảng dạy, tôi chuyên về học tập dựa trên dự án biến các khái niệm công nghệ phức tạp thành những bài học thú vị, thực hành.',
             // Individual teacher profile sections
-            'team.glebIntro': 'Với hơn 3.5 năm kinh nghiệm giảng dạy, tôi giúp học sinh học bằng cách xây dựng dự án thực tế—không chỉ lý thuyết. Tôi dạy AI Tạo Sinh, Phát Triển Game, Blender 3D, Scratch và Python. Lớp học của tôi bình tĩnh, có cấu trúc và thực hành để trẻ em luôn hứng thú và thấy tiến bộ nhanh chóng.',
-            'team.manthanIntro': 'Với hơn 4 năm kinh nghiệm giảng dạy, tôi biến công nghệ phức tạp thành những bài học thú vị, thực hành. Tôi dạy AI Tạo Sinh, Python & Machine Learning, Phát Triển Game (GDevelop 5, Roblox), Scratch, Blender 3D và Phát Triển Ứng Dụng. Học sinh xây dựng sự tự tin thông qua dự án thực tế.',
+            'team.glebIntro': 'Với hơn 3.5 năm kinh nghiệm, tôi giúp học viên học bằng dự án thực tế chứ không chỉ lý thuyết. Lớp học bình tĩnh, có cấu trúc và tập trung thực hành để học sinh luôn hứng thú và tiến bộ nhanh.',
+            'team.manthanIntro': 'Với hơn 4 năm giảng dạy, tôi biến khái niệm công nghệ phức tạp thành bài học vui và thực tiễn. Tôi dạy Generative AI, Python & Machine Learning, GDevelop, Roblox, Scratch, Blender 3D và App Development.',
             'team.whatITeach': 'Tôi Giảng Dạy',
             'team.myApproach': 'Phương Pháp Của Tôi',
             'team.projectsAchievements': 'Dự Án & Thành Tựu',
@@ -1285,22 +1529,99 @@
             'team.manthanApproach': 'Tôi tin rằng học tập nên cảm thấy như đang tạo ra điều gì đó thú vị, chứ không phải ghi nhớ quy tắc. Mục tiêu của tôi là giúp học sinh suy nghĩ sáng tạo, giải quyết vấn đề và phát triển sự tự tin thông qua lập trình.',
             'team.glebSubjects': 'AI Tạo Sinh, Phát Triển Game, Thiết Kế 3D với Blender, Lập Trình Scratch, Lập Trình Python',
             'team.manthanSubjects': 'AI Tạo Sinh, Python & Machine Learning, Phát Triển Game (GDevelop 5, Roblox), Lập Trình Scratch, Thiết Kế 3D với Blender, Phát Triển Ứng Dụng',
-            'team.glebAchievements': 'Xây dựng 3 ứng dụng + dự án tương tác, Xuất bản một ứng dụng web công khai, Đào tạo 100+ học sinh về lập trình/công nghệ, Cử nhân CNTT, Đại học RMIT',
-            'team.manthanAchievements': 'Xây dựng nhiều ứng dụng và dự án AI/game, Phát triển các dự án AI Tạo sinh công khai, Đào tạo 100+ học sinh về lập trình/công nghệ, Cựu giảng viên Apollo Education; Cử nhân Khoa học Máy tính, TEFL',
+            'team.glebAchievements': 'Xây dựng 3 ứng dụng & dự án tương tác; Xuất bản web app công khai; Đào tạo 100+ học viên; Cử nhân CNTT, ĐH RMIT',
+            'team.manthanAchievements': 'Xây dựng nhiều ứng dụng và dự án AI/Game; Công bố dự án Generative AI; Đào tạo 100+ học viên; Cựu giáo viên Apollo Education, B.E. CSE, TEFL',
             'team.watchIntro': 'Giới Thiệu Giảng Viên',
             'team.videoSoon': 'Video sắp có',
             'team.toggleAll': 'Bật/tắt tất cả',
             'contact.heading': 'Liên hệ đội ngũ',
-            'contact.copy': 'Zalo / WhatsApp: 0902776753',
-            'contact.whatsapp': 'Chat WhatsApp',
-            'contact.zalo': 'Chat Zalo',
-            'contact.support': 'Hỗ trợ song ngữ Anh / Việt'
+            'contact.copy': 'Zalo / WhatsApp: 0902776753 · hello@techtutor.academy',
+            'contact.whatsapp': 'Nhắn WhatsApp',
+            'contact.zalo': 'Nhắn Zalo',
+            'contact.support': 'Hỗ trợ song ngữ Anh / Việt',
+            
+            // Card translations
+            'card.learnMore': 'Tìm hiểu thêm',
+            
+            // Modal translations
+            'modal.overview': 'Tổng quan',
+            'modal.whatBuild': 'Các dự án sẽ xây dựng',
+            'modal.skillsLevel': 'Kỹ năng & Cấp độ',
+            'modal.skills': 'Kỹ năng:',
+            'modal.age': 'Độ tuổi:',
+            'modal.experience': 'Kinh nghiệm:',
+            'modal.support.title': 'Thông tin khóa học & Hỗ trợ',
+            'modal.support.info': '📋 Muốn biết thông tin chi tiết về khóa học? Đội ngũ của chúng tôi sẵn sàng giải đáp mọi thắc mắc.',
+            'modal.support.contact': 'Liên hệ:',
+            'modal.support.message': 'Nhắn tin cho TechTutor Team',
+            'modal.bookTrial': 'Đặt lịch học thử miễn phí',
+            
+            // Roblox modal
+            'modal.roblox.title': 'Roblox World Creator',
+            'modal.roblox.overview': 'Sử dụng Roblox Studio và Lua để tạo ra những thế giới ảo sống động, có thể chia sẻ. Học viên học các nguyên lý lập trình cơ bản trong khi tạo ra những trải nghiệm nhiều người chơi hấp dẫn có thể chia sẻ với bạn bè và cộng đồng Roblox toàn cầu.',
+            'modal.roblox.project1': 'Game platformer với các level tùy chỉnh và cơ chế gameplay',
+            'modal.roblox.project2': 'Trò chơi phiêu lưu tương tác với cốt truyện phân nhánh',
+            'modal.roblox.project3': 'Bản đồ nhiều người chơi với các mục tiêu nhóm',
+            'modal.roblox.skills': 'LUA, Thiết kế 3D, Kể chuyện sáng tạo',
+            'modal.roblox.age': '9–15 tuổi',
+            
+            // 3D Designer modal
+            'modal.3d.title': 'Thiết Kế 3D',
+            'modal.3d.overview': 'Học quy trình làm việc Blender để tạo ra các cảnh 3D chất lượng chuyên nghiệp. Học viên thành thạo các nguyên lý cơ bản về mô hình hóa 3D, hoạt hình và kết xuất bằng các công cụ tiêu chuẩn ngành.',
+            'modal.3d.project1': 'Nhân vật 3D và đối tượng có hoạt hình',
+            'modal.3d.project2': 'Cảnh kiến trúc và môi trường thực tế',
+            'modal.3d.project3': 'Trực quan hóa sản phẩm và tác phẩm nghệ thuật số',
+            'modal.3d.skills': 'Mô hình hóa 3D, Quy trình thiết kế, Python cơ bản',
+            'modal.3d.age': '9–15 tuổi',
+
+            // App Development modal
+            'modal.app.title': 'Phát triển ứng dụng',
+            'modal.app.overview': 'Xây dựng ứng dụng di động thật với giao diện kéo-thả Thunkable và xuất bản lên cửa hàng ứng dụng. Học viên học nguyên lý thiết kế ứng dụng, trải nghiệm người dùng và kỹ năng quản lý dự án.',
+            'modal.app.project1': 'Ứng dụng game và tiện ích di động tương tác',
+            'modal.app.project2': 'Ứng dụng mạng xã hội với xác thực người dùng',
+            'modal.app.project3': 'Ứng dụng xuất bản trên cửa hàng',
+            'modal.app.skills': 'Thunkable, Thiết kế ứng dụng, UI/UX, Quản lý dự án',
+            'modal.app.age': '9–15 tuổi',
+            'modal.app.experience': 'Mới bắt đầu – Trung cấp',
+
+            // GDevelop modal
+            'modal.gdevelop.title': 'Thiết kế game GDevelop',
+            'modal.gdevelop.overview': 'Tạo game 2D bằng lập trình trực quan và xuất bản trên nhiều nền tảng. Học viên học nền tảng thiết kế game, tư duy logic và quy trình xuất bản.',
+            'modal.gdevelop.project1': 'Game platformer và giải đố 2D',
+            'modal.gdevelop.project2': 'Game kể chuyện tương tác',
+            'modal.gdevelop.project3': 'Game xuất bản đa nền tảng',
+            'modal.gdevelop.skills': 'GDevelop, Thiết kế game, Lập trình trực quan, Xuất bản',
+            'modal.gdevelop.age': '8–15 tuổi',
+            'modal.gdevelop.experience': 'Mới bắt đầu – Trung cấp',
+
+            // AI & Programming Quest modal
+            'modal.aiGame.title': 'Hành Trình AI & Lập Trình',
+            'modal.aiGame.overview': 'Kết hợp lập trình Python với máy học để tạo game thông minh. Học viên củng cố nền tảng lập trình đồng thời khám phá các khái niệm AI và xây dựng ứng dụng thông minh.',
+            'modal.aiGame.project1': 'Game và trải nghiệm tương tác dùng AI',
+            'modal.aiGame.project2': 'Mô hình máy học cho phân tích dữ liệu',
+            'modal.aiGame.project3': 'Tự động hóa Python và dự án trực quan hóa dữ liệu',
+            'modal.aiGame.skills': 'Python, Máy học, Tư duy tính toán',
+            'modal.aiGame.age': '9–15 tuổi',
+            'modal.aiGame.experience': 'Trung cấp – Nâng cao',
+
+            // Generative AI modal
+            'modal.genAi.title': 'Phép Thuật AI Tạo Sinh',
+            'modal.genAi.overview': 'Sử dụng công cụ AI như cộng sự sáng tạo và xây dựng dự án AI có trách nhiệm. Học viên khám phá thế giới AI tạo sinh tiên tiến, bao gồm góc nhìn đạo đức và ứng dụng thực tiễn.',
+            'modal.genAi.project1': 'Nội dung sáng tạo và tác phẩm nghệ thuật do AI hỗ trợ',
+            'modal.genAi.project2': 'Chatbot và trợ lý AI tùy chỉnh',
+            'modal.genAi.project3': 'Dự án AI có trách nhiệm kèm hướng dẫn đạo đức',
+            'modal.genAi.skills': 'Viết prompt, Tích hợp AI, Sáng tạo nội dung',
+            'modal.genAi.age': '9–15 tuổi',
+            'modal.genAi.experience': 'Mới bắt đầu – Trung cấp'
           }
         };
 
         function setLanguage(lang) {
+          currentLanguage = lang;
           document.documentElement.setAttribute('lang', lang === 'vi' ? 'vi' : 'en');
-          textNodes.forEach(function (node) {
+          // Re-query all translation nodes to include any dynamically added content like modals
+          var allTextNodes = document.querySelectorAll('[data-i18n]');
+          allTextNodes.forEach(function (node) {
             var key = node.dataset.i18n;
             var value = translations[lang] && translations[lang][key];
             if (typeof value === 'string') {
@@ -1309,11 +1630,14 @@
                   key === 'why.heading' || key === 'benefits.heading' || key === 'programs.heading' ||
                   key === 'pricing.heading' || key === 'trial.heading' || key === 'outcomes.heading' ||
                   key === 'team.heading' || key === 'contact.heading' || key === 'trial.pace' || key === 'trial.phone' ||
-                  key === 'flex.item2' || key === 'discount.desc') {
+                  key === 'flex.item2' || key === 'discount.desc' || 
+                  key === 'modal.roblox.overview' || key === 'modal.3d.overview' || key === 'modal.support.info') {
                 node.innerHTML = value;
               } else {
                 node.textContent = value;
               }
+            } else if (key && key.indexOf('modal.') === 0) {
+              console.warn('Missing translation for', key, 'in', lang);
             }
           });
           toggles.forEach(function (btn) {
@@ -1332,6 +1656,33 @@
 
         setLanguage('en');
 
+        window.addEventListener('load', function () {
+          setLanguage(currentLanguage);
+        });
+
+        document.addEventListener('click', function (e) {
+          const openBtn = e.target.closest('[data-open-modal]');
+          if (openBtn) {
+            const id = openBtn.getAttribute('data-open-modal');
+            const modal = document.getElementById(`modal-${id}`);
+            if (modal) {
+              modal.classList.remove('hidden');
+              modal.classList.add('flex');
+              document.body.style.overflow = 'hidden';
+              setLanguage(currentLanguage);
+            }
+          }
+
+          if (e.target.closest('[data-close-modal]')) {
+            const modal = e.target.closest('.modal');
+            if (modal) {
+              modal.classList.add('hidden');
+              modal.classList.remove('flex');
+              document.body.style.overflow = 'auto';
+            }
+          }
+        });
+
         var menuButton = document.getElementById('menu-button');
         var mobileNav = document.getElementById('mobile-nav');
         if (menuButton && mobileNav) {
@@ -1348,7 +1699,9 @@
       
       function updateLinks() {
         const name = (f.parent_name?.value || '').trim();
-        const contact = (f.contact?.value || '').trim();
+        const childName = (f.child_name?.value || '').trim();
+        const email = (f.email?.value || '').trim();
+        const phoneNumber = (f.phone?.value || '').trim();
         const age = (f.age?.value || '').trim();
         const course = (document.getElementById('course')?.value || '').trim();
         const perWeek = (document.getElementById('per_week')?.value || '2').trim();
@@ -1356,7 +1709,7 @@
         const message = (f.message?.value || '').trim();
 
         const text = `Hello TechTutor! I'd like to book a free trial.%0A` +
-          `Parent: ${name}%0AContact: ${contact}%0AChild age: ${age}%0ACourse: ${course}%0A` +
+          `Parent: ${name}%0AChild: ${childName}%0AParent email: ${email}%0APhone: ${phoneNumber}%0AChild age: ${age}%0ACourse: ${course}%0A` +
           `Sessions/week: ${perWeek}%0APreferred times: ${times}%0A${message ? 'Notes: ' + encodeURIComponent(message) : ''}%0A` +
           `Source: techtutor.academy/#trial`;
 
@@ -1443,6 +1796,338 @@
           </iframe>
         </div>
       </div>
+    </div>
+
+    <!-- Course Modal for Roblox World Creator -->
+    <div class="modal fixed inset-0 z-50 items-center justify-center bg-black/60 p-4 hidden" id="modal-roblox-world-creator" role="dialog" aria-modal="true" aria-labelledby="modal-roblox-world-creator-title">
+      <div class="modal__backdrop absolute inset-0" data-close-modal></div>
+
+      <section class="modal__dialog relative w-full max-w-4xl bg-white rounded-2xl shadow-xl max-h-[90vh] overflow-y-auto" role="document">
+        <header class="modal__header sticky top-0 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between rounded-t-2xl">
+          <h2 id="modal-roblox-world-creator-title" class="modal__title text-2xl font-bold text-ink" data-i18n="modal.roblox.title">
+            Roblox World Creator
+          </h2>
+          <button class="modal__close rounded-full border border-slate-200 px-3 py-1 text-sm text-slate-600 hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky" aria-label="Close" data-close-modal>✕</button>
+        </header>
+
+        <!-- Hero media: placeholder for now -->
+        <div class="modal__hero bg-gradient-to-br from-sky-light to-blue-100 p-8 flex items-center justify-center">
+          <img src="images/robox-logo.png" alt="Roblox World Creator" class="w-32 h-32 object-contain" />
+        </div>
+
+        <div class="modal__content p-6 space-y-6">
+          <section class="modal__section">
+            <h3 data-i18n="modal.overview" class="modal__subtitle text-lg font-semibold text-ink mb-3">Overview</h3>
+            <p data-i18n="modal.roblox.overview" class="text-slate-600 leading-relaxed">Use Roblox Studio and Lua to launch immersive, shared worlds. Students learn programming fundamentals while creating engaging multiplayer experiences that can be shared with friends and the global Roblox community.</p>
+          </section>
+
+          <section class="modal__section">
+            <h3 data-i18n="modal.whatBuild" class="modal__subtitle text-lg font-semibold text-ink mb-3">What They'll Build</h3>
+            <ul class="modal__list space-y-2 text-slate-600">
+              <li class="flex items-start gap-2">
+                <span class="text-sky font-semibold">•</span>
+                <span data-i18n="modal.roblox.project1">Platformer with custom levels and game mechanics</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-sky font-semibold">•</span>
+                <span data-i18n="modal.roblox.project2">Interactive story adventure with branching narratives</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-sky font-semibold">•</span>
+                <span data-i18n="modal.roblox.project3">Multiplayer map with team-based objectives</span>
+              </li>
+            </ul>
+          </section>
+
+          <section class="modal__section">
+            <h3 data-i18n="modal.skillsLevel" class="modal__subtitle text-lg font-semibold text-ink mb-3">Skills & Level</h3>
+            <div class="space-y-2 text-slate-600">
+              <p>
+                <strong data-i18n="modal.skills" class="text-ink">Skills:</strong> <span data-i18n="modal.roblox.skills">LUA, 3D Design, Creative Storytelling</span>
+              </p>
+              <p>
+                <strong data-i18n="modal.age" class="text-ink">Age:</strong> <span data-i18n="modal.roblox.age">9–15 years</span>
+              </p>
+            </div>
+          </section>
+
+          <!-- Contact & Support block -->
+          <section class="modal__section modal__brochure bg-sky-light/30 rounded-xl p-4">
+            <h3 data-i18n="modal.support.title" class="modal__subtitle text-lg font-semibold text-ink mb-3">Course Information & Support</h3>
+            <div class="space-y-2">
+              <p data-i18n="modal.support.info" class="modal__brochure-text text-slate-600">
+                📋 Want detailed course information? Our team is here to help answer all your questions.
+              </p>
+              <p class="modal__support-text text-slate-600">
+                💬 <span data-i18n="modal.support.contact">Contact us:</span> <a class="link text-sky font-semibold hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky" href="https://wa.me/84902776753" target="_blank" rel="noopener"><span data-i18n="modal.support.message">Message the TechTutor Team</span></a>
+              </p>
+            </div>
+          </section>
+        </div>
+
+        <footer class="modal__footer sticky bottom-0 bg-white border-t border-slate-200 px-6 py-4 rounded-b-2xl">
+          <a data-i18n="modal.bookTrial" class="btn btn-primary inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky" href="https://wa.me/84902776753" target="_blank" rel="noopener">
+            Book a Free Trial
+          </a>
+        </footer>
+      </section>
+    </div>
+
+    <!-- Course Modal for 3D Designer -->
+    <div class="modal fixed inset-0 z-50 items-center justify-center bg-black/60 p-4 hidden" id="modal-3d-designer" role="dialog" aria-modal="true" aria-labelledby="modal-3d-designer-title">
+      <div class="modal__backdrop absolute inset-0" data-close-modal></div>
+
+      <section class="modal__dialog relative w-full max-w-4xl bg-white rounded-2xl shadow-xl max-h-[90vh] overflow-y-auto" role="document">
+        <header class="modal__header sticky top-0 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between rounded-t-2xl">
+          <h2 id="modal-3d-designer-title" class="modal__title text-2xl font-bold text-ink" data-i18n="modal.3d.title">
+            3D Designer
+          </h2>
+          <button class="modal__close rounded-full border border-slate-200 px-3 py-1 text-sm text-slate-600 hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky" aria-label="Close" data-close-modal>✕</button>
+        </header>
+
+        <div class="modal__hero bg-gradient-to-br from-orange-100 to-orange-200 p-8 flex items-center justify-center">
+          <img src="images/blender.png" alt="3D Designer" class="w-32 h-32 object-contain" />
+        </div>
+
+        <div class="modal__content p-6 space-y-6">
+          <section class="modal__section">
+            <h3 data-i18n="modal.overview" class="modal__subtitle text-lg font-semibold text-ink mb-3">Overview</h3>
+            <p data-i18n="modal.3d.overview" class="text-slate-600 leading-relaxed">Learn Blender workflows for professional-grade 3D scenes. Students master the fundamentals of 3D modeling, animation, and rendering using industry-standard tools.</p>
+          </section>
+
+          <section class="modal__section">
+            <h3 data-i18n="modal.whatBuild" class="modal__subtitle text-lg font-semibold text-ink mb-3">What They'll Build</h3>
+            <ul class="modal__list space-y-2 text-slate-600">
+              <li class="flex items-start gap-2">
+                <span class="text-sky font-semibold">•</span>
+                <span data-i18n="modal.3d.project1">Animated 3D characters and objects</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-sky font-semibold">•</span>
+                <span data-i18n="modal.3d.project2">Realistic architectural scenes and environments</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-sky font-semibold">•</span>
+                <span data-i18n="modal.3d.project3">Product visualization and digital art pieces</span>
+              </li>
+            </ul>
+          </section>
+
+          <section class="modal__section">
+            <h3 data-i18n="modal.skillsLevel" class="modal__subtitle text-lg font-semibold text-ink mb-3">Skills & Level</h3>
+            <div class="space-y-2 text-slate-600">
+              <p>
+                <strong data-i18n="modal.skills" class="text-ink">Skills:</strong> <span data-i18n="modal.3d.skills">3D Modelling, Design Workflow, Python Basics</span>
+              </p>
+              <p>
+                <strong data-i18n="modal.age" class="text-ink">Age:</strong> <span data-i18n="modal.3d.age">9–15 years</span>
+              </p>
+            </div>
+          </section>
+
+          <section class="modal__section modal__brochure bg-sky-light/30 rounded-xl p-4">
+            <h3 data-i18n="modal.support.title" class="modal__subtitle text-lg font-semibold text-ink mb-3">Course Information & Support</h3>
+            <div class="space-y-2">
+              <p data-i18n="modal.support.info" class="modal__brochure-text text-slate-600">
+                📋 Want detailed course information? Our team is here to help answer all your questions.
+              </p>
+              <p class="modal__support-text text-slate-600">
+                💬 <span data-i18n="modal.support.contact">Contact us:</span> <a class="link text-sky font-semibold hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky" href="https://wa.me/84902776753" target="_blank" rel="noopener"><span data-i18n="modal.support.message">Message the TechTutor Team</span></a>
+              </p>
+            </div>
+          </section>
+        </div>
+
+        <footer class="modal__footer sticky bottom-0 bg-white border-t border-slate-200 px-6 py-4 rounded-b-2xl">
+          <a data-i18n="modal.bookTrial" class="btn btn-primary inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky" href="https://wa.me/84902776753" target="_blank" rel="noopener">
+            Book a Free Trial
+          </a>
+        </footer>
+      </section>
+    </div>
+
+    <!-- Course Modal for App Development -->
+    <div class="modal fixed inset-0 z-50 items-center justify-center bg-black/60 p-4 hidden" id="modal-app-development" role="dialog" aria-modal="true" aria-labelledby="modal-app-development-title">
+      <div class="modal__backdrop absolute inset-0" data-close-modal></div>
+      <section class="modal__dialog relative w-full max-w-4xl bg-white rounded-2xl shadow-xl max-h-[90vh] overflow-y-auto" role="document">
+        <header class="modal__header sticky top-0 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between rounded-t-2xl">
+          <h2 id="modal-app-development-title" class="modal__title text-2xl font-bold text-ink" data-i18n="modal.app.title">App Development</h2>
+          <button class="modal__close rounded-full border border-slate-200 px-3 py-1 text-sm text-slate-600 hover:bg-slate-100" aria-label="Close" data-close-modal>✕</button>
+        </header>
+        <div class="modal__hero bg-gradient-to-br from-green-100 to-green-200 p-8 flex items-center justify-center">
+          <img src="images/app-dev-logo.png" alt="App Development" class="w-32 h-32 object-contain" />
+        </div>
+        <div class="modal__content p-6 space-y-6">
+          <section class="modal__section">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.overview">Overview</h3>
+            <p class="text-slate-600 leading-relaxed" data-i18n="modal.app.overview">Build real mobile apps with Thunkable's visual interface and publish to app stores. Students learn app design principles, user experience, and project management skills.</p>
+          </section>
+          <section class="modal__section">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.whatBuild">What They'll Build</h3>
+            <ul class="modal__list space-y-2 text-slate-600">
+              <li class="flex items-start gap-2"><span class="text-sky font-semibold">•</span><span data-i18n="modal.app.project1">Interactive mobile games and utilities</span></li>
+              <li class="flex items-start gap-2"><span class="text-sky font-semibold">•</span><span data-i18n="modal.app.project2">Social apps with user authentication</span></li>
+              <li class="flex items-start gap-2"><span class="text-sky font-semibold">•</span><span data-i18n="modal.app.project3">Published apps on app stores</span></li>
+            </ul>
+          </section>
+          <section class="modal__section">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.skillsLevel">Skills & Level</h3>
+            <div class="space-y-2 text-slate-600">
+              <p><strong class="text-ink" data-i18n="modal.skills">Skills:</strong> <span data-i18n="modal.app.skills">Thunkable, App Design, UI/UX, Project Management</span></p>
+              <p><strong class="text-ink" data-i18n="modal.age">Age:</strong> <span data-i18n="modal.app.age">Ages 9–15</span></p>
+              <p><strong class="text-ink" data-i18n="modal.experience">Experience:</strong> <span data-i18n="modal.app.experience">Beginner–Intermediate</span></p>
+            </div>
+          </section>
+          <section class="modal__section modal__brochure bg-sky-light/30 rounded-xl p-4">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.support.title">Course Information & Support</h3>
+            <div class="space-y-2">
+              <p class="modal__brochure-text text-slate-600" data-i18n="modal.support.info">📋 Want detailed course information? Our team is here to help answer all your questions.</p>
+              <p class="modal__support-text text-slate-600">💬 <span data-i18n="modal.support.contact">Contact us:</span> <a class="link text-sky font-semibold hover:underline" href="https://wa.me/84902776753" target="_blank" rel="noopener"><span data-i18n="modal.support.message">Message the TechTutor Team</span></a></p>
+            </div>
+          </section>
+        </div>
+        <footer class="modal__footer sticky bottom-0 bg-white border-t border-slate-200 px-6 py-4 rounded-b-2xl">
+          <a class="btn btn-primary inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep" href="https://wa.me/84902776753" target="_blank" rel="noopener" data-i18n="modal.bookTrial">Book a Free Trial</a>
+        </footer>
+      </section>
+    </div>
+
+    <!-- Course Modal for GDevelop Game Designer -->
+    <div class="modal fixed inset-0 z-50 items-center justify-center bg-black/60 p-4 hidden" id="modal-gdevelop-game-designer" role="dialog" aria-modal="true" aria-labelledby="modal-gdevelop-game-designer-title">
+      <div class="modal__backdrop absolute inset-0" data-close-modal></div>
+      <section class="modal__dialog relative w-full max-w-4xl bg-white rounded-2xl shadow-xl max-h-[90vh] overflow-y-auto" role="document">
+        <header class="modal__header sticky top-0 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between rounded-t-2xl">
+          <h2 id="modal-gdevelop-game-designer-title" class="modal__title text-2xl font-bold text-ink" data-i18n="modal.gdevelop.title">GDevelop Game Designer</h2>
+          <button class="modal__close rounded-full border border-slate-200 px-3 py-1 text-sm text-slate-600 hover:bg-slate-100" aria-label="Close" data-close-modal>✕</button>
+        </header>
+        <div class="modal__hero bg-gradient-to-br from-purple-100 to-purple-200 p-8 flex items-center justify-center">
+          <img src="images/gdeve-logo.png" alt="GDevelop Game Designer" class="w-32 h-32 object-contain" />
+        </div>
+        <div class="modal__content p-6 space-y-6">
+          <section class="modal__section">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.overview">Overview</h3>
+            <p class="text-slate-600 leading-relaxed" data-i18n="modal.gdevelop.overview">Create 2D games with visual scripting and publish across multiple platforms. Students learn game design principles, logic building, and publishing workflows.</p>
+          </section>
+          <section class="modal__section">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.whatBuild">What They'll Build</h3>
+            <ul class="modal__list space-y-2 text-slate-600">
+              <li class="flex items-start gap-2"><span class="text-sky font-semibold">•</span><span data-i18n="modal.gdevelop.project1">2D platformer and puzzle games</span></li>
+              <li class="flex items-start gap-2"><span class="text-sky font-semibold">•</span><span data-i18n="modal.gdevelop.project2">Interactive storytelling games</span></li>
+              <li class="flex items-start gap-2"><span class="text-sky font-semibold">•</span><span data-i18n="modal.gdevelop.project3">Published games on multiple platforms</span></li>
+            </ul>
+          </section>
+          <section class="modal__section">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.skillsLevel">Skills & Level</h3>
+            <div class="space-y-2 text-slate-600">
+              <p><strong class="text-ink" data-i18n="modal.skills">Skills:</strong> <span data-i18n="modal.gdevelop.skills">GDevelop, Game Design, Visual Scripting, Publishing</span></p>
+              <p><strong class="text-ink" data-i18n="modal.age">Age:</strong> <span data-i18n="modal.gdevelop.age">Ages 8–15</span></p>
+              <p><strong class="text-ink" data-i18n="modal.experience">Experience:</strong> <span data-i18n="modal.gdevelop.experience">Beginner–Intermediate</span></p>
+            </div>
+          </section>
+          <section class="modal__section modal__brochure bg-sky-light/30 rounded-xl p-4">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.support.title">Course Information & Support</h3>
+            <div class="space-y-2">
+              <p class="modal__brochure-text text-slate-600" data-i18n="modal.support.info">📋 Want detailed course information? Our team is here to help answer all your questions.</p>
+              <p class="modal__support-text text-slate-600">💬 <span data-i18n="modal.support.contact">Contact us:</span> <a class="link text-sky font-semibold hover:underline" href="https://wa.me/84902776753" target="_blank" rel="noopener"><span data-i18n="modal.support.message">Message the TechTutor Team</span></a></p>
+            </div>
+          </section>
+        </div>
+        <footer class="modal__footer sticky bottom-0 bg-white border-t border-slate-200 px-6 py-4 rounded-b-2xl">
+          <a class="btn btn-primary inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep" href="https://wa.me/84902776753" target="_blank" rel="noopener" data-i18n="modal.bookTrial">Book a Free Trial</a>
+        </footer>
+      </section>
+    </div>
+
+    <!-- Course Modal for AI & Programming Quest -->
+    <div class="modal fixed inset-0 z-50 items-center justify-center bg-black/60 p-4 hidden" id="modal-ai-programming-quest" role="dialog" aria-modal="true" aria-labelledby="modal-ai-programming-quest-title">
+      <div class="modal__backdrop absolute inset-0" data-close-modal></div>
+      <section class="modal__dialog relative w-full max-w-4xl bg-white rounded-2xl shadow-xl max-h-[90vh] overflow-y-auto" role="document">
+        <header class="modal__header sticky top-0 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between rounded-t-2xl">
+          <h2 id="modal-ai-programming-quest-title" class="modal__title text-2xl font-bold text-ink" data-i18n="modal.aiGame.title">AI & Programming Quest</h2>
+          <button class="modal__close rounded-full border border-slate-200 px-3 py-1 text-sm text-slate-600 hover:bg-slate-100" aria-label="Close" data-close-modal>✕</button>
+        </header>
+        <div class="modal__hero bg-gradient-to-br from-blue-100 to-indigo-200 p-8 flex items-center justify-center">
+          <img src="images/ai-logo.png" alt="AI & Programming Quest" class="w-32 h-32 object-contain" />
+        </div>
+        <div class="modal__content p-6 space-y-6">
+          <section class="modal__section">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.overview">Overview</h3>
+            <p class="text-slate-600 leading-relaxed" data-i18n="modal.aiGame.overview">Blend Python coding with machine learning to power smart games. Students learn programming fundamentals while exploring AI concepts and building intelligent applications.</p>
+          </section>
+          <section class="modal__section">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.whatBuild">What They'll Build</h3>
+            <ul class="modal__list space-y-2 text-slate-600">
+              <li class="flex items-start gap-2"><span class="text-sky font-semibold">•</span><span data-i18n="modal.aiGame.project1">AI-powered games and interactive experiences</span></li>
+              <li class="flex items-start gap-2"><span class="text-sky font-semibold">•</span><span data-i18n="modal.aiGame.project2">Machine learning models for data analysis</span></li>
+              <li class="flex items-start gap-2"><span class="text-sky font-semibold">•</span><span data-i18n="modal.aiGame.project3">Python automation and data visualization projects</span></li>
+            </ul>
+          </section>
+          <section class="modal__section">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.skillsLevel">Skills & Level</h3>
+            <div class="space-y-2 text-slate-600">
+              <p><strong class="text-ink" data-i18n="modal.skills">Skills:</strong> <span data-i18n="modal.aiGame.skills">Python, Machine Learning, Computational Thinking</span></p>
+              <p><strong class="text-ink" data-i18n="modal.age">Age:</strong> <span data-i18n="modal.aiGame.age">Ages 9–15</span></p>
+              <p><strong class="text-ink" data-i18n="modal.experience">Experience:</strong> <span data-i18n="modal.aiGame.experience">Intermediate–Advanced</span></p>
+            </div>
+          </section>
+          <section class="modal__section modal__brochure bg-sky-light/30 rounded-xl p-4">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.support.title">Course Information & Support</h3>
+            <div class="space-y-2">
+              <p class="modal__brochure-text text-slate-600" data-i18n="modal.support.info">📋 Want detailed course information? Our team is here to help answer all your questions.</p>
+              <p class="modal__support-text text-slate-600">💬 <span data-i18n="modal.support.contact">Contact us:</span> <a class="link text-sky font-semibold hover:underline" href="https://wa.me/84902776753" target="_blank" rel="noopener"><span data-i18n="modal.support.message">Message the TechTutor Team</span></a></p>
+            </div>
+          </section>
+        </div>
+        <footer class="modal__footer sticky bottom-0 bg-white border-t border-slate-200 px-6 py-4 rounded-b-2xl">
+          <a class="btn btn-primary inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep" href="https://wa.me/84902776753" target="_blank" rel="noopener" data-i18n="modal.bookTrial">Book a Free Trial</a>
+        </footer>
+      </section>
+    </div>
+
+    <!-- Course Modal for Generative AI Magic -->
+    <div class="modal fixed inset-0 z-50 items-center justify-center bg-black/60 p-4 hidden" id="modal-generative-ai-magic" role="dialog" aria-modal="true" aria-labelledby="modal-generative-ai-magic-title">
+      <div class="modal__backdrop absolute inset-0" data-close-modal></div>
+      <section class="modal__dialog relative w-full max-w-4xl bg-white rounded-2xl shadow-xl max-h-[90vh] overflow-y-auto" role="document">
+        <header class="modal__header sticky top-0 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between rounded-t-2xl">
+          <h2 id="modal-generative-ai-magic-title" class="modal__title text-2xl font-bold text-ink" data-i18n="modal.genAi.title">Generative AI Magic</h2>
+          <button class="modal__close rounded-full border border-slate-200 px-3 py-1 text-sm text-slate-600 hover:bg-slate-100" aria-label="Close" data-close-modal>✕</button>
+        </header>
+        <div class="modal__hero bg-white p-8 flex items-center justify-center">
+          <img src="images/chatgpt-logo.jpg" alt="Generative AI Magic" class="w-32 h-32 object-contain rounded-lg" />
+        </div>
+        <div class="modal__content p-6 space-y-6">
+          <section class="modal__section">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.overview">Overview</h3>
+            <p class="text-slate-600 leading-relaxed" data-i18n="modal.genAi.overview">Use AI tools as creative partners and build responsible AI projects. Students explore the cutting-edge world of generative AI while learning ethical considerations and practical applications.</p>
+          </section>
+          <section class="modal__section">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.whatBuild">What They'll Build</h3>
+            <ul class="modal__list space-y-2 text-slate-600">
+              <li class="flex items-start gap-2"><span class="text-sky font-semibold">•</span><span data-i18n="modal.genAi.project1">AI-powered creative content and artwork</span></li>
+              <li class="flex items-start gap-2"><span class="text-sky font-semibold">•</span><span data-i18n="modal.genAi.project2">Custom chatbots and AI assistants</span></li>
+              <li class="flex items-start gap-2"><span class="text-sky font-semibold">•</span><span data-i18n="modal.genAi.project3">Responsible AI projects with ethical guidelines</span></li>
+            </ul>
+          </section>
+          <section class="modal__section">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.skillsLevel">Skills & Level</h3>
+            <div class="space-y-2 text-slate-600">
+              <p><strong class="text-ink" data-i18n="modal.skills">Skills:</strong> <span data-i18n="modal.genAi.skills">Prompt Engineering, AI Integration, Creative Expression</span></p>
+              <p><strong class="text-ink" data-i18n="modal.age">Age:</strong> <span data-i18n="modal.genAi.age">Ages 9–15</span></p>
+              <p><strong class="text-ink" data-i18n="modal.experience">Experience:</strong> <span data-i18n="modal.genAi.experience">Beginner–Intermediate</span></p>
+            </div>
+          </section>
+          <section class="modal__section modal__brochure bg-sky-light/30 rounded-xl p-4">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.support.title">Course Information & Support</h3>
+            <div class="space-y-2">
+              <p class="modal__brochure-text text-slate-600" data-i18n="modal.support.info">📋 Want detailed course information? Our team is here to help answer all your questions.</p>
+              <p class="modal__support-text text-slate-600">💬 <span data-i18n="modal.support.contact">Contact us:</span> <a class="link text-sky font-semibold hover:underline" href="https://wa.me/84902776753" target="_blank" rel="noopener"><span data-i18n="modal.support.message">Message the TechTutor Team</span></a></p>
+            </div>
+          </section>
+        </div>
+        <footer class="modal__footer sticky bottom-0 bg-white border-t border-slate-200 px-6 py-4 rounded-b-2xl">
+          <a class="btn btn-primary inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep" href="https://wa.me/84902776753" target="_blank" rel="noopener" data-i18n="modal.bookTrial">Book a Free Trial</a>
+        </footer>
+      </section>
     </div>
 
     <script>
