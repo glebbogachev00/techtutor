@@ -1307,6 +1307,11 @@
             
             // Modal translations
             'modal.overview': 'Overview',
+            'modal.levelsProgression': 'Levels & Progression',
+            'modal.levelBasic': 'Level 1: Beginner',
+            'modal.levelIntermediate': 'Level 2: Intermediate',
+            'modal.levelAdvanced': 'Level 3: Advanced',
+            'modal.progressionText': 'Each program follows a <strong>three-level pathway</strong> from foundations to independent creation. We keep it <strong>flexible and personalized</strong> — teachers adapt to each student\'s pace and interests.',
             'modal.whatBuild': 'What They\'ll Build',
             'modal.skillsLevel': 'Skills & Level',
             'modal.skills': 'Skills:',
@@ -1545,6 +1550,11 @@
             
             // Modal translations
             'modal.overview': 'Tổng quan',
+            'modal.levelsProgression': 'Cấp độ & Tiến trình',
+            'modal.levelBasic': 'Cấp 1: Cơ bản',
+            'modal.levelIntermediate': 'Cấp 2: Trung cấp',
+            'modal.levelAdvanced': 'Cấp 3: Nâng cao',
+            'modal.progressionText': 'Mỗi chương trình theo <strong>ba cấp độ học tập</strong> từ nền tảng đến sáng tạo độc lập. Chúng tôi giữ <strong>sự linh hoạt và cá nhân hóa</strong> — giáo viên thích ứng theo tốc độ và sở thích của từng học viên.',
             'modal.whatBuild': 'Các dự án sẽ xây dựng',
             'modal.skillsLevel': 'Kỹ năng & Cấp độ',
             'modal.skills': 'Kỹ năng:',
@@ -1631,7 +1641,7 @@
                   key === 'pricing.heading' || key === 'trial.heading' || key === 'outcomes.heading' ||
                   key === 'team.heading' || key === 'contact.heading' || key === 'trial.pace' || key === 'trial.phone' ||
                   key === 'flex.item2' || key === 'discount.desc' || 
-                  key === 'modal.roblox.overview' || key === 'modal.3d.overview' || key === 'modal.support.info') {
+                  key === 'modal.roblox.overview' || key === 'modal.3d.overview' || key === 'modal.support.info' || key === 'modal.progressionText') {
                 node.innerHTML = value;
               } else {
                 node.textContent = value;
@@ -1821,6 +1831,21 @@
             <p data-i18n="modal.roblox.overview" class="text-slate-600 leading-relaxed">Use Roblox Studio and Lua to launch immersive, shared worlds. Students learn programming fundamentals while creating engaging multiplayer experiences that can be shared with friends and the global Roblox community.</p>
           </section>
 
+          <section class="modal__section modal__levels">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.levelsProgression">Levels & Progression</h3>
+            <div class="flex items-center justify-center gap-2 mb-4 text-sm">
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelBasic">Level 1: Beginner</span>
+              <span class="text-slate-400">→</span>
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelIntermediate">Level 2: Intermediate</span>
+              <span class="text-slate-400">→</span>
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelAdvanced">Level 3: Advanced</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed" data-i18n="modal.progressionText">
+              Each program follows a <strong>three-level pathway</strong> from foundations to independent creation.
+              We keep it <strong>flexible and personalized</strong> — teachers adapt to each student's pace and interests.
+            </p>
+          </section>
+
           <section class="modal__section">
             <h3 data-i18n="modal.whatBuild" class="modal__subtitle text-lg font-semibold text-ink mb-3">What They'll Build</h3>
             <ul class="modal__list space-y-2 text-slate-600">
@@ -1895,6 +1920,21 @@
             <p data-i18n="modal.3d.overview" class="text-slate-600 leading-relaxed">Learn Blender workflows for professional-grade 3D scenes. Students master the fundamentals of 3D modeling, animation, and rendering using industry-standard tools.</p>
           </section>
 
+          <section class="modal__section modal__levels">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.levelsProgression">Levels & Progression</h3>
+            <div class="flex items-center justify-center gap-2 mb-4 text-sm">
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelBasic">Level 1: Beginner</span>
+              <span class="text-slate-400">→</span>
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelIntermediate">Level 2: Intermediate</span>
+              <span class="text-slate-400">→</span>
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelAdvanced">Level 3: Advanced</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed" data-i18n="modal.progressionText">
+              Each program follows a <strong>three-level pathway</strong> from foundations to independent creation.
+              We keep it <strong>flexible and personalized</strong> — teachers adapt to each student's pace and interests.
+            </p>
+          </section>
+
           <section class="modal__section">
             <h3 data-i18n="modal.whatBuild" class="modal__subtitle text-lg font-semibold text-ink mb-3">What They'll Build</h3>
             <ul class="modal__list space-y-2 text-slate-600">
@@ -1962,6 +2002,22 @@
             <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.overview">Overview</h3>
             <p class="text-slate-600 leading-relaxed" data-i18n="modal.app.overview">Build real mobile apps with Thunkable's visual interface and publish to app stores. Students learn app design principles, user experience, and project management skills.</p>
           </section>
+
+          <section class="modal__section modal__levels">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.levelsProgression">Levels & Progression</h3>
+            <div class="flex items-center justify-center gap-2 mb-4 text-sm">
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelBasic">Level 1: Beginner</span>
+              <span class="text-slate-400">→</span>
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelIntermediate">Level 2: Intermediate</span>
+              <span class="text-slate-400">→</span>
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelAdvanced">Level 3: Advanced</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed" data-i18n="modal.progressionText">
+              Each program follows a <strong>three-level pathway</strong> from foundations to independent creation.
+              We keep it <strong>flexible and personalized</strong> — teachers adapt to each student's pace and interests.
+            </p>
+          </section>
+
           <section class="modal__section">
             <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.whatBuild">What They'll Build</h3>
             <ul class="modal__list space-y-2 text-slate-600">
@@ -2008,6 +2064,22 @@
             <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.overview">Overview</h3>
             <p class="text-slate-600 leading-relaxed" data-i18n="modal.gdevelop.overview">Create 2D games with visual scripting and publish across multiple platforms. Students learn game design principles, logic building, and publishing workflows.</p>
           </section>
+
+          <section class="modal__section modal__levels">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.levelsProgression">Levels & Progression</h3>
+            <div class="flex items-center justify-center gap-2 mb-4 text-sm">
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelBasic">Level 1: Beginner</span>
+              <span class="text-slate-400">→</span>
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelIntermediate">Level 2: Intermediate</span>
+              <span class="text-slate-400">→</span>
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelAdvanced">Level 3: Advanced</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed" data-i18n="modal.progressionText">
+              Each program follows a <strong>three-level pathway</strong> from foundations to independent creation.
+              We keep it <strong>flexible and personalized</strong> — teachers adapt to each student's pace and interests.
+            </p>
+          </section>
+
           <section class="modal__section">
             <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.whatBuild">What They'll Build</h3>
             <ul class="modal__list space-y-2 text-slate-600">
@@ -2054,6 +2126,22 @@
             <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.overview">Overview</h3>
             <p class="text-slate-600 leading-relaxed" data-i18n="modal.aiGame.overview">Blend Python coding with machine learning to power smart games. Students learn programming fundamentals while exploring AI concepts and building intelligent applications.</p>
           </section>
+
+          <section class="modal__section modal__levels">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.levelsProgression">Levels & Progression</h3>
+            <div class="flex items-center justify-center gap-2 mb-4 text-sm">
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelBasic">Level 1: Beginner</span>
+              <span class="text-slate-400">→</span>
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelIntermediate">Level 2: Intermediate</span>
+              <span class="text-slate-400">→</span>
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelAdvanced">Level 3: Advanced</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed" data-i18n="modal.progressionText">
+              Each program follows a <strong>three-level pathway</strong> from foundations to independent creation.
+              We keep it <strong>flexible and personalized</strong> — teachers adapt to each student's pace and interests.
+            </p>
+          </section>
+
           <section class="modal__section">
             <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.whatBuild">What They'll Build</h3>
             <ul class="modal__list space-y-2 text-slate-600">
@@ -2100,6 +2188,22 @@
             <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.overview">Overview</h3>
             <p class="text-slate-600 leading-relaxed" data-i18n="modal.genAi.overview">Use AI tools as creative partners and build responsible AI projects. Students explore the cutting-edge world of generative AI while learning ethical considerations and practical applications.</p>
           </section>
+
+          <section class="modal__section modal__levels">
+            <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.levelsProgression">Levels & Progression</h3>
+            <div class="flex items-center justify-center gap-2 mb-4 text-sm">
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelBasic">Level 1: Beginner</span>
+              <span class="text-slate-400">→</span>
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelIntermediate">Level 2: Intermediate</span>
+              <span class="text-slate-400">→</span>
+              <span class="bg-sky-light text-sky px-3 py-1 rounded-full font-semibold" data-i18n="modal.levelAdvanced">Level 3: Advanced</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed" data-i18n="modal.progressionText">
+              Each program follows a <strong>three-level pathway</strong> from foundations to independent creation.
+              We keep it <strong>flexible and personalized</strong> — teachers adapt to each student's pace and interests.
+            </p>
+          </section>
+
           <section class="modal__section">
             <h3 class="modal__subtitle text-lg font-semibold text-ink mb-3" data-i18n="modal.whatBuild">What They'll Build</h3>
             <ul class="modal__list space-y-2 text-slate-600">
