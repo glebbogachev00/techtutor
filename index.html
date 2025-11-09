@@ -837,12 +837,14 @@
             </label>
 
             <label class="block md:col-span-2">
-              <span data-i18n="trial.course" class="mb-1 block text-sm font-medium text-slate-700">Course</span>
+              <span data-i18n="trial.program" class="mb-1 block text-sm font-medium text-slate-700">Program</span>
               <select name="course" id="course" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky">
-                <option>Roblox World Creator (9–15)</option>
-                <option>3D Designer (9–15)</option>
-                <option>AI & Programming Quest (9–15)</option>
-                <option>Generative AI Magic (9–15)</option>
+                <option>Roblox World Creator</option>
+                <option>3D Designer</option>
+                <option>App Development</option>
+                <option>AI & Programming Quest</option>
+                <option>GDevelop Game Designer</option>
+                <option>Generative AI Magic</option>
               </select>
             </label>
 
@@ -1011,12 +1013,19 @@
                   <svg class="h-5 w-5 text-slate-500 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.19l3.71-3.96a.75.75 0 111.08 1.04l-4.25 4.54a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"/></svg>
                 </summary>
                 <div class="mt-3 text-slate-600">
-                  <ul data-i18n="team.glebSubjects" class="list-disc list-inside space-y-1">
+                  <ul class="list-disc list-inside space-y-1 lang-en">
                     <li>Generative AI</li>
                     <li>Game Development</li>
                     <li>3D Design with Blender</li>
                     <li>Scratch Programming</li>
                     <li>Python Programming</li>
+                  </ul>
+                  <ul class="list-disc list-inside space-y-1 lang-vi hidden">
+                    <li>AI Tạo Sinh</li>
+                    <li>Phát Triển Game</li>
+                    <li>Thiết Kế 3D với Blender</li>
+                    <li>Lập Trình Scratch</li>
+                    <li>Lập Trình Python</li>
                   </ul>
                 </div>
               </details>
@@ -1036,11 +1045,17 @@
                   <span data-i18n="team.projectsAchievements" class="text-ink font-semibold">Projects & Achievements</span>
                   <svg class="h-5 w-5 text-slate-500 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.19l3.71-3.96a.75.75 0 111.08 1.04l-4.25 4.54a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"/></svg>
                 </summary>
-                <ul data-i18n="team.glebAchievements" class="mt-3 list-disc list-inside space-y-1 text-slate-600">
+                <ul class="mt-3 list-disc list-inside space-y-1 text-slate-600 lang-en">
                   <li>Built 3 apps + interactive projects</li>
                   <li>Published a public web app</li>
                   <li>Trained 100+ students in coding/tech</li>
                   <li>BSc IT, RMIT University</li>
+                </ul>
+                <ul class="mt-3 list-disc list-inside space-y-1 text-slate-600 lang-vi hidden">
+                  <li>Xây dựng 3 ứng dụng & dự án tương tác</li>
+                  <li>Xuất bản web app công khai</li>
+                  <li>Đào tạo 100+ học viên</li>
+                  <li>Cử nhân CNTT, ĐH RMIT</li>
                 </ul>
               </details>
             </div>
@@ -1058,11 +1073,12 @@
                 </p>
 
                 <div class="mt-4 flex flex-wrap gap-3 justify-center md:justify-start">
-                  <!-- Video button placeholder -->
+                  <!-- Video button -->
                   <button
-                    class="btn-enhanced inline-flex items-center justify-center rounded-full bg-slate-300 px-4 py-2 text-sm font-semibold text-slate-600 cursor-not-allowed"
-                    disabled>
-                    ▶&nbsp;<span data-i18n="team.videoSoon">Video coming soon</span>
+                    class="btn-enhanced inline-flex items-center justify-center rounded-full bg-sky px-4 py-2 text-sm font-semibold text-white hover:bg-sky-deep"
+                    data-open-video
+                    data-video="7dacCR-oRFA">
+                    ▶&nbsp;&nbsp;<span data-i18n="team.watchIntro">Teacher Introduction</span>
                   </button>
 
                   <!-- Toggle all button -->
@@ -1083,13 +1099,21 @@
                   <svg class="h-5 w-5 text-slate-500 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.19l3.71-3.96a.75.75 0 111.08 1.04l-4.25 4.54a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"/></svg>
                 </summary>
                 <div class="mt-3 text-slate-600">
-                  <ul data-i18n="team.manthanSubjects" class="list-disc list-inside space-y-1">
+                  <ul class="list-disc list-inside space-y-1 lang-en">
                     <li>Generative AI</li>
                     <li>Python & Machine Learning</li>
                     <li>Game Development (GDevelop 5, Roblox)</li>
                     <li>Scratch Programming</li>
                     <li>3D Design with Blender</li>
                     <li>App Development</li>
+                  </ul>
+                  <ul class="list-disc list-inside space-y-1 lang-vi hidden">
+                    <li>AI Tạo Sinh</li>
+                    <li>Python & Machine Learning</li>
+                    <li>Phát Triển Game (GDevelop 5, Roblox)</li>
+                    <li>Lập Trình Scratch</li>
+                    <li>Thiết Kế 3D với Blender</li>
+                    <li>Phát Triển Ứng Dụng</li>
                   </ul>
                 </div>
               </details>
@@ -1109,11 +1133,17 @@
                   <span data-i18n="team.projectsAchievements" class="text-ink font-semibold">Projects & Achievements</span>
                   <svg class="h-5 w-5 text-slate-500 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.19l3.71-3.96a.75.75 0 111.08 1.04l-4.25 4.54a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"/></svg>
                 </summary>
-                <ul data-i18n="team.manthanAchievements" class="mt-3 list-disc list-inside space-y-1 text-slate-600">
+                <ul class="mt-3 list-disc list-inside space-y-1 text-slate-600 lang-en">
                   <li>Built multiple apps and AI/game projects</li>
                   <li>Developed public Generative AI projects</li>
                   <li>Trained 100+ students in coding/tech</li>
                   <li>Former Apollo Education teacher; B.E. CSE, TEFL</li>
+                </ul>
+                <ul class="mt-3 list-disc list-inside space-y-1 text-slate-600 lang-vi hidden">
+                  <li>Xây dựng nhiều ứng dụng và dự án AI/Game</li>
+                  <li>Công bố dự án Generative AI</li>
+                  <li>Đào tạo 100+ học viên</li>
+                  <li>Cựu giáo viên Apollo Education, B.E. CSE, TEFL</li>
                 </ul>
               </details>
             </div>
@@ -1247,7 +1277,7 @@
             'trial.phoneField': 'Phone number',
             'trial.channel': 'Preferred channel',
             'trial.age': 'Child\'s age',
-            'trial.course': 'Course',
+            'trial.program': 'Program',
             'trial.sessions': 'Sessions per week',
             'trial.times': 'Days & time windows',
             'trial.message': 'Message (optional)',
@@ -1490,7 +1520,7 @@
             'trial.phoneField': 'Số điện thoại',
             'trial.channel': 'Kênh ưa thích',
             'trial.age': 'Tuổi con',
-            'trial.course': 'Khóa học',
+            'trial.program': 'Chương trình',
             'trial.sessions': 'Buổi học mỗi tuần',
             'trial.times': 'Ngày & khung giờ',
             'trial.message': 'Tin nhắn (tùy chọn)',
@@ -1634,6 +1664,27 @@
         function setLanguage(lang) {
           currentLanguage = lang;
           document.documentElement.setAttribute('lang', lang === 'vi' ? 'vi' : 'en');
+          
+          // Handle bullet point lists visibility
+          var enLists = document.querySelectorAll('.lang-en');
+          var viLists = document.querySelectorAll('.lang-vi');
+          
+          enLists.forEach(function(el) {
+            if (lang === 'en') {
+              el.classList.remove('hidden');
+            } else {
+              el.classList.add('hidden');
+            }
+          });
+          
+          viLists.forEach(function(el) {
+            if (lang === 'vi') {
+              el.classList.remove('hidden');
+            } else {
+              el.classList.add('hidden');
+            }
+          });
+          
           // Re-query all translation nodes to include any dynamically added content like modals
           var allTextNodes = document.querySelectorAll('[data-i18n]');
           allTextNodes.forEach(function (node) {
