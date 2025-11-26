@@ -169,97 +169,6 @@
         color: white !important;
       }
 
-      /* Floating bubbles animation */
-      .floating-shapes {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
-        overflow: hidden;
-      }
-
-      .bubble {
-        position: absolute;
-        bottom: -100px;
-        border-radius: 50%;
-        opacity: 0.1;
-        animation: float-up linear infinite;
-      }
-
-      .bubble:nth-child(1) {
-        left: 10%;
-        width: 40px;
-        height: 40px;
-        background: linear-gradient(45deg, #1E66F5, #14B8A6);
-        animation-duration: 8s;
-        animation-delay: 0s;
-      }
-
-      .bubble:nth-child(2) {
-        left: 20%;
-        width: 20px;
-        height: 20px;
-        background: linear-gradient(45deg, #14B8A6, #1E66F5);
-        animation-duration: 10s;
-        animation-delay: 2s;
-      }
-
-      .bubble:nth-child(3) {
-        left: 35%;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(45deg, #1E66F5, #14B8A6);
-        animation-duration: 12s;
-        animation-delay: 1s;
-      }
-
-      .bubble:nth-child(4) {
-        left: 50%;
-        width: 30px;
-        height: 30px;
-        background: linear-gradient(45deg, #14B8A6, #1E66F5);
-        animation-duration: 9s;
-        animation-delay: 3s;
-      }
-
-      .bubble:nth-child(5) {
-        left: 70%;
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(45deg, #1E66F5, #14B8A6);
-        animation-duration: 11s;
-        animation-delay: 1.5s;
-      }
-
-      .bubble:nth-child(6) {
-        left: 85%;
-        width: 25px;
-        height: 25px;
-        background: linear-gradient(45deg, #14B8A6, #1E66F5);
-        animation-duration: 13s;
-        animation-delay: 0.5s;
-      }
-
-      @keyframes float-up {
-        0% {
-          transform: translateY(100vh) rotate(0deg);
-          opacity: 0.1;
-        }
-        10% {
-          opacity: 0.3;
-        }
-        90% {
-          opacity: 0.3;
-        }
-        100% {
-          transform: translateY(-100px) rotate(360deg);
-          opacity: 0;
-        }
-      }
-
       /* Scroll animations */
       .fade-in-section {
         opacity: 0;
@@ -440,19 +349,50 @@
           display: none;
         }
       }
+
+      /* Logo Slider Styles */
+      .logo-slider-container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .logo-slider-track {
+        display: flex;
+        gap: 1.5rem;
+        animation: slideLogos 50s linear infinite;
+        will-change: transform;
+      }
+
+      .logo-slider-item {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.2rem;
+        background: rgba(248, 250, 252, 0.8);
+        border-radius: 0.75rem;
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        transition: transform 0.3s ease;
+        min-width: 100px;
+      }
+
+      .logo-slider-item:hover {
+        transform: scale(1.1);
+      }
+
+      @keyframes slideLogos {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-25%);
+        }
+      }
     </style>
   </head>
   <body class="font-sans text-ink antialiased">
-    <!-- Floating background shapes -->
-    <div class="floating-shapes">
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-    </div>
-
     <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
       <div class="mx-auto flex max-w-wrap items-center justify-between gap-4 px-6 py-4 md:px-8">
         <a href="#hero" class="flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">
@@ -531,6 +471,7 @@
           <li data-i18n="why.item4">✅ Flexible 1:1 or small group formats with personal feedback</li>
         </ul>
       </section>
+
 
       <!-- ============================= -->
       <!-- PROGRAMS: Grid + Accordions  -->
@@ -744,16 +685,16 @@
             <h3 data-i18n="pricing.privateTitle" class="text-lg font-semibold text-ink">Private (1 on 1)</h3>
             <dl class="mt-4 space-y-3 text-sm text-slate-600">
               <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
-                <dt data-i18n="pricing.privateWeekly">Weekly</dt>
-                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="800" data-original-usd="32">800K VND / ~$32</span></dd>
+                <dt data-i18n="pricing.privateCourse">1 course (8 lessons)</dt>
+                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="5600" data-original-usd="225">5.6M VND / ~$225</span></dd>
               </div>
               <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
-                <dt data-i18n="pricing.privateCourse">1 course (8 lessons)</dt>
-                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="5600" data-original-usd="225">5.6M VND / ~$225</span> <span data-i18n="pricing.privateCourseSave" class="text-sm text-slate-500">save 800K (~$32)</span></dd>
+                <dt data-i18n="pricing.private2Courses">2 courses (16 lessons) — 5% off</dt>
+                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="10700" data-original-usd="428">10.7M VND / ~$428</span></dd>
               </div>
               <div class="flex items-baseline justify-between">
-                <dt data-i18n="pricing.privateProgram">Full program (24 lessons)</dt>
-                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="15000" data-original-usd="600">15M VND / ~$600</span> <span data-i18n="pricing.privateProgramSave" class="text-sm text-slate-500">save 4.2M (~$168)</span></dd>
+                <dt data-i18n="pricing.private3Courses">3 courses (24 lessons) — 10% off</dt>
+                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="15000" data-original-usd="608">15M VND / ~$608</span></dd>
               </div>
             </dl>
           </div>
@@ -761,16 +702,16 @@
             <h3 data-i18n="pricing.groupTitle" class="text-lg font-semibold text-ink">Small group (2-4 students)</h3>
             <dl class="mt-4 space-y-3 text-sm text-slate-600">
               <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
-                <dt data-i18n="pricing.groupWeekly">Weekly</dt>
-                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="450" data-original-usd="18">450K VND / ~$18</span></dd>
+                <dt data-i18n="pricing.groupCourse">1 course (8 lessons)</dt>
+                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="3200" data-original-usd="128">3.2M VND / ~$128</span></dd>
               </div>
               <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
-                <dt data-i18n="pricing.groupCourse">1 course (8 lessons)</dt>
-                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="3200" data-original-usd="128">3.2M VND / ~$128</span> <span data-i18n="pricing.groupCourseSave" class="text-sm text-slate-500">save 400K (~$16)</span></dd>
+                <dt data-i18n="pricing.group2Courses">2 courses (16 lessons) — 5% off</dt>
+                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="6100" data-original-usd="244">6.1M VND / ~$244</span></dd>
               </div>
               <div class="flex items-baseline justify-between">
-                <dt data-i18n="pricing.groupProgram">Full program (24 lessons)</dt>
-                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="8400" data-original-usd="336">8.4M VND / ~$336</span> <span data-i18n="pricing.groupProgramSave" class="text-sm text-slate-500">save 2.4M (~$96)</span></dd>
+                <dt data-i18n="pricing.group3Courses">3 courses (24 lessons) — 10% off</dt>
+                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="8400" data-original-usd="346">8.4M VND / ~$346</span></dd>
               </div>
             </dl>
           </div>
@@ -783,7 +724,7 @@
               <h3 data-i18n="discount.title" class="text-xl font-semibold text-ink">🚀 Sibling & Referral Bonus: Get 10% Off!</h3>
               <p data-i18n="discount.desc" class="text-base text-slate-600 mb-0">Refer a friend or sign up a sibling to receive a 10% discount on any course.</p>
             </div>
-            <button id="openDiscountCalc" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors whitespace-nowrap">
+            <button id="openDiscountCalc" class="px-6 py-3 text-white font-semibold rounded-lg transition-opacity hover:opacity-90 whitespace-nowrap" style="background-color: #16A34A;">
               Use Discount Calculator
             </button>
           </div>
@@ -824,7 +765,7 @@
               <h3 data-i18n="discount.title" class="text-xl font-semibold text-ink mb-2">🚀 Sibling & Referral Bonus: Get 10% Off!</h3>
               <p data-i18n="discount.desc" class="text-base text-slate-600 mb-0">Refer a friend or sign up a sibling to receive a 10% discount on any course.</p>
             </div>
-            <button class="open-discount-calc px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors whitespace-nowrap">
+            <button class="open-discount-calc px-6 py-3 text-white font-semibold rounded-lg transition-opacity hover:opacity-90 whitespace-nowrap" style="background-color: #16A34A;">
               Use Discount Calculator
             </button>
           </div>
@@ -836,93 +777,65 @@
         <h2 data-i18n="trial.heading" class="text-2xl font-semibold md:text-3xl" style="color: #1E66F5;">Start With a FREE Lesson</h2>
         <p data-i18n="trial.copy" class="mt-3 text-base text-slate-600">In just 60 minutes: receive a free, in-depth consultation and roadmap from our instructor. Share your details below and we'll schedule within 24 hours.</p>
         <!-- WEB FORM -->
-        <form id="trialForm" action="https://formspree.io/f/xqaynogk" method="POST" class="mt-10 hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
-          <h3 data-i18n="trial.formTitle" class="mb-4 text-lg font-semibold text-ink">Book via Form</h3>
-          <div class="grid gap-4 md:grid-cols-2">
-            <label class="block">
-              <span data-i18n="trial.parentName" class="mb-1 block text-sm font-medium text-slate-700">Parent name</span>
-              <input name="parent_name" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky">
-            </label>
-            <label class="block">
-              <span data-i18n="trial.childName" class="mb-1 block text-sm font-medium text-slate-700">Child's name</span>
-              <input name="child_name" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky">
-            </label>
-            <label class="block">
-              <span data-i18n="trial.contact" class="mb-1 block text-sm font-medium text-slate-700">Parent email</span>
-              <input name="email" type="email" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky">
-            </label>
-
-            <label class="block">
-              <span data-i18n="trial.phoneField" class="mb-1 block text-sm font-medium text-slate-700">Phone number</span>
-              <input name="phone" type="tel" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky">
-            </label>
-
-            <label class="block">
-              <span data-i18n="trial.channel" class="mb-1 block text-sm font-medium text-slate-700">Preferred channel</span>
-              <select name="channel" id="channel" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky">
-                <option>WhatsApp</option>
-                <option>Zalo</option>
-                <option>Email</option>
-              </select>
-            </label>
-
-            <label class="block">
-              <span data-i18n="trial.age" class="mb-1 block text-sm font-medium text-slate-700">Child's age</span>
-              <input name="age" type="number" min="4" max="18" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky">
-            </label>
-
-            <label class="block md:col-span-2">
-              <span data-i18n="trial.program" class="mb-1 block text-sm font-medium text-slate-700">Program</span>
-              <select name="course" id="course" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky">
-                <option>Roblox World Creator</option>
-                <option>3D Designer</option>
-                <option>App Development</option>
-                <option>AI & Programming Quest</option>
-                <option>GDevelop Game Designer</option>
-                <option>Generative AI Magic</option>
-              </select>
-            </label>
-
-            <label class="block">
-              <span data-i18n="trial.sessions" class="mb-1 block text-sm font-medium text-slate-700">Sessions per week</span>
-              <select name="per_week" id="per_week" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky">
-                <option>1</option>
-                <option selected>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </label>
-
-            <label class="block">
-              <span data-i18n="trial.times" class="mb-1 block text-sm font-medium text-slate-700">Days & time windows</span>
-              <input name="times" placeholder="e.g., Tue/Thu 5–6:30pm" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky">
-            </label>
-
-            <label class="block md:col-span-2">
-              <span data-i18n="trial.message" class="mb-1 block text-sm font-medium text-slate-700">Message (optional)</span>
-              <textarea name="message" rows="3" placeholder="Anything we should know?" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-1 focus:ring-sky"></textarea>
-            </label>
+        <div class="mt-10 flex flex-col md:flex-row gap-8 items-stretch">
+          <!-- Image Section -->
+          <div class="relative w-full md:w-1/2 rounded-3xl overflow-hidden flex items-center justify-center bg-transparent">
+            <img src="images/robot-rocket.png" alt="Floating robot rocket" class="robot-float w-96 h-auto md:w-[520px]" style="animation: float 4s ease-in-out infinite;">
           </div>
 
-          <div class="mt-4 flex flex-wrap items-center gap-3">
-            <button data-i18n="trial.submit" type="submit" class="btn-enhanced inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">
-              Request trial
-            </button>
-            <small data-i18n="trial.pace" class="text-slate-500">Recommended pace: <strong>2 lessons/week</strong></small>
-          </div>
+          <!-- Form Section -->
+          <form id="trialForm" action="https://formspree.io/f/xqaynogk" method="POST" class="w-full md:w-1/2 hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+            <h3 data-i18n="trial.formTitle" class="mb-6 text-2xl font-bold" style="color: #1E66F5;">Book Your Free Lesson</h3>
 
-          <!-- honeypot to reduce spam -->
-          <input type="text" name="_gotcha" style="display:none">
-          <input type="hidden" name="_subject" value="New TechTutor Trial Request">
-          <input type="hidden" name="source_page" value="techtutor.academy/#trial">
-        </form>
+            <div class="space-y-4">
+              <label class="block">
+                <span data-i18n="trial.parentName" class="mb-1 block text-sm font-medium text-slate-700">Parent name</span>
+                <input name="parent_name" required class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20">
+              </label>
+
+              <label class="block">
+                <span data-i18n="trial.childName" class="mb-1 block text-sm font-medium text-slate-700">Child's name</span>
+                <input name="child_name" required class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20">
+              </label>
+
+              <label class="block">
+                <span data-i18n="trial.contact" class="mb-1 block text-sm font-medium text-slate-700">Parent email</span>
+                <input name="email" type="email" required class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20">
+              </label>
+
+              <label class="block">
+                <span data-i18n="trial.phoneField" class="mb-1 block text-sm font-medium text-slate-700">Phone number</span>
+                <input name="phone" type="tel" required class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20">
+              </label>
+
+              <label class="block">
+                <span data-i18n="trial.channel" class="mb-1 block text-sm font-medium text-slate-700">Preferred channel</span>
+                <select name="channel" id="channel" class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20">
+                  <option>WhatsApp</option>
+                  <option>Zalo</option>
+                  <option>Email</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="mt-6">
+              <button data-i18n="trial.submit" type="submit" class="w-full btn-enhanced inline-flex items-center justify-center rounded-full bg-sky px-6 py-4 text-base font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">
+                Submit
+              </button>
+            </div>
+
+            <!-- honeypot to reduce spam -->
+            <input type="text" name="_gotcha" style="display:none">
+            <input type="hidden" name="_subject" value="New TechTutor Trial Request">
+            <input type="hidden" name="source_page" value="techtutor.academy/#trial">
+          </form>
+        </div>
 
         <!-- QUICK CHAT -->
         <div class="mt-6 text-center">
           <p data-i18n="trial.orChat" class="mb-4 text-slate-600">Or book instantly via chat:</p>
           <div class="flex justify-center gap-3">
-            <a id="waLink" data-i18n="trial.ctaSecondary" href="https://wa.me/84902776753" target="_blank" class="btn-enhanced inline-flex items-center justify-center rounded-full bg-leaf px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf">Chat on WhatsApp</a>
+            <a id="waLink" data-i18n="trial.ctaSecondary" href="https://wa.me/84902776753" target="_blank" class="btn-enhanced inline-flex items-center justify-center rounded-full bg-leaf px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf">Chat on WhatsApp</a>
             <a id="zaloLink" data-i18n="trial.ctaTertiary" href="https://zalo.me/84931140736" target="_blank" class="btn-enhanced inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on Zalo</a>
           </div>
           <small data-i18n="trial.phone" class="mt-2 block text-slate-500">Zalo / WhatsApp: <strong>0902776753</strong></small>
@@ -1187,16 +1100,70 @@
       </section>
     </main>
 
-    <footer id="contact" class="border-t border-slate-200 bg-white py-16">
-      <div class="mx-auto flex max-w-wrap flex-col gap-6 px-6 md:px-8">
-        <h2 data-i18n="contact.heading" class="text-2xl font-semibold md:text-3xl" style="color: #1E66F5;">Talk with our team</h2>
-        <p data-i18n="contact.copy" class="text-base text-slate-600">Zalo / WhatsApp: 0902776753 · hello@techtutor.academy</p>
-        <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <a data-i18n="contact.whatsapp" href="https://wa.me/84902776753" class="btn-enhanced inline-flex items-center justify-center rounded-full bg-leaf px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf">Chat on WhatsApp</a>
-          <a data-i18n="contact.zalo" href="tel:0902776753" class="btn-enhanced inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Chat on Zalo</a>
+    <footer id="contact" class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16">
+      <div class="mx-auto max-w-wrap px-6 md:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+
+          <!-- Logo Section -->
+          <div class="lg:col-span-1">
+            <img src="images/robot-rocket.png" alt="TechTutor" class="h-40 w-auto" />
+          </div>
+
+          <!-- Contact Us -->
+          <div>
+            <h3 data-i18n="footer.contactUs" class="text-lg font-bold mb-4 text-sky-light">CONTACT US!</h3>
+            <div class="space-y-3 text-sm">
+              <div>
+                <p data-i18n="footer.telLabel" class="text-slate-400 mb-1">Tel/WA/Zalo:</p>
+                <a href="tel:0902776753" class="text-white hover:text-sky-light transition">0902 776 753</a>
+              </div>
+              <div>
+                <p data-i18n="footer.emailLabel" class="text-slate-400 mb-1">Email:</p>
+                <a href="mailto:hello@techtutor.academy" class="text-white hover:text-sky-light transition">hello@techtutor.academy</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Opening Hours -->
+          <div>
+            <h3 data-i18n="footer.openingHours" class="text-lg font-bold mb-4 text-sky-light">OPENING HOURS</h3>
+            <div class="space-y-2 text-sm">
+              <p data-i18n="footer.weekdays" class="text-slate-300">Monday - Friday: 8am - 9pm</p>
+              <p data-i18n="footer.weekends" class="text-slate-300">Saturday - Sunday: 8am - 8pm</p>
+            </div>
+          </div>
+
+          <!-- Start Learning -->
+          <div>
+            <h3 data-i18n="footer.startLearning" class="text-lg font-bold mb-4 text-sky-light">START LEARNING</h3>
+            <div class="space-y-2 text-sm">
+              <a href="#programs" data-i18n="footer.programs" class="block text-slate-300 hover:text-sky-light transition">Programs</a>
+              <a href="#trial" data-i18n="footer.freeTrial" class="block text-slate-300 hover:text-sky-light transition">Free trial</a>
+            </div>
+          </div>
+
+          <!-- Connect With Us -->
+          <div>
+            <h3 data-i18n="footer.connectWithUs" class="text-lg font-bold mb-4 text-sky-light">CONNECT WITH US!</h3>
+            <div class="flex gap-3">
+              <a href="https://www.facebook.com/share/1An2WsT9X5/" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-sky hover:bg-sky-deep transition flex items-center justify-center">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="https://www.instagram.com/techtutor.academy?igsh=MWljOWJjbndwY2l0dQ==" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-sky hover:bg-sky-deep transition flex items-center justify-center">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a href="https://zalo.me/0902776753" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-sky hover:bg-sky-deep transition flex items-center justify-center">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0zm.5 14.969h-4.25a.469.469 0 110-.938h4.25a.469.469 0 110 .938zm2.406-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938zm0-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938z"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
-        <p data-i18n="contact.support" class="text-sm text-slate-500">English / Vietnamese bilingual support</p>
-        <p class="text-xs text-slate-400">2025 TechTutor Academy</p>
+
+        <!-- Bottom Bar -->
+        <div class="mt-12 pt-8 border-t border-slate-700 text-center">
+          <p data-i18n="footer.copyright" class="text-sm text-slate-400">© 2025 TechTutor Academy. All rights reserved.</p>
+          <p data-i18n="footer.bilingual" class="text-xs text-slate-500 mt-2">English / Vietnamese bilingual support</p>
+        </div>
       </div>
     </footer>
 
@@ -1280,12 +1247,16 @@
             'pricing.privateTitle': 'Private (1 on 1)',
             'pricing.privateWeekly': 'Weekly',
             'pricing.privateCourse': '1 course (8 lessons)',
+            'pricing.private2Courses': '2 courses (16 lessons) — 5% off',
+            'pricing.private3Courses': '3 courses (24 lessons) — 10% off',
             'pricing.privateCourseSave': 'save 800K (~$32)',
             'pricing.privateProgram': 'Full program (24 lessons)',
             'pricing.privateProgramSave': 'save 4.2M (~$168)',
             'pricing.groupTitle': 'Small group (2-4 students)',
             'pricing.groupWeekly': 'Weekly',
             'pricing.groupCourse': '1 course (8 lessons)',
+            'pricing.group2Courses': '2 courses (16 lessons) — 5% off',
+            'pricing.group3Courses': '3 courses (24 lessons) — 10% off',
             'pricing.groupCourseSave': 'save 400K (~$16)',
             'pricing.groupProgram': 'Full program (24 lessons)',
             'pricing.groupProgramSave': 'save 2.4M (~$96)',
@@ -1303,7 +1274,7 @@
             'discount.cta': 'Scroll to lead form',
             'trial.heading': 'Start With a FREE Lesson',
             'trial.copy': 'In just 60 minutes: receive a free, in-depth consultation and curriculum roadmap from our instructor. Share your details below and we\'ll schedule your session within 24 hours.',
-            'trial.formTitle': 'Book via Form',
+            'trial.formTitle': 'Book Your Free Lesson',
             'trial.parentName': 'Parent name',
             'trial.childName': "Child's name",
             'trial.contact': 'Parent email',
@@ -1446,7 +1417,32 @@
             'modal.genAi.project3': 'Responsible AI projects with ethical guidelines',
             'modal.genAi.skills': 'Prompt Engineering, AI Integration, Creative Expression',
             'modal.genAi.age': 'Ages 9–15',
-            'modal.genAi.experience': 'Beginner–Intermediate'
+            'modal.genAi.experience': 'Beginner–Intermediate',
+
+            // Footer translations
+            'footer.contactUs': 'CONTACT US!',
+            'footer.telLabel': 'Tel/WA/Zalo:',
+            'footer.emailLabel': 'Email:',
+            'footer.openingHours': 'OPENING HOURS',
+            'footer.weekdays': 'Monday - Friday: 8am - 9pm',
+            'footer.weekends': 'Saturday - Sunday: 8am - 8pm',
+            'footer.startLearning': 'START LEARNING',
+            'footer.programs': 'Programs',
+            'footer.freeTrial': 'Free trial',
+            'footer.connectWithUs': 'CONNECT WITH US!',
+            'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
+            'footer.bilingual': 'English / Vietnamese bilingual support',
+
+            // Logo slider
+            'slider.ourPrograms': 'Our Programs',
+
+            // Discount popup
+            'discount.title': '🚀 Save up to 20%',
+            'discount.subtitle': 'Limited time offer - Book now and save!',
+            'discount.specialOffer': 'Special Discount Available',
+            'discount.description': 'Fill out the form below to receive your personalized discount quote and lock in your savings. Our team will contact you within 24 hours with your exclusive offer!',
+            'discount.button': 'Get My Discount Quote',
+            'discount.response': 'We\'ll respond within 24 hours with your personalized offer'
           },
           vi: {
             'nav.programs': 'Chương trình',
@@ -1523,12 +1519,16 @@
             'pricing.privateTitle': 'Lớp riêng (1 kèm 1)',
             'pricing.privateWeekly': 'Theo tuần',
             'pricing.privateCourse': '1 khóa (8 buổi)',
+            'pricing.private2Courses': '2 khóa (16 buổi) — Giảm 5%',
+            'pricing.private3Courses': '3 khóa (24 buổi) — Giảm 10%',
             'pricing.privateCourseSave': 'tiết kiệm 800K (~$32)',
             'pricing.privateProgram': 'Chương trình đầy đủ (24 buổi)',
             'pricing.privateProgramSave': 'tiết kiệm 4.2M (~$168)',
             'pricing.groupTitle': 'Lớp nhóm nhỏ (2-4 học viên)',
             'pricing.groupWeekly': 'Theo tuần',
             'pricing.groupCourse': '1 khóa (8 buổi)',
+            'pricing.group2Courses': '2 khóa (16 buổi) — Giảm 5%',
+            'pricing.group3Courses': '3 khóa (24 buổi) — Giảm 10%',
             'pricing.groupCourseSave': 'tiết kiệm 400K (~$16)',
             'pricing.groupProgram': 'Chương trình đầy đủ (24 buổi)',
             'pricing.groupProgramSave': 'tiết kiệm 2.4M (~$96)',
@@ -1546,7 +1546,7 @@
             'discount.cta': 'Đến form đăng ký',
             'trial.heading': 'Đặt lịch học thử MIỄN PHÍ',
             'trial.copy': 'Chỉ 60 phút trải nghiệm: giáo viên định hướng chuyên sâu miễn phí. Để lại thông tin và TechTutor sẽ liên hệ trong 24 giờ.',
-            'trial.formTitle': 'Đặt lịch qua Form',
+            'trial.formTitle': 'Đặt lịch học thử miễn phí',
             'trial.parentName': 'Tên phụ huynh',
             'trial.childName': 'Tên học viên',
             'trial.contact': 'Email phụ huynh',
@@ -1690,7 +1690,32 @@
             'modal.genAi.project3': 'Dự án AI có trách nhiệm kèm hướng dẫn đạo đức',
             'modal.genAi.skills': 'Viết prompt, Tích hợp AI, Sáng tạo nội dung',
             'modal.genAi.age': '9–15 tuổi',
-            'modal.genAi.experience': 'Mới bắt đầu – Trung cấp'
+            'modal.genAi.experience': 'Mới bắt đầu – Trung cấp',
+
+            // Footer translations
+            'footer.contactUs': 'LIÊN HỆ!',
+            'footer.telLabel': 'Tel/WA/Zalo:',
+            'footer.emailLabel': 'Email:',
+            'footer.openingHours': 'GIỜ MỞ CỬA',
+            'footer.weekdays': 'Thứ 2 - Thứ 6: 8h - 21h',
+            'footer.weekends': 'Thứ 7 - Chủ nhật: 8h - 20h',
+            'footer.startLearning': 'BẮT ĐẦU HỌC',
+            'footer.programs': 'Chương trình',
+            'footer.freeTrial': 'Học thử miễn phí',
+            'footer.connectWithUs': 'KẾT NỐI VỚI CHÚNG TÔI!',
+            'footer.copyright': '© 2025 TechTutor Academy. Bản quyền thuộc về TechTutor.',
+            'footer.bilingual': 'Hỗ trợ song ngữ Anh / Việt',
+
+            // Logo slider
+            'slider.ourPrograms': 'Chương Trình Của Chúng Tôi',
+
+            // Discount popup
+            'discount.title': '🚀 Giảm giá lên đến 20%',
+            'discount.subtitle': 'Ưu đãi có thời hạn - Đặt ngay và tiết kiệm!',
+            'discount.specialOffer': 'Ưu Đãi Đặc Biệt',
+            'discount.description': 'Điền form bên dưới để nhận báo giá ưu đãi cá nhân hóa và khoá mức giá tiết kiệm. Đội ngũ của chúng tôi sẽ liên hệ trong vòng 24 giờ với ưu đãi dành riêng cho bạn!',
+            'discount.button': 'Nhận Báo Giá Ưu Đãi',
+            'discount.response': 'Chúng tôi sẽ phản hồi trong 24 giờ với ưu đãi cá nhân hóa'
           }
         };
 
@@ -1914,7 +1939,7 @@
         </div>
 
         <div class="flex gap-3">
-          <button id="applyDiscountBtn" class="flex-1 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors">
+          <button id="applyDiscountBtn" class="flex-1 px-6 py-3 text-white font-semibold rounded-lg transition-opacity hover:opacity-90" style="background-color: #4ba68b;">
             Apply Discount
           </button>
           <button id="removeDiscountBtn" class="flex-1 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-slate-700 font-semibold rounded-lg transition-colors">
@@ -1923,7 +1948,7 @@
         </div>
 
         <div id="discountStatus" class="mt-4 text-center text-sm font-medium hidden">
-          <span class="text-green-600">✓ Discount applied to all pricing!</span>
+          <span style="color: #4ba68b;">✓ Discount applied to all pricing!</span>
         </div>
       </div>
     </div>
@@ -2371,10 +2396,10 @@
       <section class="modal__dialog relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl max-h-[90vh] overflow-y-auto" role="document">
         <header class="modal__header sticky top-0 bg-gradient-to-r from-sky to-sky-deep px-6 py-6 flex items-center justify-between rounded-t-3xl">
           <div>
-            <h2 id="modal-discount-popup-title" class="modal__title text-3xl font-bold text-white mb-1">
+            <h2 id="modal-discount-popup-title" data-i18n="discount.title" class="modal__title text-3xl font-bold text-white mb-1">
               Save up to 20%
             </h2>
-            <p class="text-sky-light text-sm">Limited time offer - Book now and save!</p>
+            <p data-i18n="discount.subtitle" class="text-sky-light text-sm">Limited time offer - Book now and save!</p>
           </div>
           <button class="modal__close rounded-full bg-white/20 hover:bg-white/30 backdrop-blur px-3 py-1 text-sm text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" aria-label="Close" data-close-modal>✕</button>
         </header>
@@ -2390,90 +2415,52 @@
               <svg class="w-6 h-6 text-sky" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-              <span class="text-sky font-semibold text-lg">Special Discount Available</span>
+              <span data-i18n="discount.specialOffer" class="text-sky font-semibold text-lg">Special Discount Available</span>
             </div>
-            <p class="text-slate-600 leading-relaxed">Fill out the form below to receive your personalized discount quote and lock in your savings. Our team will contact you within 24 hours with your exclusive offer!</p>
+            <p data-i18n="discount.description" class="text-slate-600 leading-relaxed">Fill out the form below to receive your personalized discount quote and lock in your savings. Our team will contact you within 24 hours with your exclusive offer!</p>
           </div>
 
           <!-- Discount Request Form -->
           <form id="discountPopupForm" action="https://formspree.io/f/xqaynogk" method="POST" class="rounded-2xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
-            <div class="grid gap-4 md:grid-cols-2">
+            <div class="space-y-4">
               <label class="block">
-                <span class="mb-1 block text-sm font-medium text-slate-700">Parent name *</span>
+                <span data-i18n="trial.parentName" class="mb-1 block text-sm font-medium text-slate-700">Parent name *</span>
                 <input name="parent_name" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
               </label>
 
               <label class="block">
-                <span class="mb-1 block text-sm font-medium text-slate-700">Child's name *</span>
+                <span data-i18n="trial.childName" class="mb-1 block text-sm font-medium text-slate-700">Child's name *</span>
                 <input name="child_name" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
               </label>
 
               <label class="block">
-                <span class="mb-1 block text-sm font-medium text-slate-700">Parent email *</span>
+                <span data-i18n="trial.contact" class="mb-1 block text-sm font-medium text-slate-700">Parent email *</span>
                 <input name="email" type="email" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
               </label>
 
               <label class="block">
-                <span class="mb-1 block text-sm font-medium text-slate-700">Phone number *</span>
+                <span data-i18n="trial.phoneField" class="mb-1 block text-sm font-medium text-slate-700">Phone number *</span>
                 <input name="phone" type="tel" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
               </label>
 
               <label class="block">
-                <span class="mb-1 block text-sm font-medium text-slate-700">Preferred channel *</span>
+                <span data-i18n="trial.channel" class="mb-1 block text-sm font-medium text-slate-700">Preferred channel *</span>
                 <select name="channel" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
                   <option>WhatsApp</option>
                   <option>Zalo</option>
                   <option>Email</option>
                 </select>
               </label>
-
-              <label class="block">
-                <span class="mb-1 block text-sm font-medium text-slate-700">Child's age *</span>
-                <input name="age" type="number" min="4" max="18" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
-              </label>
-
-              <label class="block md:col-span-2">
-                <span class="mb-1 block text-sm font-medium text-slate-700">Program of interest *</span>
-                <select name="course" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
-                  <option>Roblox World Creator</option>
-                  <option>3D Designer</option>
-                  <option>App Development</option>
-                  <option>AI & Programming Quest</option>
-                  <option>GDevelop Game Designer</option>
-                  <option>Generative AI Magic</option>
-                </select>
-              </label>
-
-              <label class="block">
-                <span class="mb-1 block text-sm font-medium text-slate-700">Sessions per week *</span>
-                <select name="per_week" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
-                  <option>1</option>
-                  <option selected>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </label>
-
-              <label class="block">
-                <span class="mb-1 block text-sm font-medium text-slate-700">Days & time windows *</span>
-                <input name="times" placeholder="e.g., Tue/Thu 5–6:30pm" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
-              </label>
-
-              <label class="block md:col-span-2">
-                <span class="mb-1 block text-sm font-medium text-slate-700">Message (optional)</span>
-                <textarea name="message" rows="3" placeholder="Tell us about your goals and we'll tailor your discount!" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition"></textarea>
-              </label>
             </div>
 
             <div class="mt-6 flex flex-col gap-3">
-              <button type="submit" class="w-full inline-flex items-center justify-center rounded-full bg-sky px-8 py-4 text-base font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky shadow-lg hover:shadow-xl">
+              <button type="submit" data-i18n="discount.button" class="w-full inline-flex items-center justify-center rounded-full bg-sky px-8 py-4 text-base font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky shadow-lg hover:shadow-xl">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
                 Get My Discount Quote
               </button>
-              <p class="text-center text-sm text-slate-500">
+              <p data-i18n="discount.response" class="text-center text-sm text-slate-500">
                 <svg class="w-4 h-4 inline text-sky" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                 </svg>
