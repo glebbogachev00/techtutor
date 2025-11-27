@@ -169,6 +169,42 @@
         color: white !important;
       }
 
+      .trial-highlight {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 200px;
+        padding: 0.5rem 1.25rem;
+        border-radius: 999px;
+        background: rgba(30, 102, 245, 0.12);
+        color: #1E66F5;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(30, 102, 245, 0.12);
+      }
+
+      .trial-highlight-row {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: none;
+        gap: 0.75rem;
+      }
+
+      @media (min-width: 768px) {
+        .trial-highlight-row { display: flex; }
+      }
+
+      .trial-highlight-row--top {
+        top: -30px;
+      }
+
+      .trial-highlight-row--bottom {
+        bottom: -30px;
+      }
+
+
       /* Scroll animations */
       .fade-in-section {
         opacity: 0;
@@ -779,8 +815,18 @@
         <!-- WEB FORM -->
         <div class="mt-10 flex flex-col md:flex-row gap-8 items-stretch">
           <!-- Image Section -->
-          <div class="relative w-full md:w-1/2 rounded-3xl overflow-hidden flex items-center justify-center bg-transparent">
-            <img src="images/robot-rocket.png" alt="Floating robot rocket" class="robot-float w-96 h-auto md:w-[520px]" style="animation: float 4s ease-in-out infinite;">
+          <div class="relative w-full md:w-1/2 flex items-center justify-center bg-transparent">
+            <div class="relative flex items-center justify-center">
+              <div class="trial-highlight-row trial-highlight-row--top">
+                <span class="trial-highlight" data-i18n="trial.highlight1">Experience our teaching style</span>
+                <span class="trial-highlight" data-i18n="trial.highlight2">Learn 1:1 with a tech expert</span>
+              </div>
+              <img src="images/robot-rocket.png" alt="Floating robot rocket" class="robot-float w-96 h-auto md:w-[520px]" style="animation: float 4s ease-in-out infinite;">
+              <div class="trial-highlight-row trial-highlight-row--bottom">
+                <span class="trial-highlight" data-i18n="trial.highlight3">Preview curriculum topics</span>
+                <span class="trial-highlight" data-i18n="trial.highlight5">Get personalized feedback</span>
+              </div>
+            </div>
           </div>
 
           <!-- Form Section -->
@@ -1280,6 +1326,11 @@
             'trial.contact': 'Parent email',
             'trial.phoneField': 'Phone number',
             'trial.channel': 'Preferred channel',
+            'trial.highlight1': 'Experience our teaching style',
+            'trial.highlight2': 'Learn 1:1 with a tech expert',
+            'trial.highlight3': 'Preview curriculum topics',
+            'trial.highlight4': 'Check the pacing fits your child',
+            'trial.highlight5': 'Get personalized feedback',
             'trial.age': 'Child\'s age',
             'trial.program': 'Program',
             'trial.sessions': 'Sessions per week',
@@ -1552,6 +1603,11 @@
             'trial.contact': 'Email phụ huynh',
             'trial.phoneField': 'Số điện thoại',
             'trial.channel': 'Kênh ưa thích',
+            'trial.highlight1': 'Trải nghiệm phong cách giảng dạy',
+            'trial.highlight2': 'Học 1:1 cùng chuyên gia công nghệ',
+            'trial.highlight3': 'Xem nhanh nội dung chương trình',
+            'trial.highlight4': 'Kiểm tra nhịp học phù hợp với bé',
+            'trial.highlight5': 'Nhận phản hồi cá nhân hoá',
             'trial.age': 'Tuổi con',
             'trial.program': 'Chương trình',
             'trial.sessions': 'Buổi học mỗi tuần',
