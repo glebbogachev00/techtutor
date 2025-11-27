@@ -263,14 +263,14 @@
       /* Testimonial carousel */
       .testimonial-carousel-container {
         position: relative;
-        max-width: 800px;
+        max-width: 680px;
         margin: 0 auto;
       }
 
       .testimonial-carousel {
         position: relative;
         overflow: hidden;
-        min-height: 300px;
+        min-height: 700px;
       }
 
       .testimonial-slide {
@@ -280,7 +280,7 @@
         width: 100%;
         opacity: 0;
         transform: translateX(-100%);
-        transition: all 1.2s ease-in-out;
+        transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       .testimonial-slide.active {
@@ -927,9 +927,12 @@
       <section class="fade-in-section mt-20 border-t border-slate-200 pt-10">
         <h2 data-i18n="testimonials.heading" class="text-2xl font-semibold md:text-3xl" style="color: #1E66F5;">Testimonials — What Our Parents Say</h2>
         <p data-i18n="testimonials.subtitle" class="mt-3 text-base text-slate-600">What our parents say</p>
-        <div class="mt-10 testimonial-carousel-container">
+        <div class="mt-10 testimonial-carousel-container px-2">
           <div class="testimonial-carousel">
-            <div class="testimonial-slide active rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+            <div class="testimonial-slide active rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
+              <div class="mb-4 rounded-2xl overflow-hidden">
+                <img src="images/students/bao_minh.png" alt="Bảo Minh creating a project" class="w-full h-80 md:h-96 object-cover">
+              </div>
               <div class="flex items-start gap-2 mb-4">
                 <span class="text-yellow-500 text-lg">⭐</span>
                 <div class="flex-1">
@@ -940,29 +943,38 @@
               <blockquote data-i18n="testimonials.test1.quote" class="text-slate-600 leading-relaxed">"Bảo Minh has been learning with Teacher Gleb for almost a year now, focusing on Generative AI. At first, my son was shy and didn't know where to start with computers. Now he confidently builds small games and even created an AI chatbot for his science project!"</blockquote>
             </div>
 
-            <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+            <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
+              <div class="mb-4 rounded-2xl overflow-hidden">
+                <img src="images/students/gia.png" alt="Gia Hân collaborating online" class="w-full h-80 md:h-96 object-cover">
+              </div>
               <div class="flex items-start gap-2 mb-4">
                 <span class="text-yellow-500 text-lg">⭐</span>
                 <div class="flex-1">
                   <p data-i18n="testimonials.test2.parent" class="text-sm font-semibold text-slate-700">Lê Hoàng Phúc – father of Gia Hân (12 years old)</p>
-                  <p data-i18n="testimonials.test2.teacher" class="text-xs text-slate-500">Teacher: Mantan</p>
+                  <p data-i18n="testimonials.test2.teacher" class="text-xs text-slate-500">Teacher: Mathan</p>
                 </div>
               </div>
               <blockquote data-i18n="testimonials.test2.quote" class="text-slate-600 leading-relaxed">"My daughter studied 3D Design and Roblox Game Development with Teacher Mantan for over a year and a half. She created two complete games and improved both teamwork and confidence."</blockquote>
             </div>
 
-            <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+            <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
+              <div class="mb-4 rounded-2xl overflow-hidden">
+                <img src="images/students/Kien.png" alt="Kian working on a project" class="w-full h-80 md:h-96 object-cover">
+              </div>
               <div class="flex items-start gap-2 mb-4">
                 <span class="text-yellow-500 text-lg">⭐</span>
                 <div class="flex-1">
                   <p data-i18n="testimonials.test3.parent" class="text-sm font-semibold text-slate-700">Thomas Reed – father of Kian Reed (13 years old, British-Vietnamese)</p>
-                  <p data-i18n="testimonials.test3.teacher" class="text-xs text-slate-500">Teacher: Mantan</p>
+                  <p data-i18n="testimonials.test3.teacher" class="text-xs text-slate-500">Teacher: Mathan</p>
                 </div>
               </div>
               <blockquote data-i18n="testimonials.test3.quote" class="text-slate-600 leading-relaxed">"Kian explored Generative AI and Python programming with Teacher Mantan and now has two solid portfolio projects. TechTutor's structured and creative approach is perfect for international families."</blockquote>
             </div>
 
-            <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+            <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
+              <div class="mb-4 rounded-2xl overflow-hidden">
+                <img src="images/students/khanh_ngoc.png" alt="Khánh Ngọc student portrait" class="w-full h-80 md:h-96 object-cover">
+              </div>
               <div class="flex items-start gap-2 mb-4">
                 <span class="text-yellow-500 text-lg">⭐</span>
                 <div class="flex-1">
@@ -1377,11 +1389,11 @@
             'testimonials.test1.teacher': 'Teacher: Gleb',
             'testimonials.test1.quote': '"Bảo Minh has been learning with Teacher Gleb for almost a year now, focusing on Generative AI. At first, my son was shy and didn\'t know where to start with computers. Now he confidently builds small games and even created an AI chatbot for his science project!"',
             'testimonials.test2.parent': 'Lê Hoàng Phúc – father of Gia Hân (12 years old)',
-            'testimonials.test2.teacher': 'Teacher: Mantan',
-            'testimonials.test2.quote': '"My daughter studied 3D Design and Roblox Game Development with Teacher Mantan for over a year and a half. She created two complete games and improved both teamwork and confidence."',
+            'testimonials.test2.teacher': 'Teacher: Mathan',
+            'testimonials.test2.quote': '"My daughter studied 3D Design and Roblox Game Development with Teacher Mathan for over a year and a half. She created two complete games and improved both teamwork and confidence."',
             'testimonials.test3.parent': 'Thomas Reed – father of Kian (13 years old, British-Vietnamese)',
-            'testimonials.test3.teacher': 'Teacher: Mantan',
-            'testimonials.test3.quote': '"Kian explored Generative AI and Python programming with Teacher Mantan and now has two solid portfolio projects. TechTutor\'s structured and creative approach is perfect for international families."',
+            'testimonials.test3.teacher': 'Teacher: Mathan',
+            'testimonials.test3.quote': '"Kian explored Generative AI and Python programming with Teacher Mathan and now has two solid portfolio projects. TechTutor\'s structured and creative approach is perfect for international families."',
             'testimonials.test4.parent': 'Trần Minh Quân – father of Khánh Ngọc (9 years old)',
             'testimonials.test4.teacher': 'Teacher: Gleb',
             'testimonials.test4.quote': '"Our daughter started 3D Design three months ago and already built her first model. She\'s excited for every class!"',
