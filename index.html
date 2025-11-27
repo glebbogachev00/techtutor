@@ -455,12 +455,12 @@
         <a href="#hero" class="flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">
           <img src="images/tt-new.png" alt="TechTutor logo" class="h-20 w-auto origin-left scale-125 md:h-24 md:scale-150" />
         </a>
-        <nav class="hidden items-center gap-8 text-sm font-semibold text-slate-600 md:flex">
+        <nav class="hidden items-center gap-8 text-base font-semibold text-slate-600 md:flex">
           <a data-i18n="nav.programs" href="#programs" class="transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Programs</a>
+          <a data-i18n="nav.projects" href="student-projects.html" class="transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Projects</a>
           <a data-i18n="nav.pricing" href="#pricing" class="transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Pricing</a>
           <a data-i18n="nav.trial" href="#trial" class="transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Free trial</a>
-          <a data-i18n="nav.contact" href="#contact" class="transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Contact</a>
-        </nav>
+          </nav>
         <div class="flex items-center gap-3">
           <div class="flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1">
             <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-sky text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">🇬🇧</button>
@@ -472,12 +472,12 @@
         </div>
       </div>
       <nav id="mobile-nav" class="hidden border-t border-slate-200 bg-white md:hidden">
-        <div class="mx-auto flex max-w-wrap flex-col gap-2 px-6 py-4 text-sm font-semibold text-slate-600">
+        <div class="mx-auto flex max-w-wrap flex-col gap-2 px-6 py-4 text-base font-semibold text-slate-600">
           <a data-i18n="nav.programs" href="#programs" class="py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Programs</a>
+          <a data-i18n="nav.projects" href="student-projects.html" class="py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Projects</a>
           <a data-i18n="nav.pricing" href="#pricing" class="py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Pricing</a>
           <a data-i18n="nav.trial" href="#trial" class="py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Free trial</a>
-          <a data-i18n="nav.contact" href="#contact" class="py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Contact</a>
-        </div>
+          </div>
       </nav>
     </header>
 
@@ -954,7 +954,7 @@
                   <p data-i18n="testimonials.test2.teacher" class="text-xs text-slate-500">Teacher: Mathan</p>
                 </div>
               </div>
-              <blockquote data-i18n="testimonials.test2.quote" class="text-slate-600 leading-relaxed">"My daughter studied 3D Design and Roblox Game Development with Teacher Mantan for over a year and a half. She created two complete games and improved both teamwork and confidence."</blockquote>
+              <blockquote data-i18n="testimonials.test2.quote" class="text-slate-600 leading-relaxed">"My daughter studied 3D Design and Roblox Game Development with Teacher Mathan for over a year and a half. She created two complete games and improved both teamwork and confidence."</blockquote>
             </div>
 
             <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
@@ -968,7 +968,7 @@
                   <p data-i18n="testimonials.test3.teacher" class="text-xs text-slate-500">Teacher: Mathan</p>
                 </div>
               </div>
-              <blockquote data-i18n="testimonials.test3.quote" class="text-slate-600 leading-relaxed">"Kian explored Generative AI and Python programming with Teacher Mantan and now has two solid portfolio projects. TechTutor's structured and creative approach is perfect for international families."</blockquote>
+              <blockquote data-i18n="testimonials.test3.quote" class="text-slate-600 leading-relaxed">"Kian explored Generative AI and Python programming with Teacher Mathan and now has two solid portfolio projects. TechTutor's structured and creative approach is perfect for international families."</blockquote>
             </div>
 
             <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
@@ -1251,15 +1251,16 @@
     <script>
       (function () {
         var toggles = document.querySelectorAll('[data-lang]');
+        var STORAGE_KEY = 'tt-lang';
         var textNodes = document.querySelectorAll('[data-i18n]');
         var currentLanguage = 'en';
         var translations = {
           en: {
             'nav.programs': 'Programs',
+            'nav.projects': 'Projects',
             'nav.pricing': 'Pricing',
             'nav.trial': 'Free trial',
-            'nav.contact': 'Contact',
-            'header.menu': 'Menu',
+                        'header.menu': 'Menu',
             'hero.word1': 'Future-ready',
             'hero.word2': 'learning',
             'hero.word3': 'for',
@@ -1383,6 +1384,26 @@
             'outcomes.item1': 'Learners grasp real tech concepts with calm, guided practice.',
             'outcomes.item2': 'Projects launch — games, apps, designs, or AI tools.',
             'outcomes.item3': 'Portfolios grow and students share their work with confidence.',
+            'projects.heading': 'Student Project Spotlight',
+            'projects.subtitle': 'Real work from real learners — each project blends creativity, code, and presentation skills.',
+            'projects.card.programLabel': 'Program',
+            'projects.card.studentLabel': 'Student',
+            'projects.card.toolsLabel': 'Tools Used',
+            'projects.card1.program': 'Roblox World Creator',
+            'projects.card1.student': 'Bảo Minh (10)',
+            'projects.card1.tool1': 'Roblox Studio',
+            'projects.card1.tool2': 'Lua',
+            'projects.card1.tool3': 'Figma Storyboards',
+            'projects.card2.program': '3D Designer',
+            'projects.card2.student': 'Gia Hân (12)',
+            'projects.card2.tool1': 'Blender',
+            'projects.card2.tool2': 'Photoshop',
+            'projects.card2.tool3': 'Notion Brief',
+            'projects.card3.program': 'AI & Programming Quest',
+            'projects.card3.student': 'Khánh Ngọc (9)',
+            'projects.card3.tool1': 'Scratch',
+            'projects.card3.tool2': 'OpenAI API',
+            'projects.card3.tool3': 'Canva Storyboard',
             'testimonials.heading': 'Testimonials — What Our Parents Say',
             'testimonials.subtitle': 'What our parents say',
             'testimonials.test1.parent': 'Nguyễn Thị Lan Anh – mother of Bảo Minh (10 years old)',
@@ -1532,10 +1553,10 @@
           },
           vi: {
             'nav.programs': 'Chương trình',
+            'nav.projects': 'Dự án',
             'nav.pricing': 'Học phí',
             'nav.trial': 'Học thử',
-            'nav.contact': 'Liên hệ',
-            'header.menu': 'Menu',
+                        'header.menu': 'Menu',
             'hero.word1': 'Khơi dậy',
             'hero.word2': 'tiềm năng',
             'hero.word3': 'tò mò',
@@ -1660,17 +1681,37 @@
             'outcomes.item1': 'Nắm chắc khái niệm công nghệ thực tế nhờ hướng dẫn chi tiết, nhẹ nhàng.',
             'outcomes.item2': 'Hoàn thành sản phẩm: Game, Ứng dụng, Thiết kế hoặc công cụ AI.',
             'outcomes.item3': 'Portfolio được bổ sung liên tục giúp các em tự tin chia sẻ thành quả.',
+            'projects.heading': 'Dự Án Tiêu Biểu Của Học Viên',
+            'projects.subtitle': 'Thành phẩm thực tế do học viên TechTutor tạo nên, kết hợp sự sáng tạo, tư duy và kỹ năng thuyết trình.',
+            'projects.card.programLabel': 'Chương trình',
+            'projects.card.studentLabel': 'Học viên',
+            'projects.card.toolsLabel': 'Công cụ sử dụng',
+            'projects.card1.program': 'Roblox World Creator',
+            'projects.card1.student': 'Bảo Minh (10 tuổi)',
+            'projects.card1.tool1': 'Roblox Studio',
+            'projects.card1.tool2': 'Lua',
+            'projects.card1.tool3': 'Figma Storyboards',
+            'projects.card2.program': '3D Designer',
+            'projects.card2.student': 'Gia Hân (12 tuổi)',
+            'projects.card2.tool1': 'Blender',
+            'projects.card2.tool2': 'Photoshop',
+            'projects.card2.tool3': 'Notion Brief',
+            'projects.card3.program': 'AI & Programming Quest',
+            'projects.card3.student': 'Khánh Ngọc (9 tuổi)',
+            'projects.card3.tool1': 'Scratch',
+            'projects.card3.tool2': 'OpenAI API',
+            'projects.card3.tool3': 'Canva Storyboard',
             'testimonials.heading': 'Nhận Xét Từ Phụ Huynh',
             'testimonials.subtitle': 'Phụ huynh nói gì về chúng tôi',
             'testimonials.test1.parent': 'Nguyễn Thị Lan Anh – mẹ của Bảo Minh (10 tuổi)',
             'testimonials.test1.teacher': 'Giáo viên: Thầy Gleb',
             'testimonials.test1.quote': '"Bảo Minh học với thầy Gleb gần một năm về AI Tạo Sinh. Con từ nhút nhát nay đã tự tin làm game nhỏ và tạo chatbot AI cho dự án khoa học!"',
             'testimonials.test2.parent': 'Lê Hoàng Phúc – bố của Gia Hân (12 tuổi)',
-            'testimonials.test2.teacher': 'Giáo viên: Thầy Mantan',
-            'testimonials.test2.quote': '"Gia Hân học Thiết kế 3D và Roblox với thầy Mantan hơn 1,5 năm, hoàn thành hai game trọn vẹn và tự tin hơn hẳn."',
+            'testimonials.test2.teacher': 'Giáo viên: Thầy Mathan',
+            'testimonials.test2.quote': '"Gia Hân học Thiết kế 3D và Roblox với thầy Mathan hơn 1,5 năm, hoàn thành hai game trọn vẹn và tự tin hơn hẳn."',
             'testimonials.test3.parent': 'Thomas Reed – bố của Kian (13 tuổi, Anh-Việt)',
-            'testimonials.test3.teacher': 'Giáo viên: Thầy Mantan',
-            'testimonials.test3.quote': '"Kian học Generative AI và Python với thầy Mantan, hiện có hai dự án portfolio. Cách học của TechTutor rất hợp với gia đình quốc tế."',
+            'testimonials.test3.teacher': 'Giáo viên: Thầy Mathan',
+            'testimonials.test3.quote': '"Kian học Generative AI và Python với thầy Mathan, hiện có hai dự án portfolio. Cách học của TechTutor rất hợp với gia đình quốc tế."',
             'testimonials.test4.parent': 'Trần Minh Quân – bố của Khánh Ngọc (9 tuổi)',
             'testimonials.test4.teacher': 'Giáo viên: Thầy Gleb',
             'testimonials.test4.quote': '"Con gái chúng tôi học 3D Design ba tháng đã dựng được mô hình đầu tiên và luôn háo hức đến lớp."',
@@ -1861,6 +1902,7 @@
             btn.classList.toggle('bg-sky', isActive);
             btn.classList.toggle('text-white', isActive);
           });
+          try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
         }
 
         toggles.forEach(function (btn) {
@@ -1869,7 +1911,11 @@
           });
         });
 
-        setLanguage('en');
+        var savedLanguage = 'en';
+        try {
+          savedLanguage = localStorage.getItem(STORAGE_KEY) || 'en';
+        } catch (e) {}
+        setLanguage(savedLanguage);
 
         window.addEventListener('load', function () {
           setLanguage(currentLanguage);
