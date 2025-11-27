@@ -184,6 +184,10 @@
         box-shadow: 0 10px 25px rgba(30, 102, 245, 0.12);
       }
 
+      .trial-highlight--float {
+        animation: highlightFloat 6s ease-in-out infinite;
+      }
+
       .trial-highlight-row {
         position: absolute;
         left: 50%;
@@ -202,6 +206,23 @@
 
       .trial-highlight-row--bottom {
         bottom: -30px;
+      }
+
+      .trial-highlight-row--top .trial-highlight--float:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+
+      .trial-highlight-row--bottom .trial-highlight--float:nth-child(1) {
+        animation-delay: 0.3s;
+      }
+
+      .trial-highlight-row--bottom .trial-highlight--float:nth-child(2) {
+        animation-delay: 0.9s;
+      }
+
+      @keyframes highlightFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
       }
 
 
@@ -818,13 +839,13 @@
           <div class="relative w-full md:w-1/2 flex items-center justify-center bg-transparent">
             <div class="relative flex items-center justify-center">
               <div class="trial-highlight-row trial-highlight-row--top">
-                <span class="trial-highlight" data-i18n="trial.highlight1">Experience our teaching style</span>
-                <span class="trial-highlight" data-i18n="trial.highlight2">Learn 1:1 with a tech expert</span>
+                <span class="trial-highlight trial-highlight--float" data-i18n="trial.highlight1">Experience our teaching style</span>
+                <span class="trial-highlight trial-highlight--float" data-i18n="trial.highlight2">Learn 1:1 with a tech expert</span>
               </div>
               <img src="images/robot-rocket.png" alt="Floating robot rocket" class="robot-float w-96 h-auto md:w-[520px]" style="animation: float 4s ease-in-out infinite;">
               <div class="trial-highlight-row trial-highlight-row--bottom">
-                <span class="trial-highlight" data-i18n="trial.highlight3">Preview curriculum topics</span>
-                <span class="trial-highlight" data-i18n="trial.highlight5">Get personalized feedback</span>
+                <span class="trial-highlight trial-highlight--float" data-i18n="trial.highlight3">Preview curriculum topics</span>
+                <span class="trial-highlight trial-highlight--float" data-i18n="trial.highlight5">Get personalized feedback</span>
               </div>
             </div>
           </div>
