@@ -1928,6 +1928,11 @@
               modal.classList.add('hidden');
               modal.classList.remove('flex');
               document.body.style.overflow = 'auto';
+
+              // Save timestamp when discount popup is closed
+              if (modal.id === 'modal-discount-popup') {
+                localStorage.setItem('tt-popup-closed', Date.now());
+              }
             }
           }
         });
@@ -2779,8 +2784,12 @@
         const discountPopup = document.getElementById('modal-discount-popup');
         const comingFromProjects = document.referrer.includes('student-projects.html');
 
-        if (discountPopup && !comingFromProjects) {
-          // Show popup on page load, but not if coming from projects page
+        // Check when popup was last closed
+        const lastClosed = localStorage.getItem('tt-popup-closed');
+        const hoursSinceClosed = lastClosed ? (Date.now() - parseInt(lastClosed)) / (1000 * 60 * 60) : 999;
+
+        // Show popup if: not coming from projects AND (never closed OR closed more than 24 hours ago)
+        if (discountPopup && !comingFromProjects && hoursSinceClosed > 24) {
           discountPopup.classList.remove('hidden');
           discountPopup.classList.add('flex');
           document.body.style.overflow = 'hidden';
