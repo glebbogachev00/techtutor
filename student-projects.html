@@ -465,7 +465,8 @@
           'discount.subtitle': 'Limited time offer - Book now and save!',
           'discount.description': 'Fill out the form below to receive your personalized discount quote and lock in your savings. Our team will contact you within 24 hours with your exclusive offer!',
           'discount.button': 'Get My Discount Quote',
-          'discount.response': "We'll respond within 24 hours with your personalized offer"
+          'discount.response': "We'll respond within 24 hours with your personalized offer",
+          'banner.save': 'SAVE 20%'
         },
         vi: {
           'nav.programs': 'Chương trình',
@@ -512,7 +513,8 @@
           'discount.subtitle': 'Ưu đãi có thời hạn - Đặt ngay và tiết kiệm!',
           'discount.description': 'Điền form bên dưới để nhận báo giá ưu đãi cá nhân hóa và khóa mức giá tiết kiệm. Đội ngũ của chúng tôi sẽ liên hệ trong vòng 24 giờ với ưu đãi dành riêng cho bạn!',
           'discount.button': 'Nhận Báo Giá Ưu Đãi',
-          'discount.response': 'Chúng tôi sẽ phản hồi trong 24 giờ với ưu đãi cá nhân hóa'
+          'discount.response': 'Chúng tôi sẽ phản hồi trong 24 giờ với ưu đãi cá nhân hóa',
+          'banner.save': 'GIẢM 20%'
         }
       };
 
@@ -523,13 +525,18 @@
       function setLanguage(lang) {
         document.documentElement.lang = lang;
         localStorage.setItem('tt-lang', lang);
-        i18nElements.forEach((el) => {
+
+        // Re-query elements to catch any newly added ones
+        const allI18nElements = document.querySelectorAll('[data-i18n]');
+        const allI18nHtmlElements = document.querySelectorAll('[data-i18n-html]');
+
+        allI18nElements.forEach((el) => {
           const key = el.dataset.i18n;
           if (translations[lang] && translations[lang][key] !== undefined) {
             el.textContent = translations[lang][key];
           }
         });
-        i18nHtmlElements.forEach((el) => {
+        allI18nHtmlElements.forEach((el) => {
           const key = el.dataset.i18nHtml;
           if (translations[lang] && translations[lang][key] !== undefined) {
             el.innerHTML = translations[lang][key];
@@ -548,9 +555,6 @@
         btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
       });
 
-      const savedLang = localStorage.getItem('tt-lang') || 'en';
-      setLanguage(savedLang);
-
       const menuButton = document.getElementById('menu-button');
       const mobileNav = document.getElementById('mobile-nav');
       if (menuButton && mobileNav) {
@@ -559,41 +563,47 @@
         });
       }
 
-      // Modal handlers
-      document.addEventListener('click', function (e) {
-        const openBtn = e.target.closest('[data-open-modal]');
-        if (openBtn) {
-          const id = openBtn.getAttribute('data-open-modal');
-          const modal = document.getElementById(`modal-${id}`);
-          if (modal) {
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
+      // Wait for DOM to be ready
+      document.addEventListener('DOMContentLoaded', function() {
+        // Set initial language after DOM is loaded
+        const savedLang = localStorage.getItem('tt-lang') || 'en';
+        setLanguage(savedLang);
+        // Modal handlers
+        document.addEventListener('click', function (e) {
+          const openBtn = e.target.closest('[data-open-modal]');
+          if (openBtn) {
+            const id = openBtn.getAttribute('data-open-modal');
+            const modal = document.getElementById(`modal-${id}`);
+            if (modal) {
+              modal.classList.remove('hidden');
+              modal.classList.add('flex');
+              document.body.style.overflow = 'hidden';
+            }
           }
-        }
 
-        if (e.target.closest('[data-close-modal]')) {
-          const modal = e.target.closest('.modal');
-          if (modal) {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = 'auto';
-          }
-        }
-      });
-
-      // Side banner click handler
-      const sideBanner = document.getElementById('sideBanner');
-      if (sideBanner) {
-        sideBanner.addEventListener('click', function() {
-          const discountPopup = document.getElementById('modal-discount-popup');
-          if (discountPopup) {
-            discountPopup.classList.remove('hidden');
-            discountPopup.classList.add('flex');
-            document.body.style.overflow = 'hidden';
+          if (e.target.closest('[data-close-modal]')) {
+            const modal = e.target.closest('.modal');
+            if (modal) {
+              modal.classList.add('hidden');
+              modal.classList.remove('flex');
+              document.body.style.overflow = 'auto';
+            }
           }
         });
-      }
+
+        // Side banner click handler
+        const sideBanner = document.getElementById('sideBanner');
+        if (sideBanner) {
+          sideBanner.addEventListener('click', function() {
+            const discountPopup = document.getElementById('modal-discount-popup');
+            if (discountPopup) {
+              discountPopup.classList.remove('hidden');
+              discountPopup.classList.add('flex');
+              document.body.style.overflow = 'hidden';
+            }
+          });
+        }
+      });
     </script>
 
     <!-- Side Banner -->
@@ -603,7 +613,7 @@
           <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
-          <div class="writing-mode-vertical text-center font-bold text-base tracking-wider" style="writing-mode: vertical-rl; text-orientation: mixed;">
+          <div data-i18n="banner.save" class="writing-mode-vertical text-center font-bold text-base tracking-wider" style="writing-mode: vertical-rl; text-orientation: mixed;">
             SAVE 20%
           </div>
         </div>
