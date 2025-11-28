@@ -184,6 +184,26 @@
         transform: translateY(-5px);
         box-shadow: 0 15px 35px rgba(0,0,0,0.1);
       }
+
+      /* Modal Enhancements */
+      .modal {
+        backdrop-filter: blur(4px);
+      }
+
+      .modal__dialog {
+        animation: modalSlideIn 0.3s ease-out;
+      }
+
+      @keyframes modalSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     </style>
   </head>
   <body class="font-sans text-ink antialiased">
