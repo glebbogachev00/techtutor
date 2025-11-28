@@ -2777,9 +2777,10 @@
       // Auto-show discount popup on page load
       window.addEventListener('load', function() {
         const discountPopup = document.getElementById('modal-discount-popup');
+        const comingFromProjects = document.referrer.includes('student-projects.html');
 
-        if (discountPopup) {
-          // Show popup immediately on every page load
+        if (discountPopup && !comingFromProjects) {
+          // Show popup on page load, but not if coming from projects page
           discountPopup.classList.remove('hidden');
           discountPopup.classList.add('flex');
           document.body.style.overflow = 'hidden';
