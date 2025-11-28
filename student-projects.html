@@ -351,14 +351,11 @@
           'projects.cardAI1.program': 'AI & Programming Quest',
           'projects.cardApp.program': 'App Development Studio',
           'projects.cardScratch.program': 'Scratch Discovery',
-          'projects.card1.summary': 'Student: Ủn ỉn Bé Heo · Focus: Storytelling with AI voice, music, and visuals.',
-          'projects.card2.summary': 'Student: Bảo Minh (10) · Focus: Multiplayer game mechanics with Lua triggers.',
-          'projects.card3.summary': 'Student: Gia Hân (12) · Focus: Cozy interior renders with animated lighting.',
-          'projects.card4.summary': 'Student: Khánh Ngọc (9) · Focus: Scratch storytelling bot powered by curated prompts.',
-          'projects.card5.summary': 'Student: Minh Quang (13) · Focus: Bilingual reminder app with Thunkable backend.',
-          'projects.card6.summary': 'Student: Bảo Phú (11) · Focus: Reaction-based obby with Lua timers.',
-          'projects.card7.summary': 'Student: An Khôi · Focus: Interactive story coding in Scratch.',
-          'projects.card8.summary': 'Student: Paul · Focus: Habit tracker prototype built in Thunkable.',
+          'projects.cardGen.summary': '<p><strong>Student:</strong> Ủn ỉn Bé Heo</p><p><strong>Focus:</strong> Storytelling with AI voice, music, and visuals.</p>',
+          'projects.cardRoblox.summary': '<p><strong>Student:</strong> Bảo Phú (11)</p><p><strong>Focus:</strong> Reaction-based obby with timers and custom scripting.</p>',
+          'projects.cardAI1.summary': '<p><strong>Student:</strong> Mia</p><p><strong>Focus:</strong> Training custom classifiers with computer vision tools.</p>',
+          'projects.cardApp.summary': '<p><strong>Student:</strong> Paul</p><p><strong>Focus:</strong> Prototyping a personal habit tracker with Thunkable.</p>',
+          'projects.cardScratch.summary': '<p><strong>Student:</strong> An Khôi</p><p><strong>Focus:</strong> Interactive story coding fundamentals with Scratch blocks.</p>',
           'projects.toolsPaul': 'Tools Used',
           'footer.contactUs': 'CONTACT US!',
           'footer.telLabel': 'Tel/WA/Zalo:',
@@ -391,14 +388,11 @@
           'projects.cardAI1.program': 'AI & Lập Trình',
           'projects.cardApp.program': 'Phát Triển Ứng Dụng',
           'projects.cardScratch.program': 'Scratch Khám Phá',
-          'projects.card1.summary': 'Học viên: Ủn ỉn Bé Heo · Trọng tâm: kể chuyện bằng giọng AI, nhạc nền và hình ảnh.',
-          'projects.card2.summary': 'Học viên: Bảo Minh (10) · Trọng tâm: thiết kế game nhiều người chơi với Lua.',
-          'projects.card3.summary': 'Học viên: Gia Hân (12) · Trọng tâm: dựng nội thất ấm cúng với ánh sáng động.',
-          'projects.card4.summary': 'Học viên: Khánh Ngọc (9) · Trọng tâm: chatbot kể chuyện trong Scratch.',
-          'projects.card5.summary': 'Học viên: Minh Quang (13) · Trọng tâm: ứng dụng nhắc việc song ngữ bằng Thunkable.',
-          'projects.card6.summary': 'Học viên: Bảo Phú (11) · Trọng tâm: thử thách obby phản xạ cùng Lua & timer.',
-          'projects.card7.summary': 'Học viên: An Khôi · Trọng tâm: làm truyện tương tác trong Scratch.',
-          'projects.card8.summary': 'Học viên: Paul · Trọng tâm: prototype app quản lý thói quen bằng Thunkable.',
+          'projects.cardGen.summary': '<p><strong>Học viên:</strong> Ủn ỉn Bé Heo</p><p><strong>Trọng tâm:</strong> Kể chuyện bằng giọng AI, nhạc nền và hình ảnh.</p>',
+          'projects.cardRoblox.summary': '<p><strong>Học viên:</strong> Bảo Phú (11)</p><p><strong>Trọng tâm:</strong> Thử thách obby phản xạ với timer và script tùy chỉnh.</p>',
+          'projects.cardAI1.summary': '<p><strong>Học viên:</strong> Mia</p><p><strong>Trọng tâm:</strong> Huấn luyện bộ phân loại với công cụ thị giác máy tính.</p>',
+          'projects.cardApp.summary': '<p><strong>Học viên:</strong> Paul</p><p><strong>Trọng tâm:</strong> Làm nguyên mẫu app theo dõi thói quen với Thunkable.</p>',
+          'projects.cardScratch.summary': '<p><strong>Học viên:</strong> An Khôi</p><p><strong>Trọng tâm:</strong> Lập trình truyện tương tác với khối Scratch.</p>',
           'projects.toolsPaul': 'Công cụ sử dụng',
           'footer.contactUs': 'LIÊN HỆ!',
           'footer.telLabel': 'Tel/WA/Zalo:',
@@ -417,6 +411,7 @@
 
       const langButtons = document.querySelectorAll('[data-lang]');
       const i18nElements = document.querySelectorAll('[data-i18n]');
+      const i18nHtmlElements = document.querySelectorAll('[data-i18n-html]');
 
       function setLanguage(lang) {
         document.documentElement.lang = lang;
@@ -424,6 +419,12 @@
           const key = el.dataset.i18n;
           if (translations[lang] && translations[lang][key] !== undefined) {
             el.textContent = translations[lang][key];
+          }
+        });
+        i18nHtmlElements.forEach((el) => {
+          const key = el.dataset.i18nHtml;
+          if (translations[lang] && translations[lang][key] !== undefined) {
+            el.innerHTML = translations[lang][key];
           }
         });
         langButtons.forEach((btn) => {
