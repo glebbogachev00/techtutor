@@ -415,6 +415,7 @@
 
       function setLanguage(lang) {
         document.documentElement.lang = lang;
+        localStorage.setItem('tt-lang', lang);
         i18nElements.forEach((el) => {
           const key = el.dataset.i18n;
           if (translations[lang] && translations[lang][key] !== undefined) {
@@ -440,7 +441,8 @@
         btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
       });
 
-      setLanguage('en');
+      const savedLang = localStorage.getItem('tt-lang') || 'en';
+      setLanguage(savedLang);
 
       const menuButton = document.getElementById('menu-button');
       const mobileNav = document.getElementById('mobile-nav');
