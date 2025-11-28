@@ -117,6 +117,73 @@
         transform: translateY(-5px);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
       }
+
+      /* Trial highlight badges */
+      .trial-highlight {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 200px;
+        padding: 0.5rem 1.25rem;
+        border-radius: 999px;
+        background: rgba(30, 102, 245, 0.12);
+        color: #1E66F5;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(30, 102, 245, 0.12);
+      }
+
+      .trial-highlight--float {
+        animation: highlightFloat 6s ease-in-out infinite;
+      }
+
+      .trial-highlight-row {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: none;
+        gap: 0.75rem;
+      }
+
+      @media (min-width: 768px) {
+        .trial-highlight-row { display: flex; }
+      }
+
+      .trial-highlight-row--top {
+        top: -10px;
+      }
+
+      .trial-highlight-row--bottom {
+        bottom: -10px;
+      }
+
+      .trial-highlight-row--top .trial-highlight--float:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+
+      .trial-highlight-row--bottom .trial-highlight--float:nth-child(1) {
+        animation-delay: 0.3s;
+      }
+
+      .trial-highlight-row--bottom .trial-highlight--float:nth-child(2) {
+        animation-delay: 0.9s;
+      }
+
+      @keyframes highlightFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+      }
+
+      /* Hover lift effect */
+      .hover-lift {
+        transition: all 0.3s ease;
+      }
+
+      .hover-lift:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      }
     </style>
   </head>
   <body class="font-sans text-ink antialiased">
@@ -368,7 +435,17 @@
           'footer.freeTrial': 'Free trial',
           'footer.connectWithUs': 'CONNECT WITH US!',
           'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
-          'footer.bilingual': 'English / Vietnamese bilingual support'
+          'footer.bilingual': 'English / Vietnamese bilingual support',
+          'trial.parentName': 'Parent name',
+          'trial.childName': "Child's name",
+          'trial.contact': 'Parent email',
+          'trial.phoneField': 'Phone number',
+          'trial.channel': 'Preferred channel',
+          'discount.title': 'Save up to 20%',
+          'discount.subtitle': 'Limited time offer - Book now and save!',
+          'discount.description': 'Fill out the form below to receive your personalized discount quote and lock in your savings. Our team will contact you within 24 hours with your exclusive offer!',
+          'discount.button': 'Get My Discount Quote',
+          'discount.response': "We'll respond within 24 hours with your personalized offer"
         },
         vi: {
           'nav.programs': 'Chương trình',
@@ -405,7 +482,17 @@
           'footer.freeTrial': 'Học thử miễn phí',
           'footer.connectWithUs': 'KẾT NỐI VỚI CHÚNG TÔI!',
           'footer.copyright': '© 2025 TechTutor Academy. Bản quyền thuộc về TechTutor.',
-          'footer.bilingual': 'Hỗ trợ song ngữ Anh / Việt'
+          'footer.bilingual': 'Hỗ trợ song ngữ Anh / Việt',
+          'trial.parentName': 'Tên phụ huynh',
+          'trial.childName': 'Tên con',
+          'trial.contact': 'Email phụ huynh',
+          'trial.phoneField': 'Số điện thoại',
+          'trial.channel': 'Kênh liên hệ ưu tiên',
+          'discount.title': 'Giảm giá lên đến 20%',
+          'discount.subtitle': 'Ưu đãi có thời hạn - Đặt ngay và tiết kiệm!',
+          'discount.description': 'Điền form bên dưới để nhận báo giá ưu đãi cá nhân hóa và khóa mức giá tiết kiệm. Đội ngũ của chúng tôi sẽ liên hệ trong vòng 24 giờ với ưu đãi dành riêng cho bạn!',
+          'discount.button': 'Nhận Báo Giá Ưu Đãi',
+          'discount.response': 'Chúng tôi sẽ phản hồi trong 24 giờ với ưu đãi cá nhân hóa'
         }
       };
 
@@ -451,6 +538,136 @@
           mobileNav.classList.toggle('hidden');
         });
       }
+
+      // Modal handlers
+      document.addEventListener('click', function (e) {
+        const openBtn = e.target.closest('[data-open-modal]');
+        if (openBtn) {
+          const id = openBtn.getAttribute('data-open-modal');
+          const modal = document.getElementById(`modal-${id}`);
+          if (modal) {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+          }
+        }
+
+        if (e.target.closest('[data-close-modal]')) {
+          const modal = e.target.closest('.modal');
+          if (modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+          }
+        }
+      });
+
+      // Side banner click handler
+      const sideBanner = document.getElementById('sideBanner');
+      if (sideBanner) {
+        sideBanner.addEventListener('click', function() {
+          const discountPopup = document.getElementById('modal-discount-popup');
+          if (discountPopup) {
+            discountPopup.classList.remove('hidden');
+            discountPopup.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+      }
     </script>
+
+    <!-- Side Banner -->
+    <div id="sideBanner" class="fixed right-0 top-1/2 -translate-y-1/2 z-40 cursor-pointer group">
+      <div class="bg-gradient-to-b from-sky to-sky-deep text-white px-3 py-6 rounded-l-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
+        <div class="flex flex-col items-center gap-2">
+          <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <div class="writing-mode-vertical text-center font-bold text-base tracking-wider" style="writing-mode: vertical-rl; text-orientation: mixed;">
+            SAVE 20%
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discount Popup Modal -->
+    <div class="modal fixed inset-0 z-50 items-center justify-center bg-black/60 p-4 hidden" id="modal-discount-popup" role="dialog" aria-modal="true" aria-labelledby="modal-discount-popup-title">
+      <div class="modal__backdrop absolute inset-0" data-close-modal></div>
+
+      <section class="modal__dialog relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl max-h-[90vh] overflow-y-auto" role="document">
+        <header class="modal__header sticky top-0 bg-gradient-to-r from-sky to-sky-deep px-6 py-6 flex items-center justify-between rounded-t-3xl">
+          <div>
+            <h2 id="modal-discount-popup-title" data-i18n="discount.title" class="modal__title text-3xl font-bold text-white mb-1">
+              Save up to 20%
+            </h2>
+            <p data-i18n="discount.subtitle" class="text-sky-light text-sm">Limited time offer - Book now and save!</p>
+          </div>
+          <button class="modal__close rounded-full bg-white/20 hover:bg-white/30 backdrop-blur px-3 py-1 text-sm text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" aria-label="Close" data-close-modal>✕</button>
+        </header>
+
+        <!-- Banner Image -->
+        <div class="modal__banner">
+          <img src="images/student-form-image.jpg" alt="Student" class="w-full h-auto" />
+        </div>
+
+        <div class="modal__content p-8">
+          <p data-i18n="discount.description" class="text-slate-600 leading-relaxed mb-6 text-center">Fill out the form below to receive your personalized discount quote and lock in your savings. Our team will contact you within 24 hours with your exclusive offer!</p>
+
+          <!-- Discount Request Form -->
+          <form id="discountPopupForm" action="https://formspree.io/f/xqaynogk" method="POST" class="rounded-2xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
+            <div class="space-y-4">
+              <label class="block">
+                <span data-i18n="trial.parentName" class="mb-1 block text-sm font-medium text-slate-700">Parent name *</span>
+                <input name="parent_name" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
+              </label>
+
+              <label class="block">
+                <span data-i18n="trial.childName" class="mb-1 block text-sm font-medium text-slate-700">Child's name *</span>
+                <input name="child_name" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
+              </label>
+
+              <label class="block">
+                <span data-i18n="trial.contact" class="mb-1 block text-sm font-medium text-slate-700">Parent email *</span>
+                <input name="email" type="email" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
+              </label>
+
+              <label class="block">
+                <span data-i18n="trial.phoneField" class="mb-1 block text-sm font-medium text-slate-700">Phone number *</span>
+                <input name="phone" type="tel" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
+              </label>
+
+              <label class="block">
+                <span data-i18n="trial.channel" class="mb-1 block text-sm font-medium text-slate-700">Preferred channel *</span>
+                <select name="channel" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
+                  <option>WhatsApp</option>
+                  <option>Zalo</option>
+                  <option>Email</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="mt-6 flex flex-col gap-3">
+              <button type="submit" data-i18n="discount.button" class="w-full inline-flex items-center justify-center rounded-full bg-sky px-8 py-4 text-base font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky shadow-lg hover:shadow-xl">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Get My Discount Quote
+              </button>
+              <p data-i18n="discount.response" class="text-center text-sm text-slate-500">
+                <svg class="w-4 h-4 inline text-sky" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                We'll respond within 24 hours with your personalized offer
+              </p>
+            </div>
+
+            <!-- honeypot to reduce spam -->
+            <input type="text" name="_gotcha" style="display:none">
+            <input type="hidden" name="_subject" value="New Discount Request from Projects Page">
+            <input type="hidden" name="source_page" value="student-projects">
+          </form>
+        </div>
+      </section>
+    </div>
   </body>
 </html>
