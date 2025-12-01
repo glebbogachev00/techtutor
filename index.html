@@ -156,7 +156,12 @@
       .robot-float {
         animation: float 3s ease-in-out infinite;
       }
-      
+
+      /* Floating animation for banner */
+      .banner-float {
+        animation: float 4s ease-in-out infinite;
+      }
+
       /* Stats badges animation */
       .stat-badge {
         animation: fadeInUp 0.6s ease-out;
@@ -507,23 +512,33 @@
         </div>
       </section>
 
-      <section class="fade-in-section mt-20 grid gap-10 border-t border-slate-200 pt-10 md:grid-cols-[0.8fr_1fr] md:items-start">
-        <div class="space-y-3">
-          <div class="flex items-start gap-4">
-            <div class="flex-1">
-              <h2 data-i18n="why.heading" class="text-2xl font-semibold md:text-3xl" style="color: #16A34A;">Why Families Choose TechTutor</h2>
-              <p data-i18n="why.copy" class="mt-3 text-base leading-relaxed text-slate-600">Built for busy families who want tech lessons that feel calm, personal, and useful.</p>
-            </div>
-          </div>
+      <section class="fade-in-section mt-20 grid gap-2 border-t border-slate-200 pt-10 md:grid-cols-[1.8fr_1fr] md:items-start">
+        <!-- Image on the left -->
+        <div class="flex items-center justify-center">
+          <img src="images/family-portrait.png" alt="Family portrait" class="w-full h-auto object-cover">
         </div>
-        <ul class="space-y-3 text-base text-slate-600">
-          <li data-i18n="why.item1">✅ 3+ years designing programs with 80–90% learner retention</li>
-          <li data-i18n="why.item2">✅ Generative AI, coding, design, and game development in one place</li>
-          <li data-i18n="why.item3">✅ Every learner completes a real project they can show to friends</li>
-          <li data-i18n="why.item4">✅ Flexible 1:1 or small group formats with personal feedback</li>
-        </ul>
+
+        <!-- Text content on the right -->
+        <div class="space-y-6">
+          <div>
+            <h2 data-i18n="why.heading" class="text-2xl font-semibold md:text-3xl" style="color: #16A34A;">Why Families Choose TechTutor</h2>
+            <p data-i18n="why.copy" class="mt-3 text-base leading-relaxed text-slate-600">Built for busy families who want tech lessons that feel calm, personal, and useful.</p>
+          </div>
+          <ul class="space-y-4">
+            <li data-i18n="why.item1" class="bg-gradient-to-r from-green-50 to-transparent border-l-4 border-leaf px-4 py-3 rounded-r-lg font-medium text-ink"><strong>3+ years</strong> designing programs with <strong>80–90% learner retention</strong></li>
+            <li data-i18n="why.item2" class="bg-gradient-to-r from-blue-50 to-transparent border-l-4 border-sky px-4 py-3 rounded-r-lg font-medium text-ink"><strong>Generative AI, coding, design, and game development</strong> in one place</li>
+            <li data-i18n="why.item3" class="bg-gradient-to-r from-teal-50 to-transparent border-l-4 border-teal-500 px-4 py-3 rounded-r-lg font-medium text-ink">Every learner completes a <strong>real project</strong> they can show to friends</li>
+            <li data-i18n="why.item4" class="bg-gradient-to-r from-green-50 to-transparent border-l-4 border-leaf px-4 py-3 rounded-r-lg font-medium text-ink">Flexible <strong>1:1 or small group</strong> formats with <strong>personal feedback</strong></li>
+          </ul>
+        </div>
       </section>
 
+      <!-- Banner Section -->
+      <section class="mt-12 mb-8">
+        <div class="flex justify-center">
+          <img src="images/tested.png" alt="Tested by kids, approved by parents" class="w-full max-w-4xl h-auto banner-float">
+        </div>
+      </section>
 
       <!-- ============================= -->
       <!-- PROGRAMS: Grid + Accordions  -->
@@ -741,11 +756,11 @@
                 <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="5600" data-original-usd="225">5.6M VND / ~$225</span></dd>
               </div>
               <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
-                <dt data-i18n="pricing.private2Courses">2 courses (16 lessons) — 5% off</dt>
+                <dt data-i18n="pricing.private2Courses">2 courses (16 lessons) — <span style="color: #DC2626; font-weight: 600;">5% off</span></dt>
                 <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="10700" data-original-usd="428">10.7M VND / ~$428</span></dd>
               </div>
               <div class="flex items-baseline justify-between">
-                <dt data-i18n="pricing.private3Courses">3 courses (24 lessons) — 10% off</dt>
+                <dt data-i18n="pricing.private3Courses">3 courses (24 lessons) — <span style="color: #DC2626; font-weight: 600;">10% off</span></dt>
                 <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="15000" data-original-usd="608">15M VND / ~$608</span></dd>
               </div>
             </dl>
@@ -758,11 +773,11 @@
                 <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="3200" data-original-usd="128">3.2M VND / ~$128</span></dd>
               </div>
               <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
-                <dt data-i18n="pricing.group2Courses">2 courses (16 lessons) — 5% off</dt>
+                <dt data-i18n="pricing.group2Courses">2 courses (16 lessons) — <span style="color: #DC2626; font-weight: 600;">5% off</span></dt>
                 <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="6100" data-original-usd="244">6.1M VND / ~$244</span></dd>
               </div>
               <div class="flex items-baseline justify-between">
-                <dt data-i18n="pricing.group3Courses">3 courses (24 lessons) — 10% off</dt>
+                <dt data-i18n="pricing.group3Courses">3 courses (24 lessons) — <span style="color: #DC2626; font-weight: 600;">10% off</span></dt>
                 <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="8400" data-original-usd="346">8.4M VND / ~$346</span></dd>
               </div>
             </dl>
@@ -1261,10 +1276,10 @@
             'hero.stat4': 'Cutting-edge curriculum',
             'why.heading': 'Why Families Choose TechTutor',
             'why.copy': 'Built for busy families who want tech lessons that feel calm, personal, and useful.',
-            'why.item1': '✅ 3+ years designing programs with 80–90% learner retention',
-            'why.item2': '✅ Generative AI, coding, design, and game development in one place',
-            'why.item3': '✅ Every learner completes a real project they can show to friends',
-            'why.item4': '✅ Flexible 1:1 or small group formats with personal feedback',
+            'why.item1': '<strong>3+ years</strong> designing programs with <strong>80–90% learner retention</strong>',
+            'why.item2': '<strong>Generative AI, coding, design, and game development</strong> in one place',
+            'why.item3': 'Every learner completes a <strong>real project</strong> they can show to friends',
+            'why.item4': 'Flexible <strong>1:1 or small group</strong> formats with <strong>personal feedback</strong>',
             'love.portfolio.title': 'Real Portfolios, Real Proof of Work',
             'love.portfolio.desc': 'Every student builds high-quality, shareable projects — from AI chatbots to 3D worlds. By the end of each course, they have a portfolio they can proudly show to schools or future opportunities.',
             'love.homework.title': 'Homework That Kids Actually Enjoy',
@@ -1312,16 +1327,16 @@
             'pricing.privateTitle': 'Private (1 on 1)',
             'pricing.privateWeekly': 'Weekly',
             'pricing.privateCourse': '1 course (8 lessons)',
-            'pricing.private2Courses': '2 courses (16 lessons) — 5% off',
-            'pricing.private3Courses': '3 courses (24 lessons) — 10% off',
+            'pricing.private2Courses': '2 courses (16 lessons) — <span style="color: #DC2626; font-weight: 600;">5% off</span>',
+            'pricing.private3Courses': '3 courses (24 lessons) — <span style="color: #DC2626; font-weight: 600;">10% off</span>',
             'pricing.privateCourseSave': 'save 800K (~$32)',
             'pricing.privateProgram': 'Full program (24 lessons)',
             'pricing.privateProgramSave': 'save 4.2M (~$168)',
             'pricing.groupTitle': 'Small group (2-4 students)',
             'pricing.groupWeekly': 'Weekly',
             'pricing.groupCourse': '1 course (8 lessons)',
-            'pricing.group2Courses': '2 courses (16 lessons) — 5% off',
-            'pricing.group3Courses': '3 courses (24 lessons) — 10% off',
+            'pricing.group2Courses': '2 courses (16 lessons) — <span style="color: #DC2626; font-weight: 600;">5% off</span>',
+            'pricing.group3Courses': '3 courses (24 lessons) — <span style="color: #DC2626; font-weight: 600;">10% off</span>',
             'pricing.groupCourseSave': 'save 400K (~$16)',
             'pricing.groupProgram': 'Full program (24 lessons)',
             'pricing.groupProgramSave': 'save 2.4M (~$96)',
@@ -1558,10 +1573,10 @@
             'hero.stat4': 'Chương trình tiên tiến',
             'why.heading': 'Vì Sao Các Gia Đình Lựa Chọn TechTutor?',
             'why.copy': 'Xây dựng dành riêng cho những gia đình bận rộn đang tìm kiếm khoá học công nghệ dễ tiếp cận, phù hợp với các bạn nhỏ.',
-            'why.item1': '✅ Gắn bó dài lâu: Tỉ lệ giữ chân học viên 80–90% với 3 năm kinh nghiệm triển khai chương trình',
-            'why.item2': '✅ Kiến thức xu hướng: Tiếp cận Coding, Thiết kế, Game Development và Generative AI ngay tại nhà',
-            'why.item3': '✅ Dự án thực tế: Mọi học viên đều hoàn thành sản phẩm có thể tự tin chia sẻ với bạn bè',
-            'why.item4': '✅ Cá nhân hóa: Định dạng 1:1 hoặc nhóm nhỏ linh hoạt, giáo viên phản hồi chuyên sâu kịp thời',
+            'why.item1': '<strong>Gắn bó dài lâu:</strong> Tỉ lệ giữ chân học viên <strong>80–90%</strong> với <strong>3 năm</strong> kinh nghiệm triển khai chương trình',
+            'why.item2': '<strong>Kiến thức xu hướng:</strong> Tiếp cận <strong>Coding, Thiết kế, Game Development và Generative AI</strong> ngay tại nhà',
+            'why.item3': '<strong>Dự án thực tế:</strong> Mọi học viên đều hoàn thành <strong>sản phẩm</strong> có thể tự tin chia sẻ với bạn bè',
+            'why.item4': '<strong>Cá nhân hóa:</strong> Định dạng <strong>1:1 hoặc nhóm nhỏ</strong> linh hoạt, giáo viên <strong>phản hồi chuyên sâu</strong> kịp thời',
             'love.heading': 'Tại Sao Phụ Huynh và Học Viên Yêu Thích TechTutor',
             'love.portfolio.title': 'Portfolio Thật, Bằng Chứng Thành Quả Thật',
             'love.portfolio.desc': 'Mỗi học viên xây dựng những dự án chất lượng cao, có thể chia sẻ — từ chatbot AI đến thế giới 3D. Kết thúc khóa học, các em có portfolio để tự hào khoe với trường học hoặc cơ hội tương lai.',
@@ -1610,16 +1625,16 @@
             'pricing.privateTitle': 'Lớp riêng (1 kèm 1)',
             'pricing.privateWeekly': 'Theo tuần',
             'pricing.privateCourse': '1 khóa (8 buổi)',
-            'pricing.private2Courses': '2 khóa (16 buổi) — Giảm 5%',
-            'pricing.private3Courses': '3 khóa (24 buổi) — Giảm 10%',
+            'pricing.private2Courses': '2 khóa (16 buổi) — <span style="color: #DC2626; font-weight: 600;">Giảm 5%</span>',
+            'pricing.private3Courses': '3 khóa (24 buổi) — <span style="color: #DC2626; font-weight: 600;">Giảm 10%</span>',
             'pricing.privateCourseSave': 'tiết kiệm 800K (~$32)',
             'pricing.privateProgram': 'Chương trình đầy đủ (24 buổi)',
             'pricing.privateProgramSave': 'tiết kiệm 4.2M (~$168)',
             'pricing.groupTitle': 'Lớp nhóm nhỏ (2-4 học viên)',
             'pricing.groupWeekly': 'Theo tuần',
             'pricing.groupCourse': '1 khóa (8 buổi)',
-            'pricing.group2Courses': '2 khóa (16 buổi) — Giảm 5%',
-            'pricing.group3Courses': '3 khóa (24 buổi) — Giảm 10%',
+            'pricing.group2Courses': '2 khóa (16 buổi) — <span style="color: #DC2626; font-weight: 600;">Giảm 5%</span>',
+            'pricing.group3Courses': '3 khóa (24 buổi) — <span style="color: #DC2626; font-weight: 600;">Giảm 10%</span>',
             'pricing.groupCourseSave': 'tiết kiệm 400K (~$16)',
             'pricing.groupProgram': 'Chương trình đầy đủ (24 buổi)',
             'pricing.groupProgramSave': 'tiết kiệm 2.4M (~$96)',
@@ -1866,12 +1881,15 @@
             var key = node.dataset.i18n;
             var value = translations[lang] && translations[lang][key];
             if (typeof value === 'string') {
-              if (key === 'team.glebBio' || key === 'team.manthanBio' || 
-                  key === 'hero.subtitle' || key === 'hero.title' || key === 'why.copy' || key === 'why.item1' || key === 'why.item3' ||
+              if (key === 'team.glebBio' || key === 'team.manthanBio' ||
+                  key === 'hero.subtitle' || key === 'hero.title' || key === 'why.copy' ||
+                  key === 'why.item1' || key === 'why.item2' || key === 'why.item3' || key === 'why.item4' ||
                   key === 'why.heading' || key === 'benefits.heading' || key === 'programs.heading' ||
                   key === 'pricing.heading' || key === 'trial.heading' || key === 'outcomes.heading' ||
                   key === 'team.heading' || key === 'contact.heading' || key === 'trial.pace' || key === 'trial.phone' ||
-                  key === 'flex.item2' || key === 'discount.desc' || 
+                  key === 'flex.item2' || key === 'discount.desc' ||
+                  key === 'pricing.private2Courses' || key === 'pricing.private3Courses' ||
+                  key === 'pricing.group2Courses' || key === 'pricing.group3Courses' ||
                   key === 'modal.roblox.overview' || key === 'modal.3d.overview' || key === 'modal.support.info' || key === 'modal.progressionText') {
                 node.innerHTML = value;
               } else {
