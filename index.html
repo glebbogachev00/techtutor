@@ -17,7 +17,7 @@
     <link rel="icon" type="image/png" href="images/robot-rocket.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lato:wght@400;600;700&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -37,7 +37,7 @@
               }
             },
             fontFamily: {
-              sans: ['Lato', 'system-ui', 'sans-serif'],
+              sans: ['Inter', 'Lato', 'system-ui', 'sans-serif'],
             },
             maxWidth: {
               wrap: '1040px',
@@ -50,6 +50,9 @@
       body {
         background: linear-gradient(135deg, #e0f2fe 0%, #f1f5f9 50%, #e8f1fd 100%);
         background-attachment: fixed;
+        font-family: 'Inter', 'Lato', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: 1.05rem;
+        line-height: 1.65;
         font-feature-settings: 'lnum' 1, 'tnum' 1;
         min-height: 100vh;
       }
@@ -730,7 +733,7 @@
         <div class="grid gap-6 md:grid-cols-2">
           <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
             <h3 data-i18n="format.heading" class="text-lg font-semibold text-ink mb-4">Lesson format</h3>
-            <p data-i18n="format.copy" class="text-base text-slate-600 leading-relaxed">Each 90-minute session flows naturally: quick theory dive, hands-on building, and a wrap-up that sticks.</p>
+            <p data-i18n="format.copy" class="text-base text-slate-600 leading-relaxed">Each 60–90 minute session flows naturally: quick theory dive, hands-on building, and a wrap-up that sticks.</p>
           </div>
           
           <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
@@ -770,15 +773,15 @@
             <dl class="mt-4 space-y-3 text-sm text-slate-600">
               <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
                 <dt data-i18n="pricing.groupCourse">1 course (8 lessons)</dt>
-                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="3200" data-original-usd="128">3.2M VND / ~$128</span></dd>
+                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="4000" data-original-usd="160">4M VND / ~$160</span></dd>
               </div>
               <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
                 <dt data-i18n="pricing.group2Courses">2 courses (16 lessons) — <span style="color: #DC2626; font-weight: 600;">5% off</span></dt>
-                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="6100" data-original-usd="244">6.1M VND / ~$244</span></dd>
+                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="7600" data-original-usd="304">7.6M VND / ~$304</span></dd>
               </div>
               <div class="flex items-baseline justify-between">
                 <dt data-i18n="pricing.group3Courses">3 courses (24 lessons) — <span style="color: #DC2626; font-weight: 600;">10% off</span></dt>
-                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="8400" data-original-usd="346">8.4M VND / ~$346</span></dd>
+                <dd class="font-semibold text-ink"><span class="price-item" data-original-vnd="10800" data-original-usd="432">10.8M VND / ~$432</span></dd>
               </div>
             </dl>
           </div>
@@ -932,6 +935,64 @@
           <li data-i18n="outcomes.item2" class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-center">Projects launch — games, apps, designs, or AI tools.</li>
           <li data-i18n="outcomes.item3" class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-center">Portfolios grow and students share their work with confidence.</li>
         </ul>
+      </section>
+
+      <section id="project-spotlight" class="fade-in-section mt-20 border-t border-slate-200 pt-10">
+        <div class="max-w-3xl">
+          <h2 data-i18n="projects.heading" class="text-2xl font-semibold md:text-3xl" style="color: #1E66F5;">Student Project Spotlight</h2>
+          <p data-i18n="projects.subtitle" class="mt-3 text-base text-slate-600">Real work from real learners — each project blends creativity, code, and presentation skills.</p>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          <article class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg flex flex-col">
+            <div>
+              <p data-i18n="projects.card.programLabel" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Program</p>
+              <h3 data-i18n="projects.card1.program" class="mt-2 text-xl font-bold text-ink">Generative AI Storylab</h3>
+            </div>
+            <div class="mt-6">
+              <p data-i18n="projects.card.studentLabel" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Student</p>
+              <p data-i18n="projects.card1.student" class="mt-2 text-base font-semibold text-slate-700">Ủn ỉn Bé Heo (8)</p>
+            </div>
+            <div class="mt-6">
+              <p data-i18n="projects.card.toolsLabel" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Tools Used</p>
+              <ul class="mt-2 flex flex-wrap gap-2 text-sm font-semibold text-slate-600">
+                <li class="rounded-full border border-slate-200 bg-white/80 px-3 py-1" data-i18n="projects.card1.tool1">Canva</li>
+                <li class="rounded-full border border-slate-200 bg-white/80 px-3 py-1" data-i18n="projects.card1.tool2">Google VEO</li>
+                <li class="rounded-full border border-slate-200 bg-white/80 px-3 py-1" data-i18n="projects.card1.tool3">Suno AI</li>
+              </ul>
+            </div>
+            <div class="mt-6 w-full overflow-hidden rounded-2xl border border-white/40 shadow-lg">
+              <iframe class="aspect-video w-full" src="https://www.youtube.com/embed/XqAfPB-7_yQ" title="Generative AI student project" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </article>
+
+          <article class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg flex flex-col">
+            <div>
+              <p data-i18n="projects.card.programLabel" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Program</p>
+              <h3 data-i18n="projects.card2.program" class="mt-2 text-xl font-bold text-ink">Roblox World Creator</h3>
+            </div>
+            <div class="mt-6">
+              <p data-i18n="projects.card.studentLabel" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Student</p>
+              <p data-i18n="projects.card2.student" class="mt-2 text-base font-semibold text-slate-700">Bảo Phú (11)</p>
+            </div>
+            <div class="mt-6">
+              <p data-i18n="projects.card.toolsLabel" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Tools Used</p>
+              <ul class="mt-2 flex flex-wrap gap-2 text-sm font-semibold text-slate-600">
+                <li class="rounded-full border border-slate-200 bg-white/80 px-3 py-1" data-i18n="projects.card2.tool1">Roblox Studio</li>
+                <li class="rounded-full border border-slate-200 bg-white/80 px-3 py-1" data-i18n="projects.card2.tool2">Lua scripting</li>
+                <li class="rounded-full border border-slate-200 bg-white/80 px-3 py-1" data-i18n="projects.card2.tool3">Game timers</li>
+              </ul>
+            </div>
+            <div class="mt-6 w-full overflow-hidden rounded-2xl border border-white/40 shadow-lg">
+              <iframe class="aspect-video w-full" src="https://www.youtube.com/embed/71eT07IOWuM" title="Roblox obstacle course project" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="mt-8 text-center">
+          <a data-i18n="projects.button" href="student-projects.html" class="btn-enhanced inline-flex items-center justify-center rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">View projects</a>
+        </div>
       </section>
 
       <section class="fade-in-section mt-20 border-t border-slate-200 pt-10">
@@ -1317,7 +1378,7 @@
             'lessons.heading': 'How Our Lessons Work',
             'lessons.copy': 'Structured yet flexible sessions designed for effective learning and steady progress.',
             'format.heading': 'Lesson format',
-            'format.copy': 'Each 90-minute session flows naturally: quick theory dive, hands-on building, and a wrap-up that sticks.',
+            'format.copy': 'Each 60–90 minute session flows naturally: quick theory dive, hands-on building, and a wrap-up that sticks.',
             'flex.heading': 'Recommended rhythm',
             'flex.item1': 'Pick 1–5 lessons per week that work with your life.',
             'flex.item2': 'Start with 2–3 sessions weekly — the sweet spot for steady progress.',
@@ -1387,21 +1448,22 @@
             'projects.card.programLabel': 'Program',
             'projects.card.studentLabel': 'Student',
             'projects.card.toolsLabel': 'Tools Used',
-            'projects.card1.program': 'Roblox World Creator',
-            'projects.card1.student': 'Bảo Minh (10)',
-            'projects.card1.tool1': 'Roblox Studio',
-            'projects.card1.tool2': 'Lua',
-            'projects.card1.tool3': 'Figma Storyboards',
-            'projects.card2.program': '3D Designer',
-            'projects.card2.student': 'Gia Hân (12)',
-            'projects.card2.tool1': 'Blender',
-            'projects.card2.tool2': 'Photoshop',
-            'projects.card2.tool3': 'Notion Brief',
+            'projects.card1.program': 'Generative AI Storylab',
+            'projects.card1.student': 'Ủn ỉn Bé Heo (8)',
+            'projects.card1.tool1': 'Canva',
+            'projects.card1.tool2': 'Google VEO',
+            'projects.card1.tool3': 'Suno AI',
+            'projects.card2.program': 'Roblox World Creator',
+            'projects.card2.student': 'Bảo Phú (11)',
+            'projects.card2.tool1': 'Roblox Studio',
+            'projects.card2.tool2': 'Lua scripting',
+            'projects.card2.tool3': 'Game timers',
             'projects.card3.program': 'AI & Programming Quest',
-            'projects.card3.student': 'Khánh Ngọc (9)',
-            'projects.card3.tool1': 'Scratch',
-            'projects.card3.tool2': 'OpenAI API',
-            'projects.card3.tool3': 'Canva Storyboard',
+            'projects.card3.student': 'Mia (10)',
+            'projects.card3.tool1': 'Machine Learning for Kids',
+            'projects.card3.tool2': 'Teachable Machine',
+            'projects.card3.tool3': 'Python',
+            'projects.button': 'View projects',
             'testimonials.heading': 'Testimonials — What Our Parents Say',
             'testimonials.subtitle': 'What our parents say',
             'testimonials.test1.parent': 'Nguyễn Thị Lan Anh – mother of Bảo Minh (10 years old)',
@@ -1615,7 +1677,7 @@
             'lessons.heading': 'Hình Thức Học',
             'lessons.copy': 'Các khoá học có cấu trúc rõ ràng để đảm bảo hiệu quả và linh hoạt tối đa cho lịch sinh hoạt của gia đình.',
             'format.heading': 'Cách mỗi buổi học diễn ra',
-            'format.copy': 'Mỗi buổi kéo dài 90 phút chia thành 3 phần: Lý thuyết - Thực hành (trọng tâm) - Tổng kết nhắc lại.',
+            'format.copy': 'Mỗi buổi kéo dài 60–90 phút chia thành 3 phần: Lý thuyết - Thực hành (trọng tâm) - Tổng kết nhắc lại.',
             'flex.heading': 'Nhịp độ đề xuất',
             'flex.item1': 'Lịch học linh hoạt từ 1–5 buổi/tuần, dễ dàng sắp xếp theo gia đình.',
             'flex.item2': 'Khuyến nghị 2–3 buổi/tuần để duy trì nhịp độ tiến bộ ổn định.',
@@ -1685,21 +1747,22 @@
             'projects.card.programLabel': 'Chương trình',
             'projects.card.studentLabel': 'Học viên',
             'projects.card.toolsLabel': 'Công cụ sử dụng',
-            'projects.card1.program': 'Roblox World Creator',
-            'projects.card1.student': 'Bảo Minh (10 tuổi)',
-            'projects.card1.tool1': 'Roblox Studio',
-            'projects.card1.tool2': 'Lua',
-            'projects.card1.tool3': 'Figma Storyboards',
-            'projects.card2.program': '3D Designer',
-            'projects.card2.student': 'Gia Hân (12 tuổi)',
-            'projects.card2.tool1': 'Blender',
-            'projects.card2.tool2': 'Photoshop',
-            'projects.card2.tool3': 'Notion Brief',
+            'projects.card1.program': 'Phòng Lab AI Tạo Sinh',
+            'projects.card1.student': 'Ủn ỉn Bé Heo (8 tuổi)',
+            'projects.card1.tool1': 'Canva',
+            'projects.card1.tool2': 'Google VEO',
+            'projects.card1.tool3': 'Suno AI',
+            'projects.card2.program': 'Roblox World Creator',
+            'projects.card2.student': 'Bảo Phú (11 tuổi)',
+            'projects.card2.tool1': 'Roblox Studio',
+            'projects.card2.tool2': 'Lập trình Lua',
+            'projects.card2.tool3': 'Hệ thống bấm giờ',
             'projects.card3.program': 'AI & Programming Quest',
-            'projects.card3.student': 'Khánh Ngọc (9 tuổi)',
-            'projects.card3.tool1': 'Scratch',
-            'projects.card3.tool2': 'OpenAI API',
-            'projects.card3.tool3': 'Canva Storyboard',
+            'projects.card3.student': 'Mia (10 tuổi)',
+            'projects.card3.tool1': 'Machine Learning for Kids',
+            'projects.card3.tool2': 'Teachable Machine',
+            'projects.card3.tool3': 'Python',
+            'projects.button': 'Xem dự án',
             'testimonials.heading': 'Nhận Xét Từ Phụ Huynh',
             'testimonials.subtitle': 'Phụ huynh nói gì về chúng tôi',
             'testimonials.test1.parent': 'Nguyễn Thị Lan Anh – mẹ của Bảo Minh (10 tuổi)',
