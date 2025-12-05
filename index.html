@@ -389,6 +389,28 @@
         background-color: #f1f5f9;
       }
 
+      /* FAQ styles */
+      .faq-item {
+        transition: all 0.3s ease;
+      }
+
+      .faq-item summary {
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .faq-item summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-icon {
+        transition: transform 0.3s ease;
+      }
+
+      details[open] .faq-icon {
+        transform: rotate(45deg);
+      }
+
       /* Discount popup button animation */
       @keyframes pulse-slow {
         0%, 100% {
@@ -554,7 +576,7 @@
         <!-- First row: 2 programs -->
         <div class="mt-10 grid gap-4 md:grid-cols-2">
           <!-- ========== Roblox World Creator ========== -->
-          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg" data-course-id="roblox-world-creator">
+          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-lg" data-course-id="roblox-world-creator">
             <div class="course-card__media mb-4">
               <img src="images/robox-logo.png" alt="Roblox" class="w-16 h-16 object-contain" />
             </div>
@@ -582,7 +604,7 @@
           </section>
 
           <!-- ========== 3D Designer (Blender) ========== -->
-          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg" data-course-id="3d-designer">
+          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-lg" data-course-id="3d-designer">
             <div class="course-card__media mb-4">
               <img src="images/blender.png" alt="Blender" class="w-16 h-16 object-contain" />
             </div>
@@ -613,7 +635,7 @@
         <!-- Second row: 4 programs in 2x2 grid -->
         <div class="mt-6 grid gap-4 md:grid-cols-2">
           <!-- ========== App Development (Thunkable) ========== -->
-          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg" data-course-id="app-development">
+          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-lg" data-course-id="app-development">
             <div class="course-card__media mb-4">
               <img src="images/app-dev-logo.png" alt="App Development" class="w-16 h-16 object-contain" />
             </div>
@@ -641,7 +663,7 @@
           </section>
 
           <!-- ========== GDevelop Game Designer ========== -->
-          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg" data-course-id="gdevelop-game-designer">
+          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-lg" data-course-id="gdevelop-game-designer">
             <div class="course-card__media mb-4">
               <img src="images/gdeve-logo.png" alt="GDevelop" class="w-16 h-16 object-contain" />
             </div>
@@ -669,7 +691,7 @@
           </section>
 
           <!-- ========== AI & Programming Quest ========== -->
-          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg" data-course-id="ai-programming-quest">
+          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-lg" data-course-id="ai-programming-quest">
             <div class="course-card__media mb-4">
               <img src="images/ai-logo.png" alt="AI & Programming Quest" class="w-16 h-16 object-contain" />
             </div>
@@ -697,7 +719,7 @@
           </section>
 
           <!-- ========== Generative AI Magic ========== -->
-          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg" data-course-id="generative-ai-magic">
+          <section class="course-card hover-lift rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-lg" data-course-id="generative-ai-magic">
             <div class="course-card__media mb-4">
               <img src="images/chatgpt-logo.jpg" alt="Generative AI Magic" class="w-16 h-16 object-contain" />
             </div>
@@ -731,12 +753,12 @@
         <h2 data-i18n="lessons.heading" class="text-2xl font-semibold md:text-3xl mb-6" style="color: #1E66F5;">How Our Lessons Work</h2>
         <p data-i18n="lessons.copy" class="text-base text-slate-600 mb-10">Structured yet flexible sessions designed for effective learning and steady progress.</p>
         <div class="grid gap-6 md:grid-cols-2">
-          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg">
             <h3 data-i18n="format.heading" class="text-lg font-semibold text-ink mb-4">Lesson format</h3>
             <p data-i18n="format.copy" class="text-base text-slate-600 leading-relaxed">Each 60–90 minute session flows naturally: quick theory dive, hands-on building, and a wrap-up that sticks.</p>
           </div>
           
-          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg">
             <h3 data-i18n="flex.heading" class="text-lg font-semibold text-ink mb-4">Recommended rhythm</h3>
             <div class="space-y-4 text-base text-slate-600">
               <p data-i18n="flex.item1">Pick 1–5 lessons per week that work with your life.</p>
@@ -751,7 +773,7 @@
         <h2 data-i18n="pricing.heading" class="text-2xl font-semibold md:text-3xl" style="color: #16A34A;">Flexible Pricing</h2>
         <p data-i18n="pricing.copy" class="mt-3 text-base text-slate-600">Pick private or group lessons. Every plan includes feedback, recaps, and portfolio help.</p>
         <div class="mt-10 grid gap-4 md:grid-cols-2">
-          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg">
             <h3 data-i18n="pricing.privateTitle" class="text-lg font-semibold text-ink">Private (1 on 1)</h3>
             <dl class="mt-4 space-y-3 text-sm text-slate-600">
               <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
@@ -768,7 +790,7 @@
               </div>
             </dl>
           </div>
-          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg">
             <h3 data-i18n="pricing.groupTitle" class="text-lg font-semibold text-ink">Small group (2-4 students)</h3>
             <dl class="mt-4 space-y-3 text-sm text-slate-600">
               <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
@@ -789,7 +811,7 @@
         
         <!-- Discount Section -->
         <section class="mt-8">
-          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <h3 data-i18n="discount.title" class="text-xl font-semibold text-ink">🚀 Sibling & Referral Bonus: Get 10% Off!</h3>
               <p data-i18n="discount.desc" class="text-base text-slate-600 mb-0">Refer a friend or sign up a sibling to receive a 10% discount on any course.</p>
@@ -806,7 +828,7 @@
         <h2 data-i18n="pricing.ondemandHeading" class="text-2xl font-semibold md:text-3xl mb-3" style="color: #14B8A6;">On-demand Courses</h2>
         <p data-i18n="pricing.ondemandCopy" class="mt-3 text-base text-slate-600 mb-10">For parents who want their children to have a tailored-made program with progress tracking.</p>
           <div class="grid gap-4 md:grid-cols-2">
-            <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+            <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg">
               <h4 data-i18n="pricing.ondemandPrivateTitle" class="text-lg font-semibold text-ink">Private (1 on 1)</h4>
               <dl class="mt-4 space-y-3 text-sm text-slate-600">
                 <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
@@ -817,7 +839,7 @@
               <p data-i18n="pricing.ondemandPrivateDesc1" class="mt-3 text-sm text-slate-600">Tailored 10-lesson course created for individual learning goals.</p>
               <p data-i18n="pricing.ondemandPrivateDesc2" class="text-sm text-slate-600">Includes progress tracking and final project review.</p>
             </div>
-            <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+            <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg">
               <h4 data-i18n="pricing.ondemandGroupTitle" class="text-lg font-semibold text-ink">Small group (2–4 students)</h4>
               <dl class="mt-4 space-y-3 text-sm text-slate-600">
                 <div class="flex items-baseline justify-between border-b border-slate-200 pb-3">
@@ -830,7 +852,7 @@
             </div>
           </div>
 
-          <div class="mt-8 hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div class="mt-8 hover-lift rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <h3 data-i18n="discount.title" class="text-xl font-semibold text-ink mb-2">🚀 Sibling & Referral Bonus: Get 10% Off!</h3>
               <p data-i18n="discount.desc" class="text-base text-slate-600 mb-0">Refer a friend or sign up a sibling to receive a 10% discount on any course.</p>
@@ -864,7 +886,7 @@
           </div>
 
           <!-- Form Section -->
-          <form id="trialForm" action="https://formspree.io/f/xqaynogk" method="POST" class="w-full md:w-1/2 hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+          <form id="trialForm" action="https://formspree.io/f/xqaynogk" method="POST" class="w-full md:w-1/2 hover-lift rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg">
             <h3 data-i18n="trial.formTitle" class="mb-6 text-2xl font-bold" style="color: #1E66F5;">Book Your FREE Lesson</h3>
 
             <div class="space-y-4">
@@ -931,9 +953,9 @@
       <section class="fade-in-section mt-20 border-t border-slate-200 pt-10">
         <h2 data-i18n="outcomes.heading" class="text-2xl font-semibold md:text-3xl" style="color: #14B8A6;">What Success Looks Like</h2>
         <ul class="mt-6 grid gap-4 text-base text-slate-600 md:grid-cols-3">
-          <li data-i18n="outcomes.item1" class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-center">Learners grasp real tech concepts with calm, guided practice.</li>
-          <li data-i18n="outcomes.item2" class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-center">Projects launch — games, apps, designs, or AI tools.</li>
-          <li data-i18n="outcomes.item3" class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg text-center">Portfolios grow and students share their work with confidence.</li>
+          <li data-i18n="outcomes.item1" class="hover-lift rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg text-center">Learners grasp real tech concepts with calm, guided practice.</li>
+          <li data-i18n="outcomes.item2" class="hover-lift rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg text-center">Projects launch — games, apps, designs, or AI tools.</li>
+          <li data-i18n="outcomes.item3" class="hover-lift rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg text-center">Portfolios grow and students share their work with confidence.</li>
         </ul>
       </section>
 
@@ -944,21 +966,21 @@
         </div>
 
         <div class="mt-10 grid gap-6 md:grid-cols-2">
-          <article class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg flex flex-col">
+          <article class="hover-lift rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-lg flex flex-col" style="--accent:#1E66F5;">
             <div>
-              <p data-i18n="projects.card.programLabel" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Program</p>
-              <h3 data-i18n="projects.card1.program" class="mt-2 text-xl font-bold text-ink">Generative AI Storylab</h3>
+              <p data-i18n="projects.card.programLabel" class="text-xs font-semibold uppercase tracking-[0.2em]" style="color: var(--accent);">Program</p>
+              <h3 data-i18n="projects.card1.program" class="mt-2 text-xl font-bold" style="color: var(--accent);">Generative AI</h3>
             </div>
             <div class="mt-6">
-              <p data-i18n="projects.card.studentLabel" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Student</p>
-              <p data-i18n="projects.card1.student" class="mt-2 text-base font-semibold text-slate-700">Ủn ỉn Bé Heo (8)</p>
+              <p data-i18n="projects.card.studentLabel" class="text-xs font-semibold uppercase tracking-[0.2em]" style="color: var(--accent);">Student</p>
+              <p data-i18n="projects.card1.student" class="mt-2 text-base font-semibold" style="color: var(--accent);">Ủn ỉn Bé Heo</p>
             </div>
             <div class="mt-6">
-              <p data-i18n="projects.card.toolsLabel" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Tools Used</p>
-              <ul class="mt-2 flex flex-wrap gap-2 text-sm font-semibold text-slate-600">
-                <li class="rounded-full border border-slate-200 bg-white/80 px-3 py-1" data-i18n="projects.card1.tool1">Canva</li>
-                <li class="rounded-full border border-slate-200 bg-white/80 px-3 py-1" data-i18n="projects.card1.tool2">Google VEO</li>
-                <li class="rounded-full border border-slate-200 bg-white/80 px-3 py-1" data-i18n="projects.card1.tool3">Suno AI</li>
+              <p data-i18n="projects.card.toolsLabel" class="text-xs font-semibold uppercase tracking-[0.2em]" style="color: var(--accent);">Tools Used</p>
+              <ul class="mt-2 flex flex-wrap gap-2 text-sm font-semibold text-slate-700">
+                <li class="rounded-full border border-sky/20 bg-sky-light/40 px-3 py-1 text-sky" data-i18n="projects.card1.tool1">Canva</li>
+                <li class="rounded-full border border-sky/20 bg-sky-light/40 px-3 py-1 text-sky" data-i18n="projects.card1.tool2">Google VEO</li>
+                <li class="rounded-full border border-sky/20 bg-sky-light/40 px-3 py-1 text-sky" data-i18n="projects.card1.tool3">Suno AI</li>
               </ul>
             </div>
             <div class="mt-6 w-full overflow-hidden rounded-2xl border border-white/40 shadow-lg">
@@ -966,21 +988,21 @@
             </div>
           </article>
 
-          <article class="hover-lift rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg flex flex-col">
+          <article class="hover-lift rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-lg flex flex-col" style="--accent:#16A34A;">
             <div>
-              <p data-i18n="projects.card.programLabel" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Program</p>
-              <h3 data-i18n="projects.card2.program" class="mt-2 text-xl font-bold text-ink">Roblox World Creator</h3>
+              <p data-i18n="projects.card.programLabel" class="text-xs font-semibold uppercase tracking-[0.2em]" style="color: var(--accent);">Program</p>
+              <h3 data-i18n="projects.card2.program" class="mt-2 text-xl font-bold" style="color: var(--accent);">Roblox World Creator</h3>
             </div>
             <div class="mt-6">
-              <p data-i18n="projects.card.studentLabel" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Student</p>
-              <p data-i18n="projects.card2.student" class="mt-2 text-base font-semibold text-slate-700">Bảo Phú (11)</p>
+              <p data-i18n="projects.card.studentLabel" class="text-xs font-semibold uppercase tracking-[0.2em]" style="color: var(--accent);">Student</p>
+              <p data-i18n="projects.card2.student" class="mt-2 text-base font-semibold" style="color: var(--accent);">Bảo Phú</p>
             </div>
             <div class="mt-6">
-              <p data-i18n="projects.card.toolsLabel" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Tools Used</p>
-              <ul class="mt-2 flex flex-wrap gap-2 text-sm font-semibold text-slate-600">
-                <li class="rounded-full border border-slate-200 bg-white/80 px-3 py-1" data-i18n="projects.card2.tool1">Roblox Studio</li>
-                <li class="rounded-full border border-slate-200 bg-white/80 px-3 py-1" data-i18n="projects.card2.tool2">Lua scripting</li>
-                <li class="rounded-full border border-slate-200 bg-white/80 px-3 py-1" data-i18n="projects.card2.tool3">Game timers</li>
+              <p data-i18n="projects.card.toolsLabel" class="text-xs font-semibold uppercase tracking-[0.2em]" style="color: var(--accent);">Tools Used</p>
+              <ul class="mt-2 flex flex-wrap gap-2 text-sm font-semibold text-slate-700">
+                <li class="rounded-full border border-leaf/30 bg-leaf/10 px-3 py-1 text-leaf" data-i18n="projects.card2.tool1">Roblox Studio</li>
+                <li class="rounded-full border border-leaf/30 bg-leaf/10 px-3 py-1 text-leaf" data-i18n="projects.card2.tool2">Lua scripting</li>
+                <li class="rounded-full border border-leaf/30 bg-leaf/10 px-3 py-1 text-leaf" data-i18n="projects.card2.tool3">Game timers</li>
               </ul>
             </div>
             <div class="mt-6 w-full overflow-hidden rounded-2xl border border-white/40 shadow-lg">
@@ -1000,7 +1022,7 @@
         <p data-i18n="testimonials.subtitle" class="mt-3 text-base text-slate-600">What our parents say</p>
         <div class="mt-10 testimonial-carousel-container">
           <div class="testimonial-carousel">
-            <div class="testimonial-slide active rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+            <div class="testimonial-slide active rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg">
               <div class="flex items-start gap-2 mb-4">
                 <span class="text-yellow-500 text-lg">⭐</span>
                 <div class="flex-1">
@@ -1011,7 +1033,7 @@
               <blockquote data-i18n="testimonials.test1.quote" class="text-slate-600 leading-relaxed">"Bảo Minh has been learning with Teacher Gleb for almost a year now, focusing on Generative AI. At first, my son was shy and didn't know where to start with computers. Now he confidently builds small games and even created an AI chatbot for his science project!"</blockquote>
             </div>
 
-            <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+            <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg">
               <div class="flex items-start gap-2 mb-4">
                 <span class="text-yellow-500 text-lg">⭐</span>
                 <div class="flex-1">
@@ -1022,7 +1044,7 @@
               <blockquote data-i18n="testimonials.test2.quote" class="text-slate-600 leading-relaxed">"My daughter studied 3D Design and Roblox Game Development with Teacher Mathan for over a year and a half. She created two complete games and improved both teamwork and confidence."</blockquote>
             </div>
 
-            <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+            <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg">
               <div class="flex items-start gap-2 mb-4">
                 <span class="text-yellow-500 text-lg">⭐</span>
                 <div class="flex-1">
@@ -1033,7 +1055,7 @@
               <blockquote data-i18n="testimonials.test3.quote" class="text-slate-600 leading-relaxed">"Kian explored Generative AI and Python programming with Teacher Mathan and now has two solid portfolio projects. TechTutor's structured and creative approach is perfect for international families."</blockquote>
             </div>
 
-            <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-8 shadow-lg">
+            <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg">
               <div class="flex items-start gap-2 mb-4">
                 <span class="text-yellow-500 text-lg">⭐</span>
                 <div class="flex-1">
@@ -1063,7 +1085,7 @@
         
         <div class="mt-10 space-y-8">
           <!-- Gleb Teacher Card -->
-          <section class="rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-4 shadow-lg">
+          <section class="rounded-3xl border-2 border-sky/20 bg-white p-4 shadow-lg">
             <!-- Header -->
             <div class="flex flex-col md:flex-row md:items-start gap-6">
               <img src="images/gleb.jpg" alt="Gleb Bogachev" class="w-full md:w-72 h-72 object-cover rounded-xl mb-4 md:mb-0" />
@@ -1149,7 +1171,7 @@
             </div>
           </section>
           <!-- Manthan Teacher Card -->
-          <section class="rounded-3xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-4 shadow-lg">
+          <section class="rounded-3xl border-2 border-sky/20 bg-white p-4 shadow-lg">
             <!-- Header -->
             <div class="flex flex-col md:flex-row md:items-start gap-6">
               <img src="images/Manthan.jpg" alt="Manthan Chittora" class="w-full md:w-72 h-72 object-cover rounded-xl mb-4 md:mb-0" />
@@ -1238,6 +1260,72 @@
           </section>
           </div>
       </section>
+      
+      <section id="faq" class="fade-in-section mt-20 border-t border-slate-200 pt-10">
+        <div class="text-center mb-10">
+          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-sky">FAQ</p>
+          <h2 data-i18n="faq.heading" class="mt-2 text-2xl font-semibold md:text-3xl" style="color: #1E66F5;">Why families choose TechTutor</h2>
+          <p data-i18n="faq.copy" class="mt-3 text-base text-slate-600">Quick answers about our curriculum, tuition, schedules, and languages.</p>
+        </div>
+        <div class="space-y-4">
+          <details class="faq-item rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-sm">
+            <summary class="flex items-center justify-between gap-4 text-left">
+              <span data-i18n="faq.q1" class="text-lg font-semibold text-ink">What does TechTutor teach?</span>
+              <span class="faq-icon text-2xl font-bold text-slate-400">+</span>
+            </summary>
+            <p data-i18n="faq.a1" class="mt-3 text-slate-600">We cover Generative AI, coding (Scratch, Python, Lua), 3D design, and app/game development. Lessons mix creativity, storytelling, and technical foundations so students ship real projects.</p>
+          </details>
+
+          <details class="faq-item rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-sm">
+            <summary class="flex items-center justify-between gap-4 text-left">
+              <span data-i18n="faq.q2" class="text-lg font-semibold text-ink">Why choose TechTutor?</span>
+              <span class="faq-icon text-2xl font-bold text-slate-400">+</span>
+            </summary>
+            <p data-i18n="faq.a2" class="mt-3 text-slate-600">Families join us for calm, project-first lessons, 3.5+ years of teaching expertise, and bilingual support. Every course includes feedback, session recaps, and portfolio-ready outcomes.</p>
+          </details>
+
+          <details class="faq-item rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-sm">
+            <summary class="flex items-center justify-between gap-4 text-left">
+              <span data-i18n="faq.q3" class="text-lg font-semibold text-ink">What's the tuition fee?</span>
+              <span class="faq-icon text-2xl font-bold text-slate-400">+</span>
+            </summary>
+            <p data-i18n="faq.a3" class="mt-3 text-slate-600">Private lessons start from 5.6M VND for 8 sessions, and small-group lessons begin at 4M VND. Multi-course bundles unlock 5–10% savings. See our pricing section for full details.</p>
+          </details>
+
+          <details class="faq-item rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-sm">
+            <summary class="flex items-center justify-between gap-4 text-left">
+              <span data-i18n="faq.q4" class="text-lg font-semibold text-ink">How many lessons a week?</span>
+              <span class="faq-icon text-2xl font-bold text-slate-400">+</span>
+            </summary>
+            <p data-i18n="faq.a4" class="mt-3 text-slate-600">Families typically book 2 sessions per week for steady progress. We can pace anywhere from 1–5 lessons weekly depending on goals, travel plans, and school workload.</p>
+          </details>
+
+          <details class="faq-item rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-sm">
+            <summary class="flex items-center justify-between gap-4 text-left">
+              <span data-i18n="faq.q5" class="text-lg font-semibold text-ink">Which languages do you teach in?</span>
+              <span class="faq-icon text-2xl font-bold text-slate-400">+</span>
+            </summary>
+            <p data-i18n="faq.a5" class="mt-3 text-slate-600">Our instructors teach in English and Vietnamese. We frequently support bilingual households, and can switch languages mid-lesson if it helps your child feel confident.</p>
+          </details>
+
+          <details class="faq-item rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-sm">
+            <summary class="flex items-center justify-between gap-4 text-left">
+              <span data-i18n="faq.q6" class="text-lg font-semibold text-ink">How many lessons in one course?</span>
+              <span class="faq-icon text-2xl font-bold text-slate-400">+</span>
+            </summary>
+            <p data-i18n="faq.a6" class="mt-3 text-slate-600">A single course bundle includes 8 lessons. It’s enough to cover one project milestone or explore a new platform before deciding whether to extend.</p>
+          </details>
+
+          <details class="faq-item rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-sm">
+            <summary class="flex items-center justify-between gap-4 text-left">
+              <span data-i18n="faq.q7" class="text-lg font-semibold text-ink">How many lessons in a full program?</span>
+              <span class="faq-icon text-2xl font-bold text-slate-400">+</span>
+            </summary>
+            <p data-i18n="faq.a7" class="mt-3 text-slate-600">Full programs span 24 lessons (three courses). This gives us time to move from foundations to advanced projects and deliver a polished portfolio piece.</p>
+          </details>
+        </div>
+      </section>
+
     </main>
 
     <footer id="contact" class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16">
@@ -1448,13 +1536,13 @@
             'projects.card.programLabel': 'Program',
             'projects.card.studentLabel': 'Student',
             'projects.card.toolsLabel': 'Tools Used',
-            'projects.card1.program': 'Generative AI Storylab',
-            'projects.card1.student': 'Ủn ỉn Bé Heo (8)',
+            'projects.card1.program': 'Generative AI',
+            'projects.card1.student': 'Ủn ỉn Bé Heo',
             'projects.card1.tool1': 'Canva',
             'projects.card1.tool2': 'Google VEO',
             'projects.card1.tool3': 'Suno AI',
             'projects.card2.program': 'Roblox World Creator',
-            'projects.card2.student': 'Bảo Phú (11)',
+            'projects.card2.student': 'Bảo Phú',
             'projects.card2.tool1': 'Roblox Studio',
             'projects.card2.tool2': 'Lua scripting',
             'projects.card2.tool3': 'Game timers',
@@ -1475,6 +1563,22 @@
             'testimonials.test3.parent': 'Thomas Reed – father of Kian (13 years old, British-Vietnamese)',
             'testimonials.test3.teacher': 'Teacher: Mathan',
             'testimonials.test3.quote': '"Kian explored Generative AI and Python programming with Teacher Mathan and now has two solid portfolio projects. TechTutor\'s structured and creative approach is perfect for international families."',
+            'faq.heading': 'Why families choose TechTutor',
+            'faq.copy': 'Quick answers about our curriculum, tuition, schedules, and languages.',
+            'faq.q1': 'What does TechTutor teach?',
+            'faq.a1': 'We cover Generative AI, coding (Scratch, Python, Lua), 3D design, and app/game development. Lessons mix creativity, storytelling, and technical foundations so students ship real projects.',
+            'faq.q2': 'Why choose TechTutor?',
+            'faq.a2': 'Families join us for calm, project-first lessons, 3.5+ years of teaching expertise, and bilingual support. Every course includes feedback, session recaps, and portfolio-ready outcomes.',
+            'faq.q3': 'What\'s the tuition fee?',
+            'faq.a3': 'Private lessons start from 5.6M VND for 8 sessions, and small-group lessons begin at 4M VND. Multi-course bundles unlock 5–10% savings. See our pricing section for full details.',
+            'faq.q4': 'How many lessons a week?',
+            'faq.a4': 'Families typically book 2 sessions per week for steady progress. We can pace anywhere from 1–5 lessons weekly depending on goals, travel plans, and school workload.',
+            'faq.q5': 'Which languages do you teach in?',
+            'faq.a5': 'Our instructors teach in English and Vietnamese. We frequently support bilingual households, and can switch languages mid-lesson if it helps your child feel confident.',
+            'faq.q6': 'How many lessons in one course?',
+            'faq.a6': 'A single course bundle includes 8 lessons. It’s enough to cover one project milestone or explore a new platform before deciding whether to extend.',
+            'faq.q7': 'How many lessons in a full program?',
+            'faq.a7': 'Full programs span 24 lessons (three courses). This gives us time to move from foundations to advanced projects and deliver a polished portfolio piece.',
             'testimonials.test4.parent': 'Trần Minh Quân – father of Khánh Ngọc (9 years old)',
             'testimonials.test4.teacher': 'Teacher: Gleb',
             'testimonials.test4.quote': '"Our daughter started 3D Design three months ago and already built her first model. She\'s excited for every class!"',
@@ -1747,13 +1851,13 @@
             'projects.card.programLabel': 'Chương trình',
             'projects.card.studentLabel': 'Học viên',
             'projects.card.toolsLabel': 'Công cụ sử dụng',
-            'projects.card1.program': 'Phòng Lab AI Tạo Sinh',
-            'projects.card1.student': 'Ủn ỉn Bé Heo (8 tuổi)',
+            'projects.card1.program': 'Generative AI',
+            'projects.card1.student': 'Ủn ỉn Bé Heo',
             'projects.card1.tool1': 'Canva',
             'projects.card1.tool2': 'Google VEO',
             'projects.card1.tool3': 'Suno AI',
             'projects.card2.program': 'Roblox World Creator',
-            'projects.card2.student': 'Bảo Phú (11 tuổi)',
+            'projects.card2.student': 'Bảo Phú',
             'projects.card2.tool1': 'Roblox Studio',
             'projects.card2.tool2': 'Lập trình Lua',
             'projects.card2.tool3': 'Hệ thống bấm giờ',
@@ -1774,6 +1878,22 @@
             'testimonials.test3.parent': 'Thomas Reed – bố của Kian (13 tuổi, Anh-Việt)',
             'testimonials.test3.teacher': 'Giáo viên: Thầy Mathan',
             'testimonials.test3.quote': '"Kian học Generative AI và Python với thầy Mathan, hiện có hai dự án portfolio. Cách học của TechTutor rất hợp với gia đình quốc tế."',
+            'faq.heading': 'Vì sao phụ huynh chọn TechTutor',
+            'faq.copy': 'Giải đáp nhanh về chương trình học, học phí, lịch học và ngôn ngữ giảng dạy.',
+            'faq.q1': 'TechTutor dạy những gì?',
+            'faq.a1': 'Chúng tôi dạy AI tạo sinh, lập trình (Scratch, Python, Lua), thiết kế 3D, phát triển game và app. Mỗi buổi kết hợp sáng tạo, kể chuyện và nền tảng kỹ thuật để học viên tạo ra sản phẩm thật.',
+            'faq.q2': 'Vì sao nên chọn TechTutor?',
+            'faq.a2': 'Lớp học yên tĩnh, chú trọng dự án với giáo viên nhiều năm kinh nghiệm và hỗ trợ song ngữ. Mọi khóa đều có phản hồi chi tiết, ghi chú từng buổi và sản phẩm đưa vào portfolio.',
+            'faq.q3': 'Học phí là bao nhiêu?',
+            'faq.a3': 'Lớp 1 kèm 1 từ 5.6 triệu/8 buổi, lớp nhóm nhỏ từ 4 triệu. Đăng ký 2–3 khóa được giảm 5–10%. Xem mục học phí để biết thêm chi tiết.',
+            'faq.q4': 'Mỗi tuần học bao nhiêu buổi?',
+            'faq.a4': 'Phụ huynh thường chọn 2 buổi/tuần để tiến bộ ổn định. Chúng tôi linh hoạt 1–5 buổi/tuần tùy mục tiêu, lịch học và thời gian biểu của gia đình.',
+            'faq.q5': 'Giảng dạy bằng ngôn ngữ nào?',
+            'faq.a5': 'Giáo viên dạy bằng tiếng Anh và tiếng Việt, hỗ trợ gia đình song ngữ và có thể chuyển đổi trong buổi học để trẻ tự tin hơn.',
+            'faq.q6': 'Một khóa học có bao nhiêu buổi?',
+            'faq.a6': 'Mỗi khóa chuẩn gồm 8 buổi — vừa đủ để hoàn thành một mốc dự án hoặc thử một nền tảng mới trước khi đăng ký thêm.',
+            'faq.q7': 'Một chương trình đầy đủ có bao nhiêu buổi?',
+            'faq.a7': 'Chương trình đầy đủ gồm 24 buổi (tương đương 3 khóa). Lộ trình này cho phép học sinh đi từ nền tảng đến dự án nâng cao và hoàn thiện sản phẩm portfolio.',
             'testimonials.test4.parent': 'Trần Minh Quân – bố của Khánh Ngọc (9 tuổi)',
             'testimonials.test4.teacher': 'Giáo viên: Thầy Gleb',
             'testimonials.test4.quote': '"Con gái chúng tôi học 3D Design ba tháng đã dựng được mô hình đầu tiên và luôn háo hức đến lớp."',
@@ -2667,7 +2787,7 @@
           <p data-i18n="discount.description" class="text-slate-600 leading-relaxed mb-6 text-center">Fill out the form below to receive your personalized discount quote and lock in your savings. Our team will contact you within 24 hours with your exclusive offer!</p>
 
           <!-- Discount Request Form -->
-          <form id="discountPopupForm" action="https://formspree.io/f/xqaynogk" method="POST" class="rounded-2xl border-2 border-sky/20 bg-gradient-to-br from-white to-sky-light/30 p-6 shadow-lg">
+          <form id="discountPopupForm" action="https://formspree.io/f/xqaynogk" method="POST" class="rounded-2xl border-2 border-sky/20 bg-white p-6 shadow-lg">
             <div class="space-y-4">
               <label class="block">
                 <span data-i18n="trial.parentName" class="mb-1 block text-sm font-medium text-slate-700">Parent name *</span>
