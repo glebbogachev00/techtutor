@@ -279,6 +279,28 @@
   </main>
 
   <script>
+    // Admin password protection
+    function checkAdminAccess() {
+      const adminPassword = 'techtutor2025'; // Change this to your secure password
+      const savedPassword = sessionStorage.getItem('adminAuthenticated');
+
+      if (savedPassword !== adminPassword) {
+        const password = prompt('Enter admin password to access dashboard:');
+        if (password !== adminPassword) {
+          alert('Incorrect password!');
+          window.location.href = 'index.html';
+          return false;
+        }
+        sessionStorage.setItem('adminAuthenticated', adminPassword);
+      }
+      return true;
+    }
+
+    // Check access on page load
+    if (!checkAdminAccess()) {
+      // Redirected if failed
+    }
+
     // Initialize localStorage structure
     function initStorage() {
       if (!localStorage.getItem('students')) {
