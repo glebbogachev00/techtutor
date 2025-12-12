@@ -189,19 +189,11 @@
 
       <!-- Demo Credentials Info -->
       <div class="mt-6 p-4 bg-sky/5 rounded-lg border border-sky/20">
-        <p class="text-xs text-slate-600 text-center mb-3 font-bold">Demo Login Credentials:</p>
-        <div class="text-xs text-slate-600 space-y-1">
-          <p class="text-center"><strong>Username:</strong> demo | <strong>Password:</strong> demo123</p>
-          <p class="text-center"><strong>Username:</strong> student1 | <strong>Password:</strong> pass123</p>
-          <p class="text-center"><strong>Username:</strong> student2 | <strong>Password:</strong> pass123</p>
+        <p class="text-xs text-slate-600 text-center mb-3 font-bold">Demo Login:</p>
+        <div class="text-xs text-slate-600 space-y-2">
+          <p class="text-center"><strong>Student:</strong> student1 | <strong>Password:</strong> pass123</p>
+          <p class="text-center"><strong>Admin:</strong> admin | <strong>Password:</strong> techtutor2025</p>
         </div>
-      </div>
-
-      <!-- Admin Link -->
-      <div class="mt-4 text-center">
-        <p class="text-xs text-slate-500">
-          Are you an admin? <a href="admin-login.html" class="text-sky font-semibold hover:underline">Go to Admin Login</a>
-        </p>
       </div>
     </section>
 
@@ -270,16 +262,88 @@
 
       // Add demo students if they don't exist
       if (!students['demo']) {
-        students['demo'] = { name: 'Demo Student', password: 'demo123', email: '', id: 'demo' };
+        students['demo'] = {
+          name: 'Demo Student',
+          password: 'demo123',
+          email: 'demo@techtutor.academy',
+          bio: 'Enthusiastic learner exploring the world of coding and game development!',
+          id: 'demo'
+        };
       }
       if (!students['student1']) {
-        students['student1'] = { name: 'Bảo Minh', password: 'pass123', email: '', id: 'student1' };
+        students['student1'] = {
+          name: 'Bảo Minh',
+          password: 'pass123',
+          email: 'baominh@example.com',
+          bio: 'Creative thinker who loves building games and solving puzzles.',
+          id: 'student1'
+        };
       }
       if (!students['student2']) {
-        students['student2'] = { name: 'Gia Hân', password: 'pass123', email: '', id: 'student2' };
+        students['student2'] = {
+          name: 'Gia Hân',
+          password: 'pass123',
+          email: 'giahan@example.com',
+          bio: 'Passionate about robotics and AI, always curious to learn more!',
+          id: 'student2'
+        };
       }
 
       localStorage.setItem('students', JSON.stringify(students));
+
+      // Add some demo certificates for student1
+      const certificates = JSON.parse(localStorage.getItem('certificates') || '{}');
+      if (!certificates['student1'] || certificates['student1'].length === 0) {
+        certificates['student1'] = [
+          {
+            programName: 'Roblox Creator',
+            issueDate: '2024-11-15',
+            certificateUrl: 'https://drive.google.com/file/d/example-certificate-1/view'
+          }
+        ];
+        localStorage.setItem('certificates', JSON.stringify(certificates));
+      }
+
+      // Add some demo reports for student1
+      const reports = JSON.parse(localStorage.getItem('reports') || '{}');
+      if (!reports['student1'] || reports['student1'].length === 0) {
+        reports['student1'] = [
+          {
+            programName: 'Roblox Creator',
+            reportDate: '2024-11-15',
+            grade: 'A',
+            summary: 'Excellent progress throughout the program. Demonstrated strong understanding of Lua scripting and game design principles. Created an impressive multiplayer game with custom mechanics.',
+            reportUrl: 'https://drive.google.com/file/d/example-report-1/view'
+          }
+        ];
+        localStorage.setItem('reports', JSON.stringify(reports));
+      }
+
+      // Add some demo achievements for student1
+      const achievements = JSON.parse(localStorage.getItem('achievements') || '{}');
+      if (!achievements['student1'] || achievements['student1'].length === 0) {
+        achievements['student1'] = [
+          {
+            title: 'First Steps',
+            icon: '👣',
+            description: 'Welcome to TechTutor!',
+            earnedDate: '2024-09-01'
+          },
+          {
+            title: 'First Project',
+            icon: '🏆',
+            description: 'Built something amazing!',
+            earnedDate: '2024-10-15'
+          },
+          {
+            title: 'Game Creator',
+            icon: '🎮',
+            description: 'Built your first game',
+            earnedDate: '2024-11-10'
+          }
+        ];
+        localStorage.setItem('achievements', JSON.stringify(achievements));
+      }
     }
 
     // Initialize on page load
@@ -293,10 +357,18 @@
       const password = document.getElementById('password').value;
       const errorMessage = document.getElementById('errorMessage');
 
+      // Check if admin credentials
+      if (username === 'admin' && password === 'techtutor2025') {
+        // Store admin session and redirect to admin dashboard
+        sessionStorage.setItem('adminAuthenticated', 'true');
+        window.location.href = 'admin.html';
+        return;
+      }
+
       // Get students from admin-created data
       const students = JSON.parse(localStorage.getItem('students') || '{}');
 
-      // Check credentials
+      // Check student credentials
       if (students[username] && students[username].password === password) {
         // Store login info in localStorage
         localStorage.setItem('studentLogin', JSON.stringify({
