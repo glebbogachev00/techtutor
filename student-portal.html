@@ -448,11 +448,130 @@
       window.location.href = 'student-portal-login.html';
     } else {
       const student = JSON.parse(loginData);
+      const studentId = student.id;
+
+      // Set student name
       document.getElementById('welcomeName').textContent = student.name;
 
-      // Set profile initial (first letter of name)
+      // Set profile initial
       const initial = student.name.charAt(0).toUpperCase();
       document.getElementById('profileInitial').textContent = initial;
+
+      // Load student data
+      loadStudentData(studentId);
+    }
+
+    // Load student-specific data
+    function loadStudentData(studentId) {
+      const programs = JSON.parse(localStorage.getItem('programs') || '{}');
+      const projects = JSON.parse(localStorage.getItem('projects') || '{}');
+      const photos = JSON.parse(localStorage.getItem('photos') || '{}');
+
+      const studentPrograms = programs[studentId] || [];
+      const studentProjects = projects[studentId] || [];
+      const studentPhotos = photos[studentId] || [];
+
+      // Update stats
+      const completed = studentPrograms.filter(p => p.status === 'completed').length;
+      const ongoing = studentPrograms.filter(p => p.status === 'in_progress').length;
+      document.getElementById('totalProjects').textContent = studentProjects.length;
+      document.getElementById('completedPrograms').textContent = completed;
+      document.getElementById('ongoingPrograms').textContent = ongoing;
+
+      // Load programs if any
+      if (studentPrograms.length > 0) {
+        loadPrograms(studentPrograms);
+      }
+
+      // Load projects if any
+      if (studentProjects.length > 0) {
+        loadProjects(studentProjects);
+      }
+
+      // Load photos if any
+      if (studentPhotos.length > 0) {
+        loadPhotos(studentPhotos);
+      }
+    }
+
+    // Render programs
+    function loadPrograms(programs) {
+      const container = document.querySelector('#programs .grid');
+      container.innerHTML = programs.map(program => {
+        const statusClass = program.status === 'completed' ? 'green' : 'orange';
+        const statusBg = program.status === 'completed' ? 'from-green-100 to-teal-100' : 'from-orange-100 to-red-100';
+        const statusText = program.status === 'completed' ? 'COMPLETED' : 'IN PROGRESS';
+        const statusColor = program.status === 'completed' ? 'text-leaf' : 'text-orange-600';
+
+        return `
+          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-white/70 backdrop-blur p-6 shadow-lg">
+            <div class="aspect-video w-full overflow-hidden rounded-2xl mb-4 bg-gradient-to-br ${statusBg} flex items-center justify-center">
+              <div class="text-center">
+                <div class="text-6xl mb-2">${program.icon || '📚'}</div>
+                <div class="text-3xl font-bold ${statusColor} mb-2">${program.progress}%</div>
+                <p class="text-sm text-slate-600 font-medium">${Math.round(program.progress * 24 / 100)} of 24 lessons</p>
+              </div>
+            </div>
+            <div class="inline-flex items-center px-3 py-1 rounded-full bg-${statusClass}-100 text-${statusClass}-700 text-xs font-bold mb-3">
+              ${statusText}
+            </div>
+            <h3 class="text-xl font-bold text-ink mb-2">${program.name}</h3>
+            <p class="text-slate-600 text-sm mb-4">
+              ${program.status === 'completed' ? 'Completed' : 'In Progress'}
+            </p>
+            <div class="progress-bar mb-4">
+              <div class="progress-fill" style="width: ${program.progress}%"></div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              ${program.tools.map(tool => `<span class="px-2 py-1 text-xs bg-slate-100 rounded-full">${tool}</span>`).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Render projects
+    function loadProjects(projects) {
+      const container = document.querySelector('#projects .grid');
+      container.innerHTML = projects.map(project => {
+        const statusClass = project.status === 'completed' ? 'green' : 'orange';
+        const statusText = project.status === 'completed' ? 'COMPLETED' : 'IN PROGRESS';
+
+        // Extract YouTube video ID
+        let videoEmbed = '';
+        if (project.videoUrl) {
+          const videoId = project.videoUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
+          if (videoId) {
+            videoEmbed = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${videoId[1]}" allowfullscreen></iframe>`;
+          }
+        }
+
+        return `
+          <div class="hover-lift rounded-3xl border-2 border-sky/20 bg-white/70 backdrop-blur p-6 shadow-lg">
+            <div class="aspect-video w-full overflow-hidden rounded-2xl mb-4 bg-gradient-to-br from-blue-100 to-purple-100">
+              ${videoEmbed || '<div class="flex items-center justify-center h-full"><span class="text-4xl">🎬</span></div>'}
+            </div>
+            <div class="inline-flex items-center px-3 py-1 rounded-full bg-${statusClass}-100 text-${statusClass}-700 text-xs font-bold mb-3">
+              ${statusText}
+            </div>
+            <h3 class="text-xl font-bold text-ink mb-2">${project.title}</h3>
+            <p class="text-slate-600 text-sm mb-4">${project.description || 'Project description'}</p>
+            <div class="flex flex-wrap gap-2">
+              ${project.technologies.map(tech => `<span class="px-2 py-1 text-xs bg-slate-100 rounded-full">${tech}</span>`).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Render photos
+    function loadPhotos(photos) {
+      const container = document.querySelector('#gallery .grid');
+      container.innerHTML = photos.map(photo => `
+        <div class="aspect-square rounded-2xl overflow-hidden hover-lift">
+          <img src="${photo.url}" alt="${photo.caption || 'Class photo'}" class="w-full h-full object-cover" />
+        </div>
+      `).join('');
     }
 
     // Logout functionality
@@ -460,7 +579,6 @@
     if (logoutBtn) {
       logoutBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        console.log('Logging out...');
         localStorage.removeItem('studentLogin');
         window.location.href = 'student-portal-login.html';
       });

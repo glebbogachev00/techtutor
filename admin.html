@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — TechTutor Academy</title>
+  <link rel="icon" type="image/png" href="images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lato:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sky: {
+              light: '#E8F1FD',
+              DEFAULT: '#1E66F5',
+              deep: '#144bb3',
+            },
+            leaf: '#16A34A',
+            ink: '#0F172A',
+            mist: '#F8FAFC',
+          },
+          fontFamily: {
+            sans: ['Inter', 'Lato', 'system-ui', 'sans-serif'],
+          },
+          maxWidth: {
+            wrap: '1040px',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #e0f2fe 0%, #f1f5f9 50%, #e8f1fd 100%);
+      background-attachment: fixed;
+      font-family: 'Inter', 'Lato', system-ui, sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    .hover-lift {
+      transition: all 0.3s ease;
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    .tab-button {
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .tab-button.active {
+      background: #1E66F5;
+      color: white;
+    }
+
+    .tab-button:not(.active) {
+      background: white;
+      color: #64748b;
+    }
+
+    .tab-button:not(.active):hover {
+      background: #E8F1FD;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Navigation -->
+  <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex max-w-wrap items-center justify-between gap-4 px-6 py-4 md:px-8">
+      <a href="index.html" class="flex items-center">
+        <img src="images/tt-new.png" alt="TechTutor logo" class="h-20 w-auto origin-left scale-125 md:h-24 md:scale-150" />
+      </a>
+      <div class="text-lg font-bold text-ink">Admin Dashboard</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="mx-auto max-w-wrap px-6 py-12 md:px-8">
+
+    <!-- Hero -->
+    <section class="rounded-3xl border-2 border-sky/20 bg-white/70 backdrop-blur p-8 md:p-12 shadow-lg mb-8">
+      <h1 class="text-4xl font-bold text-ink mb-2">
+        Student Portal <span style="color: #1E66F5;">Admin</span>
+      </h1>
+      <p class="text-slate-600">Manage students, programs, and projects</p>
+    </section>
+
+    <!-- Tabs Navigation -->
+    <div class="flex gap-3 mb-8 flex-wrap">
+      <button class="tab-button active" onclick="switchTab('students')">Students</button>
+      <button class="tab-button" onclick="switchTab('programs')">Programs</button>
+      <button class="tab-button" onclick="switchTab('projects')">Projects</button>
+      <button class="tab-button" onclick="switchTab('photos')">Photos</button>
+    </div>
+
+    <!-- Students Tab -->
+    <div id="students-tab" class="tab-content active">
+      <div class="rounded-3xl border-2 border-sky/20 bg-white/70 backdrop-blur p-8 shadow-lg mb-8">
+        <h2 class="text-2xl font-bold text-ink mb-6">Add New Student</h2>
+        <form id="addStudentForm" class="space-y-4">
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Full Name</label>
+              <input type="text" id="studentName" required class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="John Doe" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Username</label>
+              <input type="text" id="studentUsername" required class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="johndoe" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Password</label>
+              <input type="password" id="studentPassword" required class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="student123" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Email (Optional)</label>
+              <input type="email" id="studentEmail" class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="john@example.com" />
+            </div>
+          </div>
+          <button type="submit" class="bg-sky hover:bg-sky-deep text-white px-8 py-3 rounded-full font-semibold shadow-lg transition">
+            Add Student
+          </button>
+        </form>
+      </div>
+
+      <!-- Student List -->
+      <div class="rounded-3xl border-2 border-sky/20 bg-white/70 backdrop-blur p-8 shadow-lg">
+        <h2 class="text-2xl font-bold text-ink mb-6">Current Students</h2>
+        <div id="studentsList" class="space-y-4">
+          <!-- Students will be listed here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Programs Tab -->
+    <div id="programs-tab" class="tab-content">
+      <div class="rounded-3xl border-2 border-sky/20 bg-white/70 backdrop-blur p-8 shadow-lg mb-8">
+        <h2 class="text-2xl font-bold text-ink mb-6">Add Program to Student</h2>
+        <form id="addProgramForm" class="space-y-4">
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Select Student</label>
+              <select id="programStudent" required class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none">
+                <option value="">Choose student...</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Program Name</label>
+              <input type="text" id="programName" required class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="Roblox Creator" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Status</label>
+              <select id="programStatus" required class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none">
+                <option value="in_progress">In Progress</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Progress (%)</label>
+              <input type="number" id="programProgress" min="0" max="100" required class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="75" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Tools (comma separated)</label>
+              <input type="text" id="programTools" class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="Roblox Studio, Lua" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Icon Emoji</label>
+              <input type="text" id="programIcon" class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="🎮" />
+            </div>
+          </div>
+          <button type="submit" class="bg-sky hover:bg-sky-deep text-white px-8 py-3 rounded-full font-semibold shadow-lg transition">
+            Add Program
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Projects Tab -->
+    <div id="projects-tab" class="tab-content">
+      <div class="rounded-3xl border-2 border-sky/20 bg-white/70 backdrop-blur p-8 shadow-lg mb-8">
+        <h2 class="text-2xl font-bold text-ink mb-6">Add Project to Student</h2>
+        <form id="addProjectForm" class="space-y-4">
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Select Student</label>
+              <select id="projectStudent" required class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none">
+                <option value="">Choose student...</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Project Title</label>
+              <input type="text" id="projectTitle" required class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="My Awesome Game" />
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Description</label>
+              <textarea id="projectDescription" rows="3" class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="Project description..."></textarea>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">YouTube Video URL</label>
+              <input type="url" id="projectVideo" class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="https://youtube.com/watch?v=..." />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Technologies (comma separated)</label>
+              <input type="text" id="projectTech" class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="Roblox, Lua, Blender" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Status</label>
+              <select id="projectStatus" class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none">
+                <option value="completed">Completed</option>
+                <option value="in_progress">In Progress</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="bg-sky hover:bg-sky-deep text-white px-8 py-3 rounded-full font-semibold shadow-lg transition">
+            Add Project
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Photos Tab -->
+    <div id="photos-tab" class="tab-content">
+      <div class="rounded-3xl border-2 border-sky/20 bg-white/70 backdrop-blur p-8 shadow-lg mb-8">
+        <h2 class="text-2xl font-bold text-ink mb-6">Add Photos to Student Gallery</h2>
+        <form id="addPhotoForm" class="space-y-4">
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Select Student</label>
+              <select id="photoStudent" required class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none">
+                <option value="">Choose student...</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Photo URL</label>
+              <input type="url" id="photoUrl" required class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="https://..." />
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Caption (Optional)</label>
+              <input type="text" id="photoCaption" class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="Working on my project..." />
+            </div>
+          </div>
+          <button type="submit" class="bg-sky hover:bg-sky-deep text-white px-8 py-3 rounded-full font-semibold shadow-lg transition">
+            Add Photo
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="hidden rounded-2xl border-2 border-green-200 bg-green-50 p-6 shadow-lg mb-8">
+      <p class="text-green-700 font-semibold text-center"></p>
+    </div>
+
+  </main>
+
+  <script>
+    // Initialize localStorage structure
+    function initStorage() {
+      if (!localStorage.getItem('students')) {
+        localStorage.setItem('students', JSON.stringify({}));
+      }
+      if (!localStorage.getItem('programs')) {
+        localStorage.setItem('programs', JSON.stringify({}));
+      }
+      if (!localStorage.getItem('projects')) {
+        localStorage.setItem('projects', JSON.stringify({}));
+      }
+      if (!localStorage.getItem('photos')) {
+        localStorage.setItem('photos', JSON.stringify({}));
+      }
+    }
+
+    // Tab switching
+    function switchTab(tabName) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      // Show selected tab
+      document.getElementById(tabName + '-tab').classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Show success message
+    function showSuccess(message) {
+      const successDiv = document.getElementById('successMessage');
+      successDiv.querySelector('p').textContent = message;
+      successDiv.classList.remove('hidden');
+      setTimeout(() => {
+        successDiv.classList.add('hidden');
+      }, 3000);
+    }
+
+    // Add Student
+    document.getElementById('addStudentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const students = JSON.parse(localStorage.getItem('students') || '{}');
+      const username = document.getElementById('studentUsername').value;
+
+      if (students[username]) {
+        alert('Username already exists!');
+        return;
+      }
+
+      students[username] = {
+        name: document.getElementById('studentName').value,
+        password: document.getElementById('studentPassword').value,
+        email: document.getElementById('studentEmail').value,
+        id: username
+      };
+
+      localStorage.setItem('students', JSON.stringify(students));
+      showSuccess('Student added successfully!');
+      this.reset();
+      loadStudents();
+      updateStudentSelects();
+    });
+
+    // Add Program
+    document.getElementById('addProgramForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const programs = JSON.parse(localStorage.getItem('programs') || '{}');
+      const studentId = document.getElementById('programStudent').value;
+
+      if (!programs[studentId]) {
+        programs[studentId] = [];
+      }
+
+      programs[studentId].push({
+        name: document.getElementById('programName').value,
+        status: document.getElementById('programStatus').value,
+        progress: parseInt(document.getElementById('programProgress').value),
+        tools: document.getElementById('programTools').value.split(',').map(t => t.trim()),
+        icon: document.getElementById('programIcon').value || '📚'
+      });
+
+      localStorage.setItem('programs', JSON.stringify(programs));
+      showSuccess('Program added successfully!');
+      this.reset();
+    });
+
+    // Add Project
+    document.getElementById('addProjectForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const projects = JSON.parse(localStorage.getItem('projects') || '{}');
+      const studentId = document.getElementById('projectStudent').value;
+
+      if (!projects[studentId]) {
+        projects[studentId] = [];
+      }
+
+      projects[studentId].push({
+        title: document.getElementById('projectTitle').value,
+        description: document.getElementById('projectDescription').value,
+        videoUrl: document.getElementById('projectVideo').value,
+        technologies: document.getElementById('projectTech').value.split(',').map(t => t.trim()),
+        status: document.getElementById('projectStatus').value
+      });
+
+      localStorage.setItem('projects', JSON.stringify(projects));
+      showSuccess('Project added successfully!');
+      this.reset();
+    });
+
+    // Add Photo
+    document.getElementById('addPhotoForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const photos = JSON.parse(localStorage.getItem('photos') || '{}');
+      const studentId = document.getElementById('photoStudent').value;
+
+      if (!photos[studentId]) {
+        photos[studentId] = [];
+      }
+
+      photos[studentId].push({
+        url: document.getElementById('photoUrl').value,
+        caption: document.getElementById('photoCaption').value
+      });
+
+      localStorage.setItem('photos', JSON.stringify(photos));
+      showSuccess('Photo added successfully!');
+      this.reset();
+    });
+
+    // Load and display students
+    function loadStudents() {
+      const students = JSON.parse(localStorage.getItem('students') || '{}');
+      const container = document.getElementById('studentsList');
+
+      if (Object.keys(students).length === 0) {
+        container.innerHTML = '<p class="text-slate-600">No students added yet.</p>';
+        return;
+      }
+
+      container.innerHTML = Object.entries(students).map(([username, student]) => `
+        <div class="p-4 bg-sky/5 rounded-lg border border-sky/20">
+          <div class="flex justify-between items-center">
+            <div>
+              <p class="font-bold text-ink">${student.name}</p>
+              <p class="text-sm text-slate-600">Username: ${username}</p>
+              ${student.email ? `<p class="text-sm text-slate-600">Email: ${student.email}</p>` : ''}
+            </div>
+            <button onclick="deleteStudent('${username}')" class="text-red-600 hover:text-red-800 font-semibold text-sm">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Delete student
+    function deleteStudent(username) {
+      if (!confirm('Are you sure you want to delete this student?')) return;
+
+      const students = JSON.parse(localStorage.getItem('students') || '{}');
+      delete students[username];
+      localStorage.setItem('students', JSON.stringify(students));
+
+      loadStudents();
+      updateStudentSelects();
+      showSuccess('Student deleted successfully!');
+    }
+
+    // Update student dropdowns
+    function updateStudentSelects() {
+      const students = JSON.parse(localStorage.getItem('students') || '{}');
+      const selects = ['programStudent', 'projectStudent', 'photoStudent'];
+
+      selects.forEach(selectId => {
+        const select = document.getElementById(selectId);
+        select.innerHTML = '<option value="">Choose student...</option>' +
+          Object.entries(students).map(([username, student]) =>
+            `<option value="${username}">${student.name}</option>`
+          ).join('');
+      });
+    }
+
+    // Initialize on load
+    initStorage();
+    loadStudents();
+    updateStudentSelects();
+  </script>
+
+</body>
+</html>

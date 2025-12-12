@@ -257,13 +257,6 @@
   </footer>
 
   <script>
-    // Demo login credentials - In production, this would be handled server-side
-    const DEMO_STUDENTS = {
-      'demo': { password: 'demo123', name: 'Demo Student', id: 'demo' },
-      'student1': { password: 'pass123', name: 'Bảo Minh', id: 'student1' },
-      'student2': { password: 'pass123', name: 'Gia Hân', id: 'student2' }
-    };
-
     // Handle login form submission
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -272,13 +265,16 @@
       const password = document.getElementById('password').value;
       const errorMessage = document.getElementById('errorMessage');
 
+      // Get students from admin-created data
+      const students = JSON.parse(localStorage.getItem('students') || '{}');
+
       // Check credentials
-      if (DEMO_STUDENTS[username] && DEMO_STUDENTS[username].password === password) {
-        // Store login info in localStorage (in production, use proper session management)
+      if (students[username] && students[username].password === password) {
+        // Store login info in localStorage
         localStorage.setItem('studentLogin', JSON.stringify({
           username: username,
-          name: DEMO_STUDENTS[username].name,
-          id: DEMO_STUDENTS[username].id
+          name: students[username].name,
+          id: username
         }));
 
         // Redirect to portal
@@ -286,7 +282,7 @@
       } else {
         // Show error message
         errorMessage.classList.remove('hidden');
-        errorMessage.querySelector('p').textContent = 'Invalid username or password. Try: demo / demo123';
+        errorMessage.querySelector('p').textContent = 'Invalid username or password. Add students via admin.html first.';
       }
     });
 
