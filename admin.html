@@ -176,8 +176,8 @@
               </select>
             </div>
             <div>
-              <label class="block text-sm font-semibold text-slate-700 mb-2">Progress (%)</label>
-              <input type="number" id="programProgress" min="0" max="100" required class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="75" />
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Lessons Completed (out of 24)</label>
+              <input type="number" id="programProgress" min="0" max="24" required class="w-full px-4 py-3 rounded-lg border-2 border-slate-300 focus:border-sky focus:outline-none" placeholder="15" />
             </div>
             <div>
               <label class="block text-sm font-semibold text-slate-700 mb-2">Tools (comma separated)</label>
@@ -352,10 +352,12 @@
         programs[studentId] = [];
       }
 
+      const lessons = parseInt(document.getElementById('programProgress').value);
       programs[studentId].push({
         name: document.getElementById('programName').value,
         status: document.getElementById('programStatus').value,
-        progress: parseInt(document.getElementById('programProgress').value),
+        progress: Math.round((lessons / 24) * 100), // Convert to percentage
+        lessons: lessons,
         tools: document.getElementById('programTools').value.split(',').map(t => t.trim()),
         icon: document.getElementById('programIcon').value || '📚'
       });
