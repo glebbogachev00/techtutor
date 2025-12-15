@@ -1007,17 +1007,29 @@
       });
     });
 
-    // Load saved language preference
+    // Load saved language preference or default to English
     try {
-      const savedLang = localStorage.getItem('tt-lang') || 'en';
-      const savedBtn = document.querySelector(`[data-lang="${savedLang}"]`);
-      if (savedBtn) {
-        savedBtn.click();
+      const savedLang = localStorage.getItem('tt-lang');
+      if (savedLang && savedLang === 'vi') {
+        // Only switch if user explicitly chose Vietnamese before
+        const viBtn = document.querySelector('[data-lang="vi"]');
+        if (viBtn) {
+          viBtn.click();
+        }
       } else {
-        switchLanguage('en');
+        // Default to English (no need to call switchLanguage since page loads in English)
+        const enBtn = document.querySelector('[data-lang="en"]');
+        if (enBtn) {
+          enBtn.classList.add('bg-primary', 'text-white');
+          enBtn.classList.remove('text-gray-500', 'hover:bg-gray-100');
+          enBtn.setAttribute('aria-pressed', 'true');
+        }
+        if (!savedLang) {
+          localStorage.setItem('tt-lang', 'en');
+        }
       }
     } catch (e) {
-      switchLanguage('en');
+      // Default to English on error
     }
 
     // Mobile menu toggle
