@@ -431,25 +431,24 @@
     });
 
     // Initialize with English on page load
+    // IMPORTANT: Program pages only support English, so always force English
     try {
-      const savedLang = localStorage.getItem('tt-lang');
-      // Always default to English for program pages (no Vietnamese translation available)
-      const enBtn = document.querySelector('[data-lang="en"]');
-      if (enBtn) {
-        enBtn.classList.add('bg-primary', 'text-white');
-        enBtn.classList.remove('text-gray-500', 'hover:bg-gray-100');
-        enBtn.setAttribute('aria-pressed', 'true');
-      }
-      const viBtn = document.querySelector('[data-lang="vi"]');
-      if (viBtn) {
-        viBtn.classList.remove('bg-primary', 'text-white');
-        viBtn.classList.add('text-gray-500', 'hover:bg-gray-100');
-        viBtn.setAttribute('aria-pressed', 'false');
-      }
-      // Set to English if not already
-      if (savedLang !== 'en') {
-        localStorage.setItem('tt-lang', 'en');
-      }
+      // Force localStorage to English immediately
+      localStorage.setItem('tt-lang', 'en');
+
+      // Update all language buttons to show English as active
+      const allLangButtons = document.querySelectorAll('[data-lang]');
+      allLangButtons.forEach(button => {
+        if (button.dataset.lang === 'en') {
+          button.classList.add('bg-primary', 'text-white');
+          button.classList.remove('text-gray-500', 'hover:bg-gray-100');
+          button.setAttribute('aria-pressed', 'true');
+        } else {
+          button.classList.remove('bg-primary', 'text-white');
+          button.classList.add('text-gray-500', 'hover:bg-gray-100');
+          button.setAttribute('aria-pressed', 'false');
+        }
+      });
     } catch (e) {}
   </script>
 
