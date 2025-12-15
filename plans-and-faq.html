@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plans & FAQ | TechTutor Academy</title>
+  <meta name="description" content="Learn about TechTutor's pricing plans and get answers to frequently asked questions about our programs, lessons, and enrollment process." />
+  <link rel="icon" type="image/png" href="images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            teal: { DEFAULT: '#2C7A7B', light: '#319795', dark: '#234E52' },
+            ink: '#0F172A',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; }
+    .btn-primary { background: #193b92; color: white; padding: 14px 32px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; display: inline-block; text-decoration: none; }
+    .btn-primary:hover { background: #0f2861; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(25, 59, 146, 0.4); }
+    .card { background: white; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); padding: 32px; }
+    .section-title { font-size: 2.5rem; font-weight: 800; line-height: 1.2; color: #0F172A; }
+    .faq-item { border-bottom: 1px solid #E5E7EB; padding: 24px 0; cursor: pointer; transition: all 0.3s ease; }
+    .faq-question { display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #0F172A; font-size: 1.125rem; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: #6B7280; margin-top: 0; }
+    .faq-answer.active { max-height: 500px; margin-top: 16px; }
+    .faq-icon { transition: transform 0.3s ease; }
+    .faq-item.active .faq-icon { transform: rotate(180deg); }
+    .dropdown { position: relative; }
+    .dropdown-menu { position: absolute; top: 100%; left: 0; margin-top: 8px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); min-width: 280px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 100; display: flex; flex-direction: column; }
+    .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown-menu a { display: block !important; padding: 12px 20px; color: #4B5563; text-decoration: none; transition: all 0.2s ease; font-size: 0.95rem; }
+    .dropdown-menu a:first-child { border-radius: 12px 12px 0 0; }
+    .dropdown-menu a:last-child { border-radius: 0 0 12px 12px; }
+    .dropdown-menu a:hover { background: #F3F4F6; color: #193b92; padding-left: 24px; }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <a href="index-redesign.html"><img src="images/tt-new.png" alt="TechTutor logo" class="h-24 w-auto" /></a>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+          <div class="dropdown">
+            <a href="index-redesign.html#programs" class="text-gray-700 hover:text-primary transition font-medium">Programs ▾</a>
+            <div class="dropdown-menu">
+              <a href="programs/scratch-game-coder.html">Scratch Game Coder</a>
+              <a href="programs/gdevelop-game-designer.html">GDevelop Game Designer</a>
+              <a href="programs/roblox-world-creator.html">Roblox World Creator</a>
+              <a href="programs/3d-designer.html">3D Designer</a>
+              <a href="programs/ai-programming-quest.html">AI & Programming Quest</a>
+              <a href="programs/generative-ai-magic.html">Generative AI Magic</a>
+              <a href="programs/app-development.html">App Development</a>
+            </div>
+          </div>
+          <a href="student-projects.html" class="text-gray-700 hover:text-primary transition font-medium">Projects</a>
+          <a href="plans-and-faq.html" class="text-primary font-medium">Plans & FAQ</a>
+          <a href="blog.html" class="text-gray-700 hover:text-primary transition font-medium">Blog</a>
+          <a href="free-trial.html" class="btn-primary text-sm">Free Trial</a>
+        </div>
+        <div class="flex items-center gap-1 rounded-full border border-gray-200 bg-white p-1">
+          <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white transition text-sm">🇬🇧</button>
+          <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-gray-500 transition hover:bg-gray-100 text-sm">🇻🇳</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-12">
+
+    <!-- Hero Section -->
+    <section class="mb-16 text-center">
+      <h1 class="section-title mb-4">Plans & Pricing</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+        Flexible pricing for private or group lessons. Choose the plan that works best for your family.
+      </p>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="mb-20">
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Private Lessons -->
+        <div class="card">
+          <h3 class="text-2xl font-bold text-ink mb-6">Private (1 on 1)</h3>
+          <div class="space-y-4">
+            <div class="flex justify-between items-center border-b border-gray-200 pb-4">
+              <span class="text-gray-600">1 course (8 lessons)</span>
+              <span class="font-bold text-ink">5.6M VND / ~$225</span>
+            </div>
+            <div class="flex justify-between items-center border-b border-gray-200 pb-4">
+              <span class="text-gray-600">2 courses (16 lessons) — <span class="font-semibold" style="color: #ff0000;">5% off</span></span>
+              <div class="text-right">
+                <div class="text-sm text-gray-400 line-through">11.3M VND / ~$450</div>
+                <span class="font-bold text-ink">10.7M VND / ~$428</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">3 courses (24 lessons) — <span class="font-semibold" style="color: #ff0000;">10% off</span></span>
+              <div class="text-right">
+                <div class="text-sm text-gray-400 line-through">16.8M VND / ~$675</div>
+                <span class="font-bold text-ink">15M VND / ~$608</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 p-4 bg-primary/5 rounded-lg">
+            <p class="text-sm text-gray-600"><strong>Best for:</strong> Students who want personalized attention and a custom learning pace.</p>
+          </div>
+        </div>
+
+        <!-- Group Lessons -->
+        <div class="card">
+          <h3 class="text-2xl font-bold text-ink mb-6">Small group (2-4 students)</h3>
+          <div class="space-y-4">
+            <div class="flex justify-between items-center border-b border-gray-200 pb-4">
+              <span class="text-gray-600">1 course (8 lessons)</span>
+              <span class="font-bold text-ink">4M VND / ~$160</span>
+            </div>
+            <div class="flex justify-between items-center border-b border-gray-200 pb-4">
+              <span class="text-gray-600">2 courses (16 lessons) — <span class="font-semibold" style="color: #ff0000;">5% off</span></span>
+              <div class="text-right">
+                <div class="text-sm text-gray-400 line-through">8M VND / ~$320</div>
+                <span class="font-bold text-ink">7.6M VND / ~$304</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">3 courses (24 lessons) — <span class="font-semibold" style="color: #ff0000;">10% off</span></span>
+              <div class="text-right">
+                <div class="text-sm text-gray-400 line-through">12M VND / ~$480</div>
+                <span class="font-bold text-ink">10.8M VND / ~$432</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 p-4 bg-teal/5 rounded-lg">
+            <p class="text-sm text-gray-600"><strong>Best for:</strong> Students who enjoy collaborative learning and want more affordable pricing.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- What's Included -->
+      <div class="card mt-12">
+        <h3 class="text-2xl font-bold text-ink mb-6 text-center">What's Included</h3>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="text-4xl mb-3">⏱️</div>
+            <h4 class="font-semibold text-ink mb-2">60-Minute Lessons</h4>
+            <p class="text-sm text-gray-600">Full hour of focused, project-based learning</p>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl mb-3">👨‍🏫</div>
+            <h4 class="font-semibold text-ink mb-2">Expert Instructors</h4>
+            <p class="text-sm text-gray-600">3+ years experience teaching tech to kids</p>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl mb-3">📋</div>
+            <h4 class="font-semibold text-ink mb-2">Progress Reports</h4>
+            <p class="text-sm text-gray-600">Detailed feedback after every lesson</p>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl mb-3">🎓</div>
+            <h4 class="font-semibold text-ink mb-2">Certificate</h4>
+            <p class="text-sm text-gray-600">Course completion certificate for portfolio</p>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl mb-3">🔄</div>
+            <h4 class="font-semibold text-ink mb-2">Flexible Scheduling</h4>
+            <p class="text-sm text-gray-600">Book lessons at times that work for you</p>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl mb-3">💻</div>
+            <h4 class="font-semibold text-ink mb-2">All Materials Included</h4>
+            <p class="text-sm text-gray-600">Software, tools, and project resources</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="mb-20">
+      <h2 class="section-title mb-8 text-center">Frequently Asked Questions</h2>
+      <div class="card">
+
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What age groups do you teach?</span>
+            <span class="faq-icon text-primary text-2xl">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>We teach students aged 6-16. Our programs are designed for different skill levels: Scratch (ages 6-10), Roblox and GDevelop (ages 8-15), 3D Design and AI & Programming (ages 10-16), and App Development (ages 12-16).</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Do students need prior coding experience?</span>
+            <span class="faq-icon text-primary text-2xl">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>No prior experience is needed! We have beginner-friendly programs like Scratch and GDevelop that start from the basics. For students with some experience, we offer more advanced programs like App Development and AI & Programming.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How long is each lesson?</span>
+            <span class="faq-icon text-primary text-2xl">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Each lesson is 60-90 minutes of focused, hands-on learning. One course consists of 8 lessons, which students typically complete over 8 weeks with one lesson per week.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Are lessons live or pre-recorded?</span>
+            <span class="faq-icon text-primary text-2xl">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>All our lessons are live and interactive via video call. Students work directly with their instructor in real-time, getting immediate feedback and personalized guidance.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What equipment does my child need?</span>
+            <span class="faq-icon text-primary text-2xl">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Students need a computer (Windows, Mac, or Chromebook) with a stable internet connection, webcam, and microphone. All software and tools are free and we'll help you get set up during the first lesson.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 6 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I get a refund if my child doesn't like the program?</span>
+            <span class="faq-icon text-primary text-2xl">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>We offer a free trial lesson so families can try before committing. If you're not satisfied after the first paid lesson, we'll provide a full refund, no questions asked.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 7 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How do I schedule lessons?</span>
+            <span class="faq-icon text-primary text-2xl">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>After enrollment, we'll work with you to find a regular weekly time slot that fits your schedule. Lessons can be rescheduled with 24 hours notice if needed.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 8 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What if my child misses a lesson?</span>
+            <span class="faq-icon text-primary text-2xl">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>If you notify us at least 24 hours in advance, we can reschedule the lesson at no charge. Lessons cancelled with less than 24 hours notice will be forfeited.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 9 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Do you teach in English or Vietnamese?</span>
+            <span class="faq-icon text-primary text-2xl">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>We offer bilingual instruction in both English and Vietnamese. Our instructors can teach in either language or switch between both based on the student's preference and comfort level.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 10 -->
+        <div class="faq-item" style="border-bottom: none;">
+          <div class="faq-question">
+            <span>How do I get started?</span>
+            <span class="faq-icon text-primary text-2xl">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Simply book a free trial lesson! We'll assess your child's interests and skill level, recommend the best program, and let them experience a full lesson before you commit to any payment.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="card text-center" style="background: linear-gradient(135deg, #2C7A7B 0%, #234E52 100%);">
+      <h2 class="text-3xl font-bold text-white mb-4">Still Have Questions?</h2>
+      <p class="text-xl text-white/90 mb-6">Book a free trial lesson and we'll answer all your questions!</p>
+      <a href="free-trial.html" class="btn-primary bg-white text-primary hover:bg-gray-100">Book Free Trial Now</a>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-12 mt-16">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="text-sm text-slate-400">© 2025 TechTutor Academy. All rights reserved.</p>
+      <div class="mt-4">
+        <a href="vision.html" class="text-slate-300 hover:text-white transition mx-2">Vision</a>
+        <a href="plans-and-faq.html" class="text-slate-300 hover:text-white transition mx-2">Plans & FAQ</a>
+        <a href="blog.html" class="text-slate-300 hover:text-white transition mx-2">Blog</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FAQ Script -->
+  <script>
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+
+      question.addEventListener('click', () => {
+        // Close all other FAQ items
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+            otherItem.querySelector('.faq-answer').classList.remove('active');
+          }
+        });
+
+        // Toggle current item
+        item.classList.toggle('active');
+        answer.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

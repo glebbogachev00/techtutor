@@ -1,705 +1,348 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TechTutor Academy — Student Projects</title>
-    <link rel="icon" type="image/png" href="images/robot-rocket.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              sky: {
-                light: '#E8F1FD',
-                DEFAULT: '#1E66F5',
-                deep: '#144bb3',
-              },
-              leaf: '#16A34A',
-              ink: '#0F172A',
-              mist: '#F8FAFC',
-            },
-            fontFamily: {
-              sans: ['Lato', 'system-ui', 'sans-serif'],
-            },
-            maxWidth: {
-              wrap: '1040px',
-            },
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Projects | TechTutor Academy</title>
+  <meta name="description" content="See what our students create! Browse project highlights from our Scratch, Roblox, AI, 3D Design, and App Development programs." />
+  <link rel="icon" type="image/png" href="images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            teal: { DEFAULT: '#2C7A7B', light: '#319795', dark: '#234E52' },
+            ink: '#0F172A',
           },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
         },
-      };
-    </script>
-    <style>
-      body {
-        background: linear-gradient(135deg, #e0f2fe 0%, #f1f5f9 50%, #e8f1fd 100%);
-        background-attachment: fixed;
-        font-feature-settings: 'lnum' 1, 'tnum' 1;
-        min-height: 100vh;
-      }
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; }
+    .btn-primary { background: #193b92; color: white; padding: 14px 32px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; display: inline-block; text-decoration: none; }
+    .btn-primary:hover { background: #0f2861; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(25, 59, 146, 0.4); }
+    .card { background: white; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); padding: 32px; }
+    .section-title { font-size: 2.5rem; font-weight: 800; line-height: 1.2; color: #0F172A; }
+    .project-card { background: white; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); padding: 32px; transition: all 0.3s ease; }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); }
+    .tool-chip { display: inline-flex; align-items: center; padding: 8px 16px; border-radius: 50px; background: rgba(25, 59, 146, 0.1); color: #193b92; font-weight: 600; font-size: 0.875rem; }
+    .dropdown { position: relative; }
+    .dropdown-menu { position: absolute; top: 100%; left: 0; margin-top: 8px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); min-width: 280px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 100; }
+    .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown-menu a { display: block; padding: 12px 20px; color: #4B5563; text-decoration: none; transition: all 0.2s ease; font-size: 0.95rem; }
+    .dropdown-menu a:first-child { border-radius: 12px 12px 0 0; }
+    .dropdown-menu a:last-child { border-radius: 0 0 12px 12px; }
+    .dropdown-menu a:hover { background: #F3F4F6; color: #193b92; padding-left: 24px; }
+  </style>
+</head>
+<body class="antialiased">
 
-      /* Navigation hover effects */
-      nav a {
-        position: relative;
-        transition: all 0.3s ease;
-      }
-
-      nav a:hover {
-        color: #1E66F5 !important;
-        transform: translateY(-1px);
-      }
-
-      nav a::after {
-        content: '';
-        position: absolute;
-        bottom: -4px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: linear-gradient(90deg, #1E66F5, #16A34A);
-        transition: width 0.3s ease;
-      }
-
-      nav a:hover::after {
-        width: 100%;
-      }
-
-      .gradient-bg {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-      }
-      .btn-enhanced {
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease;
-      }
-      .btn-enhanced:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      }
-      .btn-enhanced::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        transition: left 0.5s;
-      }
-      .btn-enhanced:hover::before {
-        left: 100%;
-      }
-      .tool-chip {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.45rem 1rem;
-        border-radius: 999px;
-        background: rgba(30, 102, 245, 0.15);
-        color: #1E66F5;
-        font-weight: 600;
-        transition: all 0.3s ease;
-      }
-      .tool-chip:hover {
-        background: #1E66F5;
-        color: #fff;
-        transform: translateY(-3px);
-        box-shadow: 0 12px 24px rgba(30, 102, 245, 0.35);
-      }
-      .project-card {
-        transition: all 0.3s ease;
-      }
-      .project-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      }
-
-      /* Trial highlight badges */
-      .trial-highlight {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 200px;
-        padding: 0.5rem 1.25rem;
-        border-radius: 999px;
-        background: rgba(30, 102, 245, 0.12);
-        color: #1E66F5;
-        font-size: 0.95rem;
-        font-weight: 600;
-        text-align: center;
-        box-shadow: 0 10px 25px rgba(30, 102, 245, 0.12);
-      }
-
-      .trial-highlight--float {
-        animation: highlightFloat 6s ease-in-out infinite;
-      }
-
-      .trial-highlight-row {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        display: none;
-        gap: 0.75rem;
-      }
-
-      @media (min-width: 768px) {
-        .trial-highlight-row { display: flex; }
-      }
-
-      .trial-highlight-row--top {
-        top: -10px;
-      }
-
-      .trial-highlight-row--bottom {
-        bottom: -10px;
-      }
-
-      .trial-highlight-row--top .trial-highlight--float:nth-child(2) {
-        animation-delay: 0.5s;
-      }
-
-      .trial-highlight-row--bottom .trial-highlight--float:nth-child(1) {
-        animation-delay: 0.3s;
-      }
-
-      .trial-highlight-row--bottom .trial-highlight--float:nth-child(2) {
-        animation-delay: 0.9s;
-      }
-
-      @keyframes highlightFloat {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-6px); }
-      }
-
-      /* Hover lift effect */
-      .hover-lift {
-        transition: all 0.3s ease;
-      }
-
-      .hover-lift:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-      }
-
-      /* Modal Enhancements */
-      .modal {
-        backdrop-filter: blur(4px);
-      }
-
-      .modal__dialog {
-        animation: modalSlideIn 0.3s ease-out;
-      }
-
-      @keyframes modalSlideIn {
-        from {
-          opacity: 0;
-          transform: translateY(-20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    </style>
-  </head>
-  <body class="font-sans text-ink antialiased">
-    <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
-      <div class="mx-auto flex max-w-wrap items-center justify-between gap-4 px-6 py-4 md:px-8">
-        <a href="index.html" class="flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">
-          <img src="images/tt-new.png" alt="TechTutor logo" class="h-20 w-auto origin-left scale-125 md:h-24 md:scale-150" />
-        </a>
-        <nav class="hidden items-center gap-8 text-base font-semibold text-slate-600 md:flex">
-          <a data-i18n="nav.programs" href="index.html#programs" class="transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Programs</a>
-          <a data-i18n="nav.projects" href="student-projects.html" class="transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Projects</a>
-          <a data-i18n="nav.pricing" href="index.html#pricing" class="transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Pricing</a>
-          <a data-i18n="nav.trial" href="index.html#trial" class="transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Free trial</a>
-          </nav>
-        <div class="flex items-center gap-3">
-          <div class="flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1">
-            <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-sky text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">🇬🇧</button>
-            <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-slate-500 transition hover:bg-sky-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">🇻🇳</button>
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <a href="index-redesign.html"><img src="images/tt-new.png" alt="TechTutor logo" class="h-24 w-auto" /></a>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+          <div class="dropdown">
+            <a href="index-redesign.html#programs" class="text-gray-700 hover:text-primary transition font-medium">Programs ▾</a>
+            <div class="dropdown-menu">
+              <a href="programs/scratch-game-coder.html">Scratch Game Coder</a>
+              <a href="programs/gdevelop-game-designer.html">GDevelop Game Designer</a>
+              <a href="programs/roblox-world-creator.html">Roblox World Creator</a>
+              <a href="programs/3d-designer.html">3D Designer</a>
+              <a href="programs/ai-programming-quest.html">AI & Programming Quest</a>
+              <a href="programs/generative-ai-magic.html">Generative AI Magic</a>
+              <a href="programs/app-development.html">App Development</a>
+            </div>
           </div>
-          <button id="menu-button" type="button" class="inline-flex items-center justify-center rounded-md border border-slate-200 p-2 text-slate-600 transition hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky md:hidden" aria-label="Menu">
-            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
+          <a href="student-projects.html" class="text-primary font-medium">Projects</a>
+          <a href="plans-and-faq.html" class="text-gray-700 hover:text-primary transition font-medium">Plans & FAQ</a>
+          <a href="blog.html" class="text-gray-700 hover:text-primary transition font-medium">Blog</a>
+          <a href="free-trial.html" class="btn-primary text-sm">Free Trial</a>
+        </div>
+        <div class="flex items-center gap-1 rounded-full border border-gray-200 bg-white p-1">
+          <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white transition text-sm">🇬🇧</button>
+          <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-gray-500 transition hover:bg-gray-100 text-sm">🇻🇳</button>
         </div>
       </div>
-      <nav id="mobile-nav" class="hidden border-t border-slate-200 bg-white md:hidden">
-        <div class="mx-auto flex max-w-wrap flex-col gap-2 px-6 py-4 text-base font-semibold text-slate-600">
-          <a data-i18n="nav.programs" href="index.html#programs" class="py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Programs</a>
-          <a data-i18n="nav.projects" href="student-projects.html" class="py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Projects</a>
-          <a data-i18n="nav.pricing" href="index.html#pricing" class="py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Pricing</a>
-          <a data-i18n="nav.trial" href="index.html#trial" class="py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">Free trial</a>
-          </div>
-      </nav>
-    </header>
+    </div>
+  </nav>
 
-    <main class="gradient-bg mx-auto max-w-wrap px-6 py-16 md:px-8">
-      <section class="rounded-3xl border-2 border-sky/20 bg-white/70 p-8 shadow-lg">
-        <p data-i18n="hero.badge" class="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">Showcase</p>
-        <h1 data-i18n="hero.heading" class="mt-2 text-4xl font-bold text-ink">Student Project Library</h1>
-        <p data-i18n="hero.lede" class="mt-4 text-lg text-slate-600">Every learner ends their course with a tangible project. Browse a few recent highlights across Roblox, AI, 3D Design, App Development, and Game Design.</p>
-      </section>
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-16">
 
-      <section class="mt-12 space-y-12">
-        <article class="project-card rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-lg">
-          <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <div class="space-y-3 md:max-w-[360px]">
-              <p data-i18n="projects.program" class="text-sm font-semibold uppercase tracking-wide text-slate-500">Program</p>
-              <h2 data-i18n="projects.cardGen.program" class="text-2xl font-semibold text-ink">Generative AI</h2>
-              <div class="space-y-1 text-base text-slate-600" data-i18n-html="projects.cardGen.summary">
-                <p><strong>Student:</strong> Ủn ỉn Bé Heo</p>
-                <p><strong>Focus:</strong> Storytelling with AI voice, music, and visuals.</p>
-              </div>
-              <div>
-                <p data-i18n="projects.toolsLabel" class="text-sm font-semibold text-slate-500">Tools Used</p>
-                <ul class="mt-2 flex flex-wrap gap-2 text-sm text-slate-600">
-                  <li class="tool-chip">Canva</li>
-                  <li class="tool-chip">Google VEO</li>
-                  <li class="tool-chip">Gemini</li>
-                  <li class="tool-chip">Suno AI</li>
-                  <li class="tool-chip">ElevenLabs</li>
-                  <li class="tool-chip">ChatGPT</li>
-                </ul>
-              </div>
-            </div>
-            <div class="w-full overflow-hidden rounded-2xl border border-white/40 shadow-lg">
-              <iframe class="aspect-video w-full" src="https://www.youtube.com/embed/XqAfPB-7_yQ" title="Generative AI project" allowfullscreen loading="lazy"></iframe>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-lg">
-          <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <div class="space-y-3 md:max-w-[360px]">
-              <p data-i18n="projects.program" class="text-sm font-semibold uppercase tracking-wide text-slate-500">Program</p>
-              <h2 data-i18n="projects.cardRoblox.program" class="text-2xl font-semibold text-ink">Roblox World Creator</h2>
-              <div class="space-y-1 text-base text-slate-600" data-i18n-html="projects.cardRoblox.summary">
-                <p><strong>Student:</strong> Bảo Phú (11)</p>
-                <p><strong>Focus:</strong> Reaction-based obby with timers and custom scripting.</p>
-              </div>
-              <div>
-                <p data-i18n="projects.toolsLabel" class="text-sm font-semibold text-slate-500">Tools Used</p>
-                <ul class="mt-2 flex flex-wrap gap-2 text-sm text-slate-600">
-                  <li class="tool-chip">Roblox Studio</li>
-                  <li class="tool-chip">Lua scripting</li>
-                </ul>
-              </div>
-            </div>
-            <div class="w-full overflow-hidden rounded-2xl border border-white/40 shadow-lg">
-              <iframe class="aspect-video w-full" src="https://www.youtube.com/embed/71eT07IOWuM" title="Roblox obstacle project" allowfullscreen></iframe>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-lg">
-          <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <div class="space-y-3 md:max-w-[360px]">
-              <p data-i18n="projects.program" class="text-sm font-semibold uppercase tracking-wide text-slate-500">Program</p>
-              <h2 data-i18n="projects.cardAI1.program" class="text-2xl font-semibold text-ink">AI & Programming Quest</h2>
-              <div class="space-y-1 text-base text-slate-600" data-i18n-html="projects.cardAI1.summary">
-                <p><strong>Student:</strong> Mia</p>
-                <p><strong>Focus:</strong> Training custom classifiers with computer vision tools.</p>
-              </div>
-              <div>
-                <p data-i18n="projects.toolsLabel" class="text-sm font-semibold text-slate-500">Tools Used</p>
-                <ul class="mt-2 flex flex-wrap gap-2 text-sm text-slate-600">
-                  <li class="tool-chip">Machine Learning For Kids</li>
-                  <li class="tool-chip">Google Collab</li>
-                  <li class="tool-chip">Teachable Machine</li>
-                  <li class="tool-chip">Python</li>
-                </ul>
-              </div>
-            </div>
-            <div class="w-full overflow-hidden rounded-2xl border border-white/40 shadow-lg">
-              <iframe class="aspect-video w-full" src="https://www.youtube.com/embed/IKzxVLj8d8g" title="AI classifier project" allowfullscreen></iframe>
-            </div>
-          </div>
-        </article>
-
-
-        <article class="project-card rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-lg">
-          <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <div class="space-y-3 md:max-w-[360px]">
-              <p data-i18n="projects.program" class="text-sm font-semibold uppercase tracking-wide text-slate-500">Program</p>
-              <h2 data-i18n="projects.cardApp.program" class="text-2xl font-semibold text-ink">App Development Studio</h2>
-              <div class="space-y-1 text-base text-slate-600" data-i18n-html="projects.cardApp.summary">
-                <p><strong>Student:</strong> Paul</p>
-                <p><strong>Focus:</strong> Prototyping a personal habit tracker with Thunkable.</p>
-              </div>
-              <div>
-                <p data-i18n="projects.toolsLabel" class="text-sm font-semibold text-slate-500">Tools Used</p>
-                <ul class="mt-2 flex flex-wrap gap-2 text-sm text-slate-600">
-                  <li class="tool-chip">Thunkable</li>
-                </ul>
-              </div>
-            </div>
-            <div class="w-full overflow-hidden rounded-2xl border border-white/40 shadow-lg">
-              <iframe class="aspect-video w-full" src="https://www.youtube.com/embed/TgRSlhFsC6Y" title="Paul's app prototype" allowfullscreen></iframe>
-            </div>
-          </div>
-        </article>
-
-
-        <article class="project-card rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-lg">
-          <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <div class="space-y-3 md:max-w-[360px]">
-              <p data-i18n="projects.program" class="text-sm font-semibold uppercase tracking-wide text-slate-500">Program</p>
-              <h2 data-i18n="projects.cardScratch.program" class="text-2xl font-semibold text-ink">Scratch Discovery</h2>
-              <div class="space-y-1 text-base text-slate-600" data-i18n-html="projects.cardScratch.summary">
-                <p><strong>Student:</strong> An Khôi</p>
-                <p><strong>Focus:</strong> Interactive story coding fundamentals with Scratch blocks.</p>
-              </div>
-              <div>
-                <p data-i18n="projects.toolsLabel" class="text-sm font-semibold text-slate-500">Tools Used</p>
-                <ul class="mt-2 flex flex-wrap gap-2 text-sm text-slate-600">
-                  <li class="tool-chip">Scratch</li>
-                </ul>
-              </div>
-            </div>
-            <div class="w-full overflow-hidden rounded-2xl border border-white/40 shadow-lg">
-              <iframe class="aspect-video w-full" src="https://www.youtube.com/embed/uBHLffWDtss" title="Scratch Discovery project" allowfullscreen></iframe>
-            </div>
-          </div>
-        </article>
-      </section>
-    </main>
-
-    <footer id="contact" class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16">
-      <div class="mx-auto max-w-wrap px-6 md:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
-          <div class="lg:col-span-1">
-            <img src="images/robot-rocket.png" alt="TechTutor" class="h-40 w-auto" />
-          </div>
-          <div>
-            <h3 data-i18n="footer.contactUs" class="text-lg font-bold mb-4 text-sky-light">CONTACT US!</h3>
-            <div class="space-y-3 text-sm">
-              <div>
-                <p data-i18n="footer.telLabel" class="text-slate-400 mb-1">Tel/WA/Zalo:</p>
-                <a href="tel:0902776753" class="text-white hover:text-sky-light transition">0902 776 753</a>
-              </div>
-              <div>
-                <p data-i18n="footer.emailLabel" class="text-slate-400 mb-1">Email:</p>
-                <a href="mailto:hello@techtutor.academy" class="text-white hover:text-sky-light transition">hello@techtutor.academy</a>
-              </div>
-            </div>
-          </div>
-          <div>
-            <h3 data-i18n="footer.openingHours" class="text-lg font-bold mb-4 text-sky-light">OPENING HOURS</h3>
-            <div class="space-y-2 text-sm">
-              <p data-i18n="footer.weekdays" class="text-slate-300">Monday - Friday: 8am - 9pm</p>
-              <p data-i18n="footer.weekends" class="text-slate-300">Saturday - Sunday: 8am - 8pm</p>
-            </div>
-          </div>
-          <div>
-            <h3 data-i18n="footer.startLearning" class="text-lg font-bold mb-4 text-sky-light">START LEARNING</h3>
-            <div class="space-y-2 text-sm">
-              <a href="index.html#programs" data-i18n="footer.programs" class="block text-slate-300 hover:text-sky-light transition">Programs</a>
-              <a href="index.html#trial" data-i18n="footer.freeTrial" class="block text-slate-300 hover:text-sky-light transition">Free trial</a>
-            </div>
-          </div>
-          <div>
-            <h3 data-i18n="footer.connectWithUs" class="text-lg font-bold mb-4 text-sky-light">CONNECT WITH US!</h3>
-            <div class="flex gap-3">
-              <a href="https://www.facebook.com/share/1An2WsT9X5/" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-sky hover:bg-sky-deep transition flex items-center justify-center"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-              <a href="https://www.instagram.com/techtutor.academy?igsh=MWljOWJjbndwY2l0dQ==" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-sky hover:bg-sky-deep transition flex items-center justify-center"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-              <a href="https://zalo.me/0902776753" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-sky hover:bg-sky-deep transition flex items-center justify-center"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0zm.5 14.969h-4.25a.469.469 0 110-.938h4.25a.469.469 0 110 .938zm2.406-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938zm0-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938z"/></svg></a>
-            </div>
+    <!-- Hero Section -->
+    <section class="mb-20">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <h1 class="text-5xl md:text-6xl font-black leading-tight mb-6" style="color: #0F172A;">
+            Amazing Student<br/><span style="color: #193b92;">Projects</span>
+          </h1>
+          <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+            See what our talented students are creating! From AI-powered apps to games and 3D designs, explore the incredible projects built by young innovators at TechTutor Academy.
+          </p>
+          <div class="flex items-center gap-4">
+            <a href="free-trial.html" class="btn-primary text-lg px-10 py-4">Start Your Journey</a>
           </div>
         </div>
-        <div class="mt-12 pt-8 border-t border-slate-700 text-center">
-          <p data-i18n="footer.copyright" class="text-sm text-slate-400">© 2025 TechTutor Academy. All rights reserved.</p>
-          <p data-i18n="footer.bilingual" class="text-xs text-slate-500 mt-2">English / Vietnamese bilingual support</p>
+        <div class="relative">
+          <!-- Grid of student images with colorful backgrounds -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-4">
+              <div class="relative rounded-3xl overflow-hidden" style="background: #5B63D3; aspect-ratio: 1;">
+                <img src="images/projects1.png" alt="Student learning" class="w-full h-full object-cover" />
+              </div>
+              <div class="relative rounded-3xl overflow-hidden" style="background: #14B8A6; aspect-ratio: 1;">
+                <img src="images/projects2.png" alt="Student working" class="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div class="space-y-4 pt-8">
+              <div class="relative rounded-3xl overflow-hidden" style="background: #F97316; aspect-ratio: 1;">
+                <img src="images/projects3.png" alt="Student coding" class="w-full h-full object-cover" />
+              </div>
+              <div class="relative rounded-3xl overflow-hidden" style="background: #FCD34D; aspect-ratio: 1;">
+                <img src="images/projects4.png" alt="Student project" class="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+          <!-- Decorative dots -->
+          <div class="absolute -top-8 -left-8 w-16 h-16 rounded-full" style="background: #F97316; opacity: 0.5;"></div>
+          <div class="absolute -bottom-4 right-1/3 w-12 h-12 rounded-full" style="background: #FCD34D; opacity: 0.5;"></div>
         </div>
       </div>
-    </footer>
+    </section>
 
-    <script>
-      const translations = {
-        en: {
-          'nav.programs': 'Programs',
-          'nav.projects': 'Projects',
-          'nav.pricing': 'Pricing',
-          'nav.trial': 'Free trial',
-          'nav.contact': 'Contact',
-          'header.menu': 'Menu',
-          'hero.badge': 'Showcase',
-          'hero.heading': 'Student Project Library',
-          'hero.lede': 'Every learner ends their course with a tangible project. Browse a few recent highlights across Roblox, AI, 3D Design, App Development, and Game Design.',
-          'projects.program': 'Program',
-          'projects.studentLabel': 'Student:',
-          'projects.toolsLabel': 'Tools Used',
-          'projects.cardGen.program': 'Generative AI',
-          'projects.cardRoblox.program': 'Roblox World Creator',
-          'projects.cardAI1.program': 'AI & Programming Quest',
-          'projects.cardApp.program': 'App Development Studio',
-          'projects.cardScratch.program': 'Scratch Discovery',
-          'projects.cardGen.summary': '<p><strong>Student:</strong> Ủn ỉn Bé Heo</p><p><strong>Focus:</strong> Storytelling with AI voice, music, and visuals.</p>',
-          'projects.cardRoblox.summary': '<p><strong>Student:</strong> Bảo Phú (11)</p><p><strong>Focus:</strong> Reaction-based obby with timers and custom scripting.</p>',
-          'projects.cardAI1.summary': '<p><strong>Student:</strong> Mia</p><p><strong>Focus:</strong> Training custom classifiers with computer vision tools.</p>',
-          'projects.cardApp.summary': '<p><strong>Student:</strong> Paul</p><p><strong>Focus:</strong> Prototyping a personal habit tracker with Thunkable.</p>',
-          'projects.cardScratch.summary': '<p><strong>Student:</strong> An Khôi</p><p><strong>Focus:</strong> Interactive story coding fundamentals with Scratch blocks.</p>',
-          'projects.toolsPaul': 'Tools Used',
-          'footer.contactUs': 'CONTACT US!',
-          'footer.telLabel': 'Tel/WA/Zalo:',
-          'footer.emailLabel': 'Email:',
-          'footer.openingHours': 'OPENING HOURS',
-          'footer.weekdays': 'Monday - Friday: 8am - 9pm',
-          'footer.weekends': 'Saturday - Sunday: 8am - 8pm',
-          'footer.startLearning': 'START LEARNING',
-          'footer.programs': 'Programs',
-          'footer.freeTrial': 'Free trial',
-          'footer.connectWithUs': 'CONNECT WITH US!',
-          'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
-          'footer.bilingual': 'English / Vietnamese bilingual support',
-          'trial.parentName': 'Parent name',
-          'trial.childName': "Child's name",
-          'trial.contact': 'Parent email',
-          'trial.phoneField': 'Phone number',
-          'trial.channel': 'Preferred channel',
-          'discount.title': 'Save up to 20%',
-          'discount.subtitle': 'Limited time offer - Book now and save!',
-          'discount.description': 'Fill out the form below to receive your personalized discount quote and lock in your savings. Our team will contact you within 24 hours with your exclusive offer!',
-          'discount.button': 'Get My Discount Quote',
-          'discount.response': "We'll respond within 24 hours with your personalized offer",
-          'banner.save': 'SAVE 20%'
-        },
-        vi: {
-          'nav.programs': 'Chương trình',
-          'nav.projects': 'Dự án',
-          'nav.pricing': 'Học phí',
-          'nav.trial': 'Học thử',
-          'nav.contact': 'Liên hệ',
-          'header.menu': 'Menu',
-          'hero.badge': 'Thư viện',
-          'hero.heading': 'Kho Dự Án Học Viên',
-          'hero.lede': 'Mỗi học viên TechTutor hoàn thành khóa học với một sản phẩm thật. Khám phá tuyển tập dự án Roblox, AI, Thiết kế 3D, App và Game.',
-          'projects.program': 'Chương trình',
-          'projects.studentLabel': 'Học viên:',
-          'projects.toolsLabel': 'Công cụ sử dụng',
-          'projects.cardGen.program': 'AI Tạo Sinh',
-          'projects.cardRoblox.program': 'Roblox World Creator',
-          'projects.cardAI1.program': 'AI & Lập Trình',
-          'projects.cardApp.program': 'Phát Triển Ứng Dụng',
-          'projects.cardScratch.program': 'Scratch Khám Phá',
-          'projects.cardGen.summary': '<p><strong>Học viên:</strong> Ủn ỉn Bé Heo</p><p><strong>Trọng tâm:</strong> Kể chuyện bằng giọng AI, nhạc nền và hình ảnh.</p>',
-          'projects.cardRoblox.summary': '<p><strong>Học viên:</strong> Bảo Phú (11)</p><p><strong>Trọng tâm:</strong> Thử thách obby phản xạ với timer và script tùy chỉnh.</p>',
-          'projects.cardAI1.summary': '<p><strong>Học viên:</strong> Mia</p><p><strong>Trọng tâm:</strong> Huấn luyện bộ phân loại với công cụ thị giác máy tính.</p>',
-          'projects.cardApp.summary': '<p><strong>Học viên:</strong> Paul</p><p><strong>Trọng tâm:</strong> Làm nguyên mẫu app theo dõi thói quen với Thunkable.</p>',
-          'projects.cardScratch.summary': '<p><strong>Học viên:</strong> An Khôi</p><p><strong>Trọng tâm:</strong> Lập trình truyện tương tác với khối Scratch.</p>',
-          'projects.toolsPaul': 'Công cụ sử dụng',
-          'footer.contactUs': 'LIÊN HỆ!',
-          'footer.telLabel': 'Tel/WA/Zalo:',
-          'footer.emailLabel': 'Email:',
-          'footer.openingHours': 'GIỜ MỞ CỬA',
-          'footer.weekdays': 'Thứ 2 - Thứ 6: 8h - 21h',
-          'footer.weekends': 'Thứ 7 - Chủ nhật: 8h - 20h',
-          'footer.startLearning': 'BẮT ĐẦU HỌC',
-          'footer.programs': 'Chương trình',
-          'footer.freeTrial': 'Học thử miễn phí',
-          'footer.connectWithUs': 'KẾT NỐI VỚI CHÚNG TÔI!',
-          'footer.copyright': '© 2025 TechTutor Academy. Bản quyền thuộc về TechTutor.',
-          'footer.bilingual': 'Hỗ trợ song ngữ Anh / Việt',
-          'trial.parentName': 'Tên phụ huynh',
-          'trial.childName': 'Tên con',
-          'trial.contact': 'Email phụ huynh',
-          'trial.phoneField': 'Số điện thoại',
-          'trial.channel': 'Kênh liên hệ ưu tiên',
-          'discount.title': 'Giảm giá lên đến 20%',
-          'discount.subtitle': 'Ưu đãi có thời hạn - Đặt ngay và tiết kiệm!',
-          'discount.description': 'Điền form bên dưới để nhận báo giá ưu đãi cá nhân hóa và khóa mức giá tiết kiệm. Đội ngũ của chúng tôi sẽ liên hệ trong vòng 24 giờ với ưu đãi dành riêng cho bạn!',
-          'discount.button': 'Nhận Báo Giá Ưu Đãi',
-          'discount.response': 'Chúng tôi sẽ phản hồi trong 24 giờ với ưu đãi cá nhân hóa',
-          'banner.save': 'GIẢM 20%'
-        }
-      };
+    <!-- Features Section -->
+    <section class="mb-20">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card hover:shadow-2xl transition-all duration-300">
+          <div class="flex items-start gap-4">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: rgba(25, 59, 146, 0.1);">
+              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-ink mb-2">Diverse Project Types</h3>
+              <p class="text-gray-600">Students create games, apps, AI projects, 3D designs, and more across multiple platforms and tools.</p>
+            </div>
+          </div>
+        </div>
 
-      const langButtons = document.querySelectorAll('[data-lang]');
-      const i18nElements = document.querySelectorAll('[data-i18n]');
-      const i18nHtmlElements = document.querySelectorAll('[data-i18n-html]');
+        <div class="card hover:shadow-2xl transition-all duration-300">
+          <div class="flex items-start gap-4">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: rgba(44, 122, 123, 0.1);">
+              <svg class="w-8 h-8 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-ink mb-2">Real-World Skills</h3>
+              <p class="text-gray-600">Students apply programming, design, and problem-solving skills to build portfolio-worthy projects.</p>
+            </div>
+          </div>
+        </div>
 
-      function setLanguage(lang) {
-        document.documentElement.lang = lang;
-        localStorage.setItem('tt-lang', lang);
+        <div class="card hover:shadow-2xl transition-all duration-300">
+          <div class="flex items-start gap-4">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: rgba(25, 59, 146, 0.1);">
+              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-ink mb-2">Showcase & Share</h3>
+              <p class="text-gray-600">Students publish their projects online and share their creations with friends and family.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        // Re-query elements to catch any newly added ones
-        const allI18nElements = document.querySelectorAll('[data-i18n]');
-        const allI18nHtmlElements = document.querySelectorAll('[data-i18n-html]');
+    <!-- Projects Grid -->
+    <section class="space-y-12">
+      <!-- Project 1: Generative AI -->
+      <article class="project-card">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <span class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">GENERATIVE AI</span>
+            <h2 class="text-2xl font-bold text-ink mt-4 mb-3">AI-Powered Storytelling</h2>
+            <div class="space-y-2 text-gray-600 mb-4">
+              <p><strong>Student:</strong> Ủn ỉn Bé Heo</p>
+              <p><strong>Focus:</strong> Storytelling with AI voice, music, and visuals.</p>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-ink mb-2">Tools Used</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tool-chip">Canva</span>
+                <span class="tool-chip">Google VEO</span>
+                <span class="tool-chip">Gemini</span>
+                <span class="tool-chip">Suno AI</span>
+                <span class="tool-chip">ElevenLabs</span>
+                <span class="tool-chip">ChatGPT</span>
+              </div>
+            </div>
+          </div>
+          <div class="w-full overflow-hidden rounded-2xl shadow-lg">
+            <iframe class="aspect-video w-full" src="https://www.youtube.com/embed/XqAfPB-7_yQ" title="Generative AI project" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </article>
 
-        allI18nElements.forEach((el) => {
-          const key = el.dataset.i18n;
-          if (translations[lang] && translations[lang][key] !== undefined) {
-            el.textContent = translations[lang][key];
-          }
-        });
-        allI18nHtmlElements.forEach((el) => {
-          const key = el.dataset.i18nHtml;
-          if (translations[lang] && translations[lang][key] !== undefined) {
-            el.innerHTML = translations[lang][key];
-          }
-        });
-        langButtons.forEach((btn) => {
-          const isActive = btn.dataset.lang === lang;
-          btn.setAttribute('aria-pressed', isActive);
-          btn.classList.toggle('bg-sky', isActive);
-          btn.classList.toggle('text-white', isActive);
-          btn.classList.toggle('text-slate-500', !isActive);
-        });
-      }
+      <!-- Project 2: Roblox -->
+      <article class="project-card">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <span class="text-xs font-semibold text-teal bg-teal/10 px-3 py-1 rounded-full">ROBLOX WORLD CREATOR</span>
+            <h2 class="text-2xl font-bold text-ink mt-4 mb-3">Reaction Obby Challenge</h2>
+            <div class="space-y-2 text-gray-600 mb-4">
+              <p><strong>Student:</strong> Bảo Phú (11)</p>
+              <p><strong>Focus:</strong> Reaction-based obby with timers and custom scripting.</p>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-ink mb-2">Tools Used</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tool-chip">Roblox Studio</span>
+                <span class="tool-chip">Lua scripting</span>
+              </div>
+            </div>
+          </div>
+          <div class="w-full overflow-hidden rounded-2xl shadow-lg">
+            <iframe class="aspect-video w-full" src="https://www.youtube.com/embed/71eT07IOWuM" title="Roblox obstacle project" allowfullscreen></iframe>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3: AI & Programming Quest -->
+      <article class="project-card">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <span class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">AI & PROGRAMMING QUEST</span>
+            <h2 class="text-2xl font-bold text-ink mt-4 mb-3">Computer Vision Classifier</h2>
+            <div class="space-y-2 text-gray-600 mb-4">
+              <p><strong>Student:</strong> Mia</p>
+              <p><strong>Focus:</strong> Training custom classifiers with computer vision tools.</p>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-ink mb-2">Tools Used</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tool-chip">Machine Learning For Kids</span>
+                <span class="tool-chip">Google Collab</span>
+                <span class="tool-chip">Teachable Machine</span>
+                <span class="tool-chip">Python</span>
+              </div>
+            </div>
+          </div>
+          <div class="w-full overflow-hidden rounded-2xl shadow-lg">
+            <iframe class="aspect-video w-full" src="https://www.youtube.com/embed/IKzxVLj8d8g" title="AI classifier project" allowfullscreen></iframe>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 4: App Development -->
+      <article class="project-card">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <span class="text-xs font-semibold text-teal bg-teal/10 px-3 py-1 rounded-full">APP DEVELOPMENT</span>
+            <h2 class="text-2xl font-bold text-ink mt-4 mb-3">Habit Tracker App</h2>
+            <div class="space-y-2 text-gray-600 mb-4">
+              <p><strong>Student:</strong> Paul</p>
+              <p><strong>Focus:</strong> Prototyping a personal habit tracker with Thunkable.</p>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-ink mb-2">Tools Used</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tool-chip">Thunkable</span>
+              </div>
+            </div>
+          </div>
+          <div class="w-full overflow-hidden rounded-2xl shadow-lg">
+            <iframe class="aspect-video w-full" src="https://www.youtube.com/embed/TgRSlhFsC6Y" title="Paul's app prototype" allowfullscreen></iframe>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 5: Scratch -->
+      <article class="project-card">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <span class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">SCRATCH GAME CODER</span>
+            <h2 class="text-2xl font-bold text-ink mt-4 mb-3">Interactive Story Adventure</h2>
+            <div class="space-y-2 text-gray-600 mb-4">
+              <p><strong>Student:</strong> An Khôi</p>
+              <p><strong>Focus:</strong> Interactive story coding fundamentals with Scratch blocks.</p>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-ink mb-2">Tools Used</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tool-chip">Scratch</span>
+              </div>
+            </div>
+          </div>
+          <div class="w-full overflow-hidden rounded-2xl shadow-lg">
+            <iframe class="aspect-video w-full" src="https://www.youtube.com/embed/uBHLffWDtss" title="Scratch Discovery project" allowfullscreen></iframe>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="card text-center mt-16" style="background: linear-gradient(135deg, #2C7A7B 0%, #234E52 100%);">
+      <h2 class="text-3xl font-bold text-white mb-4">Want Your Child to Create Projects Like These?</h2>
+      <p class="text-xl text-white/90 mb-6">Book a free trial lesson and see what your child can build!</p>
+      <a href="free-trial.html" class="btn-primary bg-white text-primary hover:bg-gray-100">Book Free Trial Now</a>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-12 mt-16">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="text-sm text-slate-400">© 2025 TechTutor Academy. All rights reserved.</p>
+      <div class="mt-4">
+        <a href="vision.html" class="text-slate-300 hover:text-white transition mx-2">Vision</a>
+        <a href="plans-and-faq.html" class="text-slate-300 hover:text-white transition mx-2">Plans & FAQ</a>
+        <a href="blog.html" class="text-slate-300 hover:text-white transition mx-2">Blog</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Language switcher functionality
+    const langButtons = document.querySelectorAll('[data-lang]');
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      localStorage.setItem('tt-lang', lang);
 
       langButtons.forEach((btn) => {
-        btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+        const isActive = btn.dataset.lang === lang;
+        btn.setAttribute('aria-pressed', isActive);
+        btn.classList.toggle('bg-primary', isActive);
+        btn.classList.toggle('text-white', isActive);
+        btn.classList.toggle('text-gray-500', !isActive);
       });
+    }
 
-      const menuButton = document.getElementById('menu-button');
-      const mobileNav = document.getElementById('mobile-nav');
-      if (menuButton && mobileNav) {
-        menuButton.addEventListener('click', () => {
-          mobileNav.classList.toggle('hidden');
-        });
-      }
+    langButtons.forEach((btn) => {
+      btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+    });
 
-      // Wait for DOM to be ready
-      document.addEventListener('DOMContentLoaded', function() {
-        // Set initial language after DOM is loaded
-        const savedLang = localStorage.getItem('tt-lang') || 'en';
-        setLanguage(savedLang);
-        // Modal handlers
-        document.addEventListener('click', function (e) {
-          const openBtn = e.target.closest('[data-open-modal]');
-          if (openBtn) {
-            const id = openBtn.getAttribute('data-open-modal');
-            const modal = document.getElementById(`modal-${id}`);
-            if (modal) {
-              modal.classList.remove('hidden');
-              modal.classList.add('flex');
-              document.body.style.overflow = 'hidden';
-            }
-          }
+    // Set initial language
+    const savedLang = localStorage.getItem('tt-lang') || 'en';
+    setLanguage(savedLang);
+  </script>
 
-          if (e.target.closest('[data-close-modal]')) {
-            const modal = e.target.closest('.modal');
-            if (modal) {
-              modal.classList.add('hidden');
-              modal.classList.remove('flex');
-              document.body.style.overflow = 'auto';
-            }
-          }
-        });
-
-        // Side banner click handler
-        const sideBanner = document.getElementById('sideBanner');
-        if (sideBanner) {
-          sideBanner.addEventListener('click', function() {
-            const discountPopup = document.getElementById('modal-discount-popup');
-            if (discountPopup) {
-              discountPopup.classList.remove('hidden');
-              discountPopup.classList.add('flex');
-              document.body.style.overflow = 'hidden';
-            }
-          });
-        }
-      });
-    </script>
-
-    <!-- Side Banner -->
-    <div id="sideBanner" class="fixed right-0 top-1/2 -translate-y-1/2 z-40 cursor-pointer group">
-      <div class="bg-gradient-to-b from-sky to-sky-deep text-white px-3 py-6 rounded-l-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
-        <div class="flex flex-col items-center gap-2">
-          <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-          <div data-i18n="banner.save" class="writing-mode-vertical text-center font-bold text-base tracking-wider" style="writing-mode: vertical-rl; text-orientation: mixed;">
-            SAVE 20%
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Discount Popup Modal -->
-    <div class="modal fixed inset-0 z-50 items-center justify-center bg-black/60 p-4 hidden" id="modal-discount-popup" role="dialog" aria-modal="true" aria-labelledby="modal-discount-popup-title">
-      <div class="modal__backdrop absolute inset-0" data-close-modal></div>
-
-      <section class="modal__dialog relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl max-h-[90vh] overflow-y-auto" role="document">
-        <header class="modal__header sticky top-0 bg-gradient-to-r from-sky to-sky-deep px-6 py-6 flex items-center justify-between rounded-t-3xl">
-          <div>
-            <h2 id="modal-discount-popup-title" data-i18n="discount.title" class="modal__title text-3xl font-bold text-white mb-1">
-              Save up to 20%
-            </h2>
-            <p data-i18n="discount.subtitle" class="text-sky-light text-sm">Limited time offer - Book now and save!</p>
-          </div>
-          <button class="modal__close rounded-full bg-white/20 hover:bg-white/30 backdrop-blur px-3 py-1 text-sm text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" aria-label="Close" data-close-modal>✕</button>
-        </header>
-
-        <!-- Banner Image -->
-        <div class="modal__banner">
-          <img src="images/student-form-image.jpg" alt="Student" class="w-full h-auto" />
-        </div>
-
-        <div class="modal__content p-8">
-          <p data-i18n="discount.description" class="text-slate-600 leading-relaxed mb-6 text-center">Fill out the form below to receive your personalized discount quote and lock in your savings. Our team will contact you within 24 hours with your exclusive offer!</p>
-
-          <!-- Discount Request Form -->
-          <form id="discountPopupForm" action="https://formspree.io/f/xqaynogk" method="POST" class="rounded-2xl border-2 border-sky/20 bg-white p-6 shadow-lg">
-            <div class="space-y-4">
-              <label class="block">
-                <span data-i18n="trial.parentName" class="mb-1 block text-sm font-medium text-slate-700">Parent name *</span>
-                <input name="parent_name" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
-              </label>
-
-              <label class="block">
-                <span data-i18n="trial.childName" class="mb-1 block text-sm font-medium text-slate-700">Child's name *</span>
-                <input name="child_name" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
-              </label>
-
-              <label class="block">
-                <span data-i18n="trial.contact" class="mb-1 block text-sm font-medium text-slate-700">Parent email *</span>
-                <input name="email" type="email" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
-              </label>
-
-              <label class="block">
-                <span data-i18n="trial.phoneField" class="mb-1 block text-sm font-medium text-slate-700">Phone number *</span>
-                <input name="phone" type="tel" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
-              </label>
-
-              <label class="block">
-                <span data-i18n="trial.channel" class="mb-1 block text-sm font-medium text-slate-700">Preferred channel *</span>
-                <select name="channel" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
-                  <option>WhatsApp</option>
-                  <option>Zalo</option>
-                  <option>Email</option>
-                </select>
-              </label>
-            </div>
-
-            <div class="mt-6 flex flex-col gap-3">
-              <button type="submit" data-i18n="discount.button" class="w-full inline-flex items-center justify-center rounded-full bg-sky px-8 py-4 text-base font-semibold text-white transition hover:bg-sky-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky shadow-lg hover:shadow-xl">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                Get My Discount Quote
-              </button>
-              <p data-i18n="discount.response" class="text-center text-sm text-slate-500">
-                <svg class="w-4 h-4 inline text-sky" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-                We'll respond within 24 hours with your personalized offer
-              </p>
-            </div>
-
-            <!-- honeypot to reduce spam -->
-            <input type="text" name="_gotcha" style="display:none">
-            <input type="hidden" name="_subject" value="New Discount Request from Projects Page">
-            <input type="hidden" name="source_page" value="student-projects">
-          </form>
-        </div>
-      </section>
-    </div>
-  </body>
+</body>
 </html>

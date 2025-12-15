@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI & Programming Quest | TechTutor Academy</title>
+  <meta name="description" content="Learn Python programming and artificial intelligence fundamentals. Perfect for kids aged 10-16 who want to build intelligent programs and understand how AI works." />
+  <link rel="icon" type="image/png" href="../images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            teal: { DEFAULT: '#2C7A7B', light: '#319795', dark: '#234E52' },
+            ink: '#0F172A',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; }
+    .btn-primary { background: #193b92; color: white; padding: 14px 32px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; display: inline-block; text-decoration: none; }
+    .btn-primary:hover { background: #0f2861; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(25, 59, 146, 0.4); }
+    .card { background: white; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); padding: 32px; }
+    .section-title { font-size: 2.5rem; font-weight: 800; line-height: 1.2; color: #0F172A; }
+    .dropdown { position: relative; }
+    .dropdown-menu { position: absolute; top: 100%; left: 0; margin-top: 8px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); min-width: 280px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 100; }
+    .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown-menu a { display: block; padding: 12px 20px; color: #4B5563; text-decoration: none; transition: all 0.2s ease; font-size: 0.95rem; }
+    .dropdown-menu a:first-child { border-radius: 12px 12px 0 0; }
+    .dropdown-menu a:last-child { border-radius: 0 0 12px 12px; }
+    .dropdown-menu a:hover { background: #F3F4F6; color: #193b92; padding-left: 24px; }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <a href="../index-redesign.html"><img src="../images/tt-new.png" alt="TechTutor logo" class="h-24 w-auto" /></a>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+          <div class="dropdown">
+            <a href="../index-redesign.html#programs" class="text-gray-700 hover:text-primary transition font-medium">Programs ▾</a>
+            <div class="dropdown-menu">
+              <a href="scratch-game-coder.html">Scratch Game Coder</a>
+              <a href="gdevelop-game-designer.html">GDevelop Game Designer</a>
+              <a href="roblox-world-creator.html">Roblox World Creator</a>
+              <a href="3d-designer.html">3D Designer</a>
+              <a href="ai-programming-quest.html">AI & Programming Quest</a>
+              <a href="generative-ai-magic.html">Generative AI Magic</a>
+              <a href="app-development.html">App Development</a>
+            </div>
+          </div>
+          <a href="../student-projects.html" class="text-gray-700 hover:text-primary transition font-medium">Projects</a>
+          <a href="../plans-and-faq.html" class="text-gray-700 hover:text-primary transition font-medium">Plans & FAQ</a>
+          <a href="../blog.html" class="text-gray-700 hover:text-primary transition font-medium">Blog</a>
+          <a href="../free-trial.html" class="btn-primary text-sm">Free Trial</a>
+        </div>
+        <div class="flex items-center gap-1 rounded-full border border-gray-200 bg-white p-1">
+          <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white transition text-sm">🇬🇧</button>
+          <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-gray-500 transition hover:bg-gray-100 text-sm">🇻🇳</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-12">
+
+    <!-- Hero Section -->
+    <section class="mb-16">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">INTERMEDIATE</div>
+          <h1 class="section-title mb-4">AI & Programming Quest</h1>
+          <p class="text-xl text-gray-600 mb-6">
+            Dive into the world of Python programming and artificial intelligence. Learn to code intelligent programs, build chatbots, and understand how AI shapes our future.
+          </p>
+          <div class="flex items-center gap-4 mb-8">
+            <a href="../free-trial.html" class="btn-primary">Book Your Free Trial</a>
+          </div>
+          <div class="flex items-center gap-6 text-sm text-gray-600">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">⭐</span>
+              <span class="font-semibold text-ink">4.8/5</span> rating
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">🎮</span>
+              <span class="font-semibold text-ink">71+</span> projects created
+            </div>
+          </div>
+        </div>
+        <div>
+          <img src="../images/ai-programming.png" alt="AI Programming" class="w-full max-w-md mx-auto" />
+        </div>
+      </div>
+    </section>
+
+    <!-- What Kids Learn -->
+    <section class="mb-16">
+      <div class="card">
+        <h2 class="text-3xl font-bold text-ink mb-6">What Your Child Will Learn</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="text-xl font-semibold text-primary mb-3">🐍 Python Programming</h3>
+            <p class="text-gray-600">Master Python fundamentals including variables, functions, loops, and object-oriented programming concepts.</p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-primary mb-3">🤖 AI Fundamentals</h3>
+            <p class="text-gray-600">Understand how artificial intelligence works, including machine learning concepts and neural networks.</p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-primary mb-3">💬 Build AI Projects</h3>
+            <p class="text-gray-600">Create chatbots, recommendation systems, image recognition programs, and other intelligent applications.</p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-primary mb-3">📊 Data Science Basics</h3>
+            <p class="text-gray-600">Learn to work with data, analyze patterns, and visualize insights using Python libraries.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools & Skills -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-ink mb-8 text-center">Tools & Skills Covered</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card text-center">
+          <div class="text-4xl mb-4">🐍</div>
+          <h3 class="text-xl font-bold mb-2">Python</h3>
+          <p class="text-gray-600">Industry-leading programming language</p>
+        </div>
+        <div class="card text-center">
+          <div class="text-4xl mb-4">🧠</div>
+          <h3 class="text-xl font-bold mb-2">Machine Learning</h3>
+          <p class="text-gray-600">TensorFlow, scikit-learn, and AI frameworks</p>
+        </div>
+        <div class="card text-center">
+          <div class="text-4xl mb-4">🔬</div>
+          <h3 class="text-xl font-bold mb-2">Problem Solving</h3>
+          <p class="text-gray-600">Computational thinking and algorithmic design</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="card text-center" style="background: linear-gradient(135deg, #2C7A7B 0%, #234E52 100%);">
+      <h2 class="text-3xl font-bold text-white mb-4">Ready to Build the Future?</h2>
+      <p class="text-xl text-white/90 mb-6">Book a free trial lesson and start your journey into AI and programming!</p>
+      <a href="../free-trial.html" class="btn-primary bg-white text-primary hover:bg-gray-100">Book Free Trial Now</a>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-12 mt-16">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="text-sm text-slate-400">© 2025 TechTutor Academy. All rights reserved.</p>
+      <div class="mt-4">
+        <a href="../vision.html" class="text-slate-300 hover:text-white transition mx-2">Vision</a>
+        <a href="../plans-and-faq.html" class="text-slate-300 hover:text-white transition mx-2">Plans & FAQ</a>
+        <a href="../blog.html" class="text-slate-300 hover:text-white transition mx-2">Blog</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

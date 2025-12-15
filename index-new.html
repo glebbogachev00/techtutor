@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechTutor Academy — Future-ready tech education for kids</title>
+  <link rel="icon" type="image/png" href="images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            sky: {
+              light: '#E8F1FD',
+              DEFAULT: '#193b92',
+              deep: '#0f2861',
+            },
+            teal: {
+              DEFAULT: '#2C7A7B',
+              light: '#319795',
+              dark: '#234E52',
+            },
+            orange: {
+              DEFAULT: '#FFA500',
+              light: '#FFB84D',
+            },
+            ink: '#0F172A',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          maxWidth: {
+            container: '1200px',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      background-image: url('images/Gemini_Generated_Image_fxnyarfxnyarfxny.png');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-primary {
+      background: #1E66F5;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: #144bb3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(30, 102, 245, 0.4);
+    }
+
+    .btn-teal {
+      background: #14B8A6;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-teal:hover {
+      background: #0d9488;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(20, 184, 166, 0.4);
+    }
+
+    .badge {
+      background: #FFC529;
+      color: #000;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .badge-teal {
+      background: #14B8A6;
+      color: white;
+    }
+
+    .badge-sky {
+      background: #1E66F5;
+      color: white;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-title .accent {
+      color: #1E66F5;
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+
+    /* Testimonial carousel */
+    .testimonial-carousel {
+      position: relative;
+      overflow: hidden;
+      min-height: 300px;
+    }
+
+    .testimonial-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      transform: translateX(-100%);
+      transition: all 1.2s ease-in-out;
+    }
+
+    .testimonial-slide.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .testimonial-slide.prev {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #cbd5e1;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background-color: #1E66F5;
+      width: 32px;
+      border-radius: 6px;
+    }
+
+    /* FAQ styles */
+    .faq-item {
+      transition: all 0.3s ease;
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+
+    details[open] .faq-icon {
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-gray-200">
+    <div class="max-w-container mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <img src="images/tt-new.png" alt="TechTutor logo" class="h-20 w-auto origin-left scale-125 md:h-24 md:scale-150" />
+        </div>
+
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#programs" class="text-gray-700 hover:text-sky transition font-medium">Programs</a>
+          <a href="student-projects.html" class="text-gray-700 hover:text-sky transition font-medium">Projects</a>
+          <a href="#pricing" class="text-gray-700 hover:text-sky transition font-medium">Pricing</a>
+          <a href="#trial" class="text-gray-700 hover:text-sky transition font-medium">Free Trial</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-1 rounded-full border border-gray-200 bg-white p-1">
+            <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-sky text-white transition">🇬🇧</button>
+            <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-gray-500 transition hover:bg-sky-light">🇻🇳</button>
+          </div>
+          <a href="#trial" class="btn-primary">Start Free</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-container mx-auto px-6 py-12">
+
+    <!-- Hero Section -->
+    <section class="card p-12 mb-12">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="badge-teal mb-6" style="padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; display: inline-block;">✨ NEW: Generative AI Courses</div>
+          <h1 class="section-title">
+            Upgrade your <span class="accent">skills</span><br/>
+            with <span class="accent">tech</span> courses
+          </h1>
+          <p class="text-lg text-gray-600 mb-8">
+            Ready to gain in-demand skills to kickstart your career? TechTutor offers live, interactive courses to help you get your first experience in tech.
+          </p>
+          <div class="flex gap-4">
+            <a href="#trial" class="btn-teal">Start Free Trial</a>
+            <a href="#programs" class="text-gray-700 hover:text-teal transition font-semibold inline-flex items-center gap-2">
+              View Programs →
+            </a>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <img src="images/robot-rocket.png" alt="TechTutor Robot" class="w-full max-w-sm" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Banner -->
+    <section class="mb-12">
+      <div class="flex justify-center">
+        <img src="images/hearts.png" alt="Tested by kids, approved by parents" class="w-full max-w-4xl h-auto" />
+      </div>
+    </section>
+
+    <!-- Why Families Section -->
+    <section class="card p-12 mb-12">
+      <div class="grid md:grid-cols-[1.8fr_1fr] gap-8 items-center">
+        <div>
+          <img src="images/family-portrait.png" alt="Family" class="w-full rounded-2xl" />
+        </div>
+        <div>
+          <div class="badge-teal mb-6" style="padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; display: inline-block;">Our approach</div>
+          <h2 class="section-title">
+            Explore<br/>
+            top <span class="accent">benefits</span>
+          </h2>
+          <p class="text-gray-600 mb-6">
+            Built for busy families who want tech lessons that feel calm, personal, and useful.
+          </p>
+          <div class="space-y-4">
+            <div class="bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg">
+              <p class="font-semibold text-gray-900"><strong>3+ years</strong> designing programs with <strong>80–90% learner retention</strong></p>
+            </div>
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+              <p class="font-semibold text-gray-900"><strong>Generative AI, coding, design, and game development</strong> in one place</p>
+            </div>
+            <div class="bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg">
+              <p class="font-semibold text-gray-900">Every learner completes a <strong>real project</strong> they can show to friends</p>
+            </div>
+            <div class="bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg">
+              <p class="font-semibold text-gray-900">Flexible <strong>1:1 or small group</strong> formats with <strong>personal feedback</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="mb-12">
+      <div class="text-center mb-8">
+        <div class="badge-sky mb-4" style="padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; display: inline-block;">Our subjects</div>
+        <h2 class="section-title">
+          Programs for<br/>
+          every <span class="accent">age</span>
+        </h2>
+        <p class="text-gray-600 text-lg">
+          We have the largest selection of programs to study with our online courses
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Roblox -->
+        <div class="card p-6">
+          <div class="w-16 h-16 mb-4">
+            <img src="images/robox-logo.png" alt="Roblox" class="w-full h-full object-contain" />
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Roblox World Creator</h3>
+          <p class="text-gray-600 mb-4">Use Roblox Studio and Lua to launch immersive, shared worlds.</p>
+          <p class="text-sm text-gray-500 mb-4">
+            <span class="font-semibold">SKILLS:</span> Lua, 3D design, creative storytelling
+          </p>
+          <button class="text-teal font-semibold hover:underline">Learn More →</button>
+        </div>
+
+        <!-- 3D Designer -->
+        <div class="card p-6">
+          <div class="w-16 h-16 mb-4">
+            <img src="images/blender.png" alt="Blender" class="w-full h-full object-contain" />
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">3D Designer</h3>
+          <p class="text-gray-600 mb-4">Learn Blender workflows for professional-grade 3D scenes.</p>
+          <p class="text-sm text-gray-500 mb-4">
+            <span class="font-semibold">SKILLS:</span> 3D modelling, design workflow, Python basics
+          </p>
+          <button class="text-teal font-semibold hover:underline">Learn More →</button>
+        </div>
+
+        <!-- App Development -->
+        <div class="card p-6">
+          <div class="w-16 h-16 mb-4">
+            <img src="images/app-dev-logo.png" alt="App Development" class="w-full h-full object-contain" />
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">App Development</h3>
+          <p class="text-gray-600 mb-4">Build real mobile apps with Thunkable's visual interface and publish to app stores.</p>
+          <p class="text-sm text-gray-500 mb-4">
+            <span class="font-semibold">SKILLS:</span> Thunkable, app design, UI/UX, project management
+          </p>
+          <button class="text-sky font-semibold hover:underline">Learn More →</button>
+        </div>
+
+        <!-- GDevelop -->
+        <div class="card p-6">
+          <div class="w-16 h-16 mb-4">
+            <img src="images/gdeve-logo.png" alt="GDevelop" class="w-full h-full object-contain" />
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">GDevelop Game Designer</h3>
+          <p class="text-gray-600 mb-4">Create 2D games with visual scripting and publish across multiple platforms.</p>
+          <p class="text-sm text-gray-500 mb-4">
+            <span class="font-semibold">SKILLS:</span> GDevelop, game design, visual scripting, publishing
+          </p>
+          <button class="text-teal font-semibold hover:underline">Learn More →</button>
+        </div>
+
+        <!-- AI & Programming -->
+        <div class="card p-6">
+          <div class="w-16 h-16 mb-4">
+            <img src="images/ai-logo.png" alt="AI Programming" class="w-full h-full object-contain" />
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">AI & Programming Quest</h3>
+          <p class="text-gray-600 mb-4">Blend Python coding with machine learning to power smart games.</p>
+          <p class="text-sm text-gray-500 mb-4">
+            <span class="font-semibold">SKILLS:</span> Python, machine learning, computational thinking
+          </p>
+          <button class="text-teal font-semibold hover:underline">Learn More →</button>
+        </div>
+
+        <!-- Generative AI -->
+        <div class="card p-6">
+          <div class="w-16 h-16 mb-4">
+            <img src="images/ai-magic-logo.png" alt="Generative AI" class="w-full h-full object-contain" />
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Generative AI Magic</h3>
+          <p class="text-gray-600 mb-4">Use AI tools as creative partners and build responsible AI projects.</p>
+          <p class="text-sm text-gray-500 mb-4">
+            <span class="font-semibold">SKILLS:</span> Prompt engineering, AI integration, creative expression
+          </p>
+          <button class="text-sky font-semibold hover:underline">Learn More →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Projects Section -->
+    <section id="projects" class="mb-12">
+      <div class="text-center mb-8">
+        <div class="badge-teal mb-4" style="padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; display: inline-block;">Student work</div>
+        <h2 class="section-title">
+          Take your <span class="accent">knowledge</span><br/>
+          a degree further
+        </h2>
+        <p class="text-gray-600 text-lg">
+          See what our students have built
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <!-- Project 1: Generative AI -->
+        <div class="card p-6">
+          <div class="aspect-video w-full overflow-hidden rounded-xl mb-4">
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/XqAfPB-7_yQ" title="Generative AI project" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <span class="badge text-sm mb-2">Generative AI</span>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Storytelling with AI</h3>
+          <p class="text-gray-600 mb-4">
+            <strong>Student:</strong> Ủn ỉn Bé Heo<br/>
+            <strong>Focus:</strong> AI voice, music, and visuals
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs bg-gray-100 px-3 py-1 rounded-full font-medium">Canva</span>
+            <span class="text-xs bg-gray-100 px-3 py-1 rounded-full font-medium">Google VEO</span>
+            <span class="text-xs bg-gray-100 px-3 py-1 rounded-full font-medium">Gemini</span>
+            <span class="text-xs bg-gray-100 px-3 py-1 rounded-full font-medium">Suno AI</span>
+          </div>
+        </div>
+
+        <!-- Project 2: Roblox -->
+        <div class="card p-6">
+          <div class="aspect-video w-full overflow-hidden rounded-xl mb-4">
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/71eT07IOWuM" title="Roblox project" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <span class="badge text-sm mb-2">Roblox</span>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Custom Obby Game</h3>
+          <p class="text-gray-600 mb-4">
+            <strong>Student:</strong> Bảo Phú (11)<br/>
+            <strong>Focus:</strong> Reaction-based obby with timers
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs bg-gray-100 px-3 py-1 rounded-full font-medium">Roblox Studio</span>
+            <span class="text-xs bg-gray-100 px-3 py-1 rounded-full font-medium">Lua scripting</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a href="student-projects.html" class="btn-teal">View All Projects →</a>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="card p-12 mb-12">
+      <div class="text-center mb-8">
+        <div class="badge-teal mb-4" style="padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; display: inline-block;">Reviews</div>
+        <h2 class="section-title">
+          Testimonials — What Our <span class="accent">Parents</span> Say
+        </h2>
+        <p class="text-gray-600 text-lg">
+          What our parents say
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <div class="testimonial-carousel">
+          <div class="testimonial-slide active rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg">
+            <div class="flex items-start gap-2 mb-4">
+              <span class="text-yellow-500 text-lg">⭐</span>
+              <div class="flex-1">
+                <p class="text-sm font-semibold text-gray-700">Nguyễn Thị Lan Anh – mother of Bảo Minh (10 years old)</p>
+                <p class="text-xs text-gray-500">Teacher: Gleb</p>
+              </div>
+            </div>
+            <blockquote class="text-gray-600 leading-relaxed">"Bảo Minh has been learning with Teacher Gleb for almost a year now, focusing on Generative AI. At first, my son was shy and didn't know where to start with computers. Now he confidently builds small games and even created an AI chatbot for his science project!"</blockquote>
+          </div>
+
+          <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg">
+            <div class="flex items-start gap-2 mb-4">
+              <span class="text-yellow-500 text-lg">⭐</span>
+              <div class="flex-1">
+                <p class="text-sm font-semibold text-gray-700">Lê Hoàng Phúc – father of Gia Hân (12 years old)</p>
+                <p class="text-xs text-gray-500">Teacher: Mathan</p>
+              </div>
+            </div>
+            <blockquote class="text-gray-600 leading-relaxed">"My daughter studied 3D Design and Roblox Game Development with Teacher Mathan for over a year and a half. She created two complete games and improved both teamwork and confidence."</blockquote>
+          </div>
+
+          <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg">
+            <div class="flex items-start gap-2 mb-4">
+              <span class="text-yellow-500 text-lg">⭐</span>
+              <div class="flex-1">
+                <p class="text-sm font-semibold text-gray-700">Thomas Reed – father of Kian Reed (13 years old, British-Vietnamese)</p>
+                <p class="text-xs text-gray-500">Teacher: Mathan</p>
+              </div>
+            </div>
+            <blockquote class="text-gray-600 leading-relaxed">"Kian explored Generative AI and Python programming with Teacher Mathan and now has two solid portfolio projects. TechTutor's structured and creative approach is perfect for international families."</blockquote>
+          </div>
+
+          <div class="testimonial-slide rounded-3xl border-2 border-sky/20 bg-white p-8 shadow-lg">
+            <div class="flex items-start gap-2 mb-4">
+              <span class="text-yellow-500 text-lg">⭐</span>
+              <div class="flex-1">
+                <p class="text-sm font-semibold text-gray-700">Trần Minh Quân – father of Khánh Ngọc (9 years old)</p>
+                <p class="text-xs text-gray-500">Teacher: Gleb</p>
+              </div>
+            </div>
+            <blockquote class="text-gray-600 leading-relaxed">"Our daughter started 3D Design three months ago and already built her first model. She's excited for every class!"</blockquote>
+          </div>
+        </div>
+
+        <div class="mt-6 flex justify-center gap-2">
+          <button class="dot active" data-slide="0"></button>
+          <button class="dot" data-slide="1"></button>
+          <button class="dot" data-slide="2"></button>
+          <button class="dot" data-slide="3"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="card p-12 mb-12">
+      <div class="text-center mb-8">
+        <div class="badge-teal mb-4" style="padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; display: inline-block;">Pricing</div>
+        <h2 class="section-title">
+          Find the right <span class="accent">plan</span> for you
+        </h2>
+        <p class="text-gray-600 text-lg">
+          Flexible pricing for private or group lessons
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Private Lessons -->
+        <div class="bg-gradient-to-br from-blue-50 to-white p-8 rounded-3xl border-2 border-blue-100">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6">Private (1 on 1)</h3>
+          <div class="space-y-4">
+            <div class="flex justify-between items-center border-b border-gray-200 pb-4">
+              <span class="text-gray-600">1 course (8 lessons)</span>
+              <span class="font-bold text-gray-900">5.6M VND / ~$225</span>
+            </div>
+            <div class="flex justify-between items-center border-b border-gray-200 pb-4">
+              <span class="text-gray-600">2 courses (16 lessons) — <span class="text-red-600 font-semibold">5% off</span></span>
+              <span class="font-bold text-gray-900">10.7M VND / ~$428</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">3 courses (24 lessons) — <span class="text-red-600 font-semibold">10% off</span></span>
+              <span class="font-bold text-gray-900">15M VND / ~$608</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group Lessons -->
+        <div class="bg-gradient-to-br from-teal-50 to-white p-8 rounded-3xl border-2 border-teal-100">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6">Small group (2-4 students)</h3>
+          <div class="space-y-4">
+            <div class="flex justify-between items-center border-b border-gray-200 pb-4">
+              <span class="text-gray-600">1 course (8 lessons)</span>
+              <span class="font-bold text-gray-900">4M VND / ~$160</span>
+            </div>
+            <div class="flex justify-between items-center border-b border-gray-200 pb-4">
+              <span class="text-gray-600">2 courses (16 lessons) — <span class="text-red-600 font-semibold">5% off</span></span>
+              <span class="font-bold text-gray-900">7.6M VND / ~$304</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">3 courses (24 lessons) — <span class="text-red-600 font-semibold">10% off</span></span>
+              <span class="font-bold text-gray-900">10.8M VND / ~$432</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Free Trial Section -->
+    <section id="trial" class="card p-8 md:p-12 mb-12 bg-gradient-to-br from-sky/10 to-white">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <!-- Image on left -->
+        <div class="flex justify-center">
+          <img src="images/form.png" alt="Free trial" class="w-full max-w-md rounded-2xl" />
+        </div>
+
+        <!-- Form on right -->
+        <div>
+          <div class="mb-6">
+            <div class="badge-teal mb-4" style="padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; display: inline-block;">Try it free</div>
+            <h2 class="text-3xl font-bold mb-4">
+              Start With a <span class="accent">FREE</span> Lesson
+            </h2>
+            <p class="text-gray-600">
+              In just 60 minutes: receive a free, in-depth consultation and roadmap from our instructor. Share your details below and we'll schedule within 24 hours.
+            </p>
+          </div>
+
+          <form class="space-y-4">
+        <div>
+          <input type="text" placeholder="Parent Name" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-sky focus:outline-none" required />
+        </div>
+        <div>
+          <input type="text" placeholder="Child Name" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-sky focus:outline-none" required />
+        </div>
+        <div>
+          <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-sky focus:outline-none" required />
+        </div>
+        <div>
+          <input type="tel" placeholder="Phone (Zalo/WhatsApp)" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-sky focus:outline-none" required />
+        </div>
+        <div>
+          <select class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-sky focus:outline-none" required>
+            <option value="">Select Age Range</option>
+            <option>6-8 years</option>
+            <option>9-11 years</option>
+            <option>12-14 years</option>
+            <option>15+ years</option>
+          </select>
+        </div>
+        <div>
+          <textarea placeholder="Tell us about your goals..." rows="3" class="w-full px-4 py-3 rounded-3xl border-2 border-gray-200 focus:border-sky focus:outline-none"></textarea>
+        </div>
+        <button type="submit" class="w-full btn-primary text-center">Book Free Trial</button>
+      </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="card p-12 mb-12">
+      <div class="text-center mb-8">
+        <div class="badge-sky mb-4" style="padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; display: inline-block;">FAQ</div>
+        <h2 class="section-title">
+          Why families choose <span class="accent">TechTutor</span>
+        </h2>
+        <p class="text-gray-600 text-lg">
+          Quick answers about our curriculum, tuition, schedules, and languages.
+        </p>
+      </div>
+
+      <div class="space-y-4 max-w-4xl mx-auto">
+        <details class="faq-item rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-sm">
+          <summary class="flex items-center justify-between gap-4 text-left">
+            <span class="text-lg font-semibold text-ink">What does TechTutor teach?</span>
+            <span class="faq-icon text-2xl font-bold text-gray-400">+</span>
+          </summary>
+          <p class="mt-3 text-gray-600">We cover Generative AI, coding (Scratch, Python, Lua), 3D design, and app/game development. Lessons mix creativity, storytelling, and technical foundations so students ship real projects.</p>
+        </details>
+
+        <details class="faq-item rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-sm">
+          <summary class="flex items-center justify-between gap-4 text-left">
+            <span class="text-lg font-semibold text-ink">Why choose TechTutor?</span>
+            <span class="faq-icon text-2xl font-bold text-gray-400">+</span>
+          </summary>
+          <p class="mt-3 text-gray-600">Families join us for calm, project-first lessons, 3.5+ years of teaching expertise, and bilingual support. Every course includes feedback, session recaps, and portfolio-ready outcomes.</p>
+        </details>
+
+        <details class="faq-item rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-sm">
+          <summary class="flex items-center justify-between gap-4 text-left">
+            <span class="text-lg font-semibold text-ink">What's the tuition fee?</span>
+            <span class="faq-icon text-2xl font-bold text-gray-400">+</span>
+          </summary>
+          <p class="mt-3 text-gray-600">Private lessons start from 5.6M VND for 8 sessions, and small-group lessons begin at 4M VND. Multi-course bundles unlock 5–10% savings. See our pricing section for full details.</p>
+        </details>
+
+        <details class="faq-item rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-sm">
+          <summary class="flex items-center justify-between gap-4 text-left">
+            <span class="text-lg font-semibold text-ink">How many lessons a week?</span>
+            <span class="faq-icon text-2xl font-bold text-gray-400">+</span>
+          </summary>
+          <p class="mt-3 text-gray-600">Families typically book 2 sessions per week for steady progress. We can pace anywhere from 1–5 lessons weekly depending on goals, travel plans, and school workload.</p>
+        </details>
+
+        <details class="faq-item rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-sm">
+          <summary class="flex items-center justify-between gap-4 text-left">
+            <span class="text-lg font-semibold text-ink">Which languages do you teach in?</span>
+            <span class="faq-icon text-2xl font-bold text-gray-400">+</span>
+          </summary>
+          <p class="mt-3 text-gray-600">Our instructors teach in English and Vietnamese. We frequently support bilingual households, and can switch languages mid-lesson if it helps your child feel confident.</p>
+        </details>
+
+        <details class="faq-item rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-sm">
+          <summary class="flex items-center justify-between gap-4 text-left">
+            <span class="text-lg font-semibold text-ink">How many lessons in one course?</span>
+            <span class="faq-icon text-2xl font-bold text-gray-400">+</span>
+          </summary>
+          <p class="mt-3 text-gray-600">A single course bundle includes 8 lessons. It's enough to cover one project milestone or explore a new platform before deciding whether to extend.</p>
+        </details>
+
+        <details class="faq-item rounded-3xl border-2 border-sky/20 bg-white p-6 shadow-sm">
+          <summary class="flex items-center justify-between gap-4 text-left">
+            <span class="text-lg font-semibold text-ink">How many lessons in a full program?</span>
+            <span class="faq-icon text-2xl font-bold text-gray-400">+</span>
+          </summary>
+          <p class="mt-3 text-gray-600">Full programs span 24 lessons (three courses). This gives us time to move from foundations to advanced projects and deliver a polished portfolio piece.</p>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16">
+    <div class="mx-auto max-w-wrap px-6 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+
+        <!-- Logo Section -->
+        <div class="lg:col-span-1">
+          <img src="images/robot-rocket.png" alt="TechTutor" class="h-40 w-auto" />
+        </div>
+
+        <!-- Contact Us -->
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-sky-light">CONTACT US!</h3>
+          <div class="space-y-3 text-sm">
+            <div>
+              <p class="text-slate-400 mb-1">Tel/WA/Zalo:</p>
+              <a href="tel:0902776753" class="text-white hover:text-sky-light transition">0902 776 753</a>
+            </div>
+            <div>
+              <p class="text-slate-400 mb-1">Email:</p>
+              <a href="mailto:hello@techtutor.academy" class="text-white hover:text-sky-light transition">hello@techtutor.academy</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Opening Hours -->
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-sky-light">OPENING HOURS</h3>
+          <div class="space-y-2 text-sm">
+            <p class="text-slate-300">Monday - Friday: 8am - 9pm</p>
+            <p class="text-slate-300">Saturday - Sunday: 8am - 8pm</p>
+          </div>
+        </div>
+
+        <!-- Start Learning -->
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-sky-light">START LEARNING</h3>
+          <div class="space-y-2 text-sm">
+            <a href="#programs" class="block text-slate-300 hover:text-sky-light transition">Programs</a>
+            <a href="#trial" class="block text-slate-300 hover:text-sky-light transition">Free trial</a>
+          </div>
+        </div>
+
+        <!-- Connect With Us -->
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-sky-light">CONNECT WITH US!</h3>
+          <div class="flex gap-3">
+            <a href="https://www.facebook.com/share/1An2WsT9X5/" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-sky hover:bg-sky-deep transition flex items-center justify-center">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/techtutor.academy?igsh=MWljOWJjbndwY2l0dQ==" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-sky hover:bg-sky-deep transition flex items-center justify-center">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://zalo.me/0902776753" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-sky hover:bg-sky-deep transition flex items-center justify-center">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0zm.5 14.969h-4.25a.469.469 0 110-.938h4.25a.469.469 0 110 .938zm2.406-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938zm0-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="mt-12 pt-8 border-t border-slate-700 text-center">
+        <p class="text-sm text-slate-400">© 2025 TechTutor Academy. All rights reserved.</p>
+        <p class="text-xs text-slate-500 mt-2">English / Vietnamese bilingual support</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Side Banner for Discount -->
+  <div id="discountBtn" class="fixed right-0 top-1/2 -translate-y-1/2 z-40 cursor-pointer group">
+    <div class="bg-gradient-to-b from-sky to-sky-deep text-white px-3 py-6 rounded-l-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
+      <div class="flex flex-col items-center gap-2">
+        <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <div class="text-center font-bold text-base tracking-wider" style="writing-mode: vertical-rl; text-orientation: mixed;">
+          SAVE 20%
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Discount Popup Modal -->
+  <div id="discountModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm">
+    <div class="card max-w-2xl mx-4 relative overflow-hidden p-0">
+      <button id="closeModal" class="absolute top-4 right-4 text-white hover:text-gray-200 text-3xl z-10 bg-black/30 rounded-full w-10 h-10 flex items-center justify-center">&times;</button>
+
+      <!-- Banner Image -->
+      <div class="w-full">
+        <img src="images/student-form-image.jpg" alt="Student" class="w-full h-auto" />
+      </div>
+
+      <div class="p-6">
+      <div class="text-center mb-4">
+        <h3 class="text-2xl font-bold mb-2">
+          Special <span class="accent">Discount</span> Available!
+        </h3>
+        <p class="text-gray-600 text-sm mb-2">
+          🚀 Sibling & Referral Bonus: Get <strong class="text-sky">20% Off!</strong>
+        </p>
+        <p class="text-gray-500 text-xs">
+          Refer a friend or sign up a sibling to receive a 20% discount on any course.
+        </p>
+      </div>
+
+      <form id="discountForm" class="space-y-3">
+        <div>
+          <input type="text" placeholder="Parent Name *" class="w-full px-4 py-2 rounded-full border-2 border-gray-200 focus:border-sky focus:outline-none text-sm" required />
+        </div>
+        <div>
+          <input type="email" placeholder="Email *" class="w-full px-4 py-2 rounded-full border-2 border-gray-200 focus:border-sky focus:outline-none text-sm" required />
+        </div>
+        <div>
+          <input type="tel" placeholder="Phone (Zalo/WhatsApp) *" class="w-full px-4 py-2 rounded-full border-2 border-gray-200 focus:border-sky focus:outline-none text-sm" required />
+        </div>
+        <div>
+          <select class="w-full px-4 py-2 rounded-full border-2 border-gray-200 focus:border-sky focus:outline-none text-sm" required>
+            <option value="">Number of Children *</option>
+            <option>1 child</option>
+            <option>2 children (siblings)</option>
+            <option>3+ children</option>
+            <option>Referral</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full btn-primary text-center text-sm py-2">Claim Discount</button>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Discount Modal Logic
+    const discountModal = document.getElementById('discountModal');
+    const discountBtn = document.getElementById('discountBtn');
+    const closeModal = document.getElementById('closeModal');
+    const discountForm = document.getElementById('discountForm');
+
+    // Show modal on page load after 3 seconds
+    setTimeout(() => {
+      discountModal.classList.remove('hidden');
+      discountModal.classList.add('flex');
+    }, 3000);
+
+    // Show modal when clicking the floating button
+    discountBtn.addEventListener('click', () => {
+      discountModal.classList.remove('hidden');
+      discountModal.classList.add('flex');
+    });
+
+    // Close modal
+    closeModal.addEventListener('click', () => {
+      discountModal.classList.add('hidden');
+      discountModal.classList.remove('flex');
+    });
+
+    // Close modal when clicking outside
+    discountModal.addEventListener('click', (e) => {
+      if (e.target === discountModal) {
+        discountModal.classList.add('hidden');
+        discountModal.classList.remove('flex');
+      }
+    });
+
+    // Handle form submission
+    discountForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you! We will contact you shortly with your 20% discount code.');
+      discountModal.classList.add('hidden');
+      discountModal.classList.remove('flex');
+      discountForm.reset();
+    });
+
+    // Testimonial carousel
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.dot');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active', 'prev');
+        if (i === index) {
+          slide.classList.add('active');
+        } else if (i < index) {
+          slide.classList.add('prev');
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+
+      currentSlide = index;
+    }
+
+    function nextSlide() {
+      const next = (currentSlide + 1) % totalSlides;
+      showSlide(next);
+    }
+
+    // Auto-advance every 5 seconds
+    setInterval(nextSlide, 5000);
+
+    // Dot navigation
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => showSlide(index));
+    });
+
+    // Language switcher
+    const langButtons = document.querySelectorAll('[data-lang]');
+
+    langButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selectedLang = btn.dataset.lang;
+
+        // Update button states
+        langButtons.forEach(button => {
+          if (button.dataset.lang === selectedLang) {
+            button.classList.add('bg-sky', 'text-white');
+            button.classList.remove('text-gray-500', 'hover:bg-sky-light');
+            button.setAttribute('aria-pressed', 'true');
+          } else {
+            button.classList.remove('bg-sky', 'text-white');
+            button.classList.add('text-gray-500', 'hover:bg-sky-light');
+            button.setAttribute('aria-pressed', 'false');
+          }
+        });
+
+        // Store preference
+        try {
+          localStorage.setItem('tt-lang', selectedLang);
+        } catch (e) {}
+
+        // Note: Full i18n translation would require translation data
+        // For now, this handles the UI state
+        console.log('Language switched to:', selectedLang);
+      });
+    });
+
+    // Load saved language preference
+    try {
+      const savedLang = localStorage.getItem('tt-lang') || 'en';
+      const savedBtn = document.querySelector(`[data-lang="${savedLang}"]`);
+      if (savedBtn) savedBtn.click();
+    } catch (e) {}
+  </script>
+
+</body>
+</html>
