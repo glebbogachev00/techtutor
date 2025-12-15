@@ -259,7 +259,7 @@
 
         <div class="hidden md:flex items-center gap-8">
           <div class="dropdown">
-            <a href="#programs" class="text-gray-700 hover:text-primary transition font-medium">Programs ▾</a>
+            <a href="#programs" class="text-gray-700 hover:text-primary transition font-medium"><span data-i18n="nav.programs">Programs</span> ▾</a>
             <div class="dropdown-menu">
               <a href="programs/scratch-game-coder.html">Scratch Game Coder</a>
               <a href="programs/gdevelop-game-designer.html">GDevelop Game Designer</a>
@@ -270,17 +270,17 @@
               <a href="programs/app-development.html">App Development</a>
             </div>
           </div>
-          <a href="student-projects.html" class="text-gray-700 hover:text-primary transition font-medium">Projects</a>
-          <a href="plans-and-faq.html" class="text-gray-700 hover:text-primary transition font-medium">Pricing</a>
-          <a href="blog.html" class="text-gray-700 hover:text-primary transition font-medium">Blog</a>
+          <a href="student-projects.html" class="text-gray-700 hover:text-primary transition font-medium" data-i18n="nav.projects">Projects</a>
+          <a href="plans-and-faq.html" class="text-gray-700 hover:text-primary transition font-medium" data-i18n="nav.pricing">Pricing</a>
+          <a href="blog.html" class="text-gray-700 hover:text-primary transition font-medium" data-i18n="nav.blog">Blog</a>
         </div>
 
         <div class="flex items-center gap-4">
           <div class="flex items-center gap-1 rounded-full border border-gray-200 bg-white p-1">
-            <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white transition text-sm">🇬🇧</button>
-            <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-gray-500 transition hover:bg-gray-100 text-sm">🇻🇳</button>
+            <button type="button" data-lang="en" aria-pressed="true" aria-label="Switch to English" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white transition text-sm">🇬🇧</button>
+            <button type="button" data-lang="vi" aria-pressed="false" aria-label="Chuyển sang tiếng Việt" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-gray-500 transition hover:bg-gray-100 text-sm">🇻🇳</button>
           </div>
-          <a href="free-trial.html" class="btn-orange">Free Trial</a>
+          <a href="free-trial.html" class="btn-orange" data-i18n="nav.free-trial">Free Trial</a>
         </div>
       </div>
     </div>
@@ -891,15 +891,55 @@
 
       <!-- Bottom Bar -->
       <div class="mt-12 pt-8 border-t border-slate-700 text-center">
-        <p class="text-sm text-slate-400">© 2025 TechTutor Academy. All rights reserved.</p>
-        <p class="text-xs text-slate-500 mt-2">English / Vietnamese bilingual support</p>
+        <p class="text-sm text-slate-400" data-i18n="footer.copyright">© 2025 TechTutor Academy. All rights reserved.</p>
+        <p class="text-xs text-slate-500 mt-2" data-i18n="footer.bilingual">English / Vietnamese bilingual support</p>
       </div>
     </div>
   </footer>
 
   <script>
+    // Translation dictionary
+    const translations = {
+      en: {
+        'nav.programs': 'Programs',
+        'nav.projects': 'Projects',
+        'nav.pricing': 'Pricing',
+        'nav.blog': 'Blog',
+        'nav.free-trial': 'Free Trial',
+        'hero.title': 'Best Tech Education<br/>in the World',
+        'cta.get-started': 'Get Started',
+        'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
+        'footer.bilingual': 'English / Vietnamese bilingual support'
+      },
+      vi: {
+        'nav.programs': 'Chương Trình',
+        'nav.projects': 'Dự Án',
+        'nav.pricing': 'Giá Cả',
+        'nav.blog': 'Blog',
+        'nav.free-trial': 'Dùng Thử Miễn Phí',
+        'hero.title': 'Giáo Dục Công Nghệ<br/>Tốt Nhất Thế Giới',
+        'cta.get-started': 'Bắt Đầu',
+        'footer.copyright': '© 2025 TechTutor Academy. Bảo lưu mọi quyền.',
+        'footer.bilingual': 'Hỗ trợ song ngữ Anh / Việt'
+      }
+    };
+
     // Language switcher
     const langButtons = document.querySelectorAll('[data-lang]');
+
+    function switchLanguage(lang) {
+      // Update all elements with data-i18n attribute
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = translations[lang][key];
+          } else {
+            el.innerHTML = translations[lang][key];
+          }
+        }
+      });
+    }
 
     langButtons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -923,7 +963,8 @@
           localStorage.setItem('tt-lang', selectedLang);
         } catch (e) {}
 
-        console.log('Language switched to:', selectedLang);
+        // Switch language
+        switchLanguage(selectedLang);
       });
     });
 
@@ -931,8 +972,14 @@
     try {
       const savedLang = localStorage.getItem('tt-lang') || 'en';
       const savedBtn = document.querySelector(`[data-lang="${savedLang}"]`);
-      if (savedBtn) savedBtn.click();
-    } catch (e) {}
+      if (savedBtn) {
+        savedBtn.click();
+      } else {
+        switchLanguage('en');
+      }
+    } catch (e) {
+      switchLanguage('en');
+    }
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
