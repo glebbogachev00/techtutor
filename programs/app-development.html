@@ -68,9 +68,49 @@
           <a href="../blog.html" class="text-gray-700 hover:text-primary transition font-medium">Blog</a>
           <a href="../free-trial.html" class="btn-primary text-sm">Free Trial</a>
         </div>
-        <div class="flex items-center gap-1 rounded-full border border-gray-200 bg-white p-1">
-          <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white transition text-sm">🇬🇧</button>
-          <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-gray-500 transition hover:bg-gray-100 text-sm">🇻🇳</button>
+
+        <!-- Mobile Menu Button & Language Switcher -->
+        <div class="flex items-center gap-3 md:hidden">
+          <div class="flex items-center gap-1 rounded-full border border-gray-200 bg-white p-1">
+            <button type="button" data-lang="en" aria-pressed="true" aria-label="Switch to English" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white transition text-sm">🇬🇧</button>
+            <button type="button" data-lang="vi" aria-pressed="false" aria-label="Chuyển sang tiếng Việt" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-gray-500 transition hover:bg-gray-100 text-sm">🇻🇳</button>
+          </div>
+          <button id="mobile-menu-button" class="flex flex-col items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 transition">
+            <span class="text-xs font-semibold text-gray-700">MENU</span>
+          </button>
+        </div>
+
+        <!-- Desktop Language Switcher -->
+        <div class="hidden md:flex items-center gap-1 rounded-full border border-gray-200 bg-white p-1">
+          <button type="button" data-lang="en" aria-pressed="true" aria-label="Switch to English" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white transition text-sm">🇬🇧</button>
+          <button type="button" data-lang="vi" aria-pressed="false" aria-label="Chuyển sang tiếng Việt" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-gray-500 transition hover:bg-gray-100 text-sm">🇻🇳</button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-200 pt-4">
+        <div class="flex flex-col gap-3">
+          <div class="bg-gray-50 rounded-xl p-3">
+            <button id="mobile-programs-toggle" class="w-full text-left text-gray-700 hover:text-primary transition font-semibold flex items-center justify-between">
+              <span>Programs</span>
+              <svg class="w-5 h-5 transition-transform" id="programs-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div id="mobile-programs-menu" class="hidden mt-3 ml-2 flex flex-col gap-2 border-l-2 border-primary pl-3">
+              <a href="scratch-game-coder.html" class="text-gray-600 hover:text-primary transition text-sm py-1">Scratch Game Coder</a>
+              <a href="gdevelop-game-designer.html" class="text-gray-600 hover:text-primary transition text-sm py-1">GDevelop Game Designer</a>
+              <a href="roblox-world-creator.html" class="text-gray-600 hover:text-primary transition text-sm py-1">Roblox World Creator</a>
+              <a href="3d-designer.html" class="text-gray-600 hover:text-primary transition text-sm py-1">3D Designer</a>
+              <a href="ai-programming-quest.html" class="text-gray-600 hover:text-primary transition text-sm py-1">AI & Programming Quest</a>
+              <a href="generative-ai-magic.html" class="text-gray-600 hover:text-primary transition text-sm py-1">Generative AI Magic</a>
+              <a href="app-development.html" class="text-gray-600 hover:text-primary transition text-sm py-1">App Development</a>
+            </div>
+          </div>
+          <a href="../student-projects.html" class="text-gray-700 hover:text-primary transition font-medium py-2 px-3 hover:bg-gray-50 rounded-lg">Projects</a>
+          <a href="../plans-and-faq.html" class="text-gray-700 hover:text-primary transition font-medium py-2 px-3 hover:bg-gray-50 rounded-lg">Plans & FAQ</a>
+          <a href="../blog.html" class="text-gray-700 hover:text-primary transition font-medium py-2 px-3 hover:bg-gray-50 rounded-lg">Blog</a>
+          <a href="../free-trial.html" class="btn-primary text-center mt-2">Free Trial</a>
         </div>
       </div>
     </div>
@@ -102,8 +142,9 @@
             </div>
           </div>
         </div>
-        <div>
-          <img src="../images/app-dev.png" alt="App Development" class="w-full max-w-md mx-auto" />
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-teal/5 rounded-[3rem] transform rotate-3"></div>
+          <img src="../images/thunkable.png" alt="App Development" class="relative w-full max-w-lg mx-auto drop-shadow-2xl" />
         </div>
       </div>
     </section>
@@ -175,6 +216,30 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Mobile programs dropdown toggle
+    const programsToggle = document.getElementById('mobile-programs-toggle');
+    const programsMenu = document.getElementById('mobile-programs-menu');
+    const programsArrow = document.getElementById('programs-arrow');
+
+    if (programsToggle && programsMenu && programsArrow) {
+      programsToggle.addEventListener('click', () => {
+        programsMenu.classList.toggle('hidden');
+        programsArrow.classList.toggle('rotate-180');
+      });
+    }
+  </script>
 
 </body>
 </html>
