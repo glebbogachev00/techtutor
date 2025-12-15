@@ -238,6 +238,44 @@
         programsArrow.classList.toggle('rotate-180');
       });
     }
+
+    // Language switcher functionality
+    const langButtons = document.querySelectorAll('[data-lang]');
+
+    langButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selectedLang = btn.dataset.lang;
+
+        // Update button states for all language switchers (mobile + desktop)
+        langButtons.forEach(button => {
+          if (button.dataset.lang === selectedLang) {
+            button.classList.add('bg-primary', 'text-white');
+            button.classList.remove('text-gray-500', 'hover:bg-gray-100');
+            button.setAttribute('aria-pressed', 'true');
+          } else {
+            button.classList.remove('bg-primary', 'text-white');
+            button.classList.add('text-gray-500', 'hover:bg-gray-100');
+            button.setAttribute('aria-pressed', 'false');
+          }
+        });
+
+        // Store preference
+        try {
+          localStorage.setItem('tt-lang', selectedLang);
+        } catch (e) {}
+      });
+    });
+
+    // Initialize with English on page load
+    try {
+      const savedLang = localStorage.getItem('tt-lang') || 'en';
+      const savedBtn = document.querySelector(`[data-lang="${savedLang}"]`);
+      if (savedBtn && savedLang === 'en') {
+        // Default to English, no action needed
+      } else if (savedBtn) {
+        savedBtn.click();
+      }
+    } catch (e) {}
   </script>
 
 </body>
