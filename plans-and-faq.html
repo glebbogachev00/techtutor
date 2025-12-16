@@ -58,7 +58,7 @@
         </div>
         <div class="hidden md:flex items-center gap-8">
           <div class="dropdown">
-            <a href="index-redesign.html#programs" class="text-gray-700 hover:text-primary transition font-medium">Programs ▾</a>
+            <a href="index-redesign.html#programs" class="text-gray-700 hover:text-primary transition font-medium" data-i18n="nav.programs">Programs ▾</a>
             <div class="dropdown-menu">
               <a href="programs/scratch-game-coder.html">Scratch Game Coder</a>
               <a href="programs/gdevelop-game-designer.html">GDevelop Game Designer</a>
@@ -69,10 +69,10 @@
               <a href="programs/app-development.html">App Development</a>
             </div>
           </div>
-          <a href="student-projects.html" class="text-gray-700 hover:text-primary transition font-medium">Projects</a>
-          <a href="plans-and-faq.html" class="text-primary font-medium">Plans & FAQ</a>
-          <a href="blog.html" class="text-gray-700 hover:text-primary transition font-medium">Blog</a>
-          <a href="free-trial.html" class="btn-primary text-sm">Free Trial</a>
+          <a href="student-projects.html" class="text-gray-700 hover:text-primary transition font-medium" data-i18n="nav.projects">Projects</a>
+          <a href="plans-and-faq.html" class="text-primary font-medium" data-i18n="nav.plans">Plans & FAQ</a>
+          <a href="blog.html" class="text-gray-700 hover:text-primary transition font-medium" data-i18n="nav.blog">Blog</a>
+          <a href="free-trial.html" class="btn-primary text-sm" data-i18n="nav.free-trial">Free Trial</a>
         </div>
 
         <!-- Mobile Menu Button & Language Switcher -->
@@ -98,7 +98,7 @@
         <div class="flex flex-col gap-3">
           <div class="bg-gray-50 rounded-xl p-3">
             <button id="mobile-programs-toggle" class="w-full text-left text-gray-700 hover:text-primary transition font-semibold flex items-center justify-between">
-              <span>Programs</span>
+              <span data-i18n="nav.programs">Programs</span>
               <svg class="w-5 h-5 transition-transform" id="programs-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
@@ -113,10 +113,10 @@
               <a href="programs/app-development.html" class="text-gray-600 hover:text-primary transition text-sm py-1">App Development</a>
             </div>
           </div>
-          <a href="student-projects.html" class="text-gray-700 hover:text-primary transition font-medium py-2 px-3 hover:bg-gray-50 rounded-lg">Projects</a>
-          <a href="plans-and-faq.html" class="text-primary font-semibold py-2 px-3 bg-primary/5 rounded-lg">Plans & FAQ</a>
-          <a href="blog.html" class="text-gray-700 hover:text-primary transition font-medium py-2 px-3 hover:bg-gray-50 rounded-lg">Blog</a>
-          <a href="free-trial.html" class="btn-primary text-center mt-2">Free Trial</a>
+          <a href="student-projects.html" class="text-gray-700 hover:text-primary transition font-medium py-2 px-3 hover:bg-gray-50 rounded-lg" data-i18n="nav.projects">Projects</a>
+          <a href="plans-and-faq.html" class="text-primary font-semibold py-2 px-3 bg-primary/5 rounded-lg" data-i18n="nav.plans">Plans & FAQ</a>
+          <a href="blog.html" class="text-gray-700 hover:text-primary transition font-medium py-2 px-3 hover:bg-gray-50 rounded-lg" data-i18n="nav.blog">Blog</a>
+          <a href="free-trial.html" class="btn-primary text-center mt-2" data-i18n="nav.free-trial">Free Trial</a>
         </div>
       </div>
     </div>
@@ -403,53 +403,79 @@
       });
     }
 
-    // Language switcher functionality
+    // Translation dictionary
+    const translations = {
+      en: {
+        'nav.programs': 'Programs',
+        'nav.projects': 'Projects',
+        'nav.plans': 'Plans & FAQ',
+        'nav.blog': 'Blog',
+        'nav.free-trial': 'Free Trial'
+      },
+      vi: {
+        'nav.programs': 'Chương Trình',
+        'nav.projects': 'Dự Án',
+        'nav.plans': 'Giá & Câu Hỏi',
+        'nav.blog': 'Blog',
+        'nav.free-trial': 'Học Thử Miễn Phí'
+      }
+    };
+
+    // Language switcher
     const langButtons = document.querySelectorAll('[data-lang]');
 
+    function switchLanguage(lang) {
+      // Update all elements with data-i18n attribute
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = translations[lang][key];
+          } else {
+            el.innerHTML = translations[lang][key];
+          }
+        }
+      });
+
+      // Update button states
+      langButtons.forEach(btn => {
+        const btnLang = btn.getAttribute('data-lang');
+        if (btnLang === lang) {
+          btn.classList.add('bg-primary', 'text-white');
+          btn.classList.remove('text-gray-500', 'hover:bg-gray-100');
+          btn.setAttribute('aria-pressed', 'true');
+        } else {
+          btn.classList.remove('bg-primary', 'text-white');
+          btn.classList.add('text-gray-500', 'hover:bg-gray-100');
+          btn.setAttribute('aria-pressed', 'false');
+        }
+      });
+
+      // Save preference
+      try {
+        localStorage.setItem('tt-lang', lang);
+      } catch (e) {
+        console.error('Could not save language preference:', e);
+      }
+    }
+
+    // Add click handlers
     langButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        const selectedLang = btn.dataset.lang;
-
-        // Update button states for all language switchers (mobile + desktop)
-        langButtons.forEach(button => {
-          if (button.dataset.lang === selectedLang) {
-            button.classList.add('bg-primary', 'text-white');
-            button.classList.remove('text-gray-500', 'hover:bg-gray-100');
-            button.setAttribute('aria-pressed', 'true');
-          } else {
-            button.classList.remove('bg-primary', 'text-white');
-            button.classList.add('text-gray-500', 'hover:bg-gray-100');
-            button.setAttribute('aria-pressed', 'false');
-          }
-        });
-
-        // Store preference
-        try {
-          localStorage.setItem('tt-lang', selectedLang);
-        } catch (e) {}
+        const lang = btn.getAttribute('data-lang');
+        switchLanguage(lang);
       });
     });
 
-    // Initialize with English on page load
-    // IMPORTANT: Program pages only support English, so always force English
+    // Load saved language preference
     try {
-      // Force localStorage to English immediately
-      localStorage.setItem('tt-lang', 'en');
-
-      // Update all language buttons to show English as active
-      const allLangButtons = document.querySelectorAll('[data-lang]');
-      allLangButtons.forEach(button => {
-        if (button.dataset.lang === 'en') {
-          button.classList.add('bg-primary', 'text-white');
-          button.classList.remove('text-gray-500', 'hover:bg-gray-100');
-          button.setAttribute('aria-pressed', 'true');
-        } else {
-          button.classList.remove('bg-primary', 'text-white');
-          button.classList.add('text-gray-500', 'hover:bg-gray-100');
-          button.setAttribute('aria-pressed', 'false');
-        }
-      });
-    } catch (e) {}
+      const savedLang = localStorage.getItem('tt-lang');
+      if (savedLang === 'vi') {
+        switchLanguage('vi');
+      }
+    } catch (e) {
+      console.error('Could not load language preference:', e);
+    }
   </script>
 
 </body>
