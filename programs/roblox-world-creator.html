@@ -74,78 +74,89 @@
 </head>
 <body class="antialiased">
 
-  <!-- Navigation -->
-  <nav class="sticky top-0 z-50 bg-white border-b border-gray-200">
+    <!-- Navigation -->
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
     <div class="max-w-7xl mx-auto px-6 py-4">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <a href="../index-redesign.html"><img src="../images/tt-new.png" alt="TechTutor logo" class="h-24 w-auto" /></a>
-        </div>
-        <div class="hidden md:flex items-center gap-8">
-          <div class="dropdown">
-            <a href="../index-redesign.html#programs" class="text-gray-700 hover:text-primary transition font-medium">Programs ▾</a>
-            <div class="dropdown-menu">
-              <a href="scratch-game-coder.html">Scratch Game Coder</a>
-              <a href="gdevelop-game-designer.html">GDevelop Game Designer</a>
-              <a href="roblox-world-creator.html">Roblox World Creator</a>
-              <a href="3d-designer.html">3D Designer</a>
-              <a href="ai-programming-quest.html">AI & Programming Quest</a>
-              <a href="generative-ai-magic.html">Generative AI Magic</a>
-              <a href="app-development.html">App Development</a>
+      <div class="flex items-center justify-between gap-6">
+        <a href="../index-redesign.html" class="text-2xl font-black tracking-tight text-slate-900 flex items-center gap-1" aria-label="TechTutor home">
+          <span class="text-primary">Tech</span><span class="text-teal-500">Tutor</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+          <div class="relative hidden md:block group">
+            <a href="../index-redesign.html#programs" class="inline-flex items-center gap-1 text-slate-600 hover:text-primary transition">
+              Programs
+              <svg class="h-4 w-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+            <div class="absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 rounded-2xl border border-slate-100 bg-white/95 p-3 shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+              <div class="flex flex-col gap-1 text-sm">
+                <a href="scratch-game-coder.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">Scratch Game Coder</a>
+                <a href="gdevelop-game-designer.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">GDevelop Game Designer</a>
+                <a href="roblox-world-creator.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">Roblox World Creator</a>
+                <a href="3d-designer.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">3D Designer</a>
+                <a href="ai-programming-quest.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">AI & Programming Quest</a>
+                <a href="generative-ai-magic.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">Generative AI Magic</a>
+                <a href="app-development.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">App Development</a>
+              </div>
             </div>
           </div>
-          <a href="../student-projects.html" class="text-gray-700 hover:text-primary transition font-medium">Projects</a>
-          <a href="../plans-and-faq.html" class="text-gray-700 hover:text-primary transition font-medium">Plans & FAQ</a>
-          <a href="../blog.html" class="text-gray-700 hover:text-primary transition font-medium">Blog</a>
-          <a href="../free-trial.html" class="btn-primary text-sm">Free Trial</a>
+          <a href="../student-projects.html" class="hover:text-primary transition">Projects</a>
+          <a href="../plans-and-faq.html" class="hover:text-primary transition">Pricing</a>
+          <a href="../blog.html" class="hover:text-primary transition">Blog</a>
         </div>
 
-        <!-- Mobile Menu Button & Language Switcher -->
-        <div class="flex items-center gap-3 md:hidden">
-          <div class="flex items-center gap-1 rounded-full border border-gray-200 bg-white p-1">
-            <button type="button" data-lang="en" aria-pressed="true" aria-label="Switch to English" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white transition text-sm">🇬🇧</button>
-            <button type="button" data-lang="vi" aria-pressed="false" aria-label="Chuyển sang tiếng Việt" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-gray-500 transition hover:bg-gray-100 text-sm">🇻🇳</button>
+        <div class="hidden md:flex items-center gap-4">
+          <div class="flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1">
+            <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-9 w-11 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
+            <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-9 w-11 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
           </div>
-          <button id="mobile-menu-button" class="flex flex-col items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 transition">
-            <span class="text-xs font-semibold text-gray-700">MENU</span>
-          </button>
+          <a href="../free-trial.html" class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light">Free Trial</a>
         </div>
 
-        <!-- Desktop Language Switcher -->
-        <div class="hidden md:flex items-center gap-1 rounded-full border border-gray-200 bg-white p-1">
-          <button type="button" data-lang="en" aria-pressed="true" aria-label="Switch to English" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white transition text-sm">🇬🇧</button>
-          <button type="button" data-lang="vi" aria-pressed="false" aria-label="Chuyển sang tiếng Việt" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-gray-500 transition hover:bg-gray-100 text-sm">🇻🇳</button>
+        <div class="flex items-center gap-3 md:hidden">
+          <div class="flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1">
+            <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
+            <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
+          </div>
+          <button id="mobile-menu-button" class="p-2 rounded-lg border border-slate-200 text-slate-700" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="sr-only">Toggle navigation</span>
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
       </div>
 
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-200 pt-4">
-        <div class="flex flex-col gap-3">
-          <div class="bg-gray-50 rounded-xl p-3">
-            <button id="mobile-programs-toggle" class="w-full text-left text-gray-700 hover:text-primary transition font-semibold flex items-center justify-between">
+      <div id="mobile-menu" class="md:hidden hidden mt-4 border-t border-slate-200 pt-4">
+        <div class="flex flex-col gap-4 text-sm font-medium text-slate-600">
+          <div class="rounded-2xl border border-slate-200 p-4">
+            <button id="mobile-programs-toggle" class="flex w-full items-center justify-between text-left">
               <span>Programs</span>
-              <svg class="w-5 h-5 transition-transform" id="programs-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              <svg id="programs-arrow" class="h-5 w-5 text-slate-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            <div id="mobile-programs-menu" class="hidden mt-3 ml-2 flex flex-col gap-2 border-l-2 border-primary pl-3">
-              <a href="scratch-game-coder.html" class="text-gray-600 hover:text-primary transition text-sm py-1">Scratch Game Coder</a>
-              <a href="gdevelop-game-designer.html" class="text-gray-600 hover:text-primary transition text-sm py-1">GDevelop Game Designer</a>
-              <a href="roblox-world-creator.html" class="text-gray-600 hover:text-primary transition text-sm py-1">Roblox World Creator</a>
-              <a href="3d-designer.html" class="text-gray-600 hover:text-primary transition text-sm py-1">3D Designer</a>
-              <a href="ai-programming-quest.html" class="text-gray-600 hover:text-primary transition text-sm py-1">AI & Programming Quest</a>
-              <a href="generative-ai-magic.html" class="text-gray-600 hover:text-primary transition text-sm py-1">Generative AI Magic</a>
-              <a href="app-development.html" class="text-gray-600 hover:text-primary transition text-sm py-1">App Development</a>
+            <div id="mobile-programs-menu" class="mt-3 hidden flex-col gap-2 border-l-2 border-primary pl-3 text-sm">
+              <a href="scratch-game-coder.html" class="text-slate-600 hover:text-primary">Scratch Game Coder</a>
+              <a href="gdevelop-game-designer.html" class="text-slate-600 hover:text-primary">GDevelop Game Designer</a>
+              <a href="roblox-world-creator.html" class="text-slate-600 hover:text-primary">Roblox World Creator</a>
+              <a href="3d-designer.html" class="text-slate-600 hover:text-primary">3D Designer</a>
+              <a href="ai-programming-quest.html" class="text-slate-600 hover:text-primary">AI & Programming Quest</a>
+              <a href="generative-ai-magic.html" class="text-slate-600 hover:text-primary">Generative AI Magic</a>
+              <a href="app-development.html" class="text-slate-600 hover:text-primary">App Development</a>
             </div>
           </div>
-          <a href="../student-projects.html" class="text-gray-700 hover:text-primary transition font-medium py-2 px-3 hover:bg-gray-50 rounded-lg">Projects</a>
-          <a href="../plans-and-faq.html" class="text-gray-700 hover:text-primary transition font-medium py-2 px-3 hover:bg-gray-50 rounded-lg">Plans & FAQ</a>
-          <a href="../blog.html" class="text-gray-700 hover:text-primary transition font-medium py-2 px-3 hover:bg-gray-50 rounded-lg">Blog</a>
-          <a href="../free-trial.html" class="btn-primary text-center mt-2">Free Trial</a>
+          <a href="../student-projects.html" class="hover:text-primary transition">Projects</a>
+          <a href="../plans-and-faq.html" class="hover:text-primary transition">Pricing</a>
+          <a href="../blog.html" class="hover:text-primary transition">Blog</a>
+          <a href="../free-trial.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm">Free Trial</a>
         </div>
       </div>
     </div>
-  </nav>
+  </header>
+  <script src="../js/site.js" defer></script>
 
   <!-- Main Content -->
   <main class="max-w-7xl mx-auto px-6 py-12">
@@ -236,14 +247,62 @@
 
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-12 mt-16">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <p class="text-sm text-slate-400">© 2025 TechTutor Academy. All rights reserved.</p>
-      <div class="mt-4">
-        <a href="../vision.html" class="text-slate-300 hover:text-white transition mx-2">Vision</a>
-        <a href="../plans-and-faq.html" class="text-slate-300 hover:text-white transition mx-2">Plans & FAQ</a>
-        <a href="../blog.html" class="text-slate-300 hover:text-white transition mx-2">Blog</a>
+    <!-- Footer -->
+  <footer class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16">
+    <div class="mx-auto max-w-7xl px-6 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div class="lg:col-span-1">
+          <img src="../images/robot-rocket.png" alt="TechTutor" class="h-40 w-auto" />
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">CONTACT US!</h3>
+          <div class="space-y-3 text-sm">
+            <div>
+              <p class="text-slate-400 mb-1">Tel/WA/Zalo:</p>
+              <a href="tel:0902776753" class="text-white hover:text-primary-light transition">0902 776 753</a>
+            </div>
+            <div>
+              <p class="text-slate-400 mb-1">Email:</p>
+              <a href="mailto:hello@techtutor.academy" class="text-white hover:text-primary-light transition">hello@techtutor.academy</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">OPENING HOURS</h3>
+          <div class="space-y-2 text-sm">
+            <p class="text-slate-300">Monday - Friday: 8am - 9pm</p>
+            <p class="text-slate-300">Saturday - Sunday: 8am - 8pm</p>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">START LEARNING</h3>
+          <div class="space-y-2 text-sm">
+            <a href="../index-redesign.html#programs" class="block text-slate-300 hover:text-primary-light transition">Programs</a>
+            <a href="../student-projects.html" class="block text-slate-300 hover:text-primary-light transition">Projects</a>
+            <a href="../plans-and-faq.html" class="block text-slate-300 hover:text-primary-light transition">Pricing</a>
+            <a href="../blog.html" class="block text-slate-300 hover:text-primary-light transition">Blog</a>
+            <a href="../vision.html" class="block text-slate-300 hover:text-primary-light transition">Our Vision</a>
+            <a href="../free-trial.html" class="block text-slate-300 hover:text-primary-light transition">Free trial</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">CONNECT WITH US!</h3>
+          <div class="flex gap-3">
+            <a href="https://www.facebook.com/share/1An2WsT9X5/" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Facebook">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/techtutor.academy?igsh=MWljOWJjbndwY2l0dQ==" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Instagram">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://zalo.me/0902776753" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Zalo">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0zm.5 14.969h-4.25a.469.469 0 110-.938h4.25a.469.469 0 110 .938zm2.406-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938zm0-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-slate-700 text-center">
+        <p class="text-sm text-slate-400">© 2025 TechTutor Academy. All rights reserved.</p>
+        <p class="text-xs text-slate-500 mt-2">English / Vietnamese bilingual support</p>
       </div>
     </div>
   </footer>

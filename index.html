@@ -825,7 +825,7 @@
       <section id="trial" class="fade-in-section mt-10
        border-t border-slate-200 pt-10">
         <h2 data-i18n="trial.heading" class="text-2xl font-semibold md:text-3xl" style="color: #1E66F5;">Start With a FREE Lesson</h2>
-        <p data-i18n="trial.copy" class="mt-3 text-base text-slate-600">In just 60 minutes: receive a free, in-depth consultation and roadmap from our instructor. Share your details below and we'll schedule within 24 hours.</p>
+        <p data-i18n="trial.copy" class="mt-3 text-base text-slate-600">In just 90 minutes: receive a free, in-depth consultation and roadmap from our instructor. Share your details below and we'll schedule within 24 hours.</p>
         <!-- WEB FORM -->
         <div class="mt-10 flex flex-col md:flex-row gap-8 items-stretch">
           <!-- Image Section -->
@@ -848,34 +848,29 @@
             <h3 data-i18n="trial.formTitle" class="mb-6 text-2xl font-bold" style="color: #1E66F5;">Book Your FREE Lesson</h3>
 
             <div class="space-y-4">
-              <label class="block">
-                <span data-i18n="trial.parentName" class="mb-1 block text-sm font-medium text-slate-700">Parent name</span>
-                <input name="parent_name" required class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20">
-              </label>
-
-              <label class="block">
-                <span data-i18n="trial.childName" class="mb-1 block text-sm font-medium text-slate-700">Child's name</span>
-                <input name="child_name" required class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20">
-              </label>
-
-              <label class="block">
-                <span data-i18n="trial.contact" class="mb-1 block text-sm font-medium text-slate-700">Parent email</span>
-                <input name="email" type="email" required class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20">
-              </label>
-
-              <label class="block">
-                <span data-i18n="trial.phoneField" class="mb-1 block text-sm font-medium text-slate-700">Phone number</span>
-                <input name="phone" type="tel" required class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20">
-              </label>
-
-              <label class="block">
-                <span data-i18n="trial.channel" class="mb-1 block text-sm font-medium text-slate-700">Preferred channel</span>
-                <select name="channel" id="channel" class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20">
+              <div>
+                <input name="parent_name" data-i18n-placeholder="trial.form.parent_name" placeholder="Parent Name" required class="w-full rounded-full border-2 border-gray-200 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition" />
+              </div>
+              <div>
+                <input name="child_name" data-i18n-placeholder="trial.form.child_name" placeholder="Child Name" required class="w-full rounded-full border-2 border-gray-200 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition" />
+              </div>
+              <div>
+                <input name="email" type="email" data-i18n-placeholder="trial.form.email" placeholder="Email" required class="w-full rounded-full border-2 border-gray-200 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition" />
+              </div>
+              <div>
+                <input name="phone" type="tel" data-i18n-placeholder="trial.form.phone" placeholder="Phone (Zalo/WhatsApp)" required class="w-full rounded-full border-2 border-gray-200 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition" />
+              </div>
+              <div>
+                <input name="age" type="number" data-i18n-placeholder="trial.form.age" placeholder="Age" class="w-full rounded-full border-2 border-gray-200 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition" />
+              </div>
+              <div>
+                <select name="channel" id="channel" class="w-full rounded-full border-2 border-gray-200 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition bg-white">
+                  <option value="" disabled selected data-i18n="trial.form.channel">Preferred channel</option>
                   <option>WhatsApp</option>
                   <option>Zalo</option>
                   <option>Email</option>
                 </select>
-              </label>
+              </div>
             </div>
 
             <div class="mt-6">
@@ -1461,7 +1456,7 @@
             'discount.desc': 'Refer a friend or sign up a sibling to receive a 10% discount on any course.',
             'discount.cta': 'Scroll to lead form',
             'trial.heading': 'Start With a FREE Lesson',
-            'trial.copy': 'In just 60 minutes: receive a free, in-depth consultation and curriculum roadmap from our instructor. Share your details below and we\'ll schedule your session within 24 hours.',
+            'trial.copy': 'In just 90 minutes: receive a free, in-depth consultation and curriculum roadmap from our instructor. Share your details below and we\'ll schedule your session within 24 hours.',
             'trial.formTitle': 'Book Your FREE Lesson',
             'trial.parentName': 'Parent name',
             'trial.childName': "Child's name",
@@ -1479,6 +1474,12 @@
             'trial.times': 'Days & time windows',
             'trial.message': 'Message (optional)',
             'trial.submit': 'Request trial',
+            'trial.form.parent_name': 'Parent Name',
+            'trial.form.child_name': 'Child Name',
+            'trial.form.email': 'Email',
+            'trial.form.phone': 'Phone (Zalo/WhatsApp)',
+            'trial.form.age': 'Age',
+            'trial.form.channel': 'Preferred channel',
             'trial.pace': 'Recommended pace: 2 lessons/week',
             'trial.orChat': 'Or book instantly via chat:',
             'trial.phone': 'Zalo / WhatsApp: 0902776753',
@@ -1777,7 +1778,7 @@
             'discount.desc': 'Giới thiệu bạn bè hoặc đăng ký cho anh chị em ruột để nhận giảm 10% bất kỳ khóa học nào.',
             'discount.cta': 'Đến form đăng ký',
             'trial.heading': 'Đặt lịch học thử MIỄN PHÍ',
-            'trial.copy': 'Chỉ 60 phút trải nghiệm: giáo viên định hướng chuyên sâu miễn phí. Để lại thông tin và TechTutor sẽ liên hệ trong 24 giờ.',
+            'trial.copy': 'Chỉ 90 phút trải nghiệm: giáo viên định hướng chuyên sâu miễn phí. Để lại thông tin và TechTutor sẽ liên hệ trong 24 giờ.',
             'trial.formTitle': 'Đặt lịch học thử miễn phí',
             'trial.parentName': 'Tên phụ huynh',
             'trial.childName': 'Tên học viên',
@@ -1795,6 +1796,12 @@
             'trial.times': 'Ngày & khung giờ',
             'trial.message': 'Tin nhắn (tùy chọn)',
             'trial.submit': 'Yêu cầu học thử',
+            'trial.form.parent_name': 'Tên phụ huynh',
+            'trial.form.child_name': 'Tên học viên',
+            'trial.form.email': 'Email',
+            'trial.form.phone': 'Số điện thoại (Zalo/WhatsApp)',
+            'trial.form.age': 'Tuổi',
+            'trial.form.channel': 'Kênh liên hệ ưu tiên',
             'trial.pace': 'Nhịp độ đề xuất: 2 buổi/tuần',
             'trial.orChat': 'Hoặc đặt lịch ngay qua chat:',
             'trial.phone': 'Zalo / WhatsApp: 0902776753',
@@ -2040,6 +2047,15 @@
               }
             } else if (key && key.indexOf('modal.') === 0) {
               console.warn('Missing translation for', key, 'in', lang);
+            }
+          });
+
+          // Update placeholders
+          document.querySelectorAll('[data-i18n-placeholder]').forEach(function (node) {
+            var placeholderKey = node.getAttribute('data-i18n-placeholder');
+            var placeholderValue = translations[lang] && translations[lang][placeholderKey];
+            if (typeof placeholderValue === 'string') {
+              node.placeholder = placeholderValue;
             }
           });
           toggles.forEach(function (btn) {
@@ -2718,34 +2734,26 @@
           <!-- Discount Request Form -->
           <form id="discountPopupForm" action="https://formspree.io/f/xqaynogk" method="POST" class="rounded-2xl border-2 border-sky/20 bg-white p-6 shadow-lg">
             <div class="space-y-4">
-              <label class="block">
-                <span data-i18n="trial.parentName" class="mb-1 block text-sm font-medium text-slate-700">Parent name *</span>
-                <input name="parent_name" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
-              </label>
-
-              <label class="block">
-                <span data-i18n="trial.childName" class="mb-1 block text-sm font-medium text-slate-700">Child's name *</span>
-                <input name="child_name" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
-              </label>
-
-              <label class="block">
-                <span data-i18n="trial.contact" class="mb-1 block text-sm font-medium text-slate-700">Parent email *</span>
-                <input name="email" type="email" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
-              </label>
-
-              <label class="block">
-                <span data-i18n="trial.phoneField" class="mb-1 block text-sm font-medium text-slate-700">Phone number *</span>
-                <input name="phone" type="tel" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
-              </label>
-
-              <label class="block">
-                <span data-i18n="trial.channel" class="mb-1 block text-sm font-medium text-slate-700">Preferred channel *</span>
-                <select name="channel" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition">
+              <div>
+                <input name="parent_name" data-i18n-placeholder="trial.form.parent_name" placeholder="Parent Name" required class="w-full rounded-full border-2 border-gray-200 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition" />
+              </div>
+              <div>
+                <input name="child_name" data-i18n-placeholder="trial.form.child_name" placeholder="Child Name" required class="w-full rounded-full border-2 border-gray-200 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition" />
+              </div>
+              <div>
+                <input name="email" type="email" data-i18n-placeholder="trial.form.email" placeholder="Email" required class="w-full rounded-full border-2 border-gray-200 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition" />
+              </div>
+              <div>
+                <input name="phone" type="tel" data-i18n-placeholder="trial.form.phone" placeholder="Phone (Zalo/WhatsApp)" required class="w-full rounded-full border-2 border-gray-200 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition" />
+              </div>
+              <div>
+                <select name="channel" class="w-full rounded-full border-2 border-gray-200 px-4 py-3 text-sm focus:border-sky focus:outline-none focus:ring-2 focus:ring-sky/20 transition bg-white">
+                  <option value="" disabled selected data-i18n="trial.form.channel">Preferred channel</option>
                   <option>WhatsApp</option>
                   <option>Zalo</option>
                   <option>Email</option>
                 </select>
-              </label>
+              </div>
             </div>
 
             <div class="mt-6 flex flex-col gap-3">
