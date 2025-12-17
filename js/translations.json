@@ -1,0 +1,30 @@
+{
+  "blog-tech-like-playtime": {
+    "en": {
+      "hero.title": "How to Make Learning Tech Feel Like Playtime",
+      "hero.subtitle": "Transform tech education into an exciting adventure for your child",
+      "content.intro1": "Remember when \"fun learning\" felt like an oxymoron? Yeah, us too. But here's a secret we've discovered after teaching hundreds of kids to code: Learning technology doesn't have to feel like homework. In fact, when done right, children won't even realize they're learning—they'll just think they're having a blast.",
+      "content.intro2": "At TechTutor, we've cracked the code (pun intended!) on making tech education feel more like an adventure and less like a chore. Want to know how? Let's dive in.",
+      "nav.programs": "Programs",
+      "nav.projects": "Projects",
+      "nav.pricing": "Pricing",
+      "nav.blog": "Blog",
+      "nav.free-trial": "Free Trial",
+      "footer.copyright": "© 2025 TechTutor Academy. All rights reserved.",
+      "footer.bilingual": "English / Vietnamese bilingual support"
+    },
+    "vi": {
+      "hero.title": "Làm Thế Nào Để Học Công Nghệ Trở Nên Thú Vị Như Chơi",
+      "hero.subtitle": "Biến giáo dục công nghệ thành một cuộc phiêu lưu thú vị cho con bạn",
+      "content.intro1": "Bạn còn nhớ lúc nào \"học vui\" cảm giác như là một mâu thuẫn? Chúng tôi cũng thế. Nhưng đây là bí mật chúng tôi phát hiện sau khi dạy hàng trăm trẻ em lập trình: Học công nghệ không cần phải cảm giác giống như bài tập về nhà. Thực tế, khi làm đúng, trẻ em thậm chí sẽ không nhận ra mình đang học — chúng chỉ nghĩ rằng mình đang có khoảng thời gian tuyệt vời.",
+      "content.intro2": "Tại TechTutor, chúng tôi đã \"hack\" được cách làm cho giáo dục công nghệ trở nên như một cuộc phiêu lưu hơn là một công việc tẻ nhạt. Muốn biết cách thế nào không? Hãy cùng đi sâu.",
+      "nav.programs": "Chương Trình",
+      "nav.projects": "Dự Án",
+      "nav.pricing": "Giá & Câu Hỏi",
+      "nav.blog": "Blog",
+      "nav.free-trial": "Học Thử Miễn Phí",
+      "footer.copyright": "© 2025 TechTutor Academy. All rights reserved.",
+      "footer.bilingual": "Hỗ trợ song ngữ Anh / Việt"
+    }
+  }
+}

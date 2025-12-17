@@ -136,8 +136,8 @@
       <a href="blog.html" class="inline-flex items-center text-white/80 hover:text-white mb-6 transition">
         ← Back to Blog
       </a>
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">How to Spot and Nurture Your Child's Technology Skill</h1>
-      <p class="text-xl text-white/90">A parent's guide to identifying and developing tech talents in children</p>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4" data-i18n="hero.title">How to Spot and Nurture Your Child's Technology Skill</h1>
+      <p class="text-xl text-white/90" data-i18n="hero.subtitle">A parent's guide to identifying and developing tech talents in children</p>
     </div>
   </header>
 
@@ -348,6 +348,116 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Mobile programs dropdown toggle
+    const programsToggle = document.getElementById('mobile-programs-toggle');
+    const programsMenu = document.getElementById('mobile-programs-menu');
+    const programsArrow = document.getElementById('programs-arrow');
+
+    if (programsToggle && programsMenu && programsArrow) {
+      programsToggle.addEventListener('click', () => {
+        programsMenu.classList.toggle('hidden');
+        programsArrow.classList.toggle('rotate-180');
+      });
+    }
+
+    // Translation dictionary
+    const translations = {
+      en: {
+        'nav.programs': 'Programs',
+        'nav.projects': 'Projects',
+        'nav.pricing': 'Pricing',
+        'nav.blog': 'Blog',
+        'nav.free-trial': 'Free Trial',
+        'hero.title': 'How to Spot and Nurture Your Child\'s Technology Skill',
+        'hero.subtitle': 'A parent\'s guide to identifying and developing tech talents in children',
+        'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
+        'footer.bilingual': 'English / Vietnamese bilingual support'
+      },
+      vi: {
+        'nav.programs': 'Chương Trình',
+        'nav.projects': 'Dự Án',
+        'nav.pricing': 'Giá & Câu hỏi',
+        'nav.blog': 'Blog',
+        'nav.free-trial': 'Học Thử Miễn Phí',
+        'hero.title': 'Cách Phát Hiện Và Nuôi Dưỡng Kỹ Năng Công Nghệ Của Con Bạn',
+        'hero.subtitle': 'Hướng dẫn dành cho phụ huynh để nhận diện và phát triển đam mê công nghệ của trẻ',
+        'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
+        'footer.bilingual': 'Hỗ trợ song ngữ Anh / Việt'
+      }
+    };
+
+    // Language switcher
+    const langButtons = document.querySelectorAll('[data-lang]');
+
+    function switchLanguage(lang) {
+      // Update all elements with data-i18n attribute
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = translations[lang][key];
+          } else {
+            el.innerHTML = translations[lang][key];
+          }
+        }
+      });
+
+      // Update placeholders with data-i18n-placeholder attribute
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+          el.placeholder = translations[lang][key];
+        }
+      });
+
+      // Update button states
+      langButtons.forEach(btn => {
+        const btnLang = btn.getAttribute('data-lang');
+        if (btnLang === lang) {
+          btn.classList.add('bg-primary', 'text-white');
+          btn.classList.remove('text-slate-500', 'hover:bg-slate-100');
+          btn.setAttribute('aria-pressed', 'true');
+        } else {
+          btn.classList.remove('bg-primary', 'text-white');
+          btn.classList.add('text-slate-500', 'hover:bg-slate-100');
+          btn.setAttribute('aria-pressed', 'false');
+        }
+      });
+
+      // Save preference
+      try {
+        localStorage.setItem('tt-lang', lang);
+      } catch (e) {}
+    }
+
+    // Add click handlers
+    langButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
+        switchLanguage(lang);
+      });
+    });
+
+    // Load saved language preference
+    try {
+      const savedLang = localStorage.getItem('tt-lang');
+      if (savedLang === 'vi') {
+        switchLanguage('vi');
+      }
+    } catch (e) {}
+  </script>
 
 </body>
 </html>

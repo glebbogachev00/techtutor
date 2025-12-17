@@ -54,7 +54,7 @@
         <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
           <div class="relative hidden md:block group">
             <a href="../index-redesign.html#programs" class="inline-flex items-center gap-1 text-slate-600 hover:text-primary transition">
-              Programs
+              <span data-i18n="nav.programs">Programs</span>
               <svg class="h-4 w-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
@@ -71,9 +71,9 @@
               </div>
             </div>
           </div>
-          <a href="../student-projects.html" class="hover:text-primary transition">Projects</a>
-          <a href="../plans-and-faq.html" class="hover:text-primary transition">Pricing</a>
-          <a href="../blog.html" class="hover:text-primary transition">Blog</a>
+          <a href="../student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
+          <a href="../plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
+          <a href="../blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
         </div>
 
         <div class="hidden md:flex items-center gap-4">
@@ -81,7 +81,7 @@
             <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-9 w-11 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
             <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-9 w-11 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
           </div>
-          <a href="../free-trial.html" class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light">Free Trial</a>
+          <a href="../free-trial.html" class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light" data-i18n="nav.free-trial">Free Trial</a>
         </div>
 
         <div class="flex items-center gap-3 md:hidden">
@@ -102,7 +102,7 @@
         <div class="flex flex-col gap-4 text-sm font-medium text-slate-600">
           <div class="rounded-2xl border border-slate-200 p-4">
             <button id="mobile-programs-toggle" class="flex w-full items-center justify-between text-left">
-              <span>Programs</span>
+              <span data-i18n="nav.programs">Programs</span>
               <svg id="programs-arrow" class="h-5 w-5 text-slate-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
@@ -117,10 +117,10 @@
               <a href="app-development.html" class="text-slate-600 hover:text-primary">App Development</a>
             </div>
           </div>
-          <a href="../student-projects.html" class="hover:text-primary transition">Projects</a>
-          <a href="../plans-and-faq.html" class="hover:text-primary transition">Pricing</a>
-          <a href="../blog.html" class="hover:text-primary transition">Blog</a>
-          <a href="../free-trial.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm">Free Trial</a>
+          <a href="../student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
+          <a href="../plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
+          <a href="../blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
+          <a href="../free-trial.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm" data-i18n="nav.free-trial">Free Trial</a>
         </div>
       </div>
     </div>
@@ -318,13 +318,80 @@
         </div>
       </div>
       <div class="mt-12 pt-8 border-t border-slate-700 text-center">
-        <p class="text-sm text-slate-400">© 2025 TechTutor Academy. All rights reserved.</p>
-        <p class="text-xs text-slate-500 mt-2">English / Vietnamese bilingual support</p>
+        <p class="text-sm text-slate-400" data-i18n="footer.copyright">© 2025 TechTutor Academy. All rights reserved.</p>
+        <p class="text-xs text-slate-500 mt-2" data-i18n="footer.bilingual">English / Vietnamese bilingual support</p>
       </div>
     </div>
   </footer>
 
   <script>
+    const translations = {
+      en: {
+        'nav.programs': 'Programs',
+        'nav.projects': 'Projects',
+        'nav.pricing': 'Pricing',
+        'nav.blog': 'Blog',
+        'nav.free-trial': 'Free Trial',
+        'hero.title': 'Master Game Creation with Scratch',
+        'hero.intro': 'Are you tired of your child just playing games? Transform them into creators! Learn programming fundamentals by building fun games, animations, and interactive stories with colorful blocks—no typing required.',
+        'hero.cta': 'Get Started →',
+        'curriculum.title': 'New Skills with Scratch. A Detailed Look at Our Curriculum',
+        'curriculum.subtitle': 'With real-world projects to create and online classes that fit a busy routine',
+        'card1.title': 'Learn at your own pace',
+        'card1.desc': 'Scratch teachers are everyday creatives and professionals who want to share their passion. Start with block-based coding and progress naturally to complex game mechanics.',
+        'card2.title': 'Build Real Games',
+        'card2.desc': 'Create maze adventures, catching games, platformers, and interactive stories. Every lesson builds toward a complete project your child can share with friends and family.',
+        'card3.title': 'Creative & Logical Thinking',
+        'card3.desc': 'Design unique characters, backgrounds, and animations while developing problem-solving skills. Learn to think like a programmer through visual coding.',
+        'card4.title': 'Join Global Community',
+        'card4.desc': 'Publish projects to the worldwide Scratch community with millions of creators. Play games made by kids around the world and get inspired by their creativity.',
+        'tools.title': 'What You\'ll Master',
+        'tool1.title': 'Scratch Platform',
+        'tool1.desc': 'MIT\'s visual programming language designed specifically for young learners',
+        'tool2.title': 'Logic & Sequencing',
+        'tool2.desc': 'Master loops, conditionals, variables, and algorithmic thinking',
+        'tool3.title': 'Digital Art & Animation',
+        'tool3.desc': 'Create sprites, design backgrounds, and animate your characters',
+        'cta.title': 'Ready to Start Coding?',
+        'cta.subtitle': 'Book a free trial lesson and watch your child create their first game!',
+        'cta.button': 'Book Free Trial Now →',
+        'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
+        'footer.bilingual': 'English / Vietnamese bilingual support'
+      },
+      vi: {
+        'nav.programs': 'Chương Trình',
+        'nav.projects': 'Dự Án',
+        'nav.pricing': 'Giá & Câu hỏi',
+        'nav.blog': 'Blog',
+        'nav.free-trial': 'Học Thử Miễn Phí',
+        'hero.title': 'Làm Chủ Tạo Game Với Scratch',
+        'hero.intro': 'Bạn mệt mỏi khi con chỉ biết chơi game? Hãy biến chúng thành những người sáng tạo! Học lập trình cơ bản bằng cách tạo các trò chơi, hoạt hình và câu chuyện tương tác với các khối màu—không cần gõ phím.',
+        'hero.cta': 'Bắt Đầu →',
+        'curriculum.title': 'Kỹ Năng Mới Với Scratch. Cái Nhìn Chi Tiết Về Chương Trình Học',
+        'curriculum.subtitle': 'Với các dự án thực tế để tạo và các lớp học trực tuyến phù hợp với lịch bận rộn',
+        'card1.title': 'Học với tốc độ của riêng bạn',
+        'card1.desc': 'Các giáo viên Scratch là những nhà sáng tạo và chuyên gia muốn chia sẻ niềm đam mê của họ. Bắt đầu với lập trình dựa trên khối và phát triển tự nhiên thành những cơ chế trò chơi phức tạp.',
+        'card2.title': 'Xây Dựng Game Thực Tế',
+        'card2.desc': 'Tạo các trò chơi mê cung, trò chơi bắt, nền tảng và câu chuyện tương tác. Mỗi bài học xây dựng hướng tới một dự án hoàn chỉnh mà con bạn có thể chia sẻ với bạn bè và gia đình.',
+        'card3.title': 'Tư Duy Sáng Tạo & Lô Gic',
+        'card3.desc': 'Thiết kế các ký tự, nền và hoạt hình độc đáo trong khi phát triển kỹ năng giải quyết vấn đề. Học cách suy nghĩ như một lập trình viên thông qua lập trình trực quan.',
+        'card4.title': 'Tham Gia Cộng Đồng Toàn Cầu',
+        'card4.desc': 'Xuất bản dự án cho cộng đồng Scratch trên toàn thế giới với hàng triệu nhà sáng tạo. Chơi các trò chơi được tạo bởi trẻ em trên khắp thế giới và lấy cảm hứng từ sự sáng tạo của họ.',
+        'tools.title': 'Những Gì Bạn Sẽ Làm Chủ',
+        'tool1.title': 'Nền Tảng Scratch',
+        'tool1.desc': 'Ngôn ngữ lập trình trực quan của MIT được thiết kế đặc biệt cho những học viên trẻ',
+        'tool2.title': 'Lô Gic & Sequencing',
+        'tool2.desc': 'Làm chủ vòng lặp, điều kiện, biến và tư duy thuật toán',
+        'tool3.title': 'Nghệ Thuật & Hoạt Hình Kỹ Thuật Số',
+        'tool3.desc': 'Tạo sprite, thiết kế nền và tạo hoạt hình cho các ký tự của bạn',
+        'cta.title': 'Sẵn Sàng Bắt Đầu Lập Trình?',
+        'cta.subtitle': 'Đặt lịch học thử miễn phí và xem con bạn tạo trò chơi đầu tiên của mình!',
+        'cta.button': 'Đặt Lịch Học Thử Ngay →',
+        'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
+        'footer.bilingual': 'Hỗ trợ song ngữ Anh / Việt'
+      }
+    };
+
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -347,52 +414,71 @@
       });
     }
 
-    // Language switcher functionality
+    // Language switcher
     const langButtons = document.querySelectorAll('[data-lang]');
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = translations[lang][key];
+          } else {
+            el.innerHTML = translations[lang][key];
+          }
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+          el.placeholder = translations[lang][key];
+        }
+      });
+    }
 
     langButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const selectedLang = btn.dataset.lang;
 
-        // Update button states for all language switchers (mobile + desktop)
         langButtons.forEach(button => {
           if (button.dataset.lang === selectedLang) {
             button.classList.add('bg-primary', 'text-white');
-            button.classList.remove('text-gray-500', 'hover:bg-gray-100');
+            button.classList.remove('text-slate-500', 'hover:bg-slate-100');
             button.setAttribute('aria-pressed', 'true');
           } else {
             button.classList.remove('bg-primary', 'text-white');
-            button.classList.add('text-gray-500', 'hover:bg-gray-100');
+            button.classList.add('text-slate-500', 'hover:bg-slate-100');
             button.setAttribute('aria-pressed', 'false');
           }
         });
 
-        // Store preference
         try {
           localStorage.setItem('tt-lang', selectedLang);
         } catch (e) {}
+
+        switchLanguage(selectedLang);
       });
     });
 
-    // Initialize with English on page load
-    // IMPORTANT: Program pages only support English, so always force English
     try {
-      // Force localStorage to English immediately
-      localStorage.setItem('tt-lang', 'en');
-
-      // Update all language buttons to show English as active
-      const allLangButtons = document.querySelectorAll('[data-lang]');
-      allLangButtons.forEach(button => {
-        if (button.dataset.lang === 'en') {
-          button.classList.add('bg-primary', 'text-white');
-          button.classList.remove('text-gray-500', 'hover:bg-gray-100');
-          button.setAttribute('aria-pressed', 'true');
-        } else {
-          button.classList.remove('bg-primary', 'text-white');
-          button.classList.add('text-gray-500', 'hover:bg-gray-100');
-          button.setAttribute('aria-pressed', 'false');
+      const savedLang = localStorage.getItem('tt-lang');
+      if (savedLang && savedLang === 'vi') {
+        const viBtn = document.querySelector('[data-lang="vi"]');
+        if (viBtn) {
+          viBtn.click();
         }
-      });
+      } else {
+        const enBtn = document.querySelector('[data-lang="en"]');
+        if (enBtn) {
+          enBtn.classList.add('bg-primary', 'text-white');
+          enBtn.classList.remove('text-slate-500', 'hover:bg-slate-100');
+          enBtn.setAttribute('aria-pressed', 'true');
+        }
+        if (!savedLang) {
+          localStorage.setItem('tt-lang', 'en');
+        }
+      }
     } catch (e) {}
   </script>
 

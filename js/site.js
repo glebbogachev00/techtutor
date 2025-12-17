@@ -23,6 +23,65 @@
     }
   }
 
+  function initPageTranslations() {
+    const translations = window.pageTranslations;
+    if (!translations) return;
+    const langButtons = document.querySelectorAll('[data-lang]');
+    if (!langButtons.length) return;
+    const STORAGE_KEY = 'tt-lang';
+
+    const applyLanguage = (lang) => {
+      if (!translations[lang]) {
+        lang = 'en';
+      }
+      document.documentElement.setAttribute('lang', lang === 'vi' ? 'vi' : 'en');
+      document.querySelectorAll('[data-i18n]').forEach((node) => {
+        const key = node.getAttribute('data-i18n');
+        const value = translations[lang] && translations[lang][key];
+        if (!value) return;
+        if (node.tagName === 'INPUT' || node.tagName === 'TEXTAREA') {
+          node.placeholder = value;
+        } else {
+          node.innerHTML = value;
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-placeholder]').forEach((node) => {
+        const key = node.getAttribute('data-i18n-placeholder');
+        const value = translations[lang] && translations[lang][key];
+        if (value) {
+          node.placeholder = value;
+        }
+      });
+
+      langButtons.forEach((btn) => {
+        const isActive = btn.dataset.lang === lang;
+        btn.setAttribute('aria-pressed', isActive.toString());
+        btn.classList.toggle('bg-primary', isActive);
+        btn.classList.toggle('text-white', isActive);
+        btn.classList.toggle('text-slate-500', !isActive);
+        btn.classList.toggle('hover:bg-slate-100', !isActive);
+      });
+
+      try {
+        localStorage.setItem(STORAGE_KEY, lang);
+      } catch (e) {}
+    };
+
+    langButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang') || 'en';
+        applyLanguage(lang);
+      });
+    });
+
+    let saved = 'en';
+    try {
+      saved = localStorage.getItem('tt-lang') || 'en';
+    } catch (e) {}
+    applyLanguage(saved);
+  }
+
   function initFormspree() {
     const forms = document.querySelectorAll('form[data-formspree]');
     forms.forEach((form) => {
@@ -79,9 +138,11 @@
     document.addEventListener('DOMContentLoaded', () => {
       initNavigation();
       initFormspree();
+      initPageTranslations();
     });
   } else {
     initNavigation();
     initFormspree();
+    initPageTranslations();
   }
 })();

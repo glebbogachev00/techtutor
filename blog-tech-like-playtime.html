@@ -135,8 +135,8 @@
       <a href="blog.html" class="inline-flex items-center text-white/80 hover:text-white mb-6 transition">
         ← Back to Blog
       </a>
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">How to Make Learning Tech Feel Like Playtime</h1>
-      <p class="text-xl text-white/90">Transform tech education into an exciting adventure for your child</p>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4" data-i18n="hero.title">How to Make Learning Tech Feel Like Playtime</h1>
+      <p class="text-xl text-white/90" data-i18n="hero.subtitle">Transform tech education into an exciting adventure for your child</p>
     </div>
   </header>
 
@@ -148,11 +148,11 @@
   <main class="py-12">
     <article class="blog-content px-6">
 
-      <p>Remember when "fun learning" felt like an oxymoron? Yeah, us too. But here's a secret we've discovered after teaching hundreds of kids to code: Learning technology doesn't have to feel like homework. In fact, when done right, children won't even realize they're learning—they'll just think they're having a blast.</p>
+      <p data-i18n="content.intro1">Remember when "fun learning" felt like an oxymoron? Yeah, us too. But here's a secret we've discovered after teaching hundreds of kids to code: Learning technology doesn't have to feel like homework. In fact, when done right, children won't even realize they're learning—they'll just think they're having a blast.</p>
 
-      <p>At TechTutor, we've cracked the code (pun intended!) on making tech education feel more like an adventure and less like a chore. Want to know how? Let's dive in.</p>
+      <p data-i18n="content.intro2">At TechTutor, we've cracked the code (pun intended!) on making tech education feel more like an adventure and less like a chore. Want to know how? Let's dive in.</p>
 
-      <h2>Why Play-Based Learning Works</h2>
+      <h2 data-i18n="content.section1">Why Play-Based Learning Works</h2>
 
       <p>Kids are naturally curious. They love exploring, creating, and yes, playing. The magic happens when we harness that innate curiosity and channel it into learning. When a child is engaged in something fun, their brain is more receptive, they retain information better, and they develop a genuine love for the subject.</p>
 
@@ -280,6 +280,116 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Mobile programs dropdown toggle
+    const programsToggle = document.getElementById('mobile-programs-toggle');
+    const programsMenu = document.getElementById('mobile-programs-menu');
+    const programsArrow = document.getElementById('programs-arrow');
+
+    if (programsToggle && programsMenu && programsArrow) {
+      programsToggle.addEventListener('click', () => {
+        programsMenu.classList.toggle('hidden');
+        programsArrow.classList.toggle('rotate-180');
+      });
+    }
+
+    // Translation dictionary
+    const translations = {
+      en: {
+        'nav.programs': 'Programs',
+        'nav.projects': 'Projects',
+        'nav.pricing': 'Pricing',
+        'nav.blog': 'Blog',
+        'nav.free-trial': 'Free Trial',
+        'hero.title': 'How to Make Learning Tech Feel Like Playtime',
+        'hero.subtitle': 'Transform tech education into an exciting adventure for your child',
+        'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
+        'footer.bilingual': 'English / Vietnamese bilingual support'
+      },
+      vi: {
+        'nav.programs': 'Chương Trình',
+        'nav.projects': 'Dự Án',
+        'nav.pricing': 'Giá & Câu hỏi',
+        'nav.blog': 'Blog',
+        'nav.free-trial': 'Học Thử Miễn Phí',
+        'hero.title': 'Làm Thế Nào Để Học Công Nghệ Trở Nên Thú Vị Như Chơi',
+        'hero.subtitle': 'Biến giáo dục công nghệ thành một cuộc phiêu lưu thú vị cho con bạn',
+        'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
+        'footer.bilingual': 'Hỗ trợ song ngữ Anh / Việt'
+      }
+    };
+
+    // Language switcher
+    const langButtons = document.querySelectorAll('[data-lang]');
+
+    function switchLanguage(lang) {
+      // Update all elements with data-i18n attribute
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = translations[lang][key];
+          } else {
+            el.innerHTML = translations[lang][key];
+          }
+        }
+      });
+
+      // Update placeholders with data-i18n-placeholder attribute
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+          el.placeholder = translations[lang][key];
+        }
+      });
+
+      // Update button states
+      langButtons.forEach(btn => {
+        const btnLang = btn.getAttribute('data-lang');
+        if (btnLang === lang) {
+          btn.classList.add('bg-primary', 'text-white');
+          btn.classList.remove('text-slate-500', 'hover:bg-slate-100');
+          btn.setAttribute('aria-pressed', 'true');
+        } else {
+          btn.classList.remove('bg-primary', 'text-white');
+          btn.classList.add('text-slate-500', 'hover:bg-slate-100');
+          btn.setAttribute('aria-pressed', 'false');
+        }
+      });
+
+      // Save preference
+      try {
+        localStorage.setItem('tt-lang', lang);
+      } catch (e) {}
+    }
+
+    // Add click handlers
+    langButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
+        switchLanguage(lang);
+      });
+    });
+
+    // Load saved language preference
+    try {
+      const savedLang = localStorage.getItem('tt-lang');
+      if (savedLang === 'vi') {
+        switchLanguage('vi');
+      }
+    } catch (e) {}
+  </script>
 
 </body>
 </html>

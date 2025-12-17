@@ -54,7 +54,7 @@
         <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
           <div class="relative hidden md:block group">
             <a href="../index-redesign.html#programs" class="inline-flex items-center gap-1 text-slate-600 hover:text-primary transition">
-              Programs
+              <span data-i18n="nav.programs">Programs</span>
               <svg class="h-4 w-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
@@ -71,9 +71,9 @@
               </div>
             </div>
           </div>
-          <a href="../student-projects.html" class="hover:text-primary transition">Projects</a>
-          <a href="../plans-and-faq.html" class="hover:text-primary transition">Pricing</a>
-          <a href="../blog.html" class="hover:text-primary transition">Blog</a>
+          <a href="../student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
+          <a href="../plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
+          <a href="../blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
         </div>
 
         <div class="hidden md:flex items-center gap-4">
@@ -81,7 +81,7 @@
             <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-9 w-11 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
             <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-9 w-11 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
           </div>
-          <a href="../free-trial.html" class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light">Free Trial</a>
+          <a href="../free-trial.html" class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light" data-i18n="nav.free-trial">Free Trial</a>
         </div>
 
         <div class="flex items-center gap-3 md:hidden">
@@ -102,7 +102,7 @@
         <div class="flex flex-col gap-4 text-sm font-medium text-slate-600">
           <div class="rounded-2xl border border-slate-200 p-4">
             <button id="mobile-programs-toggle" class="flex w-full items-center justify-between text-left">
-              <span>Programs</span>
+              <span data-i18n="nav.programs">Programs</span>
               <svg id="programs-arrow" class="h-5 w-5 text-slate-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
@@ -117,10 +117,10 @@
               <a href="app-development.html" class="text-slate-600 hover:text-primary">App Development</a>
             </div>
           </div>
-          <a href="../student-projects.html" class="hover:text-primary transition">Projects</a>
-          <a href="../plans-and-faq.html" class="hover:text-primary transition">Pricing</a>
-          <a href="../blog.html" class="hover:text-primary transition">Blog</a>
-          <a href="../free-trial.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm">Free Trial</a>
+          <a href="../student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
+          <a href="../plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
+          <a href="../blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
+          <a href="../free-trial.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm" data-i18n="nav.free-trial">Free Trial</a>
         </div>
       </div>
     </div>
@@ -135,12 +135,12 @@
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <div class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">INTERMEDIATE</div>
-          <h1 class="section-title mb-4">3D Designer</h1>
-          <p class="text-xl text-gray-600 mb-6">
+          <h1 class="section-title mb-4" data-i18n="hero.title">3D Designer</h1>
+          <p class="text-xl text-gray-600 mb-6" data-i18n="hero.description">
             Master the art of 3D modeling and design with Blender. Create stunning 3D models, animations, and visual effects that bring your imagination to life.
           </p>
           <div class="flex items-center gap-4 mb-8">
-            <a href="../free-trial.html" class="btn-primary">Book Your Free Trial</a>
+            <a href="../free-trial.html" class="btn-primary" data-i18n="hero.cta">Book Your Free Trial</a>
           </div>
           <div class="flex items-center gap-6 text-sm text-gray-600">
             <div class="flex items-center gap-2">
@@ -270,81 +270,105 @@
         </div>
       </div>
       <div class="mt-12 pt-8 border-t border-slate-700 text-center">
-        <p class="text-sm text-slate-400">© 2025 TechTutor Academy. All rights reserved.</p>
-        <p class="text-xs text-slate-500 mt-2">English / Vietnamese bilingual support</p>
+        <p class="text-sm text-slate-400" data-i18n="footer.copyright">© 2025 TechTutor Academy. All rights reserved.</p>
+        <p class="text-xs text-slate-500 mt-2" data-i18n="footer.bilingual">English / Vietnamese bilingual support</p>
       </div>
     </div>
   </footer>
 
   <script>
-    // Mobile menu toggle
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
+    const translations = {
+      en: {
+        'nav.programs': 'Programs',
+        'nav.projects': 'Projects',
+        'nav.pricing': 'Pricing',
+        'nav.blog': 'Blog',
+        'nav.free-trial': 'Free Trial',
+        'hero.title': '3D Designer',
+        'hero.description': 'Master the art of 3D modeling and design with Blender. Create stunning 3D models, animations, and visual effects that bring your imagination to life.',
+        'hero.cta': 'Book Your Free Trial',
+        'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
+        'footer.bilingual': 'English / Vietnamese bilingual support'
+      },
+      vi: {
+        'nav.programs': 'Chương Trình',
+        'nav.projects': 'Dự Án',
+        'nav.pricing': 'Giá & Câu hỏi',
+        'nav.blog': 'Blog',
+        'nav.free-trial': 'Học Thử Miễn Phí',
+        'hero.title': 'Nhà Thiết Kế 3D',
+        'hero.description': 'Làm chủ kỹ năng thiết kế 3D với Blender, tạo mô hình, hoạt họa và hiệu ứng sống động để biến ý tưởng thành hiện thực.',
+        'hero.cta': 'Đặt Lịch Học Thử',
+        'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
+        'footer.bilingual': 'Hỗ trợ song ngữ Anh / Việt'
+      }
+    };
 
-    if (mobileMenuButton && mobileMenu) {
-      mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-
-    // Mobile programs dropdown toggle
-    const programsToggle = document.getElementById('mobile-programs-toggle');
-    const programsMenu = document.getElementById('mobile-programs-menu');
-    const programsArrow = document.getElementById('programs-arrow');
-
-    if (programsToggle && programsMenu && programsArrow) {
-      programsToggle.addEventListener('click', () => {
-        programsMenu.classList.toggle('hidden');
-        programsArrow.classList.toggle('rotate-180');
-      });
-    }
-
-    // Language switcher functionality
+    // Language switcher
     const langButtons = document.querySelectorAll('[data-lang]');
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = translations[lang][key];
+          } else {
+            el.innerHTML = translations[lang][key];
+          }
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+          el.placeholder = translations[lang][key];
+        }
+      });
+    }
 
     langButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const selectedLang = btn.dataset.lang;
 
-        // Update button states for all language switchers (mobile + desktop)
         langButtons.forEach(button => {
           if (button.dataset.lang === selectedLang) {
             button.classList.add('bg-primary', 'text-white');
-            button.classList.remove('text-gray-500', 'hover:bg-gray-100');
+            button.classList.remove('text-slate-500', 'hover:bg-slate-100');
             button.setAttribute('aria-pressed', 'true');
           } else {
             button.classList.remove('bg-primary', 'text-white');
-            button.classList.add('text-gray-500', 'hover:bg-gray-100');
+            button.classList.add('text-slate-500', 'hover:bg-slate-100');
             button.setAttribute('aria-pressed', 'false');
           }
         });
 
-        // Store preference
         try {
           localStorage.setItem('tt-lang', selectedLang);
         } catch (e) {}
+
+        switchLanguage(selectedLang);
       });
     });
 
-    // Initialize with English on page load
-    // IMPORTANT: Program pages only support English, so always force English
     try {
-      // Force localStorage to English immediately
-      localStorage.setItem('tt-lang', 'en');
-
-      // Update all language buttons to show English as active
-      const allLangButtons = document.querySelectorAll('[data-lang]');
-      allLangButtons.forEach(button => {
-        if (button.dataset.lang === 'en') {
-          button.classList.add('bg-primary', 'text-white');
-          button.classList.remove('text-gray-500', 'hover:bg-gray-100');
-          button.setAttribute('aria-pressed', 'true');
-        } else {
-          button.classList.remove('bg-primary', 'text-white');
-          button.classList.add('text-gray-500', 'hover:bg-gray-100');
-          button.setAttribute('aria-pressed', 'false');
+      const savedLang = localStorage.getItem('tt-lang');
+      if (savedLang && savedLang === 'vi') {
+        const viBtn = document.querySelector('[data-lang="vi"]');
+        if (viBtn) {
+          viBtn.click();
         }
-      });
+      } else {
+        const enBtn = document.querySelector('[data-lang="en"]');
+        if (enBtn) {
+          enBtn.classList.add('bg-primary', 'text-white');
+          enBtn.classList.remove('text-slate-500', 'hover:bg-slate-100');
+          enBtn.setAttribute('aria-pressed', 'true');
+        }
+        if (!savedLang) {
+          localStorage.setItem('tt-lang', 'en');
+        }
+      }
     } catch (e) {}
   </script>
 
