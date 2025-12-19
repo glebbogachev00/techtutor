@@ -348,7 +348,7 @@
 
         // Authentication
         function checkAuth() {
-            const isLoggedIn = localStorage.getItem('techtutor_admin_logged_in');
+            const isLoggedIn = localStorage.getItem('techtutor_admin_auth');
             if (isLoggedIn === 'true') {
                 showDashboard();
             } else {
@@ -373,7 +373,7 @@
             const password = document.getElementById('loginPassword').value;
 
             if (username === 'admin' && password === 'Techtutor@0987') {
-                localStorage.setItem('techtutor_admin_logged_in', 'true');
+                localStorage.setItem('techtutor_admin_auth', 'true');
                 showDashboard();
             } else {
                 const errorDiv = document.getElementById('loginError');
@@ -383,11 +383,9 @@
         });
 
         function logout() {
-            localStorage.removeItem('techtutor_admin_logged_in');
-            showLogin();
-            document.getElementById('loginUsername').value = '';
-            document.getElementById('loginPassword').value = '';
-            document.getElementById('loginError').classList.add('hidden');
+            localStorage.removeItem('techtutor_admin_auth');
+            window.location.href = 'login.html';
+        }
         }
 
         // Load students from localStorage
