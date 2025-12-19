@@ -185,10 +185,10 @@
       <div class="grid md:grid-cols-3 gap-8">
         
         <!-- Lesson 1 -->
-        <div class="lesson-card group">
-          <div class="relative mb-6 h-40 rounded-xl overflow-hidden" style="background: linear-gradient(135deg, rgba(25, 59, 146, 0.08) 0%, rgba(25, 59, 146, 0.03) 100%);">
-            <div class="w-full h-full flex items-center justify-center text-6xl">✨</div>
-          </div>
+         <div class="lesson-card group">
+           <div class="relative mb-6 h-40 rounded-xl overflow-hidden">
+             <img src="../images/lesson1.png" alt="Introduction to Generative AI" class="w-full h-full object-cover" />
+           </div>
           <div class="lesson-content">
             <div class="lesson-badge">Lesson 1</div>
             <h3 class="text-2xl font-bold text-ink mb-3">Introduction to Generative AI</h3>
@@ -771,6 +771,67 @@
   </footer>
 
   <script>
+    // Translations
+    const translations = {
+      en: {
+        'nav.programs': 'Programs',
+        'nav.projects': 'Projects',
+        'nav.free-courses': 'Free Courses',
+        'nav.pricing': 'Pricing',
+        'nav.blog': 'Blog',
+        'nav.free-trial': 'Free Trial',
+        'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
+        'footer.bilingual': 'English / Vietnamese bilingual support'
+      },
+      vi: {
+        'nav.programs': 'Chương Trình',
+        'nav.projects': 'Dự Án',
+        'nav.free-courses': 'Khóa Học Miễn Phí',
+        'nav.pricing': 'Giá Cả',
+        'nav.blog': 'Blog',
+        'nav.free-trial': 'Dùng Thử Miễn Phí',
+        'footer.copyright': '© 2025 TechTutor Academy. Bảo lưu mọi quyền.',
+        'footer.bilingual': 'Hỗ trợ song ngữ Tiếng Anh / Tiếng Việt'
+      }
+    };
+
+    // Language switching
+    function setLanguage(lang) {
+      localStorage.setItem('tt-lang', lang);
+      document.documentElement.lang = lang;
+      
+      // Update all elements with data-i18n attribute
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
+      });
+
+      // Update language buttons state
+      document.querySelectorAll('[data-lang]').forEach(btn => {
+        btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang);
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('bg-primary', 'text-white');
+          btn.classList.remove('text-slate-500', 'hover:bg-slate-100');
+        } else {
+          btn.classList.remove('bg-primary', 'text-white');
+          btn.classList.add('text-slate-500', 'hover:bg-slate-100');
+        }
+      });
+    }
+
+    // Initialize language from localStorage or default to English
+    const savedLang = localStorage.getItem('tt-lang') || 'en';
+    setLanguage(savedLang);
+
+    // Add language button listeners
+    document.querySelectorAll('[data-lang]').forEach(button => {
+      button.addEventListener('click', () => {
+        setLanguage(button.getAttribute('data-lang'));
+      });
+    });
+
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
