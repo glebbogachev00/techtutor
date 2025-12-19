@@ -3,6 +3,7 @@
   "builds": [
     { "src": "index.html", "use": "@vercel/static" },
     { "src": "student-projects.html", "use": "@vercel/static" },
+    { "src": "online-courses.html", "use": "@vercel/static" },
     { "src": "images/**/*", "use": "@vercel/static" }
   ],
   "routes": [
