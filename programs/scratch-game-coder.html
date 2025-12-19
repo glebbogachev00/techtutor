@@ -90,11 +90,8 @@
             <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
             <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
           </div>
-          <button id="mobile-menu-button" class="p-2 rounded-lg border border-slate-200 text-slate-700" aria-expanded="false" aria-controls="mobile-menu">
-            <span class="sr-only">Toggle navigation</span>
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+          <button id="mobile-menu-button" class="px-4 py-2 rounded-lg border border-slate-200 text-slate-700 font-medium text-sm" aria-expanded="false" aria-controls="mobile-menu">
+            Menu
           </button>
         </div>
       </div>
@@ -167,11 +164,11 @@
     <!-- Curriculum Detailed Look Section -->
     <section class="mb-20">
       <div class="text-center mb-12">
-        <h2 class="text-4xl md:text-5xl font-black text-ink mb-4">
+        <h2 class="text-4xl md:text-5xl font-black text-ink mb-4" data-i18n="curriculum.heading">
           New Skills with <span style="color: #193b92;">Scratch</span>.<br/>
           A Detailed Look at Our Curriculum
         </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-i18n="curriculum.subtitle">
           With real-world projects to create and online classes that fit a busy routine
         </p>
       </div>
@@ -182,8 +179,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center" style="background: rgba(25, 59, 146, 0.15);">
             <span class="text-3xl">🧩</span>
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">Learn at your own pace</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card1.title">Learn at your own pace</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card1.desc">
             Scratch teachers are everyday creatives and professionals who want to share their passion. Start with block-based coding and progress naturally to complex game mechanics.
           </p>
         </div>
@@ -193,8 +190,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center" style="background: rgba(44, 122, 123, 0.15);">
             <span class="text-3xl">🎮</span>
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">Build Real Games</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card2.title">Build Real Games</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card2.desc">
             Create maze adventures, catching games, platformers, and interactive stories. Every lesson builds toward a complete project your child can share with friends and family.
           </p>
         </div>
@@ -206,8 +203,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center" style="background: rgba(25, 59, 146, 0.15);">
             <span class="text-3xl">🎨</span>
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">Creative & Logical Thinking</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card3.title">Creative & Logical Thinking</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card3.desc">
             Design unique characters, backgrounds, and animations while developing problem-solving skills. Learn to think like a programmer through visual coding.
           </p>
         </div>
@@ -217,8 +214,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center p-2" style="background: rgba(44, 122, 123, 0.15);">
             <img src="../images/scratch.png" alt="Scratch" class="w-full h-full object-contain" />
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">Join Global Community</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card4.title">Join Global Community</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card4.desc">
             Publish projects to the worldwide Scratch community with millions of creators. Play games made by kids around the world and get inspired by their creativity.
           </p>
         </div>
@@ -227,28 +224,28 @@
 
     <!-- Tools & Skills -->
     <section class="mb-20">
-      <h2 class="text-4xl font-black text-ink mb-12 text-center">What You'll Master</h2>
+      <h2 class="text-4xl font-black text-ink mb-12 text-center" data-i18n="tools.title">What You'll Master</h2>
       <div class="grid md:grid-cols-3 gap-8">
         <div class="card text-center hover:shadow-2xl transition-all duration-300">
           <div class="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center text-5xl" style="background: rgba(25, 59, 146, 0.1);">
             🐱
           </div>
-          <h3 class="text-2xl font-bold mb-3 text-ink">Scratch Platform</h3>
-          <p class="text-gray-600 text-lg">MIT's visual programming language designed specifically for young learners</p>
+          <h3 class="text-2xl font-bold mb-3 text-ink" data-i18n="tool1.title">Scratch Platform</h3>
+          <p class="text-gray-600 text-lg" data-i18n="tool1.desc">MIT's visual programming language designed specifically for young learners</p>
         </div>
         <div class="card text-center hover:shadow-2xl transition-all duration-300">
           <div class="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center text-5xl" style="background: rgba(44, 122, 123, 0.1);">
             🧠
           </div>
-          <h3 class="text-2xl font-bold mb-3 text-ink">Logic & Sequencing</h3>
-          <p class="text-gray-600 text-lg">Master loops, conditionals, variables, and algorithmic thinking</p>
+          <h3 class="text-2xl font-bold mb-3 text-ink" data-i18n="tool2.title">Logic & Sequencing</h3>
+          <p class="text-gray-600 text-lg" data-i18n="tool2.desc">Master loops, conditionals, variables, and algorithmic thinking</p>
         </div>
         <div class="card text-center hover:shadow-2xl transition-all duration-300">
           <div class="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center text-5xl" style="background: rgba(25, 59, 146, 0.1);">
             🎨
           </div>
-          <h3 class="text-2xl font-bold mb-3 text-ink">Digital Art & Animation</h3>
-          <p class="text-gray-600 text-lg">Create sprites, design backgrounds, and animate your characters</p>
+          <h3 class="text-2xl font-bold mb-3 text-ink" data-i18n="tool3.title">Digital Art & Animation</h3>
+          <p class="text-gray-600 text-lg" data-i18n="tool3.desc">Create sprites, design backgrounds, and animate your characters</p>
         </div>
       </div>
     </section>
@@ -258,9 +255,9 @@
       <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
       <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
       <div class="relative z-10">
-        <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Ready to Start Coding?</h2>
-        <p class="text-2xl text-white/90 mb-10 max-w-2xl mx-auto">Book a free trial lesson and watch your child create their first game!</p>
-        <a href="../free-trial.html" class="inline-block btn-primary bg-white text-primary hover:bg-gray-100 text-lg px-12 py-5">Book Free Trial Now →</a>
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6" data-i18n="cta.title">Ready to Start Coding?</h2>
+        <p class="text-2xl text-white/90 mb-10 max-w-2xl mx-auto" data-i18n="cta.subtitle">Book a free trial lesson and watch your child create their first game!</p>
+        <a href="../free-trial.html" class="inline-block btn-primary bg-white text-primary hover:bg-gray-100 text-lg px-12 py-5" data-i18n="cta.button">Book Free Trial Now →</a>
       </div>
     </section>
 
@@ -335,10 +332,7 @@
         'nav.pricing': 'Pricing',
         'nav.blog': 'Blog',
         'nav.free-trial': 'Free Trial',
-        'hero.title': 'Master Game Creation with Scratch',
-        'hero.intro': 'Are you tired of your child just playing games? Transform them into creators! Learn programming fundamentals by building fun games, animations, and interactive stories with colorful blocks—no typing required.',
-        'hero.cta': 'Get Started →',
-        'curriculum.title': 'New Skills with Scratch. A Detailed Look at Our Curriculum',
+        'curriculum.heading': 'New Skills with Scratch. A Detailed Look at Our Curriculum',
         'curriculum.subtitle': 'With real-world projects to create and online classes that fit a busy routine',
         'card1.title': 'Learn at your own pace',
         'card1.desc': 'Scratch teachers are everyday creatives and professionals who want to share their passion. Start with block-based coding and progress naturally to complex game mechanics.',
@@ -367,10 +361,7 @@
         'nav.pricing': 'Giá & Câu hỏi',
         'nav.blog': 'Blog',
         'nav.free-trial': 'Học Thử Miễn Phí',
-        'hero.title': 'Làm Chủ Tạo Game Với Scratch',
-        'hero.intro': 'Bạn mệt mỏi khi con chỉ biết chơi game? Hãy biến chúng thành những người sáng tạo! Học lập trình cơ bản bằng cách tạo các trò chơi, hoạt hình và câu chuyện tương tác với các khối màu—không cần gõ phím.',
-        'hero.cta': 'Bắt Đầu →',
-        'curriculum.title': 'Kỹ Năng Mới Với Scratch. Cái Nhìn Chi Tiết Về Chương Trình Học',
+        'curriculum.heading': 'Kỹ Năng Mới Với Scratch. Cái Nhìn Chi Tiết Về Chương Trình Học',
         'curriculum.subtitle': 'Với các dự án thực tế để tạo và các lớp học trực tuyến phù hợp với lịch bận rộn',
         'card1.title': 'Học với tốc độ của riêng bạn',
         'card1.desc': 'Các giáo viên Scratch là những nhà sáng tạo và chuyên gia muốn chia sẻ niềm đam mê của họ. Bắt đầu với lập trình dựa trên khối và phát triển tự nhiên thành những cơ chế trò chơi phức tạp.',

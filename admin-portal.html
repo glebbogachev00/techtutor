@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechTutor - Admin Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .primary-gradient {
+            background: linear-gradient(135deg, #193b92 0%, #2563eb 100%);
+        }
+        .teal-gradient {
+            background: linear-gradient(135deg, #2C7A7B 0%, #319795 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .checkbox-course:checked {
+            background-color: #2C7A7B;
+            border-color: #2C7A7B;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Login Screen -->
+    <div id="loginScreen" class="min-h-screen flex items-center justify-center px-4">
+        <div class="max-w-md w-full">
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <div class="text-center mb-8">
+                    <div class="primary-gradient w-16 h-16 rounded-xl mx-auto mb-4 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                        </svg>
+                    </div>
+                    <h1 class="text-3xl font-bold text-gray-900">Admin Portal</h1>
+                    <p class="text-gray-600 mt-2">TechTutor Management System</p>
+                </div>
+                <form id="loginForm" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                        <input type="text" id="loginUsername" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                        <input type="password" id="loginPassword" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                    </div>
+                    <div id="loginError" class="text-red-600 text-sm hidden"></div>
+                    <button type="submit" class="w-full primary-gradient text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+                        Sign In
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="hidden">
+        <!-- Header -->
+        <header class="primary-gradient shadow-lg">
+            <div class="container mx-auto px-4 py-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-white bg-opacity-20 p-3 rounded-xl">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold text-white">TechTutor Admin Portal</h1>
+                            <p class="text-blue-100">Student Management System</p>
+                        </div>
+                    </div>
+                    <button onclick="logout()" class="bg-white bg-opacity-20 text-white px-6 py-2 rounded-lg hover:bg-opacity-30 transition">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="container mx-auto px-4 py-8">
+            <!-- Add Student Button -->
+            <div class="mb-6">
+                <button onclick="openAddStudentModal()" class="teal-gradient text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition">
+                    + Add New Student
+                </button>
+            </div>
+
+            <!-- Students List -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Students</h2>
+                <div id="studentsList" class="space-y-4">
+                    <!-- Students will be loaded here -->
+                </div>
+                <div id="noStudents" class="text-center py-12 text-gray-500 hidden">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <p class="text-lg">No students added yet</p>
+                    <p class="text-sm">Click "Add New Student" to get started</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Student Modal -->
+    <div id="addStudentModal" class="modal">
+        <div class="bg-white rounded-2xl shadow-xl max-w-md w-full mx-4 p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Add New Student</h2>
+            <form id="addStudentForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Student Name</label>
+                    <input type="text" id="studentName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Student ID</label>
+                    <input type="text" id="studentId" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input type="password" id="studentPassword" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div class="flex space-x-4 pt-4">
+                    <button type="submit" class="flex-1 teal-gradient text-white py-2 rounded-lg font-semibold hover:opacity-90 transition">
+                        Add Student
+                    </button>
+                    <button type="button" onclick="closeAddStudentModal()" class="flex-1 bg-gray-300 text-gray-700 py-2 rounded-lg font-semibold hover:bg-gray-400 transition">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Student Modal -->
+    <div id="editStudentModal" class="modal">
+        <div class="bg-white rounded-2xl shadow-xl max-w-4xl w-full mx-4 p-8 my-8" style="max-height: 90vh; overflow-y: auto;">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Edit Student Profile</h2>
+
+            <!-- Student Info -->
+            <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                <h3 class="font-semibold text-lg mb-2" id="editStudentName"></h3>
+                <p class="text-gray-600" id="editStudentId"></p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="border-b border-gray-200 mb-6">
+                <nav class="flex space-x-4">
+                    <button onclick="switchTab('courses')" class="tab-btn px-4 py-2 font-medium text-gray-600 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 active">
+                        Course Progress
+                    </button>
+                    <button onclick="switchTab('documents')" class="tab-btn px-4 py-2 font-medium text-gray-600 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600">
+                        Documents
+                    </button>
+                    <button onclick="switchTab('portfolio')" class="tab-btn px-4 py-2 font-medium text-gray-600 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600">
+                        Portfolio
+                    </button>
+                    <button onclick="switchTab('achievements')" class="tab-btn px-4 py-2 font-medium text-gray-600 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600">
+                        Achievements
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Course Progress Tab -->
+            <div id="coursesTab" class="tab-content">
+                <div id="coursesList" class="space-y-4">
+                    <!-- Courses will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Documents Tab -->
+            <div id="documentsTab" class="tab-content hidden">
+                <div class="space-y-6">
+                    <!-- EOC Report -->
+                    <div class="border border-gray-200 rounded-lg p-4">
+                        <h4 class="font-semibold mb-3">EOC Report</h4>
+                        <div id="eocReportSection">
+                            <input type="file" id="eocReportInput" accept=".pdf,.doc,.docx" class="mb-2">
+                            <button onclick="uploadEOCReport()" class="teal-gradient text-white px-4 py-2 rounded-lg text-sm">
+                                Upload Report
+                            </button>
+                        </div>
+                        <div id="eocReportDisplay" class="hidden mt-3">
+                            <div class="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
+                                <span class="text-sm" id="eocReportName"></span>
+                                <div class="space-x-2">
+                                    <button onclick="downloadEOCReport()" class="text-blue-600 hover:text-blue-800 text-sm">Download</button>
+                                    <button onclick="removeEOCReport()" class="text-red-600 hover:text-red-800 text-sm">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certificate -->
+                    <div class="border border-gray-200 rounded-lg p-4">
+                        <h4 class="font-semibold mb-3">Certificate</h4>
+                        <div id="certificateSection">
+                            <input type="file" id="certificateInput" accept=".pdf,.jpg,.jpeg,.png" class="mb-2">
+                            <button onclick="uploadCertificate()" class="teal-gradient text-white px-4 py-2 rounded-lg text-sm">
+                                Upload Certificate
+                            </button>
+                        </div>
+                        <div id="certificateDisplay" class="hidden mt-3">
+                            <div class="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
+                                <span class="text-sm" id="certificateName"></span>
+                                <div class="space-x-2">
+                                    <button onclick="downloadCertificate()" class="text-blue-600 hover:text-blue-800 text-sm">Download</button>
+                                    <button onclick="removeCertificate()" class="text-red-600 hover:text-red-800 text-sm">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portfolio Tab -->
+            <div id="portfolioTab" class="tab-content hidden">
+                <button onclick="openAddPortfolioModal()" class="teal-gradient text-white px-4 py-2 rounded-lg text-sm mb-4">
+                    + Add Portfolio Item
+                </button>
+                <div id="portfolioList" class="space-y-3">
+                    <!-- Portfolio items will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Achievements Tab -->
+            <div id="achievementsTab" class="tab-content hidden">
+                <button onclick="openAddAchievementModal()" class="teal-gradient text-white px-4 py-2 rounded-lg text-sm mb-4">
+                    + Add Achievement
+                </button>
+                <div id="achievementsList" class="space-y-3">
+                    <!-- Achievements will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Close Button -->
+            <div class="mt-6 pt-6 border-t">
+                <button onclick="closeEditStudentModal()" class="w-full bg-gray-300 text-gray-700 py-2 rounded-lg font-semibold hover:bg-gray-400 transition">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Portfolio Item Modal -->
+    <div id="addPortfolioModal" class="modal">
+        <div class="bg-white rounded-2xl shadow-xl max-w-md w-full mx-4 p-8">
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Add Portfolio Item</h3>
+            <form id="addPortfolioForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Project Title</label>
+                    <input type="text" id="portfolioTitle" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                    <textarea id="portfolioDescription" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Project Link (optional)</label>
+                    <input type="url" id="portfolioLink" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Video Upload (optional)</label>
+                    <input type="file" id="portfolioVideo" accept="video/*" class="w-full">
+                </div>
+                <div class="flex space-x-4 pt-4">
+                    <button type="submit" class="flex-1 teal-gradient text-white py-2 rounded-lg font-semibold">
+                        Add
+                    </button>
+                    <button type="button" onclick="closeAddPortfolioModal()" class="flex-1 bg-gray-300 text-gray-700 py-2 rounded-lg font-semibold">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Achievement Modal -->
+    <div id="addAchievementModal" class="modal">
+        <div class="bg-white rounded-2xl shadow-xl max-w-md w-full mx-4 p-8">
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Add Achievement</h3>
+            <form id="addAchievementForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Achievement Title</label>
+                    <input type="text" id="achievementTitle" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                    <textarea id="achievementDescription" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                    <input type="date" id="achievementDate" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div class="flex space-x-4 pt-4">
+                    <button type="submit" class="flex-1 teal-gradient text-white py-2 rounded-lg font-semibold">
+                        Add
+                    </button>
+                    <button type="button" onclick="closeAddAchievementModal()" class="flex-1 bg-gray-300 text-gray-700 py-2 rounded-lg font-semibold">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let students = [];
+        let currentStudentId = null;
+
+        // Courses structure
+        const courses = [
+            { id: 'scratch', name: 'Scratch Programming', levels: ['Beginner', 'Intermediate', 'Advanced'] },
+            { id: 'gdevelop', name: 'GDevelop Game Design', levels: ['Beginner', 'Intermediate', 'Advanced'] },
+            { id: 'roblox', name: 'Roblox Studio', levels: ['Beginner', 'Intermediate', 'Advanced'] },
+            { id: '3d', name: '3D Design', levels: ['Beginner', 'Intermediate', 'Advanced'] },
+            { id: 'ai_programming', name: 'AI Programming', levels: ['Beginner', 'Intermediate', 'Advanced'] },
+            { id: 'gen_ai', name: 'Generative AI', levels: ['Beginner', 'Intermediate', 'Advanced'] },
+            { id: 'app_dev', name: 'App Development', levels: ['Beginner', 'Intermediate', 'Advanced'] }
+        ];
+
+        // Initialize
+        window.onload = function() {
+            checkAuth();
+            loadStudents();
+        };
+
+        // Authentication
+        function checkAuth() {
+            const isLoggedIn = localStorage.getItem('techtutor_admin_auth');
+            if (isLoggedIn === 'true') {
+                showDashboard();
+            } else {
+                showLogin();
+            }
+        }
+
+        function showLogin() {
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('adminDashboard').classList.add('hidden');
+        }
+
+        function showDashboard() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('adminDashboard').classList.remove('hidden');
+            renderStudents();
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (username === 'admin' && password === 'Techtutor@0987') {
+                localStorage.setItem('techtutor_admin_auth', 'true');
+                showDashboard();
+            } else {
+                const errorDiv = document.getElementById('loginError');
+                errorDiv.textContent = 'Invalid username or password';
+                errorDiv.classList.remove('hidden');
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('techtutor_admin_auth');
+            window.location.href = 'login.html';
+        }
+
+        // Load students from localStorage
+        function loadStudents() {
+            const stored = localStorage.getItem('techtutor_students');
+            if (stored) {
+                students = JSON.parse(stored);
+            }
+        }
+
+        // Save students to localStorage
+        function saveStudents() {
+            localStorage.setItem('techtutor_students', JSON.stringify(students));
+        }
+
+        // Render students list
+        function renderStudents() {
+            const container = document.getElementById('studentsList');
+            const noStudents = document.getElementById('noStudents');
+
+            if (students.length === 0) {
+                container.innerHTML = '';
+                noStudents.classList.remove('hidden');
+                return;
+            }
+
+            noStudents.classList.add('hidden');
+            container.innerHTML = students.map(student => `
+                <div class="border border-gray-200 rounded-lg p-4 card-hover">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-semibold text-lg">${student.name}</h3>
+                            <p class="text-gray-600 text-sm">ID: ${student.id}</p>
+                        </div>
+                        <div class="space-x-2">
+                            <button onclick="openEditStudentModal('${student.id}')" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700">
+                                Edit
+                            </button>
+                            <button onclick="deleteStudent('${student.id}')" class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-700">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Add Student Modal
+        function openAddStudentModal() {
+            document.getElementById('addStudentModal').classList.add('active');
+        }
+
+        function closeAddStudentModal() {
+            document.getElementById('addStudentModal').classList.remove('active');
+            document.getElementById('addStudentForm').reset();
+        }
+
+        document.getElementById('addStudentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('studentName').value;
+            const id = document.getElementById('studentId').value;
+            const password = document.getElementById('studentPassword').value;
+
+            // Check if ID already exists
+            if (students.find(s => s.id === id)) {
+                alert('Student ID already exists!');
+                return;
+            }
+
+            const newStudent = {
+                id: id,
+                name: name,
+                password: password,
+                courses: courses.map(c => ({
+                    id: c.id,
+                    name: c.name,
+                    levels: c.levels.map(l => ({ name: l, completed: false }))
+                })),
+                documents: {
+                    eocReport: null,
+                    certificate: null
+                },
+                portfolio: [],
+                achievements: []
+            };
+
+            students.push(newStudent);
+            saveStudents();
+            renderStudents();
+            closeAddStudentModal();
+        });
+
+        // Delete Student
+        function deleteStudent(studentId) {
+            if (confirm('Are you sure you want to delete this student?')) {
+                students = students.filter(s => s.id !== studentId);
+                saveStudents();
+                renderStudents();
+            }
+        }
+
+        // Edit Student Modal
+        function openEditStudentModal(studentId) {
+            currentStudentId = studentId;
+            const student = students.find(s => s.id === studentId);
+
+            document.getElementById('editStudentName').textContent = student.name;
+            document.getElementById('editStudentId').textContent = `Student ID: ${student.id}`;
+
+            switchTab('courses');
+            renderCourses();
+            renderDocuments();
+            renderPortfolio();
+            renderAchievements();
+
+            document.getElementById('editStudentModal').classList.add('active');
+        }
+
+        function closeEditStudentModal() {
+            document.getElementById('editStudentModal').classList.remove('active');
+            currentStudentId = null;
+        }
+
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'text-blue-600', 'border-blue-600');
+                btn.classList.add('text-gray-600', 'border-transparent');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName + 'Tab').classList.remove('hidden');
+            event.target.classList.add('active', 'text-blue-600', 'border-blue-600');
+            event.target.classList.remove('text-gray-600', 'border-transparent');
+        }
+
+        // Render courses
+        function renderCourses() {
+            const student = students.find(s => s.id === currentStudentId);
+            const container = document.getElementById('coursesList');
+
+            container.innerHTML = student.courses.map(course => `
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <h4 class="font-semibold mb-3">${course.name}</h4>
+                    <div class="space-y-2">
+                        ${course.levels.map((level, index) => `
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox"
+                                    class="checkbox-course w-5 h-5 rounded"
+                                    ${level.completed ? 'checked' : ''}
+                                    onchange="toggleCourseLevel('${course.id}', ${index})">
+                                <span class="text-sm">${level.name}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleCourseLevel(courseId, levelIndex) {
+            const student = students.find(s => s.id === currentStudentId);
+            const course = student.courses.find(c => c.id === courseId);
+            course.levels[levelIndex].completed = !course.levels[levelIndex].completed;
+            saveStudents();
+        }
+
+        // Documents
+        function renderDocuments() {
+            const student = students.find(s => s.id === currentStudentId);
+
+            // EOC Report
+            if (student.documents.eocReport) {
+                document.getElementById('eocReportSection').classList.add('hidden');
+                document.getElementById('eocReportDisplay').classList.remove('hidden');
+                document.getElementById('eocReportName').textContent = student.documents.eocReport.name;
+            } else {
+                document.getElementById('eocReportSection').classList.remove('hidden');
+                document.getElementById('eocReportDisplay').classList.add('hidden');
+            }
+
+            // Certificate
+            if (student.documents.certificate) {
+                document.getElementById('certificateSection').classList.add('hidden');
+                document.getElementById('certificateDisplay').classList.remove('hidden');
+                document.getElementById('certificateName').textContent = student.documents.certificate.name;
+            } else {
+                document.getElementById('certificateSection').classList.remove('hidden');
+                document.getElementById('certificateDisplay').classList.add('hidden');
+            }
+        }
+
+        function uploadEOCReport() {
+            const file = document.getElementById('eocReportInput').files[0];
+            if (!file) {
+                alert('Please select a file');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const student = students.find(s => s.id === currentStudentId);
+                student.documents.eocReport = {
+                    name: file.name,
+                    data: e.target.result,
+                    type: file.type
+                };
+                saveStudents();
+                renderDocuments();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function downloadEOCReport() {
+            const student = students.find(s => s.id === currentStudentId);
+            const link = document.createElement('a');
+            link.href = student.documents.eocReport.data;
+            link.download = student.documents.eocReport.name;
+            link.click();
+        }
+
+        function removeEOCReport() {
+            if (confirm('Remove this document?')) {
+                const student = students.find(s => s.id === currentStudentId);
+                student.documents.eocReport = null;
+                saveStudents();
+                renderDocuments();
+            }
+        }
+
+        function uploadCertificate() {
+            const file = document.getElementById('certificateInput').files[0];
+            if (!file) {
+                alert('Please select a file');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const student = students.find(s => s.id === currentStudentId);
+                student.documents.certificate = {
+                    name: file.name,
+                    data: e.target.result,
+                    type: file.type
+                };
+                saveStudents();
+                renderDocuments();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function downloadCertificate() {
+            const student = students.find(s => s.id === currentStudentId);
+            const link = document.createElement('a');
+            link.href = student.documents.certificate.data;
+            link.download = student.documents.certificate.name;
+            link.click();
+        }
+
+        function removeCertificate() {
+            if (confirm('Remove this document?')) {
+                const student = students.find(s => s.id === currentStudentId);
+                student.documents.certificate = null;
+                saveStudents();
+                renderDocuments();
+            }
+        }
+
+        // Portfolio
+        function renderPortfolio() {
+            const student = students.find(s => s.id === currentStudentId);
+            const container = document.getElementById('portfolioList');
+
+            if (student.portfolio.length === 0) {
+                container.innerHTML = '<p class="text-gray-500 text-sm">No portfolio items yet</p>';
+                return;
+            }
+
+            container.innerHTML = student.portfolio.map((item, index) => `
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <h5 class="font-semibold">${item.title}</h5>
+                            <p class="text-sm text-gray-600 mt-1">${item.description}</p>
+                            ${item.link ? `<a href="${item.link}" target="_blank" class="text-blue-600 text-sm mt-1 inline-block">View Project</a>` : ''}
+                            ${item.video ? `<div class="mt-2"><span class="text-sm text-green-600">Video uploaded: ${item.video.name}</span></div>` : ''}
+                        </div>
+                        <button onclick="removePortfolioItem(${index})" class="text-red-600 hover:text-red-800 text-sm ml-4">
+                            Remove
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openAddPortfolioModal() {
+            document.getElementById('addPortfolioModal').classList.add('active');
+        }
+
+        function closeAddPortfolioModal() {
+            document.getElementById('addPortfolioModal').classList.remove('active');
+            document.getElementById('addPortfolioForm').reset();
+        }
+
+        document.getElementById('addPortfolioForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('portfolioTitle').value;
+            const description = document.getElementById('portfolioDescription').value;
+            const link = document.getElementById('portfolioLink').value;
+            const videoFile = document.getElementById('portfolioVideo').files[0];
+
+            const portfolioItem = {
+                title: title,
+                description: description,
+                link: link,
+                video: null
+            };
+
+            if (videoFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    portfolioItem.video = {
+                        name: videoFile.name,
+                        data: e.target.result,
+                        type: videoFile.type
+                    };
+
+                    const student = students.find(s => s.id === currentStudentId);
+                    student.portfolio.push(portfolioItem);
+                    saveStudents();
+                    renderPortfolio();
+                    closeAddPortfolioModal();
+                };
+                reader.readAsDataURL(videoFile);
+            } else {
+                const student = students.find(s => s.id === currentStudentId);
+                student.portfolio.push(portfolioItem);
+                saveStudents();
+                renderPortfolio();
+                closeAddPortfolioModal();
+            }
+        });
+
+        function removePortfolioItem(index) {
+            if (confirm('Remove this portfolio item?')) {
+                const student = students.find(s => s.id === currentStudentId);
+                student.portfolio.splice(index, 1);
+                saveStudents();
+                renderPortfolio();
+            }
+        }
+
+        // Achievements
+        function renderAchievements() {
+            const student = students.find(s => s.id === currentStudentId);
+            const container = document.getElementById('achievementsList');
+
+            if (student.achievements.length === 0) {
+                container.innerHTML = '<p class="text-gray-500 text-sm">No achievements yet</p>';
+                return;
+            }
+
+            container.innerHTML = student.achievements.map((item, index) => `
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <h5 class="font-semibold">${item.title}</h5>
+                            <p class="text-sm text-gray-600 mt-1">${item.description}</p>
+                            <p class="text-sm text-gray-500 mt-1">${item.date}</p>
+                        </div>
+                        <button onclick="removeAchievement(${index})" class="text-red-600 hover:text-red-800 text-sm ml-4">
+                            Remove
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openAddAchievementModal() {
+            document.getElementById('addAchievementModal').classList.add('active');
+        }
+
+        function closeAddAchievementModal() {
+            document.getElementById('addAchievementModal').classList.remove('active');
+            document.getElementById('addAchievementForm').reset();
+        }
+
+        document.getElementById('addAchievementForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('achievementTitle').value;
+            const description = document.getElementById('achievementDescription').value;
+            const date = document.getElementById('achievementDate').value;
+
+            const student = students.find(s => s.id === currentStudentId);
+            student.achievements.push({
+                title: title,
+                description: description,
+                date: date
+            });
+
+            saveStudents();
+            renderAchievements();
+            closeAddAchievementModal();
+        });
+
+        function removeAchievement(index) {
+            if (confirm('Remove this achievement?')) {
+                const student = students.find(s => s.id === currentStudentId);
+                student.achievements.splice(index, 1);
+                saveStudents();
+                renderAchievements();
+            }
+        }
+    </script>
+</body>
+</html>
