@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generative AI Foundation | TechTutor Academy</title>
+  <meta name="description" content="Interactive course on Generative AI Foundation with video lessons, descriptions, and quizzes." />
+  <link rel="icon" type="image/png" href="../images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            teal: { DEFAULT: '#2C7A7B', light: '#319795', dark: '#234E52' },
+            ink: '#0F172A',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; }
+    .btn-primary { background: #193b92; color: white; padding: 14px 32px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; display: inline-block; text-decoration: none; }
+    .btn-primary:hover { background: #0f2861; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(25, 59, 146, 0.4); }
+    .btn-secondary { background: white; color: #193b92; padding: 14px 32px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; display: inline-block; text-decoration: none; border: 2px solid #193b92; }
+    .btn-secondary:hover { background: #193b92; color: white; transform: translateY(-2px); }
+    .card { background: white; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); padding: 32px; }
+    .lesson-card { background: white; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); padding: 32px; transition: all 0.3s ease; display: flex; flex-direction: column; }
+    .lesson-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15); }
+    .lesson-content { flex: 1; display: flex; flex-direction: column; }
+    .lesson-badge { display: inline-block; background: #193b92; color: white; padding: 6px 14px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; margin-bottom: 8px; width: fit-content; }
+    .section-title { font-size: 2.5rem; font-weight: 800; line-height: 1.2; color: #0F172A; }
+    .quiz-option { background: white; border: 2px solid #e5e7eb; padding: 16px; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; margin-bottom: 12px; }
+    .quiz-option:hover { border-color: #193b92; background: #f8f9ff; }
+    .quiz-option.selected { background: #193b92; color: white; border-color: #193b92; }
+    .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 24px; background: #000; }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .progress-bar { height: 4px; background: #e5e7eb; border-radius: 2px; margin: 24px 0; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #193b92, #2C7A7B); transition: width 0.3s ease; }
+    .hidden-content { display: none; }
+    .hidden-content.active { display: block; }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Navigation -->
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between gap-6">
+        <a href="../index-redesign.html" class="text-2xl font-black tracking-tight text-slate-900 flex items-center gap-1" aria-label="TechTutor home">
+          <span class="text-primary">Tech</span><span class="text-teal-500">Tutor</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+          <div class="relative hidden md:block group">
+            <a href="../index-redesign.html#programs" class="inline-flex items-center gap-1 text-slate-600 hover:text-primary transition">
+              <span data-i18n="nav.programs">Programs</span>
+              <svg class="h-4 w-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+            <div class="absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 rounded-2xl border border-slate-100 bg-white/95 p-3 shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+              <div class="flex flex-col gap-1 text-sm">
+                <a href="../programs/scratch-game-coder.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">Scratch Game Coder</a>
+                <a href="../programs/gdevelop-game-designer.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">GDevelop Game Designer</a>
+                <a href="../programs/roblox-world-creator.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">Roblox World Creator</a>
+                <a href="../programs/3d-designer.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">3D Designer</a>
+                <a href="../programs/ai-programming-quest.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">AI & Programming Quest</a>
+                <a href="../programs/generative-ai-magic.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">Generative AI Magic</a>
+                <a href="../programs/app-development.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">App Development</a>
+              </div>
+            </div>
+          </div>
+          <a href="../student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
+          <a href="../online-courses.html" class="hover:text-primary transition" data-i18n="nav.free-courses">Free Courses</a>
+          <a href="../plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
+          <a href="../blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-4">
+          <div class="flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1">
+            <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-9 w-11 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
+            <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-9 w-11 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
+          </div>
+          <a href="../free-trial.html" class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light" data-i18n="nav.free-trial">Free Trial</a>
+        </div>
+
+        <div class="flex items-center gap-3 md:hidden">
+          <div class="flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1">
+            <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
+            <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
+          </div>
+          <button id="mobile-menu-button" class="p-2 rounded-lg border border-slate-200 text-slate-700" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="sr-only">Toggle navigation</span>
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="md:hidden hidden mt-4 border-t border-slate-200 pt-4">
+        <div class="flex flex-col gap-4 text-sm font-medium text-slate-600">
+          <div class="rounded-2xl border border-slate-200 p-4">
+            <button id="mobile-programs-toggle" class="flex w-full items-center justify-between text-left">
+              <span data-i18n="nav.programs">Programs</span>
+              <svg id="programs-arrow" class="h-5 w-5 text-slate-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div id="mobile-programs-menu" class="mt-3 hidden flex-col gap-2 border-l-2 border-primary pl-3 text-sm">
+              <a href="../programs/scratch-game-coder.html" class="text-slate-600 hover:text-primary">Scratch Game Coder</a>
+              <a href="../programs/gdevelop-game-designer.html" class="text-slate-600 hover:text-primary">GDevelop Game Designer</a>
+              <a href="../programs/roblox-world-creator.html" class="text-slate-600 hover:text-primary">Roblox World Creator</a>
+              <a href="../programs/3d-designer.html" class="text-slate-600 hover:text-primary">3D Designer</a>
+              <a href="../programs/ai-programming-quest.html" class="text-slate-600 hover:text-primary">AI & Programming Quest</a>
+              <a href="../programs/generative-ai-magic.html" class="text-slate-600 hover:text-primary">Generative AI Magic</a>
+              <a href="../programs/app-development.html" class="text-slate-600 hover:text-primary">App Development</a>
+            </div>
+          </div>
+          <a href="../student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
+          <a href="../online-courses.html" class="hover:text-primary transition" data-i18n="nav.free-courses">Free Courses</a>
+          <a href="../plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
+          <a href="../blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
+          <a href="../free-trial.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm" data-i18n="nav.free-trial">Free Trial</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-16">
+
+    <!-- Hero Section -->
+    <section class="mb-16">
+      <div class="grid md:grid-cols-2 gap-12 items-center mb-12">
+        <div>
+          <div class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">Interactive Course</div>
+          <h1 class="text-5xl md:text-6xl font-black leading-tight mb-6 text-ink">
+            Generative AI<br/>Foundation
+          </h1>
+          <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+            Master the fundamentals of generative AI through interactive lessons, videos, and hands-on quizzes. Learn at your own pace with expert guidance.
+          </p>
+          <div class="flex items-center gap-6 text-sm text-gray-600">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">⭐</span>
+              <span class="font-semibold text-ink">5.0/5</span> rating
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">🎓</span>
+              <span class="font-semibold text-ink">3</span> lessons
+            </div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-teal/5 rounded-[3rem] transform rotate-3"></div>
+          <img src="../images/genai.png" alt="Generative AI" class="relative w-full max-w-lg mx-auto drop-shadow-2xl" />
+        </div>
+      </div>
+      
+      <!-- Progress Bar -->
+      <div class="mb-8">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-sm font-semibold text-ink">Your Progress</span>
+          <span class="text-sm font-semibold text-primary" id="progressText">0/3 Complete</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lessons Grid -->
+    <section class="mb-20">
+      <h2 class="text-4xl font-black text-ink mb-12 text-center">3 Interactive Lessons</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- Lesson 1 -->
+        <div class="lesson-card group">
+          <div class="relative mb-6 h-40 rounded-xl overflow-hidden" style="background: linear-gradient(135deg, rgba(25, 59, 146, 0.08) 0%, rgba(25, 59, 146, 0.03) 100%);">
+            <div class="w-full h-full flex items-center justify-center text-6xl">✨</div>
+          </div>
+          <div class="lesson-content">
+            <div class="lesson-badge">Lesson 1</div>
+            <h3 class="text-2xl font-bold text-ink mb-3">Introduction to Generative AI</h3>
+            <p class="text-gray-600 mb-4 leading-relaxed text-sm">
+              Discover what generative AI is and how it's transforming the world. Learn the core concepts behind models like ChatGPT and DALL-E.
+            </p>
+            <div class="mb-6 space-y-2">
+              <p class="text-xs font-semibold text-slate-700">Topics covered:</p>
+              <ul class="text-xs text-gray-600 space-y-1">
+                <li>✓ What is generative AI?</li>
+                <li>✓ How neural networks work</li>
+                <li>✓ Real-world applications</li>
+                <li>✓ AI ethics & responsible use</li>
+              </ul>
+            </div>
+            <div class="text-xs text-slate-500 mb-4">⏱ 15 minutes</div>
+          </div>
+          <button onclick="openLesson(1)" class="btn-primary w-full text-center">View Lesson</button>
+        </div>
+
+        <!-- Lesson 2 -->
+        <div class="lesson-card group">
+          <div class="relative mb-6 h-40 rounded-xl overflow-hidden">
+            <img src="../images/lesson2.png" alt="Video & Image Creation" class="w-full h-full object-cover" />
+          </div>
+          <div class="lesson-content">
+            <div class="lesson-badge">Lesson 2</div>
+            <h3 class="text-2xl font-bold text-ink mb-3">Video & Image Creation</h3>
+            <p class="text-gray-600 mb-4 leading-relaxed text-sm">
+              Create stunning images and videos using Grok, Meta AI, and Google Nano Banana. Learn prompting techniques for different media types.
+            </p>
+            <div class="mb-6 space-y-2">
+              <p class="text-xs font-semibold text-slate-700">Topics covered:</p>
+              <ul class="text-xs text-gray-600 space-y-1">
+                <li>✓ Image creation & prompting</li>
+                <li>✓ Video generation techniques</li>
+                <li>✓ Animation & effects</li>
+                <li>✓ Download & export</li>
+              </ul>
+            </div>
+            <div class="text-xs text-slate-500 mb-4">⏱ 20 minutes</div>
+          </div>
+          <button onclick="openLesson(2)" class="btn-primary w-full text-center">View Lesson</button>
+        </div>
+
+        <!-- Lesson 3 -->
+        <div class="lesson-card group">
+          <div class="relative mb-6 h-40 rounded-xl overflow-hidden">
+            <img src="../images/lesson3.png" alt="AI-Powered Web Games" class="w-full h-full object-cover" />
+          </div>
+          <div class="lesson-content">
+            <div class="lesson-badge">Lesson 3</div>
+            <h3 class="text-2xl font-bold text-ink mb-3">AI-Powered Web Games</h3>
+            <p class="text-gray-600 mb-4 leading-relaxed text-sm">
+              Build simple web games using Claude, Grok, and Gemini. Test different AI models and add features to make games challenging.
+            </p>
+            <div class="mb-6 space-y-2">
+              <p class="text-xs font-semibold text-slate-700">Topics covered:</p>
+              <ul class="text-xs text-gray-600 space-y-1">
+                <li>✓ Compare Claude, Grok, Gemini</li>
+                <li>✓ Game logic & structure</li>
+                <li>✓ Add advanced features</li>
+                <li>✓ Increase difficulty & engagement</li>
+              </ul>
+            </div>
+            <div class="text-xs text-slate-500 mb-4">⏱ 22 minutes</div>
+          </div>
+          <button onclick="openLesson(3)" class="btn-primary w-full text-center">View Lesson</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Lessons Content -->
+    <section>
+      
+      <!-- Lesson 1 Content -->
+      <div id="lesson-1" class="hidden-content">
+        <div class="mb-12">
+          <button onclick="closeLesson()" class="text-primary hover:text-primary-dark mb-6 font-semibold flex items-center gap-2">
+            ← Back to Lessons
+          </button>
+          
+          <div class="flex items-center gap-4 mb-8">
+            <span class="lesson-badge">Lesson 1</span>
+            <h2 class="text-4xl font-bold text-ink">Introduction to Generative AI</h2>
+          </div>
+
+          <!-- Video -->
+          <div class="mb-12">
+            <div class="video-container mb-6">
+              <iframe src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <p class="text-sm text-gray-500">Video Duration: 15 minutes</p>
+          </div>
+
+          <!-- Description -->
+          <div class="card mb-12">
+            <h3 class="text-2xl font-bold text-ink mb-6">Lesson Overview</h3>
+            
+            <div class="space-y-6 text-gray-700 leading-relaxed">
+              <p>
+                Welcome to the world of Generative AI! In this introductory lesson, you'll learn the fundamentals of what generative AI is and how it's transforming the world around us.
+              </p>
+              
+              <div>
+                <h4 class="font-bold text-ink mb-3">What You'll Learn:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Definition and core concepts of generative AI</li>
+                  <li>How AI models like ChatGPT and DALL-E work</li>
+                  <li>Real-world applications and use cases</li>
+                  <li>Ethical considerations when using AI</li>
+                  <li>Future trends in generative AI</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="font-bold text-ink mb-3">Key Concepts:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li><strong>Machine Learning:</strong> Systems that learn from data patterns</li>
+                  <li><strong>Neural Networks:</strong> Computational models inspired by the brain</li>
+                  <li><strong>Large Language Models (LLMs):</strong> AI trained on vast text data</li>
+                  <li><strong>Generative Models:</strong> AI that creates new content</li>
+                </ul>
+              </div>
+
+              <p>
+                By the end of this lesson, you'll have a solid understanding of generative AI fundamentals and be ready to explore how to use these tools effectively!
+              </p>
+            </div>
+          </div>
+
+          <!-- Quiz Section -->
+          <div class="card">
+            <h3 class="text-2xl font-bold text-ink mb-8">Lesson Quiz</h3>
+            
+            <div class="space-y-8">
+              
+              <!-- Question 1 -->
+              <div>
+                <h4 class="font-bold text-ink mb-4">1. What does a generative AI model do?</h4>
+                <div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q1-a')">
+                    <input type="radio" name="q1" value="a" id="q1-a" class="mr-3">
+                    <label for="q1-a" class="cursor-pointer">It analyzes existing data and finds patterns</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q1-b')">
+                    <input type="radio" name="q1" value="b" id="q1-b" class="mr-3">
+                    <label for="q1-b" class="cursor-pointer">It creates new, original content based on patterns it learned</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q1-c')">
+                    <input type="radio" name="q1" value="c" id="q1-c" class="mr-3">
+                    <label for="q1-c" class="cursor-pointer">It can only work with images</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q1-d')">
+                    <input type="radio" name="q1" value="d" id="q1-d" class="mr-3">
+                    <label for="q1-d" class="cursor-pointer">It replaces human creativity</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Question 2 -->
+              <div>
+                <h4 class="font-bold text-ink mb-4">2. Which is NOT an example of generative AI?</h4>
+                <div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q2-a')">
+                    <input type="radio" name="q2" value="a" id="q2-a" class="mr-3">
+                    <label for="q2-a" class="cursor-pointer">ChatGPT creating written text</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q2-b')">
+                    <input type="radio" name="q2" value="b" id="q2-b" class="mr-3">
+                    <label for="q2-b" class="cursor-pointer">DALL-E generating images from text</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q2-c')">
+                    <input type="radio" name="q2" value="c" id="q2-c" class="mr-3">
+                    <label for="q2-c" class="cursor-pointer">A calculator solving math problems</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q2-d')">
+                    <input type="radio" name="q2" value="d" id="q2-d" class="mr-3">
+                    <label for="q2-d" class="cursor-pointer">Midjourney creating artwork</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Question 3 -->
+              <div>
+                <h4 class="font-bold text-ink mb-4">3. What is a Large Language Model (LLM)?</h4>
+                <div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q3-a')">
+                    <input type="radio" name="q3" value="a" id="q3-a" class="mr-3">
+                    <label for="q3-a" class="cursor-pointer">A program that translates between languages</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q3-b')">
+                    <input type="radio" name="q3" value="b" id="q3-b" class="mr-3">
+                    <label for="q3-b" class="cursor-pointer">An AI trained on vast amounts of text to understand and generate language</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q3-c')">
+                    <input type="radio" name="q3" value="c" id="q3-c" class="mr-3">
+                    <label for="q3-c" class="cursor-pointer">A dictionary database</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q3-d')">
+                    <input type="radio" name="q3" value="d" id="q3-d" class="mr-3">
+                    <label for="q3-d" class="cursor-pointer">A tool that counts words in documents</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-12 flex gap-4">
+              <button onclick="submitQuiz(1)" class="btn-primary flex-1">Submit Quiz</button>
+              <button onclick="closeLesson()" class="btn-secondary flex-1">Skip to Next Lesson</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lesson 2 Content -->
+      <div id="lesson-2" class="hidden-content">
+        <div class="mb-12">
+          <button onclick="closeLesson()" class="text-primary hover:text-primary-dark mb-6 font-semibold flex items-center gap-2">
+            ← Back to Lessons
+          </button>
+          
+          <div class="flex items-center gap-4 mb-8">
+            <span class="lesson-badge">Lesson 2</span>
+            <h2 class="text-4xl font-bold text-ink">Video & Image Creation</h2>
+          </div>
+
+          <!-- Video -->
+          <div class="mb-12">
+            <div class="video-container mb-6">
+              <iframe src="https://www.youtube-nocookie.com/embed/3eC0lIB8Ulc" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <p class="text-sm text-gray-500">Video Duration: 20 minutes</p>
+          </div>
+
+          <!-- Description -->
+          <div class="card mb-12">
+            <h3 class="text-2xl font-bold text-ink mb-6">Lesson Overview</h3>
+            
+            <div class="space-y-6 text-gray-700 leading-relaxed">
+              <p>
+                Learn how to create stunning images and videos using cutting-edge AI tools like Grok, Meta AI, and Google Nano Banana. Master prompting techniques specific to different media types and discover how to bring your creative vision to life.
+              </p>
+              
+              <div>
+                <h4 class="font-bold text-ink mb-3">What You'll Learn:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Creating high-quality images with Grok, Meta AI, and Google tools</li>
+                  <li>Specialized prompts for different image styles and effects</li>
+                  <li>Video generation and animation techniques</li>
+                  <li>How to add motion, effects, and transitions</li>
+                  <li>Downloading and exporting media in various formats</li>
+                  <li>Optimizing content for different platforms</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="font-bold text-ink mb-3">AI Tools Covered:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li><strong>Grok:</strong> Fast image and video generation with creative capabilities</li>
+                  <li><strong>Meta AI:</strong> Powerful models for visual content creation</li>
+                  <li><strong>Google Nano Banana:</strong> Efficient generation with various style options</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="font-bold text-ink mb-3">Prompting Tips for Media:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Be descriptive about visual style, lighting, and composition</li>
+                  <li>Specify animation speed, transitions, and effects for videos</li>
+                  <li>Use reference styles and artistic movements</li>
+                  <li>Include technical details for export quality and format</li>
+                </ul>
+              </div>
+
+              <p>
+                By the end of this lesson, you'll be able to create professional-quality images and videos that capture your imagination!
+              </p>
+            </div>
+          </div>
+
+          <!-- Quiz Section -->
+          <div class="card">
+            <h3 class="text-2xl font-bold text-ink mb-8">Lesson Quiz</h3>
+            
+            <div class="space-y-8">
+              
+              <!-- Question 1 -->
+              <div>
+                <h4 class="font-bold text-ink mb-4">1. Which of these tools is specifically mentioned for image and video creation in this lesson?</h4>
+                <div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q4-a')">
+                    <input type="radio" name="q4" value="a" id="q4-a" class="mr-3">
+                    <label for="q4-a" class="cursor-pointer">Grok, Meta AI, and Google Nano Banana</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q4-b')">
+                    <input type="radio" name="q4" value="b" id="q4-b" class="mr-3">
+                    <label for="q4-b" class="cursor-pointer">ChatGPT, Claude, and Gemini</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q4-c')">
+                    <input type="radio" name="q4" value="c" id="q4-c" class="mr-3">
+                    <label for="q4-c" class="cursor-pointer">Scratch, Roblox, and GDevelop</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q4-d')">
+                    <input type="radio" name="q4" value="d" id="q4-d" class="mr-3">
+                    <label for="q4-d" class="cursor-pointer">Adobe Photoshop and Premiere Pro</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Question 2 -->
+              <div>
+                <h4 class="font-bold text-ink mb-4">2. What is an important element to describe when creating a video prompt?</h4>
+                <div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q5-a')">
+                    <input type="radio" name="q5" value="a" id="q5-a" class="mr-3">
+                    <label for="q5-a" class="cursor-pointer">Only the main character</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q5-b')">
+                    <input type="radio" name="q5" value="b" id="q5-b" class="mr-3">
+                    <label for="q5-b" class="cursor-pointer">Animation speed, transitions, and effects</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q5-c')">
+                    <input type="radio" name="q5" value="c" id="q5-c" class="mr-3">
+                    <label for="q5-c" class="cursor-pointer">The video file size</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q5-d')">
+                    <input type="radio" name="q5" value="d" id="q5-d" class="mr-3">
+                    <label for="q5-d" class="cursor-pointer">The editing software needed</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Question 3 -->
+              <div>
+                <h4 class="font-bold text-ink mb-4">3. When creating image prompts, what should you include?</h4>
+                <div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q6-a')">
+                    <input type="radio" name="q6" value="a" id="q6-a" class="mr-3">
+                    <label for="q6-a" class="cursor-pointer">Only basic colors</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q6-b')">
+                    <input type="radio" name="q6" value="b" id="q6-b" class="mr-3">
+                    <label for="q6-b" class="cursor-pointer">Visual style, lighting, and composition details</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q6-c')">
+                    <input type="radio" name="q6" value="c" id="q6-c" class="mr-3">
+                    <label for="q6-c" class="cursor-pointer">Only the resolution size</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q6-d')">
+                    <input type="radio" name="q6" value="d" id="q6-d" class="mr-3">
+                    <label for="q6-d" class="cursor-pointer">Random adjectives</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-12 flex gap-4">
+              <button onclick="submitQuiz(2)" class="btn-primary flex-1">Submit Quiz</button>
+              <button onclick="closeLesson()" class="btn-secondary flex-1">Skip to Next Lesson</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lesson 3 Content -->
+      <div id="lesson-3" class="hidden-content">
+        <div class="mb-12">
+          <button onclick="closeLesson()" class="text-primary hover:text-primary-dark mb-6 font-semibold flex items-center gap-2">
+            ← Back to Lessons
+          </button>
+          
+          <div class="flex items-center gap-4 mb-8">
+            <span class="lesson-badge">Lesson 3</span>
+            <h2 class="text-4xl font-bold text-ink">AI-Powered Web Games</h2>
+          </div>
+
+          <!-- Video -->
+          <div class="mb-12">
+            <div class="video-container mb-6">
+              <iframe src="https://www.youtube-nocookie.com/embed/0J8lIBiIw_E" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <p class="text-sm text-gray-500">Video Duration: 22 minutes</p>
+          </div>
+
+          <!-- Description -->
+          <div class="card mb-12">
+            <h3 class="text-2xl font-bold text-ink mb-6">Lesson Overview</h3>
+            
+            <div class="space-y-6 text-gray-700 leading-relaxed">
+              <p>
+                Create interactive web games using powerful AI models like Claude, Grok, and Gemini. Learn to test different AI engines, compare their strengths, and enhance your games with advanced features to keep players engaged and challenged!
+              </p>
+              
+              <div>
+                <h4 class="font-bold text-ink mb-3">What You'll Learn:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Building game logic and structure with AI assistance</li>
+                  <li>Testing and comparing Claude, Grok, and Gemini for game development</li>
+                  <li>Implementing game mechanics (scoring, levels, difficulty)</li>
+                  <li>Adding interactive features and special abilities</li>
+                  <li>Increasing game difficulty and player engagement</li>
+                  <li>Debugging and optimizing AI-generated game code</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="font-bold text-ink mb-3">AI Models for Game Development:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li><strong>Claude:</strong> Excellent for complex logic and detailed explanations</li>
+                  <li><strong>Grok:</strong> Great for creative features and rapid development</li>
+                  <li><strong>Gemini:</strong> Strong at code generation and optimization</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="font-bold text-ink mb-3">Game Enhancement Strategies:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Progressive difficulty levels to keep players challenged</li>
+                  <li>Power-ups, bonuses, and special mechanics</li>
+                  <li>Leaderboards and player progression systems</li>
+                  <li>Sound effects and visual feedback</li>
+                  <li>Mobile responsiveness and browser compatibility</li>
+                </ul>
+              </div>
+
+              <p>
+                By the end of this lesson, you'll have created a fully playable web game with sophisticated AI-powered features that engage and challenge players!
+              </p>
+            </div>
+          </div>
+
+          <!-- Quiz Section -->
+          <div class="card">
+            <h3 class="text-2xl font-bold text-ink mb-8">Lesson Quiz</h3>
+            
+            <div class="space-y-8">
+              
+              <!-- Question 1 -->
+              <div>
+                <h4 class="font-bold text-ink mb-4">1. Which AI models are recommended for web game development?</h4>
+                <div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q7-a')">
+                    <input type="radio" name="q7" value="a" id="q7-a" class="mr-3">
+                    <label for="q7-a" class="cursor-pointer">DALL-E, Midjourney, Stable Diffusion</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q7-b')">
+                    <input type="radio" name="q7" value="b" id="q7-b" class="mr-3">
+                    <label for="q7-b" class="cursor-pointer">Claude, Grok, and Gemini</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q7-c')">
+                    <input type="radio" name="q7" value="c" id="q7-c" class="mr-3">
+                    <label for="q7-c" class="cursor-pointer">Grok, Meta AI, Google Nano Banana</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q7-d')">
+                    <input type="radio" name="q7" value="d" id="q7-d" class="mr-3">
+                    <label for="q7-d" class="cursor-pointer">Scratch, Roblox Studio, Unreal Engine</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Question 2 -->
+              <div>
+                <h4 class="font-bold text-ink mb-4">2. What is an important way to increase player engagement in a web game?</h4>
+                <div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q8-a')">
+                    <input type="radio" name="q8" value="a" id="q8-a" class="mr-3">
+                    <label for="q8-a" class="cursor-pointer">Make the game too easy</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q8-b')">
+                    <input type="radio" name="q8" value="b" id="q8-b" class="mr-3">
+                    <label for="q8-b" class="cursor-pointer">Add progressive difficulty levels, power-ups, and special mechanics</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q8-c')">
+                    <input type="radio" name="q8" value="c" id="q8-c" class="mr-3">
+                    <label for="q8-c" class="cursor-pointer">Remove all visual feedback</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q8-d')">
+                    <input type="radio" name="q8" value="d" id="q8-d" class="mr-3">
+                    <label for="q8-d" class="cursor-pointer">Limit the game to desktop only</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Question 3 -->
+              <div>
+                <h4 class="font-bold text-ink mb-4">3. Which AI model strength is best for complex game logic?</h4>
+                <div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q9-a')">
+                    <input type="radio" name="q9" value="a" id="q9-a" class="mr-3">
+                    <label for="q9-a" class="cursor-pointer">Grok - for rapid development</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q9-b')">
+                    <input type="radio" name="q9" value="b" id="q9-b" class="mr-3">
+                    <label for="q9-b" class="cursor-pointer">Claude - for complex logic and detailed explanations</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q9-c')">
+                    <input type="radio" name="q9" value="c" id="q9-c" class="mr-3">
+                    <label for="q9-c" class="cursor-pointer">Gemini - for image generation</label>
+                  </div>
+                  <div class="quiz-option" onclick="selectAnswer(this, 'q9-d')">
+                    <input type="radio" name="q9" value="d" id="q9-d" class="mr-3">
+                    <label for="q9-d" class="cursor-pointer">All models are equally good for logic</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-12 flex gap-4">
+              <button onclick="submitQuiz(3)" class="btn-primary flex-1">Submit Quiz</button>
+              <button onclick="completeCourse()" class="btn-secondary flex-1">Complete Course</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16">
+    <div class="mx-auto max-w-7xl px-6 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div class="lg:col-span-1">
+          <img src="../images/robot-rocket.png" alt="TechTutor" class="h-40 w-auto" />
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">CONTACT US!</h3>
+          <div class="space-y-3 text-sm">
+            <div>
+              <p class="text-slate-400 mb-1">Tel/WA/Zalo:</p>
+              <a href="tel:0902776753" class="text-white hover:text-primary-light transition">0902 776 753</a>
+            </div>
+            <div>
+              <p class="text-slate-400 mb-1">Email:</p>
+              <a href="mailto:hello@techtutor.academy" class="text-white hover:text-primary-light transition">hello@techtutor.academy</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">OPENING HOURS</h3>
+          <div class="space-y-2 text-sm">
+            <p class="text-slate-300">Monday - Friday: 8am - 9pm</p>
+            <p class="text-slate-300">Saturday - Sunday: 8am - 8pm</p>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">START LEARNING</h3>
+          <div class="space-y-2 text-sm">
+            <a href="../index-redesign.html#programs" class="block text-slate-300 hover:text-primary-light transition">Programs</a>
+            <a href="../student-projects.html" class="block text-slate-300 hover:text-primary-light transition">Projects</a>
+            <a href="../plans-and-faq.html" class="block text-slate-300 hover:text-primary-light transition">Pricing</a>
+            <a href="../blog.html" class="block text-slate-300 hover:text-primary-light transition">Blog</a>
+            <a href="../vision.html" class="block text-slate-300 hover:text-primary-light transition">Our Vision</a>
+            <a href="../free-trial.html" class="block text-slate-300 hover:text-primary-light transition">Free trial</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">CONNECT WITH US!</h3>
+          <div class="flex gap-3">
+            <a href="https://www.facebook.com/share/1An2WsT9X5/" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Facebook">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/techtutor.academy?igsh=MWljOWJjbndwY2l0dQ==" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Instagram">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://zalo.me/0902776753" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Zalo">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0zm.5 14.969h-4.25a.469.469 0 110-.938h4.25a.469.469 0 110 .938zm2.406-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938zm0-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-slate-700 text-center">
+        <p class="text-sm text-slate-400" data-i18n="footer.copyright">© 2025 TechTutor Academy. All rights reserved.</p>
+        <p class="text-xs text-slate-500 mt-2" data-i18n="footer.bilingual">English / Vietnamese bilingual support</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Mobile programs dropdown toggle
+    const programsToggle = document.getElementById('mobile-programs-toggle');
+    const programsMenu = document.getElementById('mobile-programs-menu');
+    const programsArrow = document.getElementById('programs-arrow');
+
+    if (programsToggle && programsMenu && programsArrow) {
+      programsToggle.addEventListener('click', () => {
+        programsMenu.classList.toggle('hidden');
+        programsArrow.classList.toggle('rotate-180');
+      });
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // State management
+    const lessonState = {
+      currentLesson: null,
+      completedLessons: new Set(),
+      quizAnswers: {}
+    };
+
+    // Load state from localStorage
+    function loadState() {
+      const saved = localStorage.getItem('tt-course-state');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        lessonState.completedLessons = new Set(parsed.completedLessons);
+        lessonState.quizAnswers = parsed.quizAnswers;
+        updateProgress();
+      }
+    }
+
+    // Save state to localStorage
+    function saveState() {
+      localStorage.setItem('tt-course-state', JSON.stringify({
+        completedLessons: Array.from(lessonState.completedLessons),
+        quizAnswers: lessonState.quizAnswers
+      }));
+    }
+
+    // Open a lesson
+    function openLesson(lessonNum) {
+      lessonState.currentLesson = lessonNum;
+      
+      // Hide all lessons
+      document.getElementById('lesson-1').classList.remove('active');
+      document.getElementById('lesson-2').classList.remove('active');
+      document.getElementById('lesson-3').classList.remove('active');
+      
+      // Show current lesson
+      const lessonElement = document.getElementById(`lesson-${lessonNum}`);
+      lessonElement.classList.add('active');
+      
+      // Scroll to the lesson with a small offset
+      setTimeout(() => {
+        lessonElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 0);
+    }
+
+    // Close current lesson
+    function closeLesson() {
+      lessonState.currentLesson = null;
+      
+      document.getElementById('lesson-1').classList.remove('active');
+      document.getElementById('lesson-2').classList.remove('active');
+      document.getElementById('lesson-3').classList.remove('active');
+      
+      // Scroll back to lessons grid
+      const lessonsSection = document.querySelector('section:has(.lesson-card)');
+      if (lessonsSection) {
+        setTimeout(() => {
+          lessonsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 0);
+      }
+    }
+
+    // Select answer
+    function selectAnswer(element, inputId) {
+      const parent = element.parentElement;
+      const siblings = parent.querySelectorAll('.quiz-option');
+      siblings.forEach(s => s.classList.remove('selected'));
+      
+      element.classList.add('selected');
+      document.getElementById(inputId).checked = true;
+    }
+
+    // Submit quiz
+    function submitQuiz(lessonNum) {
+      const correctAnswers = {
+        'q1': 'b',
+        'q2': 'c',
+        'q3': 'b',
+        'q4': 'b',
+        'q5': 'b',
+        'q6': 'b',
+        'q7': 'b',
+        'q8': 'b',
+        'q9': 'b'
+      };
+
+      let score = 0;
+      let answered = 0;
+      const questionsPerLesson = 3;
+      const startQuestion = (lessonNum - 1) * 3 + 1;
+
+      for (let i = startQuestion; i < startQuestion + questionsPerLesson; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected) {
+          answered++;
+          if (selected.value === correctAnswers[`q${i}`]) {
+            score++;
+          }
+        }
+      }
+
+      if (answered < questionsPerLesson) {
+        alert('Please answer all questions before submitting!');
+        return;
+      }
+
+      const percentage = Math.round((score / questionsPerLesson) * 100);
+      
+      if (percentage >= 70) {
+        alert(`Great job! You scored ${percentage}% on this quiz!\n\nYou've completed Lesson ${lessonNum}.`);
+        lessonState.completedLessons.add(lessonNum);
+        saveState();
+        updateProgress();
+        closeLesson();
+      } else {
+        alert(`You scored ${percentage}%. You need at least 70% to complete this lesson. Please review and try again!`);
+      }
+    }
+
+    // Complete course
+    function completeCourse() {
+      if (lessonState.completedLessons.size === 3) {
+        alert('Congratulations! You have completed the entire Generative AI Magic course!\n\nYou are now ready to apply these skills to real projects.');
+        // Could redirect or show a completion certificate here
+      } else {
+        alert('Please complete all lessons and their quizzes first!');
+      }
+    }
+
+    // Update progress bar
+    function updateProgress() {
+      const completed = lessonState.completedLessons.size;
+      const percentage = (completed / 3) * 100;
+      
+      document.getElementById('progressFill').style.width = percentage + '%';
+      document.getElementById('progressText').textContent = `${completed}/3 Complete`;
+    }
+
+    // Initialize
+    loadState();
+  </script>
+
+</body>
+</html>
