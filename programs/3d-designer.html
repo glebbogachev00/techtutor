@@ -89,11 +89,8 @@
             <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
             <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
           </div>
-          <button id="mobile-menu-button" class="p-2 rounded-lg border border-slate-200 text-slate-700" aria-expanded="false" aria-controls="mobile-menu">
-            <span class="sr-only">Toggle navigation</span>
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+          <button id="mobile-menu-button" class="px-4 py-2 rounded-lg border border-slate-200 text-slate-700 font-medium text-sm" aria-expanded="false" aria-controls="mobile-menu">
+            Menu
           </button>
         </div>
       </div>
@@ -165,11 +162,11 @@
     <!-- Curriculum Detailed Look Section -->
     <section class="mb-20">
       <div class="text-center mb-12">
-        <h2 class="text-4xl md:text-5xl font-black text-ink mb-4">
+        <h2 class="text-4xl md:text-5xl font-black text-ink mb-4" data-i18n="curriculum.heading">
           New Skills with <span style="color: #193b92;">Blender</span>.<br/>
           A Detailed Look at Our Curriculum
         </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-i18n="curriculum.subtitle">
           With real-world projects to create and online classes that fit a busy routine
         </p>
       </div>
@@ -180,8 +177,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center" style="background: rgba(25, 59, 146, 0.15);">
             <span class="text-3xl">🎨</span>
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">Professional 3D Modeling</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card1.title">Professional 3D Modeling</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card1.desc">
             Learn professional modeling techniques to create characters, objects, and environments from scratch using industry-standard tools like Blender.
           </p>
         </div>
@@ -191,8 +188,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center" style="background: rgba(44, 122, 123, 0.15);">
             <span class="text-3xl">🎬</span>
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">Animation & Movement</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card2.title">Animation & Movement</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card2.desc">
             Bring your creations to life with keyframe animation, rigging, and character movement techniques. Create stunning animations that tell stories.
           </p>
         </div>
@@ -204,8 +201,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center" style="background: rgba(25, 59, 146, 0.15);">
             <span class="text-3xl">💡</span>
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">Lighting & Rendering</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card3.title">Lighting & Rendering</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card3.desc">
             Master lighting setups, materials, textures, and rendering to create photorealistic or stylized scenes that capture your artistic vision.
           </p>
         </div>
@@ -215,8 +212,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center p-2" style="background: rgba(44, 122, 123, 0.15);">
             <img src="../images/3d.png" alt="3D Design" class="w-full h-full object-contain" />
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">Build Your Portfolio</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card4.title">Build Your Portfolio</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card4.desc">
             Develop a professional portfolio of 3D work that showcases your skills and creativity. Perfect for aspiring artists and designers!
           </p>
         </div>
@@ -225,28 +222,28 @@
 
     <!-- Tools & Skills -->
     <section class="mb-20">
-      <h2 class="text-4xl font-black text-ink mb-12 text-center">What You'll Master</h2>
+      <h2 class="text-4xl font-black text-ink mb-12 text-center" data-i18n="tools.title">What You'll Master</h2>
       <div class="grid md:grid-cols-3 gap-8">
         <div class="card text-center hover:shadow-2xl transition-all duration-300">
           <div class="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center text-5xl" style="background: rgba(25, 59, 146, 0.1);">
             🔷
           </div>
-          <h3 class="text-2xl font-bold mb-3 text-ink">Blender 3D</h3>
-          <p class="text-gray-600 text-lg">Professional 3D modeling and animation software used in movies and games</p>
+          <h3 class="text-2xl font-bold mb-3 text-ink" data-i18n="tool1.title">Blender 3D</h3>
+          <p class="text-gray-600 text-lg" data-i18n="tool1.desc">Professional 3D modeling and animation software used in movies and games</p>
         </div>
         <div class="card text-center hover:shadow-2xl transition-all duration-300">
           <div class="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center text-5xl" style="background: rgba(44, 122, 123, 0.1);">
             🎯
           </div>
-          <h3 class="text-2xl font-bold mb-3 text-ink">Modeling Workflows</h3>
-          <p class="text-gray-600 text-lg">Polygon modeling, sculpting, and UV mapping techniques</p>
+          <h3 class="text-2xl font-bold mb-3 text-ink" data-i18n="tool2.title">Modeling Workflows</h3>
+          <p class="text-gray-600 text-lg" data-i18n="tool2.desc">Polygon modeling, sculpting, and UV mapping techniques</p>
         </div>
         <div class="card text-center hover:shadow-2xl transition-all duration-300">
           <div class="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center text-5xl" style="background: rgba(25, 59, 146, 0.1);">
             ✨
           </div>
-          <h3 class="text-2xl font-bold mb-3 text-ink">Visual Storytelling</h3>
-          <p class="text-gray-600 text-lg">Composition, color theory, and design principles</p>
+          <h3 class="text-2xl font-bold mb-3 text-ink" data-i18n="tool3.title">Visual Storytelling</h3>
+          <p class="text-gray-600 text-lg" data-i18n="tool3.desc">Composition, color theory, and design principles</p>
         </div>
       </div>
     </section>
@@ -256,9 +253,9 @@
       <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
       <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
       <div class="relative z-10">
-        <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Ready to Create Stunning 3D Art?</h2>
-        <p class="text-2xl text-white/90 mb-10 max-w-2xl mx-auto">Book a free trial lesson and watch your child's creativity come to life in 3D!</p>
-        <a href="../free-trial.html" class="inline-block btn-primary bg-white text-primary hover:bg-gray-100 text-lg px-12 py-5">Book Free Trial Now →</a>
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6" data-i18n="cta.title">Ready to Create Stunning 3D Art?</h2>
+        <p class="text-2xl text-white/90 mb-10 max-w-2xl mx-auto" data-i18n="cta.subtitle">Book a free trial lesson and watch your child's creativity come to life in 3D!</p>
+        <a href="../free-trial.html" class="inline-block btn-primary bg-white text-primary hover:bg-gray-100 text-lg px-12 py-5" data-i18n="cta.button">Book Free Trial Now →</a>
       </div>
     </section>
 
@@ -333,9 +330,26 @@
         'nav.pricing': 'Pricing',
         'nav.blog': 'Blog',
         'nav.free-trial': 'Free Trial',
-        'hero.title': 'Master 3D Design<br/>with <span style="color: #193b92;">Blender</span>',
-        'hero.description': 'Master the art of 3D modeling and design with Blender. Create stunning 3D models, animations, and visual effects that bring your imagination to life.',
-        'hero.cta': 'Get Started →',
+        'curriculum.heading': 'New Skills with Blender. A Detailed Look at Our Curriculum',
+        'curriculum.subtitle': 'With real-world projects to create and online classes that fit a busy routine',
+        'card1.title': 'Professional 3D Modeling',
+        'card1.desc': 'Learn professional modeling techniques to create characters, objects, and environments from scratch using industry-standard tools like Blender.',
+        'card2.title': 'Animation & Movement',
+        'card2.desc': 'Bring your creations to life with keyframe animation, rigging, and character movement techniques. Create stunning animations that tell stories.',
+        'card3.title': 'Lighting & Rendering',
+        'card3.desc': 'Master lighting setups, materials, textures, and rendering to create photorealistic or stylized scenes that capture your artistic vision.',
+        'card4.title': 'Build Your Portfolio',
+        'card4.desc': 'Develop a professional portfolio of 3D work that showcases your skills and creativity. Perfect for aspiring artists and designers!',
+        'tools.title': 'What You\'ll Master',
+        'tool1.title': 'Blender 3D',
+        'tool1.desc': 'Professional 3D modeling and animation software used in movies and games',
+        'tool2.title': 'Modeling Workflows',
+        'tool2.desc': 'Polygon modeling, sculpting, and UV mapping techniques',
+        'tool3.title': 'Visual Storytelling',
+        'tool3.desc': 'Composition, color theory, and design principles',
+        'cta.title': 'Ready to Create Stunning 3D Art?',
+        'cta.subtitle': 'Book a free trial lesson and watch your child\'s creativity come to life in 3D!',
+        'cta.button': 'Book Free Trial Now →',
         'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
         'footer.bilingual': 'English / Vietnamese bilingual support'
       },
@@ -345,9 +359,26 @@
         'nav.pricing': 'Giá & Câu hỏi',
         'nav.blog': 'Blog',
         'nav.free-trial': 'Học Thử Miễn Phí',
-        'hero.title': 'Làm Chủ Thiết Kế 3D<br/>với <span style="color: #193b92;">Blender</span>',
-        'hero.description': 'Làm chủ kỹ năng thiết kế 3D với Blender, tạo mô hình, hoạt họa và hiệu ứng sống động để biến ý tưởng thành hiện thực.',
-        'hero.cta': 'Bắt Đầu →',
+        'curriculum.heading': 'Kỹ Năng Mới Với Blender. Cái Nhìn Chi Tiết Về Chương Trình Học',
+        'curriculum.subtitle': 'Với các dự án thực tế để tạo và các lớp học trực tuyến phù hợp với lịch bận rộn',
+        'card1.title': 'Mô Hình 3D Chuyên Nghiệp',
+        'card1.desc': 'Học các kỹ thuật mô hình hóa chuyên nghiệp để tạo nhân vật, vật thể và môi trường từ đầu bằng công cụ tiêu chuẩn ngành như Blender.',
+        'card2.title': 'Hoạt Hình & Chuyển Động',
+        'card2.desc': 'Thổi hồn vào các tác phẩm của bạn với hoạt hình keyframe, rigging và kỹ thuật chuyển động nhân vật. Tạo hoạt hình tuyệt đẹp kể câu chuyện.',
+        'card3.title': 'Ánh Sáng & Kết Xuất',
+        'card3.desc': 'Làm chủ thiết lập ánh sáng, vật liệu, kết cấu và kết xuất để tạo các cảnh siêu thực hoặc phong cách hóa thể hiện tầm nhìn nghệ thuật của bạn.',
+        'card4.title': 'Xây Dựng Portfolio Của Bạn',
+        'card4.desc': 'Phát triển portfolio chuyên nghiệp về tác phẩm 3D thể hiện kỹ năng và sáng tạo của bạn. Hoàn hảo cho các nghệ sĩ và nhà thiết kế tương lai!',
+        'tools.title': 'Những Gì Bạn Sẽ Làm Chủ',
+        'tool1.title': 'Blender 3D',
+        'tool1.desc': 'Phần mềm mô hình 3D và hoạt hình chuyên nghiệp được sử dụng trong phim và game',
+        'tool2.title': 'Quy Trình Mô Hình Hóa',
+        'tool2.desc': 'Kỹ thuật mô hình đa giác, điêu khắc và ánh xạ UV',
+        'tool3.title': 'Kể Chuyện Trực Quan',
+        'tool3.desc': 'Bố cục, lý thuyết màu sắc và nguyên tắc thiết kế',
+        'cta.title': 'Sẵn Sàng Tạo Nghệ Thuật 3D Tuyệt Đẹp?',
+        'cta.subtitle': 'Đặt lịch học thử miễn phí và xem sự sáng tạo của con bạn trở thành hiện thực trong 3D!',
+        'cta.button': 'Đặt Lịch Học Thử Ngay →',
         'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
         'footer.bilingual': 'Hỗ trợ song ngữ Anh / Việt'
       }

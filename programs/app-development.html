@@ -89,11 +89,8 @@
             <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
             <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
           </div>
-          <button id="mobile-menu-button" class="p-2 rounded-lg border border-slate-200 text-slate-700" aria-expanded="false" aria-controls="mobile-menu">
-            <span class="sr-only">Toggle navigation</span>
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+          <button id="mobile-menu-button" class="px-4 py-2 rounded-lg border border-slate-200 text-slate-700 font-medium text-sm" aria-expanded="false" aria-controls="mobile-menu">
+            Menu
           </button>
         </div>
       </div>
@@ -165,11 +162,11 @@
     <!-- Curriculum Detailed Look Section -->
     <section class="mb-20">
       <div class="text-center mb-12">
-        <h2 class="text-4xl md:text-5xl font-black text-ink mb-4">
+        <h2 class="text-4xl md:text-5xl font-black text-ink mb-4" data-i18n="curriculum.heading">
           New Skills with <span style="color: #193b92;">Thunkable</span>.<br/>
           A Detailed Look at Our Curriculum
         </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-i18n="curriculum.subtitle">
           With real-world projects to create and online classes that fit a busy routine
         </p>
       </div>
@@ -180,8 +177,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center" style="background: rgba(25, 59, 146, 0.15);">
             <span class="text-3xl">🎨</span>
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">Visual App Building</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card1.title">Visual App Building</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card1.desc">
             Build real mobile apps using Thunkable's drag-and-drop interface. Start creating without coding, then progress to advanced features and logic.
           </p>
         </div>
@@ -191,8 +188,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center" style="background: rgba(44, 122, 123, 0.15);">
             <span class="text-3xl">📱</span>
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">Professional Mobile Apps</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card2.title">Professional Mobile Apps</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card2.desc">
             Create beautiful, professional mobile applications that work on both iOS and Android devices. Design apps that look and feel native.
           </p>
         </div>
@@ -204,8 +201,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center" style="background: rgba(25, 59, 146, 0.15);">
             <span class="text-3xl">🧩</span>
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">App Logic & Features</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card3.title">App Logic & Features</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card3.desc">
             Learn to add advanced features like databases, APIs, user authentication, and interactive elements. Build apps with real functionality.
           </p>
         </div>
@@ -215,8 +212,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center p-2" style="background: rgba(44, 122, 123, 0.15);">
             <img src="../images/thunkable.png" alt="Thunkable" class="w-full h-full object-contain" />
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">Publish Real Apps</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card4.title">Publish Real Apps</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card4.desc">
             Test your apps on real devices and publish them so friends and family can download and use them. Share your creations with the world!
           </p>
         </div>
@@ -225,28 +222,28 @@
 
     <!-- Tools & Skills -->
     <section class="mb-20">
-      <h2 class="text-4xl font-black text-ink mb-12 text-center">What You'll Master</h2>
+      <h2 class="text-4xl font-black text-ink mb-12 text-center" data-i18n="tools.title">What You'll Master</h2>
       <div class="grid md:grid-cols-3 gap-8">
         <div class="card text-center hover:shadow-2xl transition-all duration-300">
           <div class="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center text-5xl" style="background: rgba(25, 59, 146, 0.1);">
             📱
           </div>
-          <h3 class="text-2xl font-bold mb-3 text-ink">Thunkable Platform</h3>
-          <p class="text-gray-600 text-lg">Professional no-code app builder for iOS and Android</p>
+          <h3 class="text-2xl font-bold mb-3 text-ink" data-i18n="tool1.title">Thunkable Platform</h3>
+          <p class="text-gray-600 text-lg" data-i18n="tool1.desc">Professional no-code app builder for iOS and Android</p>
         </div>
         <div class="card text-center hover:shadow-2xl transition-all duration-300">
           <div class="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center text-5xl" style="background: rgba(44, 122, 123, 0.1);">
             🎨
           </div>
-          <h3 class="text-2xl font-bold mb-3 text-ink">UI/UX Design</h3>
-          <p class="text-gray-600 text-lg">User interface and experience design principles</p>
+          <h3 class="text-2xl font-bold mb-3 text-ink" data-i18n="tool2.title">UI/UX Design</h3>
+          <p class="text-gray-600 text-lg" data-i18n="tool2.desc">User interface and experience design principles</p>
         </div>
         <div class="card text-center hover:shadow-2xl transition-all duration-300">
           <div class="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center text-5xl" style="background: rgba(25, 59, 146, 0.1);">
             ⚙️
           </div>
-          <h3 class="text-2xl font-bold mb-3 text-ink">App Logic & Data</h3>
-          <p class="text-gray-600 text-lg">Databases, APIs, and app functionality</p>
+          <h3 class="text-2xl font-bold mb-3 text-ink" data-i18n="tool3.title">App Logic & Data</h3>
+          <p class="text-gray-600 text-lg" data-i18n="tool3.desc">Databases, APIs, and app functionality</p>
         </div>
       </div>
     </section>
@@ -256,9 +253,9 @@
       <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
       <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
       <div class="relative z-10">
-        <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Ready to Build Real Apps?</h2>
-        <p class="text-2xl text-white/90 mb-10 max-w-2xl mx-auto">Book a free trial lesson and start creating apps that people love!</p>
-        <a href="../free-trial.html" class="inline-block btn-primary bg-white text-primary hover:bg-gray-100 text-lg px-12 py-5">Book Free Trial Now →</a>
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6" data-i18n="cta.title">Ready to Build Real Apps?</h2>
+        <p class="text-2xl text-white/90 mb-10 max-w-2xl mx-auto" data-i18n="cta.subtitle">Book a free trial lesson and start creating apps that people love!</p>
+        <a href="../free-trial.html" class="inline-block btn-primary bg-white text-primary hover:bg-gray-100 text-lg px-12 py-5" data-i18n="cta.button">Book Free Trial Now →</a>
       </div>
     </section>
 
@@ -333,9 +330,26 @@
         'nav.pricing': 'Pricing',
         'nav.blog': 'Blog',
         'nav.free-trial': 'Free Trial',
-        'hero.title': 'Build Real Apps<br/>with <span style="color: #193b92;">Thunkable</span>',
-        'hero.description': 'Build real mobile and web applications using professional development tools. Learn to create apps people actually use with Thunkable\'s powerful no-code platform.',
-        'hero.cta': 'Get Started →',
+        'curriculum.heading': 'New Skills with Thunkable. A Detailed Look at Our Curriculum',
+        'curriculum.subtitle': 'With real-world projects to create and online classes that fit a busy routine',
+        'card1.title': 'Visual App Building',
+        'card1.desc': 'Build real mobile apps using Thunkable\'s drag-and-drop interface. Start creating without coding, then progress to advanced features and logic.',
+        'card2.title': 'Professional Mobile Apps',
+        'card2.desc': 'Create beautiful, professional mobile applications that work on both iOS and Android devices. Design apps that look and feel native.',
+        'card3.title': 'App Logic & Features',
+        'card3.desc': 'Learn to add advanced features like databases, APIs, user authentication, and interactive elements. Build apps with real functionality.',
+        'card4.title': 'Publish Real Apps',
+        'card4.desc': 'Test your apps on real devices and publish them so friends and family can download and use them. Share your creations with the world!',
+        'tools.title': 'What You\'ll Master',
+        'tool1.title': 'Thunkable Platform',
+        'tool1.desc': 'Professional no-code app builder for iOS and Android',
+        'tool2.title': 'UI/UX Design',
+        'tool2.desc': 'User interface and experience design principles',
+        'tool3.title': 'App Logic & Data',
+        'tool3.desc': 'Databases, APIs, and app functionality',
+        'cta.title': 'Ready to Build Real Apps?',
+        'cta.subtitle': 'Book a free trial lesson and start creating apps that people love!',
+        'cta.button': 'Book Free Trial Now →',
         'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
         'footer.bilingual': 'English / Vietnamese bilingual support'
       },
@@ -345,9 +359,26 @@
         'nav.pricing': 'Giá & Câu hỏi',
         'nav.blog': 'Blog',
         'nav.free-trial': 'Học Thử Miễn Phí',
-        'hero.title': 'Xây Dựng Ứng Dụng Thực Tế<br/>với <span style="color: #193b92;">Thunkable</span>',
-        'hero.description': 'Học cách xây dựng ứng dụng web và mobile với công cụ chuyên nghiệp. Tạo ứng dụng mà người dùng thực sự sử dụng với nền tảng no-code mạnh mẽ Thunkable.',
-        'hero.cta': 'Bắt Đầu →',
+        'curriculum.heading': 'Kỹ Năng Mới Với Thunkable. Cái Nhìn Chi Tiết Về Chương Trình Học',
+        'curriculum.subtitle': 'Với các dự án thực tế để tạo và các lớp học trực tuyến phù hợp với lịch bận rộn',
+        'card1.title': 'Xây Dựng Ứng Dụng Trực Quan',
+        'card1.desc': 'Xây dựng ứng dụng mobile thực tế bằng giao diện kéo-thả của Thunkable. Bắt đầu tạo mà không cần code, sau đó tiến tới các tính năng và logic nâng cao.',
+        'card2.title': 'Ứng Dụng Mobile Chuyên Nghiệp',
+        'card2.desc': 'Tạo ứng dụng mobile đẹp, chuyên nghiệp hoạt động trên cả thiết bị iOS và Android. Thiết kế ứng dụng trông và cảm giác như native.',
+        'card3.title': 'Logic & Tính Năng Ứng Dụng',
+        'card3.desc': 'Học cách thêm các tính năng nâng cao như cơ sở dữ liệu, API, xác thực người dùng và các yếu tố tương tác. Xây dựng ứng dụng với chức năng thực tế.',
+        'card4.title': 'Xuất Bản Ứng Dụng Thực Tế',
+        'card4.desc': 'Thử nghiệm ứng dụng của bạn trên các thiết bị thực và xuất bản để bạn bè và gia đình có thể tải và sử dụng. Chia sẻ tác phẩm của bạn với thế giới!',
+        'tools.title': 'Những Gì Bạn Sẽ Làm Chủ',
+        'tool1.title': 'Nền Tảng Thunkable',
+        'tool1.desc': 'Công cụ xây dựng ứng dụng không cần code chuyên nghiệp cho iOS và Android',
+        'tool2.title': 'Thiết Kế UI/UX',
+        'tool2.desc': 'Nguyên tắc thiết kế giao diện và trải nghiệm người dùng',
+        'tool3.title': 'Logic & Dữ Liệu Ứng Dụng',
+        'tool3.desc': 'Cơ sở dữ liệu, API và chức năng ứng dụng',
+        'cta.title': 'Sẵn Sàng Xây Dựng Ứng Dụng Thực Tế?',
+        'cta.subtitle': 'Đặt lịch học thử miễn phí và bắt đầu tạo ứng dụng mà mọi người yêu thích!',
+        'cta.button': 'Đặt Lịch Học Thử Ngay →',
         'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
         'footer.bilingual': 'Hỗ trợ song ngữ Anh / Việt'
       }

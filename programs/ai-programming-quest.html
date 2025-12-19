@@ -89,11 +89,8 @@
             <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
             <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
           </div>
-          <button id="mobile-menu-button" class="p-2 rounded-lg border border-slate-200 text-slate-700" aria-expanded="false" aria-controls="mobile-menu">
-            <span class="sr-only">Toggle navigation</span>
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+          <button id="mobile-menu-button" class="px-4 py-2 rounded-lg border border-slate-200 text-slate-700 font-medium text-sm" aria-expanded="false" aria-controls="mobile-menu">
+            Menu
           </button>
         </div>
       </div>
@@ -165,11 +162,11 @@
     <!-- Curriculum Detailed Look Section -->
     <section class="mb-20">
       <div class="text-center mb-12">
-        <h2 class="text-4xl md:text-5xl font-black text-ink mb-4">
+        <h2 class="text-4xl md:text-5xl font-black text-ink mb-4" data-i18n="curriculum.heading">
           New Skills with <span style="color: #193b92;">Python & AI</span>.<br/>
           A Detailed Look at Our Curriculum
         </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-i18n="curriculum.subtitle">
           With real-world projects to create and online classes that fit a busy routine
         </p>
       </div>
@@ -180,8 +177,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center" style="background: rgba(25, 59, 146, 0.15);">
             <span class="text-3xl">🐍</span>
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">Python Programming</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card1.title">Python Programming</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card1.desc">
             Master Python fundamentals including variables, functions, loops, and object-oriented programming concepts. Build a strong foundation in one of the world's most popular languages.
           </p>
         </div>
@@ -191,8 +188,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center" style="background: rgba(44, 122, 123, 0.15);">
             <span class="text-3xl">🤖</span>
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">AI Fundamentals</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card2.title">AI Fundamentals</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card2.desc">
             Understand how artificial intelligence works, including machine learning concepts and neural networks. Explore the technology shaping our future.
           </p>
         </div>
@@ -204,8 +201,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center" style="background: rgba(25, 59, 146, 0.15);">
             <span class="text-3xl">💬</span>
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">Build AI Projects</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card3.title">Build AI Projects</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card3.desc">
             Create chatbots, recommendation systems, image recognition programs, and other intelligent applications. Turn AI concepts into working projects.
           </p>
         </div>
@@ -215,8 +212,8 @@
           <div class="absolute top-6 right-6 w-16 h-16 rounded-full flex items-center justify-center p-2" style="background: rgba(44, 122, 123, 0.15);">
             <img src="../images/python.png" alt="Python" class="w-full h-full object-contain" />
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-3 mt-2">Data Science Basics</h3>
-          <p class="text-gray-600 text-lg leading-relaxed">
+          <h3 class="text-2xl font-bold text-ink mb-3 mt-2" data-i18n="card4.title">Data Science Basics</h3>
+          <p class="text-gray-600 text-lg leading-relaxed" data-i18n="card4.desc">
             Learn to work with data, analyze patterns, and visualize insights using Python libraries. Discover the power of data-driven decision making.
           </p>
         </div>
@@ -225,28 +222,28 @@
 
     <!-- Tools & Skills -->
     <section class="mb-20">
-      <h2 class="text-4xl font-black text-ink mb-12 text-center">What You'll Master</h2>
+      <h2 class="text-4xl font-black text-ink mb-12 text-center" data-i18n="tools.title">What You'll Master</h2>
       <div class="grid md:grid-cols-3 gap-8">
         <div class="card text-center hover:shadow-2xl transition-all duration-300">
           <div class="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center text-5xl" style="background: rgba(25, 59, 146, 0.1);">
             🐍
           </div>
-          <h3 class="text-2xl font-bold mb-3 text-ink">Python</h3>
-          <p class="text-gray-600 text-lg">Industry-leading programming language used worldwide</p>
+          <h3 class="text-2xl font-bold mb-3 text-ink" data-i18n="tool1.title">Python</h3>
+          <p class="text-gray-600 text-lg" data-i18n="tool1.desc">Industry-leading programming language used worldwide</p>
         </div>
         <div class="card text-center hover:shadow-2xl transition-all duration-300">
           <div class="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center text-5xl" style="background: rgba(44, 122, 123, 0.1);">
             🧠
           </div>
-          <h3 class="text-2xl font-bold mb-3 text-ink">Machine Learning</h3>
-          <p class="text-gray-600 text-lg">TensorFlow, scikit-learn, and AI frameworks</p>
+          <h3 class="text-2xl font-bold mb-3 text-ink" data-i18n="tool2.title">Machine Learning</h3>
+          <p class="text-gray-600 text-lg" data-i18n="tool2.desc">TensorFlow, scikit-learn, and AI frameworks</p>
         </div>
         <div class="card text-center hover:shadow-2xl transition-all duration-300">
           <div class="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center text-5xl" style="background: rgba(25, 59, 146, 0.1);">
             🔬
           </div>
-          <h3 class="text-2xl font-bold mb-3 text-ink">Problem Solving</h3>
-          <p class="text-gray-600 text-lg">Computational thinking and algorithmic design</p>
+          <h3 class="text-2xl font-bold mb-3 text-ink" data-i18n="tool3.title">Problem Solving</h3>
+          <p class="text-gray-600 text-lg" data-i18n="tool3.desc">Computational thinking and algorithmic design</p>
         </div>
       </div>
     </section>
@@ -256,9 +253,9 @@
       <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
       <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
       <div class="relative z-10">
-        <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Ready to Build the Future?</h2>
-        <p class="text-2xl text-white/90 mb-10 max-w-2xl mx-auto">Book a free trial lesson and start your journey into AI and programming!</p>
-        <a href="../free-trial.html" class="inline-block btn-primary bg-white text-primary hover:bg-gray-100 text-lg px-12 py-5">Book Free Trial Now →</a>
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6" data-i18n="cta.title">Ready to Build the Future?</h2>
+        <p class="text-2xl text-white/90 mb-10 max-w-2xl mx-auto" data-i18n="cta.subtitle">Book a free trial lesson and start your journey into AI and programming!</p>
+        <a href="../free-trial.html" class="inline-block btn-primary bg-white text-primary hover:bg-gray-100 text-lg px-12 py-5" data-i18n="cta.button">Book Free Trial Now →</a>
       </div>
     </section>
 
@@ -333,9 +330,26 @@
         'nav.pricing': 'Pricing',
         'nav.blog': 'Blog',
         'nav.free-trial': 'Free Trial',
-        'hero.title': 'Code the Future<br/>with <span style="color: #193b92;">AI & Python</span>',
-        'hero.description': 'Dive into the world of Python programming and artificial intelligence. Learn to code intelligent programs, build chatbots, and understand how AI shapes our future.',
-        'hero.cta': 'Get Started →',
+        'curriculum.heading': 'New Skills with Python & AI. A Detailed Look at Our Curriculum',
+        'curriculum.subtitle': 'With real-world projects to create and online classes that fit a busy routine',
+        'card1.title': 'Python Programming',
+        'card1.desc': 'Master Python fundamentals including variables, functions, loops, and object-oriented programming concepts. Build a strong foundation in one of the world\'s most popular languages.',
+        'card2.title': 'AI Fundamentals',
+        'card2.desc': 'Understand how artificial intelligence works, including machine learning concepts and neural networks. Explore the technology shaping our future.',
+        'card3.title': 'Build AI Projects',
+        'card3.desc': 'Create chatbots, recommendation systems, image recognition programs, and other intelligent applications. Turn AI concepts into working projects.',
+        'card4.title': 'Data Science Basics',
+        'card4.desc': 'Learn to work with data, analyze patterns, and visualize insights using Python libraries. Discover the power of data-driven decision making.',
+        'tools.title': 'What You\'ll Master',
+        'tool1.title': 'Python',
+        'tool1.desc': 'Industry-leading programming language used worldwide',
+        'tool2.title': 'Machine Learning',
+        'tool2.desc': 'TensorFlow, scikit-learn, and AI frameworks',
+        'tool3.title': 'Problem Solving',
+        'tool3.desc': 'Computational thinking and algorithmic design',
+        'cta.title': 'Ready to Build the Future?',
+        'cta.subtitle': 'Book a free trial lesson and start your journey into AI and programming!',
+        'cta.button': 'Book Free Trial Now →',
         'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
         'footer.bilingual': 'English / Vietnamese bilingual support'
       },
@@ -345,9 +359,26 @@
         'nav.pricing': 'Giá & Câu hỏi',
         'nav.blog': 'Blog',
         'nav.free-trial': 'Học Thử Miễn Phí',
-        'hero.title': 'Lập Trình Tương Lai<br/>với <span style="color: #193b92;">AI & Python</span>',
-        'hero.description': 'Khám phá Python và trí tuệ nhân tạo: viết chương trình thông minh, xây chatbot và hiểu cách AI định hình tương lai.',
-        'hero.cta': 'Bắt Đầu →',
+        'curriculum.heading': 'Kỹ Năng Mới Với Python & AI. Cái Nhìn Chi Tiết Về Chương Trình Học',
+        'curriculum.subtitle': 'Với các dự án thực tế để tạo và các lớp học trực tuyến phù hợp với lịch bận rộn',
+        'card1.title': 'Lập Trình Python',
+        'card1.desc': 'Làm chủ các kiến thức cơ bản về Python bao gồm biến, hàm, vòng lặp và các khái niệm lập trình hướng đối tượng. Xây dựng nền tảng vững chắc trong một trong những ngôn ngữ phổ biến nhất thế giới.',
+        'card2.title': 'Kiến Thức Cơ Bản Về AI',
+        'card2.desc': 'Hiểu cách trí tuệ nhân tạo hoạt động, bao gồm các khái niệm máy học và mạng nơ-ron. Khám phá công nghệ đang định hình tương lai của chúng ta.',
+        'card3.title': 'Xây Dựng Dự Án AI',
+        'card3.desc': 'Tạo chatbot, hệ thống gợi ý, chương trình nhận dạng hình ảnh và các ứng dụng thông minh khác. Biến các khái niệm AI thành dự án hoạt động.',
+        'card4.title': 'Kiến Thức Cơ Bản Về Data Science',
+        'card4.desc': 'Học cách làm việc với dữ liệu, phân tích các mẫu và trực quan hóa thông tin chi tiết bằng thư viện Python. Khám phá sức mạnh của việc ra quyết định dựa trên dữ liệu.',
+        'tools.title': 'Những Gì Bạn Sẽ Làm Chủ',
+        'tool1.title': 'Python',
+        'tool1.desc': 'Ngôn ngữ lập trình hàng đầu được sử dụng trên toàn thế giới',
+        'tool2.title': 'Máy Học',
+        'tool2.desc': 'TensorFlow, scikit-learn và các framework AI',
+        'tool3.title': 'Giải Quyết Vấn Đề',
+        'tool3.desc': 'Tư duy tính toán và thiết kế thuật toán',
+        'cta.title': 'Sẵn Sàng Xây Dựng Tương Lai?',
+        'cta.subtitle': 'Đặt lịch học thử miễn phí và bắt đầu hành trình vào AI và lập trình!',
+        'cta.button': 'Đặt Lịch Học Thử Ngay →',
         'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
         'footer.bilingual': 'Hỗ trợ song ngữ Anh / Việt'
       }
