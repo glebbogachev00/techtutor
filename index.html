@@ -450,10 +450,76 @@
           transform: translateX(-25%);
         }
       }
+
+      /* Christmas Animations */
+      @keyframes snowfall {
+        0% {
+          transform: translateY(-10vh) translateX(0);
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) translateX(100px);
+          opacity: 0;
+        }
+      }
+
+      @keyframes twinkle {
+        0%, 100% {
+          opacity: 0.3;
+          filter: brightness(1);
+        }
+        50% {
+          opacity: 1;
+          filter: brightness(1.5);
+        }
+      }
+
+      @keyframes sway {
+        0%, 100% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(20px);
+        }
+      }
+
+      .snowflake {
+        position: fixed;
+        top: -10vh;
+        color: #fff;
+        font-size: 1.5em;
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        pointer-events: none;
+        z-index: 10;
+        user-select: none;
+      }
+
+      .snowflake-animated {
+        animation: snowfall linear infinite;
+      }
+
+      .christmas-lights {
+        animation: twinkle 2s infinite;
+      }
+
+      .christmas-banner {
+        animation: sway 3s ease-in-out infinite;
+      }
     </style>
   </head>
   <body class="font-sans text-ink antialiased">
-    <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <!-- Christmas Banner -->
+    <div class="christmas-banner fixed top-0 left-1/2 -translate-x-1/2 z-20 bg-gradient-to-r from-red-600 via-green-600 to-red-600 text-white py-2 px-6 rounded-b-lg shadow-lg text-center text-sm font-semibold md:text-base">
+      🎄 Happy Holidays! Celebrate with 20% off - Limited Time Offer 🎄
+    </div>
+
+    <!-- Snowflake container -->
+    <div id="snowflake-container"></div>
+
+    <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur mt-12">
       <div class="mx-auto flex max-w-wrap items-center justify-between gap-4 px-6 py-4 md:px-8">
         <a href="#hero" class="flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky">
           <img src="images/tt-new.png" alt="TechTutor logo" class="h-20 w-auto origin-left scale-125 md:h-24 md:scale-150" />

@@ -245,12 +245,73 @@
       color: #193b92;
       padding-left: 24px;
     }
+
+    /* Christmas Animations */
+    @keyframes snowfall {
+      0% {
+        transform: translateY(-10vh) translateX(0);
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.3;
+        filter: brightness(1);
+      }
+      50% {
+        opacity: 1;
+        filter: brightness(1.5);
+      }
+    }
+
+    @keyframes sway {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(20px);
+      }
+    }
+
+    .snowflake {
+      position: fixed;
+      top: -10vh;
+      color: #fff;
+      font-size: 1.5em;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+      pointer-events: none;
+      z-index: 10;
+      user-select: none;
+    }
+
+    .snowflake-animated {
+      animation: snowfall linear infinite;
+    }
+
+    .christmas-lights {
+      animation: twinkle 2s infinite;
+    }
+
+    .christmas-banner {
+      animation: sway 3s ease-in-out infinite;
+    }
   </style>
 </head>
 <body class="antialiased">
 
+    <!-- Snowflake container -->
+    <div id="snowflake-container"></div>
+
     <!-- Navigation -->
-  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
     <div class="max-w-7xl mx-auto px-6 py-4">
       <div class="flex items-center justify-between gap-6">
         <a href="index-redesign.html" class="text-2xl font-black tracking-tight text-slate-900 flex items-center gap-1" aria-label="TechTutor home">
@@ -1455,6 +1516,44 @@
         }
       });
     });
+
+    // Christmas Snowfall Animation
+    function createSnowflakes() {
+      const container = document.getElementById('snowflake-container');
+      const snowflakeCount = 50;
+      const snowflakeSymbols = ['❄️', '❅', '❆', '✨', '⋆'];
+
+      for (let i = 0; i < snowflakeCount; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake', 'snowflake-animated');
+        snowflake.textContent = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+        
+        // Random horizontal position
+        const randomX = Math.random() * window.innerWidth;
+        snowflake.style.left = randomX + 'px';
+        
+        // Random animation duration (10-20 seconds)
+        const duration = 10 + Math.random() * 10;
+        snowflake.style.animationDuration = duration + 's';
+        
+        // Random delay
+        const delay = Math.random() * 5;
+        snowflake.style.animationDelay = delay + 's';
+        
+        // Random horizontal sway
+        const sway = (Math.random() - 0.5) * 100;
+        snowflake.style.setProperty('--sway', sway + 'px');
+        
+        container.appendChild(snowflake);
+      }
+    }
+
+    // Initialize snowflakes on page load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', createSnowflakes);
+    } else {
+      createSnowflakes();
+    }
   </script>
 
 </body>
