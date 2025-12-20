@@ -452,11 +452,6 @@
       }
 
       /* Christmas Animations */
-      @keyframes snowfall {
-        0% {
-          transform: translateY(-10vh) translateX(0);
-          opacity: 1;
-        }
         90% {
           opacity: 1;
         }
@@ -486,20 +481,7 @@
         }
       }
 
-      .snowflake {
-        position: fixed;
-        top: -10vh;
-        color: #fff;
-        font-size: 1.5em;
-        text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-        pointer-events: none;
-        z-index: 10;
-        user-select: none;
-      }
 
-      .snowflake-animated {
-        animation: snowfall linear infinite;
-      }
 
       .christmas-lights {
         animation: twinkle 2s infinite;
@@ -517,7 +499,6 @@
     </div>
 
     <!-- Snowflake container -->
-    <div id="snowflake-container"></div>
 
     <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur mt-12">
       <div class="mx-auto flex max-w-wrap items-center justify-between gap-4 px-6 py-4 md:px-8">

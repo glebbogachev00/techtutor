@@ -188,14 +188,6 @@
                 </div>
             </div>
 
-            <!-- Course Progress Section -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">Course Progress</h2>
-                <div id="coursesProgress" class="space-y-6">
-                    <!-- Courses will be loaded here -->
-                </div>
-            </div>
-
             <!-- Documents Section -->
             <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Documents</h2>
@@ -227,10 +219,18 @@
             </div>
 
             <!-- Achievements Section -->
-            <div class="bg-white rounded-2xl shadow-lg p-6">
+            <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Achievements</h2>
                 <div id="achievementsSection" class="space-y-4">
                     <!-- Achievements will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Program Progression Section -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Program Progression</h2>
+                <div id="coursesProgress" class="space-y-6">
+                    <!-- Courses will be loaded here -->
                 </div>
             </div>
         </div>
@@ -288,10 +288,7 @@
         function logout() {
             localStorage.removeItem('techtutor_student_logged_in');
             currentStudent = null;
-            showLogin();
-            document.getElementById('loginStudentId').value = '';
-            document.getElementById('loginPassword').value = '';
-            document.getElementById('loginError').classList.add('hidden');
+            window.location.href = 'index-redesign.html';
         }
 
         function loadStudent(studentId) {

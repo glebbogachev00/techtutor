@@ -39,6 +39,8 @@
             background-color: #2C7A7B;
             border-color: #2C7A7B;
         }
+
+
     </style>
 </head>
 <body class="bg-gray-50">
@@ -342,8 +344,8 @@
 
         // Initialize
         window.onload = function() {
-            checkAuth();
             loadStudents();
+            checkAuth();
         };
 
         // Authentication
@@ -364,6 +366,7 @@
         function showDashboard() {
             document.getElementById('loginScreen').classList.add('hidden');
             document.getElementById('adminDashboard').classList.remove('hidden');
+            loadStudents();
             renderStudents();
         }
 
@@ -801,6 +804,8 @@
                 renderAchievements();
             }
         }
+
+
     </script>
 </body>
 </html>
