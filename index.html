@@ -362,14 +362,14 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            <div id="mobile-programs-menu" class="mt-3 hidden flex-col gap-2 border-l-2 border-primary pl-3 text-sm">
-              <a href="programs/scratch-game-coder.html" class="text-slate-600 hover:text-primary">Scratch Game Coder</a>
-              <a href="programs/gdevelop-game-designer.html" class="text-slate-600 hover:text-primary">GDevelop Game Designer</a>
-              <a href="programs/roblox-world-creator.html" class="text-slate-600 hover:text-primary">Roblox World Creator</a>
-              <a href="programs/3d-designer.html" class="text-slate-600 hover:text-primary">3D Designer</a>
-              <a href="programs/ai-programming-quest.html" class="text-slate-600 hover:text-primary">AI & Programming Quest</a>
-              <a href="programs/generative-ai-magic.html" class="text-slate-600 hover:text-primary">Generative AI Magic</a>
-              <a href="programs/app-development.html" class="text-slate-600 hover:text-primary">App Development</a>
+            <div id="mobile-programs-menu" class="mt-3 hidden flex flex-col gap-3 border-l-2 border-primary pl-4 text-sm">
+              <a href="programs/scratch-game-coder.html" class="text-slate-600 hover:text-primary py-1">Scratch Game Coder</a>
+              <a href="programs/gdevelop-game-designer.html" class="text-slate-600 hover:text-primary py-1">GDevelop Game Designer</a>
+              <a href="programs/roblox-world-creator.html" class="text-slate-600 hover:text-primary py-1">Roblox World Creator</a>
+              <a href="programs/3d-designer.html" class="text-slate-600 hover:text-primary py-1">3D Designer</a>
+              <a href="programs/ai-programming-quest.html" class="text-slate-600 hover:text-primary py-1">AI & Programming Quest</a>
+              <a href="programs/generative-ai-magic.html" class="text-slate-600 hover:text-primary py-1">Generative AI Magic</a>
+              <a href="programs/app-development.html" class="text-slate-600 hover:text-primary py-1">App Development</a>
             </div>
           </div>
           <a href="student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
@@ -625,7 +625,7 @@
         <div class="card p-8 text-center">
           <h3 class="text-xl font-bold text-ink mb-3" data-i18n="easier.card1.title">Expert Instructors</h3>
           <p class="text-gray-600" data-i18n="easier.card1.description">
-            Expert instructors with 3+ years experience teaching coding, AI, 3D design, and game development to students aged 6-15.
+            Expert instructors with 4+ years experience teaching coding, AI, 3D design, and game development to students aged 6-15.
           </p>
         </div>
 
@@ -1169,7 +1169,7 @@
         'easier.title': 'An Easier Way to<br/>Learn Tech Skills',
         'easier.description': 'TechTutor simplifies tech education for families. Whether you want private 1-on-1 lessons or small group sessions, we match students with expert instructors for personalized, project-based learning.',
         'easier.card1.title': 'Expert Instructors',
-        'easier.card1.description': 'Expert instructors with 3+ years experience teaching coding, AI, 3D design, and game development to students aged 6-15.',
+        'easier.card1.description': 'Expert instructors with 4+ years experience teaching coding, AI, 3D design, and game development to students aged 6-15.',
         'easier.card2.title': 'Parent Dashboard',
         'easier.card2.description': 'Track progress, schedule sessions flexibly, and receive detailed feedback after every lesson with our parent dashboard.',
         'easier.card3.title': 'Affordable Online Learning',
@@ -1431,27 +1431,7 @@
       // Default to English on error
     }
 
-    // Mobile menu toggle
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (mobileMenuButton && mobileMenu) {
-      mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-
-    // Mobile programs dropdown toggle
-    const programsToggle = document.getElementById('mobile-programs-toggle');
-    const programsMenu = document.getElementById('mobile-programs-menu');
-    const programsArrow = document.getElementById('programs-arrow');
-
-    if (programsToggle && programsMenu && programsArrow) {
-      programsToggle.addEventListener('click', () => {
-        programsMenu.classList.toggle('hidden');
-        programsArrow.classList.toggle('rotate-180');
-      });
-    }
+    // Mobile menu toggle and programs dropdown - handled by js/site.js
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
