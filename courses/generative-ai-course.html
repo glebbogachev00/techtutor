@@ -55,13 +55,13 @@
   <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
     <div class="max-w-7xl mx-auto px-6 py-4">
       <div class="flex items-center justify-between gap-6">
-        <a href="../index-redesign.html" class="text-2xl font-black tracking-tight text-slate-900 flex items-center gap-1" aria-label="TechTutor home">
+        <a href="../index.html" class="text-2xl font-black tracking-tight text-slate-900 flex items-center gap-1" aria-label="TechTutor home">
           <span class="text-primary">Tech</span><span class="text-teal-500">Tutor</span>
         </a>
 
         <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
           <div class="relative hidden md:block group">
-            <a href="../index-redesign.html#programs" class="inline-flex items-center gap-1 text-slate-600 hover:text-primary transition">
+            <a href="../index.html#programs" class="inline-flex items-center gap-1 text-slate-600 hover:text-primary transition">
               <span data-i18n="nav.programs">Programs</span>
               <svg class="h-4 w-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -292,40 +292,63 @@
           </div>
 
           <!-- Description -->
-          <div class="card mb-12">
-            <h3 class="text-2xl font-bold text-ink mb-6">Lesson Overview</h3>
-            
-            <div class="space-y-6 text-gray-700 leading-relaxed">
-              <p>
-                Welcome to the world of Generative AI! In this introductory lesson, you'll learn the fundamentals of what generative AI is and how it's transforming the world around us.
-              </p>
-              
-              <div>
-                <h4 class="font-bold text-ink mb-3">What You'll Learn:</h4>
-                <ul class="list-disc list-inside space-y-2 text-gray-700">
-                  <li>Definition and core concepts of generative AI</li>
-                  <li>How AI models like ChatGPT and DALL-E work</li>
-                  <li>Real-world applications and use cases</li>
-                  <li>Ethical considerations when using AI</li>
-                  <li>Future trends in generative AI</li>
-                </ul>
-              </div>
+           <div class="card mb-12">
+             <h3 class="text-2xl font-bold text-ink mb-6">Lesson Summary</h3>
+             
+             <div class="space-y-6 text-gray-700 leading-relaxed">
+               <div>
+                 <h4 class="font-bold text-ink mb-3">What is Generative AI?</h4>
+                 <p>Generative AI is technology that creates new content based on patterns it has learned. It can generate text, images, code, stories, and more based on user instructions (prompts).</p>
+               </div>
 
-              <div>
-                <h4 class="font-bold text-ink mb-3">Key Concepts:</h4>
-                <ul class="list-disc list-inside space-y-2 text-gray-700">
-                  <li><strong>Machine Learning:</strong> Systems that learn from data patterns</li>
-                  <li><strong>Neural Networks:</strong> Computational models inspired by the brain</li>
-                  <li><strong>Large Language Models (LLMs):</strong> AI trained on vast text data</li>
-                  <li><strong>Generative Models:</strong> AI that creates new content</li>
-                </ul>
-              </div>
+               <div>
+                 <h4 class="font-bold text-ink mb-3">Main Platforms Covered:</h4>
+                 <ul class="list-disc list-inside space-y-2 text-gray-700">
+                   <li><strong>ChatGPT</strong> - Excellent for text generation and Q&A</li>
+                   <li><strong>Claude</strong> - Great for detailed answers with examples</li>
+                   <li><strong>Gemini</strong> - Provides very detailed responses</li>
+                   <li><strong>Grok</strong> - Another capable AI platform</li>
+                 </ul>
+                 <p class="text-sm text-slate-600 mt-2">All platforms accomplish similar tasks but have different strengths and features.</p>
+               </div>
 
-              <p>
-                By the end of this lesson, you'll have a solid understanding of generative AI fundamentals and be ready to explore how to use these tools effectively!
-              </p>
-            </div>
-          </div>
+               <div>
+                 <h4 class="font-bold text-ink mb-3">Effective Prompting Techniques:</h4>
+                 <ul class="list-disc list-inside space-y-2 text-gray-700">
+                   <li><strong>Be Specific</strong> - Clearly state what you want</li>
+                   <li><strong>Give Context</strong> - Provide background information when relevant</li>
+                   <li><strong>Set Constraints</strong> - Specify length, format, or style (e.g., "under 100 words," "make it funny")</li>
+                   <li><strong>Iterate</strong> - Ask follow-up questions to refine results</li>
+                   <li><strong>Add Instructions</strong> - Request summaries, simplifications, or reformatting</li>
+                 </ul>
+               </div>
+
+               <div>
+                 <h4 class="font-bold text-ink mb-3">Key Skills to Learn:</h4>
+                 <ul class="list-disc list-inside space-y-2 text-gray-700">
+                   <li>How to ask better questions to get better results</li>
+                   <li>Understanding AI limitations on free versions</li>
+                   <li>Switching between different AIs when hitting limits</li>
+                   <li>Using AI for learning, storytelling, code generation, translation, and more</li>
+                 </ul>
+               </div>
+
+               <div>
+                 <h4 class="font-bold text-ink mb-3">AI Capabilities Demonstrated:</h4>
+                 <ul class="list-disc list-inside space-y-2 text-gray-700">
+                   <li>Text generation and Q&A</li>
+                   <li>Story creation with learning points</li>
+                   <li>Code generation (like GitHub Copilot)</li>
+                   <li>Image generation</li>
+                   <li>Translation between languages</li>
+                 </ul>
+               </div>
+
+               <p class="font-semibold text-ink mt-6">
+                 By the end of this lesson, you understand the fundamentals of generative AI and are ready to explore how to use these tools effectively!
+               </p>
+             </div>
+           </div>
 
           <!-- Quiz Section -->
           <div class="card">
@@ -335,69 +358,69 @@
               
               <!-- Question 1 -->
               <div>
-                <h4 class="font-bold text-ink mb-4">1. What does a generative AI model do?</h4>
+                <h4 class="font-bold text-ink mb-4">1. Name three different generative AI platforms mentioned in the lesson.</h4>
                 <div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q1-a')">
                     <input type="radio" name="q1" value="a" id="q1-a" class="mr-3">
-                    <label for="q1-a" class="cursor-pointer">It analyzes existing data and finds patterns</label>
+                    <label for="q1-a" class="cursor-pointer">Scratch, Roblox, GDevelop</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q1-b')">
                     <input type="radio" name="q1" value="b" id="q1-b" class="mr-3">
-                    <label for="q1-b" class="cursor-pointer">It creates new, original content based on patterns it learned</label>
+                    <label for="q1-b" class="cursor-pointer">ChatGPT, Claude, Gemini</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q1-c')">
                     <input type="radio" name="q1" value="c" id="q1-c" class="mr-3">
-                    <label for="q1-c" class="cursor-pointer">It can only work with images</label>
+                    <label for="q1-c" class="cursor-pointer">Photoshop, Figma, Adobe XD</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q1-d')">
                     <input type="radio" name="q1" value="d" id="q1-d" class="mr-3">
-                    <label for="q1-d" class="cursor-pointer">It replaces human creativity</label>
+                    <label for="q1-d" class="cursor-pointer">Google, Facebook, Twitter</label>
                   </div>
                 </div>
               </div>
 
               <!-- Question 2 -->
               <div>
-                <h4 class="font-bold text-ink mb-4">2. Which is NOT an example of generative AI?</h4>
+                <h4 class="font-bold text-ink mb-4">2. What is the main benefit of being specific when writing prompts to AI?</h4>
                 <div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q2-a')">
                     <input type="radio" name="q2" value="a" id="q2-a" class="mr-3">
-                    <label for="q2-a" class="cursor-pointer">ChatGPT creating written text</label>
+                    <label for="q2-a" class="cursor-pointer">It makes the AI work faster</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q2-b')">
                     <input type="radio" name="q2" value="b" id="q2-b" class="mr-3">
-                    <label for="q2-b" class="cursor-pointer">DALL-E generating images from text</label>
+                    <label for="q2-b" class="cursor-pointer">You get better, more accurate results</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q2-c')">
                     <input type="radio" name="q2" value="c" id="q2-c" class="mr-3">
-                    <label for="q2-c" class="cursor-pointer">A calculator solving math problems</label>
+                    <label for="q2-c" class="cursor-pointer">It costs less to use</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q2-d')">
                     <input type="radio" name="q2" value="d" id="q2-d" class="mr-3">
-                    <label for="q2-d" class="cursor-pointer">Midjourney creating artwork</label>
+                    <label for="q2-d" class="cursor-pointer">It's not necessary, AI understands everything</label>
                   </div>
                 </div>
               </div>
 
               <!-- Question 3 -->
               <div>
-                <h4 class="font-bold text-ink mb-4">3. What is a Large Language Model (LLM)?</h4>
+                <h4 class="font-bold text-ink mb-4">3. True or False: All generative AI platforms have unlimited usage on free versions.</h4>
                 <div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q3-a')">
                     <input type="radio" name="q3" value="a" id="q3-a" class="mr-3">
-                    <label for="q3-a" class="cursor-pointer">A program that translates between languages</label>
+                    <label for="q3-a" class="cursor-pointer">True - They all offer unlimited free access</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q3-b')">
                     <input type="radio" name="q3" value="b" id="q3-b" class="mr-3">
-                    <label for="q3-b" class="cursor-pointer">An AI trained on vast amounts of text to understand and generate language</label>
+                    <label for="q3-b" class="cursor-pointer">False - Free versions have limitations</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q3-c')">
                     <input type="radio" name="q3" value="c" id="q3-c" class="mr-3">
-                    <label for="q3-c" class="cursor-pointer">A dictionary database</label>
+                    <label for="q3-c" class="cursor-pointer">Only ChatGPT has free access</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q3-d')">
                     <input type="radio" name="q3" value="d" id="q3-d" class="mr-3">
-                    <label for="q3-d" class="cursor-pointer">A tool that counts words in documents</label>
+                    <label for="q3-d" class="cursor-pointer">It depends on your location</label>
                   </div>
                 </div>
               </div>
@@ -433,46 +456,58 @@
 
           <!-- Description -->
           <div class="card mb-12">
-            <h3 class="text-2xl font-bold text-ink mb-6">Lesson Overview</h3>
+            <h3 class="text-2xl font-bold text-ink mb-6">Lesson Summary</h3>
             
             <div class="space-y-6 text-gray-700 leading-relaxed">
-              <p>
-                Learn how to create stunning images and videos using cutting-edge AI tools like Grok, Meta AI, and Google Nano Banana. Master prompting techniques specific to different media types and discover how to bring your creative vision to life.
-              </p>
-              
               <div>
-                <h4 class="font-bold text-ink mb-3">What You'll Learn:</h4>
+                <h4 class="font-bold text-ink mb-3">Best Tools for Generating Images and Videos:</h4>
+                <p>The best free tools for creating images and videos with AI are Grok, Meta AI, and Google Gemini. These tools allow you to generate high-quality visual content without hitting usage limits quickly.</p>
+              </div>
+
+              <div>
+                <h4 class="font-bold text-ink mb-3">Key AI Platforms:</h4>
                 <ul class="list-disc list-inside space-y-2 text-gray-700">
-                  <li>Creating high-quality images with Grok, Meta AI, and Google tools</li>
-                  <li>Specialized prompts for different image styles and effects</li>
-                  <li>Video generation and animation techniques</li>
-                  <li>How to add motion, effects, and transitions</li>
-                  <li>Downloading and exporting media in various formats</li>
-                  <li>Optimizing content for different platforms</li>
+                  <li><strong>Grok (Imagine):</strong> Provides multiple image options, supports animation, offers cartoon and realistic styles</li>
+                  <li><strong>Meta AI:</strong> Facebook's generative AI for images and videos, includes animation and music features</li>
+                  <li><strong>Google Gemini:</strong> Uses Nano Banana model for creating images, great for posters and specific content</li>
                 </ul>
               </div>
 
               <div>
-                <h4 class="font-bold text-ink mb-3">AI Tools Covered:</h4>
+                <h4 class="font-bold text-ink mb-3">Image and Video Creation Features:</h4>
                 <ul class="list-disc list-inside space-y-2 text-gray-700">
-                  <li><strong>Grok:</strong> Fast image and video generation with creative capabilities</li>
-                  <li><strong>Meta AI:</strong> Powerful models for visual content creation</li>
-                  <li><strong>Google Nano Banana:</strong> Efficient generation with various style options</li>
+                  <li>Aspect ratio and sizing selection</li>
+                  <li>Style customization (cartoon, realistic, poster style)</li>
+                  <li>Animation features to create 5+ second videos</li>
+                  <li>Music and sound effects integration</li>
+                  <li>Custom animation descriptions and editing</li>
+                  <li>Download and export options</li>
                 </ul>
               </div>
 
               <div>
-                <h4 class="font-bold text-ink mb-3">Prompting Tips for Media:</h4>
+                <h4 class="font-bold text-ink mb-3">Effective Prompting for Visual Content:</h4>
                 <ul class="list-disc list-inside space-y-2 text-gray-700">
-                  <li>Be descriptive about visual style, lighting, and composition</li>
-                  <li>Specify animation speed, transitions, and effects for videos</li>
-                  <li>Use reference styles and artistic movements</li>
-                  <li>Include technical details for export quality and format</li>
+                  <li>Be specific about the subject and style you want (e.g., "cartoon style robot")</li>
+                  <li>Describe actions and animations (e.g., "robot floating and waving")</li>
+                  <li>Iterate and refine prompts if you don't like initial results</li>
+                  <li>Use multiple iterations to achieve your desired output</li>
+                  <li>Specify context (e.g., "poster for school," "5-second video")</li>
                 </ul>
               </div>
 
-              <p>
-                By the end of this lesson, you'll be able to create professional-quality images and videos that capture your imagination!
+              <div>
+                <h4 class="font-bold text-ink mb-3">Practical Examples:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Creating robot spaceship images in different styles</li>
+                  <li>Animating static images into short videos</li>
+                  <li>Generating school project posters about topics like Mars</li>
+                  <li>Refining animations by removing or adding elements</li>
+                </ul>
+              </div>
+
+              <p class="font-semibold text-ink mt-6">
+                By the end of this lesson, you can create professional-quality images and animated videos using free AI tools with effective prompting techniques!
               </p>
             </div>
           </div>
@@ -485,11 +520,11 @@
               
               <!-- Question 1 -->
               <div>
-                <h4 class="font-bold text-ink mb-4">1. Which of these tools is specifically mentioned for image and video creation in this lesson?</h4>
+                <h4 class="font-bold text-ink mb-4">1. Which tools are the best for creating images and videos with AI for free?</h4>
                 <div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q4-a')">
                     <input type="radio" name="q4" value="a" id="q4-a" class="mr-3">
-                    <label for="q4-a" class="cursor-pointer">Grok, Meta AI, and Google Nano Banana</label>
+                    <label for="q4-a" class="cursor-pointer">Grok, Meta AI, and Google Gemini</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q4-b')">
                     <input type="radio" name="q4" value="b" id="q4-b" class="mr-3">
@@ -508,46 +543,46 @@
 
               <!-- Question 2 -->
               <div>
-                <h4 class="font-bold text-ink mb-4">2. What is an important element to describe when creating a video prompt?</h4>
+                <h4 class="font-bold text-ink mb-4">2. What should you do if you don't like the initial generated image or video?</h4>
                 <div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q5-a')">
                     <input type="radio" name="q5" value="a" id="q5-a" class="mr-3">
-                    <label for="q5-a" class="cursor-pointer">Only the main character</label>
+                    <label for="q5-a" class="cursor-pointer">Give up and start with a different topic</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q5-b')">
                     <input type="radio" name="q5" value="b" id="q5-b" class="mr-3">
-                    <label for="q5-b" class="cursor-pointer">Animation speed, transitions, and effects</label>
+                    <label for="q5-b" class="cursor-pointer">Iterate and refine your prompt with more specific details</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q5-c')">
                     <input type="radio" name="q5" value="c" id="q5-c" class="mr-3">
-                    <label for="q5-c" class="cursor-pointer">The video file size</label>
+                    <label for="q5-c" class="cursor-pointer">Download it immediately before it disappears</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q5-d')">
                     <input type="radio" name="q5" value="d" id="q5-d" class="mr-3">
-                    <label for="q5-d" class="cursor-pointer">The editing software needed</label>
+                    <label for="q5-d" class="cursor-pointer">Switch to a different AI tool without changing your prompt</label>
                   </div>
                 </div>
               </div>
 
               <!-- Question 3 -->
               <div>
-                <h4 class="font-bold text-ink mb-4">3. When creating image prompts, what should you include?</h4>
+                <h4 class="font-bold text-ink mb-4">3. Which of these platforms includes animation and music features?</h4>
                 <div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q6-a')">
                     <input type="radio" name="q6" value="a" id="q6-a" class="mr-3">
-                    <label for="q6-a" class="cursor-pointer">Only basic colors</label>
+                    <label for="q6-a" class="cursor-pointer">Only Google Gemini</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q6-b')">
                     <input type="radio" name="q6" value="b" id="q6-b" class="mr-3">
-                    <label for="q6-b" class="cursor-pointer">Visual style, lighting, and composition details</label>
+                    <label for="q6-b" class="cursor-pointer">Meta AI and Grok</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q6-c')">
                     <input type="radio" name="q6" value="c" id="q6-c" class="mr-3">
-                    <label for="q6-c" class="cursor-pointer">Only the resolution size</label>
+                    <label for="q6-c" class="cursor-pointer">Only Grok</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q6-d')">
                     <input type="radio" name="q6" value="d" id="q6-d" class="mr-3">
-                    <label for="q6-d" class="cursor-pointer">Random adjectives</label>
+                    <label for="q6-d" class="cursor-pointer">ChatGPT and Claude</label>
                   </div>
                 </div>
               </div>
@@ -583,47 +618,67 @@
 
           <!-- Description -->
           <div class="card mb-12">
-            <h3 class="text-2xl font-bold text-ink mb-6">Lesson Overview</h3>
+            <h3 class="text-2xl font-bold text-ink mb-6">Lesson Summary</h3>
             
             <div class="space-y-6 text-gray-700 leading-relaxed">
-              <p>
-                Create interactive web games using powerful AI models like Claude, Grok, and Gemini. Learn to test different AI engines, compare their strengths, and enhance your games with advanced features to keep players engaged and challenged!
-              </p>
-              
               <div>
-                <h4 class="font-bold text-ink mb-3">What You'll Learn:</h4>
-                <ul class="list-disc list-inside space-y-2 text-gray-700">
-                  <li>Building game logic and structure with AI assistance</li>
-                  <li>Testing and comparing Claude, Grok, and Gemini for game development</li>
-                  <li>Implementing game mechanics (scoring, levels, difficulty)</li>
-                  <li>Adding interactive features and special abilities</li>
-                  <li>Increasing game difficulty and player engagement</li>
-                  <li>Debugging and optimizing AI-generated game code</li>
-                </ul>
+                <h4 class="font-bold text-ink mb-3">Creating Web Games with AI:</h4>
+                <p>Learn how to build simple 2D web games using three powerful AI models: Grok, Gemini, and Claude. By giving all three the same prompt, you can compare results and choose the best output for your game.</p>
               </div>
 
               <div>
-                <h4 class="font-bold text-ink mb-3">AI Models for Game Development:</h4>
+                <h4 class="font-bold text-ink mb-3">Web Game Technologies:</h4>
                 <ul class="list-disc list-inside space-y-2 text-gray-700">
-                  <li><strong>Claude:</strong> Excellent for complex logic and detailed explanations</li>
-                  <li><strong>Grok:</strong> Great for creative features and rapid development</li>
+                  <li><strong>HTML:</strong> Structure and layout of the game</li>
+                  <li><strong>CSS:</strong> Styling and visual appearance</li>
+                  <li><strong>JavaScript:</strong> Game logic and interactivity</li>
+                </ul>
+                <p class="text-sm text-slate-600 mt-2">These are standard web technologies that work across browsers and devices.</p>
+              </div>
+
+              <div>
+                <h4 class="font-bold text-ink mb-3">The Three AI Platforms for Game Development:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li><strong>Grok:</strong> Fast code generation, good for creative game features</li>
                   <li><strong>Gemini:</strong> Strong at code generation and optimization</li>
+                  <li><strong>Claude:</strong> Excellent for complex logic and detailed game mechanics</li>
+                </ul>
+                <p class="text-sm text-slate-600 mt-2">All have free limits, so switching between them is practical when one hits a limit.</p>
+              </div>
+
+              <div>
+                <h4 class="font-bold text-ink mb-3">Game Development Workflow:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Give AI the same prompt across different tools to compare results</li>
+                  <li>Use canvas preview to test the game immediately</li>
+                  <li>Iterate on prompts to fix errors and bugs</li>
+                  <li>Add game features (enemies, obstacles, difficulty levels)</li>
+                  <li>Adjust difficulty to make games more balanced</li>
+                  <li>Request combining multiple files into one playable file</li>
                 </ul>
               </div>
 
               <div>
-                <h4 class="font-bold text-ink mb-3">Game Enhancement Strategies:</h4>
+                <h4 class="font-bold text-ink mb-3">Game Example: Snake Game:</h4>
                 <ul class="list-disc list-inside space-y-2 text-gray-700">
-                  <li>Progressive difficulty levels to keep players challenged</li>
-                  <li>Power-ups, bonuses, and special mechanics</li>
-                  <li>Leaderboards and player progression systems</li>
-                  <li>Sound effects and visual feedback</li>
-                  <li>Mobile responsiveness and browser compatibility</li>
+                  <li>Classic game concept that works well for learning</li>
+                  <li>Can add enemy snakes that compete with player</li>
+                  <li>Difficulty adjustable through prompt refinement</li>
+                  <li>All three AI tools can successfully create their own versions</li>
                 </ul>
               </div>
 
-              <p>
-                By the end of this lesson, you'll have created a fully playable web game with sophisticated AI-powered features that engage and challenge players!
+              <div>
+                <h4 class="font-bold text-ink mb-3">Sharing and Publishing Your Games:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Copy shareable links to send games to friends</li>
+                  <li>Publish games to get permanent links</li>
+                  <li>Download games to save locally</li>
+                </ul>
+              </div>
+
+              <p class="font-semibold text-ink mt-6">
+                By the end of this lesson, you can create and share playable web games using AI, compare different AI tools, and iterate to improve gameplay!
               </p>
             </div>
           </div>
@@ -636,19 +691,19 @@
               
               <!-- Question 1 -->
               <div>
-                <h4 class="font-bold text-ink mb-4">1. Which AI models are recommended for web game development?</h4>
+                <h4 class="font-bold text-ink mb-4">1. What are the three web technologies used to create browser-based games?</h4>
                 <div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q7-a')">
                     <input type="radio" name="q7" value="a" id="q7-a" class="mr-3">
-                    <label for="q7-a" class="cursor-pointer">DALL-E, Midjourney, Stable Diffusion</label>
+                    <label for="q7-a" class="cursor-pointer">Python, Java, and C++</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q7-b')">
                     <input type="radio" name="q7" value="b" id="q7-b" class="mr-3">
-                    <label for="q7-b" class="cursor-pointer">Claude, Grok, and Gemini</label>
+                    <label for="q7-b" class="cursor-pointer">HTML, CSS, and JavaScript</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q7-c')">
                     <input type="radio" name="q7" value="c" id="q7-c" class="mr-3">
-                    <label for="q7-c" class="cursor-pointer">Grok, Meta AI, Google Nano Banana</label>
+                    <label for="q7-c" class="cursor-pointer">React, Vue, and Angular</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q7-d')">
                     <input type="radio" name="q7" value="d" id="q7-d" class="mr-3">
@@ -659,46 +714,46 @@
 
               <!-- Question 2 -->
               <div>
-                <h4 class="font-bold text-ink mb-4">2. What is an important way to increase player engagement in a web game?</h4>
+                <h4 class="font-bold text-ink mb-4">2. When developing a game using AI, what is a good strategy if you don't like the initial result?</h4>
                 <div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q8-a')">
                     <input type="radio" name="q8" value="a" id="q8-a" class="mr-3">
-                    <label for="q8-a" class="cursor-pointer">Make the game too easy</label>
+                    <label for="q8-a" class="cursor-pointer">Start a completely new game</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q8-b')">
                     <input type="radio" name="q8" value="b" id="q8-b" class="mr-3">
-                    <label for="q8-b" class="cursor-pointer">Add progressive difficulty levels, power-ups, and special mechanics</label>
+                    <label for="q8-b" class="cursor-pointer">Iterate and refine your prompt with more specific details and fixes</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q8-c')">
                     <input type="radio" name="q8" value="c" id="q8-c" class="mr-3">
-                    <label for="q8-c" class="cursor-pointer">Remove all visual feedback</label>
+                    <label for="q8-c" class="cursor-pointer">Give up on AI game development</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q8-d')">
                     <input type="radio" name="q8" value="d" id="q8-d" class="mr-3">
-                    <label for="q8-d" class="cursor-pointer">Limit the game to desktop only</label>
+                    <label for="q8-d" class="cursor-pointer">Use a different programming language</label>
                   </div>
                 </div>
               </div>
 
               <!-- Question 3 -->
               <div>
-                <h4 class="font-bold text-ink mb-4">3. Which AI model strength is best for complex game logic?</h4>
+                <h4 class="font-bold text-ink mb-4">3. What are benefits of comparing the same prompt across multiple AI models?</h4>
                 <div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q9-a')">
                     <input type="radio" name="q9" value="a" id="q9-a" class="mr-3">
-                    <label for="q9-a" class="cursor-pointer">Grok - for rapid development</label>
+                    <label for="q9-a" class="cursor-pointer">It takes less time to create a game</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q9-b')">
                     <input type="radio" name="q9" value="b" id="q9-b" class="mr-3">
-                    <label for="q9-b" class="cursor-pointer">Claude - for complex logic and detailed explanations</label>
+                    <label for="q9-b" class="cursor-pointer">You can choose the best result and switch between tools when hitting limits</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q9-c')">
                     <input type="radio" name="q9" value="c" id="q9-c" class="mr-3">
-                    <label for="q9-c" class="cursor-pointer">Gemini - for image generation</label>
+                    <label for="q9-c" class="cursor-pointer">Each model costs less money</label>
                   </div>
                   <div class="quiz-option" onclick="selectAnswer(this, 'q9-d')">
                     <input type="radio" name="q9" value="d" id="q9-d" class="mr-3">
-                    <label for="q9-d" class="cursor-pointer">All models are equally good for logic</label>
+                    <label for="q9-d" class="cursor-pointer">It combines all results automatically</label>
                   </div>
                 </div>
               </div>
@@ -746,7 +801,7 @@
         <div>
           <h3 class="text-lg font-bold mb-4 text-white">START LEARNING</h3>
           <div class="space-y-2 text-sm">
-            <a href="../index-redesign.html#programs" class="block text-slate-300 hover:text-primary-light transition">Programs</a>
+            <a href="../index.html#programs" class="block text-slate-300 hover:text-primary-light transition">Programs</a>
             <a href="../student-projects.html" class="block text-slate-300 hover:text-primary-light transition">Projects</a>
             <a href="../plans-and-faq.html" class="block text-slate-300 hover:text-primary-light transition">Pricing</a>
             <a href="../blog.html" class="block text-slate-300 hover:text-primary-light transition">Blog</a>
@@ -950,15 +1005,22 @@
     function submitQuiz(lessonNum) {
       const correctAnswers = {
         'q1': 'b',
-        'q2': 'c',
+        'q2': 'b',
         'q3': 'b',
-        'q4': 'b',
+        'q4': 'a',
         'q5': 'b',
         'q6': 'b',
         'q7': 'b',
         'q8': 'b',
         'q9': 'b'
       };
+      
+      // Override for lesson 3 (q7, q8, q9)
+      if (lessonNum === 3) {
+        correctAnswers['q7'] = 'b';
+        correctAnswers['q8'] = 'b';
+        correctAnswers['q9'] = 'b';
+      }
 
       let score = 0;
       let answered = 0;
