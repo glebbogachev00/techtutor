@@ -1,9 +1,10 @@
 {
   "version": 2,
   "builds": [
-    { "src": "index.html", "use": "@vercel/static" },
-    { "src": "student-projects.html", "use": "@vercel/static" },
-    { "src": "online-courses.html", "use": "@vercel/static" },
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "programs/*.html", "use": "@vercel/static" },
+    { "src": "courses/*.html", "use": "@vercel/static" },
+    { "src": "js/**/*", "use": "@vercel/static" },
     { "src": "images/**/*", "use": "@vercel/static" }
   ],
   "routes": [
