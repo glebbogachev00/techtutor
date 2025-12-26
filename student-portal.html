@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZ1XEZXB6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4MZ1XEZXB6');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechTutor - Student Portal</title>
+
+    <!-- Supabase Client Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FAFAFA;
+        }
+
         .primary-gradient {
             background: linear-gradient(135deg, #193b92 0%, #2563eb 100%);
         }
@@ -15,45 +37,248 @@
         .gold-gradient {
             background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
         }
-        .card-hover {
-            transition: all 0.3s ease;
+        .purple-gradient {
+            background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
         }
-        .card-hover:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        .pink-gradient {
+            background: linear-gradient(135deg, #EC4899 0%, #F472B6 100%);
         }
+        .orange-gradient {
+            background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
+        }
+
+        /* Fun Card Styles */
+        .fun-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .fun-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2C7A7B, #193b92, #8B5CF6);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .fun-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        .fun-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Stat Card Animations */
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::after {
+            content: '✨';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            opacity: 0;
+            transform: scale(0) rotate(-45deg);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .stat-card:hover::after {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        /* Medal Styles */
         .medal {
             font-size: 3rem;
             display: inline-block;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
         }
         .medal.earned {
             animation: medalShine 2s infinite;
         }
         .medal.locked {
             filter: grayscale(100%);
-            opacity: 0.5;
+            opacity: 0.3;
         }
         @keyframes medalShine {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(-5deg); }
+            75% { transform: scale(1.1) rotate(5deg); }
         }
+
+        /* Trophy Animation */
         .trophy {
             font-size: 4rem;
-            animation: trophyBounce 1s infinite;
+            animation: trophyBounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 8px 16px rgba(255, 215, 0, 0.4));
         }
         @keyframes trophyBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
         }
+
+        /* Avatar */
         .avatar {
             font-size: 5rem;
-            animation: avatarRotate 3s ease-in-out infinite;
+            animation: avatarFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
         }
-        @keyframes avatarRotate {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
+        @keyframes avatarFloat {
+            0%, 100% { transform: translateY(0px) rotate(-5deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
         }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 100%;
+            border-radius: 12px;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(90deg, #2C7A7B, #319795);
+            box-shadow: 0 2px 8px rgba(44, 122, 123, 0.3);
+        }
+        .progress-container {
+            background: #E5E7EB;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 12px;
+            position: relative;
+        }
+        .progress-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Level Badge */
+        .level-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .level-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Achievement Badge */
+        .achievement-badge {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .achievement-badge:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        /* Document Card */
+        .document-card {
+            background: linear-gradient(135deg, #F9FAFB 0%, #FFFFFF 100%);
+            border: 2px solid #E5E7EB;
+            border-radius: 20px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .document-card:hover {
+            border-color: #2C7A7B;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(44, 122, 123, 0.15);
+        }
+        .document-card::before {
+            content: '📄';
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 32px;
+            opacity: 0.1;
+            transition: all 0.3s ease;
+        }
+        .document-card:hover::before {
+            opacity: 0.3;
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        /* Portfolio Card */
+        .portfolio-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+        }
+
+        /* Button Styles */
+        .fun-button {
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .fun-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #193b92, #2C7A7B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Floating Elements */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Celebration */
         .celebration {
             position: fixed;
             top: 50%;
@@ -62,14 +287,14 @@
             z-index: 2000;
             background: white;
             padding: 3rem;
-            border-radius: 1.5rem;
+            border-radius: 2rem;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             text-align: center;
-            animation: celebrationPop 0.5s ease-out;
+            animation: celebrationPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
         @keyframes celebrationPop {
-            0% { transform: translate(-50%, -50%) scale(0); }
-            100% { transform: translate(-50%, -50%) scale(1); }
+            0% { transform: translate(-50%, -50%) scale(0) rotate(-180deg); }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
         }
         .overlay {
             position: fixed;
@@ -78,14 +303,20 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
             z-index: 1999;
         }
-        .progress-bar {
-            transition: width 0.5s ease;
+
+        /* Fun Background Pattern */
+        .pattern-bg {
+            background-color: #FAFAFA;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(44, 122, 123, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(25, 59, 146, 0.03) 0%, transparent 50%);
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="pattern-bg">
     <!-- Login Screen -->
     <div id="loginScreen" class="min-h-screen flex items-center justify-center px-4">
         <div class="max-w-md w-full">
@@ -120,21 +351,24 @@
     <!-- Student Dashboard -->
     <div id="studentDashboard" class="hidden">
         <!-- Header -->
-        <header class="primary-gradient shadow-lg">
-            <div class="container mx-auto px-4 py-6">
+        <header class="teal-gradient shadow-lg">
+            <div class="container mx-auto px-4 py-8">
                 <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-white bg-opacity-20 p-3 rounded-xl">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
+                    <div class="flex items-center space-x-6">
+                        <div class="floating">
+                            <div class="bg-white p-4 rounded-3xl shadow-lg">
+                                <span class="text-5xl">🚀</span>
+                            </div>
                         </div>
                         <div>
-                            <h1 class="text-2xl font-bold text-white" id="welcomeName">Welcome!</h1>
-                            <p class="text-blue-100">Student Dashboard</p>
+                            <h1 class="text-3xl font-extrabold text-white" id="welcomeName">Welcome Back! 👋</h1>
+                            <p class="text-teal-100 text-lg">Let's continue your learning adventure!</p>
                         </div>
                     </div>
-                    <button onclick="logout()" class="bg-white bg-opacity-20 text-white px-6 py-2 rounded-lg hover:bg-opacity-30 transition">
+                    <button onclick="logout()" class="fun-button bg-white text-teal-700 hover:bg-teal-50">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                        </svg>
                         Logout
                     </button>
                 </div>
@@ -143,92 +377,119 @@
 
         <!-- Main Content -->
         <div class="container mx-auto px-4 py-8">
+            <!-- Introduction Video -->
+            <div class="mb-8">
+                <div class="relative" style="max-width: 800px; margin: 0 auto;">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                        <iframe
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.15);"
+                            src="https://www.youtube.com/embed/GpgDs5D9rnI?autoplay=1&mute=1&controls=0&loop=1&playlist=GpgDs5D9rnI&modestbranding=1&showinfo=0&rel=0"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
             <!-- Stats Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+                <div class="fun-card stat-card p-8">
                     <div class="flex items-center space-x-4">
-                        <div class="bg-blue-100 p-4 rounded-xl">
-                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
+                        <div class="purple-gradient p-5 rounded-3xl shadow-lg">
+                            <span class="text-4xl">🎨</span>
                         </div>
                         <div>
-                            <p class="text-gray-600 text-sm">Projects</p>
-                            <p class="text-3xl font-bold text-gray-900" id="projectsCount">0</p>
+                            <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">Projects</p>
+                            <p class="text-4xl font-black text-gray-900" id="projectsCount">0</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+                <div class="fun-card stat-card p-8">
                     <div class="flex items-center space-x-4">
-                        <div class="bg-yellow-100 p-4 rounded-xl">
-                            <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                            </svg>
+                        <div class="gold-gradient p-5 rounded-3xl shadow-lg">
+                            <span class="text-4xl">⭐</span>
                         </div>
                         <div>
-                            <p class="text-gray-600 text-sm">Achievements</p>
-                            <p class="text-3xl font-bold text-gray-900" id="achievementsCount">0</p>
+                            <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">Achievements</p>
+                            <p class="text-4xl font-black text-gray-900" id="achievementsCount">0</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+                <div class="fun-card stat-card p-8">
                     <div class="flex items-center space-x-4">
-                        <div class="bg-green-100 p-4 rounded-xl">
-                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                            </svg>
+                        <div class="teal-gradient p-5 rounded-3xl shadow-lg">
+                            <span class="text-4xl">📚</span>
                         </div>
                         <div>
-                            <p class="text-gray-600 text-sm">Courses Completed</p>
-                            <p class="text-3xl font-bold text-gray-900" id="coursesCount">0</p>
+                            <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">Courses Done</p>
+                            <p class="text-4xl font-black text-gray-900" id="coursesCount">0</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Documents Section -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">Documents</h2>
+            <div class="fun-card p-8 mb-8">
+                <h2 class="section-header">
+                    <span class="text-3xl">📂</span>
+                    My Documents
+                </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- EOC Report -->
-                    <div class="border border-gray-200 rounded-lg p-4">
-                        <h3 class="font-semibold mb-3">EOC Report</h3>
+                    <div class="document-card">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">📊</span>
+                            <h3 class="text-xl font-bold text-gray-800">EOC Report</h3>
+                        </div>
                         <div id="eocReportSection">
-                            <p class="text-gray-500 text-sm">No report available</p>
+                            <p class="text-gray-400 text-sm italic">No report available yet</p>
                         </div>
                     </div>
 
                     <!-- Certificate -->
-                    <div class="border border-gray-200 rounded-lg p-4">
-                        <h3 class="font-semibold mb-3">Certificate</h3>
+                    <div class="document-card">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">🏆</span>
+                            <h3 class="text-xl font-bold text-gray-800">Certificate</h3>
+                        </div>
                         <div id="certificateSection">
-                            <p class="text-gray-500 text-sm">No certificate available</p>
+                            <p class="text-gray-400 text-sm italic">No certificate available yet</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Portfolio Section -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">Portfolio</h2>
+            <div class="fun-card p-8 mb-8">
+                <h2 class="section-header">
+                    <span class="text-3xl">🎨</span>
+                    My Awesome Projects
+                </h2>
                 <div id="portfolioSection" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Portfolio items will be loaded here -->
                 </div>
             </div>
 
             <!-- Achievements Section -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">Achievements</h2>
+            <div class="fun-card p-8 mb-8">
+                <h2 class="section-header">
+                    <span class="text-3xl">🏅</span>
+                    My Achievements
+                </h2>
                 <div id="achievementsSection" class="space-y-4">
                     <!-- Achievements will be loaded here -->
                 </div>
             </div>
 
             <!-- Program Progression Section -->
-            <div class="bg-white rounded-2xl shadow-lg p-6">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">Program Progression</h2>
+            <div class="fun-card p-8">
+                <h2 class="section-header">
+                    <span class="text-3xl">🚀</span>
+                    Learning Journey
+                </h2>
                 <div id="coursesProgress" class="space-y-6">
                     <!-- Courses will be loaded here -->
                 </div>
@@ -238,26 +499,53 @@
 
     <script>
         let currentStudent = null;
+        let currentUser = null;
         const avatars = ['👨‍🚀', '🦸‍♂️', '🧙‍♂️', '🦹‍♀️', '👩‍🎨', '🧑‍🔬', '👑'];
 
         // Initialize
-        window.onload = function() {
-            checkAuth();
+        window.onload = async function() {
+            await checkAuth();
         };
 
-        // Authentication
-        function checkAuth() {
-            const loggedInId = localStorage.getItem('techtutor_student_logged_in');
-            if (loggedInId) {
-                loadStudent(loggedInId);
-            } else {
-                showLogin();
+        // Authentication with Supabase
+        async function checkAuth() {
+            try {
+                // Check for active Supabase session
+                const { session, error } = await TechTutorAPI.getSession();
+
+                if (error || !session) {
+                    // No session, redirect to login
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                // Get current user
+                const { user, error: userError } = await TechTutorAPI.getCurrentUser();
+
+                if (userError || !user) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                // Check if user is admin (admins should use admin portal)
+                const isAdmin = await TechTutorAPI.isAdmin();
+                if (isAdmin) {
+                    window.location.href = 'admin-portal.html';
+                    return;
+                }
+
+                currentUser = user;
+                await loadStudent(user.id);
+
+            } catch (error) {
+                console.error('Auth check error:', error);
+                window.location.href = 'login.html';
             }
         }
 
         function showLogin() {
-            document.getElementById('loginScreen').classList.remove('hidden');
-            document.getElementById('studentDashboard').classList.add('hidden');
+            // Redirect to centralized login instead of showing local login
+            window.location.href = 'login.html';
         }
 
         function showDashboard() {
@@ -266,46 +554,138 @@
             renderDashboard();
         }
 
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const studentId = document.getElementById('loginStudentId').value;
-            const password = document.getElementById('loginPassword').value;
-
-            const students = JSON.parse(localStorage.getItem('techtutor_students') || '[]');
-            const student = students.find(s => s.id === studentId && s.password === password);
-
-            if (student) {
-                localStorage.setItem('techtutor_student_logged_in', studentId);
-                currentStudent = student;
-                showDashboard();
-            } else {
-                const errorDiv = document.getElementById('loginError');
-                errorDiv.textContent = 'Invalid Student ID or Password';
-                errorDiv.classList.remove('hidden');
-            }
-        });
-
-        function logout() {
-            localStorage.removeItem('techtutor_student_logged_in');
-            currentStudent = null;
+        async function logout() {
+            await TechTutorAPI.signOut();
             window.location.href = 'index.html';
         }
 
-        function loadStudent(studentId) {
-            const students = JSON.parse(localStorage.getItem('techtutor_students') || '[]');
-            currentStudent = students.find(s => s.id === studentId);
-            if (currentStudent) {
+        async function loadStudent(userId) {
+            try {
+                // Load student profile with all related data from Supabase
+                const { data: student, error } = await TechTutorAPI.getStudentProfile(userId);
+
+                if (error || !student) {
+                    console.error('Failed to load student:', error);
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                // Transform Supabase data structure to match existing UI expectations
+                currentStudent = {
+                    id: student.student_id,
+                    name: student.full_name,
+                    courses: transformCourses(student.course_enrollments || []),
+                    portfolio: transformPortfolio(student.portfolio_items || []),
+                    achievements: transformAchievements(student.achievements || []),
+                    documents: transformDocuments(student.documents || [])
+                };
+
                 showDashboard();
-            } else {
-                showLogin();
+
+            } catch (error) {
+                console.error('Load student error:', error);
+                window.location.href = 'login.html';
             }
+        }
+
+        // Transform Supabase course enrollments to UI format
+        function transformCourses(enrollments) {
+            console.log('🔄 Transform Courses - Raw enrollments:', enrollments);
+
+            return enrollments.map(enrollment => {
+                const currentLevel = enrollment.current_level || 1;
+                const isCompleted = enrollment.status === 'completed';
+
+                console.log('📊 Course:', enrollment.courses?.name, 'Level:', currentLevel, 'Status:', enrollment.status);
+
+                // Create levels array based on current_level and status
+                const levels = [];
+                for (let i = 1; i <= 3; i++) {
+                    if (i < currentLevel) {
+                        // Levels before current are completed
+                        levels.push({ completed: true, name: `Level ${i}` });
+                    } else if (i === currentLevel && isCompleted) {
+                        // Current level is completed if course status is completed
+                        levels.push({ completed: true, name: `Level ${i}` });
+                    } else {
+                        // Future levels or current level if not completed
+                        levels.push({ completed: false, name: `Level ${i}` });
+                    }
+                }
+
+                console.log('✅ Levels created:', levels);
+
+                return {
+                    name: enrollment.courses.name,
+                    currentLevel: currentLevel,
+                    currentLesson: enrollment.current_lesson || 1,
+                    levels: levels,
+                    trophy: enrollment.trophy,
+                    avatar: enrollment.avatar
+                };
+            });
+        }
+
+        // Transform Supabase portfolio items to UI format
+        function transformPortfolio(items) {
+            return items.map(item => ({
+                title: item.title,
+                description: item.description,
+                videoLink: item.video_link,
+                projectLink: item.project_link,
+                downloadLink: item.download_link,
+                imageLink: item.image_link
+            }));
+        }
+
+        // Transform Supabase achievements to UI format
+        function transformAchievements(achievements) {
+            return achievements.map(achievement => ({
+                title: achievement.title,
+                description: achievement.description,
+                date: achievement.achievement_date
+            }));
+        }
+
+        // Transform Supabase documents to UI format
+        function transformDocuments(documents) {
+            const result = {
+                eocReports: [],
+                certificates: []
+            };
+
+            documents.forEach(doc => {
+                if (doc.doc_type === 'eoc_report') {
+                    result.eocReports.push({
+                        name: doc.file_name,
+                        // file_path contains Google Drive link
+                        data: doc.file_path
+                    });
+                } else if (doc.doc_type === 'certificate') {
+                    result.certificates.push({
+                        name: doc.file_name,
+                        // file_path contains Google Drive link
+                        data: doc.file_path
+                    });
+                }
+            });
+
+            return result;
         }
 
         function renderDashboard() {
             if (!currentStudent) return;
 
-            // Welcome message
-            document.getElementById('welcomeName').textContent = `Welcome, ${currentStudent.name}!`;
+            // Welcome message with fun greetings
+            const greetings = [
+                `Hey there, ${currentStudent.name}! 👋`,
+                `Welcome back, ${currentStudent.name}! 🌟`,
+                `Hi ${currentStudent.name}!`,
+                `Hello ${currentStudent.name}! Let's learn! 🚀`,
+                `Great to see you, ${currentStudent.name}! ✨`
+            ];
+            const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+            document.getElementById('welcomeName').textContent = randomGreeting;
 
             // Stats
             document.getElementById('projectsCount').textContent = currentStudent.portfolio.length;
@@ -327,7 +707,7 @@
         function renderCourses() {
             const container = document.getElementById('coursesProgress');
 
-            container.innerHTML = currentStudent.courses.map(course => {
+            container.innerHTML = currentStudent.courses.map((course, index) => {
                 const completedLevels = course.levels.filter(l => l.completed).length;
                 const totalLevels = course.levels.length;
                 const progress = (completedLevels / totalLevels) * 100;
@@ -337,70 +717,89 @@
                 if (!course.trophy) course.trophy = null;
                 if (!course.avatar) course.avatar = null;
 
+                const levelEmojis = {
+                    1: { emoji: '🧭', name: 'Explorer' },
+                    2: { emoji: '🔨', name: 'Builder' },
+                    3: { emoji: '🎨', name: 'Creator' }
+                };
+
                 return `
-                    <div class="border border-gray-200 rounded-lg p-6">
-                        <div class="flex items-start justify-between mb-4">
+                    <div class="fun-card p-8 ${allCompleted ? 'border-4 border-yellow-400' : ''}">
+                        <div class="flex items-start justify-between mb-6">
                             <div class="flex-1">
-                                <h3 class="font-semibold text-lg">${course.name}</h3>
-                                <div class="mt-2">
-                                    <div class="flex justify-between text-sm text-gray-600 mb-1">
-                                        <span>Progress</span>
-                                        <span>${completedLevels}/${totalLevels} levels</span>
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="text-4xl">${allCompleted ? '🏆' : '📖'}</span>
+                                    <h3 class="font-bold text-2xl text-gray-800">${course.name}</h3>
+                                </div>
+                                <div class="mt-3">
+                                    <div class="flex justify-between text-sm font-semibold mb-2">
+                                        <span class="text-gray-600">Your Progress</span>
+                                        <span class="text-gray-800">${Math.round(progress)}% • ${completedLevels}/${totalLevels} levels</span>
                                     </div>
-                                    <div class="w-full bg-gray-200 rounded-full h-2">
-                                        <div class="progress-bar h-2 rounded-full ${allCompleted ? 'bg-green-500' : 'bg-blue-500'}" style="width: ${progress}%"></div>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" style="width: ${progress}%"></div>
                                     </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="level-badge ${
+                                        course.currentLevel === 1 ? 'teal-gradient text-white' :
+                                        course.currentLevel === 2 ? 'purple-gradient text-white' :
+                                        'orange-gradient text-white'
+                                    }">
+                                        <span class="text-xl">${levelEmojis[course.currentLevel].emoji}</span>
+                                        Level ${course.currentLevel}: ${levelEmojis[course.currentLevel].name}
+                                    </span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Medals & Trophy Section -->
-                        <div class="mt-4 p-4 ${allCompleted ? 'gold-gradient' : 'bg-gray-50'} rounded-lg">
-                            <h4 class="text-sm font-semibold ${allCompleted ? 'text-white' : 'text-gray-700'} mb-3">
-                                ${allCompleted ? 'Course Mastered!' : 'Your Progress'}
+                        <div class="mt-6 p-6 ${allCompleted ? 'gold-gradient' : 'bg-gradient-to-br from-gray-50 to-gray-100'} rounded-2xl shadow-inner">
+                            <h4 class="text-lg font-extrabold ${allCompleted ? 'text-white' : 'text-gray-700'} mb-4 text-center">
+                                ${allCompleted ? '🎉 Course Mastered! 🎉' : '🎯 Unlock Your Achievements'}
                             </h4>
                             <div class="grid grid-cols-4 gap-4">
-                                <!-- Explorer Medal -->
-                                <div class="text-center">
-                                    <div class="medal ${course.levels[0].completed ? 'earned' : 'locked'}">
-                                        ${course.levels[0].completed ? '🥇' : '🔒'}
+                                <!-- Explorer Medal (Level 1) -->
+                                <div class="text-center transform transition-all hover:scale-110">
+                                    <div class="medal ${course.currentLevel >= 1 || course.levels[0]?.completed ? 'earned' : 'locked'}">
+                                        ${course.currentLevel >= 1 || course.levels[0]?.completed ? '🥇' : '🔒'}
                                     </div>
-                                    <p class="text-xs ${allCompleted ? 'text-white' : 'text-gray-600'} mt-2 font-semibold">Explorer</p>
-                                    <p class="text-[10px] ${allCompleted ? 'text-white/80' : 'text-gray-500'}">${course.levels[0].completed ? 'Earned!' : 'Locked'}</p>
+                                    <p class="text-xs ${allCompleted ? 'text-white' : 'text-gray-700'} mt-2 font-bold">Explorer</p>
+                                    <p class="text-[10px] ${allCompleted ? 'text-white/90' : 'text-gray-500'}">${course.currentLevel >= 1 || course.levels[0]?.completed ? '✓ Earned!' : 'Locked'}</p>
                                 </div>
 
-                                <!-- Builder Medal -->
-                                <div class="text-center">
-                                    <div class="medal ${course.levels[1].completed ? 'earned' : 'locked'}">
-                                        ${course.levels[1].completed ? '🥇' : '🔒'}
+                                <!-- Builder Medal (Level 2) -->
+                                <div class="text-center transform transition-all hover:scale-110">
+                                    <div class="medal ${course.currentLevel >= 2 || course.levels[1]?.completed ? 'earned' : 'locked'}">
+                                        ${course.currentLevel >= 2 || course.levels[1]?.completed ? '🥇' : '🔒'}
                                     </div>
-                                    <p class="text-xs ${allCompleted ? 'text-white' : 'text-gray-600'} mt-2 font-semibold">Builder</p>
-                                    <p class="text-[10px] ${allCompleted ? 'text-white/80' : 'text-gray-500'}">${course.levels[1].completed ? 'Earned!' : 'Locked'}</p>
+                                    <p class="text-xs ${allCompleted ? 'text-white' : 'text-gray-700'} mt-2 font-bold">Builder</p>
+                                    <p class="text-[10px] ${allCompleted ? 'text-white/90' : 'text-gray-500'}">${course.currentLevel >= 2 || course.levels[1]?.completed ? '✓ Earned!' : 'Locked'}</p>
                                 </div>
 
-                                <!-- Creator Medal -->
-                                <div class="text-center">
-                                    <div class="medal ${course.levels[2].completed ? 'earned' : 'locked'}">
-                                        ${course.levels[2].completed ? '🥇' : '🔒'}
+                                <!-- Creator Medal (Level 3) - Only earned when completed -->
+                                <div class="text-center transform transition-all hover:scale-110">
+                                    <div class="medal ${allCompleted || course.levels[2]?.completed ? 'earned' : 'locked'}">
+                                        ${allCompleted || course.levels[2]?.completed ? '🥇' : '🔒'}
                                     </div>
-                                    <p class="text-xs ${allCompleted ? 'text-white' : 'text-gray-600'} mt-2 font-semibold">Creator</p>
-                                    <p class="text-[10px] ${allCompleted ? 'text-white/80' : 'text-gray-500'}">${course.levels[2].completed ? 'Earned!' : 'Locked'}</p>
+                                    <p class="text-xs ${allCompleted ? 'text-white' : 'text-gray-700'} mt-2 font-bold">Creator</p>
+                                    <p class="text-[10px] ${allCompleted ? 'text-white/90' : 'text-gray-500'}">${allCompleted || course.levels[2]?.completed ? '✓ Earned!' : 'Locked'}</p>
                                 </div>
 
                                 <!-- Trophy & Avatar -->
-                                <div class="text-center">
+                                <div class="text-center transform transition-all hover:scale-110">
                                     ${allCompleted ? `
                                         <div class="medal earned">
                                             🏆
                                         </div>
-                                        <p class="text-xs text-white mt-2 font-semibold">Trophy</p>
+                                        <p class="text-xs text-white mt-2 font-bold">Master</p>
                                         <div class="avatar mt-2">${course.avatar || getRandomAvatar(course)}</div>
                                     ` : `
                                         <div class="medal locked">
                                             🔒
                                         </div>
-                                        <p class="text-xs text-gray-600 mt-2 font-semibold">Trophy</p>
-                                        <p class="text-[10px] text-gray-500">Complete all</p>
+                                        <p class="text-xs text-gray-700 mt-2 font-bold">Master</p>
+                                        <p class="text-[10px] text-gray-500">Finish all!</p>
                                     `}
                                 </div>
                             </div>
@@ -428,13 +827,14 @@
             const celebration = document.createElement('div');
             celebration.className = 'celebration';
             celebration.innerHTML = `
-                <div class="trophy mb-4">🏆</div>
-                <h2 class="text-3xl font-bold text-gray-900 mb-2">Congratulations!</h2>
-                <p class="text-lg text-gray-700 mb-4">You've completed ${courseName}!</p>
+                <div class="trophy mb-6">🏆</div>
+                <h2 class="text-4xl font-black mb-3" style="background: linear-gradient(135deg, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Amazing Work!</h2>
+                <p class="text-xl font-bold text-gray-800 mb-4">You've mastered ${courseName}! 🎉</p>
                 <div class="avatar mb-4">${avatar}</div>
-                <p class="text-gray-600 mb-6">You've unlocked a special avatar!</p>
-                <button onclick="closeCelebration()" class="primary-gradient text-white px-8 py-3 rounded-lg font-semibold">
-                    Awesome!
+                <p class="text-gray-600 mb-6 text-lg">You've unlocked an awesome avatar!</p>
+                <button onclick="closeCelebration()" class="fun-button gold-gradient text-white text-lg px-10 py-4">
+                    <span class="text-xl mr-2">🎊</span>
+                    Let's Go!
                 </button>
             `;
 
@@ -447,123 +847,165 @@
             };
         }
 
-        function saveCurrentStudent() {
-            const students = JSON.parse(localStorage.getItem('techtutor_students') || '[]');
-            const index = students.findIndex(s => s.id === currentStudent.id);
-            if (index !== -1) {
-                students[index] = currentStudent;
-                localStorage.setItem('techtutor_students', JSON.stringify(students));
-            }
+        async function saveCurrentStudent() {
+            // Note: Avatar and trophy updates would need to be saved to Supabase
+            // This is handled by admin portal for now
+            // In future, you can add API calls here to update student data
+            console.log('Student data updated (admin portal handles saves)');
         }
 
         function renderDocuments() {
-            // EOC Report
+            // EOC Reports (multiple)
             const eocSection = document.getElementById('eocReportSection');
-            if (currentStudent.documents.eocReport) {
-                eocSection.innerHTML = `
-                    <div class="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
-                        <div class="flex items-center space-x-3">
-                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
-                            <span class="text-sm font-medium">${currentStudent.documents.eocReport.name}</span>
+            if (currentStudent.documents.eocReports && currentStudent.documents.eocReports.length > 0) {
+                eocSection.innerHTML = currentStudent.documents.eocReports.map((report, index) => `
+                    <div class="flex items-center justify-between mb-3 last:mb-0">
+                        <div class="flex items-center space-x-3 flex-1">
+                            <span class="text-2xl">📝</span>
+                            <span class="text-sm font-semibold text-gray-700">${report.name}</span>
                         </div>
-                        <button onclick="downloadDocument('eocReport')" class="text-blue-600 hover:text-blue-800 text-sm font-semibold">
-                            Download
+                        <button onclick="downloadDocument('${report.data}')" class="fun-button primary-gradient text-white text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                            Open
                         </button>
                     </div>
-                `;
+                `).join('');
             } else {
-                eocSection.innerHTML = '<p class="text-gray-500 text-sm">No report available</p>';
+                eocSection.innerHTML = '<p class="text-gray-400 text-sm italic">No reports available yet</p>';
             }
 
-            // Certificate
+            // Certificates (multiple)
             const certSection = document.getElementById('certificateSection');
-            if (currentStudent.documents.certificate) {
-                certSection.innerHTML = `
-                    <div class="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
-                        <div class="flex items-center space-x-3">
-                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
-                            </svg>
-                            <span class="text-sm font-medium">${currentStudent.documents.certificate.name}</span>
+            if (currentStudent.documents.certificates && currentStudent.documents.certificates.length > 0) {
+                certSection.innerHTML = currentStudent.documents.certificates.map((cert, index) => `
+                    <div class="flex items-center justify-between mb-3 last:mb-0">
+                        <div class="flex items-center space-x-3 flex-1">
+                            <span class="text-2xl">🎓</span>
+                            <span class="text-sm font-semibold text-gray-700">${cert.name}</span>
                         </div>
-                        <button onclick="downloadDocument('certificate')" class="text-blue-600 hover:text-blue-800 text-sm font-semibold">
-                            Download
+                        <button onclick="downloadDocument('${cert.data}')" class="fun-button gold-gradient text-white text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                            Open
                         </button>
                     </div>
-                `;
+                `).join('');
             } else {
-                certSection.innerHTML = '<p class="text-gray-500 text-sm">No certificate available</p>';
+                certSection.innerHTML = '<p class="text-gray-400 text-sm italic">No certificates available yet</p>';
             }
         }
 
-        function downloadDocument(type) {
-            const doc = currentStudent.documents[type];
-            const link = document.createElement('a');
-            link.href = doc.data;
-            link.download = doc.name;
-            link.click();
+        function downloadDocument(url) {
+            // Open document in new tab (Google Drive link or Supabase storage URL)
+            window.open(url, '_blank');
         }
 
         function renderPortfolio() {
             const container = document.getElementById('portfolioSection');
 
             if (currentStudent.portfolio.length === 0) {
-                container.innerHTML = '<p class="text-gray-500 text-sm col-span-2">No portfolio items yet</p>';
+                container.innerHTML = `
+                    <div class="col-span-2 text-center py-12">
+                        <span class="text-6xl mb-4 block">🎨</span>
+                        <p class="text-gray-400 text-lg">No projects yet - your creative journey starts soon!</p>
+                    </div>
+                `;
                 return;
             }
 
-            container.innerHTML = currentStudent.portfolio.map(item => `
-                <div class="border border-gray-200 rounded-lg p-6 card-hover">
-                    <h3 class="font-semibold text-lg mb-2">${item.title}</h3>
-                    <p class="text-gray-600 text-sm mb-4">${item.description}</p>
+            container.innerHTML = currentStudent.portfolio.map((item, index) => {
+                const gradients = ['purple-gradient', 'pink-gradient', 'teal-gradient', 'orange-gradient'];
+                const gradient = gradients[index % gradients.length];
 
-                    ${item.video ? `
-                        <div class="mb-4">
-                            <video controls class="w-full rounded-lg">
-                                <source src="${item.video.data}" type="${item.video.type}">
-                                Your browser does not support the video tag.
-                            </video>
+                return `
+                <div class="portfolio-card group">
+                    ${item.imageLink ? `
+                        <div class="relative overflow-hidden ${gradient} h-32 flex items-center justify-center" style="height: 200px;" id="portfolio-img-${index}">
+                            <img
+                                src="${item.imageLink}"
+                                alt="${item.title}"
+                                class="w-full h-full object-cover"
+                                style="position: absolute; top: 0; left: 0; z-index: 10;"
+                                onerror="this.style.display='none'; document.getElementById('portfolio-img-${index}').innerHTML='<span class=&quot;text-6xl&quot;>🎬</span>';"
+                            />
                         </div>
-                    ` : ''}
+                    ` : `
+                        <div class="${gradient} h-32 flex items-center justify-center">
+                            <span class="text-6xl">🎬</span>
+                        </div>
+                    `}
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-3 text-gray-800">${item.title}</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">${item.description}</p>
 
-                    ${item.link ? `
-                        <a href="${item.link}" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-semibold">
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                            </svg>
-                            View Project
-                        </a>
-                    ` : ''}
+                        <div class="flex flex-wrap gap-3">
+                            ${item.videoLink ? `
+                                <a href="${item.videoLink}" target="_blank" class="fun-button purple-gradient text-white inline-flex items-center text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Watch Demo
+                                </a>
+                            ` : ''}
+                            ${item.projectLink ? `
+                                <a href="${item.projectLink}" target="_blank" class="fun-button teal-gradient text-white inline-flex items-center text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                    View Project
+                                </a>
+                            ` : ''}
+                            ${item.downloadLink ? `
+                                <a href="${item.downloadLink}" target="_blank" class="fun-button orange-gradient text-white inline-flex items-center text-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                    </svg>
+                                    Download
+                                </a>
+                            ` : ''}
+                        </div>
+                    </div>
                 </div>
-            `).join('');
+            `}).join('');
         }
 
         function renderAchievements() {
             const container = document.getElementById('achievementsSection');
 
             if (currentStudent.achievements.length === 0) {
-                container.innerHTML = '<p class="text-gray-500 text-sm">No achievements yet</p>';
+                container.innerHTML = `
+                    <div class="text-center py-12">
+                        <span class="text-6xl mb-4 block">🏅</span>
+                        <p class="text-gray-400 text-lg">Your first achievement is just around the corner!</p>
+                    </div>
+                `;
                 return;
             }
 
-            container.innerHTML = currentStudent.achievements.map(item => `
-                <div class="border border-gray-200 rounded-lg p-6 card-hover">
+            const badgeColors = [
+                { border: '#FFD700', bg: '#FFF9E6', emoji: '🥇' },
+                { border: '#8B5CF6', bg: '#F3E8FF', emoji: '⭐' },
+                { border: '#2C7A7B', bg: '#E6FFFA', emoji: '💎' },
+                { border: '#EC4899', bg: '#FCE7F3', emoji: '🎯' }
+            ];
+
+            container.innerHTML = currentStudent.achievements.map((item, index) => {
+                const badge = badgeColors[index % badgeColors.length];
+                return `
+                <div class="achievement-badge" style="border-color: ${badge.border}; background-color: ${badge.bg};">
                     <div class="flex items-start space-x-4">
-                        <div class="bg-yellow-100 p-3 rounded-xl">
-                            <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                            </svg>
-                        </div>
+                        <div class="text-4xl">${badge.emoji}</div>
                         <div class="flex-1">
-                            <h3 class="font-semibold text-lg">${item.title}</h3>
+                            <h3 class="font-bold text-lg text-gray-800">${item.title}</h3>
                             <p class="text-gray-600 text-sm mt-1">${item.description}</p>
-                            <p class="text-gray-500 text-sm mt-2">${formatDate(item.date)}</p>
+                            <p class="text-gray-500 text-xs mt-2 font-semibold">🎉 Earned ${formatDate(item.date)}</p>
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
         }
 
         function formatDate(dateString) {
@@ -571,5 +1013,8 @@
             return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
         }
     </script>
+
+    <!-- TechTutor Supabase Client -->
+    <script src="js/supabase-client.js"></script>
 </body>
 </html>

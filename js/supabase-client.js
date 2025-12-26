@@ -5,11 +5,13 @@
 
 // IMPORTANT: Replace these with your actual Supabase credentials
 // Get these from: Supabase Dashboard → Project Settings → API
-const SUPABASE_URL = 'YOUR_SUPABASE_PROJECT_URL'; // e.g., 'https://xxxxx.supabase.co'
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY'; // Public anon key (safe to expose)
+const SUPABASE_URL = 'https://bcjmswzubfyjcdgwowfb.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJjam1zd3p1YmZ5amNkZ3dvd2ZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYyOTUyMjIsImV4cCI6MjA4MTg3MTIyMn0.MQNORtCMAQxwHxQTQ3f7HMOCIOeM2I_O0KrEmtaM8LI'; // ← REPLACE THIS with your actual anon/public key
 
-// Initialize Supabase client
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// Initialize Supabase client using CDN pattern
+// The CDN loads the library into window.supabase, and we extract createClient from it
+const { createClient } = window.supabase;
+const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // =====================================================
 // AUTHENTICATION FUNCTIONS
@@ -20,7 +22,7 @@ const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
  */
 async function signIn(email, password) {
   try {
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
       email,
       password
     });
@@ -44,7 +46,7 @@ async function signOut() {
   try {
     await logActivity('logout', null, null, {});
 
-    const { error } = await supabase.auth.signOut();
+    const { error } = await supabaseClient.auth.signOut();
     if (error) throw error;
 
     return { error: null };
@@ -59,7 +61,7 @@ async function signOut() {
  */
 async function getSession() {
   try {
-    const { data: { session }, error } = await supabase.auth.getSession();
+    const { data: { session }, error } = await supabaseClient.auth.getSession();
     if (error) throw error;
     return { session, error: null };
   } catch (error) {
@@ -73,7 +75,7 @@ async function getSession() {
  */
 async function getCurrentUser() {
   try {
-    const { data: { user }, error } = await supabase.auth.getUser();
+    const { data: { user }, error } = await supabaseClient.auth.getUser();
     if (error) throw error;
     return { user, error: null };
   } catch (error) {
@@ -87,7 +89,7 @@ async function getCurrentUser() {
  */
 async function isAdmin() {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
       .from('admins')
       .select('id')
       .single();
@@ -99,34 +101,130 @@ async function isAdmin() {
 }
 
 /**
- * Create a new student (admin only)
+ * Generate next student ID
  */
-async function createStudent(email, password, studentData) {
+async function generateStudentId() {
   try {
-    // Create auth user
-    const { data: authData, error: authError } = await supabase.auth.admin.createUser({
+    // Get all students and find the highest ID number
+    const { data: students, error } = await supabaseClient
+      .from('students')
+      .select('student_id')
+      .order('created_at', { ascending: false })
+      .limit(100);
+
+    if (error) throw error;
+
+    if (!students || students.length === 0) {
+      return 'S001';
+    }
+
+    // Extract numbers from student IDs and find max
+    const numbers = students
+      .map(s => {
+        const match = s.student_id.match(/\d+/);
+        return match ? parseInt(match[0]) : 0;
+      })
+      .filter(n => n > 0);
+
+    const maxNum = numbers.length > 0 ? Math.max(...numbers) : 0;
+    const nextNum = maxNum + 1;
+
+    // Format as S001, S002, etc.
+    return 'S' + String(nextNum).padStart(3, '0');
+  } catch (error) {
+    console.error('Generate student ID error:', error);
+    // Fallback to timestamp-based ID
+    return 'S' + Date.now().toString().slice(-6);
+  }
+}
+
+/**
+ * Create a new student (admin only)
+ * Note: This uses regular signup, so students will need to verify their email
+ * unless you disable email confirmation in Supabase settings
+ */
+async function createStudent(password, studentData) {
+  let createdUserId = null;
+
+  try {
+    // Get current admin session to restore later
+    const { data: { session: adminSession } } = await supabaseClient.auth.getSession();
+
+    if (!adminSession) {
+      throw new Error('Admin session required');
+    }
+
+    // Generate student ID if not provided
+    const studentId = studentData.studentId || await generateStudentId();
+
+    // Generate email from student ID
+    const email = `${studentId}@techtutor.academy`;
+
+    // Check if student already exists in database
+    const { data: existingStudent } = await supabaseClient
+      .from('students')
+      .select('id')
+      .eq('student_id', studentId)
+      .single();
+
+    if (existingStudent) {
+      throw new Error(`Student ID ${studentId} already exists`);
+    }
+
+    // Sign up the new student
+    console.log('Creating student with email:', email);
+    const { data: authData, error: authError } = await supabaseClient.auth.signUp({
       email,
       password,
-      email_confirm: true
+      options: {
+        data: {
+          student_id: studentId,
+          full_name: studentData.fullName
+        }
+      }
     });
 
-    if (authError) throw authError;
+    if (authError) {
+      console.error('Auth signup error:', authError);
+      // If user already exists in auth, provide clear error
+      if (authError.message.includes('already registered')) {
+        throw new Error(`Email ${email} already exists. The student ID ${studentId} may have been partially created. Please contact support or use a different student ID.`);
+      }
+      throw authError;
+    }
 
-    // Create student profile
-    const { data: student, error: studentError } = await supabase
+    if (!authData.user) {
+      throw new Error('Failed to create user');
+    }
+
+    createdUserId = authData.user.id;
+    console.log('User created:', authData.user.id, 'Email confirmed:', authData.user.confirmed_at);
+
+    // IMPORTANT: Restore admin session BEFORE creating student profile
+    // This ensures the INSERT happens with admin privileges
+    await supabaseClient.auth.setSession({
+      access_token: adminSession.access_token,
+      refresh_token: adminSession.refresh_token
+    });
+
+    // Now create student profile with admin session
+    const { data: student, error: studentError } = await supabaseClient
       .from('students')
       .insert({
         user_id: authData.user.id,
-        student_id: studentData.studentId,
+        student_id: studentId,
         full_name: studentData.fullName,
         status: 'active'
       })
       .select()
       .single();
 
-    if (studentError) throw studentError;
+    if (studentError) {
+      console.error('Student profile creation error:', studentError);
+      throw new Error(`Failed to create student profile: ${studentError.message}. Auth user was created but profile failed.`);
+    }
 
-    await logActivity('create_student', 'students', student.id, { studentId: studentData.studentId });
+    await logActivity('create_student', 'students', student.id, { studentId });
 
     return { data: student, error: null };
   } catch (error) {
@@ -144,7 +242,7 @@ async function createStudent(email, password, studentData) {
  */
 async function getStudentProfile(userId = null) {
   try {
-    let query = supabase
+    let query = supabaseClient
       .from('students')
       .select(`
         *,
@@ -177,7 +275,7 @@ async function getStudentProfile(userId = null) {
  */
 async function getAllStudents() {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
       .from('students')
       .select(`
         *,
@@ -185,7 +283,10 @@ async function getAllStudents() {
           *,
           courses (*),
           course_progress (*)
-        )
+        ),
+        portfolio_items (*),
+        achievements (*),
+        documents (*)
       `)
       .order('created_at', { ascending: false });
 
@@ -202,7 +303,7 @@ async function getAllStudents() {
  */
 async function updateStudent(studentId, updates) {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
       .from('students')
       .update(updates)
       .eq('id', studentId)
@@ -225,7 +326,7 @@ async function updateStudent(studentId, updates) {
  */
 async function deleteStudent(studentId) {
   try {
-    const { error } = await supabase
+    const { error } = await supabaseClient
       .from('students')
       .delete()
       .eq('id', studentId);
@@ -250,7 +351,7 @@ async function deleteStudent(studentId) {
  */
 async function getCourses() {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
       .from('courses')
       .select('*')
       .order('name');
@@ -268,12 +369,27 @@ async function getCourses() {
  */
 async function enrollInCourse(studentId, courseId) {
   try {
+    // Check if already enrolled
+    const { data: existing } = await supabaseClient
+      .from('course_enrollments')
+      .select('*')
+      .eq('student_id', studentId)
+      .eq('course_id', courseId)
+      .single();
+
+    if (existing) {
+      // Already enrolled, return existing enrollment
+      return { data: existing, error: null };
+    }
+
     // Create enrollment
-    const { data: enrollment, error: enrollError } = await supabase
+    const { data: enrollment, error: enrollError } = await supabaseClient
       .from('course_enrollments')
       .insert({
         student_id: studentId,
-        course_id: courseId
+        course_id: courseId,
+        status: 'active',
+        progress: 0
       })
       .select()
       .single();
@@ -294,7 +410,7 @@ async function enrollInCourse(studentId, courseId) {
       completed: false
     }));
 
-    const { error: progressError } = await supabase
+    const { error: progressError } = await supabaseClient
       .from('course_progress')
       .insert(progressEntries);
 
@@ -319,7 +435,7 @@ async function updateCourseProgress(progressId, completed) {
       completion_date: completed ? new Date().toISOString() : null
     };
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
       .from('course_progress')
       .update(updateData)
       .eq('id', progressId)
@@ -338,11 +454,41 @@ async function updateCourseProgress(progressId, completed) {
 }
 
 /**
+ * Unenroll student from course
+ */
+async function unenrollFromCourse(enrollmentId) {
+  try {
+    // Delete course progress entries first
+    const { error: progressError } = await supabaseClient
+      .from('course_progress')
+      .delete()
+      .eq('enrollment_id', enrollmentId);
+
+    if (progressError) throw progressError;
+
+    // Delete enrollment
+    const { error } = await supabaseClient
+      .from('course_enrollments')
+      .delete()
+      .eq('id', enrollmentId);
+
+    if (error) throw error;
+
+    await logActivity('unenroll_course', 'course_enrollments', enrollmentId, {});
+
+    return { data: null, error: null };
+  } catch (error) {
+    console.error('Unenroll from course error:', error);
+    return { data: null, error };
+  }
+}
+
+/**
  * Complete course and award trophy
  */
 async function completeCourse(enrollmentId, trophy) {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
       .from('course_enrollments')
       .update({
         completion_date: new Date().toISOString(),
@@ -376,14 +522,14 @@ async function uploadDocument(studentId, file, docType) {
     const fileName = `${studentId}/${docType}/${Date.now()}.${fileExt}`;
 
     // Upload file to storage
-    const { data: uploadData, error: uploadError } = await supabase.storage
+    const { data: uploadData, error: uploadError } = await supabaseClient.storage
       .from('documents')
       .upload(fileName, file);
 
     if (uploadError) throw uploadError;
 
     // Save metadata to database
-    const { data: doc, error: dbError } = await supabase
+    const { data: doc, error: dbError } = await supabaseClient
       .from('documents')
       .insert({
         student_id: studentId,
@@ -411,7 +557,7 @@ async function uploadDocument(studentId, file, docType) {
  * Get public URL for a file
  */
 function getFileUrl(bucket, filePath) {
-  const { data } = supabase.storage
+  const { data } = supabaseClient.storage
     .from(bucket)
     .getPublicUrl(filePath);
 
@@ -424,14 +570,14 @@ function getFileUrl(bucket, filePath) {
 async function deleteDocument(documentId, filePath) {
   try {
     // Delete from storage
-    const { error: storageError } = await supabase.storage
+    const { error: storageError } = await supabaseClient.storage
       .from('documents')
       .remove([filePath]);
 
     if (storageError) throw storageError;
 
     // Delete from database
-    const { error: dbError } = await supabase
+    const { error: dbError } = await supabaseClient
       .from('documents')
       .delete()
       .eq('id', documentId);
@@ -455,7 +601,7 @@ async function uploadPortfolioVideo(studentId, file) {
     const fileExt = file.name.split('.').pop();
     const fileName = `${studentId}/portfolio/${Date.now()}.${fileExt}`;
 
-    const { data, error } = await supabase.storage
+    const { data, error } = await supabaseClient.storage
       .from('videos')
       .upload(fileName, file);
 
@@ -464,6 +610,27 @@ async function uploadPortfolioVideo(studentId, file) {
     return { data: data.path, error: null };
   } catch (error) {
     console.error('Upload video error:', error);
+    return { data: null, error };
+  }
+}
+
+/**
+ * Upload portfolio image
+ */
+async function uploadPortfolioImage(studentId, file) {
+  try {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${studentId}/portfolio/${Date.now()}.${fileExt}`;
+
+    const { data, error } = await supabaseClient.storage
+      .from('images')
+      .upload(fileName, file);
+
+    if (error) throw error;
+
+    return { data: data.path, error: null };
+  } catch (error) {
+    console.error('Upload image error:', error);
     return { data: null, error };
   }
 }
@@ -477,7 +644,7 @@ async function uploadPortfolioVideo(studentId, file) {
  */
 async function addPortfolioItem(studentId, portfolioData) {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
       .from('portfolio_items')
       .insert({
         student_id: studentId,
@@ -507,12 +674,12 @@ async function deletePortfolioItem(portfolioId, videoPath) {
   try {
     // Delete video if exists
     if (videoPath) {
-      await supabase.storage
+      await supabaseClient.storage
         .from('videos')
         .remove([videoPath]);
     }
 
-    const { error } = await supabase
+    const { error } = await supabaseClient
       .from('portfolio_items')
       .delete()
       .eq('id', portfolioId);
@@ -537,7 +704,7 @@ async function deletePortfolioItem(portfolioId, videoPath) {
  */
 async function addAchievement(studentId, achievementData) {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
       .from('achievements')
       .insert({
         student_id: studentId,
@@ -564,7 +731,7 @@ async function addAchievement(studentId, achievementData) {
  */
 async function deleteAchievement(achievementId) {
   try {
-    const { error } = await supabase
+    const { error } = await supabaseClient
       .from('achievements')
       .delete()
       .eq('id', achievementId);
@@ -589,11 +756,11 @@ async function deleteAchievement(achievementId) {
  */
 async function logActivity(action, entityType, entityId, details) {
   try {
-    const { data: { user } } = await supabase.auth.getUser();
+    const { data: { user } } = await supabaseClient.auth.getUser();
 
     if (!user) return;
 
-    await supabase
+    await supabaseClient
       .from('activity_log')
       .insert({
         user_id: user.id,
@@ -612,7 +779,7 @@ async function logActivity(action, entityType, entityId, details) {
  */
 async function getActivityLog(limit = 100) {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
       .from('activity_log')
       .select('*')
       .order('created_at', { ascending: false })
@@ -649,6 +816,7 @@ window.TechTutorAPI = {
   // Courses
   getCourses,
   enrollInCourse,
+  unenrollFromCourse,
   updateCourseProgress,
   completeCourse,
 
@@ -657,6 +825,7 @@ window.TechTutorAPI = {
   getFileUrl,
   deleteDocument,
   uploadPortfolioVideo,
+  uploadPortfolioImage,
 
   // Portfolio
   addPortfolioItem,

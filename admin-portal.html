@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZ1XEZXB6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4MZ1XEZXB6');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechTutor - Admin Portal</title>
+
+    <!-- Supabase Client Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .primary-gradient {
@@ -135,13 +149,10 @@
                     <input type="text" id="studentName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Student ID</label>
-                    <input type="text" id="studentId" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
-                </div>
-                <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
                     <input type="password" id="studentPassword" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
                 </div>
+                <input type="hidden" id="studentId" value="">
                 <div class="flex space-x-4 pt-4">
                     <button type="submit" class="flex-1 teal-gradient text-white py-2 rounded-lg font-semibold hover:opacity-90 transition">
                         Add Student
@@ -195,18 +206,18 @@
                 <div class="space-y-6">
                     <!-- EOC Report -->
                     <div class="border border-gray-200 rounded-lg p-4">
-                        <h4 class="font-semibold mb-3">EOC Report</h4>
+                        <h4 class="font-semibold mb-3">EOC Report (Google Drive Link)</h4>
                         <div id="eocReportSection">
-                            <input type="file" id="eocReportInput" accept=".pdf,.doc,.docx" class="mb-2">
-                            <button onclick="uploadEOCReport()" class="teal-gradient text-white px-4 py-2 rounded-lg text-sm">
-                                Upload Report
+                            <input type="url" id="eocReportInput" placeholder="Paste Google Drive link here" class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-2">
+                            <button onclick="saveEOCReportLink()" class="teal-gradient text-white px-4 py-2 rounded-lg text-sm">
+                                Save Link
                             </button>
                         </div>
                         <div id="eocReportDisplay" class="hidden mt-3">
                             <div class="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
-                                <span class="text-sm" id="eocReportName"></span>
+                                <span class="text-sm text-blue-600" id="eocReportLink">Google Drive Link</span>
                                 <div class="space-x-2">
-                                    <button onclick="downloadEOCReport()" class="text-blue-600 hover:text-blue-800 text-sm">Download</button>
+                                    <button onclick="openEOCReport()" class="text-blue-600 hover:text-blue-800 text-sm">Open</button>
                                     <button onclick="removeEOCReport()" class="text-red-600 hover:text-red-800 text-sm">Remove</button>
                                 </div>
                             </div>
@@ -215,18 +226,18 @@
 
                     <!-- Certificate -->
                     <div class="border border-gray-200 rounded-lg p-4">
-                        <h4 class="font-semibold mb-3">Certificate</h4>
+                        <h4 class="font-semibold mb-3">Certificate (Google Drive Link)</h4>
                         <div id="certificateSection">
-                            <input type="file" id="certificateInput" accept=".pdf,.jpg,.jpeg,.png" class="mb-2">
-                            <button onclick="uploadCertificate()" class="teal-gradient text-white px-4 py-2 rounded-lg text-sm">
-                                Upload Certificate
+                            <input type="url" id="certificateInput" placeholder="Paste Google Drive link here" class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-2">
+                            <button onclick="saveCertificateLink()" class="teal-gradient text-white px-4 py-2 rounded-lg text-sm">
+                                Save Link
                             </button>
                         </div>
                         <div id="certificateDisplay" class="hidden mt-3">
                             <div class="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
-                                <span class="text-sm" id="certificateName"></span>
+                                <span class="text-sm text-blue-600" id="certificateLink">Google Drive Link</span>
                                 <div class="space-x-2">
-                                    <button onclick="downloadCertificate()" class="text-blue-600 hover:text-blue-800 text-sm">Download</button>
+                                    <button onclick="openCertificate()" class="text-blue-600 hover:text-blue-800 text-sm">Open</button>
                                     <button onclick="removeCertificate()" class="text-red-600 hover:text-red-800 text-sm">Remove</button>
                                 </div>
                             </div>
@@ -267,7 +278,7 @@
     <!-- Add Portfolio Item Modal -->
     <div id="addPortfolioModal" class="modal">
         <div class="bg-white rounded-2xl shadow-xl max-w-md w-full mx-4 p-8">
-            <h3 class="text-xl font-bold text-gray-900 mb-4">Add Portfolio Item</h3>
+            <h3 id="portfolioModalTitle" class="text-xl font-bold text-gray-900 mb-4">Add Portfolio Item</h3>
             <form id="addPortfolioForm" class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Project Title</label>
@@ -278,12 +289,21 @@
                     <textarea id="portfolioDescription" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required></textarea>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Project Link (optional)</label>
-                    <input type="url" id="portfolioLink" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Video Demo Link (YouTube/Loom URL - optional)</label>
+                    <input type="url" id="portfolioVideoLink" placeholder="https://youtube.com/..." class="w-full px-4 py-2 border border-gray-300 rounded-lg">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Video Upload (optional)</label>
-                    <input type="file" id="portfolioVideo" accept="video/*" class="w-full">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Project Link (Canva/Website URL - optional)</label>
+                    <input type="url" id="portfolioProjectLink" placeholder="https://canva.com/..." class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Download Link (Google Drive/Dropbox - optional)</label>
+                    <input type="url" id="portfolioDownloadLink" placeholder="https://drive.google.com/..." class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Preview Image Link (Google Drive URL - optional)</label>
+                    <input type="url" id="portfolioImageLink" placeholder="https://drive.google.com/uc?id=..." class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                    <p class="text-xs text-gray-500 mt-1">Paste Google Drive direct image link</p>
                 </div>
                 <div class="flex space-x-4 pt-4">
                     <button type="submit" class="flex-1 teal-gradient text-white py-2 rounded-lg font-semibold">
@@ -327,80 +347,116 @@
     </div>
 
     <script>
+        console.log('✅ Admin Portal Script Loaded - Version: PORTFOLIO_LOAD_FIX_v3');
+
         // Global variables
         let students = [];
+        let allCourses = [];
         let currentStudentId = null;
-
-        // Courses structure
-        const courses = [
-            { id: 'scratch', name: 'Scratch Programming', levels: ['Beginner', 'Intermediate', 'Advanced'] },
-            { id: 'gdevelop', name: 'GDevelop Game Design', levels: ['Beginner', 'Intermediate', 'Advanced'] },
-            { id: 'roblox', name: 'Roblox Studio', levels: ['Beginner', 'Intermediate', 'Advanced'] },
-            { id: '3d', name: '3D Design', levels: ['Beginner', 'Intermediate', 'Advanced'] },
-            { id: 'ai_programming', name: 'AI Programming', levels: ['Beginner', 'Intermediate', 'Advanced'] },
-            { id: 'gen_ai', name: 'Generative AI', levels: ['Beginner', 'Intermediate', 'Advanced'] },
-            { id: 'app_dev', name: 'App Development', levels: ['Beginner', 'Intermediate', 'Advanced'] }
-        ];
+        let currentUser = null;
 
         // Initialize
-        window.onload = function() {
-            loadStudents();
-            checkAuth();
+        window.onload = async function() {
+            await checkAuth();
         };
 
-        // Authentication
-        function checkAuth() {
-            const isLoggedIn = localStorage.getItem('techtutor_admin_auth');
-            if (isLoggedIn === 'true') {
+        // Authentication with Supabase
+        async function checkAuth() {
+            try {
+                // Check for active Supabase session
+                const { session, error } = await TechTutorAPI.getSession();
+
+                if (error || !session) {
+                    // No session, redirect to login
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                // Get current user
+                const { user, error: userError } = await TechTutorAPI.getCurrentUser();
+
+                if (userError || !user) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                // Check if user is admin
+                const isAdmin = await TechTutorAPI.isAdmin();
+                if (!isAdmin) {
+                    // Not an admin, redirect to student portal
+                    window.location.href = 'student-portal.html';
+                    return;
+                }
+
+                currentUser = user;
+                await loadData();
                 showDashboard();
-            } else {
-                showLogin();
+
+            } catch (error) {
+                console.error('Auth check error:', error);
+                window.location.href = 'login.html';
             }
         }
 
         function showLogin() {
-            document.getElementById('loginScreen').classList.remove('hidden');
-            document.getElementById('adminDashboard').classList.add('hidden');
+            // Redirect to centralized login
+            window.location.href = 'login.html';
         }
 
         function showDashboard() {
             document.getElementById('loginScreen').classList.add('hidden');
             document.getElementById('adminDashboard').classList.remove('hidden');
-            loadStudents();
             renderStudents();
         }
 
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
-
-            if (username === 'admin' && password === 'Techtutor@0987') {
-                localStorage.setItem('techtutor_admin_auth', 'true');
-                showDashboard();
-            } else {
-                const errorDiv = document.getElementById('loginError');
-                errorDiv.textContent = 'Invalid username or password';
-                errorDiv.classList.remove('hidden');
-            }
-        });
-
-        function logout() {
-            localStorage.removeItem('techtutor_admin_auth');
-            window.location.href = 'login.html';
+        async function logout() {
+            await TechTutorAPI.signOut();
+            window.location.href = 'index.html';
         }
 
-        // Load students from localStorage
-        function loadStudents() {
-            const stored = localStorage.getItem('techtutor_students');
-            if (stored) {
-                students = JSON.parse(stored);
+        // Load data from Supabase
+        async function loadData() {
+            try {
+                console.log('📊 Loading data from Supabase...');
+
+                // Load all students
+                const { data: studentsData, error: studentsError } = await TechTutorAPI.getAllStudents();
+
+                if (studentsError) {
+                    console.error('Failed to load students:', studentsError);
+                    students = [];
+                } else {
+                    students = studentsData || [];
+                    console.log('✅ Loaded students:', students.length);
+                    console.log('First student portfolio_items:', students[0]?.portfolio_items);
+                }
+
+                // Load all courses
+                const { data: coursesData, error: coursesError } = await TechTutorAPI.getCourses();
+
+                if (coursesError) {
+                    console.error('Failed to load courses:', coursesError);
+                    allCourses = [];
+                } else {
+                    allCourses = coursesData || [];
+                    console.log('✅ Loaded courses:', allCourses.length);
+                }
+
+            } catch (error) {
+                console.error('Load data error:', error);
+                students = [];
+                allCourses = [];
             }
         }
 
-        // Save students to localStorage
+        // Save is now handled by individual API calls
         function saveStudents() {
-            localStorage.setItem('techtutor_students', JSON.stringify(students));
+            // No longer needed - each operation saves to Supabase directly
+            console.log('Data saved to Supabase');
+        }
+
+        async function loadStudents() {
+            await loadData();
         }
 
         // Render students list
@@ -419,20 +475,38 @@
                 <div class="border border-gray-200 rounded-lg p-4 card-hover">
                     <div class="flex items-center justify-between">
                         <div>
-                            <h3 class="font-semibold text-lg">${student.name}</h3>
-                            <p class="text-gray-600 text-sm">ID: ${student.id}</p>
+                            <h3 class="font-semibold text-lg">${student.full_name}</h3>
+                            <p class="text-gray-600 text-sm">ID: ${student.student_id}</p>
+                            <p class="text-gray-600 text-sm">Email: ${student.student_id}@techtutor.academy</p>
+                            <p class="text-gray-500 text-xs">Enrolled: ${(student.course_enrollments || []).length} courses</p>
                         </div>
                         <div class="space-x-2">
-                            <button onclick="openEditStudentModal('${student.id}')" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700">
+                            <button data-action="edit" data-student-id="${student.id}" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700">
                                 Edit
                             </button>
-                            <button onclick="deleteStudent('${student.id}')" class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-700">
+                            <button data-action="delete" data-student-id="${student.id}" class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-700">
                                 Delete
                             </button>
                         </div>
                     </div>
                 </div>
             `).join('');
+
+            // Add event delegation for buttons
+            const buttons = container.querySelectorAll('button[data-action]');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const action = this.getAttribute('data-action');
+                    const studentId = this.getAttribute('data-student-id');
+
+                    if (action === 'delete') {
+                        deleteStudent(studentId);
+                    } else if (action === 'edit') {
+                        openEditStudentModal(studentId);
+                    }
+                });
+            });
         }
 
         // Add Student Modal
@@ -445,47 +519,82 @@
             document.getElementById('addStudentForm').reset();
         }
 
-        document.getElementById('addStudentForm').addEventListener('submit', function(e) {
+        document.getElementById('addStudentForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const name = document.getElementById('studentName').value;
-            const id = document.getElementById('studentId').value;
+            const name = document.getElementById('studentName').value.trim();
+            const studentIdInput = document.getElementById('studentId').value.trim();
             const password = document.getElementById('studentPassword').value;
 
-            // Check if ID already exists
-            if (students.find(s => s.id === id)) {
+            if (!name) {
+                alert('Please enter student name');
+                return;
+            }
+
+            // Check if student ID already exists (only if provided)
+            if (studentIdInput && students.find(s => s.student_id === studentIdInput)) {
                 alert('Student ID already exists!');
                 return;
             }
 
-            const newStudent = {
-                id: id,
-                name: name,
-                password: password,
-                courses: courses.map(c => ({
-                    id: c.id,
-                    name: c.name,
-                    levels: c.levels.map(l => ({ name: l, completed: false }))
-                })),
-                documents: {
-                    eocReport: null,
-                    certificate: null
-                },
-                portfolio: [],
-                achievements: []
-            };
+            try {
+                // Create student using Supabase API (email and studentId will be handled by the API)
+                const { data, error } = await TechTutorAPI.createStudent(password, {
+                    studentId: studentIdInput || null,
+                    fullName: name
+                });
 
-            students.push(newStudent);
-            saveStudents();
-            renderStudents();
-            closeAddStudentModal();
+                if (error) {
+                    throw new Error(error.message);
+                }
+
+                // Get the generated student ID and email from the result
+                const actualStudentId = data.student_id;
+                const email = `${actualStudentId}@techtutor.academy`;
+
+                // Show login credentials
+                const message = `Student created successfully!\n\nStudent ID: ${actualStudentId}\nLogin Email: ${email}\nPassword: ${password}\n\nShare these credentials with the student.`;
+                alert(message);
+
+                // Reload students list
+                await loadStudents();
+                renderStudents();
+                closeAddStudentModal();
+
+            } catch (error) {
+                console.error('Create student error:', error);
+                alert('Failed to create student: ' + error.message);
+            }
         });
 
         // Delete Student
-        function deleteStudent(studentId) {
-            if (confirm('Are you sure you want to delete this student?')) {
+        async function deleteStudent(studentId) {
+            if (!confirm('Are you sure you want to delete this student? This will delete all their data.')) {
+                return;
+            }
+
+            try {
+                const student = students.find(s => s.id === studentId);
+                if (!student) {
+                    throw new Error('Student not found');
+                }
+
+                // Delete the student profile from database
+                const { error: dbError } = await TechTutorAPI.deleteStudent(studentId);
+                if (dbError) {
+                    throw new Error(dbError.message || 'Failed to delete student profile');
+                }
+
+                // Update local students array immediately
                 students = students.filter(s => s.id !== studentId);
-                saveStudents();
+
+                // Re-render the UI
                 renderStudents();
+
+                alert('Student deleted successfully!');
+
+            } catch (error) {
+                console.error('Delete student error:', error);
+                alert('Failed to delete student: ' + error.message);
             }
         }
 
@@ -494,8 +603,13 @@
             currentStudentId = studentId;
             const student = students.find(s => s.id === studentId);
 
-            document.getElementById('editStudentName').textContent = student.name;
-            document.getElementById('editStudentId').textContent = `Student ID: ${student.id}`;
+            if (!student) {
+                alert('Student not found');
+                return;
+            }
+
+            document.getElementById('editStudentName').textContent = student.full_name;
+            document.getElementById('editStudentId').textContent = `Student ID: ${student.student_id}`;
 
             switchTab('courses');
             renderCourses();
@@ -531,129 +645,349 @@
             const student = students.find(s => s.id === currentStudentId);
             const container = document.getElementById('coursesList');
 
-            container.innerHTML = student.courses.map(course => `
-                <div class="border border-gray-200 rounded-lg p-4">
-                    <h4 class="font-semibold mb-3">${course.name}</h4>
-                    <div class="space-y-2">
-                        ${course.levels.map((level, index) => `
-                            <label class="flex items-center space-x-2 cursor-pointer">
-                                <input type="checkbox"
-                                    class="checkbox-course w-5 h-5 rounded"
-                                    ${level.completed ? 'checked' : ''}
-                                    onchange="toggleCourseLevel('${course.id}', ${index})">
-                                <span class="text-sm">${level.name}</span>
-                            </label>
-                        `).join('')}
+            if (!student) {
+                container.innerHTML = '<p class="text-gray-500">Student not found</p>';
+                return;
+            }
+
+            // Get student's enrolled courses
+            const enrolledCourses = student.course_enrollments || [];
+
+            if (allCourses.length === 0) {
+                container.innerHTML = '<p class="text-gray-500">No courses available</p>';
+                return;
+            }
+
+            // Show all available courses with enrollment status
+            container.innerHTML = allCourses.map(course => {
+                const enrollment = enrolledCourses.find(e => e.course_id === course.id);
+                const isEnrolled = !!enrollment;
+                const progress = enrollment ? enrollment.progress : 0;
+                const currentLevel = enrollment ? (enrollment.current_level || 1) : 1;
+                const currentLesson = enrollment ? (enrollment.current_lesson || 1) : 1;
+
+                return `
+                    <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center gap-3 flex-1">
+                                <input
+                                    type="checkbox"
+                                    ${isEnrolled ? 'checked' : ''}
+                                    onchange="toggleCourseEnrollment('${course.id}')"
+                                    class="w-5 h-5 text-teal-500 rounded"
+                                >
+                                <div class="flex-1">
+                                    <h4 class="font-semibold">${course.name || course.title || 'Unnamed Course'}</h4>
+                                    <p class="text-sm text-gray-600">${course.description || ''}</p>
+                                </div>
+                            </div>
+                            ${isEnrolled ? `<span class="text-sm text-gray-600">${progress}% complete</span>` : ''}
+                        </div>
+                        ${isEnrolled ? `
+                            <div class="mb-3">
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-teal-500 h-2 rounded-full" style="width: ${progress}%"></div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 mb-2">
+                                <div>
+                                    <label class="block text-xs text-gray-600 mb-1">Current Level</label>
+                                    <select
+                                        onchange="updateCourseLevel('${enrollment.id}', this.value)"
+                                        class="w-full px-3 py-1.5 text-sm border border-gray-300 rounded-lg"
+                                    >
+                                        <option value="1" ${currentLevel == 1 ? 'selected' : ''}>Level 1 - Explorer</option>
+                                        <option value="2" ${currentLevel == 2 ? 'selected' : ''}>Level 2 - Builder</option>
+                                        <option value="3" ${currentLevel == 3 ? 'selected' : ''}>Level 3 - Creator</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-600 mb-1">Status</label>
+                                    <select
+                                        onchange="updateCourseStatus('${enrollment.id}', this.value)"
+                                        class="w-full px-3 py-1.5 text-sm border border-gray-300 rounded-lg"
+                                    >
+                                        <option value="in_progress" ${enrollment.status === 'in_progress' || enrollment.status === 'active' ? 'selected' : ''}>In Progress</option>
+                                        <option value="completed" ${enrollment.status === 'completed' ? 'selected' : ''}>Completed</option>
+                                    </select>
+                                </div>
+                            </div>
+                        ` : ''}
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
-        function toggleCourseLevel(courseId, levelIndex) {
+        async function toggleCourseEnrollment(courseId) {
             const student = students.find(s => s.id === currentStudentId);
-            const course = student.courses.find(c => c.id === courseId);
-            course.levels[levelIndex].completed = !course.levels[levelIndex].completed;
-            saveStudents();
+            if (!student) return;
+
+            const enrolledCourses = student.course_enrollments || [];
+            const enrollmentIndex = enrolledCourses.findIndex(e => e.course_id === courseId);
+
+            try {
+                if (enrollmentIndex >= 0) {
+                    // Unenroll
+                    const enrollmentId = enrolledCourses[enrollmentIndex].id;
+                    const { error } = await TechTutorAPI.unenrollFromCourse(enrollmentId);
+                    if (error) throw error;
+
+                    enrolledCourses.splice(enrollmentIndex, 1);
+                    alert('Student unenrolled from course');
+                } else {
+                    // Enroll
+                    const { data, error } = await TechTutorAPI.enrollInCourse(student.id, courseId);
+                    if (error) throw error;
+
+                    enrolledCourses.push(data);
+                    alert('Student enrolled in course');
+                }
+
+                student.course_enrollments = enrolledCourses;
+                renderCourses();
+            } catch (error) {
+                console.error('Toggle enrollment error:', error);
+                alert('Failed to update enrollment: ' + error.message);
+                renderCourses(); // Reset UI
+            }
+        }
+
+        async function updateCourseLevel(enrollmentId, level) {
+            try {
+                const { error } = await supabaseClient
+                    .from('course_enrollments')
+                    .update({ current_level: parseInt(level) })
+                    .eq('id', enrollmentId);
+
+                if (error) throw error;
+
+                // Update local data
+                const student = students.find(s => s.id === currentStudentId);
+                const enrollment = student.course_enrollments.find(e => e.id === enrollmentId);
+                if (enrollment) {
+                    enrollment.current_level = parseInt(level);
+                }
+
+                alert('Level updated successfully!');
+            } catch (error) {
+                console.error('Update level error:', error);
+                alert('Failed to update level: ' + error.message);
+            }
+        }
+
+        async function updateCourseStatus(enrollmentId, status) {
+            try {
+                const updateData = {
+                    status: status
+                };
+
+                // If marking as completed, set completion_date
+                if (status === 'completed') {
+                    updateData.completion_date = new Date().toISOString();
+                    updateData.progress = 100;
+                } else {
+                    updateData.completion_date = null;
+                }
+
+                const { error } = await supabaseClient
+                    .from('course_enrollments')
+                    .update(updateData)
+                    .eq('id', enrollmentId);
+
+                if (error) throw error;
+
+                // Update local data
+                const student = students.find(s => s.id === currentStudentId);
+                const enrollment = student.course_enrollments.find(e => e.id === enrollmentId);
+                if (enrollment) {
+                    enrollment.status = status;
+                    if (status === 'completed') {
+                        enrollment.completion_date = updateData.completion_date;
+                        enrollment.progress = 100;
+                    } else {
+                        enrollment.completion_date = null;
+                    }
+                }
+
+                renderCourses();
+                alert('Status updated successfully!');
+            } catch (error) {
+                console.error('Update status error:', error);
+                alert('Failed to update status: ' + error.message);
+            }
         }
 
         // Documents
         function renderDocuments() {
             const student = students.find(s => s.id === currentStudentId);
 
+            if (!student) return;
+
+            // Get student documents from database (Google Drive links stored in file_path)
+            const documents = student.documents || [];
+            const eocReport = documents.find(d => d.doc_type === 'eoc_report');
+            const certificate = documents.find(d => d.doc_type === 'certificate');
+
             // EOC Report
-            if (student.documents.eocReport) {
+            if (eocReport && eocReport.file_path) {
                 document.getElementById('eocReportSection').classList.add('hidden');
                 document.getElementById('eocReportDisplay').classList.remove('hidden');
-                document.getElementById('eocReportName').textContent = student.documents.eocReport.name;
+                document.getElementById('eocReportLink').textContent = 'Google Drive Link';
+                document.getElementById('eocReportLink').setAttribute('data-link', eocReport.file_path);
             } else {
                 document.getElementById('eocReportSection').classList.remove('hidden');
                 document.getElementById('eocReportDisplay').classList.add('hidden');
+                document.getElementById('eocReportInput').value = '';
             }
 
             // Certificate
-            if (student.documents.certificate) {
+            if (certificate && certificate.file_path) {
                 document.getElementById('certificateSection').classList.add('hidden');
                 document.getElementById('certificateDisplay').classList.remove('hidden');
-                document.getElementById('certificateName').textContent = student.documents.certificate.name;
+                document.getElementById('certificateLink').textContent = 'Google Drive Link';
+                document.getElementById('certificateLink').setAttribute('data-link', certificate.file_path);
             } else {
                 document.getElementById('certificateSection').classList.remove('hidden');
                 document.getElementById('certificateDisplay').classList.add('hidden');
+                document.getElementById('certificateInput').value = '';
             }
         }
 
-        function uploadEOCReport() {
-            const file = document.getElementById('eocReportInput').files[0];
-            if (!file) {
-                alert('Please select a file');
+        async function saveEOCReportLink() {
+            const link = document.getElementById('eocReportInput').value.trim();
+            if (!link) {
+                alert('Please enter a Google Drive link');
                 return;
             }
 
-            const reader = new FileReader();
-            reader.onload = function(e) {
+            try {
                 const student = students.find(s => s.id === currentStudentId);
-                student.documents.eocReport = {
-                    name: file.name,
-                    data: e.target.result,
-                    type: file.type
-                };
-                saveStudents();
-                renderDocuments();
-            };
-            reader.readAsDataURL(file);
-        }
+                if (!student.documents) student.documents = [];
 
-        function downloadEOCReport() {
-            const student = students.find(s => s.id === currentStudentId);
-            const link = document.createElement('a');
-            link.href = student.documents.eocReport.data;
-            link.download = student.documents.eocReport.name;
-            link.click();
-        }
+                // Remove old EOC report if exists
+                const oldReport = student.documents.find(d => d.doc_type === 'eoc_report');
+                if (oldReport) {
+                    await supabaseClient.from('documents').delete().eq('id', oldReport.id);
+                    student.documents = student.documents.filter(d => d.id !== oldReport.id);
+                }
 
-        function removeEOCReport() {
-            if (confirm('Remove this document?')) {
-                const student = students.find(s => s.id === currentStudentId);
-                student.documents.eocReport = null;
-                saveStudents();
+                // Save new Google Drive link
+                const { data, error } = await supabaseClient
+                    .from('documents')
+                    .insert({
+                        student_id: currentStudentId,
+                        doc_type: 'eoc_report',
+                        file_name: 'EOC Report',
+                        file_path: link
+                    })
+                    .select()
+                    .single();
+
+                if (error) throw error;
+
+                student.documents.push(data);
                 renderDocuments();
+                alert('EOC Report link saved successfully!');
+            } catch (error) {
+                console.error('Save EOC report link error:', error);
+                alert('Failed to save link: ' + error.message);
             }
         }
 
-        function uploadCertificate() {
-            const file = document.getElementById('certificateInput').files[0];
-            if (!file) {
-                alert('Please select a file');
+        function openEOCReport() {
+            const link = document.getElementById('eocReportLink').getAttribute('data-link');
+            if (link) {
+                window.open(link, '_blank');
+            }
+        }
+
+        async function removeEOCReport() {
+            if (!confirm('Remove this document link?')) return;
+
+            try {
+                const student = students.find(s => s.id === currentStudentId);
+                const eocReport = (student.documents || []).find(d => d.doc_type === 'eoc_report');
+
+                if (!eocReport) return;
+
+                const { error } = await supabaseClient.from('documents').delete().eq('id', eocReport.id);
+                if (error) throw error;
+
+                student.documents = student.documents.filter(d => d.id !== eocReport.id);
+                renderDocuments();
+                alert('Document link removed successfully!');
+            } catch (error) {
+                console.error('Remove document error:', error);
+                alert('Failed to remove link: ' + error.message);
+            }
+        }
+
+        async function saveCertificateLink() {
+            const link = document.getElementById('certificateInput').value.trim();
+            if (!link) {
+                alert('Please enter a Google Drive link');
                 return;
             }
 
-            const reader = new FileReader();
-            reader.onload = function(e) {
+            try {
                 const student = students.find(s => s.id === currentStudentId);
-                student.documents.certificate = {
-                    name: file.name,
-                    data: e.target.result,
-                    type: file.type
-                };
-                saveStudents();
+                if (!student.documents) student.documents = [];
+
+                // Remove old certificate if exists
+                const oldCert = student.documents.find(d => d.doc_type === 'certificate');
+                if (oldCert) {
+                    await supabaseClient.from('documents').delete().eq('id', oldCert.id);
+                    student.documents = student.documents.filter(d => d.id !== oldCert.id);
+                }
+
+                // Save new Google Drive link
+                const { data, error } = await supabaseClient
+                    .from('documents')
+                    .insert({
+                        student_id: currentStudentId,
+                        doc_type: 'certificate',
+                        file_name: 'Certificate',
+                        file_path: link
+                    })
+                    .select()
+                    .single();
+
+                if (error) throw error;
+
+                student.documents.push(data);
                 renderDocuments();
-            };
-            reader.readAsDataURL(file);
+                alert('Certificate link saved successfully!');
+            } catch (error) {
+                console.error('Save certificate link error:', error);
+                alert('Failed to save link: ' + error.message);
+            }
         }
 
-        function downloadCertificate() {
-            const student = students.find(s => s.id === currentStudentId);
-            const link = document.createElement('a');
-            link.href = student.documents.certificate.data;
-            link.download = student.documents.certificate.name;
-            link.click();
+        function openCertificate() {
+            const link = document.getElementById('certificateLink').getAttribute('data-link');
+            if (link) {
+                window.open(link, '_blank');
+            }
         }
 
-        function removeCertificate() {
-            if (confirm('Remove this document?')) {
+        async function removeCertificate() {
+            if (!confirm('Remove this document link?')) return;
+
+            try {
                 const student = students.find(s => s.id === currentStudentId);
-                student.documents.certificate = null;
-                saveStudents();
+                const certificate = (student.documents || []).find(d => d.doc_type === 'certificate');
+
+                if (!certificate) return;
+
+                const { error } = await supabaseClient.from('documents').delete().eq('id', certificate.id);
+                if (error) throw error;
+
+                student.documents = student.documents.filter(d => d.id !== certificate.id);
                 renderDocuments();
+                alert('Document link removed successfully!');
+            } catch (error) {
+                console.error('Remove document error:', error);
+                alert('Failed to remove link: ' + error.message);
             }
         }
 
@@ -662,83 +996,202 @@
             const student = students.find(s => s.id === currentStudentId);
             const container = document.getElementById('portfolioList');
 
-            if (student.portfolio.length === 0) {
+            console.log('🎨 renderPortfolio called');
+            console.log('Current student ID:', currentStudentId);
+            console.log('Student found:', student);
+            console.log('Portfolio items:', student?.portfolio_items);
+
+            if (!student) {
+                container.innerHTML = '<p class="text-gray-500 text-sm">Student not found</p>';
+                return;
+            }
+
+            const portfolioItems = student.portfolio_items || [];
+            console.log('Portfolio items count:', portfolioItems.length);
+
+            if (portfolioItems.length === 0) {
                 container.innerHTML = '<p class="text-gray-500 text-sm">No portfolio items yet</p>';
                 return;
             }
 
-            container.innerHTML = student.portfolio.map((item, index) => `
+            container.innerHTML = portfolioItems.map((item, index) => {
+                return `
                 <div class="border border-gray-200 rounded-lg p-4">
-                    <div class="flex items-start justify-between">
+                    <div class="flex items-start justify-between mb-3">
                         <div class="flex-1">
-                            <h5 class="font-semibold">${item.title}</h5>
-                            <p class="text-sm text-gray-600 mt-1">${item.description}</p>
-                            ${item.link ? `<a href="${item.link}" target="_blank" class="text-blue-600 text-sm mt-1 inline-block">View Project</a>` : ''}
-                            ${item.video ? `<div class="mt-2"><span class="text-sm text-green-600">Video uploaded: ${item.video.name}</span></div>` : ''}
+                            <h5 class="font-semibold text-lg">${item.title || 'Untitled'}</h5>
+                            <p class="text-sm text-gray-600 mt-2">${item.description || 'No description'}</p>
+
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                ${item.video_link ? `
+                                    <a href="${item.video_link}" target="_blank" class="text-purple-600 hover:text-purple-800 text-sm inline-flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Video Demo
+                                    </a>
+                                ` : ''}
+                                ${item.project_link ? `
+                                    <a href="${item.project_link}" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm inline-flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                        </svg>
+                                        Project Link
+                                    </a>
+                                ` : ''}
+                                ${item.download_link ? `
+                                    <a href="${item.download_link}" target="_blank" class="text-green-600 hover:text-green-800 text-sm inline-flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                        </svg>
+                                        Download
+                                    </a>
+                                ` : ''}
+                            </div>
                         </div>
-                        <button onclick="removePortfolioItem(${index})" class="text-red-600 hover:text-red-800 text-sm ml-4">
-                            Remove
-                        </button>
+                        <div class="flex gap-2">
+                            <button onclick="editPortfolioItem(${index})" class="text-blue-600 hover:text-blue-800 text-sm px-3 py-1 rounded border border-blue-300 hover:bg-blue-50">
+                                Edit
+                            </button>
+                            <button onclick="removePortfolioItem(${index})" class="text-red-600 hover:text-red-800 text-sm px-3 py-1 rounded border border-red-300 hover:bg-red-50">
+                                Remove
+                            </button>
+                        </div>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
         }
 
+        let editingPortfolioIndex = null;
+
         function openAddPortfolioModal() {
+            editingPortfolioIndex = null;
+            document.getElementById('portfolioModalTitle').textContent = 'Add Portfolio Item';
+            document.getElementById('addPortfolioModal').classList.add('active');
+        }
+
+        function editPortfolioItem(index) {
+            console.log('Edit portfolio item clicked, index:', index);
+            const student = students.find(s => s.id === currentStudentId);
+            if (!student || !student.portfolio_items || !student.portfolio_items[index]) {
+                alert('Portfolio item not found');
+                return;
+            }
+
+            const item = student.portfolio_items[index];
+            console.log('Editing item:', item);
+
+            editingPortfolioIndex = index;
+            document.getElementById('portfolioModalTitle').textContent = 'Edit Portfolio Item';
+            document.getElementById('portfolioTitle').value = item.title || '';
+            document.getElementById('portfolioDescription').value = item.description || '';
+            document.getElementById('portfolioVideoLink').value = item.video_link || '';
+            document.getElementById('portfolioProjectLink').value = item.project_link || '';
+            document.getElementById('portfolioDownloadLink').value = item.download_link || '';
+            document.getElementById('portfolioImageLink').value = item.image_link || '';
+
             document.getElementById('addPortfolioModal').classList.add('active');
         }
 
         function closeAddPortfolioModal() {
+            editingPortfolioIndex = null;
             document.getElementById('addPortfolioModal').classList.remove('active');
             document.getElementById('addPortfolioForm').reset();
         }
 
-        document.getElementById('addPortfolioForm').addEventListener('submit', function(e) {
+        document.getElementById('addPortfolioForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const title = document.getElementById('portfolioTitle').value;
             const description = document.getElementById('portfolioDescription').value;
-            const link = document.getElementById('portfolioLink').value;
-            const videoFile = document.getElementById('portfolioVideo').files[0];
+            const videoLink = document.getElementById('portfolioVideoLink').value;
+            const projectLink = document.getElementById('portfolioProjectLink').value;
+            const downloadLink = document.getElementById('portfolioDownloadLink').value;
+            const imageLink = document.getElementById('portfolioImageLink').value;
 
-            const portfolioItem = {
-                title: title,
-                description: description,
-                link: link,
-                video: null
-            };
+            try {
+                const student = students.find(s => s.id === currentStudentId);
 
-            if (videoFile) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    portfolioItem.video = {
-                        name: videoFile.name,
-                        data: e.target.result,
-                        type: videoFile.type
-                    };
+                if (editingPortfolioIndex !== null) {
+                    // EDIT MODE
+                    const item = student.portfolio_items[editingPortfolioIndex];
 
-                    const student = students.find(s => s.id === currentStudentId);
-                    student.portfolio.push(portfolioItem);
-                    saveStudents();
+                    // Update portfolio item in database
+                    const { data, error } = await supabaseClient
+                        .from('portfolio_items')
+                        .update({
+                            title: title,
+                            description: description,
+                            video_link: videoLink || null,
+                            project_link: projectLink || null,
+                            download_link: downloadLink || null,
+                            image_link: imageLink || null
+                        })
+                        .eq('id', item.id)
+                        .select()
+                        .single();
+
+                    if (error) throw error;
+
+                    // Update local data
+                    student.portfolio_items[editingPortfolioIndex] = data;
+
                     renderPortfolio();
                     closeAddPortfolioModal();
-                };
-                reader.readAsDataURL(videoFile);
-            } else {
-                const student = students.find(s => s.id === currentStudentId);
-                student.portfolio.push(portfolioItem);
-                saveStudents();
-                renderPortfolio();
-                closeAddPortfolioModal();
+                    alert('Portfolio item updated successfully!');
+                } else {
+                    // ADD MODE
+                    // Create portfolio item in database
+                    const { data, error } = await supabaseClient
+                        .from('portfolio_items')
+                        .insert({
+                            student_id: currentStudentId,
+                            title: title,
+                            description: description,
+                            video_link: videoLink || null,
+                            project_link: projectLink || null,
+                            download_link: downloadLink || null,
+                            image_link: imageLink || null
+                        })
+                        .select()
+                        .single();
+
+                    if (error) throw error;
+
+                    // Update local data
+                    if (!student.portfolio_items) {
+                        student.portfolio_items = [];
+                    }
+                    student.portfolio_items.push(data);
+
+                    renderPortfolio();
+                    closeAddPortfolioModal();
+                    alert('Portfolio item added successfully!');
+                }
+            } catch (error) {
+                console.error('Portfolio error:', error);
+                alert('Failed to save portfolio item: ' + error.message);
             }
         });
 
-        function removePortfolioItem(index) {
-            if (confirm('Remove this portfolio item?')) {
+        async function removePortfolioItem(index) {
+            if (!confirm('Remove this portfolio item?')) return;
+
+            try {
                 const student = students.find(s => s.id === currentStudentId);
-                student.portfolio.splice(index, 1);
-                saveStudents();
+                if (!student || !student.portfolio_items) return;
+
+                const portfolioItem = student.portfolio_items[index];
+                const { error } = await TechTutorAPI.deletePortfolioItem(portfolioItem.id);
+
+                if (error) throw error;
+
+                student.portfolio_items.splice(index, 1);
                 renderPortfolio();
+                alert('Portfolio item removed successfully!');
+            } catch (error) {
+                console.error('Remove portfolio error:', error);
+                alert('Failed to remove portfolio item: ' + error.message);
             }
         }
 
@@ -747,12 +1200,19 @@
             const student = students.find(s => s.id === currentStudentId);
             const container = document.getElementById('achievementsList');
 
-            if (student.achievements.length === 0) {
+            if (!student) {
+                container.innerHTML = '<p class="text-gray-500 text-sm">Student not found</p>';
+                return;
+            }
+
+            const achievements = student.achievements || [];
+
+            if (achievements.length === 0) {
                 container.innerHTML = '<p class="text-gray-500 text-sm">No achievements yet</p>';
                 return;
             }
 
-            container.innerHTML = student.achievements.map((item, index) => `
+            container.innerHTML = achievements.map((item, index) => `
                 <div class="border border-gray-200 rounded-lg p-4">
                     <div class="flex items-start justify-between">
                         <div class="flex-1">
@@ -777,35 +1237,64 @@
             document.getElementById('addAchievementForm').reset();
         }
 
-        document.getElementById('addAchievementForm').addEventListener('submit', function(e) {
+        document.getElementById('addAchievementForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const title = document.getElementById('achievementTitle').value;
             const description = document.getElementById('achievementDescription').value;
             const date = document.getElementById('achievementDate').value;
 
-            const student = students.find(s => s.id === currentStudentId);
-            student.achievements.push({
-                title: title,
-                description: description,
-                date: date
-            });
+            try {
+                const student = students.find(s => s.id === currentStudentId);
+                if (!student) return;
 
-            saveStudents();
-            renderAchievements();
-            closeAddAchievementModal();
+                const { data, error } = await TechTutorAPI.addAchievement(currentStudentId, {
+                    title: title,
+                    description: description,
+                    achievement_date: date
+                });
+
+                if (error) throw error;
+
+                if (!student.achievements) {
+                    student.achievements = [];
+                }
+                student.achievements.push(data);
+
+                renderAchievements();
+                closeAddAchievementModal();
+                alert('Achievement added successfully!');
+            } catch (error) {
+                console.error('Add achievement error:', error);
+                alert('Failed to add achievement: ' + error.message);
+            }
         });
 
-        function removeAchievement(index) {
-            if (confirm('Remove this achievement?')) {
+        async function removeAchievement(index) {
+            if (!confirm('Remove this achievement?')) return;
+
+            try {
                 const student = students.find(s => s.id === currentStudentId);
+                if (!student || !student.achievements) return;
+
+                const achievement = student.achievements[index];
+                const { error } = await TechTutorAPI.deleteAchievement(achievement.id);
+
+                if (error) throw error;
+
                 student.achievements.splice(index, 1);
-                saveStudents();
                 renderAchievements();
+                alert('Achievement removed successfully!');
+            } catch (error) {
+                console.error('Remove achievement error:', error);
+                alert('Failed to remove achievement: ' + error.message);
             }
         }
 
 
     </script>
+
+    <!-- TechTutor Supabase Client -->
+    <script src="js/supabase-client.js"></script>
 </body>
 </html>

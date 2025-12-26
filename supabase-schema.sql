@@ -47,6 +47,10 @@ CREATE TABLE course_enrollments (
   enrollment_date DATE DEFAULT CURRENT_DATE,
   completion_date DATE,
   trophy TEXT,
+  current_level INTEGER DEFAULT 1 CHECK (current_level BETWEEN 1 AND 3),
+  current_lesson INTEGER DEFAULT 1 CHECK (current_lesson > 0),
+  status TEXT DEFAULT 'active',
+  progress INTEGER DEFAULT 0 CHECK (progress BETWEEN 0 AND 100),
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   UNIQUE(student_id, course_id)
 );
