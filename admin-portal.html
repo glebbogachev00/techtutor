@@ -713,6 +713,33 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="grid grid-cols-2 gap-4 mb-2">
+                                <div>
+                                    <label class="block text-xs text-gray-600 mb-1">Class Day</label>
+                                    <select
+                                        onchange="updateClassSchedule('${enrollment.id}', 'day', this.value)"
+                                        class="w-full px-3 py-1.5 text-sm border border-gray-300 rounded-lg"
+                                    >
+                                        <option value="">Select Day</option>
+                                        <option value="Monday" ${enrollment.class_day === 'Monday' ? 'selected' : ''}>Monday</option>
+                                        <option value="Tuesday" ${enrollment.class_day === 'Tuesday' ? 'selected' : ''}>Tuesday</option>
+                                        <option value="Wednesday" ${enrollment.class_day === 'Wednesday' ? 'selected' : ''}>Wednesday</option>
+                                        <option value="Thursday" ${enrollment.class_day === 'Thursday' ? 'selected' : ''}>Thursday</option>
+                                        <option value="Friday" ${enrollment.class_day === 'Friday' ? 'selected' : ''}>Friday</option>
+                                        <option value="Saturday" ${enrollment.class_day === 'Saturday' ? 'selected' : ''}>Saturday</option>
+                                        <option value="Sunday" ${enrollment.class_day === 'Sunday' ? 'selected' : ''}>Sunday</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-600 mb-1">Class Time</label>
+                                    <input
+                                        type="time"
+                                        value="${enrollment.class_time || ''}"
+                                        onchange="updateClassSchedule('${enrollment.id}', 'time', this.value)"
+                                        class="w-full px-3 py-1.5 text-sm border border-gray-300 rounded-lg"
+                                    />
+                                </div>
+                            </div>
                         ` : ''}
                     </div>
                 `;
@@ -815,6 +842,40 @@
             } catch (error) {
                 console.error('Update status error:', error);
                 alert('Failed to update status: ' + error.message);
+            }
+        }
+
+        async function updateClassSchedule(enrollmentId, field, value) {
+            try {
+                const updateData = {};
+                if (field === 'day') {
+                    updateData.class_day = value || null;
+                } else if (field === 'time') {
+                    updateData.class_time = value || null;
+                }
+
+                const { error } = await supabaseClient
+                    .from('course_enrollments')
+                    .update(updateData)
+                    .eq('id', enrollmentId);
+
+                if (error) throw error;
+
+                // Update local data
+                const student = students.find(s => s.id === currentStudentId);
+                const enrollment = student.course_enrollments.find(e => e.id === enrollmentId);
+                if (enrollment) {
+                    if (field === 'day') {
+                        enrollment.class_day = value || null;
+                    } else if (field === 'time') {
+                        enrollment.class_time = value || null;
+                    }
+                }
+
+                console.log('Class schedule updated successfully');
+            } catch (error) {
+                console.error('Update class schedule error:', error);
+                alert('Failed to update class schedule: ' + error.message);
             }
         }
 
