@@ -618,54 +618,6 @@
             }
         }
 
-        // Send Password Reset Email
-        async function sendPasswordResetEmail() {
-            try {
-                const student = students.find(s => s.id === currentStudentId);
-                if (!student) {
-                    throw new Error('Student not found');
-                }
-
-                console.log('Student data:', student);
-                console.log('User ID:', student.user_id);
-
-                // Check if student has a user_id (exists in Auth)
-                if (!student.user_id) {
-                    throw new Error('This student does not have an auth account. Please recreate the student account.');
-                }
-
-                // Get student's email from the database
-                const studentEmail = student.email || `${student.student_id}@techtutor.academy`;
-
-                console.log('Attempting to send reset email to:', studentEmail);
-
-                // Send password reset email
-                const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
-                    studentEmail,
-                    {
-                        redirectTo: `${window.location.origin}/reset-password.html`,
-                        // Add captcha token if needed
-                        options: {}
-                    }
-                );
-
-                console.log('Reset email response:', { data, error });
-
-                if (error) {
-                    // If error is about invalid email, the user might not be confirmed
-                    if (error.message.includes('invalid') || error.message.includes('not found')) {
-                        throw new Error(`Student email ${studentEmail} is not registered or confirmed in Supabase Auth. Check Supabase Dashboard > Authentication > Users to verify the user exists.`);
-                    }
-                    throw error;
-                }
-
-                alert(`Password reset link sent to techtutaca@gmail.com!\n\nStudent login email: ${studentEmail}\n\nForward the reset link to the student. They will be able to set a new password.`);
-            } catch (error) {
-                console.error('Send password reset error:', error);
-                alert('Failed to send password reset email: ' + error.message);
-            }
-        }
-
         // Edit Student Modal
         function openEditStudentModal(studentId) {
             currentStudentId = studentId;
@@ -678,10 +630,6 @@
 
             document.getElementById('editStudentName').textContent = student.full_name;
             document.getElementById('editStudentId').textContent = `Student ID: ${student.student_id}`;
-
-            // Update student email display in Settings tab
-            const studentEmail = student.email || `${student.student_id}@techtutor.academy`;
-            document.getElementById('studentEmailDisplay').textContent = studentEmail;
 
             switchTab('courses');
             renderCourses();
