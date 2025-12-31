@@ -692,17 +692,35 @@
 
             try {
                 const student = students.find(s => s.id === currentStudentId);
-                if (!student || !student.user_id) {
-                    throw new Error('Student user ID not found');
+                if (!student) {
+                    throw new Error('Student not found');
                 }
 
-                // Update password using Supabase Admin API
-                const { data, error } = await supabaseClient.auth.admin.updateUserById(
-                    student.user_id,
-                    { password: newPassword }
-                );
+                // Update password in students table (stored as plain text for simple demo)
+                // Note: In production, you'd want to use proper password hashing
+                const { data, error } = await supabaseClient
+                    .from('students')
+                    .update({ password: newPassword })
+                    .eq('id', currentStudentId);
 
                 if (error) throw error;
+
+                // Also update the auth user password if user_id exists
+                if (student.user_id) {
+                    // Call a Supabase RPC function to update password
+                    const { error: rpcError } = await supabaseClient.rpc('update_user_password', {
+                        user_id: student.user_id,
+                        new_password: newPassword
+                    });
+
+                    if (rpcError) {
+                        console.warn('Auth password update failed (expected with anon key):', rpcError.message);
+                        alert('Password updated in database. Note: Student may need to contact admin to reset auth password.');
+                    }
+                }
+
+                // Update local data
+                student.password = newPassword;
 
                 // Clear password fields
                 document.getElementById('newPassword').value = '';
