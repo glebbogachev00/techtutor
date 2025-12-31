@@ -192,9 +192,6 @@
                     <button onclick="switchTab('achievements')" class="tab-btn px-4 py-2 font-medium text-gray-600 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600">
                         Achievements
                     </button>
-                    <button onclick="switchTab('settings')" class="tab-btn px-4 py-2 font-medium text-gray-600 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600">
-                        Settings
-                    </button>
                 </nav>
             </div>
 
@@ -267,29 +264,6 @@
                 </button>
                 <div id="achievementsList" class="space-y-3">
                     <!-- Achievements will be loaded here -->
-                </div>
-            </div>
-
-            <!-- Settings Tab -->
-            <div id="settingsTab" class="tab-content hidden">
-                <div class="space-y-6">
-                    <!-- Password Reset Section -->
-                    <div class="border border-gray-200 rounded-lg p-6">
-                        <h4 class="font-semibold mb-4 text-lg">Send Password Reset Link</h4>
-                        <p class="text-sm text-gray-600 mb-4">
-                            Send a password reset link to <strong>techtutaca@gmail.com</strong>.
-                            You can then forward this link to the student via WhatsApp or other communication channels.
-                        </p>
-                        <p class="text-sm text-gray-500 mb-4">
-                            Student Login Email: <strong id="studentEmailDisplay"></strong>
-                        </p>
-                        <button onclick="sendPasswordResetEmail()" class="primary-gradient text-white px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition">
-                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                            </svg>
-                            Send Reset Link to My Email
-                        </button>
-                    </div>
                 </div>
             </div>
 
@@ -652,19 +626,38 @@
                     throw new Error('Student not found');
                 }
 
+                console.log('Student data:', student);
+                console.log('User ID:', student.user_id);
+
+                // Check if student has a user_id (exists in Auth)
+                if (!student.user_id) {
+                    throw new Error('This student does not have an auth account. Please recreate the student account.');
+                }
+
                 // Get student's email from the database
                 const studentEmail = student.email || `${student.student_id}@techtutor.academy`;
 
-                // Send password reset email - it will go to hello@techtutor.academy
-                // because that's the only real email configured in Supabase
-                const { error } = await supabaseClient.auth.resetPasswordForEmail(
+                console.log('Attempting to send reset email to:', studentEmail);
+
+                // Send password reset email
+                const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
                     studentEmail,
                     {
-                        redirectTo: `${window.location.origin}/reset-password.html`
+                        redirectTo: `${window.location.origin}/reset-password.html`,
+                        // Add captcha token if needed
+                        options: {}
                     }
                 );
 
-                if (error) throw error;
+                console.log('Reset email response:', { data, error });
+
+                if (error) {
+                    // If error is about invalid email, the user might not be confirmed
+                    if (error.message.includes('invalid') || error.message.includes('not found')) {
+                        throw new Error(`Student email ${studentEmail} is not registered or confirmed in Supabase Auth. Check Supabase Dashboard > Authentication > Users to verify the user exists.`);
+                    }
+                    throw error;
+                }
 
                 alert(`Password reset link sent to techtutaca@gmail.com!\n\nStudent login email: ${studentEmail}\n\nForward the reset link to the student. They will be able to set a new password.`);
             } catch (error) {
