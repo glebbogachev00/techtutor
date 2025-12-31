@@ -655,17 +655,18 @@
                 // Get student's email from the database
                 const studentEmail = student.email || `${student.student_id}@techtutor.academy`;
 
-                // Send password reset email to hello@techtutor.academy
+                // Send password reset email - it will go to hello@techtutor.academy
+                // because that's the only real email configured in Supabase
                 const { error } = await supabaseClient.auth.resetPasswordForEmail(
-                    'hello@techtutor.academy',
+                    studentEmail,
                     {
-                        redirectTo: `${window.location.origin}/login.html`
+                        redirectTo: `${window.location.origin}/reset-password.html`
                     }
                 );
 
                 if (error) throw error;
 
-                alert(`Password reset link sent to hello@techtutor.academy!\n\nStudent login email: ${studentEmail}\n\nForward the reset link to the student via WhatsApp or other channels.`);
+                alert(`Password reset link sent to hello@techtutor.academy!\n\nStudent login email: ${studentEmail}\n\nForward the reset link to the student. They will be able to set a new password.`);
             } catch (error) {
                 console.error('Send password reset error:', error);
                 alert('Failed to send password reset email: ' + error.message);
