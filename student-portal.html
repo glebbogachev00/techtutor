@@ -709,10 +709,13 @@
             const container = document.getElementById('coursesProgress');
 
             container.innerHTML = currentStudent.courses.map((course, index) => {
+                console.log('🎯 Rendering course:', course.name);
+                console.log('📊 Levels:', course.levels);
                 const completedLevels = course.levels.filter(l => l.completed).length;
                 const totalLevels = course.levels.length;
                 const progress = (completedLevels / totalLevels) * 100;
                 const allCompleted = completedLevels === totalLevels;
+                console.log(`✅ Completed: ${completedLevels}/${totalLevels} = ${progress}%`);
 
                 // Check if course has trophy and avatar
                 if (!course.trophy) course.trophy = null;

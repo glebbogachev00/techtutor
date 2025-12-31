@@ -13,41 +13,15 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TechTutor Academy offers interactive tech courses for children and teens in STEAM, coding, AI, and game development. Personalized learning with flexible scheduling and bilingual support in English and Vietnamese." />
   <title>TechTutor Academy — Best Tech Education in the World</title>
   <link rel="icon" type="image/png" href="images/robot-rocket.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#193b92',
-            'primary-light': '#2952b8',
-            'primary-dark': '#0f2861',
-            teal: {
-              DEFAULT: '#2C7A7B',
-              light: '#319795',
-              dark: '#234E52',
-            },
-            orange: {
-              DEFAULT: '#193b92',
-              light: '#2952b8',
-            },
-            ink: '#0F172A',
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-          },
-        },
-      },
-    };
-  </script>
+  <link rel="preload" href="images/family-portrait.jpg" as="image">
+  <link rel="stylesheet" href="css/tailwind.css">
+
   <style>
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
       background-color: #FAFAFA;
     }
 
@@ -144,6 +118,32 @@
 
     .geometric-shape {
       border-radius: 16px;
+    }
+
+    /* Carousel dots - small visual with proper touch target */
+    .carousel-dot {
+      position: relative;
+      background: transparent !important;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel-dot::after {
+      content: '';
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.6);
+      transition: background-color 0.3s;
+    }
+
+    .carousel-dot:hover::after,
+    .carousel-dot.active::after {
+      background-color: white;
     }
 
     @media (max-width: 768px) {
@@ -296,6 +296,34 @@
       animation: sway 3s ease-in-out infinite;
     }
   </style>
+
+  <style>
+    /* Screen reader only - visually hidden but accessible */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    /* Ensure minimum touch target sizes for interactive buttons only */
+    button:not(.carousel-dot), a.btn-primary, a.btn-orange, a.btn-secondary {
+      min-width: 48px;
+      min-height: 48px;
+    }
+
+    /* Improve focus visibility */
+    button:focus-visible, a:focus-visible {
+      outline: 3px solid #193b92;
+      outline-offset: 2px;
+    }
+  </style>
+
 </head>
 <body class="antialiased">
 
@@ -309,9 +337,9 @@
           <span class="text-primary">Tech</span><span class="text-teal-500">Tutor</span>
         </a>
 
-        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-700">
           <div class="relative hidden md:block group">
-            <a href="index.html#programs" class="inline-flex items-center gap-1 text-slate-600 hover:text-primary transition">
+            <a href="index.html#programs" class="inline-flex items-center gap-1 text-slate-700 hover:text-primary transition">
               <span data-i18n="nav.programs">Programs</span>
               <svg class="h-4 w-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -319,13 +347,13 @@
             </a>
             <div class="absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 rounded-2xl border border-slate-100 bg-white/95 p-3 shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
               <div class="flex flex-col gap-1 text-sm">
-                <a href="programs/scratch-game-coder.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">Scratch Game Coder</a>
-                <a href="programs/gdevelop-game-designer.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">GDevelop Game Designer</a>
-                <a href="programs/roblox-world-creator.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">Roblox World Creator</a>
-                <a href="programs/3d-designer.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">3D Designer</a>
-                <a href="programs/ai-programming-quest.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">AI & Programming Quest</a>
-                <a href="programs/generative-ai-magic.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">Generative AI Magic</a>
-                <a href="programs/app-development.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">App Development</a>
+                <a href="programs/scratch-game-coder.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Scratch Game Coder</a>
+                <a href="programs/gdevelop-game-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">GDevelop Game Designer</a>
+                <a href="programs/roblox-world-creator.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Roblox World Creator</a>
+                <a href="programs/3d-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">3D Designer</a>
+                <a href="programs/ai-programming-quest.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">AI & Programming Quest</a>
+                <a href="programs/generative-ai-magic.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Generative AI Magic</a>
+                <a href="programs/app-development.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">App Development</a>
               </div>
             </div>
           </div>
@@ -338,8 +366,8 @@
 
         <div class="hidden md:flex items-center gap-4">
           <div class="flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1">
-            <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-9 w-11 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
-            <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-9 w-11 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
+            <button type="button" data-lang="en" aria-pressed="true" aria-label="Switch to English" class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
+            <button type="button" data-lang="vi" aria-pressed="false" aria-label="Switch to Vietnamese" class="inline-flex h-12 w-12 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
           </div>
 
           <!-- Login Button -->
@@ -350,37 +378,37 @@
             Login
           </a>
 
-          <a href="free-trial.html" class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light" data-i18n="nav.free-trial">Free Trial</a>
+          <a aria-label="Start your free trial with TechTutor Academy" href="free-trial.html" class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light" data-i18n="nav.free-trial">Free Trial</a>
         </div>
 
         <div class="flex items-center gap-3 md:hidden">
           <div class="flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1">
-            <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
-            <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
+            <button type="button" data-lang="en" aria-pressed="true" aria-label="Switch to English" class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
+            <button type="button" data-lang="vi" aria-pressed="false" aria-label="Switch to Vietnamese" class="inline-flex h-12 w-12 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
           </div>
-          <button id="mobile-menu-button" class="px-4 py-2 rounded-lg border border-slate-200 text-slate-700 font-medium text-sm" aria-expanded="false" aria-controls="mobile-menu">
+          <button id="mobile-menu-button" class="px-4 py-2 rounded-lg border border-slate-200 text-slate-700 font-medium text-sm" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
             Menu
           </button>
         </div>
       </div>
 
       <div id="mobile-menu" class="md:hidden hidden mt-4 border-t border-slate-200 pt-4">
-        <div class="flex flex-col gap-4 text-sm font-medium text-slate-600">
+        <div class="flex flex-col gap-4 text-sm font-medium text-slate-700">
           <div class="rounded-2xl border border-slate-200 p-4">
-            <button id="mobile-programs-toggle" class="flex w-full items-center justify-between text-left">
+            <button id="mobile-programs-toggle" class="flex w-full items-center justify-between text-left" aria-label="Toggle programs submenu" aria-expanded="false">
               <span data-i18n="nav.programs">Programs</span>
               <svg id="programs-arrow" class="h-5 w-5 text-slate-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
             <div id="mobile-programs-menu" class="mt-3 hidden flex flex-col gap-3 border-l-2 border-primary pl-4 text-sm">
-              <a href="programs/scratch-game-coder.html" class="text-slate-600 hover:text-primary py-1">Scratch Game Coder</a>
-              <a href="programs/gdevelop-game-designer.html" class="text-slate-600 hover:text-primary py-1">GDevelop Game Designer</a>
-              <a href="programs/roblox-world-creator.html" class="text-slate-600 hover:text-primary py-1">Roblox World Creator</a>
-              <a href="programs/3d-designer.html" class="text-slate-600 hover:text-primary py-1">3D Designer</a>
-              <a href="programs/ai-programming-quest.html" class="text-slate-600 hover:text-primary py-1">AI & Programming Quest</a>
-              <a href="programs/generative-ai-magic.html" class="text-slate-600 hover:text-primary py-1">Generative AI Magic</a>
-              <a href="programs/app-development.html" class="text-slate-600 hover:text-primary py-1">App Development</a>
+              <a href="programs/scratch-game-coder.html" class="text-slate-700 hover:text-primary py-1">Scratch Game Coder</a>
+              <a href="programs/gdevelop-game-designer.html" class="text-slate-700 hover:text-primary py-1">GDevelop Game Designer</a>
+              <a href="programs/roblox-world-creator.html" class="text-slate-700 hover:text-primary py-1">Roblox World Creator</a>
+              <a href="programs/3d-designer.html" class="text-slate-700 hover:text-primary py-1">3D Designer</a>
+              <a href="programs/ai-programming-quest.html" class="text-slate-700 hover:text-primary py-1">AI & Programming Quest</a>
+              <a href="programs/generative-ai-magic.html" class="text-slate-700 hover:text-primary py-1">Generative AI Magic</a>
+              <a href="programs/app-development.html" class="text-slate-700 hover:text-primary py-1">App Development</a>
             </div>
           </div>
           <a href="student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
@@ -397,26 +425,25 @@
             Login
           </a>
 
-          <a href="free-trial.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm" data-i18n="nav.free-trial">Free Trial</a>
+          <a aria-label="Start your free trial with TechTutor Academy" href="free-trial.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm" data-i18n="nav.free-trial">Free Trial</a>
         </div>
       </div>
     </div>
   </header>
-  <script src="js/site.js" defer></script>
 
   <!-- Floating "Save 20%" Button -->
   <div id="floatingPromo" class="fixed right-0 z-50 transition-transform duration-300" style="top: 50%; transform: translateY(-50%);">
     <div class="bg-gradient-to-r from-red-500 to-orange-500 rounded-l-xl md:rounded-l-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-stretch overflow-hidden">
       <!-- Toggle Button (Left side, inside the box) -->
-      <button onclick="togglePromoButton()" class="flex items-center justify-center px-2 md:px-3 border-r border-red-400 hover:bg-red-600 transition-colors flex-shrink-0">
-        <svg id="toggleIcon" class="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <button onclick="togglePromoButton()" class="flex items-center justify-center px-2 md:px-3 border-r border-red-400 hover:bg-red-600 transition-colors flex-shrink-0" aria-label="Toggle promo banner">
+        <svg id="toggleIcon" class="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
       </button>
 
       <!-- Main Button (Right side) -->
-      <button onclick="openPromoPopup()" class="text-white px-3 py-2.5 md:px-4 md:py-3 flex items-center gap-2 md:gap-2 font-bold text-xs md:text-base group hover:bg-red-600 transition-colors">
-        <span class="text-base md:text-xl flex-shrink-0">🎁</span>
+      <button onclick="openPromoPopup()" class="text-white px-3 py-2.5 md:px-4 md:py-3 flex items-center gap-2 md:gap-2 font-bold text-xs md:text-base group hover:bg-red-600 transition-colors" aria-label="View special offer - Up to 20% off">
+        <span class="text-base md:text-xl flex-shrink-0" aria-hidden="true">🎁</span>
         <div class="text-left leading-tight">
           <div class="text-xs opacity-90 hidden md:block">Special Offer</div>
           <div class="text-[11px] leading-tight md:text-sm md:whitespace-nowrap">
@@ -445,26 +472,31 @@
           <h2 class="text-2xl md:text-3xl font-black mb-3 text-primary">
             Get Up to 20% Off Today!
           </h2>
-          <p class="text-gray-600 text-sm md:text-base">
+          <p class="text-gray-700 text-sm md:text-base">
             Book your free trial now and get up to 20% off your first course bundle
           </p>
         </div>
 
         <form id="promoTrialForm" action="https://formspree.io/f/xqaynogk" method="POST" class="space-y-3 md:space-y-4">
           <div>
-            <input name="parent_name" type="text" placeholder="Parent Name" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
+            <label for="promo-parent-name" class="sr-only">Parent Name</label>
+            <input id="promo-parent-name" name="parent_name" type="text" placeholder="Parent Name" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
           </div>
           <div>
-            <input name="child_name" type="text" placeholder="Child Name" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
+            <label for="promo-child-name" class="sr-only">Child Name</label>
+            <input id="promo-child-name" name="child_name" type="text" placeholder="Child Name" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
           </div>
           <div>
-            <input name="email" type="email" placeholder="Email" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
+            <label for="promo-email" class="sr-only">Email</label>
+            <input id="promo-email" name="email" type="email" placeholder="Email" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
           </div>
           <div>
-            <input name="phone" type="tel" placeholder="Phone (Zalo/WhatsApp)" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
+            <label for="promo-phone" class="sr-only">Phone (Zalo/WhatsApp)</label>
+            <input id="promo-phone" name="phone" type="tel" placeholder="Phone (Zalo/WhatsApp)" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
           </div>
           <div>
-            <input name="child_age" type="number" placeholder="Child Age" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
+            <label for="promo-child-age" class="sr-only">Child Age</label>
+            <input id="promo-child-age" name="child_age" type="number" placeholder="Child Age" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
           </div>
           <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
           <input type="hidden" name="_subject" value="New Promo Trial - Save 20%" />
@@ -472,87 +504,12 @@
           <input type="hidden" name="promo_code" value="SAVE20" />
           <button type="submit" class="w-full btn-orange text-center text-sm md:text-base py-2.5 md:py-3">Claim 20% Discount</button>
         </form>
-        <p id="promoTrialStatus" class="mt-3 text-xs md:text-sm text-gray-500 hidden"></p>
+        <p id="promoTrialStatus" class="mt-3 text-xs md:text-sm text-gray-700 hidden"></p>
       </div>
     </div>
   </div>
 
-  <script>
-    let promoButtonHidden = false;
-
-    function togglePromoButton() {
-      const promoButton = document.getElementById('floatingPromo');
-      const toggleIcon = document.getElementById('toggleIcon');
-      const isMobile = window.innerWidth < 768;
-      // Keep more visible on mobile so it doesn't disappear
-      const keepVisible = isMobile ? '36px' : '48px';
-
-      if (promoButtonHidden) {
-        // Show button
-        promoButton.style.transform = 'translateY(-50%) translateX(0)';
-        toggleIcon.style.transform = 'rotate(0deg)';
-        promoButtonHidden = false;
-      } else {
-        // Hide button - keep toggle button visible
-        const hideAmount = `calc(100% - ${keepVisible})`;
-        promoButton.style.transform = `translateY(-50%) translateX(${hideAmount})`;
-        toggleIcon.style.transform = 'rotate(180deg)';
-        promoButtonHidden = true;
-      }
-    }
-
-    function openPromoPopup() {
-      document.getElementById('promoModal').classList.remove('hidden');
-      document.getElementById('promoModal').classList.add('flex');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closePromoPopup(event) {
-      if (!event || event.target.id === 'promoModal' || event.type === 'click') {
-        document.getElementById('promoModal').classList.add('hidden');
-        document.getElementById('promoModal').classList.remove('flex');
-        document.body.style.overflow = 'auto';
-      }
-    }
-
-    // Handle promo form submission
-    const promoForm = document.getElementById('promoTrialForm');
-    const promoStatus = document.getElementById('promoTrialStatus');
-
-    promoForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const formData = new FormData(form);
-
-      try {
-        const response = await fetch(form.action, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-
-        if (response.ok) {
-          promoStatus.textContent = 'Thank you! We will contact you within 24 hours with your 20% discount code.';
-          promoStatus.classList.remove('hidden', 'text-red-500');
-          promoStatus.classList.add('text-green-600');
-          form.reset();
-
-          setTimeout(() => {
-            closePromoPopup();
-            promoStatus.classList.add('hidden');
-          }, 3000);
-        } else {
-          throw new Error('Form submission failed');
-        }
-      } catch (error) {
-        promoStatus.textContent = 'Oops! There was a problem. Please try again.';
-        promoStatus.classList.remove('hidden', 'text-green-600');
-        promoStatus.classList.add('text-red-500');
-      }
-    });
-  </script>
+  
 
   <!-- Main Content -->
   <main class="max-w-7xl mx-auto px-6 py-12">
@@ -565,12 +522,12 @@
         <div class="relative z-10">
           <h1 class="section-title mb-6 relative" data-i18n="hero.title">
             Best Tech Education<br/>in the World
-            <img src="images/doodle.png" alt="" class="absolute -top-4 -right-12 w-24 h-auto opacity-80" style="transform: rotate(-15deg);" />
+            <img width="1200" height="654" src="images/doodle.png" alt="Decorative design element" class="absolute -top-4 -right-12 w-24 h-auto opacity-80" style="transform: rotate(-15deg);" />
           </h1>
-          <p class="text-lg text-gray-600 mb-8 leading-relaxed" data-i18n="hero.description">
+          <p class="text-lg text-gray-700 mb-8 leading-relaxed" data-i18n="hero.description">
             TechTutor offers live, interactive tech courses designed to help children and teens gain in-demand skills. From coding and AI to game development and 3D design, we provide personalized learning experiences that keep students engaged and progressing.
           </p>
-          <a href="#trial" class="btn-orange" data-i18n="hero.cta">Get Started</a>
+          <a aria-label="Start free trial" href="#trial" class="btn-orange" data-i18n="hero.cta">Get Started</a>
 
           <!-- Mini stats cards under button -->
           <div class="mt-8 grid grid-cols-2 gap-4">
@@ -581,7 +538,7 @@
                 </div>
                 <div>
                   <p class="text-xl font-bold text-primary">6+</p>
-                   <p class="text-xs text-gray-600" data-i18n="hero.stats.years">Years of experience</p>
+                   <p class="text-xs text-gray-700" data-i18n="hero.stats.years">Years of experience</p>
                 </div>
               </div>
             </div>
@@ -592,7 +549,7 @@
                 </div>
                 <div>
                    <p class="text-xl font-bold text-primary">4+</p>
-                   <p class="text-xs text-gray-600" data-i18n="hero.stats.countries">Presence in countries</p>
+                   <p class="text-xs text-gray-700" data-i18n="hero.stats.countries">Presence in countries</p>
                  </div>
               </div>
             </div>
@@ -605,7 +562,7 @@
 
           <!-- Main student image -->
           <div class="relative z-10">
-            <img src="images/family-portrait.png" alt="Student learning" class="w-full rounded-3xl shadow-2xl relative z-20" />
+            <img width="1200" height="815" src="images/family-portrait.jpg" alt="Student learning" class="w-full rounded-3xl shadow-2xl relative z-20" fetchpriority="high">
           </div>
 
           <!-- Decorative shapes around image -->
@@ -623,7 +580,7 @@
         <h2 class="section-title mb-4" data-i18n="carousel.title">
           See Our Classes in Action
         </h2>
-        <p class="text-gray-600 text-lg max-w-3xl mx-auto" data-i18n="carousel.description">
+        <p class="text-gray-700 text-lg max-w-3xl mx-auto" data-i18n="carousel.description">
           Take a peek inside our virtual classroom and see students learning, creating, and having fun!
         </p>
       </div>
@@ -635,73 +592,73 @@
           <div id="classCarousel" class="flex transition-transform duration-700 ease-in-out">
           <!-- Slide 1 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-08 at 19.28.42.png" alt="Class photo 1" class="w-full h-auto">
+            <img width="1200" height="813" loading="lazy" src="images/students/Screenshot 2025-12-08 at 19.28.42.jpg" alt="Class photo 1" class="w-full h-auto">
           </div>
           <!-- Slide 2 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-08 at 19.31.08.png" alt="Class photo 2" class="w-full h-auto">
+            <img width="1200" height="805" loading="lazy" src="images/students/Screenshot 2025-12-08 at 19.31.08.jpg" alt="Class photo 2" class="w-full h-auto">
           </div>
           <!-- Slide 3 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-08 at 19.55.56.png" alt="Class photo 3" class="w-full h-auto">
+            <img width="1200" height="863" loading="lazy" src="images/students/Screenshot 2025-12-08 at 19.55.56.jpg" alt="Class photo 3" class="w-full h-auto">
           </div>
 
           <!-- Slide 5 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-09 at 18.52.21.png" alt="Class photo 5" class="w-full h-auto">
+            <img width="1200" height="807" loading="lazy" src="images/students/Screenshot 2025-12-09 at 18.52.21.png" alt="Class photo 5" class="w-full h-auto">
           </div>
           <!-- Slide 6 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-09 at 18.52.27.png" alt="Class photo 6" class="w-full h-auto">
+            <img width="1200" height="817" loading="lazy" src="images/students/Screenshot 2025-12-09 at 18.52.27.png" alt="Class photo 6" class="w-full h-auto">
           </div>
           <!-- Slide 7 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-09 at 19.23.10.png" alt="Class photo 7" class="w-full h-auto">
+            <img width="1200" height="799" loading="lazy" src="images/students/Screenshot 2025-12-09 at 19.23.10.png" alt="Class photo 7" class="w-full h-auto">
           </div>
           <!-- Slide 8 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-10 183226.png" alt="Class photo 8" class="w-full h-auto">
+            <img width="1200" height="543" loading="lazy" src="images/students/Screenshot 2025-12-10 183226.png" alt="Class photo 8" class="w-full h-auto">
           </div>
           <!-- Slide 9 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-10 183418.png" alt="Class photo 9" class="w-full h-auto">
+            <img width="1200" height="534" loading="lazy" src="images/students/Screenshot 2025-12-10 183418.png" alt="Class photo 9" class="w-full h-auto">
           </div>
           <!-- Slide 10 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-11 at 14.15.46.png" alt="Class photo 10" class="w-full h-auto">
+            <img width="1200" height="847" loading="lazy" src="images/students/Screenshot 2025-12-11 at 14.15.46.png" alt="Class photo 10" class="w-full h-auto">
           </div>
           <!-- Slide 11 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-11 at 14.33.59.png" alt="Class photo 11" class="w-full h-auto">
+            <img width="1200" height="848" loading="lazy" src="images/students/Screenshot 2025-12-11 at 14.33.59.png" alt="Class photo 11" class="w-full h-auto">
           </div>
 
           <!-- Slide 13 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-15 at 19.11.54.png" alt="Class photo 13" class="w-full h-auto">
+            <img width="1200" height="797" loading="lazy" src="images/students/Screenshot 2025-12-15 at 19.11.54.png" alt="Class photo 13" class="w-full h-auto">
           </div>
           <!-- Slide 14 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-15 at 19.12.03.png" alt="Class photo 14" class="w-full h-auto">
+            <img width="1200" height="798" loading="lazy" src="images/students/Screenshot 2025-12-15 at 19.12.03.png" alt="Class photo 14" class="w-full h-auto">
           </div>
           <!-- Slide 15 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-15 at 19.13.03.png" alt="Class photo 15" class="w-full h-auto">
+            <img width="1200" height="796" loading="lazy" src="images/students/Screenshot 2025-12-15 at 19.13.03.png" alt="Class photo 15" class="w-full h-auto">
           </div>
           <!-- Slide 16 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-15 at 19.22.29.png" alt="Class photo 16" class="w-full h-auto">
+            <img width="1200" height="800" loading="lazy" src="images/students/Screenshot 2025-12-15 at 19.22.29.png" alt="Class photo 16" class="w-full h-auto">
           </div>
           <!-- Slide 17 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-15 at 19.32.12.png" alt="Class photo 17" class="w-full h-auto">
+            <img width="1200" height="795" loading="lazy" src="images/students/Screenshot 2025-12-15 at 19.32.12.png" alt="Class photo 17" class="w-full h-auto">
           </div>
           <!-- Slide 18 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-15 at 19.34.48.png" alt="Class photo 18" class="w-full h-auto">
+            <img width="1200" height="803" loading="lazy" src="images/students/Screenshot 2025-12-15 at 19.34.48.png" alt="Class photo 18" class="w-full h-auto">
           </div>
           <!-- Slide 19 -->
           <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img src="images/students/Screenshot 2025-12-17 at 14.51.00 1.png" alt="Class photo 19" class="w-full h-auto">
+            <img width="1200" height="791" loading="lazy" src="images/students/Screenshot 2025-12-17 at 14.51.00 1.png" alt="Class photo 19" class="w-full h-auto">
           </div>
           </div>
 
@@ -751,9 +708,9 @@
         <h2 class="section-title mb-4 relative" data-i18n="easier.title">
           An Easier Way to<br/>
           Learn Tech Skills
-          <img src="images/doodle.png" alt="" class="absolute -top-4 -right-16 w-20 h-auto opacity-70 hidden md:block" style="transform: rotate(20deg);" />
+          <img width="1200" height="654" loading="lazy" src="images/doodle.png" alt="Decorative design element" class="absolute -top-4 -right-16 w-20 h-auto opacity-70 hidden md:block" style="transform: rotate(20deg);" />
         </h2>
-        <p class="text-gray-600 text-lg max-w-3xl mx-auto" data-i18n="easier.description">
+        <p class="text-gray-700 text-lg max-w-3xl mx-auto" data-i18n="easier.description">
           TechTutor simplifies tech education for families. Whether you want private 1-on-1 lessons or small group sessions, we match students with expert instructors for personalized, project-based learning.
         </p>
       </div>
@@ -762,7 +719,7 @@
         <!-- Card 1 -->
         <div class="card p-8 text-center">
           <h3 class="text-xl font-bold text-ink mb-3" data-i18n="easier.card1.title">Expert Instructors</h3>
-          <p class="text-gray-600" data-i18n="easier.card1.description">
+          <p class="text-gray-700" data-i18n="easier.card1.description">
             All instructors hold Bachelor's degrees in Computer Science, Information Technology, or Software Engineering with 6+ years of professional experience.
           </p>
         </div>
@@ -770,7 +727,7 @@
         <!-- Card 2 -->
         <div class="card p-8 text-center">
           <h3 class="text-xl font-bold text-ink mb-3" data-i18n="easier.card2.title">Parent Dashboard</h3>
-          <p class="text-gray-600" data-i18n="easier.card2.description">
+          <p class="text-gray-700" data-i18n="easier.card2.description">
             Track progress, schedule sessions flexibly, and receive detailed feedback after every lesson with our parent dashboard.
           </p>
         </div>
@@ -778,7 +735,7 @@
         <!-- Card 3 -->
         <div class="card p-8 text-center">
           <h3 class="text-xl font-bold text-ink mb-3" data-i18n="easier.card3.title">Affordable Online Learning</h3>
-          <p class="text-gray-600" data-i18n="easier.card3.description">
+          <p class="text-gray-700" data-i18n="easier.card3.description">
             Affordable online learning with bundle discounts up to 10% off. Learn from home with the same quality as in-person classes.
           </p>
         </div>
@@ -795,9 +752,9 @@
           <h2 class="section-title mb-6 relative" data-i18n="why.title">
             Why Choose Our<br/>
             Services?
-            <img src="images/doodle.png" alt="" class="absolute -top-4 -right-12 w-20 h-auto opacity-70" style="transform: rotate(-10deg);" />
+            <img width="1200" height="654" loading="lazy" src="images/doodle.png" alt="Decorative design element" class="absolute -top-4 -right-12 w-20 h-auto opacity-70" style="transform: rotate(-10deg);" />
           </h2>
-          <p class="text-gray-600 text-lg mb-8 leading-relaxed" data-i18n="why.description">
+          <p class="text-gray-700 text-lg mb-8 leading-relaxed" data-i18n="why.description">
             With over 4 years of experience and 80-90% student retention, TechTutor delivers results. We focus on hands-on projects, real-world skills, and keeping learning fun and engaging for every student.
           </p>
           <ul class="space-y-4">
@@ -828,10 +785,10 @@
               <p class="text-base opacity-90" data-i18n="why.stat1">Happy students</p>
             </div>
             <div class="hero-shape p-0 flex items-center justify-center overflow-hidden">
-              <img src="images/home1.png" alt="Student learning" class="w-full h-full object-cover" />
+              <img width="1200" height="966" loading="lazy" src="images/home1.png" alt="Student learning" class="w-full h-full object-cover" />
             </div>
             <div class="hero-shape p-0 flex items-center justify-center overflow-hidden">
-              <img src="images/home3.png" alt="Happy student" class="w-full h-full object-cover" />
+              <img width="1200" height="1024" loading="lazy" src="images/home3.jpg" alt="Happy student" class="w-full h-full object-cover" />
             </div>
             <div class="stat-card text-center flex flex-col items-center justify-center">
               <p class="text-5xl font-black mb-2">4K+</p>
@@ -856,9 +813,9 @@
         <h2 class="section-title mb-4 relative" data-i18n="testimonials.title">
           What Our Lovely<br/>
           Clients Say
-          <img src="images/doodle.png" alt="" class="absolute -top-4 -right-16 w-20 h-auto opacity-70 hidden md:block" style="transform: rotate(15deg);" />
+          <img width="1200" height="654" loading="lazy" src="images/doodle.png" alt="Decorative design element" class="absolute -top-4 -right-16 w-20 h-auto opacity-70 hidden md:block" style="transform: rotate(15deg);" />
         </h2>
-        <p class="text-gray-600 text-lg" data-i18n="testimonials.subtitle">
+        <p class="text-gray-700 text-lg" data-i18n="testimonials.subtitle">
           Real feedback from parents and students who've experienced our programs
         </p>
         <!-- Decorative underline -->
@@ -868,10 +825,10 @@
         <!-- Testimonial 1 -->
         <div class="testimonial-card">
           <div class="flex items-center gap-3 mb-4">
-            <img src="images/robot-rocket.png" alt="Nguyễn Thị Lan" class="avatar" />
+            <img width="1024" height="1024" loading="lazy" src="images/robot-rocket.png" alt="Nguyễn Thị Lan" class="avatar" />
             <div>
               <p class="font-bold text-ink">Nguyễn Thị Lan</p>
-              <p class="text-sm text-gray-500" data-i18n="testimonials.t1.role">Parent of Bảo Minh (10)</p>
+              <p class="text-sm text-gray-700" data-i18n="testimonials.t1.role">Parent of Bảo Minh (10)</p>
             </div>
           </div>
           <div class="flex gap-1 mb-3">
@@ -881,7 +838,7 @@
             <span style="color: #193b92;">⭐</span>
             <span style="color: #193b92;">⭐</span>
           </div>
-          <p class="text-gray-600 text-sm leading-relaxed" data-i18n="testimonials.t1.text">
+          <p class="text-gray-700 text-sm leading-relaxed" data-i18n="testimonials.t1.text">
             "Bảo Minh has been learning with Teacher Gleb for almost a year now. At first, my son was shy and didn't know where to start with computers. Now he confidently builds small games and even created an AI chatbot for his science project!"
           </p>
         </div>
@@ -889,10 +846,10 @@
         <!-- Testimonial 2 -->
         <div class="testimonial-card">
           <div class="flex items-center gap-3 mb-4">
-            <img src="images/robot-rocket.png" alt="Trần Văn Hùng" class="avatar" />
+            <img width="1024" height="1024" loading="lazy" src="images/robot-rocket.png" alt="Trần Văn Hùng" class="avatar" />
             <div>
               <p class="font-bold text-ink">Trần Văn Hùng</p>
-              <p class="text-sm text-gray-500" data-i18n="testimonials.t2.role">Parent of Gia Hân (12)</p>
+              <p class="text-sm text-gray-700" data-i18n="testimonials.t2.role">Parent of Gia Hân (12)</p>
             </div>
           </div>
           <div class="flex gap-1 mb-3">
@@ -902,7 +859,7 @@
             <span style="color: #193b92;">⭐</span>
             <span style="color: #193b92;">⭐</span>
           </div>
-          <p class="text-gray-600 text-sm leading-relaxed" data-i18n="testimonials.t2.text">
+          <p class="text-gray-700 text-sm leading-relaxed" data-i18n="testimonials.t2.text">
             "My daughter studied 3D Design and Roblox Game Development with Teacher Mathan for over a year and a half. She created two complete games and improved both teamwork and confidence."
           </p>
         </div>
@@ -910,10 +867,10 @@
         <!-- Testimonial 3 -->
         <div class="testimonial-card">
           <div class="flex items-center gap-3 mb-4">
-            <img src="images/robot-rocket.png" alt="Jimmy Barron" class="avatar" />
+            <img width="1024" height="1024" loading="lazy" src="images/robot-rocket.png" alt="Jimmy Barron" class="avatar" />
             <div>
               <p class="font-bold text-ink">Jimmy Barron</p>
-              <p class="text-sm text-gray-500" data-i18n="testimonials.t3.role">Parent of Kian Reed (13)</p>
+              <p class="text-sm text-gray-700" data-i18n="testimonials.t3.role">Parent of Kian Reed (13)</p>
             </div>
           </div>
           <div class="flex gap-1 mb-3">
@@ -923,7 +880,7 @@
             <span style="color: #193b92;">⭐</span>
             <span style="color: #193b92;">⭐</span>
           </div>
-          <p class="text-gray-600 text-sm leading-relaxed" data-i18n="testimonials.t3.text">
+          <p class="text-gray-700 text-sm leading-relaxed" data-i18n="testimonials.t3.text">
             "Kian explored Generative AI and Python programming with Teacher Mathan and now has two solid portfolio projects. TechTutor's structured and creative approach is perfect for international families."
           </p>
         </div>
@@ -940,7 +897,7 @@
 
         <div class="grid md:grid-cols-2 gap-8 items-center relative z-10">
           <div>
-            <img src="images/robot-rocket.png" alt="Join community" class="w-full max-w-md mx-auto rounded-2xl" />
+            <img width="1024" height="1024" loading="lazy" src="images/robot-rocket.png" alt="Join community" class="w-full max-w-md mx-auto rounded-2xl" />
           </div>
           <div class="text-white">
             <h2 class="text-4xl font-black mb-4" data-i18n="cta.partners.title">
@@ -951,7 +908,7 @@
             <p class="text-lg mb-8 opacity-90" data-i18n="cta.partners.description">
               Partner with TechTutor to bring cutting-edge tech education to your school. We offer customized programs, teacher training, and ongoing support.
             </p>
-            <a href="#trial" class="btn-orange inline-block" data-i18n="cta.partners.button">Join Now</a>
+            <a aria-label="Start free trial" href="#trial" class="btn-orange inline-block" data-i18n="cta.partners.button">Join Now</a>
           </div>
         </div>
       </div>
@@ -964,9 +921,9 @@
       <div class="text-center mb-12 relative">
         <h2 class="section-title mb-4 relative" data-i18n="pricing.title">
           Find the right <span style="color: #193b92;">plan</span> for you
-          <img src="images/doodle.png" alt="" class="absolute -top-4 -right-16 w-20 h-auto opacity-70 hidden md:block" style="transform: rotate(25deg);" />
+          <img width="1200" height="654" loading="lazy" src="images/doodle.png" alt="Decorative design element" class="absolute -top-4 -right-16 w-20 h-auto opacity-70 hidden md:block" style="transform: rotate(25deg);" />
         </h2>
-        <p class="text-gray-600 text-lg" data-i18n="pricing.subtitle">
+        <p class="text-gray-700 text-lg" data-i18n="pricing.subtitle">
           Flexible pricing for private or group lessons
         </p>
       </div>
@@ -977,15 +934,15 @@
           <h3 class="text-2xl font-bold text-ink mb-6" data-i18n="pricing.private.title">Private (1 on 1)</h3>
           <div class="space-y-4">
             <div class="flex justify-between items-center border-b border-gray-200 pb-4">
-              <span class="text-gray-600" data-i18n="pricing.private.plan1">1 course (8 lessons)</span>
+              <span class="text-gray-700" data-i18n="pricing.private.plan1">1 course (8 lessons)</span>
               <span class="font-bold text-ink">5.6M VND / ~$225</span>
             </div>
             <div class="flex justify-between items-center border-b border-gray-200 pb-4">
-              <span class="text-gray-600" data-i18n="pricing.private.plan2">2 courses (16 lessons) — <span class="font-semibold" style="color: #ff0000;">5% off</span></span>
+              <span class="text-gray-700" data-i18n="pricing.private.plan2">2 courses (16 lessons) — <span class="font-semibold" style="color: #cc0000;">5% off</span></span>
               <span class="font-bold text-ink">10.7M VND / ~$428</span>
             </div>
             <div class="flex justify-between items-center">
-              <span class="text-gray-600" data-i18n="pricing.private.plan3">3 courses (24 lessons) — <span class="font-semibold" style="color: #ff0000;">10% off</span></span>
+              <span class="text-gray-700" data-i18n="pricing.private.plan3">3 courses (24 lessons) — <span class="font-semibold" style="color: #cc0000;">10% off</span></span>
               <span class="font-bold text-ink">15M VND / ~$608</span>
             </div>
           </div>
@@ -996,15 +953,15 @@
           <h3 class="text-2xl font-bold text-ink mb-6" data-i18n="pricing.group.title">Small group (2-4 students)</h3>
           <div class="space-y-4">
             <div class="flex justify-between items-center border-b border-gray-200 pb-4">
-              <span class="text-gray-600" data-i18n="pricing.group.plan1">1 course (8 lessons)</span>
+              <span class="text-gray-700" data-i18n="pricing.group.plan1">1 course (8 lessons)</span>
               <span class="font-bold text-ink">3.2M VND / ~$128</span>
             </div>
             <div class="flex justify-between items-center border-b border-gray-200 pb-4">
-              <span class="text-gray-600" data-i18n="pricing.group.plan2">2 courses (16 lessons) — <span class="font-semibold" style="color: #ff0000;">5% off</span></span>
+              <span class="text-gray-700" data-i18n="pricing.group.plan2">2 courses (16 lessons) — <span class="font-semibold" style="color: #cc0000;">5% off</span></span>
               <span class="font-bold text-ink">6.1M VND / ~$244</span>
             </div>
             <div class="flex justify-between items-center">
-              <span class="text-gray-600" data-i18n="pricing.group.plan3">3 courses (24 lessons) — <span class="font-semibold" style="color: #ff0000;">10% off</span></span>
+              <span class="text-gray-700" data-i18n="pricing.group.plan3">3 courses (24 lessons) — <span class="font-semibold" style="color: #cc0000;">10% off</span></span>
               <span class="font-bold text-ink">8.4M VND / ~$346</span>
             </div>
           </div>
@@ -1020,9 +977,9 @@
       <div class="text-center mb-12 relative">
         <h2 class="section-title mb-4 relative" data-i18n="programs.title">
           Programs for every <span style="color: #193b92;">age</span>
-          <img src="images/doodle.png" alt="" class="absolute -top-4 -right-16 w-20 h-auto opacity-70 hidden md:block" style="transform: rotate(-20deg);" />
+          <img width="1200" height="654" loading="lazy" src="images/doodle.png" alt="Decorative design element" class="absolute -top-4 -right-16 w-20 h-auto opacity-70 hidden md:block" style="transform: rotate(-20deg);" />
         </h2>
-        <p class="text-gray-600 text-lg" data-i18n="programs.subtitle">
+        <p class="text-gray-700 text-lg" data-i18n="programs.subtitle">
           We have the largest selection of programs to study with our online courses
         </p>
       </div>
@@ -1031,11 +988,11 @@
         <!-- Scratch World -->
         <a href="programs/scratch-game-coder.html" class="card p-6 block">
           <div class="w-16 h-16 mb-4">
-            <img src="images/scratch.png" alt="Scratch" class="w-full h-full object-contain" />
+            <img width="1200" height="1145" loading="lazy" src="images/scratch.png" alt="Scratch" class="w-full h-full object-contain" />
           </div>
           <h3 class="text-xl font-bold text-ink mb-2" data-i18n="programs.scratch.title">Scratch Game Coder</h3>
-          <p class="text-gray-600 mb-4" data-i18n="programs.scratch.description">Learn to code through game creation with Scratch's visual blocks.</p>
-          <p class="text-sm text-gray-500 mb-4">
+          <p class="text-gray-700 mb-4" data-i18n="programs.scratch.description">Learn to code through game creation with Scratch's visual blocks.</p>
+          <p class="text-sm text-gray-700 mb-4">
             <span class="font-semibold">SKILLS:</span> <span data-i18n="programs.scratch.skills">Block coding, logic, game design</span>
           </p>
         </a>
@@ -1043,11 +1000,11 @@
         <!-- Roblox -->
         <a href="programs/roblox-world-creator.html" class="card p-6 block">
           <div class="w-16 h-16 mb-4">
-            <img src="images/robox-logo.png" alt="Roblox" class="w-full h-full object-contain" />
+            <img width="920" height="920" loading="lazy" src="images/robox-logo.png" alt="Roblox" class="w-full h-full object-contain" />
           </div>
           <h3 class="text-xl font-bold text-ink mb-2" data-i18n="programs.roblox.title">Roblox World Creator</h3>
-          <p class="text-gray-600 mb-4" data-i18n="programs.roblox.description">Use Roblox Studio and Lua to launch immersive, shared worlds.</p>
-          <p class="text-sm text-gray-500 mb-4">
+          <p class="text-gray-700 mb-4" data-i18n="programs.roblox.description">Use Roblox Studio and Lua to launch immersive, shared worlds.</p>
+          <p class="text-sm text-gray-700 mb-4">
             <span class="font-semibold">SKILLS:</span> <span data-i18n="programs.roblox.skills">Lua, 3D design, creative storytelling</span>
           </p>
         </a>
@@ -1055,11 +1012,11 @@
         <!-- 3D Designer -->
         <a href="programs/3d-designer.html" class="card p-6 block">
           <div class="w-16 h-16 mb-4">
-            <img src="images/blender.png" alt="Blender" class="w-full h-full object-contain" />
+            <img width="1200" height="981" loading="lazy" src="images/blender.png" alt="Blender" class="w-full h-full object-contain" />
           </div>
           <h3 class="text-xl font-bold text-ink mb-2" data-i18n="programs.3d.title">3D Designer</h3>
-          <p class="text-gray-600 mb-4" data-i18n="programs.3d.description">Learn Blender workflows for professional-grade 3D scenes.</p>
-          <p class="text-sm text-gray-500 mb-4">
+          <p class="text-gray-700 mb-4" data-i18n="programs.3d.description">Learn Blender workflows for professional-grade 3D scenes.</p>
+          <p class="text-sm text-gray-700 mb-4">
             <span class="font-semibold">SKILLS:</span> <span data-i18n="programs.3d.skills">3D modelling, design workflow, Python basics</span>
           </p>
         </a>
@@ -1067,11 +1024,11 @@
         <!-- App Development -->
         <a href="programs/app-development.html" class="card p-6 block">
           <div class="w-16 h-16 mb-4">
-            <img src="images/app-dev-logo.png" alt="App Development" class="w-full h-full object-contain" />
+            <img width="400" height="400" loading="lazy" src="images/app-dev-logo.png" alt="App Development" class="w-full h-full object-contain" />
           </div>
           <h3 class="text-xl font-bold text-ink mb-2" data-i18n="programs.app.title">App Development</h3>
-          <p class="text-gray-600 mb-4" data-i18n="programs.app.description">Build real mobile apps with Thunkable's visual interface.</p>
-          <p class="text-sm text-gray-500 mb-4">
+          <p class="text-gray-700 mb-4" data-i18n="programs.app.description">Build real mobile apps with Thunkable's visual interface.</p>
+          <p class="text-sm text-gray-700 mb-4">
             <span class="font-semibold">SKILLS:</span> <span data-i18n="programs.app.skills">Thunkable, app design, UI/UX</span>
           </p>
         </a>
@@ -1079,11 +1036,11 @@
         <!-- GDevelop -->
         <a href="programs/gdevelop-game-designer.html" class="card p-6 block">
           <div class="w-16 h-16 mb-4">
-            <img src="images/gdeve-logo.png" alt="GDevelop" class="w-full h-full object-contain" />
+            <img width="1024" height="1024" loading="lazy" src="images/gdeve-logo.png" alt="GDevelop" class="w-full h-full object-contain" />
           </div>
           <h3 class="text-xl font-bold text-ink mb-2" data-i18n="programs.gdevelop.title">GDevelop Game Designer</h3>
-          <p class="text-gray-600 mb-4" data-i18n="programs.gdevelop.description">Create 2D games with visual scripting and publish them.</p>
-          <p class="text-sm text-gray-500 mb-4">
+          <p class="text-gray-700 mb-4" data-i18n="programs.gdevelop.description">Create 2D games with visual scripting and publish them.</p>
+          <p class="text-sm text-gray-700 mb-4">
             <span class="font-semibold">SKILLS:</span> <span data-i18n="programs.gdevelop.skills">GDevelop, game design, visual scripting</span>
           </p>
         </a>
@@ -1091,11 +1048,11 @@
         <!-- AI & Programming -->
         <a href="programs/ai-programming-quest.html" class="card p-6 block">
           <div class="w-16 h-16 mb-4">
-            <img src="images/ai-logo.png" alt="AI Programming" class="w-full h-full object-contain" />
+            <img width="1200" height="675" loading="lazy" src="images/ai-logo.png" alt="AI Programming" class="w-full h-full object-contain" />
           </div>
           <h3 class="text-xl font-bold text-ink mb-2" data-i18n="programs.ai.title">AI & Programming Quest</h3>
-          <p class="text-gray-600 mb-4" data-i18n="programs.ai.description">Blend Python coding with machine learning to power smart games.</p>
-          <p class="text-sm text-gray-500 mb-4">
+          <p class="text-gray-700 mb-4" data-i18n="programs.ai.description">Blend Python coding with machine learning to power smart games.</p>
+          <p class="text-sm text-gray-700 mb-4">
             <span class="font-semibold">SKILLS:</span> <span data-i18n="programs.ai.skills">Python, machine learning, AI</span>
           </p>
         </a>
@@ -1103,11 +1060,11 @@
         <!-- Generative AI -->
         <a href="programs/generative-ai-magic.html" class="card p-6 block">
           <div class="w-16 h-16 mb-4">
-            <img src="images/chatgpt-logo.jpg" alt="Generative AI" class="w-full h-full object-contain" />
+            <img width="3840" height="2160" loading="lazy" src="images/chatgpt-logo.jpg" alt="Generative AI" class="w-full h-full object-contain" />
           </div>
           <h3 class="text-xl font-bold text-ink mb-2" data-i18n="programs.genai.title">Generative AI Magic</h3>
-          <p class="text-gray-600 mb-4" data-i18n="programs.genai.description">Use AI tools as creative partners and build responsible AI projects.</p>
-          <p class="text-sm text-gray-500 mb-4">
+          <p class="text-gray-700 mb-4" data-i18n="programs.genai.description">Use AI tools as creative partners and build responsible AI projects.</p>
+          <p class="text-sm text-gray-700 mb-4">
             <span class="font-semibold">SKILLS:</span> <span data-i18n="programs.genai.skills">Prompt engineering, AI integration</span>
           </p>
         </a>
@@ -1123,7 +1080,7 @@
           Useful Content For<br/>
           Your Check
         </h2>
-        <p class="text-gray-600 text-lg" data-i18n="blog.subtitle">
+        <p class="text-gray-700 text-lg" data-i18n="blog.subtitle">
           Explore our student projects, success stories, and learning resources
         </p>
         <!-- Doodle decoration -->
@@ -1132,14 +1089,14 @@
       <div class="grid md:grid-cols-3 gap-8">
         <!-- Blog Card 2 -->
         <div class="blog-card">
-          <img src="images/blog_playtime.png" alt="Teaching methods" />
+          <img width="1200" height="669" loading="lazy" src="images/blog_playtime.png" alt="Teaching methods" />
           <div class="p-6">
             <span class="text-xs font-semibold px-3 py-1 rounded-full" style="color: #193b92; background-color: rgba(25, 59, 146, 0.1);" data-i18n="blog.card2.tag">EDUCATION</span>
             <h3 class="text-lg font-bold text-ink mt-3 mb-2" data-i18n="blog.card2.title">How to Make Learning Tech Feel Like Playtime</h3>
-            <p class="text-gray-600 text-sm mb-4" data-i18n="blog.card2.description">Transform tech education into an exciting adventure with these proven strategies...</p>
+            <p class="text-gray-700 text-sm mb-4" data-i18n="blog.card2.description">Transform tech education into an exciting adventure with these proven strategies...</p>
             <a href="blog-tech-like-playtime.html" class="text-primary font-semibold text-sm hover:underline flex items-center gap-2">
-              <span data-i18n="blog.read_more">Read More</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span data-i18n="blog.read_more">Read More</span><span class="sr-only"> about how to make learning tech feel like playtime</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
             </a>
@@ -1148,14 +1105,14 @@
 
         <!-- Blog Card 3 -->
         <div class="blog-card">
-          <img src="images/blog_parents.png" alt="Parent testimonials" />
+          <img width="846" height="634" loading="lazy" src="images/blog_parents.png" alt="Parent testimonials" />
           <div class="p-6">
-            <span class="text-xs font-semibold text-teal bg-teal/10 px-3 py-1 rounded-full" data-i18n="blog.card3.tag">PARENTING</span>
+            <span class="text-xs font-semibold px-3 py-1 rounded-full" style="color: #0f5454; background-color: rgba(44, 122, 123, 0.15);" data-i18n="blog.card3.tag">PARENTING</span>
             <h3 class="text-lg font-bold text-ink mt-3 mb-2" data-i18n="blog.card3.title">How to Spot and Nurture Your Child's Technology Skill</h3>
-            <p class="text-gray-600 text-sm mb-4" data-i18n="blog.card3.description">Learn how to identify your child's tech talents and support their development...</p>
+            <p class="text-gray-700 text-sm mb-4" data-i18n="blog.card3.description">Learn how to identify your child's tech talents and support their development...</p>
             <a href="blog-spot-nurture-tech-skill.html" class="text-primary font-semibold text-sm hover:underline flex items-center gap-2">
-              <span data-i18n="blog.read_more">Read More</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span data-i18n="blog.read_more">Read More</span><span class="sr-only"> about how to spot and nurture your child's technology skill</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
             </a>
@@ -1164,14 +1121,14 @@
 
         <!-- Blog Card 4 -->
         <div class="blog-card">
-          <img src="images/blog_project.png" alt="Project-based learning" />
+          <img width="960" height="1088" loading="lazy" src="images/blog_project.png" alt="Project-based learning" />
           <div class="p-6">
             <span class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full" data-i18n="blog.card4.tag">PROJECTS</span>
             <h3 class="text-lg font-bold text-ink mt-3 mb-2" data-i18n="blog.card4.title">Unlocking Your Child’s Potential With Project-Based Learning</h3>
-            <p class="text-gray-600 text-sm mb-4" data-i18n="blog.card4.description">Why hands-on, project-first lessons keep kids engaged and future-ready.</p>
+            <p class="text-gray-700 text-sm mb-4" data-i18n="blog.card4.description">Why hands-on, project-first lessons keep kids engaged and future-ready.</p>
             <a href="blog-project-based-learning.html" class="text-primary font-semibold text-sm hover:underline flex items-center gap-2">
-              <span data-i18n="blog.read_more">Read More</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span data-i18n="blog.read_more">Read More</span><span class="sr-only"> about unlocking your child's potential with project-based learning</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
             </a>
@@ -1187,7 +1144,7 @@
       <div class="grid md:grid-cols-2 gap-8 items-center relative z-10">
         <!-- Image on left -->
         <div class="flex justify-center">
-          <img src="images/form.png" alt="Free trial" class="w-full max-w-md rounded-2xl" />
+          <img width="1200" height="1110" loading="lazy" src="images/form.png" alt="Free trial" class="w-full max-w-md rounded-2xl" />
         </div>
 
         <!-- Form on right -->
@@ -1196,33 +1153,38 @@
             <h2 class="text-3xl font-bold mb-4" data-i18n="trial.title">
               Start With a <span style="color: #193b92;">FREE</span> Lesson
             </h2>
-            <p class="text-gray-600" data-i18n="trial.description">
+            <p class="text-gray-700" data-i18n="trial.description">
               In just 90 minutes: receive a free, in-depth consultation and roadmap from our instructor. Share your details below and we'll schedule within 24 hours.
             </p>
           </div>
 
           <form id="redesignTrialForm" action="https://formspree.io/f/xqaynogk" method="POST" class="space-y-4" data-formspree data-status-target="redesignTrialStatus">
             <div>
-              <input name="parent_name" type="text" data-i18n-placeholder="trial.form.parent_name" placeholder="Parent Name" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
+              <label for="trial-parent-name" class="sr-only">Parent Name</label>
+              <input id="trial-parent-name" name="parent_name" type="text" data-i18n-placeholder="trial.form.parent_name" placeholder="Parent Name" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
             </div>
             <div>
-              <input name="child_name" type="text" data-i18n-placeholder="trial.form.child_name" placeholder="Child Name" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
+              <label for="trial-child-name" class="sr-only">Child Name</label>
+              <input id="trial-child-name" name="child_name" type="text" data-i18n-placeholder="trial.form.child_name" placeholder="Child Name" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
             </div>
             <div>
-              <input name="email" type="email" data-i18n-placeholder="trial.form.email" placeholder="Email" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
+              <label for="trial-email" class="sr-only">Email</label>
+              <input id="trial-email" name="email" type="email" data-i18n-placeholder="trial.form.email" placeholder="Email" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
             </div>
             <div>
-              <input name="phone" type="tel" data-i18n-placeholder="trial.form.phone" placeholder="Phone (Zalo/WhatsApp)" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
+              <label for="trial-phone" class="sr-only">Phone (Zalo/WhatsApp)</label>
+              <input id="trial-phone" name="phone" type="tel" data-i18n-placeholder="trial.form.phone" placeholder="Phone (Zalo/WhatsApp)" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
             </div>
             <div>
-              <input name="child_age" type="number" data-i18n-placeholder="trial.form.age" placeholder="Age" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
+              <label for="trial-child-age" class="sr-only">Age</label>
+              <input id="trial-child-age" name="child_age" type="number" data-i18n-placeholder="trial.form.age" placeholder="Age" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
             </div>
             <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
             <input type="hidden" name="_subject" value="New Trial Form Submission" />
             <input type="hidden" name="source_page" value="index" />
             <button type="submit" class="w-full btn-orange text-center" data-i18n="trial.form.submit">Book Free Trial</button>
           </form>
-          <p id="redesignTrialStatus" class="mt-3 text-sm text-gray-500 hidden"></p>
+          <p id="redesignTrialStatus" class="mt-3 text-sm text-gray-700 hidden"></p>
         </div>
       </div>
     </section>
@@ -1234,17 +1196,17 @@
     <div class="mx-auto max-w-7xl px-6 md:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
         <div class="lg:col-span-1">
-          <img src="images/robot-rocket.png" alt="TechTutor" class="h-40 w-auto" />
+          <img width="1024" height="1024" loading="lazy" src="images/robot-rocket.png" alt="TechTutor" class="h-40 w-auto" />
         </div>
         <div>
           <h3 class="text-lg font-bold mb-4 text-white">CONTACT US!</h3>
           <div class="space-y-3 text-sm">
             <div>
-              <p class="text-slate-400 mb-1">Tel/WA/Zalo:</p>
+              <p class="text-slate-300 mb-1">Tel/WA/Zalo:</p>
               <a href="tel:0902776753" class="text-white hover:text-primary-light transition">0902 776 753</a>
             </div>
             <div>
-              <p class="text-slate-400 mb-1">Email:</p>
+              <p class="text-slate-300 mb-1">Email:</p>
               <a href="mailto:hello@techtutor.academy" class="text-white hover:text-primary-light transition">hello@techtutor.academy</a>
             </div>
           </div>
@@ -1264,7 +1226,7 @@
             <a href="plans-and-faq.html" class="block text-slate-300 hover:text-primary-light transition">Pricing</a>
             <a href="blog.html" class="block text-slate-300 hover:text-primary-light transition">Blog</a>
             <a href="vision.html" class="block text-slate-300 hover:text-primary-light transition">Our Vision</a>
-            <a href="free-trial.html" class="block text-slate-300 hover:text-primary-light transition">Free trial</a>
+            <a aria-label="Start your free trial with TechTutor Academy" href="free-trial.html" class="block text-slate-300 hover:text-primary-light transition">Free Trial</a>
           </div>
         </div>
         <div>
@@ -1283,399 +1245,18 @@
         </div>
       </div>
       <div class="mt-12 pt-8 border-t border-slate-700 text-center">
-        <p class="text-sm text-slate-400" data-i18n="footer.copyright">© 2025 TechTutor Academy. All rights reserved.</p>
-        <p class="text-xs text-slate-500 mt-2" data-i18n="footer.bilingual">English / Vietnamese bilingual support</p>
+        <p class="text-sm text-slate-300" data-i18n="footer.copyright">© 2025 TechTutor Academy. All rights reserved.</p>
+        <p class="text-xs text-slate-300 mt-2" data-i18n="footer.bilingual">English / Vietnamese bilingual support</p>
       </div>
     </div>
   </footer>
 
-  <script>
-    // Translation dictionary
-    const translations = {
-      en: {
-        'nav.programs': 'Programs',
-        'nav.projects': 'Projects',
-        'nav.how-it-works': 'How It Works',
-        'nav.free-courses': 'Free Courses',
-        'nav.pricing': 'Pricing',
-        'nav.blog': 'Blog',
-        'nav.free-trial': 'Free Trial',
-        'hero.title': 'Best Tech Education<br/>in the World',
-        'hero.description': 'TechTutor offers live, interactive tech courses designed to help children and teens gain in-demand skills. From coding and AI to game development and 3D design, we provide personalized learning experiences that keep students engaged and progressing.',
-        'hero.cta': 'Get Started',
-        'hero.stats.years': 'Years of experience',
-        'hero.stats.countries': 'Presence in countries',
-        'easier.title': 'An Easier Way to<br/>Learn Tech Skills',
-        'easier.description': 'TechTutor simplifies tech education for families. Whether you want private 1-on-1 lessons or small group sessions, we match students with expert instructors for personalized, project-based learning.',
-        'easier.card1.title': 'Expert Instructors',
-        'easier.card1.description': 'All instructors hold Bachelor\'s degrees in Computer Science, Information Technology, or Software Engineering with 6+ years of professional experience.',
-        'easier.card2.title': 'Parent Dashboard',
-        'easier.card2.description': 'Track progress, schedule sessions flexibly, and receive detailed feedback after every lesson with our parent dashboard.',
-        'easier.card3.title': 'Affordable Online Learning',
-        'easier.card3.description': 'Affordable online learning with bundle discounts up to 10% off. Learn from home with the same quality as in-person classes.',
-        'carousel.title': 'See Our Classes in Action',
-        'carousel.description': 'Take a peek inside our virtual classroom and see students learning, creating, and having fun!',
-        'why.title': 'Why Choose Our<br/>Services?',
-        'why.description': 'With over 4 years of experience and 80-90% student retention, TechTutor delivers results. We focus on hands-on projects, real-world skills, and keeping learning fun and engaging for every student.',
-        'why.point1': '6+ years designing programs with 80-90% learner retention',
-        'why.point2': 'Every learner completes a real project they can showcase',
-        'why.point3': 'Flexible 1:1 or small group formats with personal feedback',
-        'why.point4': 'Bilingual support in English and Vietnamese',
-        'why.stat1': 'Happy students',
-        'why.stat2': 'Lessons taught',
-        'why.stat3': 'Student retention rate',
-        'testimonials.title': 'What Our Lovely<br/>Clients Say',
-        'testimonials.subtitle': 'Real feedback from parents and students who\'ve experienced our programs',
-        'testimonials.t1.role': 'Parent of Bảo Minh (10)',
-        'testimonials.t1.text': '"Bảo Minh has been learning with Teacher Gleb for almost a year now. At first, my son was shy and didn\'t know where to start with computers. Now he confidently builds small games and even created an AI chatbot for his science project!"',
-        'testimonials.t2.role': 'Parent of Gia Hân (12)',
-        'testimonials.t2.text': '"My daughter studied 3D Design and Roblox Game Development with Teacher Mathan for over a year and a half. She created two complete games and improved both teamwork and confidence."',
-        'testimonials.t3.role': 'Parent of Kian Reed (13)',
-        'testimonials.t3.text': '"Kian explored Generative AI and Python programming with Teacher Mathan and now has two solid portfolio projects. TechTutor\'s structured and creative approach is perfect for international families."',
-        'cta.partners.title': 'Get in touch<br/>Join our community<br/>of school partners',
-        'cta.partners.description': 'Partner with TechTutor to bring cutting-edge tech education to your school. We offer customized programs, teacher training, and ongoing support.',
-        'cta.partners.button': 'Join Now',
-        'pricing.title': 'Find the right <span style="color: #193b92;">plan</span> for you',
-        'pricing.subtitle': 'Flexible pricing for private or group lessons',
-        'pricing.private.title': 'Private (1 on 1)',
-        'pricing.private.plan1': '1 course (8 lessons)',
-        'pricing.private.plan2': '2 courses (16 lessons) — <span class="font-semibold" style="color: #ff0000;">5% off</span>',
-        'pricing.private.plan3': '3 courses (24 lessons) — <span class="font-semibold" style="color: #ff0000;">10% off</span>',
-        'pricing.group.title': 'Small group (2-4 students)',
-        'pricing.group.plan1': '1 course (8 lessons)',
-        'pricing.group.plan2': '2 courses (16 lessons) — <span class="font-semibold" style="color: #ff0000;">5% off</span>',
-        'pricing.group.plan3': '3 courses (24 lessons) — <span class="font-semibold" style="color: #ff0000;">10% off</span>',
-        'programs.title': 'Programs for every <span style="color: #193b92;">age</span>',
-        'programs.subtitle': 'We have the largest selection of programs to study with our online courses',
-        'programs.scratch.title': 'Scratch Game Coder',
-        'programs.scratch.description': 'Learn to code through game creation with Scratch\'s visual blocks.',
-        'programs.scratch.skills': 'Block coding, logic, game design',
-        'programs.roblox.title': 'Roblox World Creator',
-        'programs.roblox.description': 'Use Roblox Studio and Lua to launch immersive, shared worlds.',
-        'programs.roblox.skills': 'Lua, 3D design, creative storytelling',
-        'programs.3d.title': '3D Designer',
-        'programs.3d.description': 'Learn Blender workflows for professional-grade 3D scenes.',
-        'programs.3d.skills': '3D modelling, design workflow, Python basics',
-        'programs.app.title': 'App Development',
-        'programs.app.description': 'Build real mobile apps with Thunkable\'s visual interface.',
-        'programs.app.skills': 'Thunkable, app design, UI/UX',
-        'programs.gdevelop.title': 'GDevelop Game Designer',
-        'programs.gdevelop.description': 'Create 2D games with visual scripting and publish them.',
-        'programs.gdevelop.skills': 'GDevelop, game design, visual scripting',
-        'programs.ai.title': 'AI & Programming Quest',
-        'programs.ai.description': 'Blend Python coding with machine learning to power smart games.',
-        'programs.ai.skills': 'Python, machine learning, AI',
-        'programs.genai.title': 'Generative AI Magic',
-        'programs.genai.description': 'Use AI tools as creative partners and build responsible AI projects.',
-        'programs.genai.skills': 'Prompt engineering, AI integration',
-        'blog.title': 'Useful Content For<br/>Your Check',
-        'blog.subtitle': 'Explore our student projects, success stories, and learning resources',
-        'blog.card1.tag': 'PROJECTS',
-        'blog.card1.title': '10 Ways Our Students Excel in Tech',
-        'blog.card1.description': 'See how our students transform from beginners to confident creators...',
-        'blog.card2.tag': 'EDUCATION',
-        'blog.card2.title': 'How to Make Learning Tech Feel Like Playtime',
-        'blog.card2.description': 'Transform tech education into an exciting adventure with these proven strategies...',
-        'blog.card3.tag': 'PARENTING',
-        'blog.card3.title': 'How to Spot and Nurture Your Child\'s Technology Skill',
-        'blog.card3.description': 'Learn how to identify your child\'s tech talents and support their development...',
-        'blog.card4.tag': 'PROJECTS',
-        'blog.card4.title': 'Unlocking Your Child’s Potential With Project-Based Learning',
-        'blog.card4.description': 'Why hands-on, project-first lessons keep kids engaged and future-ready.',
-        'blog.read_more': 'Read More',
-        'trial.title': 'Start With a <span style="color: #193b92;">FREE</span> Lesson',
-        'trial.description': 'In just 90 minutes: receive a free, in-depth consultation and roadmap from our instructor. Share your details below and we\'ll schedule within 24 hours.',
-        'trial.form.parent_name': 'Parent Name',
-        'trial.form.child_name': 'Child Name',
-        'trial.form.email': 'Email',
-        'trial.form.phone': 'Phone (Zalo/WhatsApp)',
-        'trial.form.age': 'Age',
-        'trial.form.submit': 'Book Free Trial',
-        'footer.copyright': '© 2025 TechTutor Academy. All rights reserved.',
-        'footer.bilingual': 'English / Vietnamese bilingual support'
-      },
-      vi: {
-        'nav.programs': 'Chương Trình',
-        'nav.projects': 'Dự Án',
-        'nav.how-it-works': 'Quy Trình',
-        'nav.free-courses': 'Khóa Học Miễn Phí',
-        'nav.pricing': 'Giá Cả',
-        'nav.blog': 'Blog',
-        'nav.free-trial': 'Dùng Thử Miễn Phí',
-        'hero.title': 'Giáo Dục Công Nghệ<br/>Tốt Nhất Thế Giới',
-        'hero.description': 'TechTutor cung cấp các khóa học công nghệ trực tiếp, tương tác được thiết kế để giúp trẻ em và thanh thiếu niên có được các kỹ năng được săn đón. Từ lập trình và AI đến phát triển trò chơi và thiết kế 3D, chúng tôi cung cấp trải nghiệm học tập cá nhân hóa giúp học sinh luôn hứng thú và tiến bộ.',
-        'hero.cta': 'Bắt Đầu',
-        'hero.stats.years': 'Năm kinh nghiệm',
-        'hero.stats.countries': 'Có mặt tại các quốc gia',
-        'easier.title': 'Cách Dễ Dàng Hơn Để<br/>Học Kỹ Năng Công Nghệ',
-        'easier.description': 'TechTutor đơn giản hóa giáo dục công nghệ cho các gia đình. Dù bạn muốn học riêng 1-1 hay nhóm nhỏ, chúng tôi kết nối học viên với giảng viên chuyên nghiệp cho trải nghiệm học tập cá nhân hóa dựa trên dự án.',
-        'easier.card1.title': 'Giảng Viên Chuyên Nghiệp',
-        'easier.card1.description': 'Tất cả giảng viên đều có bằng Cử nhân Khoa học Máy tính, Công nghệ Thông tin hoặc Kỹ thuật Phần mềm với 6+ năm kinh nghiệm chuyên môn.',
-        'easier.card2.title': 'Bảng Điều Khiển Phụ Huynh',
-        'easier.card2.description': 'Theo dõi tiến độ, lên lịch học linh hoạt và nhận phản hồi chi tiết sau mỗi buổi học với bảng điều khiển dành cho phụ huynh.',
-        'easier.card3.title': 'Học Trực Tuyến Giá Cả Phải Chăng',
-        'easier.card3.description': 'Học trực tuyến với mức giá phải chăng với giảm giá gói lên đến 10%. Học từ nhà với chất lượng như lớp học trực tiếp.',
-        'carousel.title': 'Xem Lớp Học Của Chúng Tôi',
-        'carousel.description': 'Hãy xem các em học viên đang học, sáng tạo và vui chơi trong lớp học trực tuyến của chúng tôi!',
-        'why.title': 'Tại Sao Chọn<br/>Dịch Vụ Của Chúng Tôi?',
-        'why.description': 'Với hơn 4 năm kinh nghiệm và tỷ lệ giữ chân học viên 80-90%, TechTutor mang lại kết quả thực sự. Chúng tôi tập trung vào các dự án thực hành, kỹ năng thực tế và giữ cho việc học luôn vui vẻ và hấp dẫn cho mọi học sinh.',
-        'why.point1': 'Hơn 4 năm thiết kế chương trình với tỷ lệ giữ chân học viên 80-90%',
-        'why.point2': 'Mỗi học viên hoàn thành một dự án thực tế có thể trưng bày',
-        'why.point3': 'Hình thức 1:1 hoặc nhóm nhỏ linh hoạt với phản hồi cá nhân',
-        'why.point4': 'Hỗ trợ song ngữ Anh và Việt',
-        'why.stat1': 'Học sinh hài lòng',
-        'why.stat2': 'Buổi học đã giảng dạy',
-        'why.stat3': 'Tỷ lệ giữ chân học viên',
-        'testimonials.title': 'Khách Hàng Yêu Quý<br/>Nói Gì Về Chúng Tôi',
-        'testimonials.subtitle': 'Phản hồi thực tế từ phụ huynh và học sinh đã trải nghiệm chương trình của chúng tôi',
-        'testimonials.t1.role': 'Phụ huynh của Bảo Minh (10 tuổi)',
-        'testimonials.t1.text': '"Bảo Minh đã học với Thầy Gleb được gần một năm rồi. Lúc đầu, con trai tôi rất nhút nhát và không biết bắt đầu từ đâu với máy tính. Giờ em tự tin xây dựng các trò chơi nhỏ và thậm chí còn tạo ra một chatbot AI cho dự án khoa học!"',
-        'testimonials.t2.role': 'Phụ huynh của Gia Hân (12 tuổi)',
-        'testimonials.t2.text': '"Con gái tôi đã học Thiết kế 3D và Phát triển Game Roblox với Thầy Mathan trong hơn một năm rưỡi. Em đã tạo ra hai trò chơi hoàn chỉnh và cải thiện cả kỹ năng làm việc nhóm và sự tự tin."',
-        'testimonials.t3.role': 'Phụ huynh của Kian Reed (13 tuổi)',
-        'testimonials.t3.text': '"Kian đã khám phá AI Tạo Sinh và lập trình Python với Thầy Mathan và giờ có hai dự án portfolio vững chắc. Phương pháp có cấu trúc và sáng tạo của TechTutor hoàn hảo cho các gia đình quốc tế."',
-        'cta.partners.title': 'Liên Hệ Ngay<br/>Tham Gia Cộng Đồng<br/>Đối Tác Trường Học',
-        'cta.partners.description': 'Hợp tác với TechTutor để mang giáo dục công nghệ tiên tiến đến trường học của bạn. Chúng tôi cung cấp chương trình tùy chỉnh, đào tạo giáo viên và hỗ trợ liên tục.',
-        'cta.partners.button': 'Tham Gia Ngay',
-        'pricing.title': 'Tìm <span style="color: #193b92;">gói học</span> phù hợp với bạn',
-        'pricing.subtitle': 'Giá linh hoạt cho lớp học riêng hoặc nhóm',
-        'pricing.private.title': 'Riêng tư (1 kèm 1)',
-        'pricing.private.plan1': '1 khóa học (8 buổi)',
-        'pricing.private.plan2': '2 khóa học (16 buổi) — <span class="font-semibold" style="color: #ff0000;">Giảm 5%</span>',
-        'pricing.private.plan3': '3 khóa học (24 buổi) — <span class="font-semibold" style="color: #ff0000;">Giảm 10%</span>',
-        'pricing.group.title': 'Nhóm nhỏ (2-4 học sinh)',
-        'pricing.group.plan1': '1 khóa học (8 buổi)',
-        'pricing.group.plan2': '2 khóa học (16 buổi) — <span class="font-semibold" style="color: #ff0000;">Giảm 5%</span>',
-        'pricing.group.plan3': '3 khóa học (24 buổi) — <span class="font-semibold" style="color: #ff0000;">Giảm 10%</span>',
-        'programs.title': 'Chương Trình Cho Mọi <span style="color: #193b92;">Lứa Tuổi</span>',
-        'programs.subtitle': 'Chúng tôi có sự lựa chọn chương trình lớn nhất để học với các khóa học trực tuyến',
-        'programs.scratch.title': 'Lập Trình Game Với Scratch',
-        'programs.scratch.description': 'Học lập trình thông qua tạo game với khối lệnh trực quan của Scratch.',
-        'programs.scratch.skills': 'Lập trình khối, logic, thiết kế game',
-        'programs.roblox.title': 'Sáng Tạo Thế Giới Roblox',
-        'programs.roblox.description': 'Sử dụng Roblox Studio và Lua để tạo thế giới chia sẻ đầy sống động.',
-        'programs.roblox.skills': 'Lua, thiết kế 3D, kể chuyện sáng tạo',
-        'programs.3d.title': 'Thiết Kế 3D',
-        'programs.3d.description': 'Học quy trình Blender cho các cảnh 3D chuyên nghiệp.',
-        'programs.3d.skills': 'Mô hình 3D, quy trình thiết kế, cơ bản Python',
-        'programs.app.title': 'Phát Triển Ứng Dụng',
-        'programs.app.description': 'Xây dựng ứng dụng di động thực tế với giao diện trực quan Thunkable.',
-        'programs.app.skills': 'Thunkable, thiết kế ứng dụng, UI/UX',
-        'programs.gdevelop.title': 'Thiết Kế Game GDevelop',
-        'programs.gdevelop.description': 'Tạo game 2D với lập trình trực quan và xuất bản chúng.',
-        'programs.gdevelop.skills': 'GDevelop, thiết kế game, lập trình trực quan',
-        'programs.ai.title': 'Hành Trình AI & Lập Trình',
-        'programs.ai.description': 'Kết hợp lập trình Python với machine learning để tạo game thông minh.',
-        'programs.ai.skills': 'Python, machine learning, AI',
-        'programs.genai.title': 'Phép Màu AI Tạo Sinh',
-        'programs.genai.description': 'Sử dụng công cụ AI làm đối tác sáng tạo và xây dựng dự án AI có trách nhiệm.',
-        'programs.genai.skills': 'Kỹ thuật prompt, tích hợp AI',
-        'blog.title': 'Nội Dung Hữu Ích<br/>Dành Cho Bạn',
-        'blog.subtitle': 'Khám phá dự án học sinh, câu chuyện thành công và tài nguyên học tập của chúng tôi',
-        'blog.card1.tag': 'DỰ ÁN',
-        'blog.card1.title': '10 Cách Học Sinh Của Chúng Tôi Xuất Sắc Trong Công Nghệ',
-        'blog.card1.description': 'Xem học sinh của chúng tôi chuyển đổi từ người mới bắt đầu thành người sáng tạo tự tin...',
-        'blog.card2.tag': 'GIÁO DỤC',
-        'blog.card2.title': 'Làm Thế Nào Để Học Công Nghệ Như Đang Chơi',
-        'blog.card2.description': 'Biến giáo dục công nghệ thành một cuộc phiêu lưu thú vị với những chiến lược đã được chứng minh...',
-        'blog.card3.tag': 'NUÔI DẠY CON',
-        'blog.card3.title': 'Cách Phát Hiện Và Nuôi Dưỡng Kỹ Năng Công Nghệ Của Con Bạn',
-        'blog.card3.description': 'Tìm hiểu cách xác định tài năng công nghệ của con bạn và hỗ trợ sự phát triển của chúng...',
-        'blog.card4.tag': 'DỰ ÁN',
-        'blog.card4.title': 'Khai Phá Tiềm Năng Với Học Tập Dựa Trên Dự Án',
-        'blog.card4.description': 'Vì sao học qua dự án giúp trẻ hứng thú hơn và sẵn sàng cho tương lai.',
-        'blog.read_more': 'Đọc Thêm',
-        'trial.title': 'Bắt Đầu Với Buổi Học <span style="color: #193b92;">MIỄN PHÍ</span>',
-        'trial.description': 'Chỉ trong 90 phút: nhận tư vấn miễn phí chuyên sâu và lộ trình từ giảng viên của chúng tôi. Chia sẻ thông tin của bạn bên dưới và chúng tôi sẽ sắp xếp lịch trong vòng 24 giờ.',
-        'trial.form.parent_name': 'Tên Phụ Huynh',
-        'trial.form.child_name': 'Tên Con',
-        'trial.form.email': 'Email',
-        'trial.form.phone': 'Số Điện Thoại (Zalo/WhatsApp)',
-        'trial.form.age': 'Tuổi',
-        'trial.form.submit': 'Đặt Lịch Học Thử Miễn Phí',
-        'footer.copyright': '© 2025 TechTutor Academy. Bảo lưu mọi quyền.',
-        'footer.bilingual': 'Hỗ trợ song ngữ Anh / Việt'
-      }
-    };
 
-    // Language switcher
-    const langButtons = document.querySelectorAll('[data-lang]');
 
-    function switchLanguage(lang) {
-      // Update all elements with data-i18n attribute
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-            el.placeholder = translations[lang][key];
-          } else {
-            el.innerHTML = translations[lang][key];
-          }
-        }
-      });
-
-      // Support for data-i18n-placeholder
-      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-        const key = el.getAttribute('data-i18n-placeholder');
-        if (translations[lang] && translations[lang][key]) {
-          el.placeholder = translations[lang][key];
-        }
-      });
-    }
-
-    langButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const selectedLang = btn.dataset.lang;
-
-        // Update button states
-        langButtons.forEach(button => {
-          if (button.dataset.lang === selectedLang) {
-            button.classList.add('bg-primary', 'text-white');
-            button.classList.remove('text-gray-500', 'hover:bg-white');
-            button.setAttribute('aria-pressed', 'true');
-          } else {
-            button.classList.remove('bg-primary', 'text-white');
-            button.classList.add('text-gray-500', 'hover:bg-white');
-            button.setAttribute('aria-pressed', 'false');
-          }
-        });
-
-        // Store preference
-        try {
-          localStorage.setItem('tt-lang', selectedLang);
-        } catch (e) {}
-
-        // Switch language
-        switchLanguage(selectedLang);
-      });
-    });
-
-    // Load saved language preference or default to English
-    try {
-      const savedLang = localStorage.getItem('tt-lang');
-      if (savedLang && savedLang === 'vi') {
-        // Only switch if user explicitly chose Vietnamese before
-        const viBtn = document.querySelector('[data-lang="vi"]');
-        if (viBtn) {
-          viBtn.click();
-        }
-      } else {
-        // Default to English (no need to call switchLanguage since page loads in English)
-        const enBtn = document.querySelector('[data-lang="en"]');
-        if (enBtn) {
-          enBtn.classList.add('bg-primary', 'text-white');
-          enBtn.classList.remove('text-gray-500', 'hover:bg-white');
-          enBtn.setAttribute('aria-pressed', 'true');
-        }
-        if (!savedLang) {
-          localStorage.setItem('tt-lang', 'en');
-        }
-      }
-    } catch (e) {
-      // Default to English on error
-    }
-
-    // Mobile menu toggle and programs dropdown - handled by js/site.js
-
-    // Carousel functionality
-    (function() {
-      const carousel = document.getElementById('classCarousel');
-      const prevBtn = document.getElementById('carouselPrev');
-      const nextBtn = document.getElementById('carouselNext');
-      const dots = document.querySelectorAll('.carousel-dot');
-
-      if (!carousel || !prevBtn || !nextBtn) return;
-
-      let currentSlide = 0;
-      const totalSlides = 17;
-      let autoSlideInterval;
-
-      function goToSlide(index) {
-        // Wrap around
-        if (index < 0) {
-          currentSlide = totalSlides - 1;
-        } else if (index >= totalSlides) {
-          currentSlide = 0;
-        } else {
-          currentSlide = index;
-        }
-
-        // Move carousel
-        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-        // Update dots
-        dots.forEach((dot, i) => {
-          if (i === currentSlide) {
-            dot.classList.add('active');
-            dot.style.backgroundColor = 'white';
-          } else {
-            dot.classList.remove('active');
-            dot.style.backgroundColor = 'rgba(255, 255, 255, 0.6)';
-          }
-        });
-      }
-
-      function nextSlide() {
-        goToSlide(currentSlide + 1);
-      }
-
-      function prevSlide() {
-        goToSlide(currentSlide - 1);
-      }
-
-      function startAutoSlide() {
-        autoSlideInterval = setInterval(nextSlide, 4000); // 4 seconds per slide
-      }
-
-      function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
-      }
-
-      // Event listeners
-      prevBtn.addEventListener('click', () => {
-        stopAutoSlide();
-        prevSlide();
-        startAutoSlide();
-      });
-
-      nextBtn.addEventListener('click', () => {
-        stopAutoSlide();
-        nextSlide();
-        startAutoSlide();
-      });
-
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-          stopAutoSlide();
-          goToSlide(index);
-          startAutoSlide();
-        });
-      });
-
-      // Pause on hover
-      carousel.addEventListener('mouseenter', stopAutoSlide);
-      carousel.addEventListener('mouseleave', startAutoSlide);
-
-      // Initialize
-      goToSlide(0);
-      startAutoSlide();
-    })();
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-
-  </script>
-
+  <!-- Optimized External Scripts -->
+  <script src="js/carousel.js" defer></script>
+  <script src="js/site.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/translations.js" defer></script>
 </body>
 </html>
