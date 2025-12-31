@@ -273,47 +273,22 @@
             <!-- Settings Tab -->
             <div id="settingsTab" class="tab-content hidden">
                 <div class="space-y-6">
-                    <!-- Update Password Section -->
+                    <!-- Password Reset Section -->
                     <div class="border border-gray-200 rounded-lg p-6">
-                        <h4 class="font-semibold mb-4 text-lg">Update Password</h4>
-                        <p class="text-sm text-gray-600 mb-4">Enter a new password for this student. They will be able to log in with the new password immediately.</p>
-                        <div class="space-y-3">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
-                                <div class="relative">
-                                    <input type="password" id="newPassword" placeholder="Enter new password" class="w-full px-4 py-2 border border-gray-300 rounded-lg pr-12" minlength="6">
-                                    <button
-                                        type="button"
-                                        onclick="togglePasswordVisibility('newPassword', 'toggleNewPasswordIcon')"
-                                        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
-                                    >
-                                        <svg id="toggleNewPasswordIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
-                                <div class="relative">
-                                    <input type="password" id="confirmPassword" placeholder="Confirm new password" class="w-full px-4 py-2 border border-gray-300 rounded-lg pr-12" minlength="6">
-                                    <button
-                                        type="button"
-                                        onclick="togglePasswordVisibility('confirmPassword', 'toggleConfirmPasswordIcon')"
-                                        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
-                                    >
-                                        <svg id="toggleConfirmPasswordIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                            <button onclick="updateStudentPassword()" class="primary-gradient text-white px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition">
-                                Update Password
-                            </button>
-                        </div>
+                        <h4 class="font-semibold mb-4 text-lg">Send Password Reset Link</h4>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Send a password reset link to <strong>hello@techtutor.academy</strong>.
+                            You can then forward this link to the student via WhatsApp or other communication channels.
+                        </p>
+                        <p class="text-sm text-gray-500 mb-4">
+                            Student Login Email: <strong id="studentEmailDisplay"></strong>
+                        </p>
+                        <button onclick="sendPasswordResetEmail()" class="primary-gradient text-white px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition">
+                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            Send Reset Link to My Email
+                        </button>
                     </div>
                 </div>
             </div>
@@ -669,67 +644,31 @@
             }
         }
 
-        // Update Student Password
-        async function updateStudentPassword() {
-            const newPassword = document.getElementById('newPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-
-            // Validation
-            if (!newPassword || !confirmPassword) {
-                alert('Please fill in both password fields');
-                return;
-            }
-
-            if (newPassword.length < 6) {
-                alert('Password must be at least 6 characters long');
-                return;
-            }
-
-            if (newPassword !== confirmPassword) {
-                alert('Passwords do not match');
-                return;
-            }
-
+        // Send Password Reset Email
+        async function sendPasswordResetEmail() {
             try {
                 const student = students.find(s => s.id === currentStudentId);
                 if (!student) {
                     throw new Error('Student not found');
                 }
 
-                // Update password in students table (stored as plain text for simple demo)
-                // Note: In production, you'd want to use proper password hashing
-                const { data, error } = await supabaseClient
-                    .from('students')
-                    .update({ password: newPassword })
-                    .eq('id', currentStudentId);
+                // Get student's email from the database
+                const studentEmail = student.email || `${student.student_id}@techtutor.academy`;
+
+                // Send password reset email to hello@techtutor.academy
+                const { error } = await supabaseClient.auth.resetPasswordForEmail(
+                    'hello@techtutor.academy',
+                    {
+                        redirectTo: `${window.location.origin}/login.html`
+                    }
+                );
 
                 if (error) throw error;
 
-                // Also update the auth user password if user_id exists
-                if (student.user_id) {
-                    // Call a Supabase RPC function to update password
-                    const { error: rpcError } = await supabaseClient.rpc('update_user_password', {
-                        user_id: student.user_id,
-                        new_password: newPassword
-                    });
-
-                    if (rpcError) {
-                        console.warn('Auth password update failed (expected with anon key):', rpcError.message);
-                        alert('Password updated in database. Note: Student may need to contact admin to reset auth password.');
-                    }
-                }
-
-                // Update local data
-                student.password = newPassword;
-
-                // Clear password fields
-                document.getElementById('newPassword').value = '';
-                document.getElementById('confirmPassword').value = '';
-
-                alert('Password updated successfully! The student can now log in with the new password.');
+                alert(`Password reset link sent to hello@techtutor.academy!\n\nStudent login email: ${studentEmail}\n\nForward the reset link to the student via WhatsApp or other channels.`);
             } catch (error) {
-                console.error('Update password error:', error);
-                alert('Failed to update password: ' + error.message);
+                console.error('Send password reset error:', error);
+                alert('Failed to send password reset email: ' + error.message);
             }
         }
 
@@ -745,6 +684,10 @@
 
             document.getElementById('editStudentName').textContent = student.full_name;
             document.getElementById('editStudentId').textContent = `Student ID: ${student.student_id}`;
+
+            // Update student email display in Settings tab
+            const studentEmail = student.email || `${student.student_id}@techtutor.academy`;
+            document.getElementById('studentEmailDisplay').textContent = studentEmail;
 
             switchTab('courses');
             renderCourses();
