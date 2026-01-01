@@ -17,7 +17,26 @@
   <title>TechTutor Academy — Best Tech Education in the World</title>
   <link rel="icon" type="image/png" href="images/robot-rocket.png" />
   <link rel="preload" href="images/family-portrait.jpg" as="image">
-  <link rel="stylesheet" href="css/tailwind.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            teal: { DEFAULT: '#2C7A7B', light: '#319795', dark: '#234E52' },
+            ink: '#0F172A',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
 
   <style>
     body {
@@ -257,6 +276,14 @@
     }
 
     /* Christmas Animations */
+    @keyframes snowfall {
+      0% {
+        transform: translateY(-10px) translateX(-10px);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
       90% {
         opacity: 1;
       }
@@ -311,12 +338,6 @@
       border-width: 0;
     }
 
-    /* Ensure minimum touch target sizes for interactive buttons only */
-    button:not(.carousel-dot), a.btn-primary, a.btn-orange, a.btn-secondary {
-      min-width: 48px;
-      min-height: 48px;
-    }
-
     /* Improve focus visibility */
     button:focus-visible, a:focus-visible {
       outline: 3px solid #193b92;
@@ -366,8 +387,8 @@
 
         <div class="hidden md:flex items-center gap-4">
           <div class="flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1">
-            <button type="button" data-lang="en" aria-pressed="true" aria-label="Switch to English" class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
-            <button type="button" data-lang="vi" aria-pressed="false" aria-label="Switch to Vietnamese" class="inline-flex h-12 w-12 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
+            <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-9 w-11 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
+            <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-9 w-11 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
           </div>
 
           <!-- Login Button -->
@@ -383,8 +404,8 @@
 
         <div class="flex items-center gap-3 md:hidden">
           <div class="flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1">
-            <button type="button" data-lang="en" aria-pressed="true" aria-label="Switch to English" class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
-            <button type="button" data-lang="vi" aria-pressed="false" aria-label="Switch to Vietnamese" class="inline-flex h-12 w-12 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
+            <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
+            <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
           </div>
           <button id="mobile-menu-button" class="px-4 py-2 rounded-lg border border-slate-200 text-slate-700 font-medium text-sm" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
             Menu
