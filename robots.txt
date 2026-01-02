@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Don't index admin/login pages
+Disallow: /admin-portal.html
+Disallow: /student-portal.html
+Disallow: /login-supabase.html
+
+# Sitemap location
+Sitemap: https://techtutor.academy/sitemap.xml
