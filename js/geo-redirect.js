@@ -1,15 +1,18 @@
 /**
- * Geo-based Language Redirect
- * Detects user location and redirects to appropriate language version
- * Only runs on root page (/)
+ * Language Redirect
+ * Detects user language preference and redirects to appropriate version
+ * Priority: 1) Saved preference, 2) Browser language, 3) Geolocation, 4) Default to English
  */
 
 (function() {
   'use strict';
 
+  console.log('[LangRedirect] Script started, path:', window.location.pathname);
+
   // Only run on root page
   const currentPath = window.location.pathname;
   if (currentPath !== '/' && currentPath !== '/index.html') {
+    console.log('[LangRedirect] Not root page, exiting');
     return;
   }
 
@@ -17,46 +20,62 @@
   const savedLang = localStorage.getItem('tt-lang-manual');
 
   if (savedLang) {
-    // User has previously chosen a language - respect their choice
-    console.log('[GeoRedirect] User preference found:', savedLang);
+    console.log('[LangRedirect] User preference found:', savedLang);
+    console.log('[LangRedirect] Redirecting to saved preference...');
     window.location.replace(`/${savedLang}/`);
     return;
   }
 
-  // Detect language based on geo-location
+  console.log('[LangRedirect] No saved preference, detecting language...');
+
+  // Detect language and redirect
   detectLanguageAndRedirect();
 
   async function detectLanguageAndRedirect() {
     let targetLang = 'en'; // Default fallback
 
-    try {
-      console.log('[GeoRedirect] Detecting location...');
+    // 1. First try browser language (most reliable, works on localhost)
+    const browserLang = navigator.language || navigator.userLanguage;
+    console.log('[LangRedirect] Browser language:', browserLang);
 
-      // Use CloudFlare's free IP geolocation API
-      const response = await fetch('https://cloudflare.com/cdn-cgi/trace', {
-        method: 'GET'
-      });
+    if (browserLang && browserLang.toLowerCase().startsWith('vi')) {
+      console.log('[LangRedirect] Vietnamese browser detected!');
+      targetLang = 'vn';
+    } else {
+      console.log('[LangRedirect] Non-Vietnamese browser, trying geolocation...');
 
-      const data = await response.text();
-      const lines = data.split('\n');
-      const locationLine = lines.find(line => line.startsWith('loc='));
+      // 2. Try geolocation as fallback (for production)
+      try {
+        const response = await fetch('https://cloudflare.com/cdn-cgi/trace');
+        const data = await response.text();
+        console.log('[LangRedirect] Cloudflare response:', data ? 'received' : 'empty');
 
-      if (locationLine) {
-        const countryCode = locationLine.split('=')[1];
-        console.log('[GeoRedirect] Detected country:', countryCode);
+        if (data) {
+          const lines = data.split('\n');
+          const locationLine = lines.find(line => line.startsWith('loc='));
 
-        // Vietnam = VN, redirect to Vietnamese
-        if (countryCode === 'VN') {
-          targetLang = 'vn';
+          if (locationLine) {
+            const countryCode = locationLine.split('=')[1].trim();
+            console.log('[LangRedirect] Detected country:', countryCode);
+
+            if (countryCode === 'VN') {
+              console.log('[LangRedirect] Vietnam detected via geolocation!');
+              targetLang = 'vn';
+            }
+          } else {
+            console.log('[LangRedirect] No location data in response');
+          }
         }
+      } catch (error) {
+        console.log('[LangRedirect] Geolocation failed:', error.message);
       }
-    } catch (error) {
-      console.log('[GeoRedirect] Geo-detection failed, defaulting to English:', error);
     }
 
-    console.log('[GeoRedirect] Redirecting to:', targetLang);
+    console.log('[LangRedirect] Final decision: Redirecting to /' + targetLang + '/');
 
-    // Perform redirect
-    window.location.replace(`/${targetLang}/`);
+    // Small delay so console logs are visible
+    setTimeout(() => {
+      window.location.replace(`/${targetLang}/`);
+    }, 100);
   }
 })();
