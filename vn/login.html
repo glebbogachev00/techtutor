@@ -57,32 +57,12 @@
 </head>
 <body>
   <!-- Minimal Header with Language Switcher -->
-  <header class="absolute top-0 left-0 right-0 z-50 py-4 px-6">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <a href="index.html" class="text-2xl font-black tracking-tight flex items-center gap-1" aria-label="TechTutor home">
-        <span class="text-white">Tech</span><span class="text-teal-300">Tutor</span>
-      </a>
+    
 
-      <div class="relative group">
-        <button class="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur transition" aria-label="Language settings">
-          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-          </svg>
-        </button>
-        <div class="absolute right-0 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
-          <div class="p-2">
-            <a href="../index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-100 transition">
-              <span class="text-2xl">🇬🇧</span>
-              <span class="text-sm font-medium text-slate-700">English</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
 
-  <body>
+
+
+  <main class="login-layout w-full">
     <div class="w-full max-w-md mx-auto p-6">
         <!-- Logo -->
         <div class="text-center mb-8">
@@ -133,10 +113,10 @@
                         >
                         <button
                             type="button"
-                            onclick="toggleMật KhẩuVisibility('password', 'toggleMật KhẩuIcon')"
+                            onclick="togglePasswordVisibility('password', 'togglePasswordIcon')"
                             class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
                         >
-                            <svg id="toggleMật KhẩuIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg id="togglePasswordIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                             </svg>
@@ -185,6 +165,7 @@
             </div>
         </div>
     </div>
+  </main>
 
     <!-- Supabase Client -->
     <script src="../js/supabase-client.js"></script>
@@ -200,7 +181,7 @@
         const loadingOverlay = document.getElementById('loadingOverlay');
 
         // Toggle password visibility
-        function toggleMật KhẩuVisibility(inputId, iconId) {
+        function togglePasswordVisibility(inputId, iconId) {
             const input = document.getElementById(inputId);
             const icon = document.getElementById(iconId);
 

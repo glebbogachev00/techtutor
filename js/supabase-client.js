@@ -87,15 +87,32 @@ async function getCurrentUser() {
 /**
  * Check if current user is admin
  */
-async function isAdmin() {
+async function isAdmin(userId = null) {
   try {
+    let targetUserId = userId;
+
+    if (!targetUserId) {
+      const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+      if (userError || !user) {
+        return false;
+      }
+      targetUserId = user.id;
+    }
+
     const { data, error } = await supabaseClient
       .from('admins')
       .select('id')
-      .single();
+      .eq('user_id', targetUserId)
+      .maybeSingle();
 
-    return !error && data !== null;
+    if (error) {
+      console.warn('Admin check error:', error);
+      return false;
+    }
+
+    return !!data;
   } catch (error) {
+    console.error('isAdmin error:', error);
     return false;
   }
 }

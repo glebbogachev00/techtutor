@@ -4,6 +4,5 @@ Allow: /vn/
 Disallow: /admin-portal.html
 Disallow: /student-portal.html
 Disallow: /login.html
-Disallow: /*.html$
 
 Sitemap: https://techtutor.academy/sitemap.xml
