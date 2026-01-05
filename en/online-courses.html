@@ -212,13 +212,13 @@
   <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
     <div class="max-w-7xl mx-auto px-6 py-4">
       <div class="flex items-center justify-between gap-6">
-        <a href="/en/" class="text-2xl font-black tracking-tight text-slate-900 flex items-center gap-1" aria-label="TechTutor home">
+        <a href="index.html" class="text-2xl font-black tracking-tight text-slate-900 flex items-center gap-1" aria-label="TechTutor home">
           <span class="text-primary">Tech</span><span class="text-teal-500">Tutor</span>
         </a>
 
         <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
           <div class="relative hidden md:block group">
-            <a href="/en/#programs" class="inline-flex items-center gap-1 text-slate-600 hover:text-primary transition">
+            <a href="#programs" class="inline-flex items-center gap-1 text-slate-600 hover:text-primary transition">
               <span data-i18n="nav.programs">Programs</span>
               <svg class="h-4 w-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -226,41 +226,65 @@
             </a>
             <div class="absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 rounded-2xl border border-slate-100 bg-white/95 p-3 shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
               <div class="flex flex-col gap-1 text-sm">
-                <a href="/en/programs/scratch-game-coder.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">Scratch Game Coder</a>
-                <a href="/en/programs/gdevelop-game-designer.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">GDevelop Game Designer</a>
-                <a href="/en/programs/roblox-world-creator.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">Roblox World Creator</a>
-                <a href="/en/programs/3d-designer.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">3D Designer</a>
-                <a href="/en/programs/ai-programming-quest.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">AI & Programming Quest</a>
-                <a href="/en/programs/generative-ai-magic.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">Generative AI Magic</a>
-                <a href="/en/programs/app-development.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">App Development</a>
+                <a href="programs/scratch-game-coder.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">Scratch Game Coder</a>
+                <a href="programs/gdevelop-game-designer.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">GDevelop Game Designer</a>
+                <a href="programs/roblox-world-creator.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">Roblox World Creator</a>
+                <a href="programs/3d-designer.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">3D Designer</a>
+                <a href="programs/ai-programming-quest.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">AI & Programming Quest</a>
+                <a href="programs/generative-ai-magic.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">Generative AI Magic</a>
+                <a href="programs/app-development.html" class="px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100">App Development</a>
               </div>
             </div>
           </div>
-          <a href="/en/student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
-          <a href="/en/how-it-works.html" class="hover:text-primary transition" data-i18n="nav.how-it-works">How It Works</a>
-          <a href="/en/online-courses.html" class="hover:text-primary transition text-primary" data-i18n="nav.free-courses">Free Courses</a>
-          <a href="/en/plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
-          <a href="/en/blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
+          <a href="student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
+          <a href="how-it-works.html" class="hover:text-primary transition" data-i18n="nav.how-it-works">How It Works</a>
+          <a href="online-courses.html" class="hover:text-primary transition text-primary" data-i18n="nav.free-courses">Free Courses</a>
+          <a href="plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
+          <a href="blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
         </div>
 
         <div class="hidden md:flex items-center gap-4">
-          <div class="flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1">
-            <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-9 w-11 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
-            <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-9 w-11 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
+          <div class="relative group">
+            <button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-100 transition" aria-label="Language settings">
+              <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </button>
+            <div class="absolute right-0 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+              <div class="p-2">
+                <a href="../vn/index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-100 transition">
+                  <span class="text-2xl">🇻🇳</span>
+                  <span class="text-sm font-medium text-slate-700">Tiếng Việt</span>
+                </a>
+              </div>
+            </div>
           </div>
-          <a href="/en/login.html" class="rounded-full border-2 border-primary text-primary px-5 py-2 text-sm font-semibold transition hover:bg-primary hover:text-white flex items-center gap-2">
+          <a href="login.html" class="rounded-full border-2 border-primary text-primary px-5 py-2 text-sm font-semibold transition hover:bg-primary hover:text-white flex items-center gap-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
             </svg>
             Login
           </a>
-          <a href="/en/free-trial.html" class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light" data-i18n="nav.free-trial">Free Trial</a>
+          <a href="free-trial.html" class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light" data-i18n="nav.free-trial">Free Trial</a>
         </div>
 
         <div class="flex items-center gap-3 md:hidden">
-          <div class="flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1">
-            <button type="button" data-lang="en" aria-pressed="true" class="inline-flex h-8 w-10 items-center justify-center rounded-full bg-primary text-white text-sm">🇬🇧</button>
-            <button type="button" data-lang="vi" aria-pressed="false" class="inline-flex h-8 w-10 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 text-sm">🇻🇳</button>
+          <div class="relative group">
+            <button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-100 transition" aria-label="Language settings">
+              <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </button>
+            <div class="absolute right-0 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+              <div class="p-2">
+                <a href="../vn/index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-100 transition">
+                  <span class="text-2xl">🇻🇳</span>
+                  <span class="text-sm font-medium text-slate-700">Tiếng Việt</span>
+                </a>
+              </div>
+            </div>
           </div>
           <button id="mobile-menu-button" class="px-4 py-2 rounded-lg border border-slate-200 text-slate-700 font-medium text-sm" aria-expanded="false" aria-controls="mobile-menu">
             Menu
@@ -278,30 +302,30 @@
               </svg>
             </button>
             <div id="mobile-programs-menu" class="mt-3 hidden flex flex-col gap-3 border-l-2 border-primary pl-4 text-sm">
-              <a href="/en/programs/scratch-game-coder.html" class="text-slate-600 hover:text-primary py-1">Scratch Game Coder</a>
-              <a href="/en/programs/gdevelop-game-designer.html" class="text-slate-600 hover:text-primary py-1">GDevelop Game Designer</a>
-              <a href="/en/programs/roblox-world-creator.html" class="text-slate-600 hover:text-primary py-1">Roblox World Creator</a>
-              <a href="/en/programs/3d-designer.html" class="text-slate-600 hover:text-primary py-1">3D Designer</a>
-              <a href="/en/programs/ai-programming-quest.html" class="text-slate-600 hover:text-primary py-1">AI & Programming Quest</a>
-              <a href="/en/programs/generative-ai-magic.html" class="text-slate-600 hover:text-primary py-1">Generative AI Magic</a>
-              <a href="/en/programs/app-development.html" class="text-slate-600 hover:text-primary py-1">App Development</a>
+              <a href="programs/scratch-game-coder.html" class="text-slate-600 hover:text-primary py-1">Scratch Game Coder</a>
+              <a href="programs/gdevelop-game-designer.html" class="text-slate-600 hover:text-primary py-1">GDevelop Game Designer</a>
+              <a href="programs/roblox-world-creator.html" class="text-slate-600 hover:text-primary py-1">Roblox World Creator</a>
+              <a href="programs/3d-designer.html" class="text-slate-600 hover:text-primary py-1">3D Designer</a>
+              <a href="programs/ai-programming-quest.html" class="text-slate-600 hover:text-primary py-1">AI & Programming Quest</a>
+              <a href="programs/generative-ai-magic.html" class="text-slate-600 hover:text-primary py-1">Generative AI Magic</a>
+              <a href="programs/app-development.html" class="text-slate-600 hover:text-primary py-1">App Development</a>
             </div>
           </div>
-          <a href="/en/student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
-          <a href="/en/how-it-works.html" class="hover:text-primary transition" data-i18n="nav.how-it-works">How It Works</a>
-          <a href="/en/online-courses.html" class="hover:text-primary transition text-primary" data-i18n="nav.free-courses">Free Courses</a>
-          <a href="/en/plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
-          <a href="/en/blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
+          <a href="student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
+          <a href="how-it-works.html" class="hover:text-primary transition" data-i18n="nav.how-it-works">How It Works</a>
+          <a href="online-courses.html" class="hover:text-primary transition text-primary" data-i18n="nav.free-courses">Free Courses</a>
+          <a href="plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
+          <a href="blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
 
           <!-- Mobile Login Button -->
-          <a href="/en/login.html" class="flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition">
+          <a href="login.html" class="flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
             </svg>
             Login
           </a>
 
-          <a href="/en/free-trial.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm" data-i18n="nav.free-trial">Free Trial</a>
+          <a href="free-trial.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm" data-i18n="nav.free-trial">Free Trial</a>
         </div>
       </div>
     </div>
@@ -309,9 +333,7 @@
 
   <script src="../js/site.js" defer></script>
   <script src="../js/app.js" defer></script>
-  <script src="../js/lang-switcher.js" defer></script>
-
-  <main class="max-w-7xl mx-auto px-6 py-16 space-y-20">
+<main class="max-w-7xl mx-auto px-6 py-16 space-y-20">
     <!-- Hero -->
     <section class="grid md:grid-cols-2 gap-12 items-center">
       <div class="space-y-6">
@@ -457,7 +479,7 @@
       <div class="relative z-10 max-w-3xl mx-auto">
         <h2 class="text-4xl md:text-5xl font-black text-white mb-6" data-i18n="cta.title">Loved the free course?</h2>
         <p class="text-2xl text-white/90 mb-10" data-i18n="cta.description">Book a free lesson now and let our mentors personalize the next pathway for your learner.</p>
-        <a href="/en/free-trial.html" class="inline-block btn-primary bg-white text-primary hover:bg-gray-100 text-lg px-12 py-5" data-i18n="cta.primary">Book a Free Lesson Now →</a>
+        <a href="free-trial.html" class="inline-block btn-primary bg-white text-primary hover:bg-gray-100 text-lg px-12 py-5" data-i18n="cta.primary">Book a Free Lesson Now →</a>
       </div>
     </section>
   </main>
@@ -491,12 +513,12 @@
         <div>
           <h3 class="text-lg font-bold mb-4 text-white">START LEARNING</h3>
           <div class="space-y-2 text-sm">
-            <a href="/en/#programs" class="block text-slate-300 hover:text-primary-light transition">Programs</a>
-            <a href="/en/student-projects.html" class="block text-slate-300 hover:text-primary-light transition">Projects</a>
-            <a href="/en/plans-and-faq.html" class="block text-slate-300 hover:text-primary-light transition">Pricing</a>
-            <a href="/en/blog.html" class="block text-slate-300 hover:text-primary-light transition">Blog</a>
-            <a href="/en/vision.html" class="block text-slate-300 hover:text-primary-light transition">Our Vision</a>
-            <a href="/en/free-trial.html" class="block text-slate-300 hover:text-primary-light transition">Free trial</a>
+            <a href="#programs" class="block text-slate-300 hover:text-primary-light transition">Programs</a>
+            <a href="student-projects.html" class="block text-slate-300 hover:text-primary-light transition">Projects</a>
+            <a href="plans-and-faq.html" class="block text-slate-300 hover:text-primary-light transition">Pricing</a>
+            <a href="blog.html" class="block text-slate-300 hover:text-primary-light transition">Blog</a>
+            <a href="vision.html" class="block text-slate-300 hover:text-primary-light transition">Our Vision</a>
+            <a href="free-trial.html" class="block text-slate-300 hover:text-primary-light transition">Free trial</a>
           </div>
         </div>
         <div>

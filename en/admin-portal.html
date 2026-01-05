@@ -15,12 +15,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechTutor - Admin Portal</title>
     <link rel="icon" type="image/png" href="../images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
     <!-- Supabase Client Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        body { font-family: 'Inter', sans-serif; }
         .primary-gradient {
             background: linear-gradient(135deg, #193b92 0%, #2563eb 100%);
         }
@@ -60,7 +64,7 @@
 
   <!-- SEO: Hreflang tags for multilingual support -->
   <link rel="alternate" hreflang="en" href="https://techtutor.academy/en/admin-portal.html" />
-  <link rel="alternate" hreflang="vi" href="https://techtutor.academy/vn/admin-portal.html" />
+  <link rel="alternate" hreflang="vn" href="https://techtutor.academy/vn/admin-portal.html" />
   <link rel="alternate" hreflang="x-default" href="https://techtutor.academy/en/admin-portal.html" />
   <link rel="canonical" href="https://techtutor.academy/en/admin-portal.html" />
 </head>
@@ -1383,5 +1387,21 @@
 
     <!-- TechTutor Supabase Client -->
     <script src="../js/supabase-client.js"></script>
+
+  <!-- Language selection persistence -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const langSwitchers = document.querySelectorAll('a[href*="/index.html"]');
+      langSwitchers.forEach(link => {
+        if (link.href.includes('/en/index.html') || link.href.includes('/vn/index.html')) {
+          link.addEventListener('click', function(e) {
+            const isEnglish = this.href.includes('/en/');
+            const lang = isEnglish ? 'en' : 'vn';
+            localStorage.setItem('tt-lang-manual', lang);
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>

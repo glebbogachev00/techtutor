@@ -319,9 +319,9 @@
 
   <!-- SEO: Hreflang tags for multilingual support -->
   <link rel="alternate" hreflang="en" href="https://techtutor.academy/en/student-portal.html" />
-  <link rel="alternate" hreflang="vi" href="https://techtutor.academy/vn/student-portal.html" />
+  <link rel="alternate" hreflang="vn" href="https://techtutor.academy/vn/student-portal.html" />
   <link rel="alternate" hreflang="x-default" href="https://techtutor.academy/en/student-portal.html" />
-  <link rel="canonical" href="https://techtutor.academy/vn/student-portal.html" />
+  <link rel="canonical" href="https://techtutor.academy/en/student-portal.html" />
 </head>
 <body class="pattern-bg">
     <!-- Login Screen -->
@@ -407,7 +407,7 @@
                             <span class="text-4xl">🎨</span>
                         </div>
                         <div>
-                            <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">Projects</p>
+                            <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">Dự Án</p>
                             <p class="text-4xl font-black text-gray-900" id="projectsCount">0</p>
                         </div>
                     </div>
@@ -1026,5 +1026,21 @@
 
     <!-- TechTutor Supabase Client -->
     <script src="../js/supabase-client.js"></script>
+
+  <!-- Language selection persistence -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const langSwitchers = document.querySelectorAll('a[href*="/index.html"]');
+      langSwitchers.forEach(link => {
+        if (link.href.includes('/en/index.html') || link.href.includes('/vn/index.html')) {
+          link.addEventListener('click', function(e) {
+            const isEnglish = this.href.includes('/en/');
+            const lang = isEnglish ? 'en' : 'vn';
+            localStorage.setItem('tt-lang-manual', lang);
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>

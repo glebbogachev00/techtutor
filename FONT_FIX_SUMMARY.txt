@@ -1,0 +1,35 @@
+=== FONT STANDARDIZATION COMPLETED ===
+
+Date: 2026-01-04
+Issue: Inconsistent fonts across navigation pages
+
+PROBLEM:
+4 pages were missing Inter font configuration:
+- en/admin-portal.html
+- en/login.html  
+- vn/admin-portal.html
+- vn/login.html
+
+SOLUTION APPLIED:
+For each file, added:
+
+1. Google Fonts Import (in <head>):
+   <link rel="preconnect" href="https://fonts.googleapis.com" />
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+2. Tailwind Config (in <script>):
+   fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+
+3. Body Style (in <style>):
+   body { font-family: 'Inter', sans-serif; }
+
+VERIFICATION:
+✅ All EN pages now use Inter font consistently
+✅ All VN pages now use Inter font consistently
+✅ Font weights: 400, 500, 600, 700, 800, 900 available across all pages
+✅ Proper fallback fonts configured (system-ui, sans-serif)
+
+RESULT:
+All navigation pages across English and Vietnamese versions now have 
+consistent typography using the Inter font family.
