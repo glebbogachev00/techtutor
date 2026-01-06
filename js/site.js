@@ -23,7 +23,26 @@
     }
   }
 
-  // Translation logic moved to translations.js to avoid duplication
+  function initLanguagePreference() {
+    const langLinks = document.querySelectorAll('a[href*="/en/"], a[href*="/vn/"]');
+    if (!langLinks.length) {
+      return;
+    }
+
+    langLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        try {
+          if (link.href.includes('/vn/')) {
+            localStorage.setItem('tt-lang-manual', 'vn');
+          } else if (link.href.includes('/en/')) {
+            localStorage.setItem('tt-lang-manual', 'en');
+          }
+        } catch (error) {
+          console.warn('Unable to persist language preference:', error);
+        }
+      });
+    });
+  }
 
   function initFormspree() {
     const forms = document.querySelectorAll('form[data-formspree]');
@@ -80,10 +99,12 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       initNavigation();
+      initLanguagePreference();
       initFormspree();
     });
   } else {
     initNavigation();
+    initLanguagePreference();
     initFormspree();
   }
 })();

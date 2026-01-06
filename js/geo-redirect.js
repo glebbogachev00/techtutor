@@ -32,43 +32,52 @@
   detectLanguageAndRedirect();
 
   async function detectLanguageAndRedirect() {
-    let targetLang = 'en'; // Default fallback
+    let targetLang = null;
 
-    // 1. First try browser language (most reliable, works on localhost)
-    const browserLang = navigator.language || navigator.userLanguage;
-    console.log('[LangRedirect] Browser language:', browserLang);
+    // 1. Try geolocation first
+    console.log('[LangRedirect] Attempting geolocation...');
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2000);
+      const response = await fetch('https://cloudflare.com/cdn-cgi/trace', { signal: controller.signal });
+      clearTimeout(timeoutId);
 
-    if (browserLang && browserLang.toLowerCase().startsWith('vi')) {
-      console.log('[LangRedirect] Vietnamese browser detected!');
-      targetLang = 'vn';
-    } else {
-      console.log('[LangRedirect] Non-Vietnamese browser, trying geolocation...');
+      const data = await response.text();
+      console.log('[LangRedirect] Cloudflare response:', data ? 'received' : 'empty');
 
-      // 2. Try geolocation as fallback (for production)
-      try {
-        const response = await fetch('https://cloudflare.com/cdn-cgi/trace');
-        const data = await response.text();
-        console.log('[LangRedirect] Cloudflare response:', data ? 'received' : 'empty');
+      if (data) {
+        const lines = data.split('\n');
+        const locationLine = lines.find(line => line.startsWith('loc='));
 
-        if (data) {
-          const lines = data.split('\n');
-          const locationLine = lines.find(line => line.startsWith('loc='));
+        if (locationLine) {
+          const countryCode = locationLine.split('=')[1].trim();
+          console.log('[LangRedirect] Detected country:', countryCode);
 
-          if (locationLine) {
-            const countryCode = locationLine.split('=')[1].trim();
-            console.log('[LangRedirect] Detected country:', countryCode);
-
-            if (countryCode === 'VN') {
-              console.log('[LangRedirect] Vietnam detected via geolocation!');
-              targetLang = 'vn';
-            }
-          } else {
-            console.log('[LangRedirect] No location data in response');
+          if (countryCode === 'VN') {
+            console.log('[LangRedirect] Vietnam detected via geolocation!');
+            targetLang = 'vn';
           }
+        } else {
+          console.log('[LangRedirect] No location data in response');
         }
-      } catch (error) {
-        console.log('[LangRedirect] Geolocation failed:', error.message);
       }
+    } catch (error) {
+      console.log('[LangRedirect] Geolocation failed:', error.message);
+    }
+
+    // 2. Fallback to browser language if geolocation didn't decide
+    if (!targetLang) {
+      const browserLang = navigator.language || navigator.userLanguage;
+      console.log('[LangRedirect] Browser language:', browserLang);
+
+      if (browserLang && browserLang.toLowerCase().startsWith('vi')) {
+        console.log('[LangRedirect] Vietnamese browser detected!');
+        targetLang = 'vn';
+      }
+    }
+
+    if (!targetLang) {
+      targetLang = 'en';
     }
 
     console.log('[LangRedirect] Final decision: Redirecting to /' + targetLang + '/');
