@@ -5,12 +5,23 @@ document.addEventListener('DOMContentLoaded', function() {
   const carousel = document.getElementById('classCarousel');
   const prevBtn = document.getElementById('carouselPrev');
   const nextBtn = document.getElementById('carouselNext');
-  const dots = document.querySelectorAll('.carousel-dot');
+  const allDots = document.querySelectorAll('.carousel-dot');
 
   if (!carousel || !prevBtn || !nextBtn) return;
 
+  const slides = carousel.querySelectorAll('.carousel-slide');
+  if (!slides.length) return;
+
+  const totalSlides = slides.length;
+  const dots = Array.from(allDots).slice(0, totalSlides);
+
+  allDots.forEach((dot, index) => {
+    if (index >= totalSlides) {
+      dot.style.display = 'none';
+    }
+  });
+
   let currentSlide = 0;
-  const totalSlides = 17;
   let autoSlideInterval;
 
   function goToSlide(index) {
@@ -80,5 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
   carousel.addEventListener('mouseleave', startAutoSlide);
 
   // Start auto-slide
-  startAutoSlide();
+  if (totalSlides > 1) {
+    startAutoSlide();
+  }
 });
