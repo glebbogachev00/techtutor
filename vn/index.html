@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZ1XEZXB6"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-4MZ1XEZXB6');
-  </script>
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="TechTutor Academy cung cấp các khóa học công nghệ tương tác cho trẻ em và thiếu niên về STEAM, lập trình, AI và phát triển game. Học tập cá nhân hóa với lịch học linh hoạt và hỗ trợ song ngữ Tiếng Anh và Tiếng Việt." />
   <title>TechTutor Academy — Giáo Dục Công Nghệ Tốt Nhất Thế Giới</title>
   <link rel="icon" type="image/png" href="../images/robot-rocket.png" />
-  <link rel="preload" href="../images/family-portrait.jpg" as="image">
+  <link rel="preload" href="../images/family-portrait.jpg" as="image" fetchpriority="high">
 
   <!-- SEO: Hreflang tags for multilingual support -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../js/tailwind.min.js" defer></script>
   <script>
     tailwind.config = {
       theme: {
@@ -1329,5 +1320,15 @@
       });
     });
   </script>
-</body>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZ1XEZXB6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-4MZ1XEZXB6');
+  </script>
+  </body>
 </html>
