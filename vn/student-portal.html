@@ -941,8 +941,7 @@
                 <div class="portfolio-card group">
                     ${item.imageLink ? `
                         <div class="relative overflow-hidden ${gradient} h-32 flex items-center justify-center" style="height: 200px;" id="portfolio-img-${index}">
-                            <img
-                                src="${item.imageLink}"
+                            <img loading="lazy" src="${item.imageLink}"
                                 alt="${item.title}"
                                 class="w-full h-full object-cover"
                                 style="position: absolute; top: 0; left: 0; z-index: 10;"
