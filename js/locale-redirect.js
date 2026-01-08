@@ -6,6 +6,17 @@
     return;
   }
 
+  const root = document.documentElement;
+  const body = document.body;
+  if (body) {
+    body.style.transition = 'opacity 160ms ease';
+    body.style.opacity = '0';
+    body.style.pointerEvents = 'none';
+  }
+  if (root && !root.style.backgroundColor) {
+    root.style.backgroundColor = '#f8fafc';
+  }
+
   function redirectTo(lang) {
     const safeLang = lang === 'vn' ? 'vn' : 'en';
     const destination = `/${safeLang}/${target}`;
