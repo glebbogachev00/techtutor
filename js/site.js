@@ -44,6 +44,19 @@
     });
   }
 
+  function cacheCurrentLanguage() {
+    const path = window.location.pathname || '';
+    try {
+      if (path.includes('/vn/')) {
+        localStorage.setItem('tt-lang-manual', 'vn');
+      } else if (path.includes('/en/')) {
+        localStorage.setItem('tt-lang-manual', 'en');
+      }
+    } catch (error) {
+      console.warn('Unable to cache current language:', error);
+    }
+  }
+
   function initFormspree() {
     const forms = document.querySelectorAll('form[data-formspree]');
     forms.forEach((form) => {
@@ -99,11 +112,13 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       initNavigation();
+      cacheCurrentLanguage();
       initLanguagePreference();
       initFormspree();
     });
   } else {
     initNavigation();
+    cacheCurrentLanguage();
     initLanguagePreference();
     initFormspree();
   }

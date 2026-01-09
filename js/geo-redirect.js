@@ -12,6 +12,8 @@
     return;
   }
 
+  const PREF_KEY = 'tt-lang-manual';
+
   try {
     const saved = localStorage.getItem('tt-lang-manual');
     if (saved === 'en' || saved === 'vn') {
@@ -23,6 +25,11 @@
   }
 
   detectLanguage().then((lang) => {
+    try {
+      localStorage.setItem(PREF_KEY, lang);
+    } catch (error) {
+      console.warn('[LangRedirect] Unable to cache detected language', error);
+    }
     window.location.replace(`/${lang}/`);
   });
 
