@@ -3,12 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="robots" content="noindex, follow">
-  <meta http-equiv="refresh" content="0; url=en/online-courses.html">
-  <link rel="canonical" href="https://techtutor.academy/en/online-courses.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redirecting...</title>
-  <script>window.location.replace("en/online-courses.html");</script>
+  <link rel="canonical" href="https://techtutor.academy/en/online-courses.html">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+    .message { text-align: center; padding: 24px; }
+    .message img { width: 72px; height: 72px; margin-bottom: 16px; }
+    .links a { color: #2563eb; text-decoration: none; font-weight: 600; margin: 0 6px; }
+  </style>
 </head>
-<body>
-  <p>Redirecting to <a href="en/online-courses.html">en/online-courses.html</a>...</p>
+<body data-redirect-target="online-courses.html">
+  <div class="message">
+    <img src="/images/robot-rocket.png" alt="TechTutor" />
+    <p>Taking you to the right language version...</p>
+    <div class="links">
+      <a href="/en/online-courses.html">English</a>
+      <a href="/vn/online-courses.html">Tiếng Việt</a>
+    </div>
+  </div>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=/en/online-courses.html">
+  </noscript>
+  <script src="/js/locale-redirect.js" defer></script>
 </body>
 </html>
