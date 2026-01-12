@@ -18,7 +18,7 @@ blog_configs = [
     {
         'en_file': 'en/blog-project-based-learning.html',
         'vn_file': 'vn/blog-project-based-learning.html',
-        'hero_image': 'blog_pbl.png',
+        'hero_image': 'blog_portfolio_2.png',
         'en_title': 'Why Project-Based Learning Works for Kids',
         'en_subtitle': 'Discover how hands-on projects turn learning into an engaging, real-world experience',
         'vn_title': 'Tại Sao Học Theo Dự Án Hiệu Quả Với Trẻ Em',
@@ -27,7 +27,7 @@ blog_configs = [
     {
         'en_file': 'en/blog-spot-nurture-tech-skill.html',
         'vn_file': 'vn/blog-spot-nurture-tech-skill.html',
-        'hero_image': 'blog_nurture.png',
+        'hero_image': 'blog_portfolio_1.png',
         'en_title': 'How to Spot and Nurture Tech Skills in Your Child',
         'en_subtitle': 'Learn to recognize early signs of tech interest and how to encourage their development',
         'vn_title': 'Cách Nhận Biết Và Nuôi Dưỡng Kỹ Năng Công Nghệ Ở Trẻ',
