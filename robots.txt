@@ -6,6 +6,13 @@ Disallow: /*.original
 Disallow: /admin-portal.html
 Disallow: /student-portal.html
 Disallow: /login.html
+Disallow: /vision.html
+Disallow: /blog*.html
+Disallow: /free-trial.html
+Disallow: /how-it-works.html
+Disallow: /online-courses.html
+Disallow: /plans-and-faq.html
+Disallow: /student-projects.html
 Disallow: /programs/
 Disallow: /courses/
 
