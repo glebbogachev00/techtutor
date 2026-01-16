@@ -1,57 +1,86 @@
 /**
- * Language Redirect
- * Detects user language preference and redirects to appropriate version
- * Priority: 1) Saved preference, 2) Browser language, 3) Geolocation, 4) Default to English
+ * Geo-Redirection Logic for TechTutor Academy
+ * Automatically redirects users to their regional site based on their country
  */
 
 (function() {
   'use strict';
 
+  // Check if we should skip redirection (if already on regional site)
   const currentPath = window.location.pathname;
-  if (currentPath !== '/' && currentPath !== '/index.html') {
+  if (currentPath.startsWith('/in/') || currentPath.startsWith('/us/')) {
+    // Already on a regional site, no need to redirect
     return;
   }
 
-  const PREF_KEY = 'tt-lang-manual';
-
-  try {
-    const saved = localStorage.getItem('tt-lang-manual');
-    if (saved === 'en' || saved === 'vn') {
-      window.location.replace(`/${saved}/`);
-      return;
-    }
-  } catch (error) {
-    console.warn('[LangRedirect] Unable to read saved language', error);
+  // Check if user has manually selected a region (stored in localStorage)
+  const manualRegion = localStorage.getItem('techtutor_region');
+  if (manualRegion) {
+    // User has manually selected, respect their choice
+    return;
   }
 
-  detectLanguage().then((lang) => {
-    try {
-      localStorage.setItem(PREF_KEY, lang);
-    } catch (error) {
-      console.warn('[LangRedirect] Unable to cache detected language', error);
-    }
-    window.location.replace(`/${lang}/`);
-  });
+  // Detect user's country using timezone and navigator
+  function detectCountry() {
+    // Try to detect based on timezone
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-  async function detectLanguage() {
-    const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-    if (browserLang.startsWith('vi')) {
-      return 'vn';
+    // India timezones
+    if (timezone && (timezone.includes('Asia/Kolkata') || timezone.includes('Asia/Calcutta'))) {
+      return 'in';
     }
 
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 450);
-      const response = await fetch('https://cloudflare.com/cdn-cgi/trace', { signal: controller.signal });
-      clearTimeout(timeoutId);
-      const data = await response.text();
-      if (data && data.includes('loc=VN')) {
-        return 'vn';
+    // US timezones
+    const usTimezones = [
+      'America/New_York', 'America/Chicago', 'America/Denver', 'America/Los_Angeles',
+      'America/Phoenix', 'America/Anchorage', 'Pacific/Honolulu'
+    ];
+    if (timezone && usTimezones.some(tz => timezone.includes(tz))) {
+      return 'us';
+    }
+
+    // Fallback: Try to detect from navigator.language
+    const language = navigator.language || navigator.userLanguage;
+    if (language) {
+      if (language.toLowerCase().includes('en-in')) {
+        return 'in';
       }
-    } catch (error) {
-      console.warn('[LangRedirect] Geolocation fallback failed', error.message);
+      if (language.toLowerCase().includes('en-us')) {
+        return 'us';
+      }
     }
 
-    return 'en';
+    // Default: no redirection (stay on /en/ or /vn/)
+    return null;
+  }
+
+  // Perform redirection if needed
+  function redirectToRegion() {
+    const detectedCountry = detectCountry();
+
+    if (!detectedCountry) {
+      // No specific region detected, stay on current site
+      return;
+    }
+
+    // Only redirect from /en/ pages
+    if (!currentPath.startsWith('/en/')) {
+      return;
+    }
+
+    // Build the redirect URL
+    const newPath = currentPath.replace('/en/', `/${detectedCountry}/`);
+    const newUrl = window.location.origin + newPath + window.location.search + window.location.hash;
+
+    // Perform redirect
+    console.log(`Redirecting to ${detectedCountry.toUpperCase()} site:`, newUrl);
+    window.location.replace(newUrl);
+  }
+
+  // Run redirection on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', redirectToRegion);
+  } else {
+    redirectToRegion();
   }
 })();
