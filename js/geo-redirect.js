@@ -68,6 +68,13 @@
       return;
     }
 
+    // IMPORTANT: Only redirect from homepage (index.html) to avoid disrupting navigation
+    // Users clicking on EN links should stay on EN unless they're on the homepage
+    if (!currentPath.endsWith('/en/') && !currentPath.endsWith('/en/index.html')) {
+      // Not on homepage, don't redirect
+      return;
+    }
+
     // Build the redirect URL
     const newPath = currentPath.replace('/en/', `/${detectedCountry}/`);
     const newUrl = window.location.origin + newPath + window.location.search + window.location.hash;
