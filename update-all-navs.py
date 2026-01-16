@@ -141,11 +141,20 @@ def main():
         is_vietnamese = (lang == 'vn')
         lang_dir = lang
 
-        # Update all HTML files in the directory and subdirectories
+        # Update all HTML files in the directory and ALL subdirectories (including courses/)
         for root, dirs, files in os.walk(lang_dir):
             for file in files:
                 if file.endswith('.html'):
                     filepath = os.path.join(root, file)
+                    # Skip redirect files in subdirectories that just contain redirects
+                    try:
+                        with open(filepath, 'r', encoding='utf-8') as f:
+                            content_preview = f.read(500)
+                            if 'meta name="robots" content="noindex' in content_preview:
+                                continue  # Skip redirect pages
+                    except:
+                        pass
+
                     if update_file(filepath, is_vietnamese):
                         updated_files.append(filepath)
                         print(f'✓ Updated: {filepath}')
