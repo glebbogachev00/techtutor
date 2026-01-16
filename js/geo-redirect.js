@@ -30,22 +30,50 @@
       return 'in';
     }
 
-    // US timezones
-    const usTimezones = [
+    // US and Western countries timezones (US, Canada, Europe, UK, Australia, NZ)
+    const westernTimezones = [
+      // United States
       'America/New_York', 'America/Chicago', 'America/Denver', 'America/Los_Angeles',
-      'America/Phoenix', 'America/Anchorage', 'Pacific/Honolulu'
+      'America/Phoenix', 'America/Anchorage', 'Pacific/Honolulu',
+      // Canada
+      'America/Toronto', 'America/Vancouver', 'America/Edmonton', 'America/Winnipeg',
+      'America/Halifax', 'America/Montreal',
+      // Europe
+      'Europe/London', 'Europe/Paris', 'Europe/Berlin', 'Europe/Madrid', 'Europe/Rome',
+      'Europe/Amsterdam', 'Europe/Brussels', 'Europe/Vienna', 'Europe/Stockholm',
+      'Europe/Oslo', 'Europe/Copenhagen', 'Europe/Helsinki', 'Europe/Dublin',
+      'Europe/Zurich', 'Europe/Prague', 'Europe/Warsaw', 'Europe/Budapest',
+      'Europe/Athens', 'Europe/Lisbon', 'Europe/Bucharest',
+      // United Kingdom
+      'Europe/Belfast', 'Europe/Edinburgh', 'Europe/Cardiff',
+      // Australia
+      'Australia/Sydney', 'Australia/Melbourne', 'Australia/Brisbane',
+      'Australia/Perth', 'Australia/Adelaide', 'Australia/Hobart',
+      'Australia/Darwin', 'Australia/Canberra',
+      // New Zealand
+      'Pacific/Auckland', 'Pacific/Wellington', 'Pacific/Chatham'
     ];
-    if (timezone && usTimezones.some(tz => timezone.includes(tz))) {
+
+    if (timezone && westernTimezones.some(tz => timezone.includes(tz))) {
       return 'us';
     }
 
     // Fallback: Try to detect from navigator.language
     const language = navigator.language || navigator.userLanguage;
     if (language) {
-      if (language.toLowerCase().includes('en-in')) {
+      const lang = language.toLowerCase();
+
+      // India
+      if (lang.includes('en-in') || lang.includes('hi')) {
         return 'in';
       }
-      if (language.toLowerCase().includes('en-us')) {
+
+      // US and Western countries
+      if (lang.includes('en-us') || lang.includes('en-ca') || lang.includes('en-gb') ||
+          lang.includes('en-au') || lang.includes('en-nz') || lang.includes('fr-ca') ||
+          lang.includes('fr-fr') || lang.includes('de') || lang.includes('es-es') ||
+          lang.includes('it') || lang.includes('nl') || lang.includes('sv') ||
+          lang.includes('no') || lang.includes('da') || lang.includes('fi')) {
         return 'us';
       }
     }
