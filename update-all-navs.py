@@ -55,6 +55,49 @@ en_mobile_new = '''            <div id="mobile-programs-menu" class="mt-3 hidden
               <a href="programs/startup-foundations.html" class="text-slate-700 hover:text-primary py-1">Startup Foundations</a>
             </div>'''
 
+# Program pages use ../programs/ for relative paths
+en_desktop_old_programs = '''              <div class="flex flex-col gap-1 text-sm">
+                <a href="../programs/scratch-game-coder.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Scratch Game Coder</a>
+                <a href="../programs/gdevelop-game-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">GDevelop Game Designer</a>
+                <a href="../programs/roblox-world-creator.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Roblox World Creator</a>
+                <a href="../programs/3d-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">3D Designer</a>
+                <a href="../programs/ai-programming-quest.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">AI & Programming Quest</a>
+                <a href="../programs/generative-ai-magic.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Generative AI Magic</a>
+                <a href="../programs/app-development.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">App Development</a>
+              </div>'''
+
+en_desktop_new_programs = '''              <div class="flex flex-col gap-1 text-sm">
+                <a href="../programs/scratch-game-coder.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Scratch Game Coder</a>
+                <a href="../programs/gdevelop-game-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">GDevelop Game Designer</a>
+                <a href="../programs/roblox-world-creator.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Roblox World Creator</a>
+                <a href="../programs/3d-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">3D Designer</a>
+                <a href="../programs/ai-programming-quest.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">AI & Programming Quest</a>
+                <a href="../programs/generative-ai-magic.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Generative AI Magic</a>
+                <a href="../programs/app-development.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">App Development</a>
+                <a href="../programs/startup-foundations.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Startup Foundations</a>
+              </div>'''
+
+en_mobile_old_programs = '''            <div id="mobile-programs-menu" class="mt-3 hidden flex flex-col gap-3 border-l-2 border-primary pl-4 text-sm">
+              <a href="../programs/scratch-game-coder.html" class="text-slate-700 hover:text-primary py-1">Scratch Game Coder</a>
+              <a href="../programs/gdevelop-game-designer.html" class="text-slate-700 hover:text-primary py-1">GDevelop Game Designer</a>
+              <a href="../programs/roblox-world-creator.html" class="text-slate-700 hover:text-primary py-1">Roblox World Creator</a>
+              <a href="../programs/3d-designer.html" class="text-slate-700 hover:text-primary py-1">3D Designer</a>
+              <a href="../programs/ai-programming-quest.html" class="text-slate-700 hover:text-primary py-1">AI & Programming Quest</a>
+              <a href="../programs/generative-ai-magic.html" class="text-slate-700 hover:text-primary py-1">Generative AI Magic</a>
+              <a href="../programs/app-development.html" class="text-slate-700 hover:text-primary py-1">App Development</a>
+            </div>'''
+
+en_mobile_new_programs = '''            <div id="mobile-programs-menu" class="mt-3 hidden flex flex-col gap-3 border-l-2 border-primary pl-4 text-sm">
+              <a href="../programs/scratch-game-coder.html" class="text-slate-700 hover:text-primary py-1">Scratch Game Coder</a>
+              <a href="../programs/gdevelop-game-designer.html" class="text-slate-700 hover:text-primary py-1">GDevelop Game Designer</a>
+              <a href="../programs/roblox-world-creator.html" class="text-slate-700 hover:text-primary py-1">Roblox World Creator</a>
+              <a href="../programs/3d-designer.html" class="text-slate-700 hover:text-primary py-1">3D Designer</a>
+              <a href="../programs/ai-programming-quest.html" class="text-slate-700 hover:text-primary py-1">AI & Programming Quest</a>
+              <a href="../programs/generative-ai-magic.html" class="text-slate-700 hover:text-primary py-1">Generative AI Magic</a>
+              <a href="../programs/app-development.html" class="text-slate-700 hover:text-primary py-1">App Development</a>
+              <a href="../programs/startup-foundations.html" class="text-slate-700 hover:text-primary py-1">Startup Foundations</a>
+            </div>'''
+
 # Vietnamese navigation update
 vn_desktop_old = '''              <div class="flex flex-col gap-1 text-sm">
                 <a href="programs/scratch-game-coder.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Lập Trình Game Scratch</a>
@@ -98,6 +141,49 @@ vn_mobile_new = '''            <div id="mobile-programs-menu" class="mt-3 hidden
               <a href="programs/startup-foundations.html" class="text-slate-700 hover:text-primary py-1">Nền Tảng Khởi Nghiệp</a>
             </div>'''
 
+# Vietnamese program pages use ../programs/ for relative paths
+vn_desktop_old_programs = '''              <div class="flex flex-col gap-1 text-sm">
+                <a href="../programs/scratch-game-coder.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Lập Trình Game Scratch</a>
+                <a href="../programs/gdevelop-game-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Thiết Kế Game GDevelop</a>
+                <a href="../programs/roblox-world-creator.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Sáng Tạo Thế Giới Roblox</a>
+                <a href="../programs/3d-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Thiết Kế 3D</a>
+                <a href="../programs/ai-programming-quest.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Khám Phá AI & Lập Trình</a>
+                <a href="../programs/generative-ai-magic.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Phép Thuật AI Tạo Sinh</a>
+                <a href="../programs/app-development.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Phát Triển Ứng Dụng</a>
+              </div>'''
+
+vn_desktop_new_programs = '''              <div class="flex flex-col gap-1 text-sm">
+                <a href="../programs/scratch-game-coder.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Lập Trình Game Scratch</a>
+                <a href="../programs/gdevelop-game-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Thiết Kế Game GDevelop</a>
+                <a href="../programs/roblox-world-creator.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Sáng Tạo Thế Giới Roblox</a>
+                <a href="../programs/3d-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Thiết Kế 3D</a>
+                <a href="../programs/ai-programming-quest.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Khám Phá AI & Lập Trình</a>
+                <a href="../programs/generative-ai-magic.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Phép Thuật AI Tạo Sinh</a>
+                <a href="../programs/app-development.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Phát Triển Ứng Dụng</a>
+                <a href="../programs/startup-foundations.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Nền Tảng Khởi Nghiệp</a>
+              </div>'''
+
+vn_mobile_old_programs = '''            <div id="mobile-programs-menu" class="mt-3 hidden flex flex-col gap-3 border-l-2 border-primary pl-4 text-sm">
+              <a href="../programs/scratch-game-coder.html" class="text-slate-700 hover:text-primary py-1">Lập Trình Game Scratch</a>
+              <a href="../programs/gdevelop-game-designer.html" class="text-slate-700 hover:text-primary py-1">Thiết Kế Game GDevelop</a>
+              <a href="../programs/roblox-world-creator.html" class="text-slate-700 hover:text-primary py-1">Sáng Tạo Thế Giới Roblox</a>
+              <a href="../programs/3d-designer.html" class="text-slate-700 hover:text-primary py-1">Thiết Kế 3D</a>
+              <a href="../programs/ai-programming-quest.html" class="text-slate-700 hover:text-primary py-1">Khám Phá AI & Lập Trình</a>
+              <a href="../programs/generative-ai-magic.html" class="text-slate-700 hover:text-primary py-1">Phép Thuật AI Tạo Sinh</a>
+              <a href="../programs/app-development.html" class="text-slate-700 hover:text-primary py-1">Phát Triển Ứng Dụng</a>
+            </div>'''
+
+vn_mobile_new_programs = '''            <div id="mobile-programs-menu" class="mt-3 hidden flex flex-col gap-3 border-l-2 border-primary pl-4 text-sm">
+              <a href="../programs/scratch-game-coder.html" class="text-slate-700 hover:text-primary py-1">Lập Trình Game Scratch</a>
+              <a href="../programs/gdevelop-game-designer.html" class="text-slate-700 hover:text-primary py-1">Thiết Kế Game GDevelop</a>
+              <a href="../programs/roblox-world-creator.html" class="text-slate-700 hover:text-primary py-1">Sáng Tạo Thế Giới Roblox</a>
+              <a href="../programs/3d-designer.html" class="text-slate-700 hover:text-primary py-1">Thiết Kế 3D</a>
+              <a href="../programs/ai-programming-quest.html" class="text-slate-700 hover:text-primary py-1">Khám Phá AI & Lập Trình</a>
+              <a href="../programs/generative-ai-magic.html" class="text-slate-700 hover:text-primary py-1">Phép Thuật AI Tạo Sinh</a>
+              <a href="../programs/app-development.html" class="text-slate-700 hover:text-primary py-1">Phát Triển Ứng Dụng</a>
+              <a href="../programs/startup-foundations.html" class="text-slate-700 hover:text-primary py-1">Nền Tảng Khởi Nghiệp</a>
+            </div>'''
+
 def update_file(filepath, is_vietnamese=False):
     """Update navigation in a single file"""
     try:
@@ -108,20 +194,34 @@ def update_file(filepath, is_vietnamese=False):
         updated = False
 
         if is_vietnamese:
-            # Update Vietnamese navigation
+            # Update Vietnamese navigation (for index pages)
             if vn_desktop_old in content:
                 content = content.replace(vn_desktop_old, vn_desktop_new)
                 updated = True
             if vn_mobile_old in content:
                 content = content.replace(vn_mobile_old, vn_mobile_new)
                 updated = True
+            # Update Vietnamese navigation (for program pages with ../ paths)
+            if vn_desktop_old_programs in content:
+                content = content.replace(vn_desktop_old_programs, vn_desktop_new_programs)
+                updated = True
+            if vn_mobile_old_programs in content:
+                content = content.replace(vn_mobile_old_programs, vn_mobile_new_programs)
+                updated = True
         else:
-            # Update English navigation
+            # Update English navigation (for index pages)
             if en_desktop_old in content:
                 content = content.replace(en_desktop_old, en_desktop_new)
                 updated = True
             if en_mobile_old in content:
                 content = content.replace(en_mobile_old, en_mobile_new)
+                updated = True
+            # Update English navigation (for program pages with ../ paths)
+            if en_desktop_old_programs in content:
+                content = content.replace(en_desktop_old_programs, en_desktop_new_programs)
+                updated = True
+            if en_mobile_old_programs in content:
+                content = content.replace(en_mobile_old_programs, en_mobile_new_programs)
                 updated = True
 
         if updated and content != original_content:
