@@ -6,10 +6,26 @@
 (function() {
   'use strict';
 
+  // Check URL parameter to force a specific region or clear localStorage
+  const urlParams = new URLSearchParams(window.location.search);
+  const forceRegion = urlParams.get('region');
+
+  if (forceRegion === 'clear') {
+    // Clear localStorage and continue with auto-detection
+    localStorage.removeItem('techtutor_region');
+    console.log('🧹 Cleared manual region preference');
+  } else if (forceRegion && ['en', 'vn', 'in', 'us'].includes(forceRegion)) {
+    // Force redirect to specific region
+    console.log('🔗 URL parameter forcing region:', forceRegion);
+    window.location.href = `${forceRegion}/index.html`;
+    return;
+  }
+
   // Check if user has manually selected a region (stored in localStorage)
   const manualRegion = localStorage.getItem('techtutor_region');
   if (manualRegion) {
     // User has manually selected, respect their choice
+    console.log('💾 Using saved region preference:', manualRegion);
     window.location.href = `${manualRegion}/index.html`;
     return;
   }
@@ -18,57 +34,64 @@
   function detectCountry() {
     // Try to detect based on timezone
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    console.log('🌍 Detected timezone:', timezone);
 
     // India timezones
     if (timezone && (timezone.includes('Asia/Kolkata') || timezone.includes('Asia/Calcutta'))) {
+      console.log('✅ India timezone detected');
       return 'in';
-    }
-
-    // US and Western countries timezones (US, Canada, Europe, UK, Australia, NZ)
-    const westernTimezones = [
-      // United States
-      'America/New_York', 'America/Chicago', 'America/Denver', 'America/Los_Angeles',
-      'America/Phoenix', 'America/Anchorage', 'Pacific/Honolulu',
-      // Canada
-      'America/Toronto', 'America/Vancouver', 'America/Edmonton', 'America/Winnipeg',
-      'America/Halifax', 'America/Montreal',
-      // Europe
-      'Europe/London', 'Europe/Paris', 'Europe/Berlin', 'Europe/Madrid', 'Europe/Rome',
-      'Europe/Amsterdam', 'Europe/Brussels', 'Europe/Vienna', 'Europe/Stockholm',
-      'Europe/Oslo', 'Europe/Copenhagen', 'Europe/Helsinki', 'Europe/Dublin',
-      'Europe/Zurich', 'Europe/Prague', 'Europe/Warsaw', 'Europe/Budapest',
-      'Europe/Athens', 'Europe/Lisbon', 'Europe/Bucharest',
-      // United Kingdom
-      'Europe/Belfast', 'Europe/Edinburgh', 'Europe/Cardiff',
-      // Australia
-      'Australia/Sydney', 'Australia/Melbourne', 'Australia/Brisbane',
-      'Australia/Perth', 'Australia/Adelaide', 'Australia/Hobart',
-      'Australia/Darwin', 'Australia/Canberra',
-      // New Zealand
-      'Pacific/Auckland', 'Pacific/Wellington', 'Pacific/Chatham'
-    ];
-
-    if (timezone && westernTimezones.some(tz => timezone.includes(tz))) {
-      return 'us';
     }
 
     // Vietnam timezone
     if (timezone && timezone.includes('Asia/Ho_Chi_Minh')) {
+      console.log('✅ Vietnam timezone detected');
       return 'vn';
+    }
+
+    // Check if timezone starts with common Western patterns
+    if (timezone) {
+      // US and Canada: America/
+      if (timezone.startsWith('America/')) {
+        console.log('✅ Americas timezone detected (US/Canada)');
+        return 'us';
+      }
+
+      // Europe: Europe/
+      if (timezone.startsWith('Europe/')) {
+        console.log('✅ Europe timezone detected');
+        return 'us';
+      }
+
+      // Australia: Australia/
+      if (timezone.startsWith('Australia/')) {
+        console.log('✅ Australia timezone detected');
+        return 'us';
+      }
+
+      // New Zealand: Pacific/Auckland, Pacific/Wellington, etc
+      if (timezone.startsWith('Pacific/') &&
+          (timezone.includes('Auckland') || timezone.includes('Wellington') || timezone.includes('Chatham'))) {
+        console.log('✅ New Zealand timezone detected');
+        return 'us';
+      }
     }
 
     // Fallback: Try to detect from navigator.language
     const language = navigator.language || navigator.userLanguage;
+    console.log('🗣️ Browser language:', language);
+
     if (language) {
       const lang = language.toLowerCase();
 
       // India
       if (lang.includes('en-in') || lang.includes('hi')) {
+        console.log('✅ India language detected');
         return 'in';
       }
 
       // Vietnam
       if (lang.includes('vi')) {
+        console.log('✅ Vietnam language detected');
         return 'vn';
       }
 
@@ -78,12 +101,14 @@
           lang.includes('fr-fr') || lang.includes('de') || lang.includes('es-es') ||
           lang.includes('it') || lang.includes('nl') || lang.includes('sv') ||
           lang.includes('no') || lang.includes('da') || lang.includes('fi')) {
+        console.log('✅ Western language detected');
         return 'us';
       }
     }
 
-    // Default: redirect to EN version
-    return 'en';
+    // Default: redirect to US version (most likely audience)
+    console.log('⚠️ No specific match, defaulting to US');
+    return 'us';
   }
 
   // Perform redirection
