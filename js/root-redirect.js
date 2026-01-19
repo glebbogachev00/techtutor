@@ -48,6 +48,23 @@
       return 'vn';
     }
 
+    // Check if timezone starts with Asia/ (might be India)
+    if (timezone && timezone.startsWith('Asia/')) {
+      // Check other major Asian timezones that should go to US
+      const asianUSTimezones = ['Asia/Tokyo', 'Asia/Seoul', 'Asia/Shanghai', 'Asia/Hong_Kong',
+                                'Asia/Singapore', 'Asia/Dubai', 'Asia/Bangkok', 'Asia/Manila'];
+
+      if (asianUSTimezones.some(tz => timezone.includes(tz))) {
+        console.log('✅ Asian timezone (non-India, non-Vietnam) detected');
+        return 'us';
+      }
+
+      // Any other Asia/ timezone that's not India or Vietnam likely should go to IN
+      // (since most Asian traffic to an education site will be from India)
+      console.log('⚠️ Other Asian timezone detected, defaulting to India');
+      return 'in';
+    }
+
     // Check if timezone starts with common Western patterns
     if (timezone) {
       // US and Canada: America/
