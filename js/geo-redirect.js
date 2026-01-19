@@ -96,18 +96,10 @@
       return;
     }
 
-    // Check if user manually opted to stay on EN site (via URL parameter)
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('stay') === 'en') {
-      // User wants to stay on EN site
-      localStorage.setItem('techtutor_region', 'en');
-      return;
-    }
-
-    // Check if user has explicitly chosen to stay on EN site
-    const savedRegion = localStorage.getItem('techtutor_region');
-    if (savedRegion === 'en') {
-      // User previously chose to stay on EN site
+    // IMPORTANT: Only redirect from homepage (index.html) to avoid disrupting navigation
+    // Users clicking on EN links should stay on EN unless they're on the homepage
+    if (!currentPath.endsWith('/en/') && !currentPath.endsWith('/en/index.html')) {
+      // Not on homepage, don't redirect
       return;
     }
 
