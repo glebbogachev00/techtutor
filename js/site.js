@@ -24,6 +24,12 @@
   }
 
   function initLanguagePreference() {
+    // Skip language preference logic for US/IN sites (they don't have language switchers)
+    const path = window.location.pathname || '';
+    if (path.includes('/us/') || path.includes('/in/')) {
+      return;
+    }
+
     const langLinks = document.querySelectorAll('a[href*="/en/"], a[href*="/vn/"]');
     if (!langLinks.length) {
       return;
@@ -46,6 +52,12 @@
 
   function cacheCurrentLanguage() {
     const path = window.location.pathname || '';
+
+    // Skip language caching for US/IN sites (they don't have language switchers)
+    if (path.includes('/us/') || path.includes('/in/')) {
+      return;
+    }
+
     try {
       if (path.includes('/vn/')) {
         localStorage.setItem('tt-lang-manual', 'vn');
