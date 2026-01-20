@@ -42,20 +42,33 @@
       return 'in';
     }
 
-    // Vietnam timezone
-    if (timezone && timezone.includes('Asia/Ho_Chi_Minh')) {
+    // Vietnam timezones
+    // Note: Vietnam officially uses Asia/Ho_Chi_Minh, Asia/Saigon, or sometimes Asia/Bangkok (UTC+7)
+    if (timezone && (timezone.includes('Asia/Ho_Chi_Minh') || timezone.includes('Asia/Saigon') || timezone.includes('Asia/Hanoi'))) {
       console.log('✅ Vietnam timezone detected');
       return 'vn';
     }
 
-    // Check if timezone starts with Asia/ (might be India)
+    // Check if timezone starts with Asia/ (might be India or other Asian countries)
     if (timezone && timezone.startsWith('Asia/')) {
-      // Check other major Asian timezones that should go to US
+      // First check for other major Asian countries that should go to US
       const asianUSTimezones = ['Asia/Tokyo', 'Asia/Seoul', 'Asia/Shanghai', 'Asia/Hong_Kong',
-                                'Asia/Singapore', 'Asia/Dubai', 'Asia/Bangkok', 'Asia/Manila'];
+                                'Asia/Singapore', 'Asia/Dubai', 'Asia/Manila'];
 
       if (asianUSTimezones.some(tz => timezone.includes(tz))) {
         console.log('✅ Asian timezone (non-India, non-Vietnam) detected');
+        return 'us';
+      }
+
+      // Special case: Bangkok timezone is used by Thailand AND sometimes Vietnam
+      // Need to check language to differentiate
+      if (timezone.includes('Asia/Bangkok')) {
+        const language = navigator.language || navigator.userLanguage;
+        if (language && language.toLowerCase().includes('vi')) {
+          console.log('✅ Bangkok timezone + Vietnamese language = Vietnam');
+          return 'vn';
+        }
+        console.log('✅ Bangkok timezone (Thailand) detected');
         return 'us';
       }
 
