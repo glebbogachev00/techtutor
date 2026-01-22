@@ -99,9 +99,9 @@
     // Position adjusted to not overlap with Tawk.to chat widget (bottom-right)
     // Chat widget is at bottom-right, so we put CTA at bottom-left
     const stickyHTML = `
-      <div id="stickyCTA" class="fixed bottom-6 left-6 z-50 opacity-0 transform translate-y-4 transition-all duration-300">
-        <a href="#trial" class="flex items-center gap-3 bg-primary hover:bg-primary-light text-white font-bold py-4 px-6 rounded-full shadow-2xl transition transform hover:scale-105">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div id="stickyCTA" class="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-50 opacity-0 transform translate-y-4 transition-all duration-300">
+        <a href="#trial" class="flex items-center gap-2 md:gap-3 bg-primary hover:bg-primary-light text-white font-bold py-3 px-5 md:py-4 md:px-6 rounded-full shadow-2xl transition transform hover:scale-105">
+          <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
           </svg>
           <span>Book Free Trial</span>
@@ -145,6 +145,23 @@
       s1.setAttribute('crossorigin', '*');
       s0.parentNode.insertBefore(s1, s0);
     })();
+
+    // Hide the chat message bubble (the "Hi, how can we help" popup)
+    const style = document.createElement('style');
+    style.textContent = `
+      /* Hide Tawk.to message bubble */
+      .tawk-chatindicator,
+      .tawk-min-chat-indicator,
+      iframe[title*="chat widget"],
+      .tawk-tooltip {
+        display: none !important;
+      }
+      /* Only show the main chat button */
+      .tawk-button {
+        display: block !important;
+      }
+    `;
+    document.head.appendChild(style);
   }
 
   // ==========================================
