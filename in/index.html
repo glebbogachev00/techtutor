@@ -522,13 +522,13 @@
       </button>
 
       <!-- Main Button (Right side) -->
-      <button onclick="openPromoPopup()" class="text-white px-3 py-2.5 md:px-4 md:py-3 flex items-center gap-2 md:gap-2 font-bold text-xs md:text-base group hover:bg-red-600 transition-colors" aria-label="View special offer - Up to 20% off">
+      <button onclick="openPromoPopup()" class="text-white px-3 py-2.5 md:px-4 md:py-3 flex items-center gap-2 md:gap-2 font-bold text-xs md:text-base group hover:bg-red-600 transition-colors" aria-label="Get free course">
         <span class="text-base md:text-xl flex-shrink-0" aria-hidden="true">🎁</span>
         <div class="text-left leading-tight">
           <div class="text-xs opacity-90 hidden md:block">Special Offer</div>
           <div class="text-[11px] leading-tight md:text-sm md:whitespace-nowrap">
-            Up to<br class="md:hidden"/>
-            20% off
+            Get a FREE<br class="md:hidden"/>
+            Course
           </div>
         </div>
       </button>
@@ -550,39 +550,24 @@
             LIMITED TIME OFFER
           </div>
           <h2 class="text-2xl md:text-3xl font-black mb-3 text-primary">
-            Get Up to 20% Off Today!
+            Unlock a FREE Course Today!
           </h2>
           <p class="text-gray-700 text-sm md:text-base">
-            Book your free trial now and get up to 20% off your first course bundle
+            Register your email and get instant access to a free course
           </p>
         </div>
 
         <form id="promoTrialForm" action="https://formspree.io/f/xqaynogk" method="POST" class="space-y-3 md:space-y-4">
           <div>
-            <label for="promo-parent-name" class="sr-only">Parent Name</label>
-            <input id="promo-parent-name" name="parent_name" type="text" placeholder="Parent Name" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
-          </div>
-          <div>
-            <label for="promo-child-name" class="sr-only">Child Name</label>
-            <input id="promo-child-name" name="child_name" type="text" placeholder="Child Name" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
-          </div>
-          <div>
             <label for="promo-email" class="sr-only">Email</label>
-            <input id="promo-email" name="email" type="email" placeholder="Email" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
-          </div>
-          <div>
-            <label for="promo-phone" class="sr-only">Phone (Zalo/WhatsApp)</label>
-            <input id="promo-phone" name="phone" type="tel" placeholder="Phone (Zalo/WhatsApp)" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
-          </div>
-          <div>
-            <label for="promo-child-age" class="sr-only">Child Age</label>
-            <input id="promo-child-age" name="child_age" type="number" placeholder="Child Age" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
+            <input id="promo-email" name="email" type="email" placeholder="Enter your email" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
           </div>
           <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
-          <input type="hidden" name="_subject" value="New Promo Trial - Save 20%" />
+          <input type="hidden" name="_subject" value="New Free Course Registration" />
           <input type="hidden" name="source_page" value="index-promo-popup" />
-          <input type="hidden" name="promo_code" value="SAVE20" />
-          <button type="submit" class="w-full btn-orange text-center text-sm md:text-base py-2.5 md:py-3">Claim 20% Discount</button>
+          <input type="hidden" name="type" value="Free Course" />
+          <button type="submit" class="w-full btn-orange text-center text-sm md:text-base py-2.5 md:py-3">Get My Free Course</button>
+          <p class="text-center text-xs md:text-sm text-gray-600">✅ No credit card required</p>
         </form>
         <p id="promoTrialStatus" class="mt-3 text-xs md:text-sm text-gray-700 hidden"></p>
       </div>
