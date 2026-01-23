@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         if (response.ok) {
-          promoStatus.textContent = 'Thank you! We will contact you within 24 hours with your 20% discount code.';
+          promoStatus.textContent = 'Thank you! Check your email for your free course access link.';
           promoStatus.classList.remove('hidden', 'text-red-500');
           promoStatus.classList.add('text-green-600');
           e.target.reset();
