@@ -31,18 +31,28 @@
 
           <div class="text-center">
             <div class="text-6xl mb-4">🎁</div>
-            <h2 class="text-3xl font-black mb-3 text-primary">Wait! Don't Miss Out</h2>
-            <p class="text-xl text-gray-700 mb-6">
-              Get <span class="text-orange-500 font-bold">20% OFF</span> your first course bundle
+            <h2 class="text-3xl font-black mb-3 text-primary">Wait! Unlock a FREE Course</h2>
+            <p class="text-xl text-gray-700 mb-4">
+              Register your email and get access to a <span class="text-orange-500 font-bold">FREE course</span>
             </p>
-            <p class="text-gray-600 mb-8">
-              Book your free trial now and unlock this exclusive discount
+            <p class="text-gray-600 mb-6">
+              Start learning today with our exclusive free course offer
             </p>
-            <a href="#trial" onclick="closeExitPopup()" class="inline-block bg-primary hover:bg-primary-light text-white font-bold py-4 px-8 rounded-full shadow-lg transition transform hover:scale-105">
-              Claim My 20% Discount
-            </a>
-            <p class="text-sm text-gray-500 mt-4">
-              ⏰ Offer expires in 24 hours
+            <form id="exitPopupForm" class="mb-4" onsubmit="handleExitPopupSubmit(event)">
+              <input
+                type="email"
+                id="exitPopupEmail"
+                name="email"
+                placeholder="Enter your email"
+                required
+                class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none mb-4"
+              />
+              <button type="submit" class="w-full bg-primary hover:bg-primary-light text-white font-bold py-4 px-8 rounded-full shadow-lg transition transform hover:scale-105">
+                Get My Free Course
+              </button>
+            </form>
+            <p class="text-sm text-gray-500">
+              ✅ No credit card required
             </p>
           </div>
         </div>
@@ -90,6 +100,41 @@
       popup.style.display = 'none';
       popup.classList.add('hidden');
     }
+  };
+
+  // Global function to handle exit popup form submission
+  window.handleExitPopupSubmit = function(event) {
+    event.preventDefault();
+    const email = document.getElementById('exitPopupEmail').value;
+
+    // Submit to Formspree
+    fetch('https://formspree.io/f/xqaynogk', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        type: 'Free Course Registration'
+      })
+    }).then(() => {
+      // Show success message
+      const popup = document.getElementById('exitIntentPopup');
+      if (popup) {
+        popup.querySelector('.text-center').innerHTML = `
+          <div class="text-6xl mb-4">✅</div>
+          <h2 class="text-3xl font-black mb-3 text-primary">Success!</h2>
+          <p class="text-xl text-gray-700 mb-6">
+            Check your email for your free course access link
+          </p>
+          <button onclick="closeExitPopup()" class="inline-block bg-primary hover:bg-primary-light text-white font-bold py-4 px-8 rounded-full shadow-lg transition transform hover:scale-105">
+            Close
+          </button>
+        `;
+      }
+    }).catch(() => {
+      alert('Something went wrong. Please try again.');
+    });
   };
 
   // ==========================================
