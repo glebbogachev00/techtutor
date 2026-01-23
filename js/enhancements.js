@@ -150,10 +150,13 @@
     const style = document.createElement('style');
     style.textContent = `
       /* Hide Tawk.to message bubble (not the widget itself) */
-      .tawk-min-container .tawk-text-visitor,
-      .tawk-min-container-message,
-      .tawk-button-circle .tawk-chat-panel {
+      .tawk-min-container,
+      .tawk-branding,
+      div[class*="tawk"][class*="message"],
+      div[class*="tawk"][class*="bubble"] {
         display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
       }
     `;
     document.head.appendChild(style);
