@@ -149,16 +149,11 @@
     // Hide the chat message bubble (the "Hi, how can we help" popup)
     const style = document.createElement('style');
     style.textContent = `
-      /* Hide Tawk.to message bubble */
-      .tawk-chatindicator,
-      .tawk-min-chat-indicator,
-      iframe[title*="chat widget"],
-      .tawk-tooltip {
+      /* Hide Tawk.to message bubble (not the widget itself) */
+      .tawk-min-container .tawk-text-visitor,
+      .tawk-min-container-message,
+      .tawk-button-circle .tawk-chat-panel {
         display: none !important;
-      }
-      /* Only show the main chat button */
-      .tawk-button {
-        display: block !important;
       }
     `;
     document.head.appendChild(style);
