@@ -181,6 +181,12 @@
     var Tawk_API = Tawk_API || {};
     var Tawk_LoadStart = new Date();
 
+    // Hide message bubble using API
+    Tawk_API.onLoad = function() {
+      Tawk_API.hideWidget();
+      Tawk_API.showWidget();
+    };
+
     (function() {
       var s1 = document.createElement("script");
       var s0 = document.getElementsByTagName("script")[0];
@@ -191,17 +197,26 @@
       s0.parentNode.insertBefore(s1, s0);
     })();
 
-    // Hide the chat message bubble (the "Hi, how can we help" popup)
+    // Hide the chat message bubble with CSS and remove animations
     const style = document.createElement('style');
     style.textContent = `
-      /* Hide Tawk.to message bubble (not the widget itself) */
+      /* Hide Tawk.to message bubble completely */
       .tawk-min-container,
-      .tawk-branding,
-      div[class*="tawk"][class*="message"],
-      div[class*="tawk"][class*="bubble"] {
+      .tawk-tooltip,
+      .tawk-button-circle > span,
+      div[style*="tawk"],
+      #tawk-bubble-container {
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
+        height: 0 !important;
+        width: 0 !important;
+        pointer-events: none !important;
+      }
+
+      /* Keep only the main button visible */
+      .tawk-button-circle {
+        display: block !important;
       }
     `;
     document.head.appendChild(style);
