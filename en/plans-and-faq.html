@@ -192,6 +192,14 @@
 <!-- Main Content -->
   <main class="max-w-7xl mx-auto px-6 py-12">
 
+    <!-- February Early Bird Banner -->
+    <section class="mb-8">
+      <div class="card text-center" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%); padding: 20px 32px;">
+        <p class="text-2xl font-bold text-white mb-2">🎉 February Early Bird Special!</p>
+        <p class="text-lg text-white/95">Lock in 2025 rates by Feb 10 — Save up to 1M VND</p>
+      </div>
+    </section>
+
     <!-- Hero Section -->
     <section class="mb-16 text-center">
       <h1 class="section-title mb-4" data-i18n="hero.title">Plans & Pricing</h1>
@@ -202,48 +210,128 @@
 
     <!-- Pricing Section -->
     <section class="mb-20">
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- Private Lessons -->
-        <div class="card">
-          <h3 class="text-2xl font-bold text-ink mb-6" data-i18n="plans.private.title">Private (1 on 1)</h3>
-          <div class="space-y-4">
-            <div class="flex justify-between items-center border-b border-gray-200 pb-4">
-              <span class="text-gray-600" data-i18n="plans.private.option1">1 course (8 lessons)</span>
-              <span class="font-bold text-ink">5.6M VND / ~$225</span>
+
+      <!-- 1-on-1 Classes - Personalized AI Learning Track -->
+      <div class="card mb-8">
+        <h2 class="text-3xl font-bold text-ink mb-2 text-center">1-on-1 Classes</h2>
+        <p class="text-center text-lg text-gray-600 mb-8">"Personalized AI Learning Track"</p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Fast Track - RECOMMENDED -->
+          <div class="border-2 border-primary rounded-2xl p-6 relative">
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-sm font-bold">
+              ⭐ RECOMMENDED
             </div>
-            <div class="flex justify-between items-center border-b border-gray-200 pb-4">
-              <span class="text-gray-600"><span data-i18n="plans.private.option2">2 courses (16 lessons)</span> — <span class="font-semibold" style="color: #ff0000;" data-i18n="plans.discount5">5% off</span></span>
-              <span class="font-bold text-ink">10.7M VND / ~$428</span>
+            <h3 class="text-2xl font-bold text-primary mb-4 mt-2">Fast Track</h3>
+            <p class="text-sm text-gray-600 mb-4">2-3 sessions/week • Completes in 4-8 weeks</p>
+
+            <div class="space-y-3 mb-6">
+              <div class="flex justify-between items-center border-b border-gray-200 pb-3">
+                <span class="text-gray-700">1 Month (8 lessons)</span>
+                <span class="font-bold text-ink">5.6M VND / $225</span>
+              </div>
+              <div class="flex justify-between items-center border-b border-gray-200 pb-3">
+                <span class="text-gray-700">2 Month (16 lessons) <span class="text-red-600 font-semibold text-sm">— Giảm 5%</span></span>
+                <span class="font-bold text-ink">10.7M VND / $428</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-700">3 Month (24 lessons) <span class="text-red-600 font-semibold text-sm">— Giảm 10%</span></span>
+                <span class="font-bold text-ink">15M VND / $608</span>
+              </div>
             </div>
-            <div class="flex justify-between items-center">
-              <span class="text-gray-600"><span data-i18n="plans.private.option3">3 courses (24 lessons)</span> — <span class="font-semibold" style="color: #ff0000;" data-i18n="plans.discount10">10% off</span></span>
-              <span class="font-bold text-ink">15M VND / ~$608</span>
+
+            <div class="bg-primary/5 rounded-lg p-4">
+              <p class="text-sm font-semibold text-primary mb-2">✓ Why Fast Track?</p>
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>✓ Build momentum & see results faster</li>
+                <li>✓ Better skill retention</li>
+                <li>✓ Finish projects while excited</li>
+              </ul>
             </div>
           </div>
-          <div class="mt-6 p-4 bg-primary/5 rounded-lg">
-            <p class="text-sm text-gray-600"><strong data-i18n="plans.best_for">Best for:</strong> <span data-i18n="plans.private.desc">Students who want personalized attention and a custom learning pace.</span></p>
+
+          <!-- Extended Pace -->
+          <div class="border border-gray-300 rounded-2xl p-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Extended Pace</h3>
+            <p class="text-sm text-gray-600 mb-4">1 session/week • Extended timeline</p>
+
+            <div class="space-y-3 mb-6">
+              <div class="flex justify-between items-center border-b border-gray-200 pb-3">
+                <span class="text-gray-700">2 Month (8 lessons)</span>
+                <span class="font-bold text-ink">6.2M VND / $250</span>
+              </div>
+              <div class="flex justify-between items-center border-b border-gray-200 pb-3">
+                <span class="text-gray-700">4 Month (16 lessons) <span class="text-red-600 font-semibold text-sm">— Giảm 5%</span></span>
+                <span class="font-bold text-ink">11.9M VND / $475</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-700">6 Month (24 lessons) <span class="text-red-600 font-semibold text-sm">— Giảm 10%</span></span>
+                <span class="font-bold text-ink">16.8M VND / $675</span>
+              </div>
+            </div>
+
+            <div class="bg-gray-100 rounded-lg p-4">
+              <p class="text-sm font-semibold text-gray-700 mb-2">Best for:</p>
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>• Extended timeline for busy schedules</li>
+                <li>• More review needed between sessions</li>
+              </ul>
+            </div>
           </div>
         </div>
+      </div>
 
-        <!-- Group Lessons -->
-        <div class="card">
-          <h3 class="text-2xl font-bold text-ink mb-6" data-i18n="plans.group.title">Small group (2-4 students)</h3>
-          <div class="space-y-4">
-            <div class="flex justify-between items-center border-b border-gray-200 pb-4">
-              <span class="text-gray-600" data-i18n="plans.group.option1">1 course (8 lessons)</span>
-              <span class="font-bold text-ink">3.2M VND / ~$128</span>
-            </div>
-            <div class="flex justify-between items-center border-b border-gray-200 pb-4">
-              <span class="text-gray-600"><span data-i18n="plans.group.option2">2 courses (16 lessons)</span> — <span class="font-semibold" style="color: #ff0000;" data-i18n="plans.discount5">5% off</span></span>
-              <span class="font-bold text-ink">6.1M VND / ~$244</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="text-gray-600"><span data-i18n="plans.group.option3">3 courses (24 lessons)</span> — <span class="font-semibold" style="color: #ff0000;" data-i18n="plans.discount10">10% off</span></span>
-              <span class="font-bold text-ink">8.4M VND / ~$346</span>
-            </div>
+      <!-- NEW: Starter Bridge -->
+      <div class="card mb-8" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+        <div class="text-center mb-6">
+          <span class="inline-block bg-teal text-white px-4 py-1 rounded-full text-sm font-bold mb-3">✨ NEW</span>
+          <h2 class="text-3xl font-bold text-ink mb-2">Starter Bridge</h2>
+          <p class="text-lg text-gray-600">"Try Before You Commit"</p>
+          <p class="text-sm text-gray-500 mt-2">4 lessons in your chosen program • Program selected after free trial</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <div class="bg-white rounded-xl p-6 text-center border-2 border-teal">
+            <h4 class="font-bold text-teal mb-3">Fast Track (2 weeks)</h4>
+            <p class="text-sm text-gray-600 mb-3">4 lessons • 2-3 sessions/week</p>
+            <p class="text-3xl font-bold text-ink mb-2">2.5M VND</p>
+            <p class="text-lg text-gray-600">~$100</p>
           </div>
-          <div class="mt-6 p-4 bg-teal/5 rounded-lg">
-            <p class="text-sm text-gray-600"><strong data-i18n="plans.best_for">Best for:</strong> <span data-i18n="plans.group.desc">Students who enjoy collaborative learning and want more affordable pricing.</span></p>
+          <div class="bg-white rounded-xl p-6 text-center border border-gray-300">
+            <h4 class="font-bold text-gray-800 mb-3">Extended Pace (4 weeks)</h4>
+            <p class="text-sm text-gray-600 mb-3">4 lessons • 1 session/week</p>
+            <p class="text-3xl font-bold text-ink mb-2">2.9M VND</p>
+            <p class="text-lg text-gray-600">~$115</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group Classes - Collaborative Cohorts -->
+      <div class="card" style="border: 2px solid #2C7A7B;">
+        <h2 class="text-3xl font-bold text-ink mb-2 text-center">Group Classes</h2>
+        <p class="text-center text-lg text-gray-600 mb-6">"Collaborative Cohorts" (When Available)</p>
+
+        <div class="bg-amber-50 border-l-4 border-amber-500 p-4 mb-6">
+          <p class="text-sm font-semibold text-amber-800 mb-1">⚠️ Limited Availability</p>
+          <p class="text-sm text-amber-700">ONLY when 3-4 similar-level students available</p>
+          <p class="text-sm text-amber-700 mt-2"><strong>Next cohort:</strong> March 15, 2025 (4 spots)</p>
+          <p class="text-sm text-amber-700"><strong>Applications close:</strong> Feb 28</p>
+        </div>
+
+        <p class="text-center text-primary font-bold mb-4">20% below 1-on-1 rates</p>
+
+        <div class="space-y-3 max-w-md mx-auto">
+          <div class="flex justify-between items-center border-b border-gray-200 pb-3">
+            <span class="text-gray-700">1 course (8 lessons)</span>
+            <span class="font-bold text-ink">4.5M VND / $180</span>
+          </div>
+          <div class="flex justify-between items-center border-b border-gray-200 pb-3">
+            <span class="text-gray-700">2 courses (16 lessons)</span>
+            <span class="font-bold text-ink">8.6M VND / $342</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-700">3 courses (24 lessons)</span>
+            <span class="font-bold text-ink">12M VND / $486</span>
           </div>
         </div>
       </div>
