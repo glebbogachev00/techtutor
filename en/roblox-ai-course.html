@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZ1XEZXB6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4MZ1XEZXB6');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roblox with Generative AI - Free Course | TechTutor Academy</title>
+  <meta name="description" content="Learn Roblox game development with AI. Master Lua scripting, character movement, damage systems, and superpowers using AI-powered learning. Free 5-lesson course!" />
+  <link rel="icon" type="image/png" href="../images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Brevo Form Styles -->
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+  <style>
+    @font-face {
+      font-display: block;
+      font-family: Roboto;
+      src: url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/7529907e9eaf8ebb5220c5f9850e3811.woff2) format("woff2"), url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/25c678feafdc175a70922a116c9be3e7.woff) format("woff")
+    }
+    @font-face {
+      font-display: fallback;
+      font-family: Roboto;
+      font-weight: 600;
+      src: url(https://assets.brevo.com/font/Roboto/Latin/medium/normal/6e9caeeafb1f3491be3e32744bc30440.woff2) format("woff2"), url(https://assets.brevo.com/font/Roboto/Latin/medium/normal/71501f0d8d5aa95960f6475d5487d4c2.woff) format("woff")
+    }
+    @font-face {
+      font-display: fallback;
+      font-family: Roboto;
+      font-weight: 700;
+      src: url(https://assets.brevo.com/font/Roboto/Latin/bold/normal/3ef7cf158f310cf752d5ad08cd0e7e60.woff2) format("woff2"), url(https://assets.brevo.com/font/Roboto/Latin/bold/normal/ece3a1d82f18b60bcce0211725c476aa.woff) format("woff")
+    }
+    #sib-container input::placeholder {
+      text-align: left;
+      font-family: Helvetica, sans-serif;
+      color: #c0ccda;
+    }
+    #sib-container textarea::placeholder {
+      text-align: left;
+      font-family: Helvetica, sans-serif;
+      color: #c0ccda;
+    }
+    #sib-container a {
+      text-decoration: underline;
+      color: #2BB2FC;
+    }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            teal: { DEFAULT: '#2C7A7B', light: '#319795', dark: '#234E52' },
+            ink: '#0F172A',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; }
+    .btn-primary { background: #193b92; color: white; padding: 14px 32px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; display: inline-block; text-decoration: none; border: none; cursor: pointer; }
+    .btn-primary:hover { background: #0f2861; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(25, 59, 146, 0.4); }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .card { background: white; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); padding: 32px; }
+    .section-title { font-size: 2.5rem; font-weight: 800; line-height: 1.2; color: #0F172A; }
+    .hero-title { font-size: 4rem; font-weight: 900; line-height: 1.1; color: #0F172A; }
+    .g-recaptcha { display: flex; justify-content: center; margin: 0 auto !important; position: static !important; }
+    iframe[src*="recaptcha"] { margin: 0 auto !important; }
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.5rem; }
+      .section-title { font-size: 2rem; }
+    }
+  </style>
+
+  <!-- SEO: Hreflang tags for multilingual support -->
+  <link rel="alternate" hreflang="en" href="https://techtutor.academy/en/roblox-ai-course.html" />
+  <link rel="alternate" hreflang="vi" href="https://techtutor.academy/vn/roblox-ai-course.html" />
+  <link rel="alternate" hreflang="x-default" href="https://techtutor.academy/en/roblox-ai-course.html" />
+  <link rel="canonical" href="https://techtutor.academy/en/roblox-ai-course.html" />
+
+</head>
+<body class="antialiased">
+
+  <!-- Simple Header with Language Switcher -->
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="text-2xl font-black tracking-tight text-slate-900 flex items-center gap-1" aria-label="TechTutor home">
+          <span class="text-primary">Tech</span><span class="text-teal-500">Tutor</span>
+        </a>
+
+        <div class="relative group">
+          <button class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-primary hover:bg-primary hover:bg-opacity-10 transition" aria-label="Switch language">
+            <span class="text-xl">🇬🇧</span>
+          </button>
+          <div class="absolute right-0 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+            <div class="p-2">
+              <a href="../vn/roblox-ai-course.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-100 transition">
+                <span class="text-2xl">🇻🇳</span>
+                <span class="text-sm font-medium text-slate-700">Tiếng Việt</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script src="../js/site.js" defer></script>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-16">
+
+    <!-- Hero Section -->
+    <section class="mb-20">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            <span>⚡</span>
+            <span>AGES 10-17 • ROBLOX + AI</span>
+          </div>
+
+          <h1 class="hero-title mb-6">
+            Learn <span style="color: #193b92;">Roblox Scripting</span> with AI Superpowers
+          </h1>
+
+          <div class="space-y-4 mb-8 text-lg">
+            <div class="flex items-start gap-3">
+              <span class="text-2xl mt-1">✅</span>
+              <p class="text-gray-700"><strong>Use AI to learn scripting faster</strong> - Master Lua programming with AI assistance</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-2xl mt-1">✅</span>
+              <p class="text-gray-700"><strong>Character movement & controls</strong> - Make your characters walk, jump, and run</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-2xl mt-1">✅</span>
+              <p class="text-gray-700"><strong>Damage & combat systems</strong> - Create exciting battles and health mechanics</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-2xl mt-1">✅</span>
+              <p class="text-gray-700"><strong>Add superpowers</strong> - Give your characters special abilities and powers</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-2xl mt-1">✅</span>
+              <p class="text-gray-700"><strong>Build spawner systems</strong> - Create enemies, items, and objects automatically</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-teal/10 rounded-[3rem] transform rotate-3"></div>
+          <img loading="lazy" src="../images/roblox.png" alt="Roblox with AI" class="relative w-full max-w-lg mx-auto drop-shadow-2xl rounded-3xl" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Access Code Modal -->
+    <div id="access-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden">
+      <div class="bg-white rounded-2xl p-8 max-w-md w-90% text-center">
+        <h2 class="text-2xl font-black text-ink mb-4">🔓 Have an Access Code?</h2>
+        <p class="text-gray-600 mb-6">Enter your code to unlock the course immediately</p>
+        <input type="text" id="access-code-input" placeholder="Enter access code" class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl mb-4 focus:outline-none focus:border-primary text-center text-lg font-semibold tracking-widest" />
+        <button onclick="submitAccessCode()" class="btn-primary w-full mb-3">Unlock Course</button>
+        <button onclick="closeAccessModal()" class="w-full px-4 py-2 text-gray-600 hover:text-primary transition font-medium text-sm">Cancel</button>
+        <p class="text-xs text-gray-500 mt-6">Don't have a code? <a href="/en/roblox-ai-course.html" class="text-primary hover:text-primary-dark font-semibold">Sign up for the course</a></p>
+      </div>
+    </div>
+
+    <!-- Email Form Section -->
+    <section class="mb-20">
+      <div class="sib-form" style="text-align: center; background-color: transparent;">
+        <div id="sib-form-container" class="sib-form-container">
+          <div id="error-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;max-width:540px; margin: 0 auto; display:none;">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+              <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon">
+                <path d="M256 40c118.621 0 216 96.075 216 216 0 119.291-96.61 216-216 216-119.244 0-216-96.562-216-216 0-119.203 96.602-216 216-216m0-32C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm-11.49 120h22.979c6.823 0 12.274 5.682 11.99 12.5l-7 168c-.268 6.428-5.556 11.5-11.99 11.5h-8.979c-6.433 0-11.722-5.073-11.99-11.5l-7-168c-.283-6.818 5.167-12.5 11.99-12.5zM256 340c-15.464 0-28 12.536-28 28s12.536 28 28 28 28-12.536 28-28-12.536-28-28-28z" />
+              </svg>
+              <span class="sib-form-message-panel__inner-text">Your subscription could not be saved. Please try again.</span>
+            </div>
+          </div>
+          <div id="success-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#085229; background-color:#e7faf0; border-radius:3px; border-color:#13ce66;max-width:540px; margin: 0 auto; display:none;">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+              <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon">
+                <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z" />
+              </svg>
+              <span class="sib-form-message-panel__inner-text">Your subscription has been successful.</span>
+            </div>
+          </div>
+          <div id="sib-container" class="sib-container--large sib-container--vertical" style="text-align:left; background-color:rgba(255,255,255,1); border-radius:8px; border-width:1px; border-color:#C0CCD9; border-style:solid; direction:ltr; padding: 48px; margin: 0 auto; max-width: 100%;">
+            <form id="sib-form" method="POST" action="https://a3df6069.sibforms.com/serve/MUIFAHQ40plCqtVGF-FIz5gDLs38kJ-uL4OsMVxarn9YFJHkz68O2to_KeEChGtCQEMWhdtymGl_xPAnz-byi7KHBgJatEsERXEMl-mpLp42v9EyVUVo5z5afMJ_LxQCQjvHh0OV--4TMYYDBhT5bkLLsaj5JcClsCTpA2d_n7FBypsbJ8h0GKD9HhDdPwvX6jtFtLnFL4H2J23hoQ==" data-type="subscription">
+              <div style="padding: 8px 0;">
+                <div class="sib-form-block" style="font-size:32px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3C4858; background-color:transparent;">
+                  <p><strong>🎁 FREE 5-Lesson Course</strong></p>
+                </div>
+              </div>
+              <div style="padding: 8px 0;">
+                <div class="sib-form-block" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#3C4858; background-color:transparent;">
+                  <div class="sib-text-form-block">
+                    <p>Enter your email below to receive instant access to all lessons + bonus AI prompts!</p>
+                  </div>
+                </div>
+              </div>
+              <div style="padding: 8px 0;">
+                <div class="sib-input sib-form-block">
+                  <div class="form__entry entry_block">
+                    <div class="form__label-row">
+                      <label class="entry__label" style="font-weight: 700; text-align:left; font-size:16px; font-family:Helvetica, sans-serif; color:#3c4858;" for="EMAIL" data-required="*">Enter your email address</label>
+                      <div class="entry__field">
+                        <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="EMAIL" data-required="true" required />
+                      </div>
+                    </div>
+                    <label class="entry__error entry__error--primary" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949; display:none;"></label>
+                    <label class="entry__specification" style="font-size:12px; text-align:left; font-family:Helvetica, sans-serif; color:#8390A4;">
+                      We will send you an email with a access code to the course
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div style="padding: 8px 0;">
+                <div class="g-recaptcha-v3" data-sitekey="6LdkrHosAAAAAIht7GIPqi5CoZCUpeFfvezULkC5" style="display: none"></div>
+              </div>
+              <div style="padding: 8px 0;">
+                <div class="sib-form-block" style="text-align: left">
+                  <button class="sib-form-block__button sib-form-block__button-with-loader" style="font-size:16px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#FFFFFF; background-color:#0d3dca; border-radius:6px; border-width:0px; padding: 14px 32px;" form="sib-form" type="submit">
+                    <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512" style="">
+                      <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
+                    </svg>
+                    Get FREE Access Now!
+                  </button>
+                </div>
+              </div>
+              <input type="text" name="email_address_check" value="" class="input--hidden">
+              <input type="hidden" name="locale" value="en">
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What You'll Learn Section -->
+    <section class="mb-20">
+      <div class="text-center mb-12">
+        <h2 class="section-title mb-4">
+          <span style="color: #193b92;">5 Powerful Lessons</span><br/>
+          Real Skills, Real Games
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Each lesson includes step-by-step tutorials, AI prompts, and hands-on projects
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Lesson 1 -->
+        <div class="card hover:shadow-2xl transition-all duration-300">
+          <div class="w-16 h-16 mb-4 rounded-2xl flex items-center justify-center text-4xl" style="background: rgba(25, 59, 146, 0.1);">
+            🤖
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-ink">Lesson 1: AI-Powered Learning</h3>
+          <p class="text-gray-600">Learn how to use ChatGPT and AI tools to understand Lua code faster and debug like a pro</p>
+        </div>
+
+        <!-- Lesson 2 -->
+        <div class="card hover:shadow-2xl transition-all duration-300">
+          <div class="w-16 h-16 mb-4 rounded-2xl flex items-center justify-center text-4xl" style="background: rgba(44, 122, 123, 0.1);">
+            🏃
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-ink">Lesson 2: Character Movement</h3>
+          <p class="text-gray-600">Make characters walk, run, jump, and respond to player controls with custom animations</p>
+        </div>
+
+        <!-- Lesson 3 -->
+        <div class="card hover:shadow-2xl transition-all duration-300">
+          <div class="w-16 h-16 mb-4 rounded-2xl flex items-center justify-center text-4xl" style="background: rgba(25, 59, 146, 0.1);">
+            ⚔️
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-ink">Lesson 3: Damage Systems</h3>
+          <p class="text-gray-600">Create health bars, damage calculations, and exciting combat mechanics for your games</p>
+        </div>
+
+        <!-- Lesson 4 -->
+        <div class="card hover:shadow-2xl transition-all duration-300">
+          <div class="w-16 h-16 mb-4 rounded-2xl flex items-center justify-center text-4xl" style="background: rgba(44, 122, 123, 0.1);">
+            ⚡
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-ink">Lesson 4: Superpowers</h3>
+          <p class="text-gray-600">Add special abilities like flight, super speed, energy blasts, and magical powers</p>
+        </div>
+
+        <!-- Lesson 5 -->
+        <div class="card hover:shadow-2xl transition-all duration-300">
+          <div class="w-16 h-16 mb-4 rounded-2xl flex items-center justify-center text-4xl" style="background: rgba(25, 59, 146, 0.1);">
+            🎯
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-ink">Lesson 5: Spawner Systems</h3>
+          <p class="text-gray-600">Build automatic spawners for enemies, collectibles, obstacles, and more</p>
+        </div>
+
+        <!-- Bonus -->
+        <div class="card hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-primary/5 to-teal/5 border-2 border-primary/20">
+          <div class="w-16 h-16 mb-4 rounded-2xl flex items-center justify-center text-4xl" style="background: rgba(25, 59, 146, 0.1);">
+            🎁
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-primary">BONUS: AI Prompts Library</h3>
+          <p class="text-gray-700">Ready-to-use AI prompts for solving common Roblox scripting challenges</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Learn with AI Section -->
+    <section class="mb-20">
+      <div class="card bg-gradient-to-br from-primary to-primary-light text-white">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-4xl font-black mb-6">Why Learn Roblox with AI?</h2>
+          <div class="grid md:grid-cols-3 gap-8 text-center">
+            <div>
+              <div class="text-5xl mb-3">🚀</div>
+              <h3 class="text-xl font-bold mb-2">Learn 3x Faster</h3>
+              <p class="text-white/90">AI helps you understand code instantly and fix bugs quickly</p>
+            </div>
+            <div>
+              <div class="text-5xl mb-3">🎮</div>
+              <h3 class="text-xl font-bold mb-2">Build Real Games</h3>
+              <p class="text-white/90">Create actual playable games that work on Roblox platform</p>
+            </div>
+            <div>
+              <div class="text-5xl mb-3">💡</div>
+              <h3 class="text-xl font-bold mb-2">Future-Ready Skills</h3>
+              <p class="text-white/90">Master AI + coding - the most valuable skills for tomorrow</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="relative overflow-hidden rounded-[3rem] p-12 md:p-16 text-center bg-gradient-to-br from-teal to-teal-dark">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+      <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+      <div class="relative z-10">
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Ready to Start Building?</h2>
+        <p class="text-2xl text-white/90 mb-10 max-w-2xl mx-auto">Join hundreds of students already creating amazing Roblox games with AI!</p>
+        <a href="#email-capture-form" class="inline-block btn-primary bg-white text-primary hover:bg-gray-100 text-lg px-12 py-5">Get Your FREE Course Now →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16">
+    <div class="mx-auto max-w-7xl px-6 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div class="lg:col-span-1">
+          <img src="../images/robot-rocket.png" alt="TechTutor" class="h-40 w-auto" />
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">CONTACT US!</h3>
+          <div class="space-y-3 text-sm">
+            <div>
+              <p class="text-slate-400 mb-1">Tel/WA/Zalo:</p>
+              <a href="tel:0902776753" class="text-white hover:text-primary-light transition">0902 776 753</a>
+            </div>
+            <div>
+              <p class="text-slate-400 mb-1">Email:</p>
+              <a href="mailto:hello@techtutor.academy" class="text-white hover:text-primary-light transition">hello@techtutor.academy</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">OPENING HOURS</h3>
+          <div class="space-y-2 text-sm">
+            <p class="text-slate-300">Monday - Friday: 8am - 9pm</p>
+            <p class="text-slate-300">Saturday - Sunday: 8am - 8pm</p>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">START LEARNING</h3>
+          <div class="space-y-2 text-sm">
+            <a href="index.html#programs" class="block text-slate-300 hover:text-primary-light transition">Programs</a>
+            <a href="student-projects.html" class="block text-slate-300 hover:text-primary-light transition">Projects</a>
+            <a href="plans-and-faq.html" class="block text-slate-300 hover:text-primary-light transition">Pricing</a>
+            <a href="blog.html" class="block text-slate-300 hover:text-primary-light transition">Blog</a>
+            <a href="vision.html" class="block text-slate-300 hover:text-primary-light transition">Our Vision</a>
+            <a href="free-trial.html" class="block text-slate-300 hover:text-primary-light transition">Free trial</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">CONNECT WITH US!</h3>
+          <div class="flex gap-3">
+            <a href="https://www.facebook.com/share/1An2WsT9X5/" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Facebook">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/techtutor.academy?igsh=MWljOWJjbndwY2l0dQ==" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Instagram">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://zalo.me/0902776753" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Zalo">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0zm.5 14.969h-4.25a.469.469 0 110-.938h4.25a.469.469 0 110 .938zm2.406-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938zm0-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-slate-700 text-center">
+        <p class="text-sm text-slate-400">© 2025 TechTutor Academy. All rights reserved.</p>
+        <p class="text-xs text-slate-500 mt-2">English / Vietnamese bilingual support</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Brevo Form Scripts -->
+  <script>
+    window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+    window.LOCALE = 'en';
+    window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+    window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank.";
+    window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+    window.translation = {
+      common: {
+        selectedList: '{quantity} list selected',
+        selectedLists: '{quantity} lists selected',
+        selectedOption: '{quantity} selected',
+        selectedOptions: '{quantity} selected',
+      }
+    };
+    var AUTOHIDE = Boolean(0);
+  </script>
+
+  <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LdkrHosAAAAAIht7GIPqi5CoZCUpeFfvezULkC5&hl=en" async defer></script>
+
+  <script>
+    // Smooth scroll to form
+    document.querySelectorAll('a[href="#email-capture-form"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('email-form-container').scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      });
+    });
+
+    // Listen for successful Brevo form submission and track with Google Analytics
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmitted') {
+        // Track conversion with Google Analytics
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'conversion', {
+            'send_to': 'G-4MZ1XEZXB6',
+            'event_category': 'Lead',
+            'event_label': 'Roblox AI Course Signup'
+          });
+        }
+        // Redirect to course page after successful signup
+        setTimeout(() => {
+          window.location.href = '/courses/roblox-ai-course.html';
+        }, 1000);
+      }
+    });
+
+    // Access Code Modal Functions
+    function openAccessModal() {
+      document.getElementById('access-modal').classList.remove('hidden');
+      document.getElementById('access-code-input').focus();
+    }
+
+    function closeAccessModal() {
+      document.getElementById('access-modal').classList.add('hidden');
+      document.getElementById('access-code-input').value = '';
+    }
+
+    function submitAccessCode() {
+      const code = document.getElementById('access-code-input').value.trim();
+      if (code === '6769RG') {
+        window.location.href = '/courses/roblox-ai-course.html';
+      } else {
+        alert('Invalid access code. Please try again or sign up for the course.');
+        document.getElementById('access-code-input').focus();
+      }
+    }
+
+    // Allow Enter key to submit code
+    document.getElementById('access-code-input')?.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        submitAccessCode();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !document.getElementById('access-modal').classList.contains('hidden')) {
+        closeAccessModal();
+      }
+    });
+  </script>
+
+</body>
+</html>

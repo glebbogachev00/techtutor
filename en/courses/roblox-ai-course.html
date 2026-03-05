@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <!-- Check unlock status immediately to prevent flash -->
+  <script>
+    if (localStorage.getItem('tt-roblox-course-unlocked') === 'true') {
+      document.documentElement.classList.add('course-unlocked');
+    }
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZ1XEZXB6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-4MZ1XEZXB6');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roblox with Generative AI | TechTutor Academy</title>
+  <meta name="description" content="Learn Roblox scripting with AI. Master Lua programming, character movement, damage systems, superpowers, and spawner systems. 5 interactive lessons." />
+  <link rel="icon" type="image/png" href="../../images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            teal: { DEFAULT: '#2C7A7B', light: '#319795', dark: '#234E52' },
+            ink: '#0F172A',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; }
+    .btn-primary { background: #193b92; color: white; padding: 14px 32px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; display: inline-block; text-decoration: none; }
+    .btn-primary:hover { background: #0f2861; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(25, 59, 146, 0.4); }
+    .btn-secondary { background: white; color: #193b92; padding: 14px 32px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; display: inline-block; text-decoration: none; border: 2px solid #193b92; }
+    .btn-secondary:hover { background: #193b92; color: white; transform: translateY(-2px); }
+    .card { background: white; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); padding: 32px; }
+    .lesson-card { background: white; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); padding: 32px; transition: all 0.3s ease; display: flex; flex-direction: column; }
+    .lesson-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15); }
+    .lesson-content { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .lesson-badge { display: inline-block; background: #193b92; color: white; padding: 6px 14px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; margin-bottom: 8px; width: fit-content; }
+    .section-title { font-size: 2.5rem; font-weight: 800; line-height: 1.2; color: #0F172A; }
+    .quiz-option { background: white; border: 2px solid #e5e7eb; padding: 16px; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; margin-bottom: 12px; }
+    .quiz-option:hover { border-color: #193b92; background: #f8f9ff; }
+    .quiz-option.selected { background: #193b92; color: white; border-color: #193b92; }
+    .ordering-item { background: white; border: 2px solid #e5e7eb; padding: 16px; border-radius: 12px; cursor: move; transition: all 0.3s ease; display: flex; align-items: center; gap: 12px; }
+    .ordering-item:hover { border-color: #193b92; background: #f8f9ff; }
+    .ordering-item.dragging { opacity: 0.5; }
+    .ordering-item.drag-over { border-color: #193b92; border-style: dashed; }
+    .ordering-handle { color: #94a3b8; font-size: 1.2rem; cursor: grab; }
+    .ordering-text { flex: 1; font-size: 0.95rem; }
+    .ordering-feedback { transition: all 0.3s ease; }
+    .ordering-feedback.correct { background: #d1fae5; border: 2px solid #10b981; color: #065f46; }
+    .ordering-feedback.incorrect { background: #fee2e2; border: 2px solid #ef4444; color: #991b1b; }
+    .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 24px; background: #000; }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .progress-bar { height: 4px; background: #e5e7eb; border-radius: 2px; margin: 24px 0; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #193b92, #2C7A7B); transition: width 0.3s ease; }
+    .hidden-content { display: none; }
+    .hidden-content.active { display: block; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 9999; align-items: center; justify-content: center; }
+    .modal.active { display: flex; }
+    .modal-content { background: white; border-radius: 24px; padding: 40px; max-width: 500px; width: 90%; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); }
+    .page-locked > *:not(script) { display: none; }
+    .page-locked.unlocked > * { display: block; }
+    .page-content { display: none; }
+    .page-content.unlocked { display: block; }
+    /* Show content immediately if already unlocked */
+    html.course-unlocked .page-locked > * { display: block; }
+    html.course-unlocked .page-content { display: block; }
+    html.course-unlocked .modal { display: none !important; }
+  </style>
+  <!-- SEO: Hreflang tags for multilingual support -->
+  <link rel="alternate" hreflang="en" href="https://techtutor.academy/en/courses/roblox-ai-course.html" />
+  <link rel="alternate" hreflang="vi" href="https://techtutor.academy/vn/courses/roblox-ai-course.html" />
+  <link rel="alternate" hreflang="x-default" href="https://techtutor.academy/en/courses/roblox-ai-course.html" />
+  <link rel="canonical" href="https://techtutor.academy/en/courses/roblox-ai-course.html" />
+</head>
+<body class="antialiased">
+
+  <!-- Unlock Modal -->
+  <div id="unlock-modal" class="modal active">
+    <div class="modal-content text-center">
+      <h2 class="text-3xl font-black text-ink mb-4">🎮 Unlock Course</h2>
+      <p class="text-gray-600 mb-6">Enter your access code to unlock all 5 lessons</p>
+      <input type="text" id="access-code" placeholder="Enter access code" class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl mb-4 focus:outline-none focus:border-primary" />
+      <button onclick="unlockCourse()" class="btn-primary w-full mb-4">Unlock Now</button>
+      <p class="text-xs text-gray-500">Don't have an access code? <a href="/en/roblox-ai-course.html" class="text-primary hover:text-primary-dark font-semibold">Sign up for the course</a></p>
+    </div>
+  </div>
+
+  <div class="page-locked">
+    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+      <div class="max-w-7xl mx-auto px-6 py-4">
+        <div class="flex items-center justify-between gap-6">
+          <a href="../index.html" class="text-2xl font-black tracking-tight text-slate-900 flex items-center gap-1" aria-label="TechTutor home">
+            <span class="text-primary">Tech</span><span class="text-teal-500">Tutor</span>
+          </a>
+
+          <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-700">
+            <div class="relative hidden md:block group">
+              <a href="../index.html#programs" class="inline-flex items-center gap-1 text-slate-700 hover:text-primary transition">
+                <span data-i18n="nav.programs">Programs</span>
+                <svg class="h-4 w-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </a>
+              <div class="absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 rounded-2xl border border-slate-100 bg-white/95 p-3 shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                <div class="flex flex-col gap-1 text-sm">
+                  <a href="../programs/scratch-game-coder.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Scratch Game Coder</a>
+                  <a href="../programs/gdevelop-game-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">GDevelop Game Designer</a>
+                  <a href="../programs/roblox-world-creator.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Roblox World Creator</a>
+                  <a href="../programs/3d-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">3D Designer</a>
+                  <a href="../programs/ai-programming-quest.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">AI & Programming Quest</a>
+                  <a href="../programs/generative-ai-magic.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Generative AI Magic</a>
+                  <a href="../programs/app-development.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">App Development</a>
+                </div>
+              </div>
+            </div>
+            <a href="../student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
+            <a href="../how-it-works.html" class="hover:text-primary transition" data-i18n="nav.how-it-works">How It Works</a>
+            <a href="../online-courses.html" class="hover:text-primary transition" data-i18n="nav.free-courses">Free Courses</a>
+            <a href="../plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
+            <a href="../blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
+          </div>
+
+          <div class="hidden md:flex items-center gap-4">
+            <div class="relative group">
+              <button class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-primary hover:bg-primary hover:bg-opacity-10 transition" aria-label="Switch language">
+                <span class="text-xl">🇬🇧</span>
+              </button>
+              <div class="absolute right-0 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                <div class="p-2">
+                  <a href="../../vn/courses/roblox-ai-course.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-100 transition">
+                    <span class="text-2xl">🇻🇳</span>
+                    <span class="text-sm font-medium text-slate-700">Tiếng Việt</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Login Button -->
+            <a href="../login.html" class="rounded-full border-2 border-primary text-primary px-5 py-2 text-sm font-semibold transition hover:bg-primary hover:text-white flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+              </svg>
+              Login
+            </a>
+
+            <a aria-label="Start your free trial with TechTutor Academy" href="../free-trial.html" class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light">Free Trial</a>
+          </div>
+
+          <div class="flex items-center gap-3 md:hidden">
+            <div class="relative group">
+              <button class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-primary hover:bg-primary hover:bg-opacity-10 transition" aria-label="Switch language">
+                <span class="text-xl">🇬🇧</span>
+              </button>
+              <div class="absolute right-0 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                <div class="p-2">
+                  <a href="../../vn/courses/roblox-ai-course.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-100 transition">
+                    <span class="text-2xl">🇻🇳</span>
+                    <span class="text-sm font-medium text-slate-700">Tiếng Việt</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <button id="mobile-menu-button" class="px-4 py-2 rounded-full border-2 border-primary text-primary font-medium text-sm hover:bg-primary hover:bg-opacity-10 transition" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+              Menu
+            </button>
+          </div>
+        </div>
+
+        <div id="mobile-menu" class="md:hidden hidden mt-4 border-t border-slate-200 pt-4">
+          <div class="flex flex-col gap-4 text-sm font-medium text-slate-700">
+            <div class="rounded-2xl border border-slate-200 p-4">
+              <button id="mobile-programs-toggle" class="flex w-full items-center justify-between text-left" aria-label="Toggle programs submenu" aria-expanded="false">
+                <span data-i18n="nav.programs">Programs</span>
+                <svg id="programs-arrow" class="h-5 w-5 text-slate-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div id="mobile-programs-menu" class="mt-3 hidden flex flex-col gap-3 border-l-2 border-primary pl-4 text-sm">
+                <a href="../programs/scratch-game-coder.html" class="text-slate-700 hover:text-primary py-1">Scratch Game Coder</a>
+                <a href="../programs/gdevelop-game-designer.html" class="text-slate-700 hover:text-primary py-1">GDevelop Game Designer</a>
+                <a href="../programs/roblox-world-creator.html" class="text-slate-700 hover:text-primary py-1">Roblox World Creator</a>
+                <a href="../programs/3d-designer.html" class="text-slate-700 hover:text-primary py-1">3D Designer</a>
+                <a href="../programs/ai-programming-quest.html" class="text-slate-700 hover:text-primary py-1">AI & Programming Quest</a>
+                <a href="../programs/generative-ai-magic.html" class="text-slate-700 hover:text-primary py-1">Generative AI Magic</a>
+                <a href="../programs/app-development.html" class="text-slate-700 hover:text-primary py-1">App Development</a>
+              </div>
+            </div>
+            <a href="../student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
+            <a href="../how-it-works.html" class="hover:text-primary transition" data-i18n="nav.how-it-works">How It Works</a>
+            <a href="../online-courses.html" class="hover:text-primary transition" data-i18n="nav.free-courses">Free Courses</a>
+            <a href="../plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
+            <a href="../blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
+
+            <!-- Mobile Login Button -->
+            <a href="../login.html" class="flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+              </svg>
+              Login
+            </a>
+
+            <a aria-label="Start your free trial with TechTutor Academy" href="../free-trial.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm">Free Trial</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <script src="../../js/site.js" defer></script>
+
+    <!-- Main Content -->
+    <main class="page-content max-w-7xl mx-auto px-6 py-16">
+
+      <!-- Hero Section -->
+      <section class="mb-16">
+        <div class="grid md:grid-cols-2 gap-12 items-center mb-12">
+          <div>
+            <div class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">Interactive Course</div>
+            <h1 class="text-5xl md:text-6xl font-black leading-tight mb-6 text-ink">
+              Roblox with<br/>Generative AI
+            </h1>
+            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+              Master Lua scripting and game development with AI assistance. Learn character movement, damage systems, superpowers, and more. Build real games on Roblox.
+            </p>
+            <div class="flex items-center gap-6 text-sm text-gray-600">
+              <div class="flex items-center gap-2">
+                <span class="text-2xl">⭐</span>
+                <span class="font-semibold text-ink">5.0/5</span> rating
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-2xl">🎓</span>
+                <span class="font-semibold text-ink">5</span> lessons
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-teal/5 rounded-[3rem] transform rotate-3"></div>
+            <img src="../../images/roblox.png" alt="Roblox with AI" class="relative w-full max-w-lg mx-auto drop-shadow-2xl" />
+          </div>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="mb-8">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-semibold text-ink">Your Progress</span>
+            <span class="text-sm font-semibold text-primary" id="progressText">0/5 Complete</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lessons Grid -->
+      <section class="mb-20">
+        <h2 class="text-4xl font-black text-ink mb-12 text-center">5 Interactive Lessons</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          
+          <!-- Lesson 1 -->
+          <div class="lesson-card group">
+            <div class="relative mb-6 h-40 rounded-xl overflow-hidden">
+              <img src="../../images/RG_L1.png" alt="Roblox Character Movement with ChatGPT" class="w-full h-full object-cover">
+            </div>
+            <div class="lesson-content">
+              <div class="lesson-badge">Lesson 1</div>
+              <h3 class="text-2xl font-bold text-ink mb-3">Character Movement</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed text-sm">
+                Use ChatGPT to create damage scripts and NPC follow scripts. Learn how to ask AI the right questions about Lua coding.
+              </p>
+              <div class="mb-6 space-y-2">
+                <p class="text-xs font-semibold text-slate-700">Topics covered:</p>
+                <ul class="text-xs text-gray-600 space-y-1">
+                  <li>✓ Creating damage scripts with AI</li>
+                  <li>✓ Building NPC follow behavior</li>
+                  <li>✓ Asking ChatGPT the right questions</li>
+                  <li>✓ Where to add scripts & how many you need</li>
+                </ul>
+              </div>
+              <div class="text-xs text-slate-500 mb-4 whitespace-nowrap">⏱ 5 minutes</div>
+              <button onclick="openLesson(1)" class="btn-primary w-full text-center">View Lesson</button>
+            </div>
+          </div>
+
+          <!-- Lesson 2 -->
+          <div class="lesson-card group">
+            <div class="relative mb-6 h-40 rounded-xl overflow-hidden">
+              <img src="../../images/RG_L2.png" alt="Adding Superpowers" class="w-full h-full object-cover">
+            </div>
+            <div class="lesson-content">
+              <div class="lesson-badge">Lesson 2</div>
+              <h3 class="text-2xl font-bold text-ink mb-3">Superpowers</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed text-sm">
+                Create a fireball tool with ChatGPT's help and learn how to customize tool properties.
+              </p>
+              <div class="mb-6 space-y-2">
+                <p class="text-xs font-semibold text-slate-700">Topics covered:</p>
+                <ul class="text-xs text-gray-600 space-y-1">
+                  <li>✓ Adding tools to StarterPack</li>
+                  <li>✓ Naming tools and scripts</li>
+                  <li>✓ Adjusting tool properties</li>
+                  <li>✓ Making handles invisible</li>
+                </ul>
+              </div>
+              <div class="text-xs text-slate-500 mb-4 whitespace-nowrap">⏱ 5 minutes</div>
+              <button onclick="openLesson(2)" class="btn-primary w-full text-center">View Lesson</button>
+            </div>
+          </div>
+
+          <!-- Lesson 3 -->
+          <div class="lesson-card group">
+            <div class="relative mb-6 h-40 rounded-xl overflow-hidden">
+              <img src="../../images/RG_L2.png" alt="Adding Superpower pt.2" class="w-full h-full object-cover">
+            </div>
+            <div class="lesson-content">
+              <div class="lesson-badge">Lesson 3</div>
+              <h3 class="text-2xl font-bold text-ink mb-3">Superpowers Pt.2</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed text-sm">
+                Complete your fireball tool by understanding LocalScript vs Script and adding all necessary components.
+              </p>
+              <div class="mb-6 space-y-2">
+                <p class="text-xs font-semibold text-slate-700">Topics covered:</p>
+                <ul class="text-xs text-gray-600 space-y-1">
+                  <li>✓ LocalScript vs Script</li>
+                  <li>✓ FireEvent setup</li>
+                  <li>✓ Client-server communication</li>
+                  <li>✓ Tool components</li>
+                </ul>
+              </div>
+              <div class="text-xs text-slate-500 mb-4 whitespace-nowrap">⏱ 4 minutes</div>
+              <button onclick="openLesson(3)" class="btn-primary w-full text-center">View Lesson</button>
+            </div>
+          </div>
+
+          <!-- Lesson 4 -->
+          <div class="lesson-card group">
+            <div class="relative mb-6 h-40 rounded-xl overflow-hidden">
+              <img src="../../images/RG_L4.png" alt="Enemy Spawners" class="w-full h-full object-cover">
+            </div>
+            <div class="lesson-content">
+              <div class="lesson-badge">Lesson 4</div>
+              <h3 class="text-2xl font-bold text-ink mb-3">Enemy Spawners</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed text-sm">
+                Create automatic enemy spawners that generate NPCs at regular intervals for your game.
+              </p>
+              <div class="mb-6 space-y-2">
+                <p class="text-xs font-semibold text-slate-700">Topics covered:</p>
+                <ul class="text-xs text-gray-600 space-y-1">
+                  <li>✓ ServerStorage vs Workspace</li>
+                  <li>✓ Spawner placement</li>
+                  <li>✓ Anchoring objects</li>
+                  <li>✓ Enemy generation loops</li>
+                </ul>
+              </div>
+              <div class="text-xs text-slate-500 mb-4 whitespace-nowrap">⏱ 5 minutes</div>
+              <button onclick="openLesson(4)" class="btn-primary w-full text-center">View Lesson</button>
+            </div>
+          </div>
+
+          <!-- Lesson 5 -->
+          <div class="lesson-card group">
+            <div class="relative mb-6 h-40 rounded-xl overflow-hidden">
+              <img src="../../images/RG_L5.png" alt="Leaderboards" class="w-full h-full object-cover">
+            </div>
+            <div class="lesson-content">
+              <div class="lesson-badge">Lesson 5</div>
+              <h3 class="text-2xl font-bold text-ink mb-3">Leaderboards</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed text-sm">
+                Build a leaderboard system to track player points and display rankings when enemies are defeated.
+              </p>
+              <div class="mb-6 space-y-2">
+                <p class="text-xs font-semibold text-slate-700">Topics covered:</p>
+                <ul class="text-xs text-gray-600 space-y-1">
+                  <li>✓ LeaderStats setup</li>
+                  <li>✓ Tracking player points</li>
+                  <li>✓ Updating XP values</li>
+                  <li>✓ Point systems</li>
+                </ul>
+              </div>
+              <div class="text-xs text-slate-500 mb-4 whitespace-nowrap">⏱ 5 minutes</div>
+              <button onclick="openLesson(5)" class="btn-primary w-full text-center">View Lesson</button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Lessons Content -->
+      <section>
+        
+        <!-- Lesson 1 Content -->
+        <div id="lesson-1" class="hidden-content">
+          <div class="mb-12">
+            <button onclick="closeLesson()" class="text-primary hover:text-primary-dark mb-6 font-semibold flex items-center gap-2">
+              ← Back to Lessons
+            </button>
+            
+            <div class="flex items-center gap-4 mb-8">
+              <span class="lesson-badge">Lesson 1</span>
+              <h2 class="text-4xl font-bold text-ink">Character Movement</h2>
+            </div>
+
+            <!-- Video -->
+            <div class="mb-12">
+              <div class="video-container mb-6">
+                <iframe src="https://www.youtube-nocookie.com/embed/FXLwNOp8tzA" allowfullscreen="" loading="lazy"></iframe>
+              </div>
+              <p class="text-sm text-gray-500">Video Duration: 5 minutes</p>
+            </div>
+
+            <!-- Description -->
+            <div class="card mb-12">
+              <h3 class="text-2xl font-bold text-ink mb-6">Lesson Summary</h3>
+              
+              <div class="space-y-6 text-gray-700 leading-relaxed">
+                <div>
+                  <h4 class="font-bold text-ink mb-3">Using ChatGPT to Create Game Scripts</h4>
+                  <p>In this lesson, you'll learn how to use ChatGPT to create two essential scripts: a damage script and an NPC follow script. You'll discover how AI can help you write Lua code faster and understand what each part does.</p>
+                </div>
+
+                <div>
+                  <h4 class="font-bold text-ink mb-3">Creating a Damage Script:</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Ask ChatGPT to create a script that damages players when they touch an object</li>
+                    <li>Learn where to place the script in Roblox Studio</li>
+                    <li>Understand how the damage calculation works</li>
+                    <li>Ask follow-up questions about specific code lines</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="font-bold text-ink mb-3">Building an NPC Follow Script:</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Use AI to generate code that makes NPCs follow the player</li>
+                    <li>Learn how many scripts you need and where they go</li>
+                    <li>Understand NPC pathfinding basics</li>
+                    <li>Ask ChatGPT to explain confusing parts of the code</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="font-bold text-ink mb-3">Questions to Ask ChatGPT:</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>"Where do I add this script in Roblox Studio?"</li>
+                    <li>"What does this line of code do?"</li>
+                    <li>"How many scripts do I need for this feature?"</li>
+                    <li>"Can you explain this in simpler terms?"</li>
+                    <li>"What happens if I change this value?"</li>
+                  </ul>
+                </div>
+
+                <p class="font-semibold text-ink mt-6">
+                  By the end of this lesson, you'll know how to use AI to create scripts and understand what makes them work!
+                </p>
+              </div>
+            </div>
+
+            <!-- Quiz Section -->
+            <div class="card">
+              <h3 class="text-2xl font-bold text-ink mb-8">Lesson Quiz</h3>
+              
+              <div class="space-y-8">
+
+                <!-- Question 1: Ordering Question -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">1. Arrange the steps in the correct order for creating an NPC with a script:</h4>
+                  <div id="ordering-container" class="space-y-3 mb-4">
+                    <div class="ordering-item" draggable="true" data-order="2">
+                      <span class="ordering-handle">☰</span>
+                      <span class="ordering-text">Add an NPC from the toolbox</span>
+                    </div>
+                    <div class="ordering-item" draggable="true" data-order="4">
+                      <span class="ordering-handle">☰</span>
+                      <span class="ordering-text">Play the game</span>
+                    </div>
+                    <div class="ordering-item" draggable="true" data-order="1">
+                      <span class="ordering-handle">☰</span>
+                      <span class="ordering-text">Ask ChatGPT for the script</span>
+                    </div>
+                    <div class="ordering-item" draggable="true" data-order="3">
+                      <span class="ordering-handle">☰</span>
+                      <span class="ordering-text">Add a script to an NPC</span>
+                    </div>
+                  </div>
+                  <input type="hidden" name="q1" id="q1-order" value="">
+                  <div id="ordering-feedback" class="hidden mt-4 p-4 rounded-lg"></div>
+                </div>
+
+                <!-- Question 2 -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">2. Where do you add a script in Roblox Studio?</h4>
+                  <div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q2-a')">
+                      <input type="radio" name="q2" value="a" id="q2-a" class="mr-3">
+                      <label for="q2-a" class="cursor-pointer">Inside the part or NPC in the Explorer</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q2-b')">
+                      <input type="radio" name="q2" value="b" id="q2-b" class="mr-3">
+                      <label for="q2-b" class="cursor-pointer">In the Properties panel</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q2-c')">
+                      <input type="radio" name="q2" value="c" id="q2-c" class="mr-3">
+                      <label for="q2-c" class="cursor-pointer">In the Workspace only</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q2-d')">
+                      <input type="radio" name="q2" value="d" id="q2-d" class="mr-3">
+                      <label for="q2-d" class="cursor-pointer">Scripts cannot be added to NPCs</label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">3. What can ChatGPT help you with when scripting in Roblox?</h4>
+                  <div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q3-a')">
+                      <input type="radio" name="q3" value="a" id="q3-a" class="mr-3">
+                      <label for="q3-a" class="cursor-pointer">Only writing complete games</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q3-b')">
+                      <input type="radio" name="q3" value="b" id="q3-b" class="mr-3">
+                      <label for="q3-b" class="cursor-pointer">Explaining code and creating scripts like damage or follow scripts</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q3-c')">
+                      <input type="radio" name="q3" value="c" id="q3-c" class="mr-3">
+                      <label for="q3-c" class="cursor-pointer">Designing 3D models</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q3-d')">
+                      <input type="radio" name="q3" value="d" id="q3-d" class="mr-3">
+                      <label for="q3-d" class="cursor-pointer">Nothing related to Roblox</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-12 flex gap-4">
+                <button onclick="submitQuiz(1)" class="btn-primary flex-1">Submit Quiz</button>
+                <button onclick="closeLesson()" class="btn-secondary flex-1">Skip to Next Lesson</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lesson 2 Content -->
+        <div id="lesson-2" class="hidden-content">
+          <div class="mb-12">
+            <button onclick="closeLesson()" class="text-primary hover:text-primary-dark mb-6 font-semibold flex items-center gap-2">
+              ← Back to Lessons
+            </button>
+            
+            <div class="flex items-center gap-4 mb-8">
+              <span class="lesson-badge">Lesson 2</span>
+              <h2 class="text-4xl font-bold text-ink">Superpowers</h2>
+            </div>
+
+            <!-- Video -->
+            <div class="mb-12">
+              <div class="video-container mb-6">
+                <iframe src="https://www.youtube-nocookie.com/embed/sOjyArgFCdo" allowfullscreen="" loading="lazy"></iframe>
+              </div>
+              <p class="text-sm text-gray-500">Video Duration: 5 minutes</p>
+            </div>
+
+            <!-- Description -->
+            <div class="card mb-12">
+              <h3 class="text-2xl font-bold text-ink mb-6">Lesson Summary</h3>
+
+              <div class="space-y-6 text-gray-700 leading-relaxed">
+                <div>
+                  <h4 class="font-bold text-ink mb-3">Creating Superpowers with ChatGPT</h4>
+                  <p>Learn how to add exciting abilities to your game by creating a fireball tool! You'll use ChatGPT to help generate scripts and learn about tool properties in Roblox.</p>
+                </div>
+
+                <div>
+                  <h4 class="font-bold text-ink mb-3">Key Concepts:</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li><strong>StarterPack</strong> - Where tools are added so players spawn with them</li>
+                    <li><strong>Tool Properties</strong> - Settings that control how objects look and behave</li>
+                    <li><strong>Transparency</strong> - Property to make parts invisible</li>
+                    <li><strong>Naming</strong> - Organizing your tools and scripts with clear names</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="font-bold text-ink mb-3">What You'll Create:</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Add a fireball tool to your game using ChatGPT</li>
+                    <li>Place the tool in StarterPack so players can use it</li>
+                    <li>Make the tool handle invisible so fireballs shoot from your arm</li>
+                    <li>Learn to name your tools and scripts for easy organization</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="font-bold text-ink mb-3">Using ChatGPT to Help:</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Ask ChatGPT to create scripts for you</li>
+                    <li>Get explanations about what different properties mean</li>
+                    <li>Learn how properties control object appearance and behavior</li>
+                    <li>Find out where to add different game elements</li>
+                  </ul>
+                </div>
+
+                <p class="font-semibold text-ink mt-6">
+                  By the end of this lesson, you'll have created your first superpower tool and learned how to customize it!
+                </p>
+              </div>
+            </div>
+
+            <!-- Quiz Section -->
+            <div class="card">
+              <h3 class="text-2xl font-bold text-ink mb-8">Lesson Quiz</h3>
+              
+              <div class="space-y-8">
+
+                <!-- Question 1 -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">1. To which section in the code do we add our fireball tool?</h4>
+                  <div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q4-a')">
+                      <input type="radio" name="q4" value="a" id="q4-a" class="mr-3">
+                      <label for="q4-a" class="cursor-pointer">StarterPack</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q4-b')">
+                      <input type="radio" name="q4" value="b" id="q4-b" class="mr-3">
+                      <label for="q4-b" class="cursor-pointer">ReplicatedStorage</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q4-c')">
+                      <input type="radio" name="q4" value="c" id="q4-c" class="mr-3">
+                      <label for="q4-c" class="cursor-pointer">ServerScriptService</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q4-d')">
+                      <input type="radio" name="q4" value="d" id="q4-d" class="mr-3">
+                      <label for="q4-d" class="cursor-pointer">Workspace</label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">2. Why do we need to give names to our tools and scripts?</h4>
+                  <div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q5-a')">
+                      <input type="radio" name="q5" value="a" id="q5-a" class="mr-3">
+                      <label for="q5-a" class="cursor-pointer">Because Roblox requires it</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q5-b')">
+                      <input type="radio" name="q5" value="b" id="q5-b" class="mr-3">
+                      <label for="q5-b" class="cursor-pointer">So we can find them easily when we add more stuff to the game</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q5-c')">
+                      <input type="radio" name="q5" value="c" id="q5-c" class="mr-3">
+                      <label for="q5-c" class="cursor-pointer">To make the game run faster</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q5-d')">
+                      <input type="radio" name="q5" value="d" id="q5-d" class="mr-3">
+                      <label for="q5-d" class="cursor-pointer">Names don't matter in Roblox</label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">3. What property do we need to adjust for our fireball handle to make it invisible?</h4>
+                  <div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q6-a')">
+                      <input type="radio" name="q6" value="a" id="q6-a" class="mr-3">
+                      <label for="q6-a" class="cursor-pointer">Color</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q6-b')">
+                      <input type="radio" name="q6" value="b" id="q6-b" class="mr-3">
+                      <label for="q6-b" class="cursor-pointer">Transparency</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q6-c')">
+                      <input type="radio" name="q6" value="c" id="q6-c" class="mr-3">
+                      <label for="q6-c" class="cursor-pointer">Size</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q6-d')">
+                      <input type="radio" name="q6" value="d" id="q6-d" class="mr-3">
+                      <label for="q6-d" class="cursor-pointer">Material</label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">4. What are Properties in Roblox?</h4>
+                  <p class="text-sm text-gray-600 mb-4 italic">💡 Tip: If you're not sure, you can ask ChatGPT for an answer!</p>
+                  <div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q7-a')">
+                      <input type="radio" name="q7" value="a" id="q7-a" class="mr-3">
+                      <label for="q7-a" class="cursor-pointer">Properties are settings that control how objects look and behave in Roblox</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q7-b')">
+                      <input type="radio" name="q7" value="b" id="q7-b" class="mr-3">
+                      <label for="q7-b" class="cursor-pointer">Properties are scripts that make things move</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q7-c')">
+                      <input type="radio" name="q7" value="c" id="q7-c" class="mr-3">
+                      <label for="q7-c" class="cursor-pointer">Properties are only for changing colors</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q7-d')">
+                      <input type="radio" name="q7" value="d" id="q7-d" class="mr-3">
+                      <label for="q7-d" class="cursor-pointer">Properties are player usernames</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-12 flex gap-4">
+                <button onclick="submitQuiz(2)" class="btn-primary flex-1">Submit Quiz</button>
+                <button onclick="closeLesson()" class="btn-secondary flex-1">Skip to Next Lesson</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lesson 3 Content -->
+        <div id="lesson-3" class="hidden-content">
+          <div class="mb-12">
+            <button onclick="closeLesson()" class="text-primary hover:text-primary-dark mb-6 font-semibold flex items-center gap-2">
+              ← Back to Lessons
+            </button>
+            
+            <div class="flex items-center gap-4 mb-8">
+              <span class="lesson-badge">Lesson 3</span>
+              <h2 class="text-4xl font-bold text-ink">Superpowers Pt.2</h2>
+            </div>
+
+            <!-- Video -->
+            <div class="mb-12">
+              <div class="video-container mb-6">
+                <iframe src="https://www.youtube-nocookie.com/embed/iZilK2IUCKI" allowfullscreen="" loading="lazy"></iframe>
+              </div>
+              <p class="text-sm text-gray-500">Video Duration: 4 minutes</p>
+            </div>
+
+            <!-- Description -->
+            <div class="card mb-12">
+              <h3 class="text-2xl font-bold text-ink mb-6">Lesson Summary</h3>
+
+              <div class="space-y-6 text-gray-700 leading-relaxed">
+                <div>
+                  <h4 class="font-bold text-ink mb-3">Completing the Fireball Tool</h4>
+                  <p>In this lesson, you'll finish building your fireball tool by understanding how LocalScript and Script work together. You'll learn about client-server communication and why both are needed for tools to work properly.</p>
+                </div>
+
+                <div>
+                  <h4 class="font-bold text-ink mb-3">Required Components:</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li><strong>Handle</strong> - The physical part that players hold</li>
+                    <li><strong>LocalScript</strong> - Gets mouse direction (runs on player's computer)</li>
+                    <li><strong>Script</strong> - Creates fireball and damage (runs on server)</li>
+                    <li><strong>FireEvent</strong> - Sends information from client to server</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="font-bold text-ink mb-3">Understanding Scripts:</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li><strong>LocalScript</strong> - Runs on the client (player's computer), handles player input</li>
+                    <li><strong>Script</strong> - Runs on the server, handles game logic and damage</li>
+                    <li><strong>Why Both?</strong> - LocalScript detects where player clicks, Script creates the actual fireball</li>
+                    <li><strong>RemoteEvent</strong> - Allows LocalScript and Script to communicate</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="font-bold text-ink mb-3">How It Works:</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Player clicks to activate the tool (LocalScript detects this)</li>
+                    <li>LocalScript gets the mouse position</li>
+                    <li>LocalScript fires RemoteEvent to send position to server</li>
+                    <li>Server Script receives position and creates fireball</li>
+                    <li>Server handles damage when fireball hits something</li>
+                  </ul>
+                </div>
+
+                <p class="font-semibold text-ink mt-6">
+                  By the end of this lesson, you'll understand client-server architecture and have a fully working fireball tool!
+                </p>
+              </div>
+            </div>
+
+            <!-- Quiz Section -->
+            <div class="card">
+              <h3 class="text-2xl font-bold text-ink mb-8">Lesson Quiz</h3>
+              
+              <div class="space-y-8">
+
+                <!-- Question 1 -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">1. What are all the things we need to add to the Fireball tool for it to shoot properly?</h4>
+                  <div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q8-a')">
+                      <input type="radio" name="q8" value="a" id="q8-a" class="mr-3">
+                      <label for="q8-a" class="cursor-pointer">Handle, LocalScript, Script, and FireEvent</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q8-b')">
+                      <input type="radio" name="q8" value="b" id="q8-b" class="mr-3">
+                      <label for="q8-b" class="cursor-pointer">Only a Script</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q8-c')">
+                      <input type="radio" name="q8" value="c" id="q8-c" class="mr-3">
+                      <label for="q8-c" class="cursor-pointer">Handle and LocalScript only</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q8-d')">
+                      <input type="radio" name="q8" value="d" id="q8-d" class="mr-3">
+                      <label for="q8-d" class="cursor-pointer">Just a Handle part</label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">2. What is the difference between LocalScript and Script?</h4>
+                  <p class="text-sm text-gray-600 mb-4 italic">💡 Tip: You can ask ChatGPT if you're not sure!</p>
+                  <div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q9-a')">
+                      <input type="radio" name="q9" value="a" id="q9-a" class="mr-3">
+                      <label for="q9-a" class="cursor-pointer">LocalScript runs on the client (player's computer), Script runs on the server</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q9-b')">
+                      <input type="radio" name="q9" value="b" id="q9-b" class="mr-3">
+                      <label for="q9-b" class="cursor-pointer">They are exactly the same</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q9-c')">
+                      <input type="radio" name="q9" value="c" id="q9-c" class="mr-3">
+                      <label for="q9-c" class="cursor-pointer">LocalScript is faster than Script</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q9-d')">
+                      <input type="radio" name="q9" value="d" id="q9-d" class="mr-3">
+                      <label for="q9-d" class="cursor-pointer">Script can only run in Workspace</label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">3. What is the LocalScript responsible for in our Fireball tool?</h4>
+                  <div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q10-a')">
+                      <input type="radio" name="q10" value="a" id="q10-a" class="mr-3">
+                      <label for="q10-a" class="cursor-pointer">Getting the mouse direction and sending it to the server</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q10-b')">
+                      <input type="radio" name="q10" value="b" id="q10-b" class="mr-3">
+                      <label for="q10-b" class="cursor-pointer">Creating the damage effect</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q10-c')">
+                      <input type="radio" name="q10" value="c" id="q10-c" class="mr-3">
+                      <label for="q10-c" class="cursor-pointer">Storing player health</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q10-d')">
+                      <input type="radio" name="q10" value="d" id="q10-d" class="mr-3">
+                      <label for="q10-d" class="cursor-pointer">Nothing, it's not needed</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-12 flex gap-4">
+                <button onclick="submitQuiz(3)" class="btn-primary flex-1">Submit Quiz</button>
+                <button onclick="closeLesson()" class="btn-secondary flex-1">Skip to Next Lesson</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lesson 4 Content -->
+        <div id="lesson-4" class="hidden-content">
+          <div class="mb-12">
+            <button onclick="closeLesson()" class="text-primary hover:text-primary-dark mb-6 font-semibold flex items-center gap-2">
+              ← Back to Lessons
+            </button>
+            
+            <div class="flex items-center gap-4 mb-8">
+              <span class="lesson-badge">Lesson 4</span>
+              <h2 class="text-4xl font-bold text-ink">Enemy Spawners</h2>
+            </div>
+
+            <!-- Video -->
+            <div class="mb-12">
+              <div class="video-container mb-6">
+                <iframe src="https://www.youtube-nocookie.com/embed/1pjSjBqE_zs" allowfullscreen="" loading="lazy"></iframe>
+              </div>
+              <p class="text-sm text-gray-500">Video Duration: 5 minutes</p>
+            </div>
+
+            <!-- Description -->
+            <div class="card mb-12">
+              <h3 class="text-2xl font-bold text-ink mb-6">Lesson Summary</h3>
+
+              <div class="space-y-6 text-gray-700 leading-relaxed">
+                <div>
+                  <h4 class="font-bold text-ink mb-3">Creating Enemy Spawners</h4>
+                  <p>Learn how to automatically spawn enemies in your game at regular intervals. This lesson covers storing enemy templates and creating spawner systems that generate NPCs for players to battle.</p>
+                </div>
+
+                <div>
+                  <h4 class="font-bold text-ink mb-3">Key Concepts:</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li><strong>ServerStorage</strong> - A container where you store objects that players can't see until they're cloned into the game</li>
+                    <li><strong>Workspace</strong> - Where the actual enemy spawner part is placed in the game world</li>
+                    <li><strong>Anchoring</strong> - Setting an object's Anchored property to true so it stays in place and isn't affected by physics</li>
+                    <li><strong>Cloning</strong> - Creating copies of enemies from ServerStorage</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="font-bold text-ink mb-3">How Enemy Spawners Work:</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Store your enemy model in ServerStorage as a template</li>
+                    <li>Place an anchored spawner part in Workspace where enemies should appear</li>
+                    <li>Script clones the enemy from ServerStorage</li>
+                    <li>Spawned enemy appears at the spawner's position</li>
+                    <li>Loop repeats to spawn enemies at intervals</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="font-bold text-ink mb-3">Why Use ServerStorage?</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Keeps enemy templates hidden from players</li>
+                    <li>More efficient than having many enemies in Workspace from the start</li>
+                    <li>Allows you to spawn unlimited copies of the same enemy</li>
+                    <li>Reduces lag by only loading enemies when needed</li>
+                  </ul>
+                </div>
+
+                <p class="font-semibold text-ink mt-6">
+                  By the end of this lesson, you'll have a working enemy spawner system that brings your game to life!
+                </p>
+              </div>
+            </div>
+
+            <!-- Quiz Section -->
+            <div class="card">
+              <h3 class="text-2xl font-bold text-ink mb-8">Lesson Quiz</h3>
+              
+              <div class="space-y-8">
+
+                <!-- Question 1 -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">1. What is ServerStorage in Roblox?</h4>
+                  <div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q11-a')">
+                      <input type="radio" name="q11" value="a" id="q11-a" class="mr-3">
+                      <label for="q11-a" class="cursor-pointer">A place to store objects that players can't see until we clone them</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q11-b')">
+                      <input type="radio" name="q11" value="b" id="q11-b" class="mr-3">
+                      <label for="q11-b" class="cursor-pointer">The same as Workspace</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q11-c')">
+                      <input type="radio" name="q11" value="c" id="q11-c" class="mr-3">
+                      <label for="q11-c" class="cursor-pointer">Where player data is saved</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q11-d')">
+                      <input type="radio" name="q11" value="d" id="q11-d" class="mr-3">
+                      <label for="q11-d" class="cursor-pointer">A folder for scripts only</label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">2. Where do we insert the enemy spawner in Roblox?</h4>
+                  <div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q12-a')">
+                      <input type="radio" name="q12" value="a" id="q12-a" class="mr-3">
+                      <label for="q12-a" class="cursor-pointer">Workspace</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q12-b')">
+                      <input type="radio" name="q12" value="b" id="q12-b" class="mr-3">
+                      <label for="q12-b" class="cursor-pointer">LocalStorage</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q12-c')">
+                      <input type="radio" name="q12" value="c" id="q12-c" class="mr-3">
+                      <label for="q12-c" class="cursor-pointer">ServerStorage</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q12-d')">
+                      <input type="radio" name="q12" value="d" id="q12-d" class="mr-3">
+                      <label for="q12-d" class="cursor-pointer">StarterPack</label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">3. What does it mean to anchor an object?</h4>
+                  <p class="text-sm text-gray-600 mb-4 italic">💡 Tip: You can ask ChatGPT for the answer to this!</p>
+                  <div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q13-a')">
+                      <input type="radio" name="q13" value="a" id="q13-a" class="mr-3">
+                      <label for="q13-a" class="cursor-pointer">To make the object stay in place and not be affected by physics</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q13-b')">
+                      <input type="radio" name="q13" value="b" id="q13-b" class="mr-3">
+                      <label for="q13-b" class="cursor-pointer">To delete the object</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q13-c')">
+                      <input type="radio" name="q13" value="c" id="q13-c" class="mr-3">
+                      <label for="q13-c" class="cursor-pointer">To make the object invisible</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q13-d')">
+                      <input type="radio" name="q13" value="d" id="q13-d" class="mr-3">
+                      <label for="q13-d" class="cursor-pointer">To attach it to the player</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-12 flex gap-4">
+                <button onclick="submitQuiz(4)" class="btn-primary flex-1">Submit Quiz</button>
+                <button onclick="closeLesson()" class="btn-secondary flex-1">Skip to Next Lesson</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lesson 5 Content -->
+        <div id="lesson-5" class="hidden-content">
+          <div class="mb-12">
+            <button onclick="closeLesson()" class="text-primary hover:text-primary-dark mb-6 font-semibold flex items-center gap-2">
+              ← Back to Lessons
+            </button>
+            
+            <div class="flex items-center gap-4 mb-8">
+              <span class="lesson-badge">Lesson 5</span>
+              <h2 class="text-4xl font-bold text-ink">Leaderboards</h2>
+            </div>
+
+            <!-- Video -->
+            <div class="mb-12">
+              <div class="video-container mb-6">
+                <iframe src="https://www.youtube-nocookie.com/embed/RyjyxGPCxco" allowfullscreen="" loading="lazy"></iframe>
+              </div>
+              <p class="text-sm text-gray-500">Video Duration: 5 minutes</p>
+            </div>
+
+            <!-- Description -->
+            <div class="card mb-12">
+              <h3 class="text-2xl font-bold text-ink mb-6">Lesson Summary</h3>
+
+              <div class="space-y-6 text-gray-700 leading-relaxed">
+                <div>
+                  <h4 class="font-bold text-ink mb-3">Building Leaderboard Systems</h4>
+                  <p>Learn how to track player progress with a leaderboard that displays stats. You'll create a leaderstats script, add XP rewards for defeating enemies, and watch as players compete for the top spot!</p>
+                </div>
+
+                <div>
+                  <h4 class="font-bold text-ink mb-3">Key Concepts:</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li><strong>leaderstats script</strong> - A script file in ServerScriptService that sets up the leaderboard</li>
+                    <li><strong>XP System</strong> - Points that players earn by defeating enemies</li>
+                    <li><strong>XP Script</strong> - Updates player stats when enemies are killed</li>
+                    <li><strong>PlayerAdded Event</strong> - Detects when players join to set up their stats</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="font-bold text-ink mb-3">What You'll Create:</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Create a leaderstats script in ServerScriptService</li>
+                    <li>Set up XP values that appear on the leaderboard</li>
+                    <li>Add an XP script that rewards players for enemy kills</li>
+                    <li>See real-time leaderboard updates as players earn points</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="font-bold text-ink mb-3">How It Works:</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>leaderstats script creates player stat folders when they join</li>
+                    <li>XP values are stored and displayed automatically</li>
+                    <li>XP script detects enemy deaths and awards points</li>
+                    <li>Leaderboard updates in real-time for all players to see</li>
+                  </ul>
+                </div>
+
+                <p class="font-semibold text-ink mt-6">
+                  By the end of this lesson, you'll have a working leaderboard that tracks player progress and creates competition!
+                </p>
+              </div>
+            </div>
+
+            <!-- Quiz Section -->
+            <div class="card">
+              <h3 class="text-2xl font-bold text-ink mb-8">Lesson Quiz</h3>
+              
+              <div class="space-y-8">
+
+                <!-- Question 1 -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">1. What is leaderstats in Roblox?</h4>
+                  <div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q14-a')">
+                      <input type="radio" name="q14" value="a" id="q14-a" class="mr-3">
+                      <label for="q14-a" class="cursor-pointer">A script file in ServerScriptService that sets up the leaderboard</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q14-b')">
+                      <input type="radio" name="q14" value="b" id="q14-b" class="mr-3">
+                      <label for="q14-b" class="cursor-pointer">A type of enemy</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q14-c')">
+                      <input type="radio" name="q14" value="c" id="q14-c" class="mr-3">
+                      <label for="q14-c" class="cursor-pointer">A game mode</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q14-d')">
+                      <input type="radio" name="q14" value="d" id="q14-d" class="mr-3">
+                      <label for="q14-d" class="cursor-pointer">A built-in Roblox feature you don't need to script</label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">2. Where do we add leaderstats?</h4>
+                  <div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q15-a')">
+                      <input type="radio" name="q15" value="a" id="q15-a" class="mr-3">
+                      <label for="q15-a" class="cursor-pointer">Inside the player object when they join</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q15-b')">
+                      <input type="radio" name="q15" value="b" id="q15-b" class="mr-3">
+                      <label for="q15-b" class="cursor-pointer">In ServerStorage</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q15-c')">
+                      <input type="radio" name="q15" value="c" id="q15-c" class="mr-3">
+                      <label for="q15-c" class="cursor-pointer">In Workspace</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q15-d')">
+                      <input type="radio" name="q15" value="d" id="q15-d" class="mr-3">
+                      <label for="q15-d" class="cursor-pointer">In StarterPack</label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div>
+                  <h4 class="font-bold text-ink mb-4">3. How do we update the XP value when a player kills an enemy?</h4>
+                  <div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q16-a')">
+                      <input type="radio" name="q16" value="a" id="q16-a" class="mr-3">
+                      <label for="q16-a" class="cursor-pointer">In the XP script when the enemy dies</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q16-b')">
+                      <input type="radio" name="q16" value="b" id="q16-b" class="mr-3">
+                      <label for="q16-b" class="cursor-pointer">XP updates automatically</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q16-c')">
+                      <input type="radio" name="q16" value="c" id="q16-c" class="mr-3">
+                      <label for="q16-c" class="cursor-pointer">In the player's inventory</label>
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, 'q16-d')">
+                      <input type="radio" name="q16" value="d" id="q16-d" class="mr-3">
+                      <label for="q16-d" class="cursor-pointer">In ReplicatedStorage</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-12 flex gap-4">
+                <button onclick="submitQuiz(5)" class="btn-primary flex-1">Submit Quiz</button>
+                <button onclick="closeLessonAndComplete()" class="btn-secondary flex-1">Complete Course</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16">
+      <div class="mx-auto max-w-7xl px-6 md:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+          <div class="lg:col-span-1">
+            <img src="../../images/robot-rocket.png" alt="TechTutor" class="h-40 w-auto" />
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4 text-white">CONTACT US!</h3>
+            <div class="space-y-3 text-sm">
+              <div>
+                <p class="text-slate-400 mb-1">Tel/WA/Zalo:</p>
+                <a href="tel:0902776753" class="text-white hover:text-primary-light transition">0902 776 753</a>
+              </div>
+              <div>
+                <p class="text-slate-400 mb-1">Email:</p>
+                <a href="mailto:hello@techtutor.academy" class="text-white hover:text-primary-light transition">hello@techtutor.academy</a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4 text-white">OPENING HOURS</h3>
+            <div class="space-y-2 text-sm">
+              <p class="text-slate-300">Monday - Friday: 8am - 9pm</p>
+              <p class="text-slate-300">Saturday - Sunday: 8am - 8pm</p>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4 text-white">START LEARNING</h3>
+            <div class="space-y-2 text-sm">
+              <a href="../index.html#programs" class="block text-slate-300 hover:text-primary-light transition">Programs</a>
+              <a href="../student-projects.html" class="block text-slate-300 hover:text-primary-light transition">Projects</a>
+              <a href="../plans-and-faq.html" class="block text-slate-300 hover:text-primary-light transition">Pricing</a>
+              <a href="../blog.html" class="block text-slate-300 hover:text-primary-light transition">Blog</a>
+              <a href="../vision.html" class="block text-slate-300 hover:text-primary-light transition">Our Vision</a>
+              <a href="../free-trial.html" class="block text-slate-300 hover:text-primary-light transition">Free trial</a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4 text-white">CONNECT WITH US!</h3>
+            <div class="flex gap-3">
+              <a href="https://www.facebook.com/share/1An2WsT9X5/" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Facebook">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="https://www.instagram.com/techtutor.academy?igsh=MWljOWJjbndwY2l0dQ==" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Instagram">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a href="https://zalo.me/0902776753" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Zalo">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0zm.5 14.969h-4.25a.469.469 0 110-.938h4.25a.469.469 0 110 .938zm2.406-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938zm0-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="mt-12 pt-8 border-t border-slate-700 text-center">
+          <p class="text-sm text-slate-400">© 2025 TechTutor Academy. All rights reserved.</p>
+          <p class="text-xs text-slate-500 mt-2">English / Vietnamese bilingual support</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Access code verification
+    function unlockCourse() {
+      const code = document.getElementById('access-code').value.trim();
+      if (code === '6769RG') {
+        document.getElementById('unlock-modal').classList.remove('active');
+        document.querySelector('.page-locked').classList.add('unlocked');
+        document.querySelector('.page-content').classList.add('unlocked');
+        document.documentElement.classList.add('course-unlocked');
+        localStorage.setItem('tt-roblox-course-unlocked', 'true');
+      } else {
+        alert('Invalid access code. Please check and try again.');
+      }
+    }
+
+    // Check if already unlocked on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      if (localStorage.getItem('tt-roblox-course-unlocked') === 'true') {
+        // Already handled by course-unlocked class on html element
+        document.querySelector('.page-locked')?.classList.add('unlocked');
+        document.querySelector('.page-content')?.classList.add('unlocked');
+      }
+    });
+
+    // Allow Enter key to submit code
+    document.getElementById('access-code')?.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        unlockCourse();
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // State management
+    const lessonState = {
+      currentLesson: null,
+      completedLessons: new Set(),
+      quizAnswers: {}
+    };
+
+    // Load state from localStorage
+    function loadState() {
+      const saved = localStorage.getItem('tt-roblox-state');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        lessonState.completedLessons = new Set(parsed.completedLessons);
+        lessonState.quizAnswers = parsed.quizAnswers;
+        updateProgress();
+      }
+    }
+
+    // Save state to localStorage
+    function saveState() {
+      localStorage.setItem('tt-roblox-state', JSON.stringify({
+        completedLessons: Array.from(lessonState.completedLessons),
+        quizAnswers: lessonState.quizAnswers
+      }));
+    }
+
+    // Open a lesson
+    function openLesson(lessonNum) {
+      lessonState.currentLesson = lessonNum;
+
+      // Stop all videos by reloading iframes
+      document.querySelectorAll('.video-container iframe').forEach(iframe => {
+        const src = iframe.src;
+        iframe.src = '';
+        iframe.src = src;
+      });
+
+      // Hide all lessons
+      for (let i = 1; i <= 5; i++) {
+        document.getElementById(`lesson-${i}`).classList.remove('active');
+      }
+
+      // Show current lesson
+      const lessonElement = document.getElementById(`lesson-${lessonNum}`);
+      lessonElement.classList.add('active');
+
+      // Initialize ordering for lesson 1
+      if (lessonNum === 1) {
+        setTimeout(() => initializeOrdering(), 100);
+      }
+
+      // Scroll to the lesson with a small offset
+      setTimeout(() => {
+        lessonElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 0);
+    }
+
+    // Close current lesson
+    function closeLesson() {
+      lessonState.currentLesson = null;
+
+      // Stop all videos
+      document.querySelectorAll('.video-container iframe').forEach(iframe => {
+        const src = iframe.src;
+        iframe.src = '';
+        iframe.src = src;
+      });
+
+      for (let i = 1; i <= 5; i++) {
+        document.getElementById(`lesson-${i}`).classList.remove('active');
+      }
+      
+      // Scroll back to lessons grid
+      const lessonsSection = document.querySelector('section:has(.lesson-card)');
+      if (lessonsSection) {
+        setTimeout(() => {
+          lessonsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 0);
+      }
+    }
+
+    // Close and complete
+    function closeLessonAndComplete() {
+      closeLesson();
+      completeCourse();
+    }
+
+    // Select answer
+    function selectAnswer(element, inputId) {
+      const parent = element.parentElement;
+      const siblings = parent.querySelectorAll('.quiz-option');
+      siblings.forEach(s => s.classList.remove('selected'));
+
+      element.classList.add('selected');
+      document.getElementById(inputId).checked = true;
+    }
+
+    // Drag and Drop for Ordering Question
+    let draggedElement = null;
+
+    function initializeOrdering() {
+      const container = document.getElementById('ordering-container');
+      if (!container) return;
+
+      const items = container.querySelectorAll('.ordering-item');
+
+      items.forEach(item => {
+        item.addEventListener('dragstart', handleDragStart);
+        item.addEventListener('dragend', handleDragEnd);
+        item.addEventListener('dragover', handleDragOver);
+        item.addEventListener('drop', handleDrop);
+        item.addEventListener('dragleave', handleDragLeave);
+      });
+    }
+
+    function handleDragStart(e) {
+      draggedElement = this;
+      this.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/html', this.innerHTML);
+    }
+
+    function handleDragEnd(e) {
+      this.classList.remove('dragging');
+      document.querySelectorAll('.ordering-item').forEach(item => {
+        item.classList.remove('drag-over');
+      });
+      updateOrderingAnswer();
+    }
+
+    function handleDragOver(e) {
+      if (e.preventDefault) {
+        e.preventDefault();
+      }
+      e.dataTransfer.dropEffect = 'move';
+      this.classList.add('drag-over');
+      return false;
+    }
+
+    function handleDrop(e) {
+      if (e.stopPropagation) {
+        e.stopPropagation();
+      }
+
+      if (draggedElement !== this) {
+        const container = document.getElementById('ordering-container');
+        const allItems = [...container.querySelectorAll('.ordering-item')];
+        const draggedIndex = allItems.indexOf(draggedElement);
+        const targetIndex = allItems.indexOf(this);
+
+        if (draggedIndex < targetIndex) {
+          this.parentNode.insertBefore(draggedElement, this.nextSibling);
+        } else {
+          this.parentNode.insertBefore(draggedElement, this);
+        }
+      }
+
+      this.classList.remove('drag-over');
+      return false;
+    }
+
+    function handleDragLeave(e) {
+      this.classList.remove('drag-over');
+    }
+
+    function updateOrderingAnswer() {
+      const container = document.getElementById('ordering-container');
+      const items = container.querySelectorAll('.ordering-item');
+      const currentOrder = Array.from(items).map(item => item.getAttribute('data-order')).join(',');
+      document.getElementById('q1-order').value = currentOrder;
+    }
+
+    // Submit quiz
+    function submitQuiz(lessonNum) {
+      const correctAnswers = {
+        'q1': '1,2,3,4', 'q2': 'a', 'q3': 'b',
+        'q4': 'a', 'q5': 'b', 'q6': 'b', 'q7': 'a',
+        'q8': 'a', 'q9': 'a', 'q10': 'a',
+        'q11': 'a', 'q12': 'a', 'q13': 'a',
+        'q14': 'a', 'q15': 'a', 'q16': 'a'
+      };
+
+      let score = 0;
+      let answered = 0;
+
+      // Different lessons have different number of questions
+      const lessonQuestions = {
+        1: { start: 1, count: 3 },
+        2: { start: 4, count: 4 },
+        3: { start: 8, count: 3 },
+        4: { start: 11, count: 3 },
+        5: { start: 14, count: 3 }
+      };
+
+      const { start: startQuestion, count: questionsPerLesson } = lessonQuestions[lessonNum];
+
+      for (let i = startQuestion; i < startQuestion + questionsPerLesson; i++) {
+        let selected;
+        let userAnswer;
+
+        // Handle ordering question (q1 for lesson 1)
+        if (i === 1) {
+          selected = document.getElementById('q1-order');
+          userAnswer = selected ? selected.value : '';
+        } else {
+          selected = document.querySelector(`input[name="q${i}"]:checked`);
+          userAnswer = selected ? selected.value : '';
+        }
+
+        if (userAnswer) {
+          answered++;
+          if (userAnswer === correctAnswers[`q${i}`]) {
+            score++;
+          }
+        }
+      }
+
+      // Show feedback for ordering question if it's lesson 1
+      if (lessonNum === 1) {
+        const orderingFeedback = document.getElementById('ordering-feedback');
+        const orderValue = document.getElementById('q1-order').value;
+
+        if (orderValue === '1,2,3,4') {
+          orderingFeedback.className = 'ordering-feedback correct p-4 rounded-lg';
+          orderingFeedback.innerHTML = '<strong>✓ Correct!</strong> The proper order is: Ask ChatGPT → Add NPC from toolbox → Add script to NPC → Play the game';
+        } else {
+          orderingFeedback.className = 'ordering-feedback incorrect p-4 rounded-lg';
+          orderingFeedback.innerHTML = '<strong>✗ Incorrect.</strong> The correct order is: Ask ChatGPT for the script → Add an NPC from the toolbox → Add a script to an NPC → Play the game';
+        }
+        orderingFeedback.classList.remove('hidden');
+      }
+
+      if (answered < questionsPerLesson) {
+        alert('Please answer all questions before submitting!');
+        return;
+      }
+
+      const percentage = Math.round((score / questionsPerLesson) * 100);
+      
+      if (percentage >= 70) {
+        alert(`Great job! You scored ${percentage}% on this quiz!\n\nYou've completed Lesson ${lessonNum}.`);
+        lessonState.completedLessons.add(lessonNum);
+        saveState();
+        updateProgress();
+        closeLesson();
+      } else {
+        alert(`You scored ${percentage}%. You need at least 70% to complete this lesson. Please review and try again!`);
+      }
+    }
+
+    // Complete course
+    function completeCourse() {
+      if (lessonState.completedLessons.size === 5) {
+        alert('Congratulations! You have completed the entire Roblox with Generative AI course!\n\nYou now have the skills to build amazing Roblox games!');
+      } else {
+        alert('Please complete all lessons and their quizzes first!');
+      }
+    }
+
+    // Update progress bar
+    function updateProgress() {
+      const completed = lessonState.completedLessons.size;
+      const percentage = (completed / 5) * 100;
+      
+      document.getElementById('progressFill').style.width = percentage + '%';
+      document.getElementById('progressText').textContent = `${completed}/5 Complete`;
+    }
+
+    // Initialize
+    loadState();
+  </script>
+
+  <!-- Language selection persistence -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const langSwitchers = document.querySelectorAll('a[href*="/index.html"]');
+      langSwitchers.forEach(link => {
+        if (link.href.includes('/en/index.html') || link.href.includes('/vn/index.html')) {
+          link.addEventListener('click', function(e) {
+            const isEnglish = this.href.includes('/en/');
+            const lang = isEnglish ? 'en' : 'vn';
+            localStorage.setItem('tt-lang-manual', lang);
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
