@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZ1XEZXB6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-4MZ1XEZXB6');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Custom tech courses tailored to your child's project idea. From game development to AI projects, we design personalized 10-lesson curricula around your child's goals." />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://techtutor.academy/en/custom-courses.html" />
+  <meta property="og:title" content="Custom Courses | TechTutor Academy" />
+  <meta property="og:description" content="Tailored 10-lesson courses designed around your child's specific project idea. Expert 1-on-1 instruction for unique learning goals." />
+  <meta property="og:image" content="https://techtutor.academy/images/family-portrait.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://techtutor.academy/en/custom-courses.html" />
+  <meta name="twitter:title" content="Custom Courses | TechTutor Academy" />
+  <meta name="twitter:description" content="Personalized tech education designed around your child's dream project. 10-lesson custom curricula with expert instruction." />
+  <meta name="twitter:image" content="https://techtutor.academy/images/family-portrait.jpg" />
+
+  <title>Custom Courses | TechTutor Academy</title>
+  <link rel="icon" type="image/png" href="../images/robot-rocket.png" />
+
+  <!-- SEO: Hreflang tags for multilingual support -->
+  <link rel="alternate" hreflang="en" href="https://techtutor.academy/en/custom-courses.html" />
+  <link rel="alternate" hreflang="vi" href="https://techtutor.academy/vn/custom-courses.html" />
+  <link rel="alternate" hreflang="x-default" href="https://techtutor.academy/en/custom-courses.html" />
+  <link rel="canonical" href="https://techtutor.academy/en/custom-courses.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            teal: { DEFAULT: '#2C7A7B', light: '#319795', dark: '#234E52' },
+            ink: '#0F172A',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+      background-color: #FAFAFA;
+    }
+
+    .hero-shape {
+      background: #2C7A7B;
+      border-radius: 24px;
+    }
+
+    .stat-card {
+      background: #193b92;
+      border-radius: 16px;
+      padding: 24px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-primary {
+      background: #193b92;
+      color: white;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .btn-primary:hover {
+      background: #0f2861;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(25, 59, 146, 0.4);
+    }
+
+    .btn-orange {
+      background: #193b92;
+      color: white;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .btn-orange:hover {
+      background: #0f2861;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(25, 59, 146, 0.4);
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #0F172A;
+    }
+
+    .decorative-arrow {
+      width: 80px;
+      height: auto;
+    }
+
+    .icon-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .teal-bg {
+      background-color: #2C7A7B;
+    }
+
+    .orange-bg {
+      background-color: #193b92;
+    }
+
+    .geometric-shape {
+      border-radius: 16px;
+    }
+
+    /* Carousel dots - small visual with proper touch target */
+    .carousel-dot {
+      position: relative;
+      background: transparent !important;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel-dot::after {
+      content: '';
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.6);
+      transition: background-color 0.3s;
+    }
+
+    .carousel-dot:hover::after,
+    .carousel-dot.active::after {
+      background-color: white;
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+
+    /* Testimonial styles */
+    .testimonial-card {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* Blog card hover effect */
+    .blog-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      background: white;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 20px 20px 0 0;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #2C7A7B 0%, #234E52 100%);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .decorative-star {
+      position: absolute;
+      color: #193b92;
+      font-size: 48px;
+      opacity: 0.9;
+    }
+
+    /* Dropdown menu styles */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 8px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      min-width: 280px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block !important;
+      padding: 12px 20px;
+      color: #4B5563;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-size: 0.95rem;
+    }
+
+    .dropdown-menu a:first-child {
+      border-radius: 12px 12px 0 0;
+    }
+
+    .dropdown-menu a:last-child {
+      border-radius: 0 0 12px 12px;
+    }
+
+    .dropdown-menu a:hover {
+      background: #F3F4F6;
+      color: #193b92;
+      padding-left: 24px;
+    }
+
+    /* Christmas Animations */
+    @keyframes snowfall {
+      0% {
+        transform: translateY(-10px) translateX(-10px);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.3;
+        filter: brightness(1);
+      }
+      50% {
+        opacity: 1;
+        filter: brightness(1.5);
+      }
+    }
+
+    @keyframes sway {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(20px);
+      }
+    }
+
+
+
+    .christmas-lights {
+      animation: twinkle 2s infinite;
+    }
+
+    .christmas-banner {
+      animation: sway 3s ease-in-out infinite;
+    }
+  </style>
+
+  <style>
+    /* Screen reader only - visually hidden but accessible */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    /* Improve focus visibility */
+    button:focus-visible, a:focus-visible {
+      outline: 3px solid #193b92;
+      outline-offset: 2px;
+    }
+  </style>
+
+  <!-- Schema.org Organization Markup for AI/Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "TechTutor Academy",
+    "description": "Live, interactive tech courses for children and teens teaching coding, AI, game development, and 3D design with bilingual support.",
+    "url": "https://techtutor.academy",
+    "logo": "https://techtutor.academy/images/robot-rocket.png",
+    "telephone": "+84902776753",
+    "email": "hello@techtutor.academy",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "VN"
+    },
+    "sameAs": [
+      "https://www.facebook.com/share/1An2WsT9X5/",
+      "https://www.instagram.com/techtutor.academy"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "50"
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Private 1-on-1 Lessons",
+        "description": "Individual tech tutoring sessions",
+        "price": "225",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": "Small Group Lessons",
+        "description": "2-4 students per class",
+        "price": "128",
+        "priceCurrency": "USD"
+      }
+    ]
+  }
+  </script>
+
+  <script src="../js/geo-redirect.js" defer></script>
+</head>
+<body class="antialiased">
+
+    <!-- Snowflake container -->
+
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between gap-6">
+        <a href="index.html" class="text-2xl font-black tracking-tight text-slate-900 flex items-center gap-1" aria-label="TechTutor home">
+          <span class="text-primary">Tech</span><span class="text-teal-500">Tutor</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-700">
+          <div class="relative hidden md:block group">
+            <a href="#programs" class="inline-flex items-center gap-1 text-slate-700 hover:text-primary transition">
+              <span data-i18n="nav.programs">Programs</span>
+              <svg class="h-4 w-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+            <div class="absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 rounded-2xl border border-slate-100 bg-white/95 p-3 shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+              <div class="flex flex-col gap-1 text-sm">
+                <a href="programs/scratch-game-coder.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Scratch Game Coder</a>
+                <a href="programs/gdevelop-game-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">GDevelop Game Designer</a>
+                <a href="programs/roblox-world-creator.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Roblox World Creator</a>
+                <a href="programs/3d-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">3D Designer</a>
+                <a href="programs/ai-programming-quest.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">AI & Programming Quest</a>
+                <a href="programs/generative-ai-magic.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Generative AI Magic</a>
+                <a href="programs/app-development.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">App Development</a>
+                <a href="programs/startup-foundations.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Startup Foundations</a>
+              </div>
+            </div>
+          </div>
+          <a href="student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
+          <a href="how-it-works.html" class="hover:text-primary transition" data-i18n="nav.how-it-works">How It Works</a>
+          <a href="online-courses.html" class="hover:text-primary transition" data-i18n="nav.free-courses">Free Courses</a>
+          <a href="plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
+          <a href="blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-4">
+          <div class="relative group">
+            <button class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-primary hover:bg-primary hover:bg-opacity-10 transition" aria-label="Switch language">
+              <span class="text-xl">🇬🇧</span>
+            </button>
+            <div class="absolute right-0 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+              <div class="p-2">
+                <a href="../vn/index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-100 transition">
+                  <span class="text-2xl">🇻🇳</span>
+                  <span class="text-sm font-medium text-slate-700">Tiếng Việt</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Login Button -->
+          <a href="login.html" class="rounded-full border-2 border-primary text-primary px-5 py-2 text-sm font-semibold transition hover:bg-primary hover:text-white flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+            Login
+          </a>
+
+          <a aria-label="Start your free trial with TechTutor Academy" href="free-trial.html" class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light">Free Trial</a>
+        </div>
+
+        <div class="flex items-center gap-3 md:hidden">
+          <div class="relative group">
+            <button class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-primary hover:bg-primary hover:bg-opacity-10 transition" aria-label="Switch language">
+              <span class="text-xl">🇬🇧</span>
+            </button>
+            <div class="absolute right-0 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+              <div class="p-2">
+                <a href="../vn/index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-100 transition">
+                  <span class="text-2xl">🇻🇳</span>
+                  <span class="text-sm font-medium text-slate-700">Tiếng Việt</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <button id="mobile-menu-button" class="px-4 py-2 rounded-full border-2 border-primary text-primary font-medium text-sm hover:bg-primary hover:bg-opacity-10 transition" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+            Menu
+          </button>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="md:hidden hidden mt-4 border-t border-slate-200 pt-4">
+        <div class="flex flex-col gap-4 text-sm font-medium text-slate-700">
+          <div class="rounded-2xl border border-slate-200 p-4">
+            <button id="mobile-programs-toggle" class="flex w-full items-center justify-between text-left" aria-label="Toggle programs submenu" aria-expanded="false">
+              <span data-i18n="nav.programs">Programs</span>
+              <svg id="programs-arrow" class="h-5 w-5 text-slate-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div id="mobile-programs-menu" class="mt-3 hidden flex flex-col gap-3 border-l-2 border-primary pl-4 text-sm">
+              <a href="programs/scratch-game-coder.html" class="text-slate-700 hover:text-primary py-1">Scratch Game Coder</a>
+              <a href="programs/gdevelop-game-designer.html" class="text-slate-700 hover:text-primary py-1">GDevelop Game Designer</a>
+              <a href="programs/roblox-world-creator.html" class="text-slate-700 hover:text-primary py-1">Roblox World Creator</a>
+              <a href="programs/3d-designer.html" class="text-slate-700 hover:text-primary py-1">3D Designer</a>
+              <a href="programs/ai-programming-quest.html" class="text-slate-700 hover:text-primary py-1">AI & Programming Quest</a>
+              <a href="programs/generative-ai-magic.html" class="text-slate-700 hover:text-primary py-1">Generative AI Magic</a>
+              <a href="programs/app-development.html" class="text-slate-700 hover:text-primary py-1">App Development</a>
+              <a href="programs/startup-foundations.html" class="text-slate-700 hover:text-primary py-1">Startup Foundations</a>
+            </div>
+          </div>
+          <a href="student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
+          <a href="how-it-works.html" class="hover:text-primary transition" data-i18n="nav.how-it-works">How It Works</a>
+          <a href="online-courses.html" class="hover:text-primary transition" data-i18n="nav.free-courses">Free Courses</a>
+          <a href="plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
+          <a href="blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
+
+          <!-- Mobile Login Button -->
+          <a href="login.html" class="flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+            Login
+          </a>
+
+          <a aria-label="Start your free trial with TechTutor Academy" href="free-trial.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm">Free Trial</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 md:px-8 py-16">
+
+    <!-- Hero Section -->
+    <section class="mb-20 text-center">
+      <div class="inline-block px-4 py-2 bg-purple-100 rounded-full text-primary font-semibold text-sm mb-6">
+        ✨ Tailored Just For Your Child
+      </div>
+      <h1 class="section-title mb-6">
+        Custom Learning Paths<br/>Built Around Your Child's Dream Project
+      </h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
+        When your child has a specific vision — like building their own game, creating a website, or developing an AI project — we design a complete learning path to make it real.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+        <a href="#pricing" class="btn-primary">View Pricing</a>
+        <a href="index.html#trial" class="text-primary font-semibold hover:underline">Book Free Consultation →</a>
+      </div>
+      <div class="max-w-4xl mx-auto mt-12">
+        <img src="../images/custom.png" alt="Custom Learning Paths" class="w-full rounded-2xl shadow-2xl" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- What You Get -->
+    <section class="mb-20">
+      <h2 class="section-title text-center mb-4">
+        What Your Child Gets
+      </h2>
+      <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+        Every custom course is a complete learning journey with clear milestones, expert guidance, and a real project they can showcase.
+      </p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card p-8">
+          <div class="icon-circle teal-bg text-white mb-4">📚</div>
+          <h3 class="text-xl font-bold text-ink mb-3">Custom 10-Lesson Curriculum</h3>
+          <p class="text-gray-700 text-sm leading-relaxed">
+            A personalized learning roadmap designed specifically for your child's project goal — whether it's building a mobile app, creating a game, or mastering AI tools.
+          </p>
+        </div>
+        <div class="card p-8">
+          <div class="icon-circle teal-bg text-white mb-4">👨‍💻</div>
+          <h3 class="text-xl font-bold text-ink mb-3">Expert 1-on-1 Instruction</h3>
+          <p class="text-gray-700 text-sm leading-relaxed">
+            Direct mentorship from instructors with 4+ years of teaching experience who have trained 200+ students and built real-world projects.
+          </p>
+        </div>
+        <div class="card p-8">
+          <div class="icon-circle teal-bg text-white mb-4">🎯</div>
+          <h3 class="text-xl font-bold text-ink mb-3">Portfolio-Ready Final Project</h3>
+          <p class="text-gray-700 text-sm leading-relaxed">
+            Your child completes a real, working project they can showcase — published apps, deployed websites, or functional AI tools they built themselves.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- When to Choose Custom -->
+    <section class="mb-20 bg-gradient-to-br from-purple-50 to-blue-50 rounded-3xl p-8 md:p-12">
+      <h2 class="section-title text-center mb-4">
+        Is a Custom Course Right for Your Child?
+      </h2>
+      <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+        Choose a custom course when your child has a specific vision that doesn't fit our standard programs.
+      </p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl p-6 shadow-sm">
+          <div class="text-4xl mb-4">🎯</div>
+          <h3 class="text-lg font-bold text-ink mb-3">Specific Project Idea</h3>
+          <p class="text-gray-700 text-sm mb-3">Your child knows exactly what they want to build:</p>
+          <ul class="text-sm text-gray-600 space-y-2">
+            <li>• "I want to create a mobile app for my soccer team"</li>
+            <li>• "I want to design a 3D model of my dream house"</li>
+            <li>• "I want to build an AI chatbot for studying"</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-sm">
+          <div class="text-4xl mb-4">🔀</div>
+          <h3 class="text-lg font-bold text-ink mb-3">Unique Skill Combination</h3>
+          <p class="text-gray-700 text-sm mb-3">They want to blend multiple technologies:</p>
+          <ul class="text-sm text-gray-600 space-y-2">
+            <li>• Roblox game design + AI features</li>
+            <li>• 3D design + game development</li>
+            <li>• Python programming + machine learning</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-sm">
+          <div class="text-4xl mb-4">⚡</div>
+          <h3 class="text-lg font-bold text-ink mb-3">Advanced Challenge</h3>
+          <p class="text-gray-700 text-sm mb-3">They've completed standard courses and want more:</p>
+          <ul class="text-sm text-gray-600 space-y-2">
+            <li>• Publishing an app to App Store/Google Play</li>
+            <li>• Building a multiplayer online game</li>
+            <li>• Creating a startup project prototype</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="mb-20">
+      <h2 class="section-title text-center mb-12">
+        How Custom Courses Work
+      </h2>
+      <div class="max-w-4xl mx-auto space-y-8">
+        <div class="flex items-start gap-6">
+          <div class="step-number">1</div>
+          <div class="flex-1">
+            <h3 class="text-xl font-bold text-ink mb-2">Free Discovery Call (30 min)</h3>
+            <p class="text-gray-700 leading-relaxed">
+              We discuss your child's project idea, current skills, and learning goals. No commitment required — just an honest conversation about what's possible.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start gap-6">
+          <div class="step-number">2</div>
+          <div class="flex-1">
+            <h3 class="text-xl font-bold text-ink mb-2">Custom Curriculum Design (2-3 days)</h3>
+            <p class="text-gray-700 leading-relaxed mb-3">
+              Our instructors create a detailed 10-lesson plan with clear milestones, tool requirements, and learning outcomes. You'll receive a document outlining:
+            </p>
+            <ul class="text-sm text-gray-600 space-y-1 ml-4">
+              <li>• Phase-by-phase curriculum breakdown</li>
+              <li>• Required tools and software (with costs, if any)</li>
+              <li>• Concrete learning outcomes for each phase</li>
+              <li>• Final project deliverables</li>
+            </ul>
+          </div>
+        </div>
+        <div class="flex items-start gap-6">
+          <div class="step-number">3</div>
+          <div class="flex-1">
+            <h3 class="text-xl font-bold text-ink mb-2">Weekly Live Lessons (10 sessions)</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Your child works directly with their instructor through interactive video lessons. Each session builds toward completing their final project, with homework assignments for practice between classes.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start gap-6">
+          <div class="step-number">4</div>
+          <div class="flex-1">
+            <h3 class="text-xl font-bold text-ink mb-2">Weekly Progress Reports</h3>
+            <p class="text-gray-700 leading-relaxed">
+              After each lesson, you receive detailed feedback on what your child learned, built, and what's coming next. Full transparency on progress.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start gap-6">
+          <div class="step-number">5</div>
+          <div class="flex-1">
+            <h3 class="text-xl font-bold text-ink mb-2">Final Project Showcase & Portfolio</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Your child completes their project with guidance on presenting it — whether that's publishing to an app store, deploying a website live, or sharing on GitHub. They walk away with something real to show.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Example Project Ideas -->
+    <section class="mb-20">
+      <h2 class="section-title text-center mb-4">
+        Example Custom Projects
+      </h2>
+      <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+        Students come to us with unique ideas. Here are examples of custom curricula we've designed.
+      </p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card p-6">
+          <div class="text-4xl mb-3">🎮</div>
+          <h3 class="text-lg font-bold text-ink mb-2">Publishing a Mobile Game</h3>
+          <p class="text-sm text-gray-700">
+            10 lessons covering game development, design, and App Store deployment process
+          </p>
+        </div>
+        <div class="card p-6">
+          <div class="text-4xl mb-3">🤖</div>
+          <h3 class="text-lg font-bold text-ink mb-2">AI Study Assistant</h3>
+          <p class="text-sm text-gray-700">
+            Python programming, GPT API integration, and web deployment for a functional chatbot
+          </p>
+        </div>
+        <div class="card p-6">
+          <div class="text-4xl mb-3">🌐</div>
+          <h3 class="text-lg font-bold text-ink mb-2">Personal Portfolio Website</h3>
+          <p class="text-sm text-gray-700">
+            HTML, CSS, JavaScript fundamentals with hosting and domain setup
+          </p>
+        </div>
+        <div class="card p-6">
+          <div class="text-4xl mb-3">🏗️</div>
+          <h3 class="text-lg font-bold text-ink mb-2">3D Architecture Project</h3>
+          <p class="text-sm text-gray-700">
+            Blender 3D modeling focused on architectural visualization and rendering
+          </p>
+        </div>
+        <div class="card p-6">
+          <div class="text-4xl mb-3">📊</div>
+          <h3 class="text-lg font-bold text-ink mb-2">Data Science Dashboard</h3>
+          <p class="text-sm text-gray-700">
+            Python data analysis, visualization, and building interactive dashboards
+          </p>
+        </div>
+        <div class="card p-6">
+          <div class="text-4xl mb-3">🎨</div>
+          <h3 class="text-lg font-bold text-ink mb-2">Digital Art & Animation</h3>
+          <p class="text-sm text-gray-700">
+            Combining 2D/3D art tools to create animations for games or videos
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="mb-20">
+      <h2 class="section-title text-center mb-4">
+        Custom Course Pricing
+      </h2>
+      <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+        Transparent pricing for a complete 10-lesson custom learning program. All costs disclosed upfront.
+      </p>
+      <div class="max-w-xl mx-auto">
+        <!-- Private 1-on-1 Only -->
+        <div class="card p-10 border-2 border-primary relative">
+          <div class="text-center mb-6">
+            <h3 class="text-3xl font-bold text-ink mb-4">1-on-1 Custom Course</h3>
+            <div class="text-6xl font-black text-primary mb-2">15M VND</div>
+            <div class="text-gray-600 text-lg">~$608 USD for 10 lessons</div>
+          </div>
+          <div class="border-t border-gray-200 pt-6 mb-6">
+            <h4 class="font-bold text-ink mb-4">What's Included:</h4>
+            <ul class="space-y-4 text-gray-700">
+              <li class="flex items-start gap-3">
+                <span class="text-teal text-2xl flex-shrink-0">✓</span>
+                <span><strong>Custom 10-lesson curriculum</strong> designed around your child's project goal</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-teal text-2xl flex-shrink-0">✓</span>
+                <span><strong>One-on-one live instruction</strong> with expert teacher (4+ years experience)</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-teal text-2xl flex-shrink-0">✓</span>
+                <span><strong>Weekly progress reports</strong> sent to parents after each lesson</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-teal text-2xl flex-shrink-0">✓</span>
+                <span><strong>Final project review & portfolio guidance</strong> for showcasing work</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-teal text-2xl flex-shrink-0">✓</span>
+                <span><strong>Flexible scheduling</strong> that adapts to your child's pace</span>
+              </li>
+            </ul>
+          </div>
+          <a href="index.html#trial" class="btn-primary w-full text-center block text-xl py-5">Book Free Consultation</a>
+        </div>
+      </div>
+
+      <!-- Additional Costs Note -->
+      <div class="mt-8 max-w-3xl mx-auto card p-6 bg-blue-50 border border-blue-200">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">💡</span>
+          <div>
+            <h4 class="font-bold text-ink mb-2">Tools & Software Costs</h4>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Some projects may require paid software or subscriptions (e.g., Unity Pro, Adobe Creative Cloud, Apple Developer account). We'll disclose all tool costs upfront in your custom curriculum plan before you commit. Most projects use free tools only.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bonus -->
+      <div class="mt-8 max-w-3xl mx-auto card p-6 bg-gradient-to-r from-teal-50 to-green-50 border-2 border-teal-200">
+        <div class="flex items-start gap-3">
+          <span class="text-3xl">🎁</span>
+          <div>
+            <h4 class="text-lg font-bold text-ink mb-1">Sibling & Referral Bonus</h4>
+            <p class="text-gray-700 text-sm">
+              Enroll a sibling or refer a friend to receive <strong>10% off any custom course</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section p-12 md:p-16 text-center text-white">
+      <h2 class="text-4xl font-bold mb-4">Ready to Start Your Child's Custom Learning Journey?</h2>
+      <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+        Book a free 30-minute consultation to discuss your child's project idea. No commitment required.
+      </p>
+      <a href="index.html#trial" class="inline-block bg-white text-teal px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition transform hover:scale-105">
+        Book Free Consultation Call
+      </a>
+      <p class="text-sm mt-6 opacity-80">
+        We'll respond within 24 hours • Zalo/WhatsApp: 0931140736
+      </p>
+    </section>
+
+  </main>
+  <footer class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16">
+    <div class="mx-auto max-w-7xl px-6 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div class="lg:col-span-1">
+          <img width="1024" height="1024" loading="lazy" src="../images/robot-rocket.png" alt="TechTutor" class="h-40 w-auto" />
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">CONTACT US!</h3>
+          <div class="space-y-3 text-sm">
+            <div>
+              <p class="text-slate-300 mb-1">Tel/WA/Zalo:</p>
+              <a href="tel:0902776753" class="text-white hover:text-primary-light transition">0902 776 753</a>
+            </div>
+            <div>
+              <p class="text-slate-300 mb-1">Email:</p>
+              <a href="mailto:hello@techtutor.academy" class="text-white hover:text-primary-light transition">hello@techtutor.academy</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">OPENING HOURS</h3>
+          <div class="space-y-2 text-sm">
+            <p class="text-slate-300">Monday - Friday: 8am - 9pm</p>
+            <p class="text-slate-300">Saturday - Sunday: 8am - 8pm</p>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">START LEARNING</h3>
+          <div class="space-y-2 text-sm">
+            <a href="#programs" class="block text-slate-300 hover:text-primary-light transition">Programs</a>
+            <a href="student-projects.html" class="block text-slate-300 hover:text-primary-light transition">Projects</a>
+            <a href="plans-and-faq.html" class="block text-slate-300 hover:text-primary-light transition">Pricing</a>
+            <a href="blog.html" class="block text-slate-300 hover:text-primary-light transition">Blog</a>
+            <a href="vision.html" class="block text-slate-300 hover:text-primary-light transition">Our Vision</a>
+            <a aria-label="Start your free trial with TechTutor Academy" href="free-trial.html" class="block text-slate-300 hover:text-primary-light transition">Free Trial</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">CONNECT WITH US!</h3>
+          <div class="flex gap-3">
+            <a href="https://www.facebook.com/share/1An2WsT9X5/" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Facebook">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/techtutor.academy?igsh=MWljOWJjbndwY2l0dQ==" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Instagram">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://zalo.me/0902776753" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Zalo">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0zm.5 14.969h-4.25a.469.469 0 110-.938h4.25a.469.469 0 110 .938zm2.406-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938zm0-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-slate-700 text-center">
+        <p class="text-sm text-slate-300" data-i18n="footer.copyright">© 2025 TechTutor Academy. All rights reserved.</p>
+        <p class="text-xs text-slate-300 mt-2" data-i18n="footer.bilingual">English / Vietnamese bilingual support</p>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <!-- Optimized External Scripts -->
+  <script src="../js/carousel.js" defer></script>
+  <script src="../js/site.js" defer></script>
+  <script src="../js/app.js" defer></script>
+  <script src="../js/enhancements.js" defer></script>
+</body>
+</html>

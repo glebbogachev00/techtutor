@@ -17,7 +17,7 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://techtutor.academy/en/" />
-  <meta property="og:title" content="TechTutor Academy — Best Tech Education in the World" />
+  <meta property="og:title" content="TechTutor Academy — 200+ Students Building Real Tech Projects" />
   <meta property="og:description" content="TechTutor Academy offers interactive tech courses for children and teens in STEAM, coding, AI, and game development. Personalized learning with flexible scheduling." />
   <meta property="og:image" content="https://techtutor.academy/images/family-portrait.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -26,11 +26,11 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://techtutor.academy/en/" />
-  <meta name="twitter:title" content="TechTutor Academy — Best Tech Education in the World" />
+  <meta name="twitter:title" content="TechTutor Academy — 200+ Students Building Real Tech Projects" />
   <meta name="twitter:description" content="Interactive tech courses for children and teens. From coding to AI, we provide personalized learning experiences." />
   <meta name="twitter:image" content="https://techtutor.academy/images/family-portrait.jpg" />
 
-  <title>TechTutor Academy — Best Tech Education in the World</title>
+  <title>TechTutor Academy — 200+ Students Building Real Tech Projects</title>
   <link rel="icon" type="image/png" href="../images/robot-rocket.png" />
   <link rel="preload" href="../images/family-portrait.jpg" as="image">
 
@@ -203,10 +203,12 @@
     }
 
     .avatar {
-      width: 48px;
-      height: 48px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
       object-fit: cover;
+      border: 3px solid #e8effe;
+      box-shadow: 0 2px 8px rgba(25, 59, 146, 0.15);
     }
 
     /* Blog card hover effect */
@@ -614,7 +616,7 @@
       <div class="grid md:grid-cols-2 gap-12 items-center relative">
         <div class="relative z-10">
           <h1 class="section-title mb-6 relative" data-i18n="hero.title">
-            Best Tech Education<br/>in the World
+            200+ Students Building<br/>Real Apps, Games & AI Projects
             <img width="1200" height="654" src="../images/doodle.png" alt="Decorative design element" class="absolute -top-4 -right-12 w-24 h-auto opacity-80" style="transform: rotate(-15deg);" />
           </h1>
           <p class="text-lg text-gray-700 mb-8 leading-relaxed" data-i18n="hero.description">
@@ -921,7 +923,7 @@
           <!-- Statistics Grid -->
           <div class="grid grid-cols-2 gap-4">
             <div class="stat-card text-center flex flex-col items-center justify-center">
-              <p class="text-5xl font-black mb-2">500+</p>
+              <p class="text-5xl font-black mb-2">200+</p>
               <p class="text-base opacity-90" data-i18n="why.stat1">Happy students</p>
             </div>
             <div class="hero-shape p-0 flex items-center justify-center overflow-hidden">
@@ -971,7 +973,7 @@
         <!-- Testimonial 1 -->
         <div class="testimonial-card">
           <div class="flex items-center gap-3 mb-4">
-            <img width="1024" height="1024" loading="lazy" src="../images/robot-rocket.png" alt="Nguyễn Thị Lan" class="avatar" />
+            <img width="1024" height="1024" loading="lazy" src="../images/Lan.png" alt="Nguyễn Thị Lan" class="avatar" />
             <div>
               <p class="font-bold text-ink">Nguyễn Thị Lan</p>
               <p class="text-sm text-gray-700" data-i18n="testimonials.t1.role">Parent of Bảo Minh (10)</p>
@@ -992,7 +994,7 @@
         <!-- Testimonial 2 -->
         <div class="testimonial-card">
           <div class="flex items-center gap-3 mb-4">
-            <img width="1024" height="1024" loading="lazy" src="../images/robot-rocket.png" alt="Trần Văn Hùng" class="avatar" />
+            <img width="1024" height="1024" loading="lazy" src="../images/hung.png" alt="Trần Văn Hùng" class="avatar" />
             <div>
               <p class="font-bold text-ink">Trần Văn Hùng</p>
               <p class="text-sm text-gray-700" data-i18n="testimonials.t2.role">Parent of Gia Hân (12)</p>
@@ -1013,7 +1015,7 @@
         <!-- Testimonial 3 -->
         <div class="testimonial-card">
           <div class="flex items-center gap-3 mb-4">
-            <img width="1024" height="1024" loading="lazy" src="../images/robot-rocket.png" alt="Jimmy Barron" class="avatar" />
+            <img width="1024" height="1024" loading="lazy" src="../images/thomas.png" alt="Jimmy Barron" class="avatar" />
             <div>
               <p class="font-bold text-ink">Jimmy Barron</p>
               <p class="text-sm text-gray-700" data-i18n="testimonials.t3.role">Parent of Kian Reed (13)</p>
@@ -1085,9 +1087,23 @@
           </div>
         </div>
       </div>
+
+      <!-- CTA for Custom Courses -->
+      <div class="mt-12 text-center">
+        <div class="card p-8">
+          <h3 class="text-2xl font-bold text-ink mb-3" data-i18n="pricing.custom.cta.title">Need a Custom Curriculum?</h3>
+          <p class="text-gray-700 mb-6" data-i18n="pricing.custom.cta.description">
+            Does your child have a specific project idea or learning goal that doesn't fit our standard programs? We create tailored 10-lesson courses designed around your child's interests.
+          </p>
+          <a href="custom-courses.html" class="btn-primary" data-i18n="pricing.custom.cta.button">
+            Explore Custom Courses →
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Programs Section -->
+    <section id="programs" class="mb-20 relative" style="margin-top: 80px;">
     <section id="programs" class="mb-20 relative">
       <!-- Decorative tech icons -->
 
@@ -1274,6 +1290,109 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
             </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Teaching Team Section -->
+    <section id="team" class="mb-20 relative">
+      <div class="text-center mb-12 relative">
+        <h2 class="section-title mb-4 relative" data-i18n="team.title">
+          Meet Our <span style="color: #193b92;">Teaching Team</span>
+          <img width="1200" height="654" loading="lazy" src="../images/doodle.png" alt="Decorative design element" class="absolute -top-4 -right-16 w-20 h-auto opacity-70 hidden md:block" style="transform: rotate(10deg);" />
+        </h2>
+        <p class="text-gray-700 text-lg" data-i18n="team.subtitle">
+          Meet our experienced instructors who guide students through their tech learning journey
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Gleb Bogachev -->
+        <div class="card p-8">
+          <div class="mb-6">
+            <img width="800" height="800" loading="lazy" src="../images/gleb.jpg" alt="Gleb Bogachev - Lead Instructor" class="w-full aspect-square object-cover object-center rounded-2xl mb-4" />
+            <h3 class="text-2xl font-bold text-ink" data-i18n="team.gleb.name">Gleb Bogachev</h3>
+            <p class="text-primary font-semibold mt-1" data-i18n="team.gleb.title">Lead Instructor</p>
+          </div>
+
+          <div class="space-y-4 text-gray-700">
+            <p data-i18n="team.gleb.intro">
+              With 4+ years of teaching experience, I specialize in project-based learning that helps students learn by building real things — not just by following theory.
+            </p>
+
+            <div>
+              <h4 class="font-bold text-ink mb-2" data-i18n="team.gleb.teach_title">What I Teach</h4>
+              <ul class="list-disc list-inside space-y-1 ml-2 text-sm">
+                <li data-i18n="team.gleb.teach1">Generative AI</li>
+                <li data-i18n="team.gleb.teach2">Game Development</li>
+                <li data-i18n="team.gleb.teach3">3D Design with Blender</li>
+                <li data-i18n="team.gleb.teach4">Scratch Programming</li>
+                <li data-i18n="team.gleb.teach5">Python Programming</li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="font-bold text-ink mb-2" data-i18n="team.gleb.approach_title">My Approach</h4>
+              <p class="text-sm" data-i18n="team.gleb.approach">
+                I believe the best way to learn is by starting with a project in mind and discovering new skills along the way. My classes focus on creativity, curiosity, and hands-on exploration.
+              </p>
+            </div>
+
+            <div>
+              <h4 class="font-bold text-ink mb-2" data-i18n="team.gleb.achievements_title">Projects & Achievements</h4>
+              <ul class="list-disc list-inside space-y-1 ml-2 text-sm">
+                <li data-i18n="team.gleb.achievement1">Created three apps and several interactive projects</li>
+                <li data-i18n="team.gleb.achievement2">Developed a publicly available web app as part of my personal portfolio</li>
+                <li data-i18n="team.gleb.achievement3">Successfully trained 100+ students in coding and technology</li>
+                <li data-i18n="team.gleb.achievement4">B.E. in Information Technology, TEFL Certified</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manthan Chittora -->
+        <div class="card p-8">
+          <div class="mb-6">
+            <img width="800" height="800" loading="lazy" src="../images/Manthan.jpg" alt="Manthan Chittora - Lead Instructor" class="w-full aspect-square object-cover object-center rounded-2xl mb-4" />
+            <h3 class="text-2xl font-bold text-ink" data-i18n="team.manthan.name">Manthan Chittora</h3>
+            <p class="text-primary font-semibold mt-1" data-i18n="team.manthan.title">Lead Instructor</p>
+          </div>
+
+          <div class="space-y-4 text-gray-700">
+            <p data-i18n="team.manthan.intro">
+              With 4+ years of teaching experience, I specialize in project-based learning that turns complex tech concepts into fun, hands-on lessons.
+            </p>
+
+            <div>
+              <h4 class="font-bold text-ink mb-2" data-i18n="team.manthan.teach_title">What I Teach</h4>
+              <ul class="list-disc list-inside space-y-1 ml-2 text-sm">
+                <li data-i18n="team.manthan.teach1">Generative AI</li>
+                <li data-i18n="team.manthan.teach2">Python & Machine Learning</li>
+                <li data-i18n="team.manthan.teach3">Game Development (GDevelop 5, Roblox)</li>
+                <li data-i18n="team.manthan.teach4">Scratch Programming</li>
+                <li data-i18n="team.manthan.teach5">3D Design with Blender</li>
+                <li data-i18n="team.manthan.teach6">App Development</li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="font-bold text-ink mb-2" data-i18n="team.manthan.approach_title">My Approach</h4>
+              <p class="text-sm" data-i18n="team.manthan.approach">
+                I believe learning should feel like creating something exciting, not memorizing rules. My goal is to help students think creatively, solve problems, and develop confidence through coding.
+              </p>
+            </div>
+
+            <div>
+              <h4 class="font-bold text-ink mb-2" data-i18n="team.manthan.achievements_title">Projects & Achievements</h4>
+              <ul class="list-disc list-inside space-y-1 ml-2 text-sm">
+                <li data-i18n="team.manthan.achievement1">Built multiple apps and AI/game projects</li>
+                <li data-i18n="team.manthan.achievement2">Developed public Generative AI projects</li>
+                <li data-i18n="team.manthan.achievement3">Successfully trained 100+ students in coding and technology</li>
+                <li data-i18n="team.manthan.achievement4">Former Teacher at Apollo Education, Vietnam</li>
+                <li data-i18n="team.manthan.achievement5">B.E. in Computer Science & Engineering, TEFL Certified</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
