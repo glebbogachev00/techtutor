@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Generative AI Program Brochure | TechTutor Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#f4f4f5;
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#cfd4dc;
+    --brand:#244d9a;
+    --brand-soft:#eaf0fb;
+    --teal:#44bea4;
+    --panel:#1f4a97;
+    --lv1:#e8f7f3;
+    --lv2:#ecf2ff;
+    --lv3:#f4efff;
+  }
+  body{background:#ffffff;color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65;font-size:15px}
+  .hero{max-width:920px;margin:0 auto;padding:64px 56px 44px;border-bottom:1px solid var(--line);background:#ffffff}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .logo{width:250px;max-width:72%;height:auto}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:var(--brand)}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+
+  .progression{margin:24px 0;padding:20px;background:linear-gradient(to right,var(--lv1),var(--lv2),var(--lv3));border-radius:12px;border:1px solid var(--line)}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative}
+  .prog-step::after{content:'→';position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--brand);font-size:20px;font-weight:700}
+  .prog-step:last-child::after{display:none}
+  .prog-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#fff;border:2px solid var(--brand);border-radius:50%;font-weight:700;color:var(--brand);margin-bottom:6px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--ink)}
+  @page{size:A4;margin:10mm}
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .level-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Program Brochure</div>
+    </div>
+    <h1>Generative AI Program</h1>
+    <p class="hero-sub">A structured, project-first track where students learn AI workflows and ship real outcomes across media and code.</p>
+    <div class="meta">
+      <div class="pill">Ages 10-17</div>
+      <div class="pill">24 Lessons Total</div>
+      <div class="pill">3 Progressive Levels</div>
+      <div class="pill">Project-Based + Showcase</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title">Program Overview</h2>
+      </div>
+      <div class="overview">
+        <p>Students progress from guided AI creation into deeper product work: planning MVP scope, generating and refining code, debugging effectively, and presenting polished project outcomes. The program includes trailer production, web game/app builds, mobile and 3D project expansion, and a final capstone showcase.</p>
+        <ul>
+          <li><strong>Learning Model:</strong> Explain → Build → Test → Improve → Present.</li>
+          <li><strong>Class Format:</strong> Weekly project sessions with instructor coaching and structured checkpoints.</li>
+          <li><strong>Parent Visibility:</strong> Students produce clear artifacts that can be reviewed and shared.</li>
+          <li><strong>Progress Measure:</strong> Feature completion, quality improvements, and communication of process.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">LV1</div>
+            <div class="prog-label">Foundations<br/>8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV2</div>
+            <div class="prog-label">Advanced<br/>8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV3</div>
+            <div class="prog-label">Capstone<br/>8 weeks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Foundations (GENAI-LV1)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Introduction to Generative AI</h3><p class="lesson-desc">Students explore the capabilities and limitations of GenAI tools across different media types (text, image, video, audio). They learn ethical considerations, responsible use guidelines, and how AI fits into creative and technical workflows. Hands-on exercises with ChatGPT, Claude, and Gemini introduce conversational AI interaction patterns.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Prompt Engineering Basics</h3><p class="lesson-desc">Students learn structured prompt writing: clear instructions, context setting, constraint application, and output formatting. They practice iterative refinement by comparing outputs, identifying weaknesses, and adjusting prompts for better results. Exercises cover text generation, image creation with descriptive prompts, and consistency across multiple generations.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">AI Storyboarding and Concepts</h3><p class="lesson-desc">Students plan a 1-2 minute video trailer by breaking narratives into scenes, defining visual concepts, and creating storyboards. They use AI to generate concept art, test different visual styles, and refine scene descriptions. Students learn to organize assets, manage project files, and maintain creative consistency across multiple AI-generated elements.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Audio Assets with AI</h3><p class="lesson-desc">Students create custom voiceovers using ElevenLabs with emotion and pacing control, then compose original background music with Suno by describing mood, genre, and instrumentation. They practice audio editing: trimming clips, adjusting volume levels, syncing audio to video timing, and exporting in appropriate formats. Final output integrates voice and music into trailer scenes.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Deeper Build: Web Game/App</h3><p class="lesson-desc">Students define MVP scope for an interactive web game featuring store mechanics, currency systems, and upgrade paths. Using AI coding assistants (ChatGPT/Claude), they scaffold HTML/CSS/JavaScript structure, implement basic game loops, and test initial functionality. Students compare outputs from different AI tools, learning which assistants excel at different coding tasks.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Feature Build + Troubleshooting</h3><p class="lesson-desc">Students expand game features: adding multiple upgrade tiers, implementing save/load functionality, creating UI feedback for player actions, and balancing game economy. They learn systematic debugging: reading error messages, using browser DevTools console, testing edge cases, and documenting fixes. Emphasis on iterative improvement and quality control workflows.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Extension Project</h3><p class="lesson-desc">Students choose between two paths: (1) create a second web game with advanced mechanics like character progression or multiple levels, or (2) polish their existing build to production quality with animations, sound effects, and visual refinements. Both paths emphasize independent problem-solving and applying learned workflows without heavy instructor guidance.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Finish + Showcase</h3><p class="lesson-desc">Students complete final quality passes on both trailer and web projects: fixing remaining bugs, improving visual consistency, optimizing performance, and preparing presentation materials. They present projects to the class, explaining their creative process, technical decisions, challenges overcome, and lessons learned. Structured peer feedback session helps students reflect on their work.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Advanced Building (GENAI-LV2)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">MVP Planning and Scope</h3><p class="lesson-desc">Students analyze target users and define core value propositions for their mobile app. They create feature priority lists (must-have vs. nice-to-have), sketch basic wireframes, and plan a realistic development sequence. Introduction to product thinking: solving user problems, not just adding features. Students practice writing clear project requirements that guide AI-assisted development.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Mobile App Scaffolding</h3><p class="lesson-desc">Students use Bolt.new and Lovable to generate initial app structure for a gamified habit tracker (Habitica-inspired). They set up navigation flows between screens, create basic component hierarchy, and implement responsive layouts. Learning focus: understanding generated code structure, identifying key files, and making intentional modifications rather than blind copy-pasting.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Mobile Feature Development</h3><p class="lesson-desc">Students implement core habit tracking logic: creating tasks, marking completion, calculating streaks, and awarding points. They build reward systems with virtual currency, unlockable features, and progress visualization. Students learn data persistence using localStorage or simple backend integration, ensuring user progress saves between sessions. Emphasis on feature completeness over feature quantity.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Debugging and Iteration Workflow</h3><p class="lesson-desc">Students apply systematic debugging methodology: reproducing bugs consistently, isolating problem areas, reading stack traces, and testing fixes thoroughly. They prioritize issues by severity (crashes vs. minor UI glitches) and user impact. Introduction to VS Code debugging tools, browser DevTools for mobile simulation, and maintaining a bug tracking log. Students practice explaining bugs clearly to AI assistants for better fix suggestions.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">3D Web Fundamentals</h3><p class="lesson-desc">Students create interactive 3D scenes using Three.js and AI assistance. They set up basic 3D environments with lighting, cameras, and geometric objects. Learning activities include: positioning objects in 3D space, implementing orbit controls for user camera navigation, adding textures and materials, and understanding the render loop. Students create a simple interactive 3D world with clickable objects.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">3D Interactions and Mechanics</h3><p class="lesson-desc">Students enhance their 3D world with responsive interactions: raycasting for object selection, hover effects, click handlers triggering animations, and state changes based on user input. They implement environmental triggers (proximity detection, collision zones) and audio feedback for actions. Students add particle effects, animations on object interaction, and UI overlays showing interaction hints.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">3D Game Prototype</h3><p class="lesson-desc">Students build a Crossy Road-style 3D game featuring player movement (keyboard/touch controls), procedurally generated obstacles, collision detection, scoring systems, and game state management (start, playing, game over). They implement increasing difficulty, visual feedback for actions, and restart functionality. Focus on creating a complete game loop: setup → play → fail → restart, with polished transitions between states.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Release and Demo</h3><p class="lesson-desc">Students perform final QA on both mobile app and 3D game: comprehensive testing across devices, fixing critical bugs, optimizing performance (reducing lag, improving load times), and documenting features. They prepare demo presentations explaining technical architecture, development challenges, solutions implemented, and future improvement ideas. Students practice professional project presentation skills and receive structured feedback.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Creative Capstone (GENAI-LV3)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Capstone Direction</h3><p class="lesson-desc">Students brainstorm original project ideas drawing from skills learned in Levels 1-2. They define their target audience, core problem being solved, and measurable success criteria. Students create a project proposal outlining: project type (web app, mobile app, 3D game, multimedia experience), primary features, technical requirements, and expected outcomes. Instructor provides feedback on scope feasibility and technical approach.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Technical Blueprint</h3><p class="lesson-desc">Students decompose their project into development milestones with clear deliverables for each phase. They select appropriate tools and platforms (Replit vs. VS Code, Bolt.new vs. manual coding, Three.js vs. 2D canvas), create detailed feature breakdowns, and identify technical risks requiring early validation. Students produce a written implementation plan including: architecture decisions, data flow diagrams, and week-by-week development schedule.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Prototype Sprint</h3><p class="lesson-desc">Students build a minimal working prototype demonstrating core functionality and validating key technical assumptions. Focus is on proving the concept works, not perfection. They test critical user interactions, verify chosen tools can deliver required features, and identify gaps in their technical knowledge. Students present prototypes for peer feedback, collecting suggestions that inform next development phases.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Build Sprint A</h3><p class="lesson-desc">Students implement their first major feature set, establishing clean code architecture that supports future expansion. They set up proper project structure with organized files, implement core user flows from start to finish, and create reusable components/functions. Emphasis on building strong foundations: clear variable naming, modular code organization, and documentation of complex logic for future reference.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Build Sprint B</h3><p class="lesson-desc">Students expand functionality with secondary features, polish existing implementations, and optimize user experience. They add advanced interactions, improve visual design with better UI/UX, implement data persistence or backend integration if needed, and create engaging feedback loops. Students practice balancing new feature development with code quality maintenance and bug fixing.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">QA and Polish</h3><p class="lesson-desc">Students conduct comprehensive quality assurance: testing all features across different scenarios, fixing bugs by priority, optimizing performance (load times, frame rates, responsiveness), and refining visual consistency. They prepare showcase materials including screenshots, demo videos, project descriptions, and usage instructions. Students practice explaining technical work to non-technical audiences.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Reflection and Revision</h3><p class="lesson-desc">Students evaluate their development process through structured reflection: What worked well? What was harder than expected? What would they do differently? They document key learnings, technical skills gained, and problem-solving strategies developed. Students make final revisions based on self-assessment and testing feedback, ensuring their project represents their best work and demonstrates mastery of program skills.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Final Showcase</h3><p class="lesson-desc">Students deliver formal presentations of completed capstone projects to classmates, instructors, and invited guests (parents, peers from other programs). Presentations include: live demo, technical architecture explanation, development challenges and solutions, creative decisions and rationale, and future enhancement ideas. Students practice professional communication skills, respond to questions confidently, and celebrate their accomplishments with constructive peer recognition.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Tools Students Use</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">🤖 AI Assistants: ChatGPT, Claude, Gemini, Grok</div>
+        <div class="tool">💻 Code Stack: HTML, CSS, JavaScript, Three.js</div>
+        <div class="tool">🧪 Build Tools: Replit, VS Code, Bolt.new, Lovable</div>
+        <div class="tool">🎨 Media Tools: Canva, Suno, ElevenLabs, Google VEO 2</div>
+        <div class="tool">🔧 Dev Tools: GitHub, Browser DevTools</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>What Students Actually Build</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Video Trailer Production</h4>
+          <p>1-2 minute trailer with AI-generated scenes, custom voiceover, and original music composition.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Web Game with Economy</h4>
+          <p>Interactive browser game with store systems, upgrades, and progression mechanics.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Mobile Application</h4>
+          <p>Gamified habit tracker with rewards, streaks, and user persistence.</p>
+        </article>
+        <article class="parent-card">
+          <h4>3D Interactive World</h4>
+          <p>Browser-based 3D environment with camera controls, clickable objects, and animations.</p>
+        </article>
+        <article class="parent-card">
+          <h4>3D Web Game</h4>
+          <p>Crossy Road-style game with player movement, obstacles, scoring, and game states.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Custom Capstone Project</h4>
+          <p>Student-designed final project combining all learned skills into an original creation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Why Parents Choose This Program</h2>
+      </div>
+      <div class="overview">
+        <p>This program is designed to build practical skills, healthy technology habits, and visible progress. Instead of passive screen time, students create real outputs and learn how to think, plan, and solve problems with modern tools.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Real Skills, Not Just Entertainment</h4>
+          <p>Students learn how to move from idea to working product using planning, coding, testing, and iteration.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Structured Problem-Solving</h4>
+          <p>Every project follows a repeatable process so children build confidence through clear milestones and feedback.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Communication and Presentation</h4>
+          <p>Students explain what they built, what went wrong, and what they improved, strengthening ownership and clarity.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Portfolio-Ready Deliverables</h4>
+          <p>Families can review concrete outcomes: trailer projects, web builds, advanced prototypes, and capstone work.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Child Growth Outcomes</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">Planning Before Building</h3>
+          <p class="lesson-desc">Students learn to define a clear build target, list must-have features, and sequence tasks before touching code.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Prompt Quality and Iteration Discipline</h3>
+          <p class="lesson-desc">Students move from vague prompts to structured prompts, compare outputs, and revise instructions for better results.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">Debugging Under Pressure</h3>
+          <p class="lesson-desc">Students identify bugs by category (logic, UI, data flow), test fixes systematically, and verify improvements instead of guessing.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Code Readability and Structure</h3>
+          <p class="lesson-desc">Students organize code into clearer blocks, use consistent naming, and maintain cleaner project files for easier maintenance.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Product Thinking and User Focus</h3>
+          <p class="lesson-desc">Students evaluate builds from a user perspective, improve clarity of controls, and simplify confusing interactions.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">Communication of Technical Work</h3>
+          <p class="lesson-desc">Students present what they built, explain tool choices, and describe what changed between prototype and final version.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">07</div>
+        <div>
+          <h3 class="lesson-title">Portfolio-Ready Output Quality</h3>
+          <p class="lesson-desc">Students complete polished deliverables (trailer + interactive builds) that families can review and students can showcase.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Program Outcomes</h3>
+      <ul>
+        <li>Students can design and deliver complete AI-assisted projects from idea to showcase.</li>
+        <li>Students can plan MVP scope, implement features, and debug with structured workflows.</li>
+        <li>Students can communicate technical decisions and reflect on quality improvements.</li>
+        <li>Students develop a stronger creator mindset: independent problem-solving and iterative thinking.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">📊</span>Program Stats</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>200+ Active Students</h4>
+          <p>Building real projects across multiple programs and advancing technical skills.</p>
+        </article>
+        <article class="parent-card">
+          <h4>24 Project Sessions</h4>
+          <p>Structured lessons with hands-on building, testing, and presentation components.</p>
+        </article>
+        <article class="parent-card">
+          <h4>6 Major Deliverables</h4>
+          <p>Complete portfolio-ready projects students can demonstrate and share.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Bilingual Support</h4>
+          <p>Classes available in English and Vietnamese with experienced instructors.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Common Parent Questions</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Does my child need coding experience?</h3>
+          <p class="lesson-desc">No prior experience required for Level 1. Students learn through guided project work with AI assistance, making coding accessible even for complete beginners.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">How much screen time is involved?</h3>
+          <p class="lesson-desc">Weekly lessons are structured sessions focused on creative production, not passive consumption. Students build concrete projects with clear goals and checkpoints.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">Can students skip to Level 2 or 3?</h3>
+          <p class="lesson-desc">Each level builds on previous skills and workflows. We recommend starting at Level 1 unless your child has significant AI tool experience and completed projects.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">What happens after completing all 3 levels?</h3>
+          <p class="lesson-desc">Students can progress to other TechTutor programs (App Development, 3D Design, Game Programming) or continue building advanced capstone projects independently.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">How do I track my child's progress?</h3>
+          <p class="lesson-desc">Students produce visible deliverables each level. Projects are presentable artifacts families can review, test, and share with friends and relatives.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Get Started</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Questions about enrollment or want to discuss your child's learning path?</p>
+      <p>Phone/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Hours: Mon-Fri 8:00-21:00 | Sat-Sun 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>

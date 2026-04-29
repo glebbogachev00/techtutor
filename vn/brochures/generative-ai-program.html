@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tài Liệu Chương Trình Generative AI | TechTutor Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#f4f4f5;
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#cfd4dc;
+    --brand:#244d9a;
+    --brand-soft:#eaf0fb;
+    --teal:#44bea4;
+    --panel:#1f4a97;
+    --lv1:#e8f7f3;
+    --lv2:#ecf2ff;
+    --lv3:#f4efff;
+  }
+  body{background:#ffffff;color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65;font-size:15px}
+  .hero{max-width:920px;margin:0 auto;padding:64px 56px 44px;border-bottom:1px solid var(--line);background:#ffffff}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .logo{width:250px;max-width:72%;height:auto}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:var(--brand)}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+
+  .progression{margin:24px 0;padding:20px;background:linear-gradient(to right,var(--lv1),var(--lv2),var(--lv3));border-radius:12px;border:1px solid var(--line)}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative}
+  .prog-step::after{content:'→';position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--brand);font-size:20px;font-weight:700}
+  .prog-step:last-child::after{display:none}
+  .prog-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#fff;border:2px solid var(--brand);border-radius:50%;font-weight:700;color:var(--brand);margin-bottom:6px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--ink)}
+  @page{size:A4;margin:10mm}
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .level-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Tài Liệu Chương Trình</div>
+    </div>
+    <h1>Chương Trình Generative AI</h1>
+    <p class="hero-sub">Lộ trình học có cấu trúc, tập trung vào dự án thực tế, nơi học sinh học quy trình AI và tạo ra sản phẩm hoàn chỉnh qua nhiều lĩnh vực truyền thông và lập trình.</p>
+    <div class="meta">
+      <div class="pill">Độ tuổi 10-17</div>
+      <div class="pill">Tổng cộng 24 Buổi Học</div>
+      <div class="pill">3 Cấp Độ Tiến Bộ</div>
+      <div class="pill">Dựa trên Dự Án + Trình Diễn</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title">Tổng Quan Chương Trình</h2>
+      </div>
+      <div class="overview">
+        <p>Học sinh tiến bộ từ việc tạo ra nội dung AI có hướng dẫn đến công việc sản phẩm sâu hơn: lập kế hoạch phạm vi MVP, tạo và tinh chỉnh mã, gỡ lỗi hiệu quả, và trình bày kết quả dự án hoàn chỉnh. Chương trình bao gồm sản xuất trailer, xây dựng web game/app, mở rộng dự án mobile và 3D, và trình diễn dự án cuối khóa.</p>
+        <ul>
+          <li><strong>Mô Hình Học Tập:</strong> Giải Thích → Xây Dựng → Kiểm Tra → Cải Thiện → Trình Bày.</li>
+          <li><strong>Định Dạng Lớp Học:</strong> Các buổi dự án hàng tuần với huấn luyện viên và các mốc kiểm tra có cấu trúc.</li>
+          <li><strong>Khả Năng Giám Sát Của Phụ Huynh:</strong> Học sinh tạo ra sản phẩm rõ ràng có thể được đánh giá và chia sẻ.</li>
+          <li><strong>Đo Lường Tiến Độ:</strong> Hoàn thành tính năng, cải thiện chất lượng, và truyền đạt quy trình.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">LV1</div>
+            <div class="prog-label">Nền Tảng<br/>8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV2</div>
+            <div class="prog-label">Nâng Cao<br/>8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV3</div>
+            <div class="prog-label">Dự Án Cuối Khóa<br/>8 tuần</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Nền Tảng (GENAI-LV1)</h2>
+        <div class="section-meta">8 Buổi Học</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Gioi Thieu ve Generative AI</h3><p class="lesson-desc">Hoc sinh kham pha kha nang va gioi han cua cong cu GenAI tren van ban, hinh anh, video va am thanh. Cac em hoc ve dao duc su dung AI, nguyen tac su dung co trach nhiem, va cach ung dung AI vao quy trinh sang tao va ky thuat. Bai tap thuc hanh voi ChatGPT, Claude va Gemini giup hoc sinh lam quen voi cach tuong tac hieu qua voi tro ly AI.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Nen Tang Prompt Engineering</h3><p class="lesson-desc">Hoc sinh hoc cach viet prompt co cau truc: huong dan ro rang, dat boi canh, them rang buoc va dinh dang dau ra. Cac em luyen tap cai tien theo vong lap bang cach so sanh ket qua, tim diem yeu va chinh prompt de dat chat luong tot hon. Bai tap bao gom tao van ban, tao hinh anh bang prompt mo ta va duy tri tinh nhat quan qua nhieu lan tao.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Lap Storyboard va Y Tuong voi AI</h3><p class="lesson-desc">Hoc sinh lap ke hoach trailer 1-2 phut bang cach chia noi dung thanh cac canh, xac dinh y tuong hinh anh va tao storyboard. Cac em dung AI de tao concept art, thu nhieu phong cach hinh anh va tinh chinh mo ta tung canh. Hoc sinh cung hoc cach sap xep tai nguyen, quan ly tep du an va giu su dong bo sang tao giua cac thanh phan do AI tao ra.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Tao Tai Nguyen Am Thanh voi AI</h3><p class="lesson-desc">Hoc sinh tao voiceover bang ElevenLabs voi dieu khien cam xuc va nhip doc, sau do soan nhac nen bang Suno theo tam trang, the loai va nhac cu mong muon. Cac em luyen tap chinh sua am thanh: cat ghep, can bang am luong, dong bo am thanh voi video va xuat dung dinh dang. San pham cuoi cung ket hop voice va nhac vao cac canh trailer.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Xay Dung Sau Hon: Web Game/App</h3><p class="lesson-desc">Hoc sinh xac dinh pham vi MVP cho web game tuong tac co cua hang, he thong tien te va nang cap. Su dung tro ly lap trinh AI (ChatGPT/Claude), cac em dung khung HTML/CSS/JavaScript, trien khai game loop co ban va kiem thu chuc nang ban dau. Hoc sinh so sanh ket qua tu nhieu cong cu AI de hieu cong cu nao phu hop cho tung loai bai toan lap trinh.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Phat Trien Tinh Nang + Xu Ly Loi</h3><p class="lesson-desc">Hoc sinh mo rong tinh nang game: them nhieu cap nang cap, luu/tai du lieu, tao phan hoi UI cho hanh dong nguoi choi, va can bang kinh te trong game. Cac em hoc quy trinh debug he thong: doc loi, dung DevTools, test tinh huong bien va ghi lai cach sua. Trong tam la cai tien lien tuc va kiem soat chat luong.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Du An Mo Rong</h3><p class="lesson-desc">Hoc sinh chon mot trong hai huong: (1) tao web game thu hai voi co che nang cao nhu phat trien nhan vat hoac nhieu man choi, hoac (2) danh bong du an hien tai dat muc chat luong san pham voi animation, hieu ung am thanh va toi uu hinh anh. Ca hai huong deu nhan manh kha nang tu giai quyet van de va van dung quy trinh da hoc mot cach doc lap.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Hoan Thien + Trinh Dien</h3><p class="lesson-desc">Hoc sinh thuc hien vong hoan thien cuoi cho ca trailer va du an web: sua loi con lai, dong bo hinh anh, toi uu hieu nang va chuan bi tai lieu thuyet trinh. Cac em trinh bay du an, giai thich quy trinh sang tao, quyet dinh ky thuat, kho khan da vuot qua va bai hoc rut ra. Phien phan hoi co cau truc giup hoc sinh tu danh gia va nang cap san pham.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Xây Dựng Nâng Cao (GENAI-LV2)</h2>
+        <div class="section-meta">8 Buổi Học</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Lap Ke Hoach va Pham Vi MVP</h3><p class="lesson-desc">Hoc sinh phan tich nguoi dung muc tieu va xac dinh gia tri cot loi cho ung dung mobile. Cac em lap danh sach uu tien tinh nang (bat buoc co va nen co), ve wireframe co ban va lap lo trinh phat trien thuc te. Tu duy san pham duoc nhan manh: giai quyet van de cua nguoi dung, khong chi them tinh nang. Hoc sinh luyen viet yeu cau du an ro rang de dinh huong qua trinh phat trien co AI ho tro.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Dung Khung Ung Dung Mobile</h3><p class="lesson-desc">Hoc sinh su dung Bolt.new va Lovable de tao cau truc ban dau cho ung dung theo doi thoi quen co game hoa (cam hung tu Habitica). Cac em thiet lap luong dieu huong giua cac man hinh, tao cap thanh phan co ban va xay dung giao dien responsive. Trong tam hoc la hieu cau truc ma duoc tao, xac dinh tep quan trong, va chinh sua co chu dich thay vi sao chep may moc.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Phat Trien Tinh Nang Mobile</h3><p class="lesson-desc">Hoc sinh trien khai logic cot loi cua ung dung theo doi thoi quen: tao nhiem vu, danh dau hoan thanh, tinh chuoi ngay va cong diem. Cac em xay dung he thong thuong voi tien ao, tinh nang mo khoa va hien thi tien do. Hoc sinh hoc luu du lieu bang localStorage hoac ket noi backend don gian de dam bao tien do duoc giu lai giua cac buoi. Trong tam la hoan chinh tinh nang, khong chay theo so luong.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Quy Trinh Debug va Cai Tien</h3><p class="lesson-desc">Hoc sinh ap dung quy trinh debug he thong: tai hien loi on dinh, khoanh vung khu vuc gay loi, doc stack trace va kiem thu ban sua ky luong. Cac em sap xep muc do uu tien theo do nghiem trong (sap ung dung so voi loi UI nho) va anh huong den nguoi dung. Bai hoc gioi thieu cong cu debug trong VS Code, DevTools de mo phong mobile, va cach ghi nhat ky loi. Hoc sinh luyen mo ta loi ro rang cho tro ly AI de nhan goi y sua tot hon.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Nen Tang Web 3D</h3><p class="lesson-desc">Hoc sinh tao canh 3D tuong tac bang Three.js ket hop ho tro tu AI. Cac em thiet lap moi truong 3D co ban voi anh sang, camera va vat the hinh hoc. Hoat dong hoc gom: dat vat the trong khong gian 3D, them orbit controls de dieu huong camera, ap texture va vat lieu, va hieu render loop. Ket qua la mot the gioi 3D don gian co vat the co the nhan tuong tac.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Tuong Tac va Co Che 3D</h3><p class="lesson-desc">Hoc sinh nang cap the gioi 3D bang cac tuong tac phan hoi nhanh: raycasting de chon vat the, hieu ung hover, click de kich hoat animation, va thay doi trang thai theo thao tac nguoi dung. Cac em trien khai trigger moi truong (phat hien gan xa, vung va cham) va am thanh phan hoi. Hoc sinh bo sung hieu ung hat, animation khi tuong tac, va lop giao dien goi y thao tac.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Mẫu Thử Game 3D</h3><p class="lesson-desc">Hoc sinh xay dung game 3D phong cach Crossy Road voi di chuyen nhan vat (ban phim/cam ung), vat can sinh tu dong, phat hien va cham, he thong diem, va quan ly trang thai game (bat dau, dang choi, ket thuc). Cac em trien khai do kho tang dan, phan hoi hinh anh cho hanh dong, va tinh nang choi lai. Trong tam la tao game loop day du: khoi tao → choi → that bai → choi lai, voi chuyen trang thai muot ma.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Hoan Tat va Demo</h3><p class="lesson-desc">Hoc sinh thuc hien QA cuoi cho ca ung dung mobile va game 3D: test toan dien tren nhieu thiet bi, sua loi nghiem trong, toi uu hieu nang (giam giat, tang toc do tai), va tai lieu hoa tinh nang. Cac em chuan bi demo giai thich kien truc ky thuat, kho khan phat trien, giai phap da ap dung, va y tuong cai tien tiep theo. Hoc sinh luyen ky nang thuyet trinh du an chuyen nghiep va nhan phan hoi co cau truc.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Dự Án Sáng Tạo Cuối Khóa (GENAI-LV3)</h2>
+        <div class="section-meta">8 Buổi Học</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Dinh Huong Du An Cuoi Khoa</h3><p class="lesson-desc">Hoc sinh dong nao y tuong du an goc dua tren ky nang da hoc o Cấp độ 1-2. Cac em xac dinh doi tuong nguoi dung, van de cot loi can giai quyet, va tieu chi thanh cong co the do luong. Hoc sinh tao de xuat du an gom: loai san pham (ung dung web, ung dung mobile, game 3D, trai nghiem da phuong tien), tinh nang chinh, yeu cau ky thuat, va ket qua ky vong. Giang vien phan hoi ve tinh kha thi cua pham vi va huong ky thuat.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Ban Ve Ky Thuat</h3><p class="lesson-desc">Hoc sinh tach du an thanh cac moc phat trien voi dau ra ro rang cho tung giai doan. Cac em chon cong cu va nen tang phu hop (Replit hay VS Code, Bolt.new hay code thu cong, Three.js hay canvas 2D), lap bang tach tinh nang chi tiet, va nhan dien rui ro ky thuat can kiem chung som. Hoc sinh hoan thanh ke hoach trien khai bang van ban bao gom: quyet dinh kien truc, so do luong du lieu, va lich phat trien theo tung tuan.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Nuoc Rut Prototype</h3><p class="lesson-desc">Hoc sinh xay dung prototype toi thieu hoat dong duoc de chung minh chuc nang cot loi va kiem chung cac gia dinh ky thuat quan trong. Muc tieu la xac nhan y tuong chay duoc, khong phai hoan hao ngay. Cac em test cac tuong tac quan trong, xac minh cong cu da chon dap ung tinh nang, va nhan ra khoang trong kien thuc ky thuat. Hoc sinh trinh bay prototype de nhan phan hoi tu ban hoc, tu do dieu chinh cho cac giai doan tiep theo.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Nuoc Rut Xay Dung A</h3><p class="lesson-desc">Hoc sinh trien khai bo tinh nang lon dau tien, dong thoi xay dung kien truc ma sach de ho tro mo rong ve sau. Cac em to chuc cau truc du an gon gang, trien khai luong nguoi dung cot loi tu dau den cuoi, va tao component/ham co the tai su dung. Trong tam la nen tang vung: dat ten bien ro rang, to chuc ma theo module, va ghi chu logic phuc tap de de bao tri.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Nuoc Rut Xay Dung B</h3><p class="lesson-desc">Hoc sinh mo rong chuc nang voi cac tinh nang phu, danh bong phan da lam, va toi uu trai nghiem nguoi dung. Cac em bo sung tuong tac nang cao, cai thien giao dien UI/UX, trien khai luu du lieu hoac tich hop backend khi can, va tao vong phan hoi hap dan. Hoc sinh luyen can bang giua phat trien tinh nang moi voi du tri chat luong ma va sua loi.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">QA va Hoan Thien</h3><p class="lesson-desc">Hoc sinh thuc hien dam bao chat luong toan dien: kiem thu tat ca tinh nang trong nhieu tinh huong, sua loi theo thu tu uu tien, toi uu hieu nang (toc do tai, fps, do phan hoi), va dong bo hinh anh. Cac em chuan bi tai lieu showcase gom anh chup, video demo, mo ta du an, va huong dan su dung. Hoc sinh luyen trinh bay cong viec ky thuat cho nguoi khong chuyen mon.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Tong Ket va Chinh Sua</h3><p class="lesson-desc">Hoc sinh danh gia qua trinh phat trien qua phan tu nhin co cau truc: Dieu gi lam tot? Dieu gi kho hon du kien? Neu lam lai se thay doi gi? Cac em ghi lai bai hoc chinh, ky nang ky thuat dat duoc, va chien luoc giai quyet van de da hinh thanh. Dua tren tu danh gia va phan hoi kiem thu, hoc sinh chinh sua lan cuoi de du an dat chat luong tot nhat va the hien su lam chu ky nang cua chuong trinh.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Trinh Dien Cuoi Khoa</h3><p class="lesson-desc">Hoc sinh thuc hien buoi thuyet trinh chinh thuc ve du an cuoi khoa truoc lop hoc, giang vien va khach moi (phu huynh, hoc sinh cac chuong trinh khac). Noi dung bao gom: demo truc tiep, giai thich kien truc ky thuat, kho khan va cach giai quyet, quyet dinh sang tao va ly do, cung y tuong nang cap trong tuong lai. Hoc sinh luyen ky nang giao tiep chuyen nghiep, tra loi cau hoi tu tin, va ghi nhan thanh qua qua phan hoi tich cuc tu ban hoc.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Công Cụ Học Sinh Sử Dụng</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">🤖 Trô Ly AI: ChatGPT, Claude, Gemini, Grok</div>
+        <div class="tool">💻 Nen Tang Ma Nguon: HTML, CSS, JavaScript, Three.js</div>
+        <div class="tool">🧪 Cong Cu Phat Trien: Replit, VS Code, Bolt.new, Lovable</div>
+        <div class="tool">🎨 Cong Cu Truyen Thong: Canva, Suno, ElevenLabs, Google VEO 2</div>
+        <div class="tool">🔧 Cong Cu Lap Trinh: GitHub, Browser DevTools</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>Những Gì Học Sinh Thực Sự Xây Dựng</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>San Xuat Video Trailer</h4>
+          <p>Trailer 1-2 phút với cảnh tạo bởi AI, lời đọc tùy chỉnh và nhạc nền gốc.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Web Game Co He Thong Kinh Te</h4>
+          <p>Web game tuong tac voi he thong cua hang, nang cap va co che tien trien.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Ung Dung Mobile</h4>
+          <p>Ứng dụng theo dõi thói quen có yếu tố game hóa, phần thưởng, chuỗi ngày và lưu tiến độ người dùng.</p>
+        </article>
+        <article class="parent-card">
+          <h4>The Gioi 3D Tuong Tac</h4>
+          <p>Moi truong 3D tren trinh duyet voi dieu khien camera, vat the co the nhan va animation.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Web Game 3D</h4>
+          <p>Game phong cách Crossy Road với di chuyển nhân vật, vật cản, tính điểm và trạng thái trò chơi.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Du An Cuoi Khoa Tuy Chinh</h4>
+          <p>Du an cuoi khoa do hoc sinh tu thiet ke, ket hop toan bo ky nang da hoc thanh san pham doc dao.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Tại Sao Phụ Huynh Chọn Chương Trình Này</h2>
+      </div>
+      <div class="overview">
+        <p>Chương trình này được thiết kế để xây dựng kỹ năng thực tế, thói quen công nghệ lành mạnh và tiến độ rõ ràng. Thay vì dành thời gian thụ động trước màn hình, học sinh tạo ra sản phẩm thực tế và học cách suy nghĩ, lập kế hoạch và giải quyết vấn đề với các công cụ hiện đại.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Ky Nang That, Khong Chi Giai Tri</h4>
+          <p>Hoc sinh hoc cach bien y tuong thanh san pham hoat dong duoc qua lap ke hoach, lap trinh, kiem thu va cai tien lien tuc.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Giai Quyet Van De Co Cau Truc</h4>
+          <p>Moi du an deu theo quy trinh lap lai duoc, giup tre tang su tu tin thong qua moc tien do ro rang va phan hoi cu the.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Giao Tiep va Thuyet Trinh</h4>
+          <p>Hoc sinh trinh bay minh da xay dung gi, gap van de nao, va da cai thien ra sao; tu do tang tinh chu dong va su ro rang.</p>
+        </article>
+        <article class="parent-card">
+          <h4>San Pham San Sang Dua Vao Ho So</h4>
+          <p>Gia dinh co the xem ket qua cu the: trailer, san pham web, prototype nang cao va du an cuoi khoa.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Kết Quả Phát Triển Của Trẻ</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">Lap Ke Hoach Truoc Khi Xay Dung</h3>
+          <p class="lesson-desc">Hoc sinh hoc cach xac dinh muc tieu xay dung ro rang, liet ke tinh nang bat buoc, va sap xep thu tu cong viec truoc khi viet ma.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Chat Luong Prompt va Ky Luat Cai Tien</h3>
+          <p class="lesson-desc">Hoc sinh chuyen tu prompt mo ho sang prompt co cau truc, so sanh dau ra, va chinh huong dan de dat ket qua tot hon.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">Debug Trong Dieu Kien Ap Luc</h3>
+          <p class="lesson-desc">Hoc sinh phan loai loi (logic, UI, luong du lieu), kiem tra ban sua co he thong, va xac minh cai tien thay vi doan mo.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Do De Doc va Cau Truc Ma</h3>
+          <p class="lesson-desc">Hoc sinh to chuc ma thanh khoi ro rang, dat ten nhat quan, va giu tep du an gon gang de de bao tri.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Tu Duy San Pham va Nguoi Dung</h3>
+          <p class="lesson-desc">Hoc sinh danh gia san pham tu goc nhin nguoi dung, tang do ro cua dieu khien, va don gian hoa cac tuong tac de gay nham lan.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">Trinh Bay Cong Viec Ky Thuat</h3>
+          <p class="lesson-desc">Hoc sinh trinh bay san pham da xay dung, giai thich ly do chon cong cu, va mo ta thay doi giua prototype va ban cuoi.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">07</div>
+        <div>
+          <h3 class="lesson-title">Chat Luong Dau Ra San Sang Dua Vao Ho So</h3>
+          <p class="lesson-desc">Hoc sinh hoan thien san pham da danh bong (trailer + du an tuong tac) de gia dinh co the xem va hoc sinh co the trung bay.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Kết Quả Chương Trình</h3>
+      <ul>
+        <li>Học sinh có thể thiết kế và hoàn thành các dự án hỗ trợ AI hoàn chỉnh từ ý tưởng đến trình diễn.</li>
+        <li>Học sinh có thể lập kế hoạch phạm vi MVP, triển khai tính năng và gỡ lỗi với quy trình có cấu trúc.</li>
+        <li>Học sinh có thể truyền đạt quyết định kỹ thuật và suy ngẫm về cải thiện chất lượng.</li>
+        <li>Học sinh phát triển tư duy sáng tạo mạnh mẽ hơn: giải quyết vấn đề độc lập và tư duy lặp lại.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">📊</span>Thống Kê Chương Trình</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>200+ Hoc Sinh Dang Hoc</h4>
+          <p>Xay dung du an thuc te o nhieu chuong trinh va nang cao ky nang ky thuat.</p>
+        </article>
+        <article class="parent-card">
+          <h4>24 Buoi Du An</h4>
+          <p>Buoi hoc co cau truc voi xay dung thuc hanh, kiem thu va phan thuyet trinh.</p>
+        </article>
+        <article class="parent-card">
+          <h4>6 San Pham Lon</h4>
+          <p>San pham hoan chinh san sang dua vao ho so, hoc sinh co the demo va chia se.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Ho Tro Song Ngu</h4>
+          <p>Lop hoc ho tro tieng Anh va tieng Viet voi doi ngu giang vien co kinh nghiem.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Câu Hỏi Thường Gặp Của Phụ Huynh</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Con toi co can kinh nghiem lap trinh khong?</h3>
+          <p class="lesson-desc">Cấp độ 1 không yêu cầu kinh nghiệm trước. Hoc sinh hoc qua du an co huong dan va duoc AI ho tro, giup lap trinh de tiep can ngay ca voi nguoi moi bat dau.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">Thoi luong su dung man hinh nhu the nao?</h3>
+          <p class="lesson-desc">Moi tuan hoc theo buoi co cau truc, tap trung vao tao ra san pham sang tao thay vi tieu thu thu dong. Hoc sinh xay dung du an cu the voi muc tieu va moc kiem tra ro rang.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">Hoc sinh co the vao thang Cấp độ 2 hoac 3 khong?</h3>
+          <p class="lesson-desc">Mỗi cấp độ đều dựa trên kỹ năng và quy trình đã học trước đó. Chúng tôi khuyên bắt đầu từ Cấp độ 1, trừ khi con bạn đã có kinh nghiệm đáng kể với công cụ AI và dự án hoàn chỉnh.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">Sau khi hoan thanh ca 3 cap do thi sao?</h3>
+          <p class="lesson-desc">Hoc sinh co the chuyen sang cac chuong trinh khac cua TechTutor (Phat trien ung dung, Thiet ke 3D, Lap trinh game) hoac tiep tuc phat trien du an cuoi khoa nang cao mot cach doc lap.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">Toi theo doi tien do cua con bang cach nao?</h3>
+          <p class="lesson-desc">Moi cap do deu co san pham dau ra ro rang. Du an la ket qua co the trinh bay de gia dinh xem, thu nghiem va chia se voi ban be, nguoi than.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Bắt Đầu Ngay</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Có câu hỏi về đăng ký hoặc muốn thảo luận về lộ trình học tập của con bạn?</p>
+      <p>Phone/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Giờ làm việc: Thứ Hai-Thứ Sáu 8:00-21:00 | Thứ Bảy-Chủ Nhật 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tài Liệu & Brochure - TechTutor Academy</title>
+  <link rel="icon" type="image/png" href="../images/robot-rocket.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            teal: { DEFAULT: '#2C7A7B', light: '#319795', dark: '#234E52' },
+            ink: '#0F172A',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+      background-color: #FAFAFA;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .brochure-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .coming-soon {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="py-16 px-4 md:px-8 bg-gradient-to-br from-primary to-primary-light">
+    <div class="max-w-6xl mx-auto text-center text-white">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Tài Liệu & Brochure</h1>
+    </div>
+  </section>
+
+  <!-- School Brochure -->
+  <section class="py-16 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-ink mb-8">Brochure Trường Học</h2>
+
+      <div class="card p-8">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Tổng Quan</span>
+            </div>
+            <h3 class="text-2xl font-bold text-ink mb-2">Brochure Chính TechTutor Academy</h3>
+            <p class="text-gray-600">Tổng quan học viện, triết lý giảng dạy và tất cả chương trình</p>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <a href="https://drive.google.com/file/d/1jzRsI3kAXXp0TTnRvN7SUw-5RGhMUQ9G/view?usp=drive_link" target="_blank" class="inline-flex items-center justify-center rounded-lg bg-teal px-4 py-2 text-sm font-semibold text-white hover:bg-teal-dark">EN</a>
+            <a href="https://drive.google.com/file/d/15EP4pWvuanqWUsIm90u1ely_sUlXM0Ex/view?usp=drive_link" target="_blank" class="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-dark">VN</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program Brochures -->
+  <section class="py-16 px-4 md:px-8 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-ink mb-8">Brochure Chương Trình</h2>
+
+      <div class="space-y-4">
+        <!-- Generative AI Program -->
+        <div class="card p-8">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="bg-teal text-white text-xs font-bold px-3 py-1 rounded-full uppercase">AI & Lập Trình</span>
+              </div>
+              <h3 class="text-xl font-bold text-ink mb-2">Chương Trình Generative AI</h3>
+              <p class="text-gray-600 text-sm">3 cấp độ • 24 buổi học • Công cụ AI, phát triển web/mobile, tạo 3D</p>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <a href="../en/brochures/generative-ai-program.html" target="_blank" class="inline-flex items-center justify-center rounded-lg bg-teal px-4 py-2 text-sm font-semibold text-white hover:bg-teal-dark">EN</a>
+              <a href="brochures/generative-ai-program.html" target="_blank" class="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-dark">VN</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Designer - Coming Soon -->
+        <a href="#" class="brochure-link coming-soon">
+          <div class="card p-8">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="bg-gray-400 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Thiết Kế 3D</span>
+                  <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full uppercase">Sắp Ra Mắt</span>
+                </div>
+                <h3 class="text-xl font-bold text-ink mb-2">Chương Trình 3D Designer</h3>
+                <p class="text-gray-600 text-sm">3 cấp độ • Mô hình hóa 3D chuyên nghiệp, texture và render</p>
+              </div>
+              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Roblox - Coming Soon -->
+        <a href="#" class="brochure-link coming-soon">
+          <div class="card p-8">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="bg-gray-400 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Phát Triển Game</span>
+                  <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full uppercase">Sắp Ra Mắt</span>
+                </div>
+                <h3 class="text-xl font-bold text-ink mb-2">Roblox World Creator</h3>
+                <p class="text-gray-600 text-sm">3 cấp độ • Xây dựng trải nghiệm Roblox với lập trình Lua</p>
+              </div>
+              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- GDevelop - Coming Soon -->
+        <a href="#" class="brochure-link coming-soon">
+          <div class="card p-8">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="bg-gray-400 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Phát Triển Game</span>
+                  <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full uppercase">Sắp Ra Mắt</span>
+                </div>
+                <h3 class="text-xl font-bold text-ink mb-2">GDevelop Game Designer</h3>
+                <p class="text-gray-600 text-sm">3 cấp độ • Tạo game 2D với lập trình trực quan</p>
+              </div>
+              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- AI & Game Programming - Coming Soon -->
+        <a href="#" class="brochure-link coming-soon">
+          <div class="card p-8">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="bg-gray-400 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">AI & Lập Trình</span>
+                  <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full uppercase">Sắp Ra Mắt</span>
+                </div>
+                <h3 class="text-xl font-bold text-ink mb-2">AI & Game Programming Quest</h3>
+                <p class="text-gray-600 text-sm">3 cấp độ • Python nâng cao với tích hợp AI cho game</p>
+              </div>
+              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- App Development - Coming Soon -->
+        <a href="#" class="brochure-link coming-soon">
+          <div class="card p-8">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="bg-gray-400 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Phát Triển Mobile</span>
+                  <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full uppercase">Sắp Ra Mắt</span>
+                </div>
+                <h3 class="text-xl font-bold text-ink mb-2">Chương Trình App Development</h3>
+                <p class="text-gray-600 text-sm">3 cấp độ • Xây dựng ứng dụng mobile từ MVP đến App Store</p>
+              </div>
+              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Scratch World - Coming Soon -->
+        <a href="#" class="brochure-link coming-soon">
+          <div class="card p-8">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="bg-gray-400 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Lập Trình Cơ Bản</span>
+                  <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full uppercase">Sắp Ra Mắt</span>
+                </div>
+                <h3 class="text-xl font-bold text-ink mb-2">Chương Trình Scratch World</h3>
+                <p class="text-gray-600 text-sm">3 cấp độ • Giới thiệu lập trình cho độ tuổi 7-12</p>
+              </div>
+              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <script src="../js/site.js"></script>
+</body>
+</html>
