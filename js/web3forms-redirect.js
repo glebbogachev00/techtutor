@@ -25,13 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (data.success) {
           // Redirect to thank-you page
-          if (redirectUrl) {
-            // Construct absolute path based on current location
-            const currentPath = window.location.pathname;
-            const pathParts = currentPath.split('/').filter(part => part);
-            const localeFolder = pathParts[0]; // Gets 'vn', 'en', 'us', or 'in'
-            window.location.href = `/${localeFolder}/${redirectUrl}`;
-          }
+          const targetPage = redirectUrl || 'thank-you.html';
+          // Construct absolute path based on current location
+          const currentPath = window.location.pathname;
+          const pathParts = currentPath.split('/').filter(part => part);
+          const localeFolder = pathParts[0]; // Gets 'vn', 'en', 'us', or 'in'
+          window.location.href = `/${localeFolder}/${targetPage}`;
         } else {
           console.error('Form submission failed:', data);
           alert('There was an error submitting the form. Please try again.');
