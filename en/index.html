@@ -587,13 +587,14 @@
           </p>
         </div>
 
-        <form id="promoTrialForm" action="https://formspree.io/f/xqaynogk" method="POST" class="space-y-3 md:space-y-4">
+        <form id="promoTrialForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-3 md:space-y-4">
           <div>
             <label for="promo-email" class="sr-only">Email</label>
             <input id="promo-email" name="email" type="email" placeholder="Enter your email" class="w-full px-4 py-2.5 md:py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none text-sm md:text-base" required />
           </div>
-          <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
-          <input type="hidden" name="_subject" value="New Free Course Registration" />
+          <input type="hidden" name="access_key" value="c19cf4a2-ec55-46a6-9944-7ffe0cb4819d" />
+          <input type="hidden" name="redirect" value="thank-you.html" />
+          <input type="hidden" name="subject" value="New Free Course Registration" />
           <input type="hidden" name="source_page" value="index-promo-popup" />
           <input type="hidden" name="type" value="Free Course" />
           <button type="submit" class="w-full btn-orange text-center text-sm md:text-base py-2.5 md:py-3">Get My Free Course</button>
@@ -1419,7 +1420,7 @@
             </p>
           </div>
 
-          <form id="redesignTrialForm" action="https://formspree.io/f/xqaynogk" method="POST" class="space-y-4" data-formspree data-status-target="redesignTrialStatus">
+          <form id="redesignTrialForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4" data-formspree data-status-target="redesignTrialStatus">
             <div>
               <label for="trial-parent-name" class="sr-only">Parent Name</label>
               <input id="trial-parent-name" name="parent_name" type="text" data-i18n-placeholder="trial.form.parent_name" placeholder="Parent Name" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
@@ -1440,8 +1441,9 @@
               <label for="trial-child-age" class="sr-only">Age</label>
               <input id="trial-child-age" name="child_age" type="number" data-i18n-placeholder="trial.form.age" placeholder="Age" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
             </div>
-            <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
-            <input type="hidden" name="_subject" value="New Trial Form Submission" />
+            <input type="hidden" name="access_key" value="c19cf4a2-ec55-46a6-9944-7ffe0cb4819d" />
+            <input type="hidden" name="redirect" value="thank-you.html" />
+            <input type="hidden" name="subject" value="New Trial Form Submission" />
             <input type="hidden" name="source_page" value="index" />
             <button type="submit" class="w-full btn-orange text-center" data-i18n="trial.form.submit">Book Free Trial</button>
           </form>
@@ -1519,5 +1521,6 @@
   <script src="../js/site.js" defer></script>
   <script src="../js/app.js" defer></script>
   <script src="../js/enhancements.js" defer></script>
+  <script src="../js/web3forms-redirect.js"></script>
 </body>
 </html>

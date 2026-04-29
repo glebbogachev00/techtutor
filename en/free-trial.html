@@ -284,7 +284,7 @@
           <h2 class="text-3xl font-bold text-ink mb-6 text-center" data-i18n="form.title">Fill Out the Form Below</h2>
           <p class="text-gray-600 text-center mb-8" data-i18n="form.subtitle">We'll contact you within 24 hours to schedule your free trial lesson at a time that works for you.</p>
 
-          <form action="https://formspree.io/f/xqaynogk" method="POST" class="space-y-4">
+          <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
             <div>
               <input type="text" name="parent_name" required class="w-full px-5 py-3 rounded-full border-2 border-gray-200 text-base focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition" data-i18n-placeholder="form.parent_name_placeholder" placeholder="Enter your name" />
             </div>
@@ -302,8 +302,9 @@
             </div>
 
             <!-- Hidden Fields -->
-            <input type="text" name="_gotcha" style="display:none" />
-            <input type="hidden" name="_subject" value="New Free Trial Request" />
+            <input type="hidden" name="access_key" value="c19cf4a2-ec55-46a6-9944-7ffe0cb4819d" />
+            <input type="hidden" name="redirect" value="thank-you.html" />
+            <input type="hidden" name="subject" value="New Free Trial Request" />
             <input type="hidden" name="source_page" value="free-trial" />
 
             <!-- Submit Button -->
@@ -534,5 +535,6 @@
   </script>
 
   <script src="../js/enhancements.js" defer></script>
+  <script src="../js/web3forms-redirect.js"></script>
 </body>
 </html>
