@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GDevelop Game Designer Brochure | TechTutor Academy</title>
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link rel="shortcut icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#f4f4f5;
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#cfd4dc;
+    --brand:#244d9a;
+    --brand-soft:#eaf0fb;
+    --teal:#44bea4;
+    --panel:#1f4a97;
+    --lv1:#e8f7f3;
+    --lv2:#ecf2ff;
+    --lv3:#f4efff;
+  }
+  body{background:#ffffff;color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65;font-size:15px}
+  .hero{max-width:920px;margin:0 auto;padding:64px 56px 44px;border-bottom:1px solid var(--line);background:#ffffff}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .logo{width:250px;max-width:72%;height:auto}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:var(--brand)}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+
+  .progression{margin:24px 0;padding:20px;background:linear-gradient(to right,var(--lv1),var(--lv2),var(--lv3));border-radius:12px;border:1px solid var(--line)}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative}
+  .prog-step::after{content:'→';position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--brand);font-size:20px;font-weight:700}
+  .prog-step:last-child::after{display:none}
+  .prog-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#fff;border:2px solid var(--brand);border-radius:50%;font-weight:700;color:var(--brand);margin-bottom:6px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--ink)}
+  @page{size:A4;margin:10mm}
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .level-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Program Brochure</div>
+    </div>
+    <h1>GDevelop Game Designer</h1>
+    <p class="hero-sub">A structured, project-first track where students blend event-based coding, 2D design, and game design to create and publish complete 2D games.</p>
+    <div class="meta">
+      <div class="pill">Ages 8-14</div>
+      <div class="pill">24 Lessons Total</div>
+      <div class="pill">3 Progressive Levels</div>
+      <div class="pill">Project-Based + Showcase</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title">Program Overview</h2>
+      </div>
+      <div class="overview">
+        <p>For students interested in blending coding, 2D design, and game design, we explore GDevelop5—a powerful no-code game engine using event-based programming (a bridge between block coding and traditional scripting). Students progress from guided game building to independent game creation: mastering the GDevelop toolset, building code solutions for game features, and publishing complete 2D games. The program combines creative game design with logical programming thinking.</p>
+        <ul>
+          <li><strong>Learning Model:</strong> Design → Build → Code → Test → Publish.</li>
+          <li><strong>Class Format:</strong> Weekly project sessions with instructor coaching and structured checkpoints.</li>
+          <li><strong>Parent Visibility:</strong> Students create visible, playable games that can be reviewed and shared.</li>
+          <li><strong>Progress Measure:</strong> Feature completion, working game logic, and presentation of projects.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">LV1</div>
+            <div class="prog-label">Explorer<br/>8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV2</div>
+            <div class="prog-label">Builder<br/>8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV3</div>
+            <div class="prog-label">Creator<br/>8 weeks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Explorer (GDEVE-LV1)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Platform Game Intro</h3><p class="lesson-desc">Students modify an existing platform game to build familiarity with GDevelop fundamentals. They learn to identify events (conditions + actions), create and modify objects, and understand how event-based logic drives game behavior. Students gain comfort navigating the GDevelop interface and basic toolsets.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">2D Design</h3><p class="lesson-desc">Students create their first game from scratch: an endless runner. They learn to use the Piskel editor for sprite creation, set up foundational game elements, apply behaviors to objects, and create animations. Students understand how visual assets and code logic work together to create gameplay.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Platformer Design</h3><p class="lesson-desc">Students build their second game, focusing on game design planning and identifying essential platformer systems. They learn to break down complex games into core components, use camera actions for following players, and create custom behaviors. Students practice iterative design: plan, build, test, improve.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Custom Behavior</h3><p class="lesson-desc">Students create NPCs with specific characteristics and interactive behaviors. They implement custom behaviors triggered by player clicks, measure distance between objects for proximity detection, and use collisions for game interactions. Students learn how event logic creates responsive, dynamic game characters.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Inventories</h3><p class="lesson-desc">Students explore inventory systems in games and implement their own. They learn about arrays vs variables, understanding when each data structure is appropriate. Students create pickup systems allowing characters to collect and store items, learning fundamental programming concepts through practical game mechanics.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Variables in Scenes</h3><p class="lesson-desc">Students learn to create and manage scene variables and object variables. They implement variables through both code and manual creation, read and modify variable values through events, and understand how variables track game state (scores, health, progress). Students see how data drives game logic.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Game Design</h3><p class="lesson-desc">Students reflect on previous projects and plan improvements. They assess game quality, identify areas for enhancement, and add features that improve player experience. Students practice critical evaluation: what works, what doesn't, and why. Focus is on iterative improvement and design thinking.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Learning Showcase</h3><p class="lesson-desc">Students finalize projects, present their work to classmates, and provide constructive feedback on others' games. They demonstrate gameplay, explain features implemented, share design choices, and discuss challenges overcome. Students practice professional presentation skills and learn from peer feedback.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Builder (GDEVE-LV2)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Event-Based Coding Deep Dive</h3><p class="lesson-desc">Students examine how event-based coding aligns with traditional programming. They understand event structure (conditions → actions), learn to create events independently, and see how GDevelop's visual system translates to programming logic. Students implement specific event-code features to build game mechanics.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">For-Each Events</h3><p class="lesson-desc">Students learn to create object groups and use for-each events to apply actions to entire groups efficiently. They understand iteration in programming, create object classes, and implement logic that affects multiple game objects simultaneously. Students see how loops reduce repetitive code.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">While Events</h3><p class="lesson-desc">Students create events using while loop conditions for continuous checking and updating. They implement game logic that runs repeatedly until conditions change, understanding conditional loops and their applications in game systems. Students practice writing efficient loop-based event logic.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Linked Events</h3><p class="lesson-desc">Students create linked events—reusable event blocks shared across multiple scenes. They learn code reusability principles, understand how to reference existing logic rather than recreating it, and organize events efficiently. Students see how modular code design saves time and reduces errors.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Functions</h3><p class="lesson-desc">Students create custom functions: reusable condition-action sets they can call throughout their games. They learn function parameters, understand when to create functions vs inline events, and see how functions organize complex logic into manageable pieces. Students practice modular programming thinking.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Project Planning</h3><p class="lesson-desc">Students plan game features using all learned event systems. They complete a plan-of-work identifying required tools, event types needed, and implementation steps. Students practice scoping projects realistically, breaking complex features into achievable tasks, and estimating development time.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Work Period</h3><p class="lesson-desc">Students develop their planned game with instructor support. They implement features using advanced event logic, debug issues, test mechanics, and refine gameplay. Focus is on applying all learned event systems to create a complete, polished game with working advanced features.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Learning Showcase</h3><p class="lesson-desc">Students present completed games and explain their event systems. They demonstrate how features work, walk through key events, explain logic choices, and discuss technical problems solved. Students practice communicating technical concepts clearly and receive feedback on both game design and code architecture.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Creator (GDEVE-LV3)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Project Brainstorming</h3><p class="lesson-desc">Students design a custom game from scratch or continue a previous project. They create a comprehensive project plan meeting specific criteria, identify required tools and event systems, propose game features and code solutions, and justify their design choices. Students define realistic scope considering time and skill constraints.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Work Period 1</h3><p class="lesson-desc">Students begin building their custom game, establishing core mechanics and foundational event systems. They break features into specific tasks, implement basic gameplay, and test core loops. Focus is on building strong foundations: clear event organization, tested core mechanics, and stable base systems before adding complexity.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Work Period 2</h3><p class="lesson-desc">Students expand their games with additional features and begin integrating multiple systems. They test feature interactions, debug integration issues, and refine game balance. Students apply learned workflows: iterative development, systematic testing, and incremental improvements rather than adding everything at once.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Work Period 3</h3><p class="lesson-desc">Students add advanced features and polish: visual effects, UI improvements, complex event logic, and player progression systems. They focus on feature completion over feature quantity, ensuring each mechanic works properly and enhances gameplay. Students practice time management and feature prioritization.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Work Period 4</h3><p class="lesson-desc">Students perform comprehensive playtesting and quality assurance. They identify bugs, fix event logic errors, optimize performance, and improve user experience based on testing. Students refine game balance, adjust difficulty curves, enhance visual consistency, and prepare games for public sharing.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Work Period 5</h3><p class="lesson-desc">Students complete final implementation tasks, addressing remaining bugs and adding final polish. They optimize event systems for better performance, improve visual presentation, ensure all features work correctly, and prepare showcase materials including game descriptions and presentation notes.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Peer Review</h3><p class="lesson-desc">Students share projects with classmates and receive structured feedback. They playtest each other's games, provide constructive criticism on game design and event logic implementation, and suggest improvements. Students practice professional feedback: giving specific, actionable suggestions and receiving criticism gracefully.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Learning Showcase</h3><p class="lesson-desc">Students present final games to classmates, instructors, and invited guests. They reflect on their development process: features implemented, event systems created, challenges overcome, and lessons learned. Students demonstrate mastery of GDevelop, event-based programming, game design principles, and independent project management.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Tools Students Use</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">🎮 GDevelop 5: No-code game development engine</div>
+        <div class="tool">⚡ Event-Based Coding: Visual programming with conditions and actions</div>
+        <div class="tool">🎨 Piskel Editor: 2D sprite and animation creation</div>
+        <div class="tool">🧩 Variables & Arrays: Data structures for game state</div>
+        <div class="tool">🔄 Functions & Loops: Reusable logic and iteration</div>
+        <div class="tool">📤 Export & Publish: Web, mobile, and desktop platforms</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>What Students Actually Build</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Platform Games</h4>
+          <p>Side-scrolling platformers with jumping mechanics, obstacles, power-ups, and level progression.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Endless Runners</h4>
+          <p>Fast-paced games with procedural obstacles, scoring systems, and increasing difficulty.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Puzzle Games</h4>
+          <p>Logic-based games featuring inventory systems, object interactions, and problem-solving mechanics.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Top-Down Adventures</h4>
+          <p>Exploration games with NPC interactions, custom behaviors, and narrative elements.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Arcade-Style Games</h4>
+          <p>Action games with collision detection, score tracking, lives/health systems, and win/lose conditions.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Custom Capstone Game</h4>
+          <p>Original game concept designed and built independently, combining all learned systems into a polished project.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Why Parents Choose This Program</h2>
+      </div>
+      <div class="overview">
+        <p>This program is designed to build logical thinking, creative design skills, and visible progress. Students learn programming concepts without the complexity of syntax, making it perfect for younger students or those new to coding.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>No-Code Learning Path</h4>
+          <p>Students learn programming logic (conditions, loops, variables, functions) without typing code, removing syntax barriers.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Visual + Logical Thinking</h4>
+          <p>Students develop both creative game design skills and structured programming thinking through event-based logic.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Real Game Publishing</h4>
+          <p>Games export to web, mobile, and desktop platforms, giving students real-world publishing experience.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Foundation for Text Coding</h4>
+          <p>Event-based programming builds logical thinking that transfers directly to JavaScript, Python, and other languages.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Child Growth Outcomes</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">Event-Based Programming</h3>
+          <p class="lesson-desc">Students master visual programming through events, conditions, and actions—learning core programming concepts without syntax complexity.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Logical Problem Decomposition</h3>
+          <p class="lesson-desc">Students learn to break complex problems into sequences of events and actions, developing systematic problem-solving skills.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">2D Game Design</h3>
+          <p class="lesson-desc">Students create sprites, animations, and visual assets using Piskel, understanding how art and code combine to create games.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Game Systems Thinking</h3>
+          <p class="lesson-desc">Students design game mechanics, balance difficulty, create player feedback loops, and iterate based on playtesting.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Data Structure Understanding</h3>
+          <p class="lesson-desc">Students work with variables, arrays, and object properties, learning when to use each data type for game state management.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">Code Organization Skills</h3>
+          <p class="lesson-desc">Students create functions, linked events, and reusable logic blocks, learning modular programming principles.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">07</div>
+        <div>
+          <h3 class="lesson-title">Independent Project Development</h3>
+          <p class="lesson-desc">Students plan, build, test, and publish complete games with minimal guidance, demonstrating technical independence.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Program Outcomes</h3>
+      <ul>
+        <li>Students gain overall proficiency with GDevelop and event-based programming systems.</li>
+        <li>Students can design, code, and publish complete 2D games from concept to playable release.</li>
+        <li>Students understand core programming concepts (variables, conditions, loops, functions) through visual coding.</li>
+        <li>Students build portfolio-ready projects that demonstrate logical thinking and creative game design.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎓</span>Skills Learned</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Event-Based Programming</h4>
+          <p>Using condition → action logic to create game behavior without typing code syntax.</p>
+        </article>
+        <article class="parent-card">
+          <h4>2D Game Design</h4>
+          <p>Creating sprites, animations, backgrounds, and visual assets using Piskel and art tools.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Logic & Problem-Solving</h4>
+          <p>Breaking complex problems into sequences of events, conditions, loops, and functions.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Physics & Collision Systems</h4>
+          <p>Implementing platformer controls, gravity, movement behaviors, and collision detection.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Game Systems Design</h4>
+          <p>Creating score systems, health mechanics, level progression, and win/lose conditions.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Multi-Platform Publishing</h4>
+          <p>Exporting finished games to web, mobile (Android/iOS), and desktop (Windows/Mac/Linux).</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Common Parent Questions</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Does my child need coding experience?</h3>
+          <p class="lesson-desc">No prior coding experience required. GDevelop uses visual event-based programming—students learn programming concepts without typing code, making it perfect for beginners.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">How is this different from Scratch?</h3>
+          <p class="lesson-desc">While Scratch uses block coding, GDevelop uses event-based logic (condition → action), which is closer to real programming structure. GDevelop games also export to real platforms (web, mobile, desktop) not just online sharing.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">Will this help my child learn "real" programming later?</h3>
+          <p class="lesson-desc">Yes. Event-based programming teaches core concepts (variables, conditions, loops, functions) that directly transfer to JavaScript, Python, and other languages—without overwhelming students with syntax.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">Can students skip to Level 2 or 3?</h3>
+          <p class="lesson-desc">Each level builds on previous skills. We recommend starting at Level 1 unless your child has completed similar event-based programming courses and can demonstrate proficiency with GDevelop.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">How do I see my child's progress?</h3>
+          <p class="lesson-desc">Students export playable games you can run on your computer, phone, or browser. You'll receive exported game files and can watch them present projects during showcase sessions.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Get Started</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Questions about enrollment or want to discuss your child's learning path?</p>
+      <p>Phone/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Hours: Mon-Fri 8:00-21:00 | Sat-Sun 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>

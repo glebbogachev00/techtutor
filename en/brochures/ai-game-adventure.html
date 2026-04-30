@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI & Game Adventure Program - TechTutor Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--brand:#244d9a;--brand-soft:#eef3fc;--panel:#1f4a97;--teal:#2C7A7B;--line:#e2e8f0;--muted:#64748b;--lv1:#e6f7f4;--lv2:#e8effe;--lv3:#f3edfc}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'DM Sans',system-ui,sans-serif;font-size:15px;line-height:1.6;color:#334155;background:#fafafa}
+  .hero{background:linear-gradient(135deg,var(--brand) 0%,#1f3a7a 100%);color:#fff;padding:56px 20px 38px;text-align:center}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;max-width:920px;margin:0 auto 28px}
+  .logo{height:48px}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:#fff}
+  .hero-sub{font-size:16px;color:#e0e7ff;max-width:700px;margin:0 auto 18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid #d1d5db;padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .progression{margin-top:24px}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative;padding:16px 0}
+  .prog-step::after{content:'→';position:absolute;right:-16px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--muted)}
+  .prog-step:last-child::after{display:none}
+  .prog-num{font-family:'DM Serif Display',serif;font-size:32px;font-weight:400;color:var(--brand);margin-bottom:4px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:var(--brand);text-decoration:none;font-weight:600}
+  .contact a:hover{text-decoration:underline}
+
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .feature-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Program Brochure</div>
+    </div>
+    <h1>AI & Game Adventure</h1>
+    <p class="hero-sub">A comprehensive machine learning track where students explore AI concepts, create ML models, and build intelligent applications using Python, while considering ethical implications of artificial intelligence.</p>
+    <div class="meta">
+      <div class="pill">Ages 11-16</div>
+      <div class="pill">24 Lessons Total</div>
+      <div class="pill">3 Progressive Levels</div>
+      <div class="pill">Python + ML Models</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <h2 class="section-title">Program Overview</h2>
+      </div>
+      <div class="overview">
+        <p>For students interested in coding and machine learning, this program explores Machine Learning (ML) principles and real-world applications. Machine learning drives intelligent, responsive programs with real-world impact including self-driving cars, AI assistants, facial recognition, and predictive analytics. Students progress from exploring ML concepts to creating effective, unbiased models and building complete AI-driven applications with Python.</p>
+        <ul>
+          <li><strong>Learning model:</strong> Explore → Train → Test → Evaluate → Build AI Applications.</li>
+          <li><strong>Class format:</strong> Weekly project sessions with instructor guidance and structured milestones.</li>
+          <li><strong>Easy for parents to follow:</strong> Students create clear, demonstrable ML models with measurable accuracy.</li>
+          <li><strong>Progress measurement:</strong> Model accuracy metrics, working applications, and project presentations.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">LV1</div>
+            <div class="prog-label">Explorer<br/>8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV2</div>
+            <div class="prog-label">Builder<br/>8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV3</div>
+            <div class="prog-label">Creator<br/>8 weeks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Explorer (AIGAME-LV1)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">ML Exploration</h3><p class="lesson-desc">Students train and test an image recognition model using Teachable Machine. They learn to differentiate between testing and training datasets, understanding how training data supports machine learning. Students explore how ML models learn patterns from data and improve accuracy through proper training techniques.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Sentiment Analysis</h3><p class="lesson-desc">Students create an ML model to classify text sentiment (positive, negative, neutral) and build a Scratch front-end to display output. They define sentiment analysis, describe real-world applications (social media monitoring, customer feedback), and recall the training process for text-based ML models.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Face Filter</h3><p class="lesson-desc">Students build a face filter application using Machine Learning for Kids (MLFK) and Scratch. They explain how image recognition works for facial detection and recall the basics of the Viola-Jones algorithm. Students apply face detection to create interactive filters similar to social media applications.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Voice Recognition</h3><p class="lesson-desc">Students create a voice recognition application using MLFK and Scratch. They identify examples and applications of voice recognition models (voice assistants, accessibility tools, transcription services) and understand how audio data is processed by ML models to recognize speech patterns.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Intro to Data Analysis</h3><p class="lesson-desc">Students explore "Big Data" and machine learning for dataset analysis. They define the scientific method, hypothesize which features in a dataset are significant, and understand how ML helps identify patterns in large datasets that humans cannot easily detect manually.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Predictive Analysis</h3><p class="lesson-desc">Students learn about predictive AI through the scientific method: hypothesize, test, and revise. They recall the scientific method steps, assess hypotheses with incoming data, and revise predictions based on model performance. Focus is on iterative improvement through data-driven insights.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Plan Your Model</h3><p class="lesson-desc">Students plan a final AI project by documenting their idea for a custom ML model. They propose a machine learning application, identify required data types (text, image, sound), define training approach, and outline how their model will solve a specific problem or create value.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Learning Showcase</h3><p class="lesson-desc">Students build and present their final AI project to classmates. They demonstrate their ML model, explain the training process, discuss model accuracy, and reflect on challenges solved. Students practice presenting technical concepts clearly and receive feedback on both model design and implementation.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Builder (AIGAME-LV2)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Python Syntax</h3><p class="lesson-desc">Students learn basic Python syntax: print statements, input functions, and variables. They practice writing simple Python programs, understand data types (strings, integers, floats), and compare Python syntax to visual programming (Scratch). Focus is on transitioning from block-based to text-based coding.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Conditions</h3><p class="lesson-desc">Students write condition statements in Python using if/elif/else. They recall and apply syntax for conditional logic, create programs with branching behavior, and understand how conditions control program flow. Students translate conditional thinking from Scratch to Python text syntax.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Conditions & Operators</h3><p class="lesson-desc">Students use logical operators (AND, OR, NOT) in condition statements. They recall and apply operator syntax, create complex conditions combining multiple criteria, and understand operator precedence. Focus is on building sophisticated decision-making logic in Python programs.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Arrays & Loops</h3><p class="lesson-desc">Students write arrays (lists) and loops in Python, comparing to Scratch equivalents. They recall and apply list/loop syntax, understand when arrays are better than individual variables, and use for/while loops to iterate through data efficiently. Students manage collections of related data.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Functions</h3><p class="lesson-desc">Students create reusable functions in Python with parameters and return values. They recall and apply function syntax, call functions from main scripts, and organize code into modular, maintainable pieces. Focus is on code reusability and reducing repetition through function abstraction.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Plan Your Application</h3><p class="lesson-desc">Students plan a text-adventure game to be built in a Python notebook (Google Colab). They apply concepts learned: print/input, variables, conditions, loops, arrays, and functions. Students design game narrative, map decision trees, and outline code structure before implementation.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Work Period</h3><p class="lesson-desc">Students develop their Python text-adventure game project with instructor support. They implement planned features, debug code errors, test gameplay logic, and refine user experience. Focus is on applying all Python concepts learned to create a complete, playable text-based game.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Learning Showcase</h3><p class="lesson-desc">Students debug and present their Python game to classmates. They identify and explain code sections, demonstrate gameplay, discuss technical challenges solved, and reflect on their learning journey. Students practice communicating Python concepts clearly and receive feedback on code quality and game design.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Creator (AIGAME-LV3)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Project Brainstorming</h3><p class="lesson-desc">Students recap prior ML experience and propose new machine learning applications using MLFK. They recall previous ML projects, identify gaps or improvements, and brainstorm original AI applications. Students justify their proposal, define target users, and outline how their ML model will provide value.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Model Training</h3><p class="lesson-desc">Students collect training data in MLFK and build a model with ≥50% accuracy. They apply ML concepts learned, train and test models effectively, evaluate model performance, and iterate on training data to improve accuracy. Focus is on creating well-trained, unbiased ML models through proper data collection.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Work Period 1: Frontend Setup</h3><p class="lesson-desc">Students configure a front-end system using Python notebook (Google Colab). They create a Colab environment, connect to the MLFK backend, and establish the infrastructure for their AI application. Focus is on integrating ML models with user-facing interfaces.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Work Period 2: Results Handling</h3><p class="lesson-desc">Students write Python scripts to handle ML model results. They capture model predictions, process confidence scores, format output for users, and implement error handling. Focus is on creating a smooth pipeline from ML backend to frontend display.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Work Period 3: UI Development</h3><p class="lesson-desc">Students build the user interface for their AI application. They design input mechanisms for data collection, create output displays for model predictions, add visual feedback for user interactions, and polish the overall user experience.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Work Period 4: Testing & Refinement</h3><p class="lesson-desc">Students test their complete AI application and refine based on feedback. They evaluate model accuracy in real-world scenarios, identify edge cases, improve error handling, and optimize user experience. Focus is on creating robust, reliable AI applications.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Peer Review</h3><p class="lesson-desc">Students share projects with classmates and collect feedback for revisions. They speak to code design decisions, reflect on development process, provide constructive peer feedback, and learn to evaluate AI applications from both technical and ethical perspectives.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Learning Showcase</h3><p class="lesson-desc">Students finalize and present their ML project to classmates, teachers, and guests. They demonstrate the application, explain model training approach, discuss accuracy metrics, address ethical considerations, and reflect on the complete development journey. Students showcase mastery of ML concepts, Python programming, and AI application development.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Tools Students Use</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">🤖 Teachable Machine: Google's visual ML training platform</div>
+        <div class="tool">🎓 Machine Learning for Kids (MLFK): Educational ML platform</div>
+        <div class="tool">🐍 Python: Professional programming language</div>
+        <div class="tool">📊 Google Colab: Cloud-based Python notebook environment</div>
+        <div class="tool">🎮 Scratch Integration: Visual ML model frontend</div>
+        <div class="tool">📈 Data Analysis Tools: Dataset exploration and visualization</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>What Students Actually Build</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Image Recognition Models</h4>
+          <p>ML models that classify images with measurable accuracy, trained on custom datasets and tested systematically.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Sentiment Analysis Applications</h4>
+          <p>Text classification systems that analyze emotional tone with Scratch-based user interfaces.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Face Filter Apps</h4>
+          <p>Interactive applications using facial recognition technology to apply filters and effects in real-time.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Voice Recognition Systems</h4>
+          <p>Audio-based ML models that recognize speech patterns and respond to voice commands.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Python Text-Adventure Games</h4>
+          <p>Text-based games built with Python, demonstrating programming fundamentals and logic flow.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Complete AI Applications</h4>
+          <p>Full-stack ML projects combining trained models with Python frontends, achieving ≥60% accuracy.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Why Parents Choose This Program</h2>
+      </div>
+      <div class="overview">
+        <p>This program is designed to build real-world AI skills, technical confidence, and ethical awareness. Rather than passively using AI tools, students learn how machine learning actually works, gaining hands-on experience with the same technologies shaping our future.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Real Machine Learning Skills</h4>
+          <p>Students learn professional ML concepts: training, testing, accuracy evaluation, and bias detection used in industry AI applications.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Python Programming Foundation</h4>
+          <p>Students master Python syntax, data structures, and program logic—foundational skills for computer science and data science careers.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Ethical AI Awareness</h4>
+          <p>Students consider ethical implications of AI: bias in training data, privacy concerns, and responsible AI development practices.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Measurable Progress</h4>
+          <p>Model accuracy metrics provide clear, objective evidence of learning progress and technical skill development.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Child Growth Outcomes</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">ML Concept Mastery</h3>
+          <p class="lesson-desc">Students understand core machine learning concepts: training vs testing datasets, model accuracy, confidence scores, and bias detection. They explain how ML models learn from data and improve through iteration.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Python Programming Proficiency</h3>
+          <p class="lesson-desc">Students master Python fundamentals: variables, conditions, loops, arrays, and functions. They write clean, organized code and transition confidently from visual to text-based programming.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">Data-Driven Thinking</h3>
+          <p class="lesson-desc">Students apply the scientific method to ML development: hypothesize, test, evaluate, and iterate. They make decisions based on data rather than assumptions.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Model Training Expertise</h3>
+          <p class="lesson-desc">Students create effective ML models by collecting quality training data, avoiding bias, testing systematically, and optimizing for accuracy. They achieve measurable performance metrics (≥60% accuracy).</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Full-Stack AI Development</h3>
+          <p class="lesson-desc">Students integrate ML backends with Python frontends, creating complete applications. They understand the entire pipeline from data collection to user interface.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">Ethical AI Consideration</h3>
+          <p class="lesson-desc">Students evaluate ethical implications of ML applications: data privacy, algorithmic bias, fairness, and responsible AI deployment. They develop critical thinking about technology's societal impact.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">07</div>
+        <div>
+          <h3 class="lesson-title">Technical Communication</h3>
+          <p class="lesson-desc">Students explain complex AI concepts clearly, present technical projects professionally, and discuss ML development processes with both technical and non-technical audiences.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Program Outcomes</h3>
+      <ul>
+        <li>Students gain comprehensive understanding of machine learning principles and real-world AI applications.</li>
+        <li>Students can design, train, test, and deploy ML models achieving ≥60% accuracy with proper evaluation.</li>
+        <li>Students master Python programming fundamentals and apply them to build complete AI-driven applications.</li>
+        <li>Students develop critical thinking about AI ethics, bias, and responsible technology development.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎓</span>Skills Learned</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Machine Learning Fundamentals</h4>
+          <p>Training, testing, accuracy evaluation, bias detection, and model optimization for image/text/voice recognition.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Python Programming</h4>
+          <p>Variables, conditions, loops, arrays, functions, and text-based coding for AI application development.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Data Science Methods</h4>
+          <p>Scientific method application, hypothesis testing, data analysis, and predictive modeling with ML tools.</p>
+        </article>
+        <article class="parent-card">
+          <h4>AI Application Development</h4>
+          <p>Integrating ML models with frontends, handling results, creating user interfaces, and deploying complete systems.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Ethical AI Awareness</h4>
+          <p>Evaluating bias, considering privacy, discussing fairness, and developing responsible AI practices.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Technical Problem-Solving</h4>
+          <p>Debugging code, improving model accuracy, systematic testing, and iterative refinement through data.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Common Parent Questions</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Does my child need prior programming experience?</h3>
+          <p class="lesson-desc">For Level 1, no prior ML experience is required, but familiarity with basic coding (Scratch or similar) is helpful. For Level 2-3, completion of previous levels or equivalent Python knowledge is recommended.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">Is this real machine learning or simplified for kids?</h3>
+          <p class="lesson-desc">This is real machine learning using industry-standard concepts and tools. Students work with actual ML models, measure real accuracy metrics, and learn principles used in professional AI development.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">What programming language do students learn?</h3>
+          <p class="lesson-desc">Students learn Python, the most widely-used language for machine learning and data science. Python skills transfer directly to professional AI development, web development, and computer science.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">How do you measure student progress?</h3>
+          <p class="lesson-desc">Progress is measured through model accuracy metrics (target: ≥60%), completed projects, code quality, and technical presentations. Each student builds a portfolio of working ML applications.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">What career paths does this program support?</h3>
+          <p class="lesson-desc">This program builds foundational skills for AI engineering, data science, machine learning research, software development, and any field leveraging artificial intelligence and data-driven decision-making.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Get Started</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Questions about enrollment or want to discuss your child's learning path?</p>
+      <p>Phone/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Hours: Mon-Fri 8:00-21:00 | Sat-Sun 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>

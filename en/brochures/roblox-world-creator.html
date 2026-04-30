@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Roblox World Creator Brochure | TechTutor Academy</title>
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link rel="shortcut icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#cfd4dc;
+    --brand:#244d9a;
+    --brand-soft:#eaf0fb;
+    --teal:#44bea4;
+    --panel:#1f4a97;
+    --lv1:#e8f7f3;
+    --lv2:#ecf2ff;
+    --lv3:#f4efff;
+  }
+  body{background:#ffffff;color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65;font-size:15px}
+  .hero{max-width:920px;margin:0 auto;padding:64px 56px 44px;border-bottom:1px solid var(--line);background:#ffffff}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .logo{width:250px;max-width:72%;height:auto}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:var(--brand)}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+  .progression{margin:24px 0;padding:20px;background:linear-gradient(to right,var(--lv1),var(--lv2),var(--lv3));border-radius:12px;border:1px solid var(--line)}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative}
+  .prog-step::after{content:'→';position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--brand);font-size:20px;font-weight:700}
+  .prog-step:last-child::after{display:none}
+  .prog-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#fff;border:2px solid var(--brand);border-radius:50%;font-weight:700;color:var(--brand);margin-bottom:6px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--ink)}
+  @page{size:A4;margin:10mm}
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .feature-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Program Brochure</div>
+    </div>
+    <h1>Roblox World Creator</h1>
+    <p class="hero-sub">A structured, project-first track where students blend coding, 3D design, and game design to create and publish complete Roblox games.</p>
+    <div class="meta">
+      <div class="pill">Ages 9-15</div>
+      <div class="pill">24 Lessons Total</div>
+      <div class="pill">3 Progressive Levels</div>
+      <div class="pill">Project-Based + Showcase</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title">Program Overview</h2>
+      </div>
+      <div class="overview">
+        <p>For students interested in blending coding, 3D design, and game design, we explore Roblox Studio—a powerful free toolset using the Lua programming language (based on C++). Students progress from guided building to independent game creation: mastering the Studio toolset, practicing code solutions for game features, and publishing complete games. The program combines creative storytelling with practical programming skills so students learn how games actually work.</p>
+        <ul>
+          <li><strong>Learning Model:</strong> Build → Script → Test → Improve → Publish.</li>
+          <li><strong>Class Format:</strong> Weekly project sessions with instructor coaching and structured checkpoints.</li>
+          <li><strong>Parent Visibility:</strong> Students create visible, playable games that can be reviewed and shared.</li>
+          <li><strong>Progress Measure:</strong> Feature completion, working game mechanics, and presentation of projects.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">LV1</div>
+            <div class="prog-label">Foundations<br/>8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV2</div>
+            <div class="prog-label">Builder<br/>8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV3</div>
+            <div class="prog-label">Creator<br/>8 weeks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Foundations (ROBLX-LV1)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Build a House</h3><p class="lesson-desc">Students learn the Roblox Studio UI and navigation tools. They practice using movement tools (rotate, scale, place) to create, move, scale, and rotate parts. Students apply basic properties to objects and build their first 3D structure, gaining familiarity with the workspace and essential building controls.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Obby (Obstacle Course)</h3><p class="lesson-desc">Students build an engaging obstacle course, learning game design principles and playtesting workflow. They create challenging jumps, moving platforms, and hazards while testing gameplay balance. Students learn to iterate on design: building, testing, identifying problems, and making improvements based on player experience.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Volcano Island</h3><p class="lesson-desc">Students build environmental elements like bridges and terrain features to create immersive game worlds. They modify pre-written scripts to create damage and healing parts, learning how code controls game behavior. Students apply materials and properties to parts, understanding how visual details enhance player experience.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Dialog Systems</h3><p class="lesson-desc">Students create NPC (non-player character) dialogue systems using Roblox's dialog toolset. They build branching dialog trees with multiple conversation paths, create dialog options that lead to different outcomes, and design interactive characters that respond to player choices. Students learn how dialog enhances storytelling in games.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Animation</h3><p class="lesson-desc">Students create movement keyframes for character rigs using the Animation Editor. They design custom animations (walk, jump, dance, etc.) and learn to apply animations using scripts. Students connect animation systems with game events, making characters move dynamically in response to player actions or game triggers.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Project Planning</h3><p class="lesson-desc">Students plan their final game project by defining scope, identifying required features, and organizing build tasks. They select which tools to use (models, scripts, dialog, animations), create asset lists, and outline their game's core mechanics. Students practice breaking complex projects into manageable steps.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Work Period</h3><p class="lesson-desc">Students develop their planned project with instructor support and feedback. They implement features step-by-step, test gameplay mechanics, troubleshoot issues, and refine their game based on playtesting. Focus is on applying all learned skills (building, scripting, dialog, animation) into one cohesive game experience.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Learning Showcase</h3><p class="lesson-desc">Students publish their games to Roblox and present final projects to classmates. They demonstrate gameplay, explain features implemented, share their creative process, and discuss challenges overcome. Students learn to invite collaborators and share projects via the Roblox web app so friends and family can play their games.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Builder (ROBLX-LV2)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Intro to Lua</h3><p class="lesson-desc">Students learn fundamental Lua syntax: comments, print statements, variables, data types, and basic operators. They build a survival game that uses loops to create repeating events and implement a scoring system. Students understand the parent/child object structure in Roblox and practice writing clean, readable code with proper formatting.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Conditions</h3><p class="lesson-desc">Students implement conditional logic using if/else statements to create different game outcomes. They add win/lose conditions, check player states, and create branching gameplay based on player actions. Students learn to use comparison operators (==, >, <, etc.) and logical operators (and, or, not) to build complex game rules.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Properties</h3><p class="lesson-desc">Students modify object properties through code (color, size, transparency, position). They use OnTouch events combined with conditions to create interactive game elements: parts that change when touched, trigger zones, and dynamic environmental responses. Students learn how to reference and manipulate game objects programmatically.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Functions</h3><p class="lesson-desc">Students create reusable code logic by writing custom functions. They learn function parameters, return values, and how to organize code into modular, maintainable blocks. Students refactor repeated code into functions, improving code efficiency and readability. Practice includes creating utility functions for common game tasks.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">User Interface (UI)</h3><p class="lesson-desc">Students build custom GUI elements: frames, buttons, labels, and text inputs. They add button interactions that trigger code, create responsive layouts, and display variable values (score, health, timer) on screen. Students learn to make interactive UI that enhances player experience and provides essential game feedback.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Project Planning</h3><p class="lesson-desc">Students plan features for their Level 2 game using all learned systems (Lua syntax, conditions, properties, functions, UI). They identify required code sections, outline feature implementation steps, and propose new mechanics that combine multiple programming concepts. Students practice scoping projects realistically based on time and skill level.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Work Period</h3><p class="lesson-desc">Students develop their planned game, implementing features using Lua programming. They debug code errors, test game logic, refine mechanics based on playtesting, and add polish. Focus is on writing functional code, solving programming challenges independently, and creating a complete game experience with custom scripts.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Learning Showcase</h3><p class="lesson-desc">Students present their games and explain the code solutions they created. They demonstrate implemented features, walk through key scripts, explain how their code works, and discuss technical challenges solved. Students practice communicating programming concepts clearly and receive feedback on both game design and code quality.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Creator (ROBLX-LV3)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Project Brainstorming</h3><p class="lesson-desc">Students design a custom game from scratch, proposing an original concept with clear goals and target audience. They create a comprehensive project plan identifying required tools, features, and technical challenges. Students justify their design choices, explain why their game will be engaging, and define constraints (scope, time, technical requirements).</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Work Period 1</h3><p class="lesson-desc">Students begin building their custom game, establishing core mechanics and foundational systems. They break features into specific tasks, prioritize implementation order, and create the basic game structure. Focus is on building strong foundations: clean code organization, modular design, and tested core functionality before adding complexity.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Work Period 2</h3><p class="lesson-desc">Students expand their game with additional features and begin integrating systems (UI, scripting, animations). They test feature interactions, debug integration issues, and refine game balance. Students apply prior workflows: iterative development, systematic testing, and making incremental improvements rather than adding everything at once.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Work Period 3</h3><p class="lesson-desc">Students add advanced features and polish to their games: visual effects, sound, advanced UI, complex game logic, and player progression systems. They focus on feature completion over feature quantity, ensuring each implemented mechanic works properly and enhances the player experience. Students practice time management and feature prioritization.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Work Period 4</h3><p class="lesson-desc">Students perform comprehensive playtesting and quality assurance. They identify bugs, fix errors, optimize performance, and improve user experience based on testing feedback. Students refine game balance, adjust difficulty curves, enhance visual consistency, and prepare their game for public release.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Work Period 5</h3><p class="lesson-desc">Students complete final implementation tasks, addressing remaining bugs and adding final polish. They optimize scripts for better performance, improve visual presentation, ensure all features work correctly, and prepare showcase materials. Students create game descriptions, screenshots, and presentation notes explaining their work.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Peer Review</h3><p class="lesson-desc">Students share projects with classmates and receive structured feedback. They playtest each other's games, provide constructive criticism on game design and technical implementation, and suggest improvements. Students practice giving and receiving professional feedback, learning to evaluate games from both player and developer perspectives.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Learning Showcase</h3><p class="lesson-desc">Students present their final games to classmates, instructors, and invited guests. They reflect on their build process: features implemented, code solutions created, progress over time, challenges overcome, and lessons learned. Students demonstrate mastery of Roblox Studio, Lua programming, game design principles, and project management skills.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Tools Students Use</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">🎮 Roblox Studio: Complete game development environment</div>
+        <div class="tool">💻 Lua Programming: Text-based coding (syntax, data structures, variables)</div>
+        <div class="tool">🏗️ 3D Design: Part manipulation, terrain creation, environment building</div>
+        <div class="tool">🎭 Animation Editor: Character rigging and keyframe animation</div>
+        <div class="tool">💬 Dialog System: Interactive NPC conversations and branching paths</div>
+        <div class="tool">📱 UI Design: Custom interfaces, buttons, and player feedback systems</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>What Students Actually Build</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Obstacle Courses (Obbys)</h4>
+          <p>Challenging platforming games with jumps, moving platforms, and hazards that test player skill.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Adventure Worlds</h4>
+          <p>Immersive environments with terrain, buildings, NPCs, dialog systems, and exploration elements.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Survival Games</h4>
+          <p>Games featuring scoring systems, health mechanics, win/lose conditions, and dynamic challenges.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Interactive Experiences</h4>
+          <p>Games with custom UI, player feedback systems, and responsive game mechanics driven by Lua code.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Animated Game Worlds</h4>
+          <p>Projects featuring custom character animations, moving objects, and dynamic environmental responses.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Custom Capstone Game</h4>
+          <p>Original game concept designed and built independently, combining all learned skills into a polished project.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Why Parents Choose This Program</h2>
+      </div>
+      <div class="overview">
+        <p>This program is designed to build practical skills, creative confidence, and visible progress. Instead of passive gameplay, students learn to create the games they love, understanding how code, design, and creativity work together.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Real Programming Skills</h4>
+          <p>Students learn Lua, a professional programming language used in game development, robotics, and software engineering.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Creative + Technical Growth</h4>
+          <p>Students develop both artistic vision (world building, storytelling) and technical skills (coding, debugging, problem-solving).</p>
+        </article>
+        <article class="parent-card">
+          <h4>Project Completion Discipline</h4>
+          <p>Students learn to plan projects, work through challenges, and finish what they start—skills that transfer beyond coding.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Shareable Portfolio Work</h4>
+          <p>Games are published on Roblox and can be played by anyone, giving students real-world validation of their work.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Child Growth Outcomes</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">3D Design Proficiency</h3>
+          <p class="lesson-desc">Students master Roblox Studio's 3D tools: creating, moving, scaling, rotating parts; joining and negating objects; and applying materials and properties to create polished game environments.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Text-Based Programming</h3>
+          <p class="lesson-desc">Students learn Lua syntax, data structures, variables, conditions, loops, and functions—moving beyond visual coding to professional text-based programming.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">Game Design Thinking</h3>
+          <p class="lesson-desc">Students learn to design engaging gameplay: balancing difficulty, creating player feedback loops, and iterating based on playtesting to improve player experience.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Debugging and Problem-Solving</h3>
+          <p class="lesson-desc">Students learn to read error messages, test code systematically, identify bugs, and implement fixes—developing resilience when facing technical challenges.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Project Management</h3>
+          <p class="lesson-desc">Students plan project scope, break complex tasks into manageable steps, prioritize features, and manage time effectively to complete projects on schedule.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">Creative Storytelling</h3>
+          <p class="lesson-desc">Students design game narratives, create interactive dialog systems, build immersive worlds, and use animations to bring characters and environments to life.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">07</div>
+        <div>
+          <h3 class="lesson-title">Publishing and Sharing</h3>
+          <p class="lesson-desc">Students learn to publish games to Roblox, invite collaborators, share projects publicly, and present their work professionally to audiences.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Program Outcomes</h3>
+      <ul>
+        <li>Students gain overall proficiency with the Roblox Studio toolset and Lua programming language.</li>
+        <li>Students can design, code, and publish complete games from concept to playable release.</li>
+        <li>Students develop structured problem-solving skills through debugging, testing, and iteration.</li>
+        <li>Students build portfolio-ready projects that demonstrate technical skill and creative vision.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎓</span>Skills Learned</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Lua Programming</h4>
+          <p>Professional text-based coding with variables, functions, conditions, loops, and object manipulation.</p>
+        </article>
+        <article class="parent-card">
+          <h4>3D World Building</h4>
+          <p>Creating immersive environments using Roblox Studio's part manipulation, terrain tools, and materials.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Game Design Principles</h4>
+          <p>Balancing difficulty, creating feedback loops, designing mechanics, and iterating based on playtesting.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Debugging & Problem-Solving</h4>
+          <p>Reading error messages, systematic testing, identifying bugs, and implementing fixes independently.</p>
+        </article>
+        <article class="parent-card">
+          <h4>UI/UX Design</h4>
+          <p>Creating custom interfaces, buttons, layouts, and visual feedback systems for player experience.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Project Management</h4>
+          <p>Planning scope, breaking tasks into steps, prioritizing features, and completing projects on schedule.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Common Parent Questions</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Does my child need Roblox or coding experience?</h3>
+          <p class="lesson-desc">No prior experience required for Level 1. Students start with 3D building basics before progressing to Lua programming. Familiarity with playing Roblox games is helpful but not required.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">Is this just playing Roblox games?</h3>
+          <p class="lesson-desc">No. Students learn professional game development using Roblox Studio—the same tool professional Roblox developers use. This is creating games, not playing them.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">Will my child actually learn real programming?</h3>
+          <p class="lesson-desc">Yes. Lua is a professional programming language used in game development (World of Warcraft, Angry Birds), embedded systems, and software engineering. The concepts learned transfer to other programming languages.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">Can students skip to Level 2 or 3?</h3>
+          <p class="lesson-desc">Each level builds on previous skills. We recommend starting at Level 1 unless your child has completed similar Roblox programming courses and can demonstrate Lua coding proficiency.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">How do I see my child's progress?</h3>
+          <p class="lesson-desc">Students publish games to Roblox that you can play directly. You'll receive links to their published games and can watch them present projects during showcase sessions.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Get Started</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Questions about enrollment or want to discuss your child's learning path?</p>
+      <p>Phone/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Hours: Mon-Fri 8:00-21:00 | Sat-Sun 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Brochure Thiết Kế Game GDevelop | TechTutor Academy</title>
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link rel="shortcut icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#f4f4f5;
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#cfd4dc;
+    --brand:#244d9a;
+    --brand-soft:#eaf0fb;
+    --teal:#44bea4;
+    --panel:#1f4a97;
+    --lv1:#e8f7f3;
+    --lv2:#ecf2ff;
+    --lv3:#f4efff;
+  }
+  body{background:#ffffff;color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65;font-size:15px}
+  .hero{max-width:920px;margin:0 auto;padding:64px 56px 44px;border-bottom:1px solid var(--line);background:#ffffff}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .logo{width:250px;max-width:72%;height:auto}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:var(--brand)}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+
+  .progression{margin:24px 0;padding:20px;background:linear-gradient(to right,var(--lv1),var(--lv2),var(--lv3));border-radius:12px;border:1px solid var(--line)}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative}
+  .prog-step::after{content:'→';position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--brand);font-size:20px;font-weight:700}
+  .prog-step:last-child::after{display:none}
+  .prog-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#fff;border:2px solid var(--brand);border-radius:50%;font-weight:700;color:var(--brand);margin-bottom:6px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--ink)}
+  @page{size:A4;margin:10mm}
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .level-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Brochure Chương Trình</div>
+    </div>
+    <h1>Thiết Kế Game GDevelop</h1>
+    <p class="hero-sub">Lộ trình có cấu trúc, ưu tiên dự án, nơi học sinh kết hợp lập trình dựa trên sự kiện, thiết kế 2D và thiết kế game để tạo và xuất bản các game 2D hoàn chỉnh.</p>
+    <div class="meta">
+      <div class="pill">Độ tuổi 8-14</div>
+      <div class="pill">24 Bài Học</div>
+      <div class="pill">3 Cấp Độ Tiến Bộ</div>
+      <div class="pill">Dự Án + Trình Diễn</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title">Tổng Quan Chương Trình</h2>
+      </div>
+      <div class="overview">
+        <p>Dành cho học sinh quan tâm đến việc kết hợp lập trình, thiết kế 2D và thiết kế game, chúng ta khám phá GDevelop5—một công cụ game mạnh mẽ không cần code sử dụng lập trình dựa trên sự kiện (cầu nối giữa lập trình khối và lập trình truyền thống). Học sinh tiến bộ từ xây dựng game có hướng dẫn đến sáng tạo game độc lập: thành thạo bộ công cụ GDevelop, xây dựng giải pháp code cho tính năng game và xuất bản các game 2D hoàn chỉnh. Chương trình kết hợp thiết kế game sáng tạo với tư duy lập trình logic.</p>
+        <ul>
+          <li><strong>Mô hình học:</strong> Thiết Kế → Xây Dựng → Lập Trình → Kiểm Tra → Xuất Bản.</li>
+          <li><strong>Định dạng lớp học:</strong> Các buổi dự án hàng tuần với hướng dẫn từ giảng viên và các mốc có cấu trúc.</li>
+          <li><strong>Phụ huynh dễ theo dõi:</strong> Học sinh tạo các game rõ ràng, có thể chơi được, có thể xem xét và chia sẻ.</li>
+          <li><strong>Đo lường tiến bộ:</strong> Hoàn thành tính năng, logic game hoạt động và trình bày dự án.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">LV1</div>
+            <div class="prog-label">Khám Phá<br/>8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV2</div>
+            <div class="prog-label">Xây Dựng<br/>8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV3</div>
+            <div class="prog-label">Sáng Tạo<br/>8 tuần</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Khám Phá (GDEVE-LV1)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Giới Thiệu Game Platform</h3><p class="lesson-desc">Học sinh sửa đổi game platform có sẵn để làm quen với các khái niệm cơ bản của GDevelop. Các em học cách xác định sự kiện (điều kiện + hành động), tạo và sửa đổi đối tượng, và hiểu cách logic dựa trên sự kiện điều khiển hành vi game. Học sinh cảm thấy thoải mái khi điều hướng giao diện GDevelop và các bộ công cụ cơ bản.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Thiết Kế 2D</h3><p class="lesson-desc">Học sinh tạo game đầu tiên từ đầu: một endless runner. Các em học cách sử dụng trình chỉnh sửa Piskel để tạo sprite, thiết lập các yếu tố game cơ bản, áp dụng hành vi cho đối tượng và tạo hoạt hình. Học sinh hiểu cách tài sản hình ảnh và logic code hoạt động cùng nhau để tạo gameplay.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Thiết Kế Platformer</h3><p class="lesson-desc">Học sinh xây dựng game thứ hai, tập trung vào lập kế hoạch thiết kế game và xác định các hệ thống platformer thiết yếu. Các em học cách chia nhỏ các game phức tạp thành các thành phần cốt lõi, sử dụng hành động camera để theo dõi người chơi và tạo hành vi tùy chỉnh. Học sinh thực hành thiết kế lặp: lập kế hoạch, xây dựng, kiểm tra, cải thiện.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Hành Vi Tùy Chỉnh</h3><p class="lesson-desc">Học sinh tạo NPC với đặc điểm cụ thể và hành vi tương tác. Các em triển khai hành vi tùy chỉnh được kích hoạt bởi cú nhấp chuột của người chơi, đo khoảng cách giữa các đối tượng để phát hiện gần và sử dụng va chạm cho tương tác game. Học sinh học cách logic sự kiện tạo ra nhân vật game phản hồi, động.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Hệ Thống Kho</h3><p class="lesson-desc">Học sinh khám phá hệ thống kho trong game và triển khai của riêng mình. Các em học về mảng so với biến, hiểu khi nào mỗi cấu trúc dữ liệu phù hợp. Học sinh tạo hệ thống nhặt cho phép nhân vật thu thập và lưu trữ vật phẩm, học các khái niệm lập trình cơ bản thông qua cơ chế game thực tế.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Biến Trong Cảnh</h3><p class="lesson-desc">Học sinh học cách tạo và quản lý biến cảnh và biến đối tượng. Các em triển khai biến thông qua cả code và tạo thủ công, đọc và sửa đổi giá trị biến thông qua sự kiện, và hiểu cách biến theo dõi trạng thái game (điểm số, máu, tiến trình). Học sinh thấy cách dữ liệu điều khiển logic game.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Thiết Kế Game</h3><p class="lesson-desc">Học sinh phản ánh về các dự án trước và lập kế hoạch cải thiện. Các em đánh giá chất lượng game, xác định khu vực cần nâng cao và thêm tính năng cải thiện trải nghiệm người chơi. Học sinh thực hành đánh giá phê bình: điều gì hoạt động, điều gì không và tại sao. Trọng tâm là cải thiện lặp và tư duy thiết kế.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Trình Diễn Học Tập</h3><p class="lesson-desc">Học sinh hoàn thiện dự án, trình bày công việc cho bạn học và cung cấp phản hồi mang tính xây dựng về game của người khác. Các em trình diễn gameplay, giải thích các tính năng đã triển khai, chia sẻ lựa chọn thiết kế và thảo luận về các thử thách đã vượt qua. Học sinh thực hành kỹ năng trình bày chuyên nghiệp và học hỏi từ phản hồi của bạn bè.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Xây Dựng (GDEVE-LV2)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Lập Trình Dựa Sự Kiện Chuyên Sâu</h3><p class="lesson-desc">Học sinh xem xét cách lập trình dựa trên sự kiện phù hợp với lập trình truyền thống. Các em hiểu cấu trúc sự kiện (điều kiện → hành động), học cách tạo sự kiện độc lập và thấy cách hệ thống trực quan của GDevelop chuyển thành logic lập trình. Học sinh triển khai các tính năng code sự kiện cụ thể để xây dựng cơ chế game.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Sự Kiện For-Each</h3><p class="lesson-desc">Học sinh học cách tạo nhóm đối tượng và sử dụng sự kiện for-each để áp dụng hành động cho toàn bộ nhóm hiệu quả. Các em hiểu lặp trong lập trình, tạo lớp đối tượng và triển khai logic ảnh hưởng đến nhiều đối tượng game đồng thời. Học sinh thấy cách vòng lặp giảm code lặp lại.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Sự Kiện While</h3><p class="lesson-desc">Học sinh tạo sự kiện sử dụng điều kiện vòng lặp while để kiểm tra và cập nhật liên tục. Các em triển khai logic game chạy lặp đi lặp lại cho đến khi điều kiện thay đổi, hiểu vòng lặp có điều kiện và ứng dụng của chúng trong hệ thống game. Học sinh thực hành viết logic sự kiện dựa trên vòng lặp hiệu quả.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Sự Kiện Liên Kết</h3><p class="lesson-desc">Học sinh tạo sự kiện liên kết—khối sự kiện có thể tái sử dụng được chia sẻ trên nhiều cảnh. Các em học nguyên tắc khả năng tái sử dụng code, hiểu cách tham chiếu logic hiện có thay vì tạo lại nó và tổ chức sự kiện hiệu quả. Học sinh thấy cách thiết kế code modular tiết kiệm thời gian và giảm lỗi.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Hàm</h3><p class="lesson-desc">Học sinh tạo hàm tùy chỉnh: các tập điều kiện-hành động có thể tái sử dụng mà các em có thể gọi trong suốt game của mình. Các em học tham số hàm, hiểu khi nào tạo hàm so với sự kiện inline và thấy cách hàm tổ chức logic phức tạp thành các phần có thể quản lý. Học sinh thực hành tư duy lập trình modular.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Lập Kế Hoạch Dự Án</h3><p class="lesson-desc">Học sinh lập kế hoạch tính năng game sử dụng tất cả hệ thống sự kiện đã học. Các em hoàn thành kế hoạch làm việc xác định các công cụ cần thiết, loại sự kiện cần và các bước triển khai. Học sinh thực hành phạm vi dự án thực tế, chia các tính năng phức tạp thành các nhiệm vụ có thể đạt được và ước tính thời gian phát triển.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Thời Gian Làm Việc</h3><p class="lesson-desc">Học sinh phát triển game đã lập kế hoạch với sự hỗ trợ từ giảng viên. Các em triển khai tính năng sử dụng logic sự kiện nâng cao, debug vấn đề, kiểm tra cơ chế và tinh chỉnh gameplay. Trọng tâm là áp dụng tất cả hệ thống sự kiện đã học để tạo game hoàn chỉnh, chỉnh chu với các tính năng nâng cao hoạt động.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Trình Diễn Học Tập</h3><p class="lesson-desc">Học sinh trình bày game hoàn chỉnh và giải thích hệ thống sự kiện của các em. Các em trình diễn cách các tính năng hoạt động, hướng dẫn qua các sự kiện chính, giải thích lựa chọn logic và thảo luận về các vấn đề kỹ thuật đã giải quyết. Học sinh thực hành truyền đạt khái niệm kỹ thuật rõ ràng và nhận phản hồi về cả thiết kế game và kiến trúc code.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Sáng Tạo (GDEVE-LV3)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Sáng Tạo Ý Tưởng Dự Án</h3><p class="lesson-desc">Học sinh thiết kế game tùy chỉnh từ đầu hoặc tiếp tục dự án trước. Các em tạo kế hoạch dự án toàn diện đáp ứng tiêu chí cụ thể, xác định các công cụ và hệ thống sự kiện cần thiết, đề xuất tính năng game và giải pháp code, và biện minh cho lựa chọn thiết kế của mình. Học sinh xác định phạm vi thực tế xem xét thời gian và ràng buộc kỹ năng.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Thời Gian Làm Việc 1</h3><p class="lesson-desc">Học sinh bắt đầu xây dựng game tùy chỉnh, thiết lập cơ chế cốt lõi và hệ thống sự kiện nền tảng. Các em chia tính năng thành các nhiệm vụ cụ thể, triển khai gameplay cơ bản và kiểm tra vòng lặp cốt lõi. Trọng tâm là xây dựng nền tảng vững chắc: tổ chức sự kiện rõ ràng, cơ chế cốt lõi được kiểm tra và hệ thống cơ bản ổn định trước khi thêm độ phức tạp.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Thời Gian Làm Việc 2</h3><p class="lesson-desc">Học sinh mở rộng game với các tính năng bổ sung và bắt đầu tích hợp nhiều hệ thống. Các em kiểm tra tương tác tính năng, debug vấn đề tích hợp và tinh chỉnh sự cân bằng game. Học sinh áp dụng quy trình đã học: phát triển lặp, kiểm tra có hệ thống và cải thiện từng bước thay vì thêm mọi thứ cùng lúc.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Thời Gian Làm Việc 3</h3><p class="lesson-desc">Học sinh thêm các tính năng nâng cao và hoàn thiện: hiệu ứng hình ảnh, cải thiện UI, logic sự kiện phức tạp và hệ thống tiến triển người chơi. Các em tập trung vào hoàn thành tính năng hơn là số lượng tính năng, đảm bảo mỗi cơ chế hoạt động đúng và nâng cao gameplay. Học sinh thực hành quản lý thời gian và ưu tiên tính năng.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Thời Gian Làm Việc 4</h3><p class="lesson-desc">Học sinh thực hiện kiểm tra gameplay toàn diện và đảm bảo chất lượng. Các em xác định lỗi, sửa lỗi logic sự kiện, tối ưu hóa hiệu suất và cải thiện trải nghiệm người dùng dựa trên kiểm tra. Học sinh tinh chỉnh sự cân bằng game, điều chỉnh đường cong độ khó, nâng cao tính nhất quán hình ảnh và chuẩn bị game để chia sẻ công khai.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Thời Gian Làm Việc 5</h3><p class="lesson-desc">Học sinh hoàn thành các nhiệm vụ triển khai cuối cùng, giải quyết các lỗi còn lại và thêm hoàn thiện cuối cùng. Các em tối ưu hóa hệ thống sự kiện để có hiệu suất tốt hơn, cải thiện trình bày hình ảnh, đảm bảo tất cả tính năng hoạt động chính xác và chuẩn bị tài liệu trình diễn bao gồm mô tả game và ghi chú trình bày.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Đánh Giá Đồng Nghiệp</h3><p class="lesson-desc">Học sinh chia sẻ dự án với bạn học và nhận phản hồi có cấu trúc. Các em kiểm tra game của nhau, cung cấp phê bình mang tính xây dựng về thiết kế game và triển khai logic sự kiện, và đề xuất cải thiện. Học sinh thực hành phản hồi chuyên nghiệp: đưa ra đề xuất cụ thể, có thể hành động và nhận phê bình một cách tốt đẹp.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Trình Diễn Học Tập</h3><p class="lesson-desc">Học sinh trình bày game cuối cùng cho bạn học, giảng viên và khách mời. Các em phản ánh về quy trình phát triển: các tính năng đã triển khai, hệ thống sự kiện đã tạo, thử thách đã vượt qua và bài học đã học. Học sinh thể hiện sự thành thạo GDevelop, lập trình dựa trên sự kiện, nguyên tắc thiết kế game và quản lý dự án độc lập.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Công Cụ Học Sinh Sử Dụng</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">🎮 GDevelop 5: Công cụ phát triển game không cần code</div>
+        <div class="tool">⚡ Lập Trình Dựa Sự Kiện: Lập trình trực quan với điều kiện và hành động</div>
+        <div class="tool">🎨 Piskel Editor: Tạo sprite và hoạt hình 2D</div>
+        <div class="tool">🧩 Biến & Mảng: Cấu trúc dữ liệu cho trạng thái game</div>
+        <div class="tool">🔄 Hàm & Vòng Lặp: Logic có thể tái sử dụng và lặp</div>
+        <div class="tool">📤 Xuất & Xuất Bản: Nền tảng web, mobile và desktop</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>Học Sinh Thực Sự Xây Dựng Gì</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Game Platform</h4>
+          <p>Platformer cuộn ngang với cơ chế nhảy, chướng ngại vật, power-up và tiến trình cấp độ.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Endless Runner</h4>
+          <p>Game nhịp độ nhanh với chướng ngại vật thủ tục, hệ thống tính điểm và độ khó tăng dần.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Game Giải Đố</h4>
+          <p>Game dựa trên logic với hệ thống kho, tương tác đối tượng và cơ chế giải quyết vấn đề.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Phiêu Lưu Top-Down</h4>
+          <p>Game khám phá với tương tác NPC, hành vi tùy chỉnh và yếu tố câu chuyện.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Game Arcade</h4>
+          <p>Game hành động với phát hiện va chạm, theo dõi điểm số, hệ thống mạng/máu và điều kiện thắng/thua.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Game Capstone Tùy Chỉnh</h4>
+          <p>Khái niệm game gốc được thiết kế và xây dựng độc lập, kết hợp tất cả hệ thống đã học thành dự án hoàn thiện.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Vì Sao Phụ Huynh Chọn Chương Trình Này</h2>
+      </div>
+      <div class="overview">
+        <p>Chương trình này được thiết kế để xây dựng tư duy logic, kỹ năng thiết kế sáng tạo và tiến bộ rõ ràng. Học sinh học các khái niệm lập trình mà không có độ phức tạp của cú pháp, làm cho nó hoàn hảo cho học sinh trẻ hơn hoặc những người mới bắt đầu code.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Lộ Trình Học Không Code</h4>
+          <p>Học sinh học logic lập trình (điều kiện, vòng lặp, biến, hàm) mà không cần gõ code, loại bỏ rào cản cú pháp.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Tư Duy Hình Ảnh + Logic</h4>
+          <p>Học sinh phát triển cả kỹ năng thiết kế game sáng tạo và tư duy lập trình có cấu trúc thông qua logic dựa trên sự kiện.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Xuất Bản Game Thực</h4>
+          <p>Game xuất ra nền tảng web, mobile và desktop, mang lại cho học sinh kinh nghiệm xuất bản trong thế giới thực.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Nền Tảng Cho Lập Trình Văn Bản</h4>
+          <p>Lập trình dựa trên sự kiện xây dựng tư duy logic chuyển trực tiếp sang JavaScript, Python và các ngôn ngữ khác.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Kết Quả Phát Triển Trẻ</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">Lập Trình Dựa Sự Kiện</h3>
+          <p class="lesson-desc">Học sinh thành thạo lập trình trực quan thông qua sự kiện, điều kiện và hành động—học các khái niệm lập trình cốt lõi mà không có độ phức tạp cú pháp.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Phân Tích Vấn Đề Logic</h3>
+          <p class="lesson-desc">Học sinh học cách chia nhỏ vấn đề phức tạp thành chuỗi sự kiện và hành động, phát triển kỹ năng giải quyết vấn đề có hệ thống.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">Thiết Kế Game 2D</h3>
+          <p class="lesson-desc">Học sinh tạo sprite, hoạt hình và tài sản hình ảnh sử dụng Piskel, hiểu cách nghệ thuật và code kết hợp để tạo game.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Tư Duy Hệ Thống Game</h3>
+          <p class="lesson-desc">Học sinh thiết kế cơ chế game, cân bằng độ khó, tạo vòng phản hồi người chơi và lặp dựa trên kiểm tra gameplay.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Hiểu Cấu Trúc Dữ Liệu</h3>
+          <p class="lesson-desc">Học sinh làm việc với biến, mảng và thuộc tính đối tượng, học khi nào sử dụng mỗi loại dữ liệu để quản lý trạng thái game.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">Kỹ Năng Tổ Chức Code</h3>
+          <p class="lesson-desc">Học sinh tạo hàm, sự kiện liên kết và khối logic có thể tái sử dụng, học các nguyên tắc lập trình modular.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">07</div>
+        <div>
+          <h3 class="lesson-title">Phát Triển Dự Án Độc Lập</h3>
+          <p class="lesson-desc">Học sinh lập kế hoạch, xây dựng, kiểm tra và xuất bản game hoàn chỉnh với hướng dẫn tối thiểu, thể hiện sự độc lập kỹ thuật.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Kết Quả Chương Trình</h3>
+      <ul>
+        <li>Học sinh đạt được sự thành thạo tổng thể với GDevelop và hệ thống lập trình dựa trên sự kiện.</li>
+        <li>Học sinh có thể thiết kế, lập trình và xuất bản game 2D hoàn chỉnh từ khái niệm đến phát hành có thể chơi.</li>
+        <li>Học sinh hiểu các khái niệm lập trình cốt lõi (biến, điều kiện, vòng lặp, hàm) thông qua lập trình trực quan.</li>
+        <li>Học sinh xây dựng dự án sẵn sàng cho danh mục thể hiện tư duy logic và thiết kế game sáng tạo.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎓</span>Kỹ Năng Đã Học</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Lập Trình Dựa Sự Kiện</h4>
+          <p>Sử dụng logic điều kiện → hành động để tạo hành vi game mà không cần gõ cú pháp code.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Thiết Kế Game 2D</h4>
+          <p>Tạo sprite, hoạt hình, nền và tài sản hình ảnh sử dụng Piskel và công cụ nghệ thuật.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Logic & Giải Quyết Vấn Đề</h4>
+          <p>Chia nhỏ vấn đề phức tạp thành chuỗi sự kiện, điều kiện, vòng lặp và hàm.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Hệ Thống Vật Lý & Va Chạm</h4>
+          <p>Triển khai điều khiển platformer, trọng lực, hành vi di chuyển và phát hiện va chạm.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Thiết Kế Hệ Thống Game</h4>
+          <p>Tạo hệ thống điểm số, cơ chế máu, tiến trình cấp độ và điều kiện thắng/thua.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Xuất Bản Đa Nền Tảng</h4>
+          <p>Xuất game hoàn chỉnh ra web, mobile (Android/iOS) và desktop (Windows/Mac/Linux).</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Câu Hỏi Phổ Biến Của Phụ Huynh</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Con tôi có cần kinh nghiệm lập trình không?</h3>
+          <p class="lesson-desc">Không cần kinh nghiệm lập trình trước. GDevelop sử dụng lập trình dựa trên sự kiện trực quan—học sinh học các khái niệm lập trình mà không cần gõ code, làm cho nó hoàn hảo cho người mới bắt đầu.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">Điều này khác với Scratch như thế nào?</h3>
+          <p class="lesson-desc">Trong khi Scratch sử dụng lập trình khối, GDevelop sử dụng logic dựa trên sự kiện (điều kiện → hành động), gần hơn với cấu trúc lập trình thực. Game GDevelop cũng xuất ra các nền tảng thực (web, mobile, desktop) không chỉ chia sẻ trực tuyến.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">Điều này có giúp con tôi học lập trình "thực" sau này không?</h3>
+          <p class="lesson-desc">Có. Lập trình dựa trên sự kiện dạy các khái niệm cốt lõi (biến, điều kiện, vòng lặp, hàm) chuyển trực tiếp sang JavaScript, Python và các ngôn ngữ khác—mà không làm quá tải học sinh với cú pháp.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">Học sinh có thể bỏ qua Cấp 2 hoặc 3 không?</h3>
+          <p class="lesson-desc">Mỗi cấp xây dựng trên kỹ năng trước. Chúng tôi khuyến nghị bắt đầu từ Cấp 1 trừ khi con bạn đã hoàn thành các khóa học lập trình dựa trên sự kiện tương tự và có thể thể hiện sự thành thạo với GDevelop.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">Làm thế nào để tôi thấy tiến bộ của con tôi?</h3>
+          <p class="lesson-desc">Học sinh xuất game có thể chơi mà bạn có thể chạy trên máy tính, điện thoại hoặc trình duyệt của mình. Bạn sẽ nhận được các tệp game đã xuất và có thể xem các em trình bày dự án trong các buổi trình diễn.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Bắt Đầu</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Có câu hỏi về đăng ký hoặc muốn thảo luận về lộ trình học tập của con bạn?</p>
+      <p>Phone/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Giờ làm việc: Thứ Hai-Sáu 8:00-21:00 | Thứ Bảy-CN 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>

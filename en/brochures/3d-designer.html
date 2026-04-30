@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>3D Designer Brochure | TechTutor Academy</title>
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link rel="shortcut icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#f4f4f5;
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#cfd4dc;
+    --brand:#244d9a;
+    --brand-soft:#eaf0fb;
+    --teal:#44bea4;
+    --panel:#1f4a97;
+    --lv1:#e8f7f3;
+    --lv2:#ecf2ff;
+    --lv3:#f4efff;
+  }
+  body{background:#ffffff;color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65;font-size:15px}
+  .hero{max-width:920px;margin:0 auto;padding:64px 56px 44px;border-bottom:1px solid var(--line);background:#ffffff}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .logo{width:250px;max-width:72%;height:auto}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:var(--brand)}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+
+  .progression{margin:24px 0;padding:20px;background:linear-gradient(to right,var(--lv1),var(--lv2),var(--lv3));border-radius:12px;border:1px solid var(--line)}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative}
+  .prog-step::after{content:'→';position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--brand);font-size:20px;font-weight:700}
+  .prog-step:last-child::after{display:none}
+  .prog-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#fff;border:2px solid var(--brand);border-radius:50%;font-weight:700;color:var(--brand);margin-bottom:6px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--ink)}
+  @page{size:A4;margin:10mm}
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .level-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Program Brochure</div>
+    </div>
+    <h1>3D Designer</h1>
+    <p class="hero-sub">A structured, project-first track where students learn professional 3D modeling, texturing, and rendering using Blender to create portfolio-ready projects.</p>
+    <div class="meta">
+      <div class="pill">Ages 10-16</div>
+      <div class="pill">24 Lessons Total</div>
+      <div class="pill">3 Progressive Levels</div>
+      <div class="pill">Project-Based + Showcase</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title">Program Overview</h2>
+      </div>
+      <div class="overview">
+        <p>For students interested in 3D design and animation, this program teaches professional 3D modeling workflows using Blender—a powerful free industry-standard tool. Students progress from fundamental modeling techniques to advanced Python-generated models and complete custom 3D projects. The program combines technical skill development with creative expression so students learn how professional 3D artists work.</p>
+        <ul>
+          <li><strong>Learning Model:</strong> Model → Texture → Light → Animate → Render → Export.</li>
+          <li><strong>Class Format:</strong> Weekly project sessions with instructor coaching and structured checkpoints.</li>
+          <li><strong>Parent Visibility:</strong> Students create visible, portfolio-ready 3D models that can be reviewed and shared.</li>
+          <li><strong>Progress Measure:</strong> Model completion, rendering quality, and presentation of projects.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">LV1</div>
+            <div class="prog-label">Explorer<br/>8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV2</div>
+            <div class="prog-label">Builder<br/>8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV3</div>
+            <div class="prog-label">Creator<br/>8 weeks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Explorer (3DDES-LV1)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Intro to Blender</h3><p class="lesson-desc">Students learn the Blender interface, navigation tools, and viewport controls. They practice creating basic objects (cubes, spheres, cylinders), using Move/Scale/Rotate tools, and applying colors. Students understand the workspace layout and essential Blender controls for 3D modeling.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Object Mode</h3><p class="lesson-desc">Students build a donut model working with multiple objects, transformations, and materials. They apply lighting and textures to create realistic renders. Students learn how to combine objects, organize scenes, and use references to guide their modeling process.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Sculpting Mode</h3><p class="lesson-desc">Students use sculpting tools (Grab, Flatten, Draw) to add organic details and imperfections to models. They work with references to create realistic surface textures and learn when to use sculpting vs. traditional modeling techniques. Focus is on adding detail and character to 3D models.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Animation Mode</h3><p class="lesson-desc">Students create simple animations using keyframes: position, scale, and rotation changes over time. They insert, delete, and move keyframes to control animation timing. Students learn the basics of the timeline, playback, and exporting animated renders.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Edit Mode</h3><p class="lesson-desc">Students work with vertices, edges, and faces to build a character model. They use selection modes, extrude, loop cuts, and merge tools to create precise geometry. Students understand how mesh topology affects model quality and learn to modify models at the vertex level.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Model Planning</h3><p class="lesson-desc">Students plan a custom 3D model by defining scope, gathering references, and identifying required tools and techniques. They create asset lists, outline modeling steps, and decide which Blender modes to use (Object, Edit, Sculpt). Students practice breaking complex models into manageable tasks.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Work Period</h3><p class="lesson-desc">Students build their planned custom model with instructor support and feedback. They apply all learned techniques (modeling, sculpting, texturing, lighting), test renders, troubleshoot issues, and refine their model based on visual quality. Focus is on creating a complete, polished 3D model.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Learning Showcase</h3><p class="lesson-desc">Students render final images of their models and present projects to classmates. They demonstrate modeling techniques used, explain their creative process, and discuss challenges overcome. Students learn to export models and renders for portfolio presentation and sharing.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Builder (3DDES-LV2)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Modifiers + Boolean Modeling</h3><p class="lesson-desc">Students learn to use modifiers (Boolean, Mirror, Subdivision, Bevel) to create complex shapes efficiently. They practice Boolean operations (Union, Difference, Intersect) to combine objects and create intricate geometry. Students understand non-destructive workflows using modifier stacks.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Boolean Practice</h3><p class="lesson-desc">Students build models using Boolean modeling workflows, creating complex shapes from simple primitives. They design objects with cutouts, combined forms, and precise intersections. Focus is on understanding when to use Boolean operations vs. manual modeling for efficiency and quality.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Subdivision Modeling</h3><p class="lesson-desc">Students model a dice using subdivision surface workflow, creating smooth organic shapes from low-poly base geometry. They learn edge loops, supporting edges, and topology flow for clean subdivision. Students understand how subdivision affects model smoothness and rendering.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Subdivision Practice</h3><p class="lesson-desc">Students create more complex models using subdivision techniques, managing edge flow and topology for smooth results. They practice adding detail while maintaining clean geometry and learn to balance polygon count with visual quality. Focus is on professional subdivision modeling workflows.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Python + Random Generation</h3><p class="lesson-desc">Students use Python scripting in Blender to generate models procedurally. They learn basic Python syntax for creating objects, applying random transformations, and distributing elements across scenes. Students understand how code can accelerate 3D modeling workflows for repetitive tasks.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Random City Project</h3><p class="lesson-desc">Students build a small procedural city using Python-generated buildings with random variations. They apply random distribution, scaling, and placement to create diverse cityscapes. Focus is on combining manual modeling with procedural generation for efficient scene creation.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Work Period</h3><p class="lesson-desc">Students create a custom model using advanced techniques learned (modifiers, Boolean, subdivision, Python generation). They plan implementation, apply multiple workflows, and create polished renders. Focus is on combining techniques strategically for efficient, professional-quality results.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Learning Showcase</h3><p class="lesson-desc">Students render and present their advanced models, explaining techniques and workflows used. They walk through modifier stacks, Boolean operations, and Python scripts created. Students practice communicating technical 3D modeling decisions clearly and receive feedback on both artistic and technical execution.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Creator (3DDES-LV3)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Project Brainstorming</h3><p class="lesson-desc">Students design a custom 3D model from scratch, proposing an original concept with clear artistic goals and technical requirements. They create a comprehensive project plan identifying required tools, modeling techniques, and rendering approaches. Students justify design choices, explain their artistic vision, and define constraints (scope, time, technical complexity).</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Work Period 1</h3><p class="lesson-desc">Students begin building their custom model, establishing base geometry and foundational structure. They break modeling steps into specific tasks, prioritize implementation order, and create the basic model framework. Focus is on building strong foundations: clean topology, efficient geometry, and tested base forms before adding complexity.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Work Period 2</h3><p class="lesson-desc">Students expand their model with additional detail and begin integrating techniques (modifiers, sculpting, texturing). They test material interactions, refine geometry, and adjust model balance. Students apply prior workflows: iterative development, systematic testing, and making incremental improvements rather than adding everything at once.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Work Period 3</h3><p class="lesson-desc">Students add advanced details and polish to their models: complex materials, lighting setups, fine sculpting details, and animation if applicable. They focus on completing features over adding more features, ensuring each implemented element works properly and enhances visual quality. Students practice time management and feature prioritization.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Work Period 4</h3><p class="lesson-desc">Students perform comprehensive visual review and quality assurance. They identify geometry issues, optimize topology, improve materials and lighting, and refine based on test renders. Students adjust composition, enhance visual consistency, and prepare their model for final presentation and rendering.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Work Period 5</h3><p class="lesson-desc">Students complete final implementation tasks, addressing remaining issues and adding final polish. They optimize render settings for quality, improve visual presentation, ensure all elements work correctly, and prepare showcase materials. Students create multiple render angles, lighting variations, and presentation notes explaining their work.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Peer Review</h3><p class="lesson-desc">Students share projects with classmates and receive structured feedback. They review each other's models, provide constructive criticism on artistic and technical execution, and suggest improvements. Students practice giving and receiving professional feedback, learning to evaluate 3D work from both artistic and technical perspectives.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Learning Showcase</h3><p class="lesson-desc">Students present their final models to classmates, instructors, and invited guests. They reflect on their creation process: techniques implemented, modeling solutions created, progress over time, challenges overcome, and lessons learned. Students demonstrate mastery of Blender, 3D modeling principles, artistic vision, and project management skills.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Tools Students Use</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">🎨 Blender: Professional 3D modeling, texturing, and rendering software</div>
+        <div class="tool">🔧 Object Mode: Basic transformations, materials, and scene organization</div>
+        <div class="tool">✏️ Edit Mode: Vertex, edge, and face manipulation for precise geometry</div>
+        <div class="tool">🎭 Sculpting Mode: Organic detail creation with digital sculpting tools</div>
+        <div class="tool">🎬 Animation: Keyframe animation for position, rotation, and scale</div>
+        <div class="tool">🐍 Python Scripting: Procedural generation and automated modeling workflows</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>What Students Actually Build</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Product Designs</h4>
+          <p>3D models of everyday objects, furniture, and products with realistic materials and lighting.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Character Models</h4>
+          <p>Stylized or realistic characters built with proper topology, materials, and proportions.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Architectural Scenes</h4>
+          <p>Buildings, rooms, and environments with realistic lighting, textures, and composition.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Animated Objects</h4>
+          <p>Models with keyframe animations demonstrating movement, transformation, and timing.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Procedural Scenes</h4>
+          <p>Python-generated environments with randomized elements, variations, and complex compositions.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Custom Capstone Project</h4>
+          <p>Original 3D model concept designed and built independently, combining all learned skills into a polished portfolio piece.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Why Parents Choose This Program</h2>
+      </div>
+      <div class="overview">
+        <p>This program is designed to build professional creative skills, technical proficiency, and visible progress. Instead of passive consumption, students learn to create the 3D content they see in games, movies, and design, understanding how professional artists work.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Industry-Standard Tools</h4>
+          <p>Students learn Blender, the same professional software used by studios like Pixar, Ubisoft, and NASA.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Creative + Technical Growth</h4>
+          <p>Students develop both artistic vision (composition, lighting, design) and technical skills (topology, modifiers, Python scripting).</p>
+        </article>
+        <article class="parent-card">
+          <h4>Portfolio Development</h4>
+          <p>Students create professional-quality renders and models they can showcase for art school applications or creative careers.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Transferable Skills</h4>
+          <p>3D modeling skills apply to game development, architecture, product design, animation, VFX, and many creative fields.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Child Growth Outcomes</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">3D Modeling Proficiency</h3>
+          <p class="lesson-desc">Students master Blender's modeling tools: creating, transforming, and manipulating 3D objects; working with vertices, edges, and faces; and applying materials and lighting for realistic renders.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Technical Problem-Solving</h3>
+          <p class="lesson-desc">Students learn to troubleshoot geometry issues, optimize topology, manage render settings, and solve technical challenges systematically.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">Artistic Composition</h3>
+          <p class="lesson-desc">Students develop skills in lighting, camera angles, color theory, and visual composition to create compelling 3D renders.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Advanced Workflows</h3>
+          <p class="lesson-desc">Students learn professional techniques: modifiers for non-destructive editing, Boolean modeling for complex shapes, and subdivision surfaces for smooth organic forms.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Python Scripting</h3>
+          <p class="lesson-desc">Students gain exposure to programming through Python scripting in Blender, learning procedural generation and automated workflows.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">Project Management</h3>
+          <p class="lesson-desc">Students plan project scope, break complex models into manageable steps, prioritize features, and manage time effectively to complete polished work.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">07</div>
+        <div>
+          <h3 class="lesson-title">Portfolio Building</h3>
+          <p class="lesson-desc">Students learn to render, export, and present their work professionally, building a portfolio of 3D models for future opportunities.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Program Outcomes</h3>
+      <ul>
+        <li>Students gain overall proficiency with Blender and professional 3D modeling workflows.</li>
+        <li>Students can design, model, texture, light, and render complete 3D projects from concept to final presentation.</li>
+        <li>Students develop structured creative problem-solving skills through iterative design and technical troubleshooting.</li>
+        <li>Students build portfolio-ready projects that demonstrate both artistic vision and technical skill.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎓</span>Skills Learned</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>3D Modeling</h4>
+          <p>Creating objects using primitives, Edit mode, sculpting, and advanced modeling techniques.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Texturing & Materials</h4>
+          <p>Applying colors, textures, shaders, and materials to create realistic or stylized surfaces.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Lighting & Rendering</h4>
+          <p>Setting up lights, cameras, and render settings to create professional-quality final images.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Advanced Modifiers</h4>
+          <p>Using Boolean, Mirror, Subdivision, and Bevel modifiers for efficient non-destructive workflows.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Animation Basics</h4>
+          <p>Creating keyframe animations for object transformations, timing, and movement.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Python Scripting</h4>
+          <p>Writing basic Python scripts for procedural generation and automated modeling tasks in Blender.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Common Parent Questions</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Does my child need 3D modeling or art experience?</h3>
+          <p class="lesson-desc">No prior experience required for Level 1. Students start with Blender basics before progressing to advanced techniques. Interest in art, design, or creativity is helpful but not required.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">Is Blender really used professionally?</h3>
+          <p class="lesson-desc">Yes. Blender is industry-standard software used by studios like Pixar, Ubisoft, NASA, and countless freelance professionals for films, games, architecture, and product design.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">Will this help my child with other creative software?</h3>
+          <p class="lesson-desc">Yes. 3D modeling concepts (topology, materials, lighting, rendering) transfer to other 3D software like Maya, Cinema 4D, and 3ds Max. Students also gain general design thinking skills.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">Can students skip to Level 2 or 3?</h3>
+          <p class="lesson-desc">Each level builds on previous skills. We recommend starting at Level 1 unless your child has completed similar Blender courses and can demonstrate proficiency with basic modeling techniques.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">How do I see my child's progress?</h3>
+          <p class="lesson-desc">Students export rendered images and 3D models you can view directly. You'll receive image files of their renders and can watch them present projects during showcase sessions.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Get Started</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Questions about enrollment or want to discuss your child's learning path?</p>
+      <p>Phone/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Hours: Mon-Fri 8:00-21:00 | Sat-Sun 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>

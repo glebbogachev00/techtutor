@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Brochure Thiết Kế 3D | TechTutor Academy</title>
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link rel="shortcut icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#f4f4f5;
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#cfd4dc;
+    --brand:#244d9a;
+    --brand-soft:#eaf0fb;
+    --teal:#44bea4;
+    --panel:#1f4a97;
+    --lv1:#e8f7f3;
+    --lv2:#ecf2ff;
+    --lv3:#f4efff;
+  }
+  body{background:#ffffff;color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65;font-size:15px}
+  .hero{max-width:920px;margin:0 auto;padding:64px 56px 44px;border-bottom:1px solid var(--line);background:#ffffff}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .logo{width:250px;max-width:72%;height:auto}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:var(--brand)}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+
+  .progression{margin:24px 0;padding:20px;background:linear-gradient(to right,var(--lv1),var(--lv2),var(--lv3));border-radius:12px;border:1px solid var(--line)}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative}
+  .prog-step::after{content:'→';position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--brand);font-size:20px;font-weight:700}
+  .prog-step:last-child::after{display:none}
+  .prog-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#fff;border:2px solid var(--brand);border-radius:50%;font-weight:700;color:var(--brand);margin-bottom:6px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--ink)}
+  @page{size:A4;margin:10mm}
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .level-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Brochure Chương Trình</div>
+    </div>
+    <h1>Thiết Kế 3D</h1>
+    <p class="hero-sub">Lộ trình có cấu trúc, ưu tiên dự án, nơi học sinh học mô hình 3D chuyên nghiệp, tạo kết cấu và kết xuất sử dụng Blender để tạo các dự án sẵn sàng cho danh mục.</p>
+    <div class="meta">
+      <div class="pill">Độ tuổi 10-16</div>
+      <div class="pill">24 Bài Học</div>
+      <div class="pill">3 Cấp Độ Tiến Bộ</div>
+      <div class="pill">Dự Án + Trình Diễn</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title">Tổng Quan Chương Trình</h2>
+      </div>
+      <div class="overview">
+        <p>Dành cho học sinh quan tâm đến thiết kế và hoạt hình 3D, chương trình này dạy quy trình mô hình 3D chuyên nghiệp sử dụng Blender—một công cụ tiêu chuẩn ngành mạnh mẽ miễn phí. Học sinh tiến bộ từ kỹ thuật mô hình cơ bản đến mô hình nâng cao được tạo bằng Python và các dự án 3D tùy chỉnh hoàn chỉnh. Chương trình kết hợp phát triển kỹ năng kỹ thuật với biểu đạt sáng tạo để học sinh học cách các nghệ sĩ 3D chuyên nghiệp làm việc.</p>
+        <ul>
+          <li><strong>Mô hình học:</strong> Mô Hình → Kết Cấu → Ánh Sáng → Hoạt Hình → Kết Xuất → Xuất.</li>
+          <li><strong>Định dạng lớp học:</strong> Các buổi dự án hàng tuần với hướng dẫn từ giảng viên và các mốc có cấu trúc.</li>
+          <li><strong>Phụ huynh dễ theo dõi:</strong> Học sinh tạo các mô hình 3D rõ ràng, sẵn sàng cho danh mục, có thể xem xét và chia sẻ.</li>
+          <li><strong>Đo lường tiến bộ:</strong> Hoàn thành mô hình, chất lượng kết xuất và trình bày dự án.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">LV1</div>
+            <div class="prog-label">Khám Phá<br/>8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV2</div>
+            <div class="prog-label">Xây Dựng<br/>8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV3</div>
+            <div class="prog-label">Sáng Tạo<br/>8 tuần</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Khám Phá (3DDES-LV1)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Giới Thiệu Blender</h3><p class="lesson-desc">Học sinh học giao diện Blender, công cụ điều hướng và điều khiển viewport. Các em thực hành tạo các đối tượng cơ bản (hình khối, hình cầu, hình trụ), sử dụng công cụ Di Chuyển/Thu Phóng/Xoay và áp dụng màu sắc. Học sinh hiểu bố cục không gian làm việc và các điều khiển Blender thiết yếu cho mô hình 3D.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Chế Độ Đối Tượng</h3><p class="lesson-desc">Học sinh xây dựng mô hình bánh donut làm việc với nhiều đối tượng, biến đổi và vật liệu. Các em áp dụng ánh sáng và kết cấu để tạo kết xuất thực tế. Học sinh học cách kết hợp các đối tượng, tổ chức cảnh và sử dụng tài liệu tham khảo để hướng dẫn quy trình mô hình của các em.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Chế Độ Điêu Khắc</h3><p class="lesson-desc">Học sinh sử dụng công cụ điêu khắc (Grab, Flatten, Draw) để thêm chi tiết hữu cơ và khuyết tật vào mô hình. Các em làm việc với tài liệu tham khảo để tạo kết cấu bề mặt thực tế và học khi nào sử dụng điêu khắc so với kỹ thuật mô hình truyền thống. Trọng tâm là thêm chi tiết và đặc điểm cho mô hình 3D.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Chế Độ Hoạt Hình</h3><p class="lesson-desc">Học sinh tạo hoạt hình đơn giản sử dụng keyframe: thay đổi vị trí, thu phóng và xoay theo thời gian. Các em chèn, xóa và di chuyển keyframe để kiểm soát thời gian hoạt hình. Học sinh học những điều cơ bản về dòng thời gian, phát lại và xuất kết xuất hoạt hình.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Chế Độ Chỉnh Sửa</h3><p class="lesson-desc">Học sinh làm việc với đỉnh, cạnh và mặt để xây dựng mô hình nhân vật. Các em sử dụng chế độ chọn, extrude, loop cut và công cụ merge để tạo hình học chính xác. Học sinh hiểu cách cấu trúc mesh ảnh hưởng đến chất lượng mô hình và học cách sửa đổi mô hình ở cấp độ đỉnh.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Lập Kế Hoạch Mô Hình</h3><p class="lesson-desc">Học sinh lập kế hoạch cho mô hình 3D tùy chỉnh bằng cách xác định phạm vi, thu thập tài liệu tham khảo và xác định các công cụ và kỹ thuật cần thiết. Các em tạo danh sách tài sản, phác thảo các bước mô hình và quyết định chế độ Blender nào sử dụng (Object, Edit, Sculpt). Học sinh thực hành chia các mô hình phức tạp thành các nhiệm vụ có thể quản lý.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Thời Gian Làm Việc</h3><p class="lesson-desc">Học sinh xây dựng mô hình tùy chỉnh đã lập kế hoạch với sự hỗ trợ và phản hồi từ giảng viên. Các em áp dụng tất cả kỹ thuật đã học (mô hình, điêu khắc, tạo kết cấu, ánh sáng), kiểm tra kết xuất, khắc phục sự cố và tinh chỉnh mô hình dựa trên chất lượng hình ảnh. Trọng tâm là tạo một mô hình 3D hoàn chỉnh, chỉnh chu.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Trình Diễn Học Tập</h3><p class="lesson-desc">Học sinh kết xuất hình ảnh cuối cùng của mô hình và trình bày dự án cho bạn học. Các em trình diễn kỹ thuật mô hình đã sử dụng, giải thích quy trình sáng tạo và thảo luận về các thử thách đã vượt qua. Học sinh học cách xuất mô hình và kết xuất để trình bày danh mục và chia sẻ.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Xây Dựng (3DDES-LV2)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Modifier + Mô Hình Boolean</h3><p class="lesson-desc">Học sinh học cách sử dụng modifier (Boolean, Mirror, Subdivision, Bevel) để tạo các hình dạng phức tạp hiệu quả. Các em thực hành các hoạt động Boolean (Union, Difference, Intersect) để kết hợp các đối tượng và tạo hình học phức tạp. Học sinh hiểu quy trình làm việc không phá hủy sử dụng ngăn xếp modifier.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Thực Hành Boolean</h3><p class="lesson-desc">Học sinh xây dựng mô hình sử dụng quy trình mô hình Boolean, tạo các hình dạng phức tạp từ các nguyên thủy đơn giản. Các em thiết kế các đối tượng với cắt, hình thức kết hợp và giao điểm chính xác. Trọng tâm là hiểu khi nào sử dụng hoạt động Boolean so với mô hình thủ công để có hiệu quả và chất lượng.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Mô Hình Subdivision</h3><p class="lesson-desc">Học sinh mô hình một con xúc xắc sử dụng quy trình bề mặt subdivision, tạo các hình dạng hữu cơ mượt mà từ hình học cơ sở low-poly. Các em học vòng lặp cạnh, cạnh hỗ trợ và dòng chảy cấu trúc cho subdivision sạch. Học sinh hiểu cách subdivision ảnh hưởng đến độ mượt mô hình và kết xuất.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Thực Hành Subdivision</h3><p class="lesson-desc">Học sinh tạo các mô hình phức tạp hơn sử dụng kỹ thuật subdivision, quản lý dòng chảy cạnh và cấu trúc cho kết quả mượt mà. Các em thực hành thêm chi tiết trong khi duy trì hình học sạch và học cách cân bằng số lượng polygon với chất lượng hình ảnh. Trọng tâm là quy trình mô hình subdivision chuyên nghiệp.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Python + Tạo Ngẫu Nhiên</h3><p class="lesson-desc">Học sinh sử dụng script Python trong Blender để tạo mô hình thủ tục. Các em học cú pháp Python cơ bản để tạo đối tượng, áp dụng biến đổi ngẫu nhiên và phân phối các yếu tố trên cảnh. Học sinh hiểu cách code có thể tăng tốc quy trình mô hình 3D cho các nhiệm vụ lặp lại.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Dự Án Thành Phố Ngẫu Nhiên</h3><p class="lesson-desc">Học sinh xây dựng một thành phố thủ tục nhỏ sử dụng các tòa nhà được tạo bằng Python với các biến thể ngẫu nhiên. Các em áp dụng phân phối ngẫu nhiên, thu phóng và đặt để tạo cảnh quan thành phố đa dạng. Trọng tâm là kết hợp mô hình thủ công với tạo thủ tục để tạo cảnh hiệu quả.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Thời Gian Làm Việc</h3><p class="lesson-desc">Học sinh tạo mô hình tùy chỉnh sử dụng kỹ thuật nâng cao đã học (modifier, Boolean, subdivision, tạo Python). Các em lập kế hoạch triển khai, áp dụng nhiều quy trình làm việc và tạo kết xuất chỉnh chu. Trọng tâm là kết hợp các kỹ thuật một cách chiến lược để có kết quả hiệu quả, chất lượng chuyên nghiệp.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Trình Diễn Học Tập</h3><p class="lesson-desc">Học sinh kết xuất và trình bày các mô hình nâng cao, giải thích các kỹ thuật và quy trình làm việc đã sử dụng. Các em hướng dẫn qua ngăn xếp modifier, hoạt động Boolean và script Python đã tạo. Học sinh thực hành truyền đạt quyết định mô hình 3D kỹ thuật rõ ràng và nhận phản hồi về cả thực thi nghệ thuật và kỹ thuật.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Sáng Tạo (3DDES-LV3)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Sáng Tạo Ý Tưởng Dự Án</h3><p class="lesson-desc">Học sinh thiết kế mô hình 3D tùy chỉnh từ đầu, đề xuất khái niệm gốc với mục tiêu nghệ thuật rõ ràng và yêu cầu kỹ thuật. Các em tạo kế hoạch dự án toàn diện xác định các công cụ, kỹ thuật mô hình và phương pháp kết xuất cần thiết. Học sinh biện minh cho lựa chọn thiết kế, giải thích tầm nhìn nghệ thuật và xác định ràng buộc (phạm vi, thời gian, độ phức tạp kỹ thuật).</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Thời Gian Làm Việc 1</h3><p class="lesson-desc">Học sinh bắt đầu xây dựng mô hình tùy chỉnh, thiết lập hình học cơ sở và cấu trúc nền tảng. Các em chia các bước mô hình thành các nhiệm vụ cụ thể, ưu tiên thứ tự triển khai và tạo khung mô hình cơ bản. Trọng tâm là xây dựng nền tảng vững chắc: cấu trúc sạch, hình học hiệu quả và các hình thức cơ bản được kiểm tra trước khi thêm độ phức tạp.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Thời Gian Làm Việc 2</h3><p class="lesson-desc">Học sinh mở rộng mô hình với chi tiết bổ sung và bắt đầu tích hợp kỹ thuật (modifier, điêu khắc, tạo kết cấu). Các em kiểm tra tương tác vật liệu, tinh chỉnh hình học và điều chỉnh sự cân bằng mô hình. Học sinh áp dụng quy trình trước: phát triển lặp, kiểm tra có hệ thống và cải thiện từng bước thay vì thêm mọi thứ cùng lúc.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Thời Gian Làm Việc 3</h3><p class="lesson-desc">Học sinh thêm chi tiết nâng cao và hoàn thiện cho mô hình: vật liệu phức tạp, thiết lập ánh sáng, chi tiết điêu khắc tinh vi và hoạt hình nếu có thể áp dụng. Các em tập trung vào hoàn thành tính năng hơn là thêm tính năng, đảm bảo mỗi yếu tố được triển khai hoạt động đúng và nâng cao chất lượng hình ảnh. Học sinh thực hành quản lý thời gian và ưu tiên tính năng.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Thời Gian Làm Việc 4</h3><p class="lesson-desc">Học sinh thực hiện xem xét hình ảnh toàn diện và đảm bảo chất lượng. Các em xác định vấn đề hình học, tối ưu hóa cấu trúc, cải thiện vật liệu và ánh sáng, và tinh chỉnh dựa trên kết xuất thử nghiệm. Học sinh điều chỉnh thành phần, nâng cao tính nhất quán hình ảnh và chuẩn bị mô hình để trình bày và kết xuất cuối cùng.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Thời Gian Làm Việc 5</h3><p class="lesson-desc">Học sinh hoàn thành các nhiệm vụ triển khai cuối cùng, giải quyết các vấn đề còn lại và thêm hoàn thiện cuối cùng. Các em tối ưu hóa cài đặt kết xuất cho chất lượng, cải thiện trình bày hình ảnh, đảm bảo tất cả các yếu tố hoạt động chính xác và chuẩn bị tài liệu trình diễn. Học sinh tạo nhiều góc kết xuất, biến thể ánh sáng và ghi chú trình bày giải thích công việc của các em.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Đánh Giá Đồng Nghiệp</h3><p class="lesson-desc">Học sinh chia sẻ dự án với bạn học và nhận phản hồi có cấu trúc. Các em xem xét mô hình của nhau, cung cấp phê bình mang tính xây dựng về thực thi nghệ thuật và kỹ thuật, và đề xuất cải thiện. Học sinh thực hành cho và nhận phản hồi chuyên nghiệp, học cách đánh giá công việc 3D từ cả góc độ nghệ thuật và kỹ thuật.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Trình Diễn Học Tập</h3><p class="lesson-desc">Học sinh trình bày mô hình cuối cùng cho bạn học, giảng viên và khách mời. Các em phản ánh về quy trình tạo: kỹ thuật đã triển khai, giải pháp mô hình đã tạo, tiến bộ theo thời gian, thử thách đã vượt qua và bài học đã học. Học sinh thể hiện sự thành thạo Blender, nguyên tắc mô hình 3D, tầm nhìn nghệ thuật và kỹ năng quản lý dự án.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Công Cụ Học Sinh Sử Dụng</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">🎨 Blender: Phần mềm mô hình, tạo kết cấu và kết xuất 3D chuyên nghiệp</div>
+        <div class="tool">🔧 Chế Độ Đối Tượng: Biến đổi cơ bản, vật liệu và tổ chức cảnh</div>
+        <div class="tool">✏️ Chế Độ Chỉnh Sửa: Thao tác đỉnh, cạnh và mặt cho hình học chính xác</div>
+        <div class="tool">🎭 Chế Độ Điêu Khắc: Tạo chi tiết hữu cơ với công cụ điêu khắc kỹ thuật số</div>
+        <div class="tool">🎬 Hoạt Hình: Hoạt hình keyframe cho vị trí, xoay và thu phóng</div>
+        <div class="tool">🐍 Python Scripting: Tạo thủ tục và quy trình mô hình tự động</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>Học Sinh Thực Sự Xây Dựng Gì</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Thiết Kế Sản Phẩm</h4>
+          <p>Mô hình 3D của các đối tượng hàng ngày, đồ nội thất và sản phẩm với vật liệu và ánh sáng thực tế.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Mô Hình Nhân Vật</h4>
+          <p>Nhân vật phong cách hóa hoặc thực tế được xây dựng với cấu trúc, vật liệu và tỷ lệ phù hợp.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Cảnh Kiến Trúc</h4>
+          <p>Tòa nhà, phòng và môi trường với ánh sáng, kết cấu và thành phần thực tế.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Đối Tượng Hoạt Hình</h4>
+          <p>Mô hình với hoạt hình keyframe thể hiện chuyển động, biến đổi và thời gian.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Cảnh Thủ Tục</h4>
+          <p>Môi trường được tạo bằng Python với các yếu tố ngẫu nhiên, biến thể và thành phần phức tạp.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Dự Án Capstone Tùy Chỉnh</h4>
+          <p>Khái niệm mô hình 3D gốc được thiết kế và xây dựng độc lập, kết hợp tất cả kỹ năng đã học thành tác phẩm danh mục hoàn thiện.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Vì Sao Phụ Huynh Chọn Chương Trình Này</h2>
+      </div>
+      <div class="overview">
+        <p>Chương trình này được thiết kế để xây dựng kỹ năng sáng tạo chuyên nghiệp, trình độ kỹ thuật và tiến bộ rõ ràng. Thay vì tiêu thụ thụ động, học sinh học cách tạo nội dung 3D mà các em thấy trong game, phim và thiết kế, hiểu cách các nghệ sĩ chuyên nghiệp làm việc.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Công Cụ Tiêu Chuẩn Ngành</h4>
+          <p>Học sinh học Blender, cùng một phần mềm chuyên nghiệp được sử dụng bởi các studio như Pixar, Ubisoft và NASA.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Phát Triển Sáng Tạo + Kỹ Thuật</h4>
+          <p>Học sinh phát triển cả tầm nhìn nghệ thuật (thành phần, ánh sáng, thiết kế) và kỹ năng kỹ thuật (cấu trúc, modifier, script Python).</p>
+        </article>
+        <article class="parent-card">
+          <h4>Phát Triển Danh Mục</h4>
+          <p>Học sinh tạo kết xuất và mô hình chất lượng chuyên nghiệp mà các em có thể trình diễn cho đơn xin học trường nghệ thuật hoặc nghề nghiệp sáng tạo.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Kỹ Năng Chuyển Giao</h4>
+          <p>Kỹ năng mô hình 3D áp dụng cho phát triển game, kiến trúc, thiết kế sản phẩm, hoạt hình, VFX và nhiều lĩnh vực sáng tạo.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Kết Quả Phát Triển Trẻ</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">Thành Thạo Mô Hình 3D</h3>
+          <p class="lesson-desc">Học sinh thành thạo các công cụ mô hình của Blender: tạo, biến đổi và thao tác các đối tượng 3D; làm việc với đỉnh, cạnh và mặt; và áp dụng vật liệu và ánh sáng cho kết xuất thực tế.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Giải Quyết Vấn Đề Kỹ Thuật</h3>
+          <p class="lesson-desc">Học sinh học cách khắc phục sự cố hình học, tối ưu hóa cấu trúc, quản lý cài đặt kết xuất và giải quyết thử thách kỹ thuật có hệ thống.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">Thành Phần Nghệ Thuật</h3>
+          <p class="lesson-desc">Học sinh phát triển kỹ năng về ánh sáng, góc camera, lý thuyết màu sắc và thành phần hình ảnh để tạo kết xuất 3D hấp dẫn.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Quy Trình Làm Việc Nâng Cao</h3>
+          <p class="lesson-desc">Học sinh học các kỹ thuật chuyên nghiệp: modifier cho chỉnh sửa không phá hủy, mô hình Boolean cho các hình dạng phức tạp và bề mặt subdivision cho các hình thức hữu cơ mượt mà.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Python Scripting</h3>
+          <p class="lesson-desc">Học sinh tiếp xúc với lập trình thông qua script Python trong Blender, học tạo thủ tục và quy trình làm việc tự động.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">Quản Lý Dự Án</h3>
+          <p class="lesson-desc">Học sinh lập kế hoạch phạm vi dự án, chia các mô hình phức tạp thành các bước có thể quản lý, ưu tiên tính năng và quản lý thời gian hiệu quả để hoàn thành công việc chỉnh chu.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">07</div>
+        <div>
+          <h3 class="lesson-title">Xây Dựng Danh Mục</h3>
+          <p class="lesson-desc">Học sinh học cách kết xuất, xuất và trình bày công việc một cách chuyên nghiệp, xây dựng danh mục các mô hình 3D cho cơ hội tương lai.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Kết Quả Chương Trình</h3>
+      <ul>
+        <li>Học sinh đạt được sự thành thạo tổng thể với Blender và quy trình mô hình 3D chuyên nghiệp.</li>
+        <li>Học sinh có thể thiết kế, mô hình, tạo kết cấu, ánh sáng và kết xuất các dự án 3D hoàn chỉnh từ khái niệm đến trình bày cuối cùng.</li>
+        <li>Học sinh phát triển kỹ năng giải quyết vấn đề sáng tạo có cấu trúc thông qua thiết kế lặp và khắc phục sự cố kỹ thuật.</li>
+        <li>Học sinh xây dựng dự án sẵn sàng cho danh mục thể hiện cả tầm nhìn nghệ thuật và kỹ năng kỹ thuật.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎓</span>Kỹ Năng Đã Học</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Mô Hình 3D</h4>
+          <p>Tạo đối tượng sử dụng nguyên thủy, chế độ Edit, điêu khắc và kỹ thuật mô hình nâng cao.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Tạo Kết Cấu & Vật Liệu</h4>
+          <p>Áp dụng màu sắc, kết cấu, shader và vật liệu để tạo bề mặt thực tế hoặc phong cách hóa.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Ánh Sáng & Kết Xuất</h4>
+          <p>Thiết lập ánh sáng, camera và cài đặt kết xuất để tạo hình ảnh cuối cùng chất lượng chuyên nghiệp.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Modifier Nâng Cao</h4>
+          <p>Sử dụng modifier Boolean, Mirror, Subdivision và Bevel cho quy trình làm việc không phá hủy hiệu quả.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Cơ Bản Hoạt Hình</h4>
+          <p>Tạo hoạt hình keyframe cho biến đổi đối tượng, thời gian và chuyển động.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Python Scripting</h4>
+          <p>Viết script Python cơ bản cho tạo thủ tục và các nhiệm vụ mô hình tự động trong Blender.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Câu Hỏi Phổ Biến Của Phụ Huynh</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Con tôi có cần kinh nghiệm mô hình 3D hoặc nghệ thuật không?</h3>
+          <p class="lesson-desc">Không cần kinh nghiệm trước cho Cấp 1. Học sinh bắt đầu với cơ bản Blender trước khi tiến đến kỹ thuật nâng cao. Quan tâm đến nghệ thuật, thiết kế hoặc sáng tạo hữu ích nhưng không bắt buộc.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">Blender có thực sự được sử dụng chuyên nghiệp không?</h3>
+          <p class="lesson-desc">Có. Blender là phần mềm tiêu chuẩn ngành được sử dụng bởi các studio như Pixar, Ubisoft, NASA và vô số các chuyên nghiệp tự do cho phim, game, kiến trúc và thiết kế sản phẩm.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">Điều này có giúp con tôi với phần mềm sáng tạo khác không?</h3>
+          <p class="lesson-desc">Có. Các khái niệm mô hình 3D (cấu trúc, vật liệu, ánh sáng, kết xuất) chuyển sang phần mềm 3D khác như Maya, Cinema 4D và 3ds Max. Học sinh cũng đạt được kỹ năng tư duy thiết kế chung.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">Học sinh có thể bỏ qua Cấp 2 hoặc 3 không?</h3>
+          <p class="lesson-desc">Mỗi cấp xây dựng trên kỹ năng trước. Chúng tôi khuyến nghị bắt đầu từ Cấp 1 trừ khi con bạn đã hoàn thành các khóa học Blender tương tự và có thể thể hiện sự thành thạo với kỹ thuật mô hình cơ bản.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">Làm thế nào để tôi thấy tiến bộ của con tôi?</h3>
+          <p class="lesson-desc">Học sinh xuất hình ảnh kết xuất và mô hình 3D mà bạn có thể xem trực tiếp. Bạn sẽ nhận được các tệp hình ảnh của kết xuất của các em và có thể xem các em trình bày dự án trong các buổi trình diễn.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Bắt Đầu</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Có câu hỏi về đăng ký hoặc muốn thảo luận về lộ trình học tập của con bạn?</p>
+      <p>Phone/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Giờ làm việc: Thứ Hai-Sáu 8:00-21:00 | Thứ Bảy-CN 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>

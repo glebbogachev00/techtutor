@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Brochure Sáng Tạo Thế Giới Roblox | TechTutor Academy</title>
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link rel="shortcut icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#cfd4dc;
+    --brand:#244d9a;
+    --brand-soft:#eaf0fb;
+    --teal:#44bea4;
+    --panel:#1f4a97;
+    --lv1:#e8f7f3;
+    --lv2:#ecf2ff;
+    --lv3:#f4efff;
+  }
+  body{background:#ffffff;color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65;font-size:15px}
+  .hero{max-width:920px;margin:0 auto;padding:64px 56px 44px;border-bottom:1px solid var(--line);background:#ffffff}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .logo{width:250px;max-width:72%;height:auto}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:var(--brand)}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+  .progression{margin:24px 0;padding:20px;background:linear-gradient(to right,var(--lv1),var(--lv2),var(--lv3));border-radius:12px;border:1px solid var(--line)}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative}
+  .prog-step::after{content:'→';position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--brand);font-size:20px;font-weight:700}
+  .prog-step:last-child::after{display:none}
+  .prog-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#fff;border:2px solid var(--brand);border-radius:50%;font-weight:700;color:var(--brand);margin-bottom:6px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--ink)}
+  @page{size:A4;margin:10mm}
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .feature-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Brochure Chương Trình</div>
+    </div>
+    <h1>Sáng Tạo Thế Giới Roblox</h1>
+    <p class="hero-sub">Lộ trình có cấu trúc, ưu tiên dự án, nơi học sinh kết hợp lập trình, thiết kế 3D và thiết kế game để tạo và xuất bản các game Roblox hoàn chỉnh.</p>
+    <div class="meta">
+      <div class="pill">Độ tuổi 9-15</div>
+      <div class="pill">24 Bài Học</div>
+      <div class="pill">3 Cấp Độ Tiến Bộ</div>
+      <div class="pill">Dự Án + Trình Diễn</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <h2 class="section-title">Tổng Quan Chương Trình</h2>
+      </div>
+      <div class="overview">
+        <p>Dành cho học sinh quan tâm đến việc kết hợp lập trình, thiết kế 3D và thiết kế game, chúng ta khám phá Roblox Studio—một bộ công cụ miễn phí mạnh mẽ sử dụng ngôn ngữ lập trình Lua (dựa trên C++). Học sinh tiến bộ từ xây dựng có hướng dẫn đến sáng tạo game độc lập: thành thạo bộ công cụ Studio, thực hành các giải pháp code cho tính năng game, và xuất bản các game hoàn chỉnh. Chương trình kết hợp kể chuyện sáng tạo với kỹ năng lập trình thực tế để học sinh hiểu cách game thực sự hoạt động.</p>
+        <ul>
+          <li><strong>Mô hình học:</strong> Xây Dựng → Lập Trình → Kiểm Tra → Cải Thiện → Xuất Bản.</li>
+          <li><strong>Định dạng lớp học:</strong> Các buổi dự án hàng tuần với hướng dẫn từ giảng viên và các mốc có cấu trúc.</li>
+          <li><strong>Phụ huynh dễ theo dõi:</strong> Học sinh tạo các game rõ ràng, có thể chơi được, có thể xem xét và chia sẻ.</li>
+          <li><strong>Đo lường tiến bộ:</strong> Hoàn thành tính năng, cơ chế game hoạt động và trình bày dự án.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">LV1</div>
+            <div class="prog-label">Nền Tảng<br/>8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV2</div>
+            <div class="prog-label">Xây Dựng<br/>8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV3</div>
+            <div class="prog-label">Sáng Tạo<br/>8 tuần</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Nền Tảng (ROBLX-LV1)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Xây Dựng Ngôi Nhà</h3><p class="lesson-desc">Học sinh làm quen với giao diện Roblox Studio và công cụ điều hướng. Các em thực hành sử dụng công cụ di chuyển (xoay, thu phóng, đặt) để tạo, di chuyển, thay đổi kích thước và xoay các phần. Học sinh áp dụng thuộc tính cơ bản cho đối tượng và xây dựng cấu trúc 3D đầu tiên, làm quen với không gian làm việc và các điều khiển xây dựng thiết yếu.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Obby (Đường Chướng Ngại Vật)</h3><p class="lesson-desc">Học sinh xây dựng đường chướng ngại vật hấp dẫn, học các nguyên tắc thiết kế game và quy trình kiểm tra gameplay. Các em tạo các bước nhảy thử thách, nền tảng di chuyển và chướng ngại vật trong khi kiểm tra sự cân bằng gameplay. Học sinh học cách lặp lại thiết kế: xây dựng, kiểm tra, xác định vấn đề và cải thiện dựa trên trải nghiệm người chơi.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Đảo Núi Lửa</h3><p class="lesson-desc">Học sinh xây dựng các yếu tố môi trường như cầu và địa hình để tạo thế giới game đắm chìm. Các em sửa đổi script được viết sẵn để tạo các phần gây sát thương và hồi máu, học cách code kiểm soát hành vi game. Học sinh áp dụng vật liệu và thuộc tính cho các phần, hiểu cách chi tiết hình ảnh nâng cao trải nghiệm người chơi.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Hệ Thống Hội Thoại</h3><p class="lesson-desc">Học sinh tạo hệ thống hội thoại NPC (nhân vật không phải người chơi) sử dụng bộ công cụ hội thoại của Roblox. Các em xây dựng cây hội thoại phân nhánh với nhiều đường hội thoại, tạo tùy chọn hội thoại dẫn đến các kết quả khác nhau và thiết kế nhân vật tương tác phản hồi theo lựa chọn của người chơi. Học sinh học cách hội thoại nâng cao kể chuyện trong game.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Hoạt Hình</h3><p class="lesson-desc">Học sinh tạo các khung hình chuyển động cho bộ khung nhân vật sử dụng Animation Editor. Các em thiết kế hoạt hình tùy chỉnh (đi, nhảy, nhảy múa, v.v.) và học cách áp dụng hoạt hình bằng script. Học sinh kết nối hệ thống hoạt hình với các sự kiện game, làm cho nhân vật di chuyển động theo hành động người chơi hoặc trigger game.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Lập Kế Hoạch Dự Án</h3><p class="lesson-desc">Học sinh lập kế hoạch cho dự án game cuối cùng bằng cách xác định phạm vi, xác định các tính năng cần thiết và tổ chức các nhiệm vụ xây dựng. Các em chọn công cụ nào để sử dụng (mô hình, script, hội thoại, hoạt hình), tạo danh sách tài sản và phác thảo cơ chế cốt lõi của game. Học sinh thực hành chia nhỏ dự án phức tạp thành các bước có thể quản lý.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Thời Gian Làm Việc</h3><p class="lesson-desc">Học sinh phát triển dự án đã lập kế hoạch với sự hỗ trợ và phản hồi từ giảng viên. Các em triển khai các tính năng từng bước, kiểm tra cơ chế gameplay, khắc phục sự cố và tinh chỉnh game dựa trên kiểm tra gameplay. Trọng tâm là áp dụng tất cả các kỹ năng đã học (xây dựng, script, hội thoại, hoạt hình) vào một trải nghiệm game gắn kết.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Trình Diễn Học Tập</h3><p class="lesson-desc">Học sinh xuất bản game lên Roblox và trình bày dự án cuối cùng cho bạn học. Các em trình diễn gameplay, giải thích các tính năng đã triển khai, chia sẻ quy trình sáng tạo và thảo luận về những thử thách đã vượt qua. Học sinh học cách mời cộng tác viên và chia sẻ dự án qua ứng dụng web Roblox để bạn bè và gia đình có thể chơi game của các em.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Xây Dựng (ROBLX-LV2)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Giới Thiệu Lua</h3><p class="lesson-desc">Học sinh học cú pháp Lua cơ bản: comment, câu lệnh print, biến, kiểu dữ liệu và toán tử cơ bản. Các em xây dựng game sinh tồn sử dụng vòng lặp để tạo sự kiện lặp lại và triển khai hệ thống tính điểm. Học sinh hiểu cấu trúc đối tượng cha/con trong Roblox và thực hành viết code sạch, dễ đọc với định dạng phù hợp.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Điều Kiện</h3><p class="lesson-desc">Học sinh triển khai logic điều kiện sử dụng câu lệnh if/else để tạo các kết quả game khác nhau. Các em thêm điều kiện thắng/thua, kiểm tra trạng thái người chơi và tạo gameplay phân nhánh dựa trên hành động người chơi. Học sinh học cách sử dụng toán tử so sánh (==, >, <, v.v.) và toán tử logic (and, or, not) để xây dựng quy tắc game phức tạp.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Thuộc Tính</h3><p class="lesson-desc">Học sinh sửa đổi thuộc tính đối tượng thông qua code (màu sắc, kích thước, độ trong suốt, vị trí). Các em sử dụng sự kiện OnTouch kết hợp với điều kiện để tạo các yếu tố game tương tác: các phần thay đổi khi chạm vào, vùng trigger và phản hồi môi trường động. Học sinh học cách tham chiếu và thao tác đối tượng game theo chương trình.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Hàm</h3><p class="lesson-desc">Học sinh tạo logic code có thể tái sử dụng bằng cách viết hàm tùy chỉnh. Các em học tham số hàm, giá trị trả về và cách tổ chức code thành các khối modular, dễ bảo trì. Học sinh tái cấu trúc code lặp lại thành hàm, cải thiện hiệu quả và khả năng đọc code. Thực hành bao gồm tạo hàm tiện ích cho các tác vụ game phổ biến.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Giao Diện Người Dùng (UI)</h3><p class="lesson-desc">Học sinh xây dựng các yếu tố GUI tùy chỉnh: khung, nút, nhãn và ô nhập văn bản. Các em thêm tương tác nút trigger code, tạo layout responsive và hiển thị giá trị biến (điểm, máu, bộ đếm thời gian) trên màn hình. Học sinh học cách tạo UI tương tác nâng cao trải nghiệm người chơi và cung cấp phản hồi game thiết yếu.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Lập Kế Hoạch Dự Án</h3><p class="lesson-desc">Học sinh lập kế hoạch tính năng cho game Cấp 2 sử dụng tất cả hệ thống đã học (cú pháp Lua, điều kiện, thuộc tính, hàm, UI). Các em xác định các phần code cần thiết, phác thảo các bước triển khai tính năng và đề xuất cơ chế mới kết hợp nhiều khái niệm lập trình. Học sinh thực hành xác định phạm vi dự án thực tế dựa trên thời gian và trình độ kỹ năng.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Thời Gian Làm Việc</h3><p class="lesson-desc">Học sinh phát triển game đã lập kế hoạch, triển khai các tính năng sử dụng lập trình Lua. Các em debug lỗi code, kiểm tra logic game, tinh chỉnh cơ chế dựa trên kiểm tra gameplay và thêm hoàn thiện. Trọng tâm là viết code hoạt động, giải quyết thử thách lập trình độc lập và tạo trải nghiệm game hoàn chỉnh với script tùy chỉnh.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Trình Diễn Học Tập</h3><p class="lesson-desc">Học sinh trình bày game và giải thích các giải pháp code đã tạo. Các em trình diễn các tính năng đã triển khai, hướng dẫn các script chính, giải thích cách code hoạt động và thảo luận về các thử thách kỹ thuật đã giải quyết. Học sinh thực hành truyền đạt khái niệm lập trình rõ ràng và nhận phản hồi về cả thiết kế game và chất lượng code.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Sáng Tạo (ROBLX-LV3)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Sáng Tạo Ý Tưởng Dự Án</h3><p class="lesson-desc">Học sinh thiết kế game tùy chỉnh từ đầu, đề xuất khái niệm độc đáo với mục tiêu rõ ràng và đối tượng mục tiêu. Các em tạo kế hoạch dự án toàn diện xác định các công cụ, tính năng và thử thách kỹ thuật cần thiết. Học sinh biện minh cho lựa chọn thiết kế, giải thích tại sao game của các em sẽ hấp dẫn và xác định ràng buộc (phạm vi, thời gian, yêu cầu kỹ thuật).</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Thời Gian Làm Việc 1</h3><p class="lesson-desc">Học sinh bắt đầu xây dựng game tùy chỉnh, thiết lập cơ chế cốt lõi và hệ thống nền tảng. Các em chia tính năng thành các nhiệm vụ cụ thể, ưu tiên thứ tự triển khai và tạo cấu trúc game cơ bản. Trọng tâm là xây dựng nền tảng vững chắc: tổ chức code sạch, thiết kế modular và chức năng cốt lõi được kiểm tra trước khi thêm độ phức tạp.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Thời Gian Làm Việc 2</h3><p class="lesson-desc">Học sinh mở rộng game với các tính năng bổ sung và bắt đầu tích hợp hệ thống (UI, script, hoạt hình). Các em kiểm tra tương tác tính năng, debug vấn đề tích hợp và tinh chỉnh sự cân bằng game. Học sinh áp dụng quy trình trước: phát triển lặp, kiểm tra có hệ thống và cải thiện từng bước thay vì thêm mọi thứ cùng lúc.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Thời Gian Làm Việc 3</h3><p class="lesson-desc">Học sinh thêm các tính năng nâng cao và hoàn thiện cho game: hiệu ứng hình ảnh, âm thanh, UI nâng cao, logic game phức tạp và hệ thống tiến triển người chơi. Các em tập trung vào hoàn thành tính năng hơn là số lượng tính năng, đảm bảo mỗi cơ chế được triển khai hoạt động đúng và nâng cao trải nghiệm người chơi. Học sinh thực hành quản lý thời gian và ưu tiên tính năng.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Thời Gian Làm Việc 4</h3><p class="lesson-desc">Học sinh thực hiện kiểm tra gameplay toàn diện và đảm bảo chất lượng. Các em xác định lỗi, sửa lỗi, tối ưu hóa hiệu suất và cải thiện trải nghiệm người dùng dựa trên phản hồi kiểm tra. Học sinh tinh chỉnh sự cân bằng game, điều chỉnh đường cong độ khó, nâng cao tính nhất quán hình ảnh và chuẩn bị game để phát hành công khai.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Thời Gian Làm Việc 5</h3><p class="lesson-desc">Học sinh hoàn thành các nhiệm vụ triển khai cuối cùng, giải quyết các lỗi còn lại và thêm hoàn thiện cuối cùng. Các em tối ưu hóa script để có hiệu suất tốt hơn, cải thiện trình bày hình ảnh, đảm bảo tất cả các tính năng hoạt động chính xác và chuẩn bị tài liệu trình diễn. Học sinh tạo mô tả game, ảnh chụp màn hình và ghi chú trình bày giải thích công việc của các em.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Đánh Giá Đồng Nghiệp</h3><p class="lesson-desc">Học sinh chia sẻ dự án với bạn học và nhận phản hồi có cấu trúc. Các em kiểm tra game của nhau, cung cấp phản hồi mang tính xây dựng về thiết kế game và triển khai kỹ thuật, và đề xuất cải thiện. Học sinh thực hành cho và nhận phản hồi chuyên nghiệp, học cách đánh giá game từ cả góc độ người chơi và nhà phát triển.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Trình Diễn Học Tập</h3><p class="lesson-desc">Học sinh trình bày game cuối cùng cho bạn học, giảng viên và khách mời. Các em phản ánh về quy trình xây dựng: các tính năng đã triển khai, giải pháp code đã tạo, tiến bộ theo thời gian, thử thách đã vượt qua và bài học đã học. Học sinh thể hiện sự thành thạo Roblox Studio, lập trình Lua, nguyên tắc thiết kế game và kỹ năng quản lý dự án.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Công Cụ Học Sinh Sử Dụng</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">🎮 Roblox Studio: Môi trường phát triển game hoàn chỉnh</div>
+        <div class="tool">💻 Lập Trình Lua: Lập trình dựa trên văn bản (cú pháp, cấu trúc dữ liệu, biến)</div>
+        <div class="tool">🏗️ Thiết Kế 3D: Thao tác phần, tạo địa hình, xây dựng môi trường</div>
+        <div class="tool">🎭 Animation Editor: Rigging nhân vật và hoạt hình keyframe</div>
+        <div class="tool">💬 Hệ Thống Hội Thoại: Hội thoại NPC tương tác và đường phân nhánh</div>
+        <div class="tool">📱 Thiết Kế UI: Giao diện tùy chỉnh, nút và hệ thống phản hồi người chơi</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>Học Sinh Thực Sự Xây Dựng Gì</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Đường Chướng Ngại Vật (Obbys)</h4>
+          <p>Game platforming thử thách với bước nhảy, nền tảng di chuyển và chướng ngại vật kiểm tra kỹ năng người chơi.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Thế Giới Phiêu Lưu</h4>
+          <p>Môi trường đắm chìm với địa hình, tòa nhà, NPC, hệ thống hội thoại và yếu tố khám phá.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Game Sinh Tồn</h4>
+          <p>Game có hệ thống tính điểm, cơ chế máu, điều kiện thắng/thua và thử thách động.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Trải Nghiệm Tương Tác</h4>
+          <p>Game với UI tùy chỉnh, hệ thống phản hồi người chơi và cơ chế game responsive được điều khiển bởi code Lua.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Thế Giới Game Hoạt Hình</h4>
+          <p>Dự án có hoạt hình nhân vật tùy chỉnh, đối tượng di chuyển và phản hồi môi trường động.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Game Capstone Tùy Chỉnh</h4>
+          <p>Khái niệm game độc đáo được thiết kế và xây dựng độc lập, kết hợp tất cả kỹ năng đã học thành dự án hoàn thiện.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Vì Sao Phụ Huynh Chọn Chương Trình Này</h2>
+      </div>
+      <div class="overview">
+        <p>Chương trình này được thiết kế để xây dựng kỹ năng thực tế, sự tự tin sáng tạo và tiến bộ rõ ràng. Thay vì chơi game thụ động, học sinh học cách tạo ra những game các em yêu thích, hiểu cách code, thiết kế và sáng tạo hoạt động cùng nhau.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Kỹ Năng Lập Trình Thực Tế</h4>
+          <p>Học sinh học Lua, một ngôn ngữ lập trình chuyên nghiệp được sử dụng trong phát triển game, robot và kỹ thuật phần mềm.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Phát Triển Sáng Tạo + Kỹ Thuật</h4>
+          <p>Học sinh phát triển cả tầm nhìn nghệ thuật (xây dựng thế giới, kể chuyện) và kỹ năng kỹ thuật (lập trình, debug, giải quyết vấn đề).</p>
+        </article>
+        <article class="parent-card">
+          <h4>Kỷ Luật Hoàn Thành Dự Án</h4>
+          <p>Học sinh học cách lập kế hoạch dự án, vượt qua thử thách và hoàn thành những gì các em bắt đầu—kỹ năng chuyển giao vượt xa lập trình.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Danh Mục Có Thể Chia Sẻ</h4>
+          <p>Game được xuất bản trên Roblox và có thể được chơi bởi bất kỳ ai, mang lại cho học sinh sự xác nhận thực tế về công việc của các em.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Kết Quả Phát Triển Trẻ</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">Thành Thạo Thiết Kế 3D</h3>
+          <p class="lesson-desc">Học sinh thành thạo các công cụ 3D của Roblox Studio: tạo, di chuyển, thu phóng, xoay các phần; nối và phủ định đối tượng; và áp dụng vật liệu và thuộc tính để tạo môi trường game hoàn thiện.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Lập Trình Dựa Trên Văn Bản</h3>
+          <p class="lesson-desc">Học sinh học cú pháp Lua, cấu trúc dữ liệu, biến, điều kiện, vòng lặp và hàm—vượt xa lập trình trực quan đến lập trình dựa trên văn bản chuyên nghiệp.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">Tư Duy Thiết Kế Game</h3>
+          <p class="lesson-desc">Học sinh học cách thiết kế gameplay hấp dẫn: cân bằng độ khó, tạo vòng phản hồi người chơi và lặp lại dựa trên kiểm tra gameplay để cải thiện trải nghiệm người chơi.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Debug và Giải Quyết Vấn Đề</h3>
+          <p class="lesson-desc">Học sinh học cách đọc thông báo lỗi, kiểm tra code có hệ thống, xác định lỗi và triển khai sửa lỗi—phát triển khả năng phục hồi khi đối mặt với thử thách kỹ thuật.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Quản Lý Dự Án</h3>
+          <p class="lesson-desc">Học sinh lập kế hoạch phạm vi dự án, chia nhỏ nhiệm vụ phức tạp thành các bước có thể quản lý, ưu tiên tính năng và quản lý thời gian hiệu quả để hoàn thành dự án đúng lịch trình.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">Kể Chuyện Sáng Tạo</h3>
+          <p class="lesson-desc">Học sinh thiết kế câu chuyện game, tạo hệ thống hội thoại tương tác, xây dựng thế giới đắm chìm và sử dụng hoạt hình để mang nhân vật và môi trường đến cuộc sống.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">07</div>
+        <div>
+          <h3 class="lesson-title">Xuất Bản và Chia Sẻ</h3>
+          <p class="lesson-desc">Học sinh học cách xuất bản game lên Roblox, mời cộng tác viên, chia sẻ dự án công khai và trình bày công việc một cách chuyên nghiệp cho khán giả.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Kết Quả Chương Trình</h3>
+      <ul>
+        <li>Học sinh đạt được sự thành thạo tổng thể với bộ công cụ Roblox Studio và ngôn ngữ lập trình Lua.</li>
+        <li>Học sinh có thể thiết kế, lập trình và xuất bản các game hoàn chỉnh từ khái niệm đến phát hành có thể chơi.</li>
+        <li>Học sinh phát triển kỹ năng giải quyết vấn đề có cấu trúc thông qua debug, kiểm tra và lặp lại.</li>
+        <li>Học sinh xây dựng dự án sẵn sàng cho danh mục thể hiện kỹ năng kỹ thuật và tầm nhìn sáng tạo.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎓</span>Kỹ Năng Đã Học</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Lập Trình Lua</h4>
+          <p>Lập trình dựa trên văn bản chuyên nghiệp với biến, hàm, điều kiện, vòng lặp và thao tác đối tượng.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Xây Dựng Thế Giới 3D</h4>
+          <p>Tạo môi trường đắm chìm sử dụng thao tác phần, công cụ địa hình và vật liệu của Roblox Studio.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Nguyên Tắc Thiết Kế Game</h4>
+          <p>Cân bằng độ khó, tạo vòng phản hồi, thiết kế cơ chế và lặp lại dựa trên kiểm tra gameplay.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Debug & Giải Quyết Vấn Đề</h4>
+          <p>Đọc thông báo lỗi, kiểm tra có hệ thống, xác định lỗi và triển khai sửa lỗi độc lập.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Thiết Kế UI/UX</h4>
+          <p>Tạo giao diện tùy chỉnh, nút, layout và hệ thống phản hồi hình ảnh cho trải nghiệm người chơi.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Quản Lý Dự Án</h4>
+          <p>Lập kế hoạch phạm vi, chia nhỏ nhiệm vụ thành các bước, ưu tiên tính năng và hoàn thành dự án đúng lịch trình.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Câu Hỏi Phổ Biến Của Phụ Huynh</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Con tôi có cần kinh nghiệm Roblox hoặc lập trình không?</h3>
+          <p class="lesson-desc">Không cần kinh nghiệm trước cho Cấp 1. Học sinh bắt đầu với cơ bản xây dựng 3D trước khi tiến đến lập trình Lua. Quen thuộc với chơi game Roblox hữu ích nhưng không bắt buộc.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">Đây có phải chỉ là chơi game Roblox không?</h3>
+          <p class="lesson-desc">Không. Học sinh học phát triển game chuyên nghiệp sử dụng Roblox Studio—cùng công cụ mà các nhà phát triển Roblox chuyên nghiệp sử dụng. Đây là tạo game, không phải chơi chúng.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">Con tôi có thực sự học lập trình thực không?</h3>
+          <p class="lesson-desc">Có. Lua là ngôn ngữ lập trình chuyên nghiệp được sử dụng trong phát triển game (World of Warcraft, Angry Birds), hệ thống nhúng và kỹ thuật phần mềm. Các khái niệm đã học chuyển giao sang các ngôn ngữ lập trình khác.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">Học sinh có thể bỏ qua Cấp 2 hoặc 3 không?</h3>
+          <p class="lesson-desc">Mỗi cấp xây dựng trên kỹ năng trước. Chúng tôi khuyến nghị bắt đầu từ Cấp 1 trừ khi con bạn đã hoàn thành các khóa học lập trình Roblox tương tự và có thể thể hiện sự thành thạo lập trình Lua.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">Làm thế nào để tôi thấy tiến bộ của con tôi?</h3>
+          <p class="lesson-desc">Học sinh xuất bản game lên Roblox mà bạn có thể chơi trực tiếp. Bạn sẽ nhận được link đến các game đã xuất bản của các em và có thể xem các em trình bày dự án trong các buổi trình diễn.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Bắt Đầu</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Có câu hỏi về đăng ký hoặc muốn thảo luận về lộ trình học tập của con bạn?</p>
+      <p>Phone/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Giờ làm việc: Thứ Hai-Sáu 8:00-21:00 | Thứ Bảy-CN 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>

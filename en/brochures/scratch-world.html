@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scratch World Program Brochure | TechTutor Academy</title>
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link rel="shortcut icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#f4f4f5;
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#cfd4dc;
+    --brand:#244d9a;
+    --brand-soft:#eaf0fb;
+    --teal:#44bea4;
+    --panel:#1f4a97;
+    --lv1:#e8f7f3;
+    --lv2:#ecf2ff;
+    --lv3:#f4efff;
+  }
+  body{background:#ffffff;color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65;font-size:15px}
+  .hero{max-width:920px;margin:0 auto;padding:64px 56px 44px;border-bottom:1px solid var(--line);background:#ffffff}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .logo{width:250px;max-width:72%;height:auto}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:var(--brand)}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+
+  .progression{margin:24px 0;padding:20px;background:linear-gradient(to right,var(--lv1),var(--lv2),var(--lv3));border-radius:12px;border:1px solid var(--line)}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative}
+  .prog-step::after{content:'→';position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--brand);font-size:20px;font-weight:700}
+  .prog-step:last-child::after{display:none}
+  .prog-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#fff;border:2px solid var(--brand);border-radius:50%;font-weight:700;color:var(--brand);margin-bottom:6px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--ink)}
+  @page{size:A4;margin:10mm}
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .level-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Program Brochure</div>
+    </div>
+    <h1>Scratch World Program</h1>
+    <p class="hero-sub">A structured, project-first track where students progress from computer basics to building complete games independently using block-based coding and foundational STEAM skills.</p>
+    <div class="meta">
+      <div class="pill">Ages 7-12</div>
+      <div class="pill">24 Lessons Total</div>
+      <div class="pill">3 Progressive Levels</div>
+      <div class="pill">Project-Based + Showcase</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title">Program Overview</h2>
+      </div>
+      <div class="overview">
+        <p>For students new to programming and computer literacy, this program teaches foundational STEAM skills using Scratch—a beginner-friendly visual programming language. Students progress from basic computer skills to building complete interactive projects: mastering digital tools, learning block-based coding logic, and creating games independently. The program combines technical skill development with creative expression and problem-solving thinking.</p>
+        <ul>
+          <li><strong>Learning Model:</strong> Learn Tools → Build Logic → Create Projects → Present.</li>
+          <li><strong>Class Format:</strong> Weekly project sessions with instructor coaching and structured checkpoints.</li>
+          <li><strong>Parent Visibility:</strong> Students create visible, playable Scratch projects that can be reviewed and shared.</li>
+          <li><strong>Progress Measure:</strong> Digital independence, coding concept application, and project completion.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">LV1</div>
+            <div class="prog-label">Explorer<br/>8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV2</div>
+            <div class="prog-label">Builder<br/>8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV3</div>
+            <div class="prog-label">Creator<br/>8 weeks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Explorer (SWORLD-LV1)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Computer Basics</h3><p class="lesson-desc">Students learn fundamental computer skills: mouse and keyboard control, navigating operating systems, and basic file management. They practice logging in, opening applications, and using essential computer controls. Students build confidence using technology independently before starting coding.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Online Learning Tools</h3><p class="lesson-desc">Students master Zoom features for online learning: screen sharing, chat, annotation tools, and microphone/camera controls. They practice navigating learning platforms, submitting work, and communicating with teachers. Focus is on independent online learning skills essential for success in digital education.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Intro to Scratch</h3><p class="lesson-desc">Students explore the Scratch interface: stage, sprites, backdrops, and block palette. They learn to navigate the Scratch editor, understand the workspace layout, and create their first simple interactions. Students see how visual programming blocks control sprite behavior.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">All About Me</h3><p class="lesson-desc">Students create an interactive "All About Me" project introducing themselves through Scratch. They add sprites, change costumes, apply backdrops, and create basic interactions. Students learn sequencing: making actions happen in order through block stacking.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Dance Party Animation</h3><p class="lesson-desc">Students build an animated dance party project featuring movement and sound. They use motion blocks, sound blocks, and timing to create coordinated animations. Focus is on understanding how blocks work together to create complex behaviors from simple commands.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Remix Projects</h3><p class="lesson-desc">Students explore existing Scratch projects and learn to remix them—making modifications to others' code. They analyze how projects work, identify code blocks to change, and add their own creative touches. Students learn by deconstructing and rebuilding existing work.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Simple Game Build</h3><p class="lesson-desc">Students build their first simple game with basic interactions and objectives. They combine all learned skills: sprites, movement, sound, and sequencing to create a playable project. Focus is on completing a full project from start to finish independently.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Learning Showcase</h3><p class="lesson-desc">Students present their projects to classmates, demonstrating what they built and explaining how it works. They practice presenting their work clearly, giving peer feedback, and reflecting on what they learned. Students share projects publicly on the Scratch community platform.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Builder (SWORLD-LV2)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Events & Triggers</h3><p class="lesson-desc">Students learn event-driven programming: when green flag clicked, when key pressed, when sprite clicked. They understand how events trigger code execution and create interactive projects responding to user input. Focus is on cause-and-effect programming logic.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Conditions (If/Else)</h3><p class="lesson-desc">Students implement conditional logic using if/else blocks to create branching behavior. They build projects where different outcomes occur based on conditions: if touching edge, if key pressed, if variable equals value. Students learn decision-making in code.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Loops (Repeat Actions)</h3><p class="lesson-desc">Students use loops to repeat actions efficiently: repeat 10, forever, repeat until. They understand when to use each loop type and how loops reduce repetitive code. Focus is on creating efficient, clean code through repetition structures.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Variables (Storing Data)</h3><p class="lesson-desc">Students create and use variables to store data: scores, lives, timers, player names. They learn to set, change, and display variable values throughout projects. Students understand how variables track game state and enable complex interactions.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Custom Blocks (Functions)</h3><p class="lesson-desc">Students create custom blocks (functions) to organize code into reusable pieces. They learn when to create functions, how to use parameters, and why code organization matters. Focus is on modular programming and reducing code repetition through abstraction.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Interactive Game Logic</h3><p class="lesson-desc">Students build an interactive game applying all learned concepts: events, conditions, loops, variables, and functions. They design game mechanics, implement scoring systems, and create win/lose conditions. Focus is on combining concepts to build complete game systems.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Logic Practice Project</h3><p class="lesson-desc">Students plan and build a logic-based project demonstrating understanding of programming concepts. They break problems into steps, choose appropriate coding structures (loops vs conditions), and debug issues systematically. Focus is on applying logic intentionally, not randomly.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Learning Showcase</h3><p class="lesson-desc">Students present their logic-based projects, explaining the code behind features. They walk through key blocks, justify coding choices, and discuss challenges solved. Students practice communicating technical concepts clearly and receive feedback on both project design and code structure.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Creator (SWORLD-LV3)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Project Brainstorming</h3><p class="lesson-desc">Students design an original game or interactive experience from scratch. They define objectives, identify required features, and plan implementation steps. Students justify design choices, define project scope, and create a development roadmap for their final project.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Planning & Design</h3><p class="lesson-desc">Students break their project into manageable tasks and create a detailed plan. They sketch character designs, plan sprite interactions, outline game mechanics, and identify required coding structures. Focus is on planning before building to ensure organized development.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Core Features Build</h3><p class="lesson-desc">Students implement core game mechanics and foundational systems. They build character controls, basic interactions, and essential gameplay loops. Focus is on creating a stable foundation with tested core features before adding complexity.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Adding Obstacles & Challenges</h3><p class="lesson-desc">Students design and implement obstacles, enemies, or challenges for their game. They create movement patterns, collision detection, and obstacle behaviors using loops and conditions. Focus is on balancing difficulty and creating engaging gameplay challenges.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Objectives & Win Conditions</h3><p class="lesson-desc">Students implement scoring systems, objectives, and win/lose conditions. They use variables to track progress, create victory screens, and design clear goals. Focus is on giving players clear objectives and meaningful feedback throughout gameplay.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Testing & Refinement</h3><p class="lesson-desc">Students playtest their games, identify bugs, and gather feedback. They adjust difficulty, fix coding errors, improve visual presentation, and refine gameplay based on testing. Focus is on iterative improvement: test, identify problems, fix, repeat.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Final Polish & Documentation</h3><p class="lesson-desc">Students add final touches: instructions, sound effects, visual polish, and game descriptions. They prepare presentation materials explaining their project, features implemented, and challenges overcome. Focus is on professional presentation and clear documentation.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Learning Showcase</h3><p class="lesson-desc">Students present their final games to classmates, instructors, and invited guests. They demonstrate gameplay, explain code structure, share their development process, and reflect on lessons learned. Students showcase their growth from beginner to independent creator.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Tools Students Use</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">🎮 Scratch: Visual block-based programming platform</div>
+        <div class="tool">🖱️ Computer Literacy: Mouse, keyboard, file management</div>
+        <div class="tool">💻 Online Learning: Zoom, screen sharing, digital collaboration</div>
+        <div class="tool">🧩 Block Coding: Events, conditions, loops, variables, functions</div>
+        <div class="tool">🎨 Sprite Editor: Character design and animation tools</div>
+        <div class="tool">📤 Community Sharing: Publishing and presenting projects online</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>What Students Actually Build</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Interactive Animations</h4>
+          <p>Dance parties, stories, and animated scenes with coordinated movement and sound.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Simple Games</h4>
+          <p>Catching games, maze navigators, and basic interactive experiences with objectives.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Logic-Based Projects</h4>
+          <p>Games using conditions, loops, and variables to create complex interactive systems.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Remix Projects</h4>
+          <p>Modified versions of existing Scratch projects demonstrating code understanding.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Personal Introductions</h4>
+          <p>"All About Me" interactive projects showcasing personal interests through code.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Final Game Project</h4>
+          <p>Original game designed and built independently with characters, objectives, obstacles, and polished presentation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Why Parents Choose This Program</h2>
+      </div>
+      <div class="overview">
+        <p>This program is designed to build digital literacy, logical thinking, and independent learning skills. Students learn foundational programming concepts in a beginner-friendly environment, gaining confidence with technology while developing problem-solving abilities.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Perfect First Programming Course</h4>
+          <p>Scratch's visual blocks remove syntax barriers, making programming logic accessible to young learners.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Digital Literacy Foundation</h4>
+          <p>Students gain essential computer skills: file management, online learning tools, and digital communication.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Independent Learning Skills</h4>
+          <p>Students learn to work independently, troubleshoot problems, and manage their own learning process.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Foundation for Advanced Coding</h4>
+          <p>Concepts learned (loops, variables, conditions, functions) transfer directly to text-based programming languages.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Child Growth Outcomes</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">Computer Literacy</h3>
+          <p class="lesson-desc">Students master fundamental computer skills: navigation, file management, online tools, and digital communication.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Block-Based Programming</h3>
+          <p class="lesson-desc">Students learn core programming concepts through visual blocks: sequencing, events, conditions, loops, variables, and functions.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">Logical Problem-Solving</h3>
+          <p class="lesson-desc">Students develop structured thinking: breaking problems into steps, choosing appropriate solutions, and debugging systematically.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Creative Expression</h3>
+          <p class="lesson-desc">Students design characters, create stories, and build interactive experiences expressing their ideas through code.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Independent Project Management</h3>
+          <p class="lesson-desc">Students plan projects, manage development time, prioritize features, and complete work independently with minimal guidance.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">Digital Confidence</h3>
+          <p class="lesson-desc">Students gain confidence using technology, navigating online platforms, and learning new digital tools independently.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">07</div>
+        <div>
+          <h3 class="lesson-title">Presentation & Communication</h3>
+          <p class="lesson-desc">Students learn to explain their projects clearly, give constructive feedback, and present technical work to audiences.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Program Outcomes</h3>
+      <ul>
+        <li>Students gain overall proficiency with Scratch and foundational programming concepts.</li>
+        <li>Students can build complete interactive projects independently from planning to presentation.</li>
+        <li>Students develop digital literacy skills essential for modern education and technology use.</li>
+        <li>Students build confidence as creators, not just consumers, of technology.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎓</span>Skills Learned</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Block-Based Coding</h4>
+          <p>Using visual programming blocks to create interactive projects with events, conditions, loops, and variables.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Computer Basics</h4>
+          <p>Mouse and keyboard control, file management, online learning tools, and digital navigation.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Logical Thinking</h4>
+          <p>Breaking problems into steps, choosing appropriate solutions, and applying programming logic systematically.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Game Design Fundamentals</h4>
+          <p>Creating objectives, balancing difficulty, designing challenges, and providing player feedback.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Project Planning</h4>
+          <p>Defining scope, breaking tasks into steps, prioritizing features, and managing development time.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Digital Collaboration</h4>
+          <p>Using online learning platforms, sharing work publicly, and communicating in digital environments.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Common Parent Questions</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Does my child need computer experience?</h3>
+          <p class="lesson-desc">No prior computer or coding experience required. Level 1 starts with basic computer skills before introducing programming concepts.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">Is Scratch real programming?</h3>
+          <p class="lesson-desc">Yes. Scratch teaches genuine programming concepts (loops, variables, conditions, functions) used in all programming languages—just without typing syntax, making it perfect for beginners.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">Will this prepare my child for real coding later?</h3>
+          <p class="lesson-desc">Absolutely. Students who master Scratch concepts transition smoothly to text-based languages like Python or JavaScript because they already understand programming logic.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">Can students skip to Level 2 or 3?</h3>
+          <p class="lesson-desc">Each level builds on previous skills. We recommend starting at Level 1 unless your child already has strong computer literacy and Scratch experience.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">How do I see my child's progress?</h3>
+          <p class="lesson-desc">Students' Scratch projects are published online where you can play them directly. You'll receive links to their work and can watch them present during showcase sessions.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Get Started</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Questions about enrollment or want to discuss your child's learning path?</p>
+      <p>Phone/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Hours: Mon-Fri 8:00-21:00 | Sat-Sun 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chương Trình AI & Game Adventure - TechTutor Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--brand:#244d9a;--brand-soft:#eef3fc;--panel:#1f4a97;--teal:#2C7A7B;--line:#e2e8f0;--muted:#64748b;--lv1:#e6f7f4;--lv2:#e8effe;--lv3:#f3edfc}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'DM Sans',system-ui,sans-serif;font-size:15px;line-height:1.6;color:#334155;background:#fafafa}
+  .hero{background:linear-gradient(135deg,var(--brand) 0%,#1f3a7a 100%);color:#fff;padding:56px 20px 38px;text-align:center}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;max-width:920px;margin:0 auto 28px}
+  .logo{height:48px}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:#fff}
+  .hero-sub{font-size:16px;color:#e0e7ff;max-width:700px;margin:0 auto 18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid #d1d5db;padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .progression{margin-top:24px}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative;padding:16px 0}
+  .prog-step::after{content:'→';position:absolute;right:-16px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--muted)}
+  .prog-step:last-child::after{display:none}
+  .prog-num{font-family:'DM Serif Display',serif;font-size:32px;font-weight:400;color:var(--brand);margin-bottom:4px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:var(--brand);text-decoration:none;font-weight:600}
+  .contact a:hover{text-decoration:underline}
+
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .feature-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Brochure Chương Trình</div>
+    </div>
+    <h1>AI & Game Adventure</h1>
+    <p class="hero-sub">Lộ trình học máy toàn diện nơi học sinh khám phá khái niệm AI, tạo mô hình ML và xây dựng ứng dụng thông minh sử dụng Python, đồng thời xem xét ý nghĩa đạo đức của trí tuệ nhân tạo.</p>
+    <div class="meta">
+      <div class="pill">Độ tuổi 11-16</div>
+      <div class="pill">24 Bài Học</div>
+      <div class="pill">3 Cấp Độ Tiến Bộ</div>
+      <div class="pill">Python + Mô Hình ML</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <h2 class="section-title">Tổng Quan Chương Trình</h2>
+      </div>
+      <div class="overview">
+        <p>Dành cho học sinh quan tâm đến lập trình và học máy, chương trình này khám phá nguyên tắc Học Máy (ML) và ứng dụng thực tế. Học máy điều khiển các chương trình thông minh, phản hồi với tác động thực tế bao gồm xe tự lái, trợ lý AI, nhận dạng khuôn mặt và phân tích dự đoán. Học sinh tiến bộ từ khám phá khái niệm ML đến tạo mô hình hiệu quả, không thiên vị và xây dựng ứng dụng AI-driven hoàn chỉnh với Python.</p>
+        <ul>
+          <li><strong>Mô hình học:</strong> Khám Phá → Huấn Luyện → Kiểm Tra → Đánh Giá → Xây Dựng Ứng Dụng AI.</li>
+          <li><strong>Định dạng lớp học:</strong> Các buổi dự án hàng tuần với hướng dẫn từ giảng viên và các mốc có cấu trúc.</li>
+          <li><strong>Phụ huynh dễ theo dõi:</strong> Học sinh tạo mô hình ML rõ ràng, có thể chứng minh với độ chính xác đo được.</li>
+          <li><strong>Đo lường tiến bộ:</strong> Chỉ số độ chính xác mô hình, ứng dụng hoạt động và trình bày dự án.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">LV1</div>
+            <div class="prog-label">Khám Phá<br/>8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV2</div>
+            <div class="prog-label">Xây Dựng<br/>8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV3</div>
+            <div class="prog-label">Sáng Tạo<br/>8 tuần</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Khám Phá (AIGAME-LV1)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Khám Phá ML</h3><p class="lesson-desc">Học sinh huấn luyện và kiểm tra mô hình nhận dạng hình ảnh sử dụng Teachable Machine. Các em học phân biệt giữa tập dữ liệu kiểm tra và huấn luyện, hiểu cách dữ liệu huấn luyện hỗ trợ học máy. Học sinh khám phá cách mô hình ML học mẫu từ dữ liệu và cải thiện độ chính xác thông qua kỹ thuật huấn luyện phù hợp.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Phân Tích Cảm Xúc</h3><p class="lesson-desc">Học sinh tạo mô hình ML để phân loại cảm xúc văn bản (tích cực, tiêu cực, trung tính) và xây dựng giao diện Scratch để hiển thị kết quả. Các em định nghĩa phân tích cảm xúc, mô tả ứng dụng thực tế (giám sát mạng xã hội, phản hồi khách hàng) và nhớ lại quy trình huấn luyện cho mô hình ML dựa trên văn bản.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Bộ Lọc Khuôn Mặt</h3><p class="lesson-desc">Học sinh xây dựng ứng dụng bộ lọc khuôn mặt sử dụng Machine Learning for Kids (MLFK) và Scratch. Các em giải thích cách nhận dạng hình ảnh hoạt động để phát hiện khuôn mặt và nhớ lại cơ bản của thuật toán Viola-Jones. Học sinh áp dụng phát hiện khuôn mặt để tạo bộ lọc tương tác tương tự ứng dụng mạng xã hội.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Nhận Dạng Giọng Nói</h3><p class="lesson-desc">Học sinh tạo ứng dụng nhận dạng giọng nói sử dụng MLFK và Scratch. Các em xác định ví dụ và ứng dụng của mô hình nhận dạng giọng nói (trợ lý giọng nói, công cụ khả năng tiếp cận, dịch vụ phiên âm) và hiểu cách dữ liệu âm thanh được xử lý bởi mô hình ML để nhận dạng mẫu giọng nói.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Giới Thiệu Phân Tích Dữ Liệu</h3><p class="lesson-desc">Học sinh khám phá "Big Data" và học máy cho phân tích tập dữ liệu. Các em định nghĩa phương pháp khoa học, giả thuyết các tính năng nào trong tập dữ liệu là quan trọng và hiểu cách ML giúp xác định mẫu trong tập dữ liệu lớn mà con người không thể dễ dàng phát hiện thủ công.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Phân Tích Dự Đoán</h3><p class="lesson-desc">Học sinh học về AI dự đoán thông qua phương pháp khoa học: giả thuyết, kiểm tra và sửa đổi. Các em nhớ lại các bước phương pháp khoa học, đánh giá giả thuyết với dữ liệu đến và sửa đổi dự đoán dựa trên hiệu suất mô hình. Trọng tâm là cải thiện lặp lại thông qua thông tin dựa trên dữ liệu.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Lập Kế Hoạch Mô Hình</h3><p class="lesson-desc">Học sinh lập kế hoạch dự án AI cuối cùng bằng cách ghi lại ý tưởng của các em cho mô hình ML tùy chỉnh. Các em đề xuất ứng dụng học máy, xác định các loại dữ liệu cần thiết (văn bản, hình ảnh, âm thanh), định nghĩa cách tiếp cận huấn luyện và phác thảo cách mô hình của các em sẽ giải quyết vấn đề cụ thể hoặc tạo giá trị.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Trình Diễn Học Tập</h3><p class="lesson-desc">Học sinh xây dựng và trình bày dự án AI cuối cùng cho bạn học. Các em trình diễn mô hình ML, giải thích quy trình huấn luyện, thảo luận về độ chính xác mô hình và phản ánh về các thử thách đã giải quyết. Học sinh thực hành trình bày khái niệm kỹ thuật rõ ràng và nhận phản hồi về cả thiết kế mô hình và triển khai.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Xây Dựng (AIGAME-LV2)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Cú Pháp Python</h3><p class="lesson-desc">Học sinh học cú pháp Python cơ bản: câu lệnh print, hàm input và biến. Các em thực hành viết chương trình Python đơn giản, hiểu kiểu dữ liệu (chuỗi, số nguyên, số thực) và so sánh cú pháp Python với lập trình trực quan (Scratch). Trọng tâm là chuyển đổi từ lập trình dựa trên khối sang dựa trên văn bản.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Điều Kiện</h3><p class="lesson-desc">Học sinh viết câu lệnh điều kiện trong Python sử dụng if/elif/else. Các em nhớ lại và áp dụng cú pháp cho logic điều kiện, tạo chương trình với hành vi phân nhánh và hiểu cách điều kiện kiểm soát luồng chương trình. Học sinh chuyển đổi tư duy điều kiện từ Scratch sang cú pháp văn bản Python.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Điều Kiện & Toán Tử</h3><p class="lesson-desc">Học sinh sử dụng toán tử logic (AND, OR, NOT) trong câu lệnh điều kiện. Các em nhớ lại và áp dụng cú pháp toán tử, tạo điều kiện phức tạp kết hợp nhiều tiêu chí và hiểu thứ tự ưu tiên toán tử. Trọng tâm là xây dựng logic ra quyết định tinh vi trong chương trình Python.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Mảng & Vòng Lặp</h3><p class="lesson-desc">Học sinh viết mảng (danh sách) và vòng lặp trong Python, so sánh với tương đương Scratch. Các em nhớ lại và áp dụng cú pháp danh sách/vòng lặp, hiểu khi nào mảng tốt hơn các biến riêng lẻ và sử dụng vòng lặp for/while để lặp qua dữ liệu hiệu quả. Học sinh quản lý tập hợp dữ liệu liên quan.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Hàm</h3><p class="lesson-desc">Học sinh tạo hàm có thể tái sử dụng trong Python với tham số và giá trị trả về. Các em nhớ lại và áp dụng cú pháp hàm, gọi hàm từ script chính và tổ chức code thành các phần modular, dễ bảo trì. Trọng tâm là khả năng tái sử dụng code và giảm lặp lại thông qua trừu tượng hàm.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Lập Kế Hoạch Ứng Dụng</h3><p class="lesson-desc">Học sinh lập kế hoạch game phiêu lưu văn bản được xây dựng trong Python notebook (Google Colab). Các em áp dụng khái niệm đã học: print/input, biến, điều kiện, vòng lặp, mảng và hàm. Học sinh thiết kế câu chuyện game, lập sơ đồ cây quyết định và phác thảo cấu trúc code trước khi triển khai.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Thời Gian Làm Việc</h3><p class="lesson-desc">Học sinh phát triển dự án game phiêu lưu văn bản Python với sự hỗ trợ từ giảng viên. Các em triển khai các tính năng đã lập kế hoạch, debug lỗi code, kiểm tra logic gameplay và tinh chỉnh trải nghiệm người dùng. Trọng tâm là áp dụng tất cả khái niệm Python đã học để tạo game dựa trên văn bản hoàn chỉnh, có thể chơi được.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Trình Diễn Học Tập</h3><p class="lesson-desc">Học sinh debug và trình bày game Python cho bạn học. Các em xác định và giải thích các phần code, trình diễn gameplay, thảo luận về các thử thách kỹ thuật đã giải quyết và phản ánh về hành trình học tập của mình. Học sinh thực hành truyền đạt khái niệm Python rõ ràng và nhận phản hồi về chất lượng code và thiết kế game.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Sáng Tạo (AIGAME-LV3)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Sáng Tạo Ý Tưởng Dự Án</h3><p class="lesson-desc">Học sinh nhớ lại kinh nghiệm ML trước và đề xuất ứng dụng học máy mới sử dụng MLFK. Các em nhớ lại các dự án ML trước, xác định khoảng trống hoặc cải thiện và sáng tạo ý tưởng ứng dụng AI gốc. Học sinh biện minh cho đề xuất của mình, định nghĩa người dùng mục tiêu và phác thảo cách mô hình ML của các em sẽ cung cấp giá trị.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Huấn Luyện Mô Hình</h3><p class="lesson-desc">Học sinh thu thập dữ liệu huấn luyện trong MLFK và xây dựng mô hình với độ chính xác ≥50%. Các em áp dụng khái niệm ML đã học, huấn luyện và kiểm tra mô hình hiệu quả, đánh giá hiệu suất mô hình và lặp lại trên dữ liệu huấn luyện để cải thiện độ chính xác. Trọng tâm là tạo mô hình ML được huấn luyện tốt, không thiên vị thông qua thu thập dữ liệu phù hợp.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Thời Gian Làm Việc 1: Thiết Lập Frontend</h3><p class="lesson-desc">Học sinh cấu hình hệ thống frontend sử dụng Python notebook (Google Colab). Các em tạo môi trường Colab, kết nối với backend MLFK và thiết lập cơ sở hạ tầng cho ứng dụng AI của mình. Trọng tâm là tích hợp mô hình ML với giao diện hướng người dùng.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Thời Gian Làm Việc 2: Xử Lý Kết Quả</h3><p class="lesson-desc">Học sinh viết script Python để xử lý kết quả mô hình ML. Các em nắm bắt dự đoán mô hình, xử lý điểm tự tin, định dạng đầu ra cho người dùng và triển khai xử lý lỗi. Trọng tâm là tạo đường ống mượt mà từ backend ML đến hiển thị frontend.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Thời Gian Làm Việc 3: Phát Triển UI</h3><p class="lesson-desc">Học sinh xây dựng giao diện người dùng cho ứng dụng AI của mình. Các em thiết kế cơ chế đầu vào để thu thập dữ liệu, tạo màn hình đầu ra cho dự đoán mô hình, thêm phản hồi hình ảnh cho tương tác người dùng và hoàn thiện trải nghiệm người dùng tổng thể.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Thời Gian Làm Việc 4: Kiểm Tra & Tinh Chỉnh</h3><p class="lesson-desc">Học sinh kiểm tra ứng dụng AI hoàn chỉnh của mình và tinh chỉnh dựa trên phản hồi. Các em đánh giá độ chính xác mô hình trong các tình huống thực tế, xác định trường hợp cạnh, cải thiện xử lý lỗi và tối ưu hóa trải nghiệm người dùng. Trọng tâm là tạo ứng dụng AI mạnh mẽ, đáng tin cậy.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Đánh Giá Đồng Nghiệp</h3><p class="lesson-desc">Học sinh chia sẻ dự án với bạn học và thu thập phản hồi để sửa đổi. Các em nói về quyết định thiết kế code, phản ánh về quy trình phát triển, cung cấp phản hồi đồng nghiệp mang tính xây dựng và học cách đánh giá ứng dụng AI từ cả góc độ kỹ thuật và đạo đức.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Trình Diễn Học Tập</h3><p class="lesson-desc">Học sinh hoàn thiện và trình bày dự án ML cho bạn học, giáo viên và khách mời. Các em trình diễn ứng dụng, giải thích cách tiếp cận huấn luyện mô hình, thảo luận về chỉ số độ chính xác, giải quyết các cân nhắc đạo đức và phản ánh về hành trình phát triển hoàn chỉnh. Học sinh thể hiện sự thành thạo khái niệm ML, lập trình Python và phát triển ứng dụng AI.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Công Cụ Học Sinh Sử Dụng</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">🤖 Teachable Machine: Nền tảng huấn luyện ML trực quan của Google</div>
+        <div class="tool">🎓 Machine Learning for Kids (MLFK): Nền tảng ML giáo dục</div>
+        <div class="tool">🐍 Python: Ngôn ngữ lập trình chuyên nghiệp</div>
+        <div class="tool">📊 Google Colab: Môi trường Python notebook trên cloud</div>
+        <div class="tool">🎮 Tích Hợp Scratch: Frontend mô hình ML trực quan</div>
+        <div class="tool">📈 Công Cụ Phân Tích Dữ Liệu: Khám phá và trực quan hóa tập dữ liệu</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>Học Sinh Thực Sự Xây Dựng Gì</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Mô Hình Nhận Dạng Hình Ảnh</h4>
+          <p>Mô hình ML phân loại hình ảnh với độ chính xác đo được, được huấn luyện trên tập dữ liệu tùy chỉnh và kiểm tra có hệ thống.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Ứng Dụng Phân Tích Cảm Xúc</h4>
+          <p>Hệ thống phân loại văn bản phân tích tone cảm xúc với giao diện người dùng dựa trên Scratch.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Ứng Dụng Bộ Lọc Khuôn Mặt</h4>
+          <p>Ứng dụng tương tác sử dụng công nghệ nhận dạng khuôn mặt để áp dụng bộ lọc và hiệu ứng theo thời gian thực.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Hệ Thống Nhận Dạng Giọng Nói</h4>
+          <p>Mô hình ML dựa trên âm thanh nhận dạng mẫu giọng nói và phản hồi lệnh giọng nói.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Game Phiêu Lưu Văn Bản Python</h4>
+          <p>Game dựa trên văn bản được xây dựng với Python, thể hiện cơ bản lập trình và luồng logic.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Ứng Dụng AI Hoàn Chỉnh</h4>
+          <p>Dự án ML full-stack kết hợp mô hình đã huấn luyện với frontend Python, đạt độ chính xác ≥60%.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Vì Sao Phụ Huynh Chọn Chương Trình Này</h2>
+      </div>
+      <div class="overview">
+        <p>Chương trình này được thiết kế để xây dựng kỹ năng AI thực tế, sự tự tin kỹ thuật và nhận thức đạo đức. Thay vì sử dụng công cụ AI một cách thụ động, học sinh học cách học máy thực sự hoạt động, đạt được kinh nghiệm thực hành với cùng công nghệ đang định hình tương lai của chúng ta.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Kỹ Năng Học Máy Thực Tế</h4>
+          <p>Học sinh học khái niệm ML chuyên nghiệp: huấn luyện, kiểm tra, đánh giá độ chính xác và phát hiện thiên vị được sử dụng trong ứng dụng AI ngành.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Nền Tảng Lập Trình Python</h4>
+          <p>Học sinh thành thạo cú pháp Python, cấu trúc dữ liệu và logic chương trình—kỹ năng nền tảng cho nghề nghiệp khoa học máy tính và khoa học dữ liệu.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Nhận Thức AI Đạo Đức</h4>
+          <p>Học sinh xem xét ý nghĩa đạo đức của AI: thiên vị trong dữ liệu huấn luyện, mối quan tâm về quyền riêng tư và thực hành phát triển AI có trách nhiệm.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Tiến Bộ Đo Được</h4>
+          <p>Chỉ số độ chính xác mô hình cung cấp bằng chứng rõ ràng, khách quan về tiến bộ học tập và phát triển kỹ năng kỹ thuật.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Kết Quả Phát Triển Trẻ</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">Thành Thạo Khái Niệm ML</h3>
+          <p class="lesson-desc">Học sinh hiểu khái niệm học máy cốt lõi: tập dữ liệu huấn luyện vs kiểm tra, độ chính xác mô hình, điểm tự tin và phát hiện thiên vị. Các em giải thích cách mô hình ML học từ dữ liệu và cải thiện thông qua lặp lại.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Thành Thạo Lập Trình Python</h3>
+          <p class="lesson-desc">Học sinh thành thạo cơ bản Python: biến, điều kiện, vòng lặp, mảng và hàm. Các em viết code sạch, có tổ chức và chuyển đổi tự tin từ lập trình trực quan sang dựa trên văn bản.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">Tư Duy Dựa Trên Dữ Liệu</h3>
+          <p class="lesson-desc">Học sinh áp dụng phương pháp khoa học cho phát triển ML: giả thuyết, kiểm tra, đánh giá và lặp lại. Các em đưa ra quyết định dựa trên dữ liệu thay vì giả định.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Chuyên Môn Huấn Luyện Mô Hình</h3>
+          <p class="lesson-desc">Học sinh tạo mô hình ML hiệu quả bằng cách thu thập dữ liệu huấn luyện chất lượng, tránh thiên vị, kiểm tra có hệ thống và tối ưu hóa để đạt độ chính xác. Các em đạt được chỉ số hiệu suất đo được (≥60% độ chính xác).</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Phát Triển AI Full-Stack</h3>
+          <p class="lesson-desc">Học sinh tích hợp backend ML với frontend Python, tạo ứng dụng hoàn chỉnh. Các em hiểu toàn bộ đường ống từ thu thập dữ liệu đến giao diện người dùng.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">Cân Nhắc AI Đạo Đức</h3>
+          <p class="lesson-desc">Học sinh đánh giá ý nghĩa đạo đức của ứng dụng ML: quyền riêng tư dữ liệu, thiên vị thuật toán, công bằng và triển khai AI có trách nhiệm. Các em phát triển tư duy phê phán về tác động xã hội của công nghệ.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">07</div>
+        <div>
+          <h3 class="lesson-title">Giao Tiếp Kỹ Thuật</h3>
+          <p class="lesson-desc">Học sinh giải thích khái niệm AI phức tạp rõ ràng, trình bày dự án kỹ thuật chuyên nghiệp và thảo luận về quy trình phát triển ML với cả khán giả kỹ thuật và phi kỹ thuật.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Kết Quả Chương Trình</h3>
+      <ul>
+        <li>Học sinh đạt được hiểu biết toàn diện về nguyên tắc học máy và ứng dụng AI thực tế.</li>
+        <li>Học sinh có thể thiết kế, huấn luyện, kiểm tra và triển khai mô hình ML đạt độ chính xác ≥60% với đánh giá phù hợp.</li>
+        <li>Học sinh thành thạo cơ bản lập trình Python và áp dụng chúng để xây dựng ứng dụng AI-driven hoàn chỉnh.</li>
+        <li>Học sinh phát triển tư duy phê phán về đạo đức AI, thiên vị và phát triển công nghệ có trách nhiệm.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎓</span>Kỹ Năng Đã Học</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Cơ Bản Học Máy</h4>
+          <p>Huấn luyện, kiểm tra, đánh giá độ chính xác, phát hiện thiên vị và tối ưu hóa mô hình cho nhận dạng hình ảnh/văn bản/giọng nói.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Lập Trình Python</h4>
+          <p>Biến, điều kiện, vòng lặp, mảng, hàm và lập trình dựa trên văn bản cho phát triển ứng dụng AI.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Phương Pháp Khoa Học Dữ Liệu</h4>
+          <p>Áp dụng phương pháp khoa học, kiểm tra giả thuyết, phân tích dữ liệu và mô hình hóa dự đoán với công cụ ML.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Phát Triển Ứng Dụng AI</h4>
+          <p>Tích hợp mô hình ML với frontend, xử lý kết quả, tạo giao diện người dùng và triển khai hệ thống hoàn chỉnh.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Nhận Thức AI Đạo Đức</h4>
+          <p>Đánh giá thiên vị, xem xét quyền riêng tư, thảo luận về công bằng và phát triển thực hành AI có trách nhiệm.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Giải Quyết Vấn Đề Kỹ Thuật</h4>
+          <p>Debug code, cải thiện độ chính xác mô hình, kiểm tra có hệ thống và tinh chỉnh lặp lại thông qua dữ liệu.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Câu Hỏi Phổ Biến Của Phụ Huynh</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Con tôi có cần kinh nghiệm lập trình trước không?</h3>
+          <p class="lesson-desc">Cho Cấp 1, không cần kinh nghiệm ML trước, nhưng quen thuộc với lập trình cơ bản (Scratch hoặc tương tự) là hữu ích. Cho Cấp 2-3, hoàn thành cấp trước hoặc kiến thức Python tương đương được khuyến nghị.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">Đây có phải là học máy thực hay đơn giản hóa cho trẻ em?</h3>
+          <p class="lesson-desc">Đây là học máy thực sử dụng khái niệm và công cụ tiêu chuẩn ngành. Học sinh làm việc với mô hình ML thực tế, đo chỉ số độ chính xác thực và học nguyên tắc được sử dụng trong phát triển AI chuyên nghiệp.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">Học sinh học ngôn ngữ lập trình nào?</h3>
+          <p class="lesson-desc">Học sinh học Python, ngôn ngữ được sử dụng rộng rãi nhất cho học máy và khoa học dữ liệu. Kỹ năng Python chuyển giao trực tiếp sang phát triển AI chuyên nghiệp, phát triển web và khoa học máy tính.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">Làm thế nào để đo lường tiến bộ học sinh?</h3>
+          <p class="lesson-desc">Tiến bộ được đo thông qua chỉ số độ chính xác mô hình (mục tiêu: ≥60%), dự án hoàn thành, chất lượng code và trình bày kỹ thuật. Mỗi học sinh xây dựng danh mục các ứng dụng ML hoạt động.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">Chương trình này hỗ trợ con đường nghề nghiệp nào?</h3>
+          <p class="lesson-desc">Chương trình này xây dựng kỹ năng nền tảng cho kỹ sư AI, khoa học dữ liệu, nghiên cứu học máy, phát triển phần mềm và bất kỳ lĩnh vực nào tận dụng trí tuệ nhân tạo và ra quyết định dựa trên dữ liệu.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Bắt Đầu</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Có câu hỏi về đăng ký hoặc muốn thảo luận về lộ trình học tập của con bạn?</p>
+      <p>Phone/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Giờ làm việc: Thứ Hai-Sáu 8:00-21:00 | Thứ Bảy-CN 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>
