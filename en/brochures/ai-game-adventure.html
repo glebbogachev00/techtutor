@@ -1,42 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZ1XEZXB6"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18127330947"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4MZ1XEZXB6');
+  gtag('config', 'AW-18127330947');
+</script>
+
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI & Game Adventure Program - TechTutor Academy</title>
+  <title>AI & Programming Quest - TechTutor Academy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--brand:#244d9a;--brand-soft:#eef3fc;--panel:#1f4a97;--teal:#2C7A7B;--line:#e2e8f0;--muted:#64748b;--lv1:#e6f7f4;--lv2:#e8effe;--lv3:#f3edfc}
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'DM Sans',system-ui,sans-serif;font-size:15px;line-height:1.6;color:#334155;background:#fafafa}
-  .hero{background:linear-gradient(135deg,var(--brand) 0%,#1f3a7a 100%);color:#fff;padding:56px 20px 38px;text-align:center}
-  .hero-top{display:flex;justify-content:space-between;align-items:center;max-width:920px;margin:0 auto 28px}
-  .logo{height:48px}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#f4f4f5;
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#cfd4dc;
+    --brand:#244d9a;
+    --brand-soft:#eaf0fb;
+    --teal:#44bea4;
+    --panel:#1f4a97;
+    --lv1:#e8f7f3;
+    --lv2:#ecf2ff;
+    --lv3:#f4efff;
+  }
+  body{background:#ffffff;color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65;font-size:15px}
+  .hero{max-width:920px;margin:0 auto;padding:64px 56px 44px;border-bottom:1px solid var(--line);background:#ffffff}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .logo{width:250px;max-width:72%;height:auto}
   .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
-  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:#fff}
-  .hero-sub{font-size:16px;color:#e0e7ff;max-width:700px;margin:0 auto 18px}
-  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid #d1d5db;padding:6px 12px;border-radius:999px}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:var(--brand)}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
 
   .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
   .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
   .section-num{display:none}
   .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
   .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
   .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
   .overview p{margin-bottom:10px}
   .overview ul{margin:6px 0 12px 18px;color:#334155}
   .overview li{margin:4px 0}
 
-  .progression{margin-top:24px}
+  .progression{margin:24px 0;padding:20px;background:linear-gradient(to right,var(--lv1),var(--lv2),var(--lv3));border-radius:12px;border:1px solid var(--line)}
   .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
-  .prog-step{flex:1;text-align:center;position:relative;padding:16px 0}
-  .prog-step::after{content:'→';position:absolute;right:-16px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--muted)}
+  .prog-step{flex:1;text-align:center;position:relative}
+  .prog-step::after{content:'→';position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--brand);font-size:20px;font-weight:700}
   .prog-step:last-child::after{display:none}
-  .prog-num{font-family:'DM Serif Display',serif;font-size:32px;font-weight:400;color:var(--brand);margin-bottom:4px}
-  .prog-label{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .prog-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#fff;border:2px solid var(--brand);border-radius:50%;font-weight:700;color:var(--brand);margin-bottom:6px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--ink)}
 
   .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
   .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
@@ -64,14 +90,14 @@
   .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
   .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
   .contact p{color:var(--muted);margin-bottom:4px}
-  .contact a{color:var(--brand);text-decoration:none;font-weight:600}
-  .contact a:hover{text-decoration:underline}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
 
+  @page{size:A4;margin:10mm}
   @media print{
     body{background:#fff}
     .hero{page-break-after:avoid}
     .section{page-break-inside:avoid}
-    .feature-card{page-break-inside:avoid}
+    .level-card{page-break-inside:avoid}
   }
   @media (max-width:820px){
     .hero{padding:42px 20px 28px}
@@ -94,7 +120,7 @@
       <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
       <div class="badge">Program Brochure</div>
     </div>
-    <h1>AI & Game Adventure</h1>
+    <h1>AI & Programming Quest</h1>
     <p class="hero-sub">A comprehensive machine learning track where students explore AI concepts, create ML models, and build intelligent applications using Python, while considering ethical implications of artificial intelligence.</p>
     <div class="meta">
       <div class="pill">Ages 11-16</div>
@@ -122,16 +148,16 @@
       <div class="progression">
         <div class="progression-track">
           <div class="prog-step">
-            <div class="prog-num">LV1</div>
-            <div class="prog-label">Explorer<br/>8 weeks</div>
+            <div class="prog-num">1</div>
+            <div class="prog-label">Explorer · 8 weeks</div>
           </div>
           <div class="prog-step">
-            <div class="prog-num">LV2</div>
-            <div class="prog-label">Builder<br/>8 weeks</div>
+            <div class="prog-num">2</div>
+            <div class="prog-label">Builder · 8 weeks</div>
           </div>
           <div class="prog-step">
-            <div class="prog-num">LV3</div>
-            <div class="prog-label">Creator<br/>8 weeks</div>
+            <div class="prog-num">3</div>
+            <div class="prog-label">Creator · 8 weeks</div>
           </div>
         </div>
       </div>
@@ -140,7 +166,7 @@
     <section>
       <div class="section-head">
         <div class="section-num"></div>
-        <h2 class="section-title"><span class="icon-chip">🚀</span>Explorer (AIGAME-LV1)</h2>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Explorer (AIPRG-LV1)</h2>
         <div class="section-meta">8 Lessons</div>
       </div>
       <div class="level-card level-lv1">
@@ -158,7 +184,7 @@
     <section>
       <div class="section-head">
         <div class="section-num"></div>
-        <h2 class="section-title"><span class="icon-chip">🛠️</span>Builder (AIGAME-LV2)</h2>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Builder (AIPRG-LV2)</h2>
         <div class="section-meta">8 Lessons</div>
       </div>
       <div class="level-card level-lv2">
@@ -176,7 +202,7 @@
     <section>
       <div class="section-head">
         <div class="section-num"></div>
-        <h2 class="section-title"><span class="icon-chip">🏆</span>Creator (AIGAME-LV3)</h2>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Creator (AIPRG-LV3)</h2>
         <div class="section-meta">8 Lessons</div>
       </div>
       <div class="level-card level-lv3">

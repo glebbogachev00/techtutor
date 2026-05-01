@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZ1XEZXB6"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18127330947"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4MZ1XEZXB6');
+  gtag('config', 'AW-18127330947');
+</script>
+
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chương Trình Phát Triển Ứng Dụng - TechTutor Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#f4f4f5;
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#cfd4dc;
+    --brand:#244d9a;
+    --brand-soft:#eaf0fb;
+    --teal:#44bea4;
+    --panel:#1f4a97;
+    --lv1:#e8f7f3;
+    --lv2:#ecf2ff;
+    --lv3:#f4efff;
+  }
+  body{background:#ffffff;color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65;font-size:15px}
+  .hero{max-width:920px;margin:0 auto;padding:64px 56px 44px;border-bottom:1px solid var(--line);background:#ffffff}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .logo{width:250px;max-width:72%;height:auto}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:var(--brand)}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .progression{margin:24px 0;padding:20px;background:linear-gradient(to right,var(--lv1),var(--lv2),var(--lv3));border-radius:12px;border:1px solid var(--line)}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative}
+  .prog-step::after{content:'→';position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--brand);font-size:20px;font-weight:700}
+  .prog-step:last-child::after{display:none}
+  .prog-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#fff;border:2px solid var(--brand);border-radius:50%;font-weight:700;color:var(--brand);margin-bottom:6px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--ink)}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+
+  @page{size:A4;margin:10mm}
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .level-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Brochure Chương Trình</div>
+    </div>
+    <h1>Phát Triển Ứng Dụng</h1>
+    <p class="hero-sub">Hành trình có cấu trúc, ưu tiên dự án, nơi học sinh thiết kế, xây dựng và ra mắt ứng dụng di động thực tế sử dụng công cụ phát triển trực quan, tiến bộ từ giao diện cơ bản đến ứng dụng nhiều màn hình đầy đủ chức năng.</p>
+    <div class="meta">
+      <div class="pill">Độ tuổi 10-17</div>
+      <div class="pill">24 Bài Học</div>
+      <div class="pill">3 Cấp Độ Tiến Bộ</div>
+      <div class="pill">Dự Án + Trình Diễn</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <h2 class="section-title">Tổng Quan Chương Trình</h2>
+      </div>
+      <div class="overview">
+        <p>Học sinh tiến bộ từ tạo ứng dụng cơ bản đến xây dựng ứng dụng nhiều màn hình đầy đủ chức năng sử dụng công cụ phát triển trực quan. Các em học cách cấu trúc ứng dụng, quản lý dữ liệu, xử lý tương tác người dùng và cung cấp dự án hoàn thiện. Chương trình này kết hợp thiết kế UI/UX, xây dựng logic, tích hợp cơ sở dữ liệu và quy trình phát triển ứng dụng thực tế.</p>
+        <ul>
+          <li><strong>Mô hình học:</strong> Giải Thích → Xây Dựng → Kiểm Tra → Cải Thiện → Trình Bày.</li>
+          <li><strong>Định dạng lớp học:</strong> Các buổi xây dựng hướng dẫn hàng tuần với các điểm kiểm tra có cấu trúc.</li>
+          <li><strong>Khả năng hiển thị cho phụ huynh:</strong> Ứng dụng thực mà học sinh có thể demo và chia sẻ trên thiết bị của các em.</li>
+          <li><strong>Đo lường tiến bộ:</strong> Hoàn thành tính năng, chỉ số khả năng sử dụng và chất lượng ứng dụng.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">1</div>
+            <div class="prog-label">Nền Tảng · 8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">2</div>
+            <div class="prog-label">Hệ Thống · 8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">3</div>
+            <div class="prog-label">Capstone · 8 tuần</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Nền Tảng (APDEV-LV1)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Giới Thiệu Phát Triển Ứng Dụng</h3><p class="lesson-desc">Học sinh khám phá cách ứng dụng di động hoạt động: màn hình, nút, điều hướng và luồng người dùng. Các em được giới thiệu về Thunkable và hiểu cách ứng dụng được cấu trúc một cách trực quan. Trọng tâm là làm sáng tỏ phát triển ứng dụng và hiểu mối quan hệ giữa thiết kế và chức năng.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Cơ Bản Thiết Kế UI</h3><p class="lesson-desc">Học sinh thiết kế giao diện sạch và dễ sử dụng sử dụng layout, nút, biểu tượng và nguyên tắc màu sắc. Các em học về thứ bậc trực quan, khoảng cách, căn chỉnh và tính nhất quán thiết kế. Trọng tâm là tạo giao diện vừa hấp dẫn vừa trực quan cho người dùng.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Cơ Bản Logic & Tương Tác</h3><p class="lesson-desc">Học sinh học cách ứng dụng phản hồi hành động người dùng sử dụng khối logic: câu lệnh if/else, trigger và trình xử lý sự kiện. Các em xây dựng các tính năng tương tác đơn giản kết nối đầu vào người dùng với hành vi ứng dụng. Trọng tâm là logic nhân-quả trong phát triển ứng dụng.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Xây Dựng Ứng Dụng An Toàn</h3><p class="lesson-desc">Học sinh tạo ứng dụng an toàn thực tế với các tính năng thiết thực: nút khẩn cấp, trigger gọi/SMS liên hệ và điều hướng cơ bản. Các em áp dụng kỹ năng thiết kế UI và logic để xây dựng điều gì đó có ý nghĩa và có thể sử dụng được. Trọng tâm là tạo ứng dụng giải quyết vấn đề thực tế.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Điều Hướng Nhiều Màn Hình</h3><p class="lesson-desc">Học sinh mở rộng ứng dụng bằng cách thêm nhiều màn hình và chuyển đổi mượt mà giữa chúng. Các em học các mẫu điều hướng, thiết kế luồng màn hình và cách tạo trải nghiệm nhiều trang gắn kết. Trọng tâm là cấu trúc ứng dụng phức tạp với nhiều view.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Đầu Vào & Lưu Trữ Dữ Liệu (Giới Thiệu)</h3><p class="lesson-desc">Học sinh học cách lưu trữ dữ liệu đơn giản sử dụng Google Sheets và Airtable. Các em hiểu cách ứng dụng lưu thông tin, truy xuất sau này và duy trì trạng thái. Trọng tâm là kết nối ứng dụng với cơ sở dữ liệu bên ngoài để lưu trữ dữ liệu lâu dài.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Kiểm Tra & Cải Thiện Ứng Dụng</h3><p class="lesson-desc">Học sinh kiểm tra ứng dụng của mình một cách có hệ thống, xác định lỗi, cải thiện UI dựa trên phản hồi và tinh chỉnh trải nghiệm người dùng. Các em học phương pháp kiểm tra có cấu trúc và quy trình cải thiện lặp lại. Trọng tâm là đảm bảo chất lượng và hoàn thiện.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Hoàn Thành Dự Án + Demo</h3><p class="lesson-desc">Học sinh trình bày Ứng Dụng An Toàn của mình và giải thích cách hoạt động, những gì các em đã xây dựng và những gì đã cải thiện. Các em trình diễn chức năng ứng dụng, thảo luận về các quyết định kỹ thuật và phản ánh về hành trình học tập của mình. Trọng tâm là trình bày chuyên nghiệp và giao tiếp kỹ thuật.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Hệ Thống & Ứng Dụng Thực (APDEV-LV2)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Lập Kế Hoạch Ứng Dụng & Luồng Người Dùng</h3><p class="lesson-desc">Học sinh học cách lập kế hoạch ứng dụng có phương pháp: định nghĩa mục đích, xác định người dùng mục tiêu và lập sơ đồ luồng màn hình. Các em tạo sơ đồ hành trình người dùng và đặc tả tính năng. Trọng tâm là lập kế hoạch trước khi xây dựng để đảm bảo phát triển có tổ chức.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Hệ Thống Đăng Nhập & Đăng Ký</h3><p class="lesson-desc">Học sinh xây dựng luồng xác thực với màn hình đăng nhập/đăng ký, xác thực đầu vào và quản lý người dùng cơ bản. Các em học cách ứng dụng xử lý tài khoản người dùng một cách an toàn và quản lý trạng thái xác thực. Trọng tâm là xây dựng hệ thống xác thực người dùng chuyên nghiệp.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Tích Hợp Cơ Sở Dữ Liệu</h3><p class="lesson-desc">Học sinh kết nối ứng dụng với Airtable và Google Sheets, học cách lưu trữ, truy xuất và cập nhật dữ liệu. Các em hiểu thao tác CRUD (Create, Read, Update, Delete) và cấu trúc cơ sở dữ liệu. Trọng tâm là tích hợp cơ sở dữ liệu đầy đủ cho ứng dụng động.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Ứng Dụng Theo Dõi Thói Quen – Xây Dựng Cốt Lõi</h3><p class="lesson-desc">Học sinh xây dựng ứng dụng theo dõi thói quen gamified với các tính năng cốt lõi: thêm thói quen, đánh dấu hoàn thành và theo dõi tiến trình. Các em áp dụng kỹ năng cơ sở dữ liệu để tạo hệ thống theo dõi chức năng. Trọng tâm là xây dựng ứng dụng giúp người dùng đạt được mục tiêu.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Tính Năng & Hệ Thống Phần Thưởng</h3><p class="lesson-desc">Học sinh thêm gamification: hệ thống điểm, theo dõi chuỗi và chỉ số tiến trình trực quan. Các em học cách thúc đẩy người dùng thông qua phần thưởng và phản hồi. Trọng tâm là tạo trải nghiệm ứng dụng hấp dẫn, hình thành thói quen.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Quy Trình Debug & Kiểm Tra</h3><p class="lesson-desc">Học sinh học debug có cấu trúc: xác định vấn đề một cách có hệ thống, kiểm tra sửa lỗi kỹ lưỡng và cải thiện tính ổn định của ứng dụng. Các em phát triển thói quen debug chuyên nghiệp và thực hành đảm bảo chất lượng. Trọng tâm là tạo ứng dụng đáng tin cậy, không có lỗi.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Cải Thiện UI/UX</h3><p class="lesson-desc">Học sinh tinh chỉnh tính nhất quán thiết kế, tối ưu hóa luồng người dùng và cải thiện khả năng phản hồi của ứng dụng. Các em học các nguyên tắc UI/UX nâng cao và hoàn thiện ứng dụng của mình. Trọng tâm là tạo trải nghiệm người dùng chất lượng chuyên nghiệp.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Demo Dự Án + Phản Hồi</h3><p class="lesson-desc">Học sinh trình bày ứng dụng Theo Dõi Thói Quen của mình và nhận phản hồi có cấu trúc từ bạn bè và giảng viên. Các em trình diễn các tính năng, giải thích triển khai kỹ thuật và thảo luận về các quyết định thiết kế. Trọng tâm là trình bày chuyên nghiệp và phê bình mang tính xây dựng.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Capstone Sáng Tạo (APDEV-LV3)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Sáng Tạo Ý Tưởng & Lập Kế Hoạch</h3><p class="lesson-desc">Học sinh sáng tạo và chọn ý tưởng ứng dụng của riêng mình. Các em định nghĩa vấn đề mà ứng dụng của mình giải quyết, xác định người dùng mục tiêu và phác thảo các tính năng cốt lõi. Trọng tâm là tạo ứng dụng với mục đích rõ ràng và đề xuất giá trị.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Wireframing & Cấu Trúc</h3><p class="lesson-desc">Học sinh thiết kế layout màn hình, lập kế hoạch luồng điều hướng và tạo sơ đồ cấu trúc ứng dụng. Các em phác thảo wireframe và định nghĩa kiến trúc thông tin. Trọng tâm là lập kế hoạch kỹ lưỡng trước khi bắt đầu phát triển.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Xây Dựng Nguyên Mẫu</h3><p class="lesson-desc">Học sinh tạo nguyên mẫu hoạt động với chức năng cốt lõi. Các em xây dựng sản phẩm khả thi tối thiểu (MVP) thể hiện các tính năng chính. Trọng tâm là tạo nguyên mẫu nhanh và xác thực các khái niệm cốt lõi.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Phát Triển Tính Năng (Sprint A)</h3><p class="lesson-desc">Học sinh xây dựng các tính năng chính và logic cốt lõi. Các em triển khai chức năng chính, kết nối cơ sở dữ liệu và tạo luồng người dùng thiết yếu. Trọng tâm là cung cấp giá trị cốt lõi thông qua các tính năng chính.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Mở Rộng Tính Năng (Sprint B)</h3><p class="lesson-desc">Học sinh thêm các tính năng nâng cao và tinh chỉnh khả năng sử dụng. Các em triển khai các tính năng thứ cấp, hoàn thiện tương tác và nâng cao trải nghiệm người dùng. Trọng tâm là mở rộng chức năng trong khi duy trì chất lượng.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Kiểm Tra & Cải Thiện Chất Lượng</h3><p class="lesson-desc">Học sinh debug toàn diện, tối ưu hóa hiệu suất và hoàn thiện UI. Các em tiến hành kiểm tra người dùng, sửa lỗi và tinh chỉnh dựa trên phản hồi. Trọng tâm là cung cấp sản phẩm cuối cùng chuyên nghiệp, được hoàn thiện.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Phản Ánh & Chỉnh Sửa Cuối Cùng</h3><p class="lesson-desc">Học sinh cải thiện ứng dụng của mình dựa trên phản hồi và kiểm tra. Các em thực hiện tinh chỉnh cuối cùng, tối ưu hóa hiệu suất và chuẩn bị cho trình bày. Trọng tâm là cung cấp phiên bản tốt nhất có thể của ứng dụng của các em.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Trình Diễn Cuối Cùng</h3><p class="lesson-desc">Học sinh trình bày ứng dụng của mình với demo trực tiếp, giải thích logic và quyết định thiết kế. Các em chia sẻ những gì đã học, thử thách đã vượt qua và cải thiện trong tương lai. Trọng tâm là thể hiện sự thành thạo thông qua ứng dụng hoàn chỉnh, hoạt động.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Công Cụ Học Sinh Sử Dụng</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">📱 Thunkable: Công cụ xây dựng ứng dụng trực quan cho iOS và Android</div>
+        <div class="tool">🗄️ Airtable: Cơ sở dữ liệu có cấu trúc cho dữ liệu ứng dụng</div>
+        <div class="tool">📊 Google Sheets: Lưu trữ dữ liệu dựa trên bảng tính</div>
+        <div class="tool">🎨 Thiết Kế UI/UX: Thiết kế layout, màu sắc và thành phần</div>
+        <div class="tool">🔧 Khối Logic: Lập trình trực quan cho hành vi ứng dụng</div>
+        <div class="tool">📲 Kiểm Tra Di Động: Kiểm tra và debug trên thiết bị thực</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>Học Sinh Thực Sự Xây Dựng Gì</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Ứng Dụng An Toàn</h4>
+          <p>Ứng dụng liên hệ khẩn cấp với trigger gọi/SMS, điều hướng nhiều màn hình và tiện ích thực tế.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Ứng Dụng Theo Dõi Thói Quen</h4>
+          <p>Ứng dụng năng suất gamified với tích hợp cơ sở dữ liệu, hệ thống điểm, theo dõi chuỗi và trực quan hóa tiến trình.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Hệ Thống Xác Thực</h4>
+          <p>Luồng đăng nhập/đăng ký với xác thực đầu vào, quản lý người dùng và xử lý xác thực an toàn.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Ứng Dụng Kết Nối Cơ Sở Dữ Liệu</h4>
+          <p>Ứng dụng động lưu trữ, truy xuất và cập nhật dữ liệu sử dụng tích hợp Airtable và Google Sheets.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Ứng Dụng Nhiều Màn Hình</h4>
+          <p>Ứng dụng phức tạp với điều hướng mượt mà, nhiều view và trải nghiệm người dùng gắn kết trên các màn hình.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Dự Án Capstone Tùy Chỉnh</h4>
+          <p>Ý tưởng ứng dụng gốc được thiết kế, xây dựng và ra mắt độc lập—thể hiện sự thành thạo phát triển ứng dụng hoàn chỉnh.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Vì Sao Phụ Huynh Chọn Chương Trình Này</h2>
+      </div>
+      <div class="overview">
+        <p>Chương trình này được thiết kế để xây dựng kỹ năng phát triển ứng dụng thực tế, sự tự tin kỹ thuật và tư duy sản phẩm. Thay vì làm theo hướng dẫn, học sinh tạo ứng dụng gốc giải quyết vấn đề thực tế, đạt được kinh nghiệm thực hành với công cụ và quy trình phát triển chuyên nghiệp.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Ứng Dụng Thực Học Sinh Có Thể Chia Sẻ</h4>
+          <p>Học sinh xây dựng ứng dụng di động chức năng các em có thể demo trên điện thoại và chia sẻ với bạn bè và gia đình.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Công Cụ Phát Triển Chuyên Nghiệp</h4>
+          <p>Học sinh học Thunkable, Airtable và quy trình tiêu chuẩn ngành được sử dụng bởi các nhà phát triển ứng dụng thực.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Tư Duy Sản Phẩm & Lập Kế Hoạch</h4>
+          <p>Học sinh học cách định nghĩa vấn đề, xác định người dùng, lập kế hoạch tính năng và xây dựng ứng dụng với mục đích rõ ràng.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Dự Án Sẵn Sàng Cho Danh Mục</h4>
+          <p>Học sinh hoàn thành nhiều ứng dụng hoạt động thể hiện thiết kế UI/UX, xây dựng logic và tích hợp cơ sở dữ liệu.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Kết Quả Phát Triển Trẻ</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">Thành Thạo Thiết Kế UI/UX</h3>
+          <p class="lesson-desc">Học sinh thành thạo các nguyên tắc thiết kế trực quan: layout, thứ bậc, khoảng cách, lý thuyết màu sắc và thiết kế thành phần. Các em tạo giao diện chuyên nghiệp, thân thiện với người dùng.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Thiết Kế Logic & Tương Tác</h3>
+          <p class="lesson-desc">Học sinh hiểu cách ứng dụng phản hồi hành động người dùng thông qua lập trình dựa trên sự kiện, logic điều kiện và quản lý trạng thái.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">Kỹ Năng Tích Hợp Cơ Sở Dữ Liệu</h3>
+          <p class="lesson-desc">Học sinh học kết nối ứng dụng với cơ sở dữ liệu, thực hiện thao tác CRUD và xây dựng ứng dụng dựa trên dữ liệu với lưu trữ lâu dài.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Lập Kế Hoạch & Phát Triển Sản Phẩm</h3>
+          <p class="lesson-desc">Học sinh học lập kế hoạch ứng dụng có hệ thống: định nghĩa mục đích, lập sơ đồ luồng người dùng, ưu tiên tính năng và thực hiện sprint phát triển.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Kiểm Tra & Đảm Bảo Chất Lượng</h3>
+          <p class="lesson-desc">Học sinh phát triển quy trình debug có cấu trúc, tiến hành kiểm tra người dùng, xác định lỗi một cách có hệ thống và cải thiện tính ổn định của ứng dụng.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">Phát Triển Ứng Dụng End-to-End</h3>
+          <p class="lesson-desc">Học sinh hoàn thành chu trình phát triển đầy đủ: ý tưởng, lập kế hoạch, thiết kế, phát triển, kiểm tra, tinh chỉnh và trình bày.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">07</div>
+        <div>
+          <h3 class="lesson-title">Kỹ Năng Trình Bày Chuyên Nghiệp</h3>
+          <p class="lesson-desc">Học sinh học trình bày ứng dụng một cách chuyên nghiệp, giải thích các quyết định kỹ thuật, trình diễn các tính năng và truyền đạt đề xuất giá trị rõ ràng.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Kết Quả Chương Trình</h3>
+      <ul>
+        <li>Học sinh đạt được kỹ năng phát triển ứng dụng di động toàn diện từ thiết kế UI đến tích hợp cơ sở dữ liệu.</li>
+        <li>Học sinh có thể thiết kế, xây dựng, kiểm tra và ra mắt ứng dụng nhiều màn hình đầy đủ chức năng một cách độc lập.</li>
+        <li>Học sinh phát triển tư duy sản phẩm: xác định vấn đề, lập kế hoạch giải pháp và xây dựng ứng dụng với mục đích.</li>
+        <li>Học sinh xây dựng dự án sẵn sàng cho danh mục thể hiện kỹ năng kỹ thuật, cảm nhận thiết kế và hoàn thành dự án.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎓</span>Kỹ Năng Đã Học</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Thiết Kế UI/UX Di Động</h4>
+          <p>Thiết kế layout, thứ bậc trực quan, lý thuyết màu sắc, thiết kế thành phần và tạo giao diện người dùng trực quan.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Logic & Tương Tác Ứng Dụng</h4>
+          <p>Lập trình dựa trên sự kiện, logic điều kiện, quản lý trạng thái và xây dựng hành vi ứng dụng phản hồi.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Tích Hợp Cơ Sở Dữ Liệu</h4>
+          <p>Kết nối ứng dụng với Airtable và Google Sheets, thực hiện thao tác CRUD và quản lý dữ liệu lâu dài.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Điều Hướng Nhiều Màn Hình</h4>
+          <p>Thiết kế luồng màn hình, triển khai mẫu điều hướng và tạo trải nghiệm nhiều trang gắn kết.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Xác Thực Người Dùng</h4>
+          <p>Xây dựng hệ thống đăng nhập/đăng ký, xác thực đầu vào, quản lý người dùng và luồng xác thực an toàn.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Quy Trình Phát Triển Sản Phẩm</h4>
+          <p>Lập kế hoạch ứng dụng, định nghĩa tính năng, wireframing, tạo nguyên mẫu, kiểm tra, debug và ra mắt dự án.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Câu Hỏi Phổ Biến Của Phụ Huynh</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Con tôi có cần kinh nghiệm lập trình trước không?</h3>
+          <p class="lesson-desc">Không cần kinh nghiệm trước cho Cấp 1. Thunkable sử dụng lập trình trực quan, làm cho nó dễ tiếp cận cho người mới bắt đầu. Quen thuộc với sử dụng máy tính cơ bản là hữu ích nhưng không bắt buộc.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">Ứng dụng của con tôi có hoạt động trên điện thoại thực không?</h3>
+          <p class="lesson-desc">Có! Ứng dụng được xây dựng trong Thunkable chạy trên cả thiết bị iOS và Android. Học sinh có thể cài đặt và demo ứng dụng của các em trên điện thoại thực tế.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">Đây có phải là phát triển ứng dụng thực hay đơn giản hóa cho trẻ em?</h3>
+          <p class="lesson-desc">Đây là phát triển ứng dụng thực sử dụng công cụ chuyên nghiệp. Thunkable được sử dụng bởi các startup và nhà phát triển trên toàn thế giới. Học sinh học các khái niệm và quy trình phát triển ứng dụng thực sự.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">Học sinh có thể xuất bản ứng dụng lên app store không?</h3>
+          <p class="lesson-desc">Học sinh có thể xuất và kiểm tra ứng dụng của các em trên thiết bị. Xuất bản lên App Store/Google Play yêu cầu thiết lập bổ sung (tài khoản nhà phát triển, tuân thủ), mà chúng tôi có thể hướng dẫn gia đình nếu quan tâm.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">Chương trình này hỗ trợ con đường nghề nghiệp nào?</h3>
+          <p class="lesson-desc">Chương trình này xây dựng nền tảng cho phát triển di động, quản lý sản phẩm, thiết kế UI/UX, kỹ thuật phần mềm và khởi nghiệp—bất kỳ lĩnh vực nào liên quan đến tạo sản phẩm kỹ thuật số.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Bắt Đầu</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Có câu hỏi về đăng ký hoặc muốn thảo luận về lộ trình học tập của con bạn?</p>
+      <p>Phone/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Giờ làm việc: Thứ Hai-Sáu 8:00-21:00 | Thứ Bảy-CN 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>

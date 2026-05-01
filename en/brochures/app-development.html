@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZ1XEZXB6"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18127330947"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4MZ1XEZXB6');
+  gtag('config', 'AW-18127330947');
+</script>
+
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Development Program - TechTutor Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#f4f4f5;
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#cfd4dc;
+    --brand:#244d9a;
+    --brand-soft:#eaf0fb;
+    --teal:#44bea4;
+    --panel:#1f4a97;
+    --lv1:#e8f7f3;
+    --lv2:#ecf2ff;
+    --lv3:#f4efff;
+  }
+  body{background:#ffffff;color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65;font-size:15px}
+  .hero{max-width:920px;margin:0 auto;padding:64px 56px 44px;border-bottom:1px solid var(--line);background:#ffffff}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .logo{width:250px;max-width:72%;height:auto}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:var(--brand)}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .progression{margin:24px 0;padding:20px;background:linear-gradient(to right,var(--lv1),var(--lv2),var(--lv3));border-radius:12px;border:1px solid var(--line)}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative}
+  .prog-step::after{content:'→';position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--brand);font-size:20px;font-weight:700}
+  .prog-step:last-child::after{display:none}
+  .prog-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#fff;border:2px solid var(--brand);border-radius:50%;font-weight:700;color:var(--brand);margin-bottom:6px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--ink)}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+
+  @page{size:A4;margin:10mm}
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .level-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Program Brochure</div>
+    </div>
+    <h1>App Development Program</h1>
+    <p class="hero-sub">A structured, project-first journey where students design, build, and launch real mobile apps using visual development tools, progressing from basic interfaces to fully functional multi-screen applications.</p>
+    <div class="meta">
+      <div class="pill">Ages 10-17</div>
+      <div class="pill">24 Lessons Total</div>
+      <div class="pill">3 Progressive Levels</div>
+      <div class="pill">Project-Based + Showcase</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <h2 class="section-title">Program Overview</h2>
+      </div>
+      <div class="overview">
+        <p>Students progress from basic app creation to building fully functional, multi-screen applications using visual development tools. They learn how to structure apps, manage data, handle user interactions, and deliver polished projects. This program combines UI/UX design, logic building, database integration, and real-world app development workflow.</p>
+        <ul>
+          <li><strong>Learning model:</strong> Explain → Build → Test → Improve → Present.</li>
+          <li><strong>Class format:</strong> Weekly guided build sessions with structured checkpoints.</li>
+          <li><strong>Parent visibility:</strong> Real apps students can demo and share on their devices.</li>
+          <li><strong>Progress measurement:</strong> Feature completion, usability metrics, and app quality.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">1</div>
+            <div class="prog-label">Foundations · 8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">2</div>
+            <div class="prog-label">Systems · 8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">3</div>
+            <div class="prog-label">Capstone · 8 weeks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Foundations (APDEV-LV1)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Introduction to App Development</h3><p class="lesson-desc">Students explore how mobile apps work: screens, buttons, navigation, and user flow. They are introduced to Thunkable and understand how apps are structured visually. Focus is on demystifying app development and understanding the relationship between design and functionality.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">UI Design Fundamentals</h3><p class="lesson-desc">Students design clean and usable interfaces using layouts, buttons, icons, and color principles. They learn visual hierarchy, spacing, alignment, and design consistency. Focus is on creating interfaces that are both attractive and intuitive for users.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Logic & Interaction Basics</h3><p class="lesson-desc">Students learn how apps respond to user actions using logic blocks: if/else statements, triggers, and event handlers. They build simple interactive features connecting user input to app behavior. Focus is on cause-and-effect logic in app development.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Building the Safety App</h3><p class="lesson-desc">Students create a real-world safety app with practical features: emergency button, contact call/SMS triggers, and basic navigation. They apply UI design and logic skills to build something meaningful and usable. Focus is on creating apps that solve real problems.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Multi-Screen Navigation</h3><p class="lesson-desc">Students expand their app by adding multiple screens and smooth transitions between them. They learn navigation patterns, screen flow design, and how to create cohesive multi-page experiences. Focus is on structuring complex apps with multiple views.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Data Input & Storage (Intro)</h3><p class="lesson-desc">Students learn how to store simple data using Google Sheets and Airtable. They understand how apps save information, retrieve it later, and maintain state. Focus is on connecting apps to external databases for persistent data storage.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">App Testing & Improvement</h3><p class="lesson-desc">Students test their apps systematically, identify bugs, improve UI based on feedback, and refine user experience. They learn structured testing methods and iterative improvement processes. Focus is on quality assurance and polish.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Project Finish + Demo</h3><p class="lesson-desc">Students present their Safety App and explain how it works, what they built, and what they improved. They demonstrate app functionality, discuss technical decisions, and reflect on their learning journey. Focus is on professional presentation and technical communication.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Systems & Real Apps (APDEV-LV2)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">App Planning & User Flow</h3><p class="lesson-desc">Students learn how to plan apps methodically: define purpose, identify target users, and map screen flow. They create user journey diagrams and feature specifications. Focus is on planning before building to ensure organized development.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Login & Signup System</h3><p class="lesson-desc">Students build authentication flows with login/signup screens, input validation, and basic user management. They learn how apps handle user accounts securely and manage authentication state. Focus is on building professional user authentication systems.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Database Integration</h3><p class="lesson-desc">Students connect apps to Airtable and Google Sheets, learning how to store, retrieve, and update data. They understand CRUD operations (Create, Read, Update, Delete) and database structure. Focus is on full database integration for dynamic apps.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Habit Tracker App – Core Build</h3><p class="lesson-desc">Students build a gamified habit tracker with core features: add habits, mark completion, and track progress. They apply database skills to create a functional tracking system. Focus is on building apps that help users achieve goals.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Features & Rewards System</h3><p class="lesson-desc">Students add gamification: points system, streak tracking, and visual progress indicators. They learn how to motivate users through rewards and feedback. Focus is on creating engaging, habit-forming app experiences.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Debugging & Testing Workflow</h3><p class="lesson-desc">Students learn structured debugging: identify issues systematically, test fixes thoroughly, and improve app stability. They develop professional debugging habits and quality assurance practices. Focus is on creating reliable, bug-free applications.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">UI/UX Improvement</h3><p class="lesson-desc">Students refine design consistency, optimize user flow, and improve app responsiveness. They learn advanced UI/UX principles and polish their applications. Focus is on creating professional-quality user experiences.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Project Demo + Feedback</h3><p class="lesson-desc">Students present their Habit Tracker app and receive structured feedback from peers and instructors. They demonstrate features, explain technical implementation, and discuss design decisions. Focus is on professional presentation and constructive critique.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Creative Capstone (APDEV-LV3)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Idea Generation & Planning</h3><p class="lesson-desc">Students brainstorm and select their own app idea. They define the problem their app solves, identify target users, and outline core features. Focus is on creating apps with clear purpose and value proposition.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Wireframing & Structure</h3><p class="lesson-desc">Students design screen layouts, plan navigation flow, and create app structure diagrams. They sketch wireframes and define information architecture. Focus is on thorough planning before development begins.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Prototype Build</h3><p class="lesson-desc">Students create a working prototype with core functionality. They build the minimal viable product (MVP) that demonstrates key features. Focus is on rapid prototyping and validating core concepts.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Feature Development (Sprint A)</h3><p class="lesson-desc">Students build main features and core logic. They implement primary functionality, connect databases, and create essential user flows. Focus is on delivering core value through key features.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Feature Expansion (Sprint B)</h3><p class="lesson-desc">Students add advanced features and refine usability. They implement secondary features, polish interactions, and enhance user experience. Focus is on expanding functionality while maintaining quality.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Testing & Quality Improvement</h3><p class="lesson-desc">Students debug comprehensively, optimize performance, and polish UI. They conduct user testing, fix bugs, and refine based on feedback. Focus is on delivering a professional, polished final product.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Reflection & Final Edits</h3><p class="lesson-desc">Students improve their app based on feedback and testing. They make final refinements, optimize performance, and prepare for presentation. Focus is on delivering the best possible version of their app.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Final Showcase</h3><p class="lesson-desc">Students present their app with live demo, explaining logic and design decisions. They share what they learned, challenges overcome, and future improvements. Focus is on demonstrating mastery through complete, working applications.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Tools Students Use</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">📱 Thunkable: Visual app builder for iOS and Android</div>
+        <div class="tool">🗄️ Airtable: Structured database for app data</div>
+        <div class="tool">📊 Google Sheets: Spreadsheet-based data storage</div>
+        <div class="tool">🎨 UI/UX Design: Layout, color, and component design</div>
+        <div class="tool">🔧 Logic Blocks: Visual programming for app behavior</div>
+        <div class="tool">📲 Mobile Testing: Real device testing and debugging</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>What Students Actually Build</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Safety App</h4>
+          <p>Emergency contact app with call/SMS triggers, multi-screen navigation, and practical real-world utility.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Habit Tracker App</h4>
+          <p>Gamified productivity app with database integration, points system, streak tracking, and progress visualization.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Authentication Systems</h4>
+          <p>Login/signup flows with input validation, user management, and secure authentication handling.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Database-Connected Apps</h4>
+          <p>Dynamic apps that store, retrieve, and update data using Airtable and Google Sheets integration.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Multi-Screen Applications</h4>
+          <p>Complex apps with smooth navigation, multiple views, and cohesive user experiences across screens.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Custom Capstone Projects</h4>
+          <p>Original app ideas designed, built, and launched independently—demonstrating complete app development mastery.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Why Parents Choose This Program</h2>
+      </div>
+      <div class="overview">
+        <p>This program is designed to build real app development skills, technical confidence, and product thinking. Rather than following tutorials, students create original apps that solve real problems, gaining hands-on experience with professional development tools and workflows.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Real Apps Students Can Share</h4>
+          <p>Students build functional mobile apps they can demo on their phones and share with friends and family.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Professional Development Tools</h4>
+          <p>Students learn Thunkable, Airtable, and industry-standard workflows used by real app developers.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Product Thinking & Planning</h4>
+          <p>Students learn how to define problems, identify users, plan features, and build apps with clear purpose.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Portfolio-Ready Projects</h4>
+          <p>Students complete multiple working apps demonstrating UI/UX design, logic building, and database integration.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Child Growth Outcomes</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">UI/UX Design Mastery</h3>
+          <p class="lesson-desc">Students master visual design principles: layout, hierarchy, spacing, color theory, and component design. They create professional, user-friendly interfaces.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Logic & Interaction Design</h3>
+          <p class="lesson-desc">Students understand how apps respond to user actions through event-driven programming, conditional logic, and state management.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">Database Integration Skills</h3>
+          <p class="lesson-desc">Students learn to connect apps to databases, perform CRUD operations, and build data-driven applications with persistent storage.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Product Planning & Development</h3>
+          <p class="lesson-desc">Students learn to plan apps systematically: define purpose, map user flow, prioritize features, and execute development sprints.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Testing & Quality Assurance</h3>
+          <p class="lesson-desc">Students develop structured debugging workflows, conduct user testing, identify bugs systematically, and improve app stability.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">End-to-End App Development</h3>
+          <p class="lesson-desc">Students complete the full development lifecycle: ideation, planning, design, development, testing, refinement, and presentation.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">07</div>
+        <div>
+          <h3 class="lesson-title">Professional Presentation Skills</h3>
+          <p class="lesson-desc">Students learn to present apps professionally, explain technical decisions, demonstrate features, and communicate value propositions clearly.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Program Outcomes</h3>
+      <ul>
+        <li>Students gain comprehensive mobile app development skills from UI design to database integration.</li>
+        <li>Students can design, build, test, and launch fully functional multi-screen applications independently.</li>
+        <li>Students develop product thinking: identifying problems, planning solutions, and building apps with purpose.</li>
+        <li>Students build portfolio-ready projects demonstrating technical skill, design sense, and project completion.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎓</span>Skills Learned</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Mobile UI/UX Design</h4>
+          <p>Layout design, visual hierarchy, color theory, component design, and creating intuitive user interfaces.</p>
+        </article>
+        <article class="parent-card">
+          <h4>App Logic & Interactions</h4>
+          <p>Event-driven programming, conditional logic, state management, and building responsive app behavior.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Database Integration</h4>
+          <p>Connecting apps to Airtable and Google Sheets, performing CRUD operations, and managing persistent data.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Multi-Screen Navigation</h4>
+          <p>Designing screen flow, implementing navigation patterns, and creating cohesive multi-page experiences.</p>
+        </article>
+        <article class="parent-card">
+          <h4>User Authentication</h4>
+          <p>Building login/signup systems, input validation, user management, and secure authentication flows.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Product Development Workflow</h4>
+          <p>Planning apps, defining features, wireframing, prototyping, testing, debugging, and launching projects.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Common Parent Questions</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Does my child need prior coding experience?</h3>
+          <p class="lesson-desc">No prior experience required for Level 1. Thunkable uses visual programming, making it accessible to beginners. Familiarity with basic computer use is helpful but not required.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">Will my child's apps work on real phones?</h3>
+          <p class="lesson-desc">Yes! Apps built in Thunkable run on both iOS and Android devices. Students can install and demo their apps on actual phones.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">Is this real app development or simplified for kids?</h3>
+          <p class="lesson-desc">This is real app development using professional tools. Thunkable is used by startups and developers worldwide. Students learn genuine app development concepts and workflows.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">Can students publish their apps to app stores?</h3>
+          <p class="lesson-desc">Students can export and test their apps on devices. Publishing to App Store/Google Play requires additional setup (developer accounts, compliance), which we can guide families through if interested.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">What career paths does this program support?</h3>
+          <p class="lesson-desc">This program builds foundation for mobile development, product management, UI/UX design, software engineering, and entrepreneurship—any field involving digital product creation.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Get Started</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Questions about enrollment or want to discuss your child's learning path?</p>
+      <p>Phone/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Hours: Mon-Fri 8:00-21:00 | Sat-Sun 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>
