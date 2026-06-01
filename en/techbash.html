@@ -73,6 +73,114 @@
       padding: .35rem .75rem; border-radius: 9999px;
       font-size: .75rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
     }
+
+    /* ── Fake browser frame (pixel-matches the real portal) ──────────── */
+    .browser-frame {
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 30px 80px -20px rgba(15,23,42,0.25), 0 8px 30px -10px rgba(25,59,146,0.18);
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+    }
+    .browser-bar {
+      display: flex; align-items: center; gap: .5rem;
+      padding: .65rem .9rem;
+      background: #f1f5f9;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .browser-dot { width: 11px; height: 11px; border-radius: 9999px; }
+    .browser-url {
+      flex: 1; margin: 0 .5rem;
+      background: #ffffff; border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 11px; color: #64748b;
+      padding: .3rem .7rem;
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    }
+    .portal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 1.1rem;
+      border-bottom: 1px solid #e2e8f0;
+      background: #ffffff;
+    }
+    .portal-logo { font-weight: 900; letter-spacing: -0.02em; font-size: 1.1rem; }
+    .portal-pill {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: #f5f0ff; color: #6126c2;
+      padding: .35rem .75rem; border-radius: 9999px;
+      font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em;
+    }
+    .portal-avatar {
+      width: 30px; height: 30px; border-radius: 9999px;
+      background: linear-gradient(135deg, #193b92, #2C7A7B);
+      color: white; display: grid; place-items: center;
+      font-weight: 700; font-size: 13px;
+    }
+    .mission-card {
+      background: #ffffff; border: 1px solid #e2e8f0;
+      border-radius: 16px; padding: 1.1rem;
+    }
+    .speaker-row { display: flex; gap: .8rem; align-items: flex-start; }
+    .speaker-avatar {
+      width: 44px; height: 44px; border-radius: 9999px;
+      background: #f5f0ff; flex-shrink: 0;
+      display: grid; place-items: center; font-size: 1.4rem;
+    }
+    .concept-box {
+      background: #f5f0ff; border-left: 3px solid #7C3AED;
+      padding: .7rem .85rem;
+      border-radius: 0 10px 10px 0;
+      font-size: 13px; color: #0F172A;
+    }
+    .code-editor {
+      background: #0F172A; color: #e2e8f0;
+      border-radius: 10px;
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: 12.5px;
+      padding: .85rem 1rem;
+      line-height: 1.55;
+      overflow: hidden;
+    }
+    .code-editor .kw { color: #c4b5fd; }
+    .code-editor .str { color: #fda4af; }
+    .code-editor .tag { color: #7dd3fc; }
+    .code-editor .comment { color: #64748b; font-style: italic; }
+
+    .chat-bubble-user {
+      background: #193b92; color: white;
+      padding: .55rem .8rem; border-radius: 14px 14px 4px 14px;
+      font-size: 13px; max-width: 85%;
+      align-self: flex-end;
+    }
+    .chat-bubble-ai {
+      background: #f8fafc; color: #0F172A;
+      border: 1px solid #e2e8f0;
+      padding: .55rem .8rem; border-radius: 14px 14px 14px 4px;
+      font-size: 13px; max-width: 90%;
+    }
+    .chat-feedback {
+      background: #f5f0ff; border: 1px solid rgba(124,58,237,0.25);
+      padding: .65rem .85rem; border-radius: 12px;
+      font-size: 12.5px; color: #4c1d95;
+    }
+    .xp-pill {
+      display: inline-flex; align-items: center; gap: .35rem;
+      background: #ecfdf5; color: #047857;
+      border: 1px solid #a7f3d0;
+      padding: .25rem .55rem;
+      border-radius: 9999px;
+      font-weight: 700; font-size: 11px;
+    }
+
+    /* Pain card hover */
+    .pain-card {
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .pain-card:hover {
+      transform: translateY(-3px);
+      border-color: #193b92;
+      box-shadow: 0 10px 30px -10px rgba(25,59,146,0.20);
+    }
   </style>
   <script src="../js/geo-redirect.js" defer></script>
 </head>
@@ -136,26 +244,62 @@
     <div class="relative max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-14 grid md:grid-cols-2 gap-10 items-center">
       <div>
         <span class="badge-pill bg-primary/10 text-primary">
-          <span class="w-2 h-2 rounded-full bg-mochi"></span> New · Cosmic coding portal
+          <span class="w-2 h-2 rounded-full bg-mochi"></span> For parents who want more than YouTube
         </span>
         <h1 class="mt-5 text-4xl md:text-6xl font-black leading-tight tracking-tight text-ink">
-          Become great at <span class="text-mochi">your own pace</span>.
-          Learn anytime, anywhere.
+          Finally, a screen your kid <span class="text-mochi">begs to open</span> — and you're glad they did.
         </h1>
         <p class="mt-5 text-lg md:text-xl text-slate-600 max-w-xl">
-          TechBash is a cosmic coding portal where kids fly through real web, Python, and AI missions — guided by Captain Pixel and a crew of cheerful characters.
+          TechBash turns coding into a story-driven galaxy. Your child builds real websites, Python projects, and AI tools at their own pace — guided by characters they actually grow to love.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
           <a href="/preview" class="rounded-full bg-primary text-white px-7 py-3 font-bold shadow-lg hover:bg-primary-light transition inline-flex items-center gap-2">
-            Launch the Portal
+            Try a free mission now
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
           </a>
-          <a href="#crew" class="rounded-full border-2 border-slate-200 text-slate-700 px-7 py-3 font-semibold hover:border-primary hover:text-primary transition">Meet the crew</a>
+          <a href="#demo" class="rounded-full border-2 border-slate-200 text-slate-700 px-7 py-3 font-semibold hover:border-primary hover:text-primary transition">See it in action</a>
         </div>
-        <p class="mt-6 text-sm text-slate-500">Free to explore · No download · Works in any browser</p>
+        <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-500">
+          <span class="inline-flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>No download</span>
+          <span class="inline-flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>No ads, no chat, no algorithm</span>
+          <span class="inline-flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Free to try</span>
+        </div>
       </div>
       <div class="relative">
         <img src="../images/landing_bash.png" alt="TechBash cosmic coding scene" class="relative w-full h-auto" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 1b. PARENT PAINS -->
+  <section class="py-16 md:py-20 bg-slate-50 border-y border-slate-200">
+    <div class="max-w-6xl mx-auto px-6 md:px-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="badge-pill bg-rose-100 text-rose-700">Sound familiar?</span>
+        <h2 class="mt-4 text-3xl md:text-4xl font-black text-ink">You've tried the other things.</h2>
+        <p class="mt-3 text-slate-600">And one of these probably happened.</p>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="pain-card rounded-2xl bg-white p-5 border border-slate-200">
+          <div class="text-2xl">📺</div>
+          <h3 class="mt-3 font-bold text-ink">"They just watch coding on YouTube."</h3>
+          <p class="mt-2 text-sm text-slate-600">Hours of videos, zero things built. We flip it: <b>build first, watch never</b>.</p>
+        </div>
+        <div class="pain-card rounded-2xl bg-white p-5 border border-slate-200">
+          <div class="text-2xl">💸</div>
+          <h3 class="mt-3 font-bold text-ink">"Tutoring costs $60/hour and they zone out."</h3>
+          <p class="mt-2 text-sm text-slate-600">Story-driven missions hold attention without paying a human every week.</p>
+        </div>
+        <div class="pain-card rounded-2xl bg-white p-5 border border-slate-200">
+          <div class="text-2xl">📚</div>
+          <h3 class="mt-3 font-bold text-ink">"They signed up for a course and quit by week 3."</h3>
+          <p class="mt-2 text-sm text-slate-600">No deadlines. No teacher voice droning on. Just the next mission, when they're ready.</p>
+        </div>
+        <div class="pain-card rounded-2xl bg-white p-5 border border-slate-200">
+          <div class="text-2xl">🎮</div>
+          <h3 class="mt-3 font-bold text-ink">"Anything fun is also full of garbage."</h3>
+          <p class="mt-2 text-sm text-slate-600">No ads. No comments. No "subscribe and like" — ever. Closed garden, real code.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -183,6 +327,169 @@
           <div class="w-12 h-12 rounded-2xl bg-mochi text-ink grid place-items-center text-xl font-black">P</div>
           <h3 class="mt-5 text-xl font-bold text-ink">Playground</h3>
           <p class="mt-2 text-slate-600">A blank canvas with a help button. Captain Pixel scaffolds line-by-line whenever a kid gets stuck.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2b. LIVE DEMO (fake browser frame, real portal styles) -->
+  <section id="demo" class="py-20 bg-gradient-to-b from-white to-slate-50 border-t border-slate-100">
+    <div class="max-w-6xl mx-auto px-6 md:px-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="badge-pill bg-teal/10 text-teal-dark">See it in action</span>
+        <h2 class="mt-4 text-3xl md:text-5xl font-black text-ink">This is what your kid actually sees.</h2>
+        <p class="mt-4 text-slate-600">Not a slideshow. Real story. Real code editor. Real AI feedback.</p>
+      </div>
+
+      <div class="mt-12 grid lg:grid-cols-3 gap-6">
+
+        <!-- Demo 1 · Mission view -->
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-3">1 · The story arrives</p>
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <span class="browser-dot" style="background:#ff5f57"></span>
+              <span class="browser-dot" style="background:#febc2e"></span>
+              <span class="browser-dot" style="background:#28c840"></span>
+              <span class="browser-url">bash.techtutor.academy/preview?track=web</span>
+            </div>
+            <div class="portal-header">
+              <div class="portal-logo"><span style="color:#193b92">Tech</span><span style="color:#2C7A7B">Bash</span></div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-slate-500">Total <b style="color:#193b92">240</b> XP</span>
+                <span class="portal-avatar">A</span>
+              </div>
+            </div>
+            <div class="p-4 bg-slate-50 space-y-3">
+              <div class="mission-card">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Mission 3 · Web</p>
+                <h4 class="font-bold text-ink text-sm">Give your page a heart</h4>
+                <div class="speaker-row mt-3">
+                  <div class="speaker-avatar">👨‍🚀</div>
+                  <div>
+                    <p class="text-[11px] font-semibold text-primary">Captain Pixel</p>
+                    <p class="text-[13px] text-ink mt-0.5 leading-snug">"My old homepage is so boring. Add a header with my name and a paragraph telling visitors what I love. We need <b>personality</b>!"</p>
+                  </div>
+                </div>
+                <div class="concept-box mt-3">
+                  <b>Concept:</b> the <code>&lt;h1&gt;</code> tag is your page's biggest voice. <code>&lt;p&gt;</code> is for the chatty bits.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Demo 2 · Code editor -->
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-3">2 · They build it themselves</p>
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <span class="browser-dot" style="background:#ff5f57"></span>
+              <span class="browser-dot" style="background:#febc2e"></span>
+              <span class="browser-dot" style="background:#28c840"></span>
+              <span class="browser-url">bash.techtutor.academy/preview</span>
+            </div>
+            <div class="p-3 bg-slate-50">
+              <div class="rounded-lg overflow-hidden border border-slate-200">
+                <div class="flex items-center justify-between px-3 py-1.5 bg-white border-b border-slate-200">
+                  <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">index.html</span>
+                  <span class="xp-pill">▶ Run</span>
+                </div>
+                <pre class="code-editor m-0"><span class="comment">&lt;!-- Your turn --&gt;</span>
+<span class="tag">&lt;h1&gt;</span>Hi, I'm <span style="color:#fbbf24">Alex</span>!<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;p&gt;</span>I build games and love
+ramen noodles 🍜<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>I made this page myself.<span class="tag">&lt;/p&gt;</span></pre>
+              </div>
+              <div class="mt-3 rounded-lg border border-slate-200 bg-white p-3">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Live preview</p>
+                <h3 class="text-base font-black text-ink">Hi, I'm Alex!</h3>
+                <p class="text-xs text-slate-600 mt-1">I build games and love ramen noodles 🍜</p>
+                <p class="text-xs text-slate-600">I made this page myself.</p>
+              </div>
+              <div class="mt-3 chat-feedback">
+                ✅ <b>Nailed it.</b> Your page has a heading AND two paragraphs. +80 XP earned.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Demo 3 · AI chat (GenAI track) -->
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-3">3 · They learn to talk to AI</p>
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <span class="browser-dot" style="background:#ff5f57"></span>
+              <span class="browser-dot" style="background:#febc2e"></span>
+              <span class="browser-dot" style="background:#28c840"></span>
+              <span class="browser-url">bash.techtutor.academy/preview?track=genai</span>
+            </div>
+            <div class="p-3 bg-slate-50">
+              <div class="mission-card">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Mission 4 · GenAI</p>
+                <h4 class="font-bold text-ink text-sm">Get the AI to reply in JSON</h4>
+                <p class="text-[11px] mt-2"><b style="color:#7C3AED">Goal:</b> AI returns a JSON array of 3 dinosaurs with name + fact.</p>
+              </div>
+              <div class="mt-3 rounded-lg border border-slate-200 bg-white p-3 flex flex-col gap-2">
+                <div class="chat-bubble-user">Reply with ONLY a JSON array of 3 dinosaurs. Each item has 'name' and 'fact'. No other text.</div>
+                <div class="chat-bubble-ai" style="font-family:ui-monospace, 'SF Mono', monospace; font-size:11.5px;">[<br>&nbsp;&nbsp;{"name":"T-Rex","fact":"Tiny arms, huge bite."},<br>&nbsp;&nbsp;{"name":"Stegosaurus","fact":"Brain the size of a walnut."},<br>&nbsp;&nbsp;{"name":"Velociraptor","fact":"Had feathers, actually."}<br>]</div>
+              </div>
+              <div class="mt-3 chat-feedback">
+                ✅ Valid JSON · 3 items · both keys present. <b>Prompt engineer in training.</b>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-10 text-center">
+        <a href="/preview" class="inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-3 font-bold shadow-lg hover:bg-primary-light transition">
+          Try it free — takes 30 seconds
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+        <p class="mt-3 text-xs text-slate-500">No sign-up needed to try the first missions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2c. WHY PARENTS LOVE IT -->
+  <section class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-6xl mx-auto px-6 md:px-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="badge-pill bg-mochi/15 text-mochi">Why parents pick TechBash</span>
+        <h2 class="mt-4 text-3xl md:text-5xl font-black text-ink">It works because it's built around how kids actually learn.</h2>
+      </div>
+      <div class="mt-14 grid md:grid-cols-3 gap-6">
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-7">
+          <div class="text-3xl">📖</div>
+          <h3 class="mt-4 text-lg font-bold text-ink">Story-driven, not lecture-driven</h3>
+          <p class="mt-2 text-sm text-slate-600">Every mission opens with a character who needs help. Kids care about the problem before they meet the code.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-7">
+          <div class="text-3xl">🐢</div>
+          <h3 class="mt-4 text-lg font-bold text-ink">Self-paced, no pressure</h3>
+          <p class="mt-2 text-sm text-slate-600">15 minutes today, an hour Saturday. No deadlines. Curiosity decides when they come back — and curiosity is what makes it stick.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-7">
+          <div class="text-3xl">🛠️</div>
+          <h3 class="mt-4 text-lg font-bold text-ink">They build, from minute one</h3>
+          <p class="mt-2 text-sm text-slate-600">No "watch this 12-min video first." Mission 1 has them editing real code with a live preview side by side.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-7">
+          <div class="text-3xl">📊</div>
+          <h3 class="mt-4 text-lg font-bold text-ink">You can see they're learning</h3>
+          <p class="mt-2 text-sm text-slate-600">XP, completed missions, and tracks are saved to their profile. Open it any time to see exactly what they've built.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-7">
+          <div class="text-3xl">🤖</div>
+          <h3 class="mt-4 text-lg font-bold text-ink">Real AI literacy, not magic</h3>
+          <p class="mt-2 text-sm text-slate-600">Our GenAI track teaches kids to <b>direct</b> AI — prompt engineering, structured output, spotting hallucinations. The skill of the next decade.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-7">
+          <div class="text-3xl">💰</div>
+          <h3 class="mt-4 text-lg font-bold text-ink">Costs less than one tutoring hour</h3>
+          <p class="mt-2 text-sm text-slate-600">A full month of TechBash is cheaper than a single private session — and they can revisit anything, any time.</p>
         </div>
       </div>
     </div>
@@ -263,6 +570,23 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="py-20 bg-gradient-to-br from-primary via-primary-dark to-slate-900 text-white">
+    <div class="max-w-3xl mx-auto px-6 md:px-8 text-center">
+      <span class="badge-pill bg-white/15 text-white">Start tonight</span>
+      <h2 class="mt-4 text-3xl md:text-5xl font-black leading-tight">Give your kid 15 minutes. They'll show you what they built.</h2>
+      <p class="mt-5 text-lg text-white/80 max-w-2xl mx-auto">No credit card. No download. The first missions are free — open the portal, hand over the laptop, and watch what happens.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/preview" class="rounded-full bg-mochi text-ink px-7 py-3 font-bold shadow-lg hover:bg-amber-400 transition inline-flex items-center gap-2">
+          Launch the free portal
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+        <a href="/en/plans-and-faq.html" class="rounded-full border-2 border-white/30 text-white px-7 py-3 font-semibold hover:bg-white/10 transition">See pricing</a>
+      </div>
+      <p class="mt-6 text-xs text-white/60">If they come back tomorrow asking for more, you'll know it's working.</p>
     </div>
   </section>
 
