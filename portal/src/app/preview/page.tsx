@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { TRACKS, CHARACTERS, ADVENTURES } from "./missions";
 import PreviewWorkspace from "./PreviewWorkspace";
+import GenAiWorkspace from "./GenAiWorkspace";
 import AdventureWorkspace from "./AdventureWorkspace";
 import Playground from "./Playground";
 
@@ -265,15 +266,6 @@ export default function PreviewPage() {
     setOpenMission(upcoming?.n ?? -1);
   }
 
-  function reset() {
-    setProgress(DEFAULT_PROGRESS);
-    setTrackId("web");
-    setOpenMission(4);
-    setAdventureProgress(DEFAULT_ADVENTURE_PROGRESS);
-    setOpenQuestId(null);
-    setMode("missions");
-  }
-
   return (
     <div className="min-h-screen bg-[#FAFAFA] text-[#0F172A] font-sans">
       <header className="bg-white border-b border-slate-200">
@@ -303,13 +295,6 @@ export default function PreviewPage() {
             <span className="hidden sm:inline text-sm text-slate-500">
               Total <span className="font-semibold text-[#193b92]">{totalXp}</span> XP
             </span>
-            <button
-              onClick={reset}
-              className="text-xs font-semibold text-slate-500 hover:text-[#0F172A] px-2 py-1"
-              title="Reset preview progress"
-            >
-              Reset demo
-            </button>
             <span className="text-xs px-2 py-1 rounded-md bg-amber-50 text-amber-700 border border-amber-200 font-semibold">
               {signedIn ? "MISSIONS" : "GUEST"}
             </span>
@@ -583,14 +568,22 @@ export default function PreviewPage() {
 
                 {isOpen && (
                   <div className="mt-3 rounded-2xl bg-white border border-slate-200 p-5">
-                    <PreviewWorkspace
-                      key={`${trackId}-${m.n}`}
-                      mission={m}
-                      trackId={trackId}
-                      isComplete={isDone}
-                      onComplete={() => markComplete(m.n)}
-                      enableAiSandbox={trackId === "genai"}
-                    />
+                    {m.kind === "chat" ? (
+                      <GenAiWorkspace
+                        key={`${trackId}-${m.n}`}
+                        mission={m}
+                        isComplete={isDone}
+                        onComplete={() => markComplete(m.n)}
+                      />
+                    ) : (
+                      <PreviewWorkspace
+                        key={`${trackId}-${m.n}`}
+                        mission={m}
+                        trackId={trackId}
+                        isComplete={isDone}
+                        onComplete={() => markComplete(m.n)}
+                      />
+                    )}
                   </div>
                 )}
               </div>

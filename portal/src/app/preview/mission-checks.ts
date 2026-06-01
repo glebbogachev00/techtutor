@@ -556,79 +556,168 @@ const PY: Record<number, Check> = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// GenAI track (mostly written-prompt practice — check that text was rewritten)
+// GenAI track — chat missions. Each check inspects (prompt, reply).
 // ─────────────────────────────────────────────────────────────────────────────
-const GENAI: Record<number, Check> = {
-  1: (code) =>
-    /haiku about pizza/i.test(code)
-      ? {
-          ok: false,
-          hint: "Change 'pizza' to your favorite animal.",
-        }
-      : /prompt\s*=\s*["'][^"']+["']/i.test(code)
-        ? { ok: true }
-        : { ok: false, hint: "Edit the prompt string." },
-  2: (code) => {
-    const m = code.match(/strong\s*=\s*["']([^"']+)["']/);
-    if (!m || m[1].trim().length < 20)
+type ChatCheck = (prompt: string, reply: string) => CheckResult;
+
+const sentenceCount = (s: string) =>
+  (s.match(/[^.!?]+[.!?]+(\s|$)/g) ?? []).length;
+
+const tryParseJson = (s: string): unknown => {
+  const candidates: string[] = [s.trim()];
+  const fence = s.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fence) candidates.unshift(fence[1].trim());
+  const bracket = s.match(/\[[\s\S]*\]/);
+  if (bracket) candidates.push(bracket[0]);
+  for (const c of candidates) {
+    try {
+      return JSON.parse(c);
+    } catch {}
+  }
+  return null;
+};
+
+const GENAI_CHAT: Record<number, ChatCheck> = {
+  1: (prompt, reply) => {
+    if (prompt.trim().split(/\s+/).length < 8)
+      return { ok: false, hint: "Make your prompt at least 8 words long." };
+    return reply.trim().length > 20
+      ? { ok: true }
+      : { ok: false, hint: "No real reply yet — try sending again." };
+  },
+  2: (_p, reply) => {
+    const sentences = sentenceCount(reply);
+    const banana = /banana/i.test(reply);
+    const mars = /mars/i.test(reply);
+    if (sentences !== 5)
       return {
         ok: false,
-        hint: "Make `strong` a longer, more specific prompt (subject, action, style).",
+        hint: `Goal was EXACTLY 5 sentences — the AI gave ${sentences}. Ask it more firmly: "Reply with exactly 5 sentences. No more, no less."`,
       };
-    return /draw a dog/i.test(m[1])
-      ? {
-          ok: false,
-          hint: "Don't keep 'draw a dog' — make it specific.",
-        }
-      : { ok: true };
+    if (!banana || !mars)
+      return {
+        ok: false,
+        hint: "The reply needs to mention BOTH 'banana' and 'Mars'. Add both words to your prompt explicitly.",
+      };
+    return { ok: true };
   },
-  3: (code) =>
-    /role\s*=\s*["'][^"']*(teacher|robot)[^"']*["']/i.test(code)
+  3: (_p, reply) => {
+    if (!/penguin/i.test(reply))
+      return {
+        ok: false,
+        hint: "The AI's reply needs to include the word 'penguin'. Ask it directly to use a penguin in the explanation.",
+      };
+    if (!/gravit/i.test(reply))
+      return {
+        ok: false,
+        hint: "Reply should also explain gravity. Make sure your prompt asks for that.",
+      };
+    return { ok: true };
+  },
+  4: (_p, reply) => {
+    const data = tryParseJson(reply);
+    if (!Array.isArray(data))
+      return {
+        ok: false,
+        hint: "The reply isn't valid JSON. Try: 'Reply with ONLY a JSON array. No other text.'",
+      };
+    if (data.length !== 3)
+      return {
+        ok: false,
+        hint: `Need EXACTLY 3 items in the JSON array — got ${data.length}.`,
+      };
+    const allOk = data.every(
+      (item) =>
+        item &&
+        typeof item === "object" &&
+        "name" in (item as object) &&
+        "fact" in (item as object),
+    );
+    return allOk
       ? { ok: true }
       : {
           ok: false,
-          hint: "Set role to something like 'You are a friendly robot teacher...'",
-        },
-  4: (code) => {
-    const m = code.match(/parts\s*=\s*\[([^\]]*)\]/);
-    if (!m) return { ok: false, hint: "Keep the parts list." };
-    const items = m[1].split(",").filter((s) => s.trim().length > 0);
-    return items.length >= 4
-      ? { ok: true }
-      : { ok: false, hint: "Add at least 3 more details to the parts list." };
+          hint: "Each item needs both 'name' and 'fact' keys. Tell the AI the exact shape.",
+        };
   },
-  5: (code) =>
-    countMatches(code, /->/g) >= 3
+  5: (prompt, reply) => {
+    const arrows = (prompt.match(/->/g) ?? []).length;
+    if (arrows < 2)
+      return {
+        ok: false,
+        hint: "Give at least 2 example pairs in your prompt (cat -> 🐱, dog -> 🐶, ...).",
+      };
+    // Detect any emoji in reply.
+    const hasEmoji = /\p{Extended_Pictographic}/u.test(reply);
+    return hasEmoji
       ? { ok: true }
       : {
           ok: false,
-          hint: "Add at least 2 examples (cat -> 🐱, etc.) then ask for the next.",
-        },
-  6: (code) =>
-    /hero_name\s*=/i.test(code) && /backstory_prompt\s*=/i.test(code)
+          hint: "The reply should contain an emoji. Make your example pattern crystal clear.",
+        };
+  },
+  6: (_p, reply) => {
+    const noE = !/e/i.test(reply);
+    const sentences = sentenceCount(reply);
+    if (sentences < 2)
+      return {
+        ok: false,
+        hint: "Ask for at least 2 sentences describing a cat.",
+      };
+    if (!noE)
+      return {
+        ok: false,
+        hint: "The reply still has the letter 'e'. Repeat the rule clearly: 'Do NOT use the letter e in any word.'",
+      };
+    return { ok: true };
+  },
+  7: (_p, reply) => {
+    const hasYear = /\b(1[5-9]\d{2}|20\d{2})\b/.test(reply);
+    const honest = /no reliable source/i.test(reply);
+    return hasYear || honest
       ? { ok: true }
-      : { ok: false, hint: "Keep both hero_name and backstory_prompt." },
-  7: (code) => {
-    const m = code.match(/checks\s*=\s*\[([\s\S]*?)\]/);
-    if (!m) return { ok: false, hint: "Keep the checks list." };
-    const items = m[1]
+      : {
+          ok: false,
+          hint: "The reply should cite a source with a year, or admit 'no reliable source'. Ask for that explicitly.",
+        };
+  },
+  8: (prompt, reply) => {
+    const lower = prompt.toLowerCase();
+    const hasRole = /you are (a|an)\b/.test(lower);
+    if (!hasRole)
+      return {
+        ok: false,
+        hint: "Start your prompt with a role: 'You are a ...'",
+      };
+    const bulletLines = reply
       .split("\n")
-      .filter((l) => /["']/.test(l))
-      .filter((l) => !/^\s*#/.test(l));
-    return items.length >= 3
-      ? { ok: true }
-      : { ok: false, hint: "Add at least 3 questions to the checks list." };
+      .map((l) => l.trim())
+      .filter((l) => /^([-*•]|\d+[.)])\s+\S/.test(l));
+    if (bulletLines.length !== 3)
+      return {
+        ok: false,
+        hint: `Goal was EXACTLY 3 bullet points — counted ${bulletLines.length}. Ask the AI: "Reply as exactly 3 bullet points, each starting with - ".`,
+      };
+    return { ok: true };
   },
-  8: (code) =>
-    /def\s+build_prompt/.test(code) &&
-    /return\b/.test(code) &&
-    /(audience|topic)/i.test(code)
-      ? { ok: true }
-      : {
-          ok: false,
-          hint: "Build the function so it combines role + audience + topic and returns the full prompt.",
-        },
 };
+
+// Stub Check entries so checkMission() still works if accidentally called with code-only.
+const GENAI: Record<number, Check> = {};
+for (const n of Object.keys(GENAI_CHAT).map(Number)) {
+  GENAI[n] = () => ({ ok: true });
+}
+
+export function checkGenAi(
+  missionN: number,
+  prompt: string,
+  reply: string,
+): CheckResult {
+  const check = GENAI_CHAT[missionN];
+  if (!check)
+    return { ok: false, hint: "No validator for this mission yet." };
+  return check(prompt, reply);
+}
 
 const TABLE: Record<string, Record<number, Check>> = {
   web: WEB,
