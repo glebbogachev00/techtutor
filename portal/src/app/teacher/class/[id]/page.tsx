@@ -54,7 +54,7 @@ export default async function ClassRoster({ params }: PageProps) {
     joined_at: string;
     profiles: { full_name: string | null; avatar_emoji: string | null } | null;
   };
-  const roster = (members ?? []) as MemberRow[];
+  const roster = (members ?? []) as unknown as MemberRow[];
   const ids = roster.map((m) => m.student_id);
 
   // Per-student stats from preview tables.
