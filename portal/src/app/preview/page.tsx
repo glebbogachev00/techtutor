@@ -10,6 +10,7 @@ import Playground from "./Playground";
 const DEFAULT_PROGRESS: Record<string, number[]> = {
   web: [1, 2, 3],
   python: [1],
+  genai: [],
 };
 
 const DEFAULT_ADVENTURE_PROGRESS: string[] = ["lumen"];
@@ -18,7 +19,7 @@ type Mode = "missions" | "adventure" | "playground";
 
 export default function PreviewPage() {
   const [mode, setMode] = useState<Mode>("missions");
-  const [trackId, setTrackId] = useState<"web" | "python">("web");
+  const [trackId, setTrackId] = useState<"web" | "python" | "genai">("web");
   const [progress, setProgress] =
     useState<Record<string, number[]>>(DEFAULT_PROGRESS);
   const [openMission, setOpenMission] = useState<number>(4);
@@ -80,7 +81,7 @@ export default function PreviewPage() {
     if (upcoming) setOpenMission(upcoming.n);
   }
 
-  function switchTrack(id: "web" | "python") {
+  function switchTrack(id: "web" | "python" | "genai") {
     setTrackId(id);
     const nextTrack = TRACKS.find((t) => t.id === id)!;
     const c = progress[id] ?? [];
@@ -104,14 +105,14 @@ export default function PreviewPage() {
           <Link
             href="/"
             className="flex items-center gap-3 text-2xl font-black tracking-tight"
-            aria-label="TechBash home"
+            aria-label="TechTutor home"
           >
             <span>
               <span className="text-[#193b92]">Tech</span>
-              <span className="text-[#2C7A7B]">Bash</span>
+              <span className="text-[#2C7A7B]">Tutor</span>
             </span>
             <span className="hidden sm:inline text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400 border-l border-slate-200 pl-3">
-              by TechTutor
+              Portal
             </span>
           </Link>
           <div className="flex items-center gap-3">
@@ -386,6 +387,7 @@ export default function PreviewPage() {
                       mission={m}
                       isComplete={isDone}
                       onComplete={() => markComplete(m.n)}
+                      enableAiSandbox={trackId === "genai"}
                     />
                   </div>
                 )}

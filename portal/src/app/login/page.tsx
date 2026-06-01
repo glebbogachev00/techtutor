@@ -1,26 +1,46 @@
+import Link from "next/link";
 import { getLocale } from "@/lib/locale";
-import { t } from "@/lib/i18n";
 import LoginForm from "./LoginForm";
+import Logo from "@/components/Logo";
 
 export const metadata = { title: "Sign in — TechBash" };
 
 export default async function LoginPage() {
   const locale = await getLocale();
   return (
-    <main className="flex-1 flex items-center justify-center px-4 py-12">
-      <div className="max-w-md w-full card p-8">
-        <div className="text-center mb-8">
-          <div className="primary-gradient w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center shadow-lg">
-            <span className="text-3xl">✉️</span>
-          </div>
-          <h1 className="text-2xl font-extrabold text-[color:var(--color-ink)]">
-            {t(locale, "login.title")}
-          </h1>
-          <p className="text-gray-600 mt-2 text-sm">
-            {t(locale, "login.subtitle")}
-          </p>
+    <main className="flex-1 flex items-center justify-center px-4 py-12 bg-[#FAFAFA]">
+      <div className="w-full max-w-md">
+        {/* Brand */}
+        <div className="flex justify-center mb-8">
+          <Logo href="/" size="md" suffix="Portal" />
         </div>
-        <LoginForm locale={locale} />
+
+        {/* Card */}
+        <div className="rounded-2xl border border-slate-200 bg-white p-7 shadow-[0_8px_30px_rgba(15,23,42,0.06)]">
+          <div className="flex items-center gap-3 mb-6">
+            <img
+              src="/characters/captain-pixel.png"
+              alt=""
+              className="h-12 w-12 rounded-full object-cover shadow-[0_2px_10px_rgba(15,23,42,0.08)]"
+            />
+            <div>
+              <h1 className="text-lg font-bold text-[#0F172A] leading-tight">
+                Welcome to TechBash
+              </h1>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Pick how you want to sign in.
+              </p>
+            </div>
+          </div>
+          <LoginForm locale={locale} />
+        </div>
+
+        <p className="text-xs text-slate-400 text-center mt-6">
+          Trouble signing in?{" "}
+          <Link href="/" className="underline hover:text-[#0F172A]">
+            Back to TechBash
+          </Link>
+        </p>
       </div>
     </main>
   );

@@ -18,7 +18,7 @@ export type Mission = {
 };
 
 export type Track = {
-  id: "web" | "python";
+  id: "web" | "python" | "genai";
   name: string;
   tagline: string;
   accent: string;
@@ -295,6 +295,189 @@ export const TRACKS: Track[] = [
 </body>
 </html>`,
       },
+      {
+        n: 10,
+        title: "Flexbox: lining things up",
+        blurb: "Stop wrestling with layout. Meet flexbox.",
+        xp: 90,
+        language: "html",
+        story: {
+          character: "Bao",
+          text: "Captain Pixel asked me to put three buttons in a row. THREE. I tried for an hour. They keep stacking on top of each other like sad pancakes. Apparently there's a magic word called 'flex' that fixes this? Please. I'm so close to giving up and just drawing them on paper.",
+        },
+        why: "Lining things up is 90% of building websites. Flexbox is the trick every real frontend developer uses to make rows, navbars, and tidy layouts.",
+        concept:
+          "Give a container the style display: flex and its children line up in a row instead of stacking. Add gap: 12px to put space between them. That's it. That's the magic.",
+        example: `<div style="display:flex; gap:12px;">\n  <button>A</button><button>B</button><button>C</button>\n</div>`,
+        task: "Make the three buttons sit in a single row with some space between them.",
+        starter: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; padding: 40px; }
+    button { padding: 10px 18px; border-radius: 8px; border: 0; background: #193b92; color: white; }
+  </style>
+</head>
+<body>
+  <div>
+    <button>Save</button>
+    <button>Cancel</button>
+    <button>Help</button>
+  </div>
+</body>
+</html>`,
+      },
+      {
+        n: 11,
+        title: "Hover effects",
+        blurb: "Make the page react when the cursor visits.",
+        xp: 80,
+        language: "html",
+        story: {
+          character: "Mochi",
+          text: "BEEP. Mochi watched a website yesterday. When mouse went over button, button changed color. Mochi gasped. Mochi has never gasped before. Teach Mochi this sorcery.",
+        },
+        why: "Hover effects are the difference between a page that feels alive and a page that feels like a printout. They're tiny details that make websites feel professional.",
+        concept:
+          "Add :hover after a selector in CSS to apply styles only when the mouse is over an element. Example: button:hover { background: red; } turns the button red on hover.",
+        example: `a:hover { color: orange; }`,
+        task: "Make the button change background color when the mouse hovers over it.",
+        starter: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; padding: 40px; }
+    button {
+      padding: 12px 24px; border: 0; border-radius: 999px;
+      background: #2C7A7B; color: white; font-weight: 600; cursor: pointer;
+      transition: background 0.2s;
+    }
+  </style>
+</head>
+<body>
+  <button>Hover me</button>
+</body>
+</html>`,
+      },
+      {
+        n: 12,
+        title: "Forms and inputs",
+        blurb: "Let visitors type things back at you.",
+        xp: 100,
+        language: "html",
+        story: {
+          character: "Captain Pixel",
+          text: "Recruit, the Academy is taking applications for the Junior Pilot Program. We need a sign-up form. Name field, age field, big shiny submit button. Make it friendly. Pilots are nervous enough already.",
+        },
+        why: "Every login, search bar, comment box, and checkout you've ever used is a form. Once you can build one, you can collect real information from real visitors.",
+        concept:
+          "A <form> wraps input fields. Each <input> takes typing. A <label> tells the user what to put in the field. A <button type=\"submit\"> sends the form.",
+        example: `<form>\n  <label>Name <input /></label>\n  <button>Send</button>\n</form>`,
+        task: "Add a second input for age, with a label, and a submit button at the bottom.",
+        starter: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; padding: 32px; }
+    label { display: block; margin-top: 12px; font-weight: 600; }
+    input { padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Junior Pilot Sign-Up</h1>
+  <form>
+    <label>Name <input /></label>
+  </form>
+</body>
+</html>`,
+      },
+      {
+        n: 13,
+        title: "Cards and shadows",
+        blurb: "Make a page look like a real product.",
+        xp: 110,
+        language: "html",
+        story: {
+          character: "Bao",
+          text: "I keep seeing these cool 'cards' on every website. Apple's site has them. Spotify has them. Even my dentist's site has them?! What is the SECRET? I demand to know.",
+        },
+        why: "Cards are the building block of modern UI — product listings, blog previews, dashboards. Master them and your pages instantly look ten times more professional.",
+        concept:
+          "A card is just a <div> with padding, rounded corners, and a soft shadow. The shadow is the secret. box-shadow: 0 4px 20px rgba(0,0,0,0.08) is the universal 'pretty card' formula.",
+        example: `.card { background:white; padding:20px; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,0.08); }`,
+        task: "Style the .card div so it has rounded corners, padding, and a soft shadow.",
+        starter: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { background: #F1F5F9; padding: 40px; font-family: sans-serif; }
+    .card { background: white; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Stargazer Pro</h2>
+    <p>The fanciest telescope in the galaxy. Probably.</p>
+  </div>
+</body>
+</html>`,
+      },
+      {
+        n: 14,
+        title: "JavaScript variables",
+        blurb: "Store stuff. Use it later. Magic.",
+        xp: 90,
+        language: "html",
+        story: {
+          character: "Professor Loop",
+          text: "Hmm? Oh yes, JavaScript! Very useful. Variables are little labelled boxes. You put something in. You take it out. You change what's in it. Like my coffee cup, except I do remember where I put variables.",
+        },
+        why: "Variables are how websites remember things — your name, the score in a game, what you typed. Without variables, every page would forget you the second it loaded.",
+        concept:
+          "Use let to make a variable: let name = 'Bao'. Use it later by typing its name. Change it any time with name = 'Mochi'. Variables hold numbers, words ('strings'), or anything else.",
+        example: `let score = 0;\nscore = score + 1;\nconsole.log(score);`,
+        task: "Set a variable called name to your name, then put it inside the heading using document.getElementById.",
+        starter: `<!DOCTYPE html>
+<html>
+<body>
+  <h1 id="greeting">Hello!</h1>
+  <script>
+    let name = "";
+    // your code here
+  </script>
+</body>
+</html>`,
+      },
+      {
+        n: 15,
+        title: "If statements: making decisions",
+        blurb: "Teach your page to think.",
+        xp: 120,
+        language: "html",
+        story: {
+          character: "Mochi",
+          text: "BEEP. Mochi made a game. Player guesses number. Game must say 'YES!' or 'no, try again, bring snacks.' Mochi does not know how to make computer choose. Please.",
+        },
+        why: "Every app on earth uses if-statements. They're how a page decides what to do based on what the user did. No if, no game logic.",
+        concept:
+          "if (something) { do this } else { do that }. The 'something' is a comparison — like score === 10 (exactly equal) or age > 12 (greater than).",
+        example: `if (score > 100) {\n  alert("You win!");\n} else {\n  alert("Try again.");\n}`,
+        task: "When the button is clicked, check if the input number equals 7. Show 'YES!' or 'no'.",
+        starter: `<!DOCTYPE html>
+<html>
+<body>
+  <input id="guess" type="number" placeholder="Guess..." />
+  <button onclick="check()">Check</button>
+  <p id="msg"></p>
+  <script>
+    function check() {
+      let guess = Number(document.getElementById("guess").value);
+      // your if here
+    }
+  </script>
+</body>
+</html>`,
+      },
     ],
   },
   {
@@ -440,6 +623,269 @@ export const TRACKS: Track[] = [
         example: `import random\nprint(random.randint(1, 6))`,
         task: "Roll the dice 5 times in a loop and print each result.",
         starter: `import random\nprint(random.randint(1, 6))`,
+      },
+      {
+        n: 9,
+        title: "Lists: holding many things",
+        blurb: "One variable, many values.",
+        xp: 90,
+        language: "python",
+        story: {
+          character: "Professor Loop",
+          text: "Hmm! Important discovery. Today I tried to remember my seven favorite snacks using seven variables. I got to snack four and forgot snack two. Disaster. There is a better way: a list. One variable. Many snacks. Even I cannot mess this up. Probably.",
+        },
+        why: "Lists are how Python holds many things together — names, scores, shopping items, AI training data. Almost every program you ever write will use one.",
+        concept:
+          "A list goes inside square brackets, with commas between items: snacks = ['rice cake', 'mochi', 'mango']. Access items with snacks[0] (Python starts counting at zero, blame the professor).",
+        example: `colors = ["red", "blue", "green"]\nprint(colors[1])`,
+        task: "Make a list of three of your favorite foods and print the second one.",
+        starter: `snacks = ["rice cake", "mochi", "mango"]\nprint(snacks[0])`,
+      },
+      {
+        n: 10,
+        title: "Looping over a list",
+        blurb: "Do something to every item in a list.",
+        xp: 100,
+        language: "python",
+        story: {
+          character: "Mochi",
+          text: "BEEP. Mochi has list of greetings. Mochi must say each greeting. Mochi typed print() one hundred times. Mochi is tired. Mochi heard there is a way to print all of them with three lines. Mochi needs this in life.",
+        },
+        why: "Looping over lists is the single most common thing Python developers do — sending a hundred emails, drawing a hundred enemies, reading a hundred rows of data. Master this and you can scale.",
+        concept:
+          "for item in mylist: runs the indented code once for each item in the list. The variable 'item' becomes each value in turn.",
+        example: `for snack in ["mochi", "mango"]:\n    print("Yum:", snack)`,
+        task: "Loop over the greetings list and print each greeting with 'Mochi says:' in front.",
+        starter: `greetings = ["hello", "hi there", "beep boop"]\n# loop here`,
+      },
+      {
+        n: 11,
+        title: "If / else: decisions",
+        blurb: "Teach Python to make a choice.",
+        xp: 100,
+        language: "python",
+        story: {
+          character: "Bao",
+          text: "Captain Pixel asked me to build a 'are you old enough for the rollercoaster' checker. I am a noodle. I do not know how to make Python choose between two answers. Please rescue me before she finds out.",
+        },
+        why: "Every smart program — every game, login screen, AI — runs on decisions. If/else is how you teach the computer to react instead of just react like a brick.",
+        concept:
+          "if condition: runs the indented block when the condition is true. else: runs when it's false. Use ==, >, <, >=, <= to compare. Indentation matters in Python — four spaces.",
+        example: `age = 12\nif age >= 13:\n    print("Welcome.")\nelse:\n    print("Come back next year.")`,
+        task: "If age is 12 or higher, print 'You can ride!'. Otherwise print 'Maybe next year.'",
+        starter: `age = 10\n# your if/else here`,
+      },
+      {
+        n: 12,
+        title: "Counting with a loop",
+        blurb: "Repeat with numbers.",
+        xp: 100,
+        language: "python",
+        story: {
+          character: "Professor Loop",
+          text: "I am building a rocket countdown! Ten, nine, eight... no wait, was it nine? Anyway. Build me a countdown from 10 to 1 using a loop. I will sit here and add dramatic music.",
+        },
+        why: "Counting loops power timers, scoreboards, level progressions, animations, and every 'do this N times' moment in code.",
+        concept:
+          "range(10, 0, -1) gives the numbers 10, 9, 8, ... 1. Combine with a for loop: for i in range(10, 0, -1): print(i). The third argument is the step — negative means count down.",
+        example: `for i in range(1, 4):\n    print(i)`,
+        task: "Use a for loop to print numbers from 10 down to 1, then print 'Blast off!'.",
+        starter: `# countdown here`,
+      },
+      {
+        n: 13,
+        title: "Input from the user",
+        blurb: "Let people talk back to your program.",
+        xp: 110,
+        language: "python",
+        story: {
+          character: "Bao",
+          text: "Hey hey — I want to make a tiny chatbot. Just one question, one answer. But my code has no way of ASKING me anything. It just talks AT me. Like my dad on car trips. Help.",
+        },
+        why: "input() is the bridge between your program and a real human. Quizzes, calculators, mini games — anything interactive needs it.",
+        concept:
+          "name = input('What is your name? ') pauses the program, lets the user type, and stores whatever they typed in name (always as text). Use int(input(...)) when you want a number.",
+        example: `name = input("Name? ")\nprint("Hi", name)`,
+        task: "Ask the user for their favorite snack and print 'Great choice — <snack>!'.",
+        starter: `# ask and answer here`,
+      },
+      {
+        n: 14,
+        title: "Functions with return",
+        blurb: "Functions that give answers back.",
+        xp: 120,
+        language: "python",
+        story: {
+          character: "Professor Loop",
+          text: "Ah! Now we level up. Last time you built a function that PRINTED an answer. Today you build one that RETURNS an answer — meaning you can use the result somewhere else. Like a tiny calculator I can call any time I forget what 7 plus 8 is. Which, between you and me, is most days.",
+        },
+        why: "Returning values lets functions feed into other functions, into prints, into if-statements. It's how real Python programs are built — small pieces that hand answers around.",
+        concept:
+          "def add(a, b): then on the next line return a + b. Use it like result = add(2, 3) — now result holds 5. Without return, the function gives back nothing (None).",
+        example: `def square(n):\n    return n * n\n\nprint(square(4))`,
+        task: "Write a function called double that takes a number and returns it doubled. Print double(7).",
+        starter: `# def double here\n`,
+      },
+      {
+        n: 15,
+        title: "Mini project: number guessing game",
+        blurb: "Combine everything you've learned.",
+        xp: 250,
+        language: "python",
+        story: {
+          character: "Professor Loop",
+          text: "Final chapter assignment, assistant! The Academy gift shop wants a tiny guessing game for the lobby tablet. Player guesses a secret number from 1 to 10. The program tells them 'too high', 'too low', or 'YES!'. Use everything — variables, if/else, input, loops, a function or two. Make me proud!",
+        },
+        why: "Real games are just lots of tiny decisions glued together. This project proves you can glue them. Plus it's actually fun to play.",
+        concept:
+          "Pick a secret number. Use a loop so the player can try again. Use input() to get their guess. Use if/elif/else to give feedback. Break out of the loop when they win.",
+        task: "Build the game: pick a secret, loop until the player guesses it, print hints each turn.",
+        starter: `import random\n\nsecret = random.randint(1, 10)\n# loop here — keep asking until they get it\n`,
+      },
+    ],
+  },
+  {
+    id: "genai",
+    name: "Generative AI",
+    tagline: "Talk to AI like a pro — and build with it.",
+    accent: "#7C3AED",
+    storyIntro:
+      "Professor Loop bursts into the lab covered in glitter. 'I built a generative AI! It paints, it writes, it makes up bedtime stories!' He pauses. 'It also painted my cat as a banana. We have a lot to learn about TALKING to these things. Suit up, assistant — we are going prompt-hunting.'",
+    missions: [
+      {
+        n: 1,
+        title: "What even is a prompt?",
+        blurb: "Your words are the steering wheel.",
+        xp: 60,
+        language: "python",
+        story: {
+          character: "Professor Loop",
+          text: "An AI is like a very enthusiastic puppy that read the entire internet. It will do whatever you ask — but ONLY what you ask. The thing you ask it is called a prompt. Today we just practice writing one out loud.",
+        },
+        why: "Every chatbot, image generator, and AI tool runs on prompts. Whoever writes better prompts gets better results — that's the whole game.",
+        concept:
+          "A prompt is just the instruction you give to an AI. The clearer and more specific it is, the better the answer. 'Write something' is bad. 'Write a 3-line poem about a sleepy cat' is great.",
+        example: `prompt = "Write a haiku about pizza"\nprint("Sending to AI:", prompt)`,
+        task: "Change the prompt to ask for a haiku about your favorite animal.",
+        starter: `prompt = "Write a haiku about pizza"\nprint("Sending to AI:", prompt)`,
+      },
+      {
+        n: 2,
+        title: "Be specific (the magic trick)",
+        blurb: "Add details and watch the AI shine.",
+        xp: 80,
+        language: "python",
+        story: {
+          character: "Bao",
+          text: "I asked the AI to 'draw a dog' and it gave me something that looked like a potato with ears. Captain Pixel says I need to be MORE SPECIFIC. Help me upgrade the prompt before I get demoted to potato duty.",
+        },
+        why: "Vague prompts get vague results. Adding subject, style, mood, and details is the #1 skill in AI work — and it transfers to every job in the future.",
+        concept:
+          "Strong prompts answer: WHO (subject), WHAT (action), WHERE (setting), HOW (style/mood). 'A golden retriever puppy chasing a butterfly in a sunny meadow, watercolor style' beats 'draw a dog' every time.",
+        example: `vague = "draw a dog"\nstrong = "a golden retriever puppy chasing a butterfly, watercolor"\nprint(strong)`,
+        task: "Rewrite the vague prompt into a specific one with subject, action, and style.",
+        starter: `vague = "draw a dog"\nstrong = "draw a dog"  # upgrade me\nprint(strong)`,
+      },
+      {
+        n: 3,
+        title: "Give the AI a role",
+        blurb: "Tell it who to pretend to be.",
+        xp: 90,
+        language: "python",
+        story: {
+          character: "Mochi",
+          text: "BEEP. Mochi asked AI for homework help. AI gave answer that was very smart but Mochi did not understand any of words. Mochi heard you can tell AI to be a teacher for kids. Mochi wants this.",
+        },
+        why: "Roleplay prompts ('You are a friendly science teacher for 10-year-olds...') change the AI's tone, vocabulary, and depth. It's how pros get useful, age-appropriate answers.",
+        concept:
+          "Start your prompt with 'You are a [role]. Explain [topic] to [audience].' The AI will match that voice. Same question, totally different answer.",
+        example: `role = "You are a pirate chef."\ntask = "Explain how to make a sandwich."\nprint(role + " " + task)`,
+        task: "Make the AI act as a friendly robot teacher explaining gravity to a 9-year-old.",
+        starter: `role = "You are ..."  # choose a role\ntask = "Explain gravity."\nprint(role + " " + task)`,
+      },
+      {
+        n: 4,
+        title: "Image prompts",
+        blurb: "Words become pictures.",
+        xp: 100,
+        language: "python",
+        story: {
+          character: "Professor Loop",
+          text: "Today the AI will PAINT for us! But it cannot read minds. It can only read your prompt. So we layer in: subject, setting, art style, lighting, color. Stack those words like a sandwich and you get masterpieces. Skip them and you get... well, my banana cat.",
+        },
+        why: "Image generators (DALL-E, Midjourney, Stable Diffusion) all use stacked-keyword prompts. This skill makes the difference between blurry mush and gallery-worthy art.",
+        concept:
+          "Image prompt formula: [subject], [setting], [style], [lighting], [extra mood]. Example: 'a tiny dragon, sitting on a stack of books, in a cozy library, warm candlelight, watercolor illustration'.",
+        example: `parts = ["a tiny dragon", "on a pile of books", "cozy library", "watercolor"]\nprint(", ".join(parts))`,
+        task: "Build an image prompt for a robot pet — include subject, setting, style, and mood.",
+        starter: `parts = ["a robot pet"]\n# add 3 more details\nprint(", ".join(parts))`,
+      },
+      {
+        n: 5,
+        title: "Few-shot: show examples",
+        blurb: "Teach the AI by example.",
+        xp: 110,
+        language: "python",
+        story: {
+          character: "Bao",
+          text: "I asked the AI to make rhymes for my song. It kept giving me boring ones. Captain Pixel says if I show it TWO good examples first, it will copy the style. This is genius and also kind of sneaky. I love it.",
+        },
+        why: "Few-shot prompting (giving examples in the prompt) is how engineers fine-tune AI behavior without retraining the model. It's a real, paid skill.",
+        concept:
+          "Pattern: 'Here are examples. Now do the same.'\nExample 1: input -> output\nExample 2: input -> output\nYour turn: input -> ?",
+        example: `prompt = """Rhyme with these.\ncat -> hat\ndog -> log\nfrog -> ?"""\nprint(prompt)`,
+        task: "Build a few-shot prompt that teaches the AI to turn nouns into emoji. Give 2 examples then ask for a third.",
+        starter: `prompt = """Turn nouns into emoji.\ncat -> 🐱\n# add another example\n# then ask for the next one"""\nprint(prompt)`,
+      },
+      {
+        n: 6,
+        title: "Prompt chaining",
+        blurb: "Use one AI answer to ask the next question.",
+        xp: 120,
+        language: "python",
+        story: {
+          character: "Professor Loop",
+          text: "Big brain time! Today: chains. First we ask the AI for a story idea. Then we feed THAT idea back in and ask for chapter one. Each answer feeds the next prompt. This is how real AI apps work. Mind = blown. Glitter = everywhere.",
+        },
+        why: "Real AI products (writing apps, code assistants, agents) work by chaining prompts. Learning this now puts you ahead of most adults.",
+        concept:
+          "Step 1: ask AI for X. Step 2: take its answer and put it inside the next prompt. In Python we'd store answers in variables and build the next prompt with them.",
+        example: `idea = "a sleepy dragon librarian"\nchapter_prompt = "Write chapter one about " + idea\nprint(chapter_prompt)`,
+        task: "Chain two prompts: first ask for a hero name, then use it inside a prompt asking for that hero's backstory.",
+        starter: `hero_name = "Captain Mochi"  # imagine the AI returned this\nbackstory_prompt = "Tell the origin story of " + hero_name\nprint(backstory_prompt)`,
+      },
+      {
+        n: 7,
+        title: "Evaluating AI answers",
+        blurb: "AI lies sometimes. Spot it.",
+        xp: 120,
+        language: "python",
+        story: {
+          character: "Captain Pixel",
+          text: "Listen up, recruit. AI sounds confident even when it's wrong. We call that hallucinating. Your job as a smart builder is to ALWAYS check. Today we make a simple checker that flags answers we should double-verify.",
+        },
+        why: "Trusting AI blindly is how people get into trouble. Critical thinking + verification is what separates skilled AI users from victims of AI.",
+        concept:
+          "Make a checklist: (1) Does it sound made up? (2) Can I find a real source? (3) Did it cite anything? If any answer is shaky, verify with a real source before using it.",
+        example: `answer = "The Eiffel Tower is in Brazil."\nif "Eiffel" in answer and "Brazil" in answer:\n    print("⚠️ Double check this!")`,
+        task: "Print three questions a smart kid should ask before trusting any AI answer.",
+        starter: `checks = [\n    "Where does this fact come from?",\n    # add two more\n]\nfor c in checks:\n    print("-", c)`,
+      },
+      {
+        n: 8,
+        title: "Mini project: build a prompt template",
+        blurb: "Your own reusable AI tool.",
+        xp: 250,
+        language: "python",
+        story: {
+          character: "Professor Loop",
+          text: "Final mission of the chapter! Build me a prompt TEMPLATE. The user fills in a topic and an audience, and out pops a perfectly engineered prompt — role, format, examples, the works. This is the skill that turns kids into AI engineers. Off you go!",
+        },
+        why: "Reusable prompt templates power every real AI product. Once you can build one, you can build a tool — and tools are what people pay for.",
+        concept:
+          "Use variables for the bits that change (topic, audience, style). Build the full prompt by combining them. Print the result so you can copy it into any AI tool.",
+        task: "Build a function that takes topic and audience and returns a full prompt with a role, the topic, and a clear format request.",
+        starter: `def build_prompt(topic, audience):\n    role = "You are a fun teacher."\n    # combine role + audience + topic into one prompt\n    return role\n\nprint(build_prompt("volcanoes", "8 year olds"))`,
       },
     ],
   },
@@ -701,6 +1147,135 @@ for item in items:
   </form>
 </body>
 </html>`,
+    scaffold: [
+      { line: "<!DOCTYPE html>", note: "Tells the browser this is HTML — every page starts here." },
+      { line: "<html>\n<head>\n  <style>\n    body  { font-family: sans-serif; padding: 32px; background: #F0F9F8; }\n    label { display: block; margin-top: 12px; font-weight: 600; }\n    input { padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; width: 240px; }\n    button{ margin-top: 16px; background: #2C7A7B; color: white; border: 0; padding: 10px 18px; border-radius: 999px; font-weight: 600; cursor: pointer; }\n  </style>\n</head>", note: "Cool teal styling — cloud people like soft and calming." },
+      { line: "<body>", note: "Page content starts here." },
+      { line: "  <h1>Cloud License Sign-Up</h1>", note: "A clear, friendly title so nobody panics." },
+      { line: "  <form>", note: "A <form> groups all the input fields together." },
+      { line: '    <label for="name">Name</label>\n    <input id="name" />', note: "First field. The label tells the user what to type." },
+      { line: '    <label for="age">Age</label>\n    <input id="age" type="number" />', note: "Second field — a number input means only digits." },
+      { line: '    <label for="cloud">Favorite cloud</label>\n    <input id="cloud" placeholder="cumulus, cirrus, stratus..." />', note: "Cloud people LOVE this question. Add a placeholder for hints." },
+      { line: "    <button type=\"submit\">Submit</button>", note: "The big finishing button. License granted." },
+      { line: "  </form>\n</body>\n</html>", note: "Close the form, body, and html. Cloud office is happy." },
+    ],
+  },
+  {
+    id: "sonix",
+    planet: "Planet Sonix",
+    glyph: "S",
+    accent: "#E89F47",
+    client: "Mochi",
+    tagline: "Mochi needs a playlist page for the Academy disco.",
+    brief:
+      "BEEP! Mochi is DJ tonight. Mochi has six songs. Mochi has no webpage. Captain Pixel said no webpage means no disco. Mochi cannot disappoint the recruits. Please build Mochi a playlist page with a bouncy title and a list of songs. Bonus points if it looks like a party.",
+    needs: [
+      "A big colorful <h1> like 'Mochi's Mega Mix'",
+      "An <ol> or <ul> with at least six songs",
+      "Each song shows artist and title (your choice)",
+      "A bright, fun background — disco vibes",
+    ],
+    hint: "Try a CSS gradient for the background: `background: linear-gradient(135deg, #E89F47, #7C3AED);`",
+    reward: 180,
+    language: "html",
+    starter: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; padding: 32px; color: white; background: #0F172A; }
+    h1 { font-size: 42px; }
+  </style>
+</head>
+<body>
+  <h1>Mochi's Mega Mix</h1>
+  <ol>
+    <li>Track 1 — Mystery Artist</li>
+  </ol>
+</body>
+</html>`,
+    scaffold: [
+      { line: "<!DOCTYPE html>", note: "Start of the page — browsers expect this on line one." },
+      { line: "<html>\n<head>\n  <style>\n    body { font-family: sans-serif; padding: 32px; color: white; background: linear-gradient(135deg, #E89F47, #7C3AED); }\n    h1 { font-size: 48px; text-shadow: 0 2px 0 #0F172A; }\n    li { font-size: 18px; padding: 6px 0; }\n  </style>\n</head>", note: "Wild gradient background + giant title — proper disco energy." },
+      { line: "<body>", note: "Page content begins." },
+      { line: "  <h1>Mochi's Mega Mix 🎧</h1>", note: "Loud, friendly title — emoji optional but encouraged." },
+      { line: "  <ol>", note: "An <ol> is an ordered (numbered) list, perfect for a playlist." },
+      { line: "    <li>Robot Boogie — Mochi & The Beeps</li>", note: "First track." },
+      { line: "    <li>Cosmic Noodles — Bao Sound System</li>\n    <li>Captain's Theme — Pixel Symphonic</li>\n    <li>Forget-Me-Not Funk — Professor Loop</li>\n    <li>Cloud Surfer — Nimbus Crew</li>\n    <li>Final Boss — The Recruits</li>", note: "Five more songs — six total. Swap in your own." },
+      { line: "  </ol>\n</body>\n</html>", note: "Close the list, body, and html. DJ Mochi is ready." },
+    ],
+  },
+  {
+    id: "mazora",
+    planet: "Planet Mazora",
+    glyph: "M",
+    accent: "#193b92",
+    client: "Captain Pixel",
+    tagline: "Print a maze pattern for the cadet training course.",
+    brief:
+      "Recruit — Academy needs a quick maze pattern printed for the cadet training course. Nothing fancy: walls made of # and spaces inside, six rows tall, ten columns wide. Use a loop. We don't draw 60 characters by hand around here.",
+    needs: [
+      "Print exactly 6 rows",
+      "Top and bottom rows are solid (e.g. ##########)",
+      "Middle rows start with #, end with #, spaces in between",
+      "Use a loop — no copy-pasting the same line six times",
+    ],
+    hint: "Use `for i in range(6):` and an `if` to decide whether to print a solid wall or a side-wall row.",
+    reward: 190,
+    language: "python",
+    starter: `# Print a 6-row, 10-column maze.
+# Top and bottom: ##########
+# Middle rows:    #        #
+
+for i in range(6):
+    print("##########")`,
+    scaffold: [
+      { line: "# Maze for Mazora — 6 rows tall, 10 columns wide", note: "Comment so future-you remembers what this is." },
+      { line: "rows = 6", note: "Store the size in a variable so it's easy to change later." },
+      { line: "cols = 10", note: "Same for width — clean code uses variables, not magic numbers." },
+      { line: "wall = '#' * cols", note: "'#' * 10 gives '##########'. Python multiplies strings — wild." },
+      { line: "side = '#' + ' ' * (cols - 2) + '#'", note: "A wall, eight spaces, a wall — that's a middle row." },
+      { line: "for i in range(rows):", note: "Loop six times — once for each row." },
+      { line: "    if i == 0 or i == rows - 1:", note: "First and last rows are the solid top and bottom." },
+      { line: "        print(wall)", note: "Print the solid wall on those rows." },
+      { line: "    else:", note: "Otherwise we're in the middle of the maze." },
+      { line: "        print(side)", note: "Print the open row. Done — Captain Pixel salutes." },
+    ],
+  },
+  {
+    id: "cortex",
+    planet: "Planet Cortex",
+    glyph: "C",
+    accent: "#7C3AED",
+    client: "Professor Loop",
+    tagline: "Build a prompt-builder for Professor Loop's pet AI.",
+    brief:
+      "I built a generative AI on Cortex and I cannot stop talking to it. The problem is I always forget the GOOD prompt structure — role, audience, task, format. Build me a tiny prompt-builder that takes those four pieces, sticks them together, and prints the final prompt. I will copy and paste it forever. Glory!",
+    needs: [
+      "Four variables: role, audience, task, format",
+      "Combine them into one final prompt string",
+      "Print a header like '=== FINAL PROMPT ===' before the prompt",
+      "Use a function (def) so it's reusable",
+    ],
+    hint: "Try `def build(role, audience, task, format):` then return a string that joins all four pieces with line breaks (`\\n`).",
+    reward: 220,
+    language: "python",
+    starter: `# Professor Loop's prompt builder
+
+def build(role, audience, task, format):
+    return role
+
+print(build("You are a fun teacher.", "8 year olds", "Explain volcanoes", "3 short bullet points"))`,
+    scaffold: [
+      { line: "# Prompt builder for Professor Loop's pet AI", note: "Top-of-file comment — what this script does." },
+      { line: "def build(role, audience, task, format):", note: "A function with four inputs — the building blocks of a strong prompt." },
+      { line: '    prompt = role + "\\n"', note: "Start with the role on its own line." },
+      { line: '    prompt = prompt + "Audience: " + audience + "\\n"', note: "Add who the answer is for." },
+      { line: '    prompt = prompt + "Task: " + task + "\\n"', note: "Now the actual job we want done." },
+      { line: '    prompt = prompt + "Format: " + format', note: "And how we want the answer shaped." },
+      { line: "    return prompt", note: "Hand the finished prompt back so we can print it (or send it to an AI)." },
+      { line: 'print("=== FINAL PROMPT ===")', note: "A header so the professor can spot the output." },
+      { line: 'print(build("You are a fun science teacher.", "9 year olds", "Explain volcanoes", "3 short bullet points"))', note: "Call the function with real values. Copy the output into ChatGPT and watch it work." },
+    ],
   },
 ];
 

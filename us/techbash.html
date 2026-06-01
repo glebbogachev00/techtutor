@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZ1XEZXB6"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18127330947"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4MZ1XEZXB6');
+    gtag('config', 'AW-18127330947');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TechBash by TechTutor — a cosmic coding portal where kids build real web pages, Python projects, and AI quests at their own pace. Become great anytime, anywhere." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://techtutor.academy/us/techbash.html" />
+  <meta property="og:title" content="TechBash — Become great at your own pace · by TechTutor" />
+  <meta property="og:description" content="A cosmic coding portal for curious kids. Missions, adventures, and a free playground — guided by Captain Pixel and the crew." />
+  <meta property="og:image" content="https://techtutor.academy/images/landing_bash.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TechBash — Become great at your own pace" />
+  <meta name="twitter:description" content="A cosmic coding portal for curious kids. Missions, adventures, and a free playground." />
+  <meta name="twitter:image" content="https://techtutor.academy/images/landing_bash.png" />
+
+  <title>TechBash — Become great at your own pace · by TechTutor</title>
+  <link rel="icon" type="image/png" href="../images/robot-rocket.png" />
+  <link rel="preload" href="../images/landing_bash.png" as="image">
+
+  <link rel="alternate" hreflang="en" href="https://techtutor.academy/us/techbash.html" />
+  <link rel="alternate" hreflang="vi" href="https://techtutor.academy/vn/techbash.html" />
+  <link rel="alternate" hreflang="x-default" href="https://techtutor.academy/us/techbash.html" />
+  <link rel="canonical" href="https://techtutor.academy/us/techbash.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            teal: { DEFAULT: '#2C7A7B', light: '#319795', dark: '#234E52' },
+            ink: '#0F172A',
+            mochi: '#E89F47',
+            loop: '#7C3AED',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background-color: #ffffff; }
+
+    .planet-card { transition: transform .25s ease, box-shadow .25s ease; }
+    .planet-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(15,23,42,0.10); }
+    .planet-img { filter: drop-shadow(0 12px 28px rgba(25,59,146,0.18)); }
+
+    .crew-card { transition: transform .25s ease; }
+    .crew-card:hover { transform: translateY(-4px); }
+
+    .badge-pill {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .35rem .75rem; border-radius: 9999px;
+      font-size: .75rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    }
+  </style>
+  <script src="../js/geo-redirect.js" defer></script>
+</head>
+<body class="antialiased">
+
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between gap-6">
+        <a href="index.html" class="text-2xl font-black tracking-tight text-slate-900 flex items-center gap-1" aria-label="TechTutor home">
+          <span class="text-primary">Tech</span><span class="text-teal-500">Tutor</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-700">
+          <a href="/us/techbash.html" class="text-primary font-semibold">TechBash</a>
+          <a href="/us/student-projects.html" class="hover:text-primary transition">Projects</a>
+          <a href="/us/how-it-works.html" class="hover:text-primary transition">How It Works</a>
+          <a href="/us/online-courses.html" class="hover:text-primary transition">Free Courses</a>
+          <a href="/us/plans-and-faq.html" class="hover:text-primary transition">Pricing</a>
+          <a href="/us/blog.html" class="hover:text-primary transition">Blog</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-4">
+          <div class="relative group">
+            <button class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-primary hover:bg-primary hover:bg-opacity-10 transition" aria-label="Switch language">
+              <span class="text-xl">🇬🇧</span>
+            </button>
+            <div class="absolute right-0 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+              <div class="p-2">
+                <a href="../vn/techbash.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-100 transition">
+                  <span class="text-2xl">🇻🇳</span>
+                  <span class="text-sm font-medium text-slate-700">Tiếng Việt</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="/us/login.html" class="rounded-full border-2 border-primary text-primary px-5 py-2 text-sm font-semibold transition hover:bg-primary hover:text-white">Login</a>
+          <a href="/preview" class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light">Launch Portal</a>
+        </div>
+
+        <div class="flex items-center gap-3 md:hidden">
+          <button id="mobile-menu-button" class="px-4 py-2 rounded-full border-2 border-primary text-primary font-medium text-sm hover:bg-primary hover:bg-opacity-10 transition" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">Menu</button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="md:hidden hidden mt-4 border-t border-slate-200 pt-4">
+        <div class="flex flex-col gap-4 text-sm font-medium text-slate-700">
+          <a href="/us/techbash.html" class="text-primary font-semibold">TechBash</a>
+          <a href="/us/student-projects.html">Projects</a>
+          <a href="/us/how-it-works.html">How It Works</a>
+          <a href="/us/online-courses.html">Free Courses</a>
+          <a href="/us/plans-and-faq.html">Pricing</a>
+          <a href="/us/blog.html">Blog</a>
+          <a href="/preview" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm">Launch Portal</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. HERO -->
+  <section class="bg-white">
+    <div class="relative max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-14 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <span class="badge-pill bg-primary/10 text-primary">
+          <span class="w-2 h-2 rounded-full bg-mochi"></span> New · Cosmic coding portal
+        </span>
+        <h1 class="mt-5 text-4xl md:text-6xl font-black leading-tight tracking-tight text-ink">
+          Become great at <span class="text-mochi">your own pace</span>.
+          Learn anytime, anywhere.
+        </h1>
+        <p class="mt-5 text-lg md:text-xl text-slate-600 max-w-xl">
+          TechBash is a cosmic coding portal where kids fly through real web, Python, and AI missions — guided by Captain Pixel and a crew of cheerful characters.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/preview" class="rounded-full bg-primary text-white px-7 py-3 font-bold shadow-lg hover:bg-primary-light transition inline-flex items-center gap-2">
+            Launch the Portal
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </a>
+          <a href="#crew" class="rounded-full border-2 border-slate-200 text-slate-700 px-7 py-3 font-semibold hover:border-primary hover:text-primary transition">Meet the crew</a>
+        </div>
+        <p class="mt-6 text-sm text-slate-500">Free to explore · No download · Works in any browser</p>
+      </div>
+      <div class="relative">
+        <img src="../images/landing_bash.png" alt="TechBash cosmic coding scene" class="relative w-full h-auto" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. WHAT IS TECHBASH -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6 md:px-8 text-center">
+      <span class="badge-pill bg-primary/10 text-primary">What is TechBash</span>
+      <h2 class="mt-4 text-3xl md:text-5xl font-black text-ink">A coding portal that feels like a galaxy.</h2>
+      <p class="mt-5 text-lg text-slate-600 max-w-3xl mx-auto">
+        Three modes. One crew. Real code. Kids switch between guided missions, open-ended adventures, and a free playground — building confidence one screen at a time.
+      </p>
+      <div class="mt-12 grid md:grid-cols-3 gap-6 text-left">
+        <div class="rounded-3xl border border-slate-200 bg-white p-7">
+          <div class="w-12 h-12 rounded-2xl bg-primary text-white grid place-items-center text-xl font-black">M</div>
+          <h3 class="mt-5 text-xl font-bold text-ink">Missions</h3>
+          <p class="mt-2 text-slate-600">Bite-sized, guided lessons. Story → concept → try → check. Perfect for first-timers.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-7">
+          <div class="w-12 h-12 rounded-2xl bg-teal text-white grid place-items-center text-xl font-black">A</div>
+          <h3 class="mt-5 text-xl font-bold text-ink">Adventure</h3>
+          <p class="mt-2 text-slate-600">Six planets. Six citizens with real problems. Build the project — your way.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-7">
+          <div class="w-12 h-12 rounded-2xl bg-mochi text-ink grid place-items-center text-xl font-black">P</div>
+          <h3 class="mt-5 text-xl font-bold text-ink">Playground</h3>
+          <p class="mt-2 text-slate-600">A blank canvas with a help button. Captain Pixel scaffolds line-by-line whenever a kid gets stuck.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. MEET THE CREW -->
+  <section id="crew" class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-6xl mx-auto px-6 md:px-8">
+      <div class="text-center">
+        <span class="badge-pill bg-teal/10 text-teal-dark">Meet the crew</span>
+        <h2 class="mt-4 text-3xl md:text-5xl font-black text-ink">Four characters. Endless trouble.</h2>
+        <p class="mt-4 text-slate-600 max-w-2xl mx-auto">Each one teaches a different kind of thinking. Kids don't just learn syntax — they learn who to ask.</p>
+      </div>
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="crew-card rounded-3xl bg-slate-50 p-6 border border-slate-200">
+          <img src="../images/characters/captain-pixel.png" alt="Captain Pixel" class="w-28 h-28 mx-auto" />
+          <h3 class="mt-4 text-lg font-bold text-ink text-center">Captain Pixel</h3>
+          <p class="mt-1 text-xs uppercase tracking-wider text-primary text-center font-semibold">Mission Commander</p>
+          <p class="mt-3 text-sm text-slate-600 text-center">"800 years in command. Still hasn't learned to make tea."</p>
+        </div>
+        <div class="crew-card rounded-3xl bg-slate-50 p-6 border border-slate-200">
+          <img src="../images/characters/bao.png" alt="Bao" class="w-28 h-28 mx-auto" />
+          <h3 class="mt-4 text-lg font-bold text-ink text-center">Bao</h3>
+          <p class="mt-1 text-xs uppercase tracking-wider text-teal-dark text-center font-semibold">First Builder</p>
+          <p class="mt-3 text-sm text-slate-600 text-center">Learns alongside the student. Asks the questions kids are too shy to ask.</p>
+        </div>
+        <div class="crew-card rounded-3xl bg-slate-50 p-6 border border-slate-200">
+          <img src="../images/characters/mochi.png" alt="Mochi" class="w-28 h-28 mx-auto" />
+          <h3 class="mt-4 text-lg font-bold text-ink text-center">Mochi</h3>
+          <p class="mt-1 text-xs uppercase tracking-wider text-mochi text-center font-semibold">Game Designer</p>
+          <p class="mt-3 text-sm text-slate-600 text-center">Loves loops. Loves snacks. Loves loops about snacks.</p>
+        </div>
+        <div class="crew-card rounded-3xl bg-slate-50 p-6 border border-slate-200">
+          <img src="../images/characters/professor-loop.png" alt="Professor Loop" class="w-28 h-28 mx-auto" />
+          <h3 class="mt-4 text-lg font-bold text-ink text-center">Professor Loop</h3>
+          <p class="mt-1 text-xs uppercase tracking-wider text-loop text-center font-semibold">AI Scientist</p>
+          <p class="mt-3 text-sm text-slate-600 text-center">Knows what data wants. Forgets what day it is.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. PARENT PANEL -->
+  <section class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-5xl mx-auto px-6 md:px-8">
+      <div class="text-center">
+        <span class="badge-pill bg-primary/10 text-primary">For parents</span>
+        <h2 class="mt-4 text-3xl md:text-5xl font-black text-ink">A safer place than YouTube.</h2>
+        <p class="mt-4 text-slate-600 max-w-2xl mx-auto">No ads. No comments. No algorithm. Just a kid, a screen, and real code.</p>
+      </div>
+      <div class="mt-12 grid md:grid-cols-2 gap-5">
+        <div class="rounded-2xl bg-slate-50 p-6 border border-slate-200 flex gap-4">
+          <div class="text-2xl">🛡️</div>
+          <div>
+            <h3 class="font-bold text-ink">Safe by design</h3>
+            <p class="mt-1 text-sm text-slate-600">No social features. No external links. Closed environment for focused learning.</p>
+          </div>
+        </div>
+        <div class="rounded-2xl bg-white p-6 border border-slate-200 flex gap-4">
+          <div class="text-2xl">⏱️</div>
+          <div>
+            <h3 class="font-bold text-ink">Self-paced</h3>
+            <p class="mt-1 text-sm text-slate-600">No deadlines. Kids return when curious — that's when learning sticks.</p>
+          </div>
+        </div>
+        <div class="rounded-2xl bg-white p-6 border border-slate-200 flex gap-4">
+          <div class="text-2xl">🌍</div>
+          <div>
+            <h3 class="font-bold text-ink">International teachers</h3>
+            <p class="mt-1 text-sm text-slate-600">When kids want a real human, our certified teachers are one click away.</p>
+          </div>
+        </div>
+        <div class="rounded-2xl bg-white p-6 border border-slate-200 flex gap-4">
+          <div class="text-2xl">📜</div>
+          <div>
+            <h3 class="font-bold text-ink">Real certificates</h3>
+            <p class="mt-1 text-sm text-slate-600">Each level completed earns a verifiable certificate of achievement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16">
+    <div class="mx-auto max-w-7xl px-6 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div class="lg:col-span-1">
+          <img width="1024" height="1024" loading="lazy" src="../images/robot-rocket.png" alt="TechTutor" class="h-40 w-auto" />
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">CONTACT US!</h3>
+          <div class="space-y-3 text-sm">
+            <div>
+              <p class="text-slate-300 mb-1">Tel/WA/Zalo:</p>
+              <a href="tel:0902776753" class="text-white hover:text-primary-light transition">0902 776 753</a>
+            </div>
+            <div>
+              <p class="text-slate-300 mb-1">Email:</p>
+              <a href="mailto:hello@techtutor.academy" class="text-white hover:text-primary-light transition">hello@techtutor.academy</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">OPENING HOURS</h3>
+          <div class="space-y-2 text-sm">
+            <p class="text-slate-300">Monday - Friday: 8am - 9pm</p>
+            <p class="text-slate-300">Saturday - Sunday: 8am - 8pm</p>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">EXPLORE</h3>
+          <div class="space-y-2 text-sm">
+            <a href="/us/techbash.html" class="block text-slate-300 hover:text-primary-light transition">TechBash Portal</a>
+            <a href="/us/student-projects.html" class="block text-slate-300 hover:text-primary-light transition">Projects</a>
+            <a href="/us/plans-and-faq.html" class="block text-slate-300 hover:text-primary-light transition">Pricing</a>
+            <a href="/us/blog.html" class="block text-slate-300 hover:text-primary-light transition">Blog</a>
+            <a href="/us/vision.html" class="block text-slate-300 hover:text-primary-light transition">Our Vision</a>
+            <a href="/us/free-trial.html" class="block text-slate-300 hover:text-primary-light transition">Free Trial</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">CONNECT</h3>
+          <div class="flex gap-3">
+            <a href="https://www.facebook.com/share/1An2WsT9X5/" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Facebook">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://zalo.me/0902776753" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Zalo">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0zm.5 14.969h-4.25a.469.469 0 110-.938h4.25a.469.469 0 110 .938zm2.406-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938zm0-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-slate-700 text-center">
+        <p class="text-sm text-slate-300">© 2025 TechTutor Academy. All rights reserved.</p>
+        <p class="text-xs text-slate-300 mt-2">English / Vietnamese bilingual support</p>
+        <p class="text-xs text-slate-400 mt-3"><a href="/teacher/login" class="text-slate-400 hover:text-primary-light underline-offset-2 hover:underline">For teachers →</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/site.js" defer></script>
+</body>
+</html>

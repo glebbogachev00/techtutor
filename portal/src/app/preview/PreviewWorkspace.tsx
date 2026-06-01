@@ -11,6 +11,7 @@ type Props = {
   mission: Mission;
   isComplete: boolean;
   onComplete: () => void;
+  enableAiSandbox?: boolean;
 };
 
 const FAKE_FEEDBACK = [
@@ -24,11 +25,14 @@ export default function PreviewWorkspace({
   mission,
   isComplete,
   onComplete,
+  enableAiSandbox = false,
 }: Props) {
   const [code, setCode] = useState(mission.starter);
   const [reviewing, setReviewing] = useState(false);
   const [feedback, setFeedback] = useState<string | null>(null);
   const [passed, setPassed] = useState(false);
+  const [aiReply, setAiReply] = useState<string | null>(null);
+  const [aiLoading, setAiLoading] = useState(false);
 
   const isPython = mission.language === "python";
   const pythonOutput = isPython ? runPython(code) : "";
@@ -43,6 +47,36 @@ export default function PreviewWorkspace({
       setPassed(true);
       setReviewing(false);
     }, 800);
+  }
+
+  async function sendPromptToAi() {
+    const promptText = (pythonOutput || "").trim();
+    if (!promptText || aiLoading) return;
+    setAiLoading(true);
+    setAiReply(null);
+    try {
+      const res = await fetch("/api/ai-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [{ role: "user", content: promptText }],
+        }),
+      });
+      const data = await res.json();
+      if (res.status === 401) {
+        setAiReply(
+          `🔒 ${data?.message ?? "Sign in to chat with the AI."}`,
+        );
+      } else {
+        setAiReply(
+          data?.reply || data?.error || "The AI didn't reply. Try again?",
+        );
+      }
+    } catch {
+      setAiReply("Something broke. Try sending again in a moment.");
+    } finally {
+      setAiLoading(false);
+    }
   }
 
   return (
@@ -185,6 +219,48 @@ export default function PreviewWorkspace({
           <p className="text-[#0F172A] text-sm leading-relaxed whitespace-pre-line">
             {feedback}
           </p>
+        </div>
+      )}
+
+      {enableAiSandbox && (
+        <div className="rounded-2xl border border-[#7C3AED]/30 bg-[#F5F0FF] p-5">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-6 h-6 rounded-full bg-[#7C3AED] text-white grid place-items-center text-[10px] font-black">
+              AI
+            </span>
+            <p className="text-[#7C3AED] text-xs font-semibold uppercase tracking-widest">
+              Try your prompt on a real AI
+            </p>
+          </div>
+          <p className="text-[#0F172A] text-sm leading-relaxed mb-3">
+            Whatever your code prints will be sent to the AI as a prompt. Run
+            your code, then hit the button.
+          </p>
+          <div className="rounded-lg bg-white border border-slate-200 p-3 mb-3">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400 mb-1">
+              Prompt being sent
+            </p>
+            <pre className="text-xs font-mono text-[#0F172A] whitespace-pre-wrap break-words">
+              {pythonOutput.trim() || "(your output is empty — run some print() first)"}
+            </pre>
+          </div>
+          <button
+            onClick={sendPromptToAi}
+            disabled={aiLoading || !pythonOutput.trim()}
+            className="bg-[#7C3AED] hover:bg-[#5B21B6] text-white font-semibold text-sm px-5 py-2.5 rounded-full transition disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_4px_15px_rgba(124,58,237,0.25)]"
+          >
+            {aiLoading ? "AI is thinking..." : "Send prompt to AI"}
+          </button>
+          {aiReply && (
+            <div className="mt-4 rounded-lg bg-white border border-[#7C3AED]/20 p-4">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-[#7C3AED] mb-2">
+                AI response
+              </p>
+              <p className="text-sm text-[#0F172A] leading-relaxed whitespace-pre-wrap">
+                {aiReply}
+              </p>
+            </div>
+          )}
         </div>
       )}
     </div>
