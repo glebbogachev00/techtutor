@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { TRACKS, CHARACTERS, ADVENTURES } from "./missions";
 import PreviewWorkspace from "./PreviewWorkspace";
 import AdventureWorkspace from "./AdventureWorkspace";
@@ -27,6 +27,8 @@ export default function PreviewPage() {
     DEFAULT_ADVENTURE_PROGRESS,
   );
   const [openQuestId, setOpenQuestId] = useState<string | null>(null);
+  const [signedIn, setSignedIn] = useState(false);
+  const signedInRef = useRef(false);
 
   const track = TRACKS.find((t) => t.id === trackId)!;
   const completed = progress[trackId] ?? [];
@@ -59,10 +61,51 @@ export default function PreviewPage() {
   const openQuest =
     openQuestId ? ADVENTURES.find((q) => q.id === openQuestId) : undefined;
 
+  // Load saved progress for signed-in students (anonymous + email both work).
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/preview/progress")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (cancelled || !data || !data.signedIn) return;
+        signedInRef.current = true;
+        setSignedIn(true);
+        const dbMissions = data.missions as Record<string, number[]>;
+        const merged: Record<string, number[]> = { web: [], python: [], genai: [] };
+        Object.keys(merged).forEach((k) => {
+          const fromDb = dbMissions?.[k] ?? [];
+          merged[k] = Array.from(new Set([...(DEFAULT_PROGRESS[k] ?? []), ...fromDb])).sort(
+            (a, b) => a - b,
+          );
+        });
+        setProgress(merged);
+        const advFromDb = (data.adventures as string[]) ?? [];
+        setAdventureProgress(
+          Array.from(new Set([...DEFAULT_ADVENTURE_PROGRESS, ...advFromDb])),
+        );
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   function completeQuest(id: string) {
     setAdventureProgress((prev) =>
       prev.includes(id) ? prev : [...prev, id],
     );
+    if (signedInRef.current) {
+      const quest = ADVENTURES.find((q) => q.id === id);
+      fetch("/api/preview/progress", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          kind: "adventure",
+          questId: id,
+          xp: quest?.reward ?? 0,
+        }),
+      }).catch(() => {});
+    }
   }
 
   function statusOf(n: number): "done" | "current" | "locked" {
@@ -79,6 +122,20 @@ export default function PreviewPage() {
       (m) => m.n > n && !completed.includes(m.n),
     );
     if (upcoming) setOpenMission(upcoming.n);
+
+    if (signedInRef.current) {
+      const mission = track.missions.find((m) => m.n === n);
+      fetch("/api/preview/progress", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          kind: "mission",
+          trackSlug: trackId,
+          missionN: n,
+          xp: mission?.xp ?? 0,
+        }),
+      }).catch(() => {});
+    }
   }
 
   function switchTrack(id: "web" | "python" | "genai") {

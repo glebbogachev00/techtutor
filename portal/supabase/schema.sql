@@ -148,6 +148,26 @@ create table if not exists public.class_members (
   primary key (class_id, student_id)
 );
 
+-- ----- preview_progress -----------------------------------------
+-- Lightweight progress storage for the in-code /preview missions
+-- (until the curriculum is fully DB-backed).
+create table if not exists public.preview_progress (
+  user_id uuid not null references public.profiles(id) on delete cascade,
+  track_slug text not null,
+  mission_n int not null,
+  xp_earned int not null default 0,
+  completed_at timestamptz not null default now(),
+  primary key (user_id, track_slug, mission_n)
+);
+
+create table if not exists public.preview_adventures (
+  user_id uuid not null references public.profiles(id) on delete cascade,
+  quest_id text not null,
+  xp_earned int not null default 0,
+  completed_at timestamptz not null default now(),
+  primary key (user_id, quest_id)
+);
+
 -- ----- Row Level Security ---------------------------------------
 alter table public.profiles enable row level security;
 alter table public.tracks enable row level security;
@@ -157,6 +177,8 @@ alter table public.progress enable row level security;
 alter table public.classes enable row level security;
 alter table public.class_codes enable row level security;
 alter table public.class_members enable row level security;
+alter table public.preview_progress enable row level security;
+alter table public.preview_adventures enable row level security;
 
 -- Drop existing policies so this script is re-runnable.
 drop policy if exists "profiles_select_self" on public.profiles;
@@ -174,6 +196,10 @@ drop policy if exists "classes_member_read" on public.classes;
 drop policy if exists "class_codes_owner_all" on public.class_codes;
 drop policy if exists "class_members_teacher_read" on public.class_members;
 drop policy if exists "class_members_self_read" on public.class_members;
+drop policy if exists "preview_progress_owner" on public.preview_progress;
+drop policy if exists "preview_progress_staff_read" on public.preview_progress;
+drop policy if exists "preview_adventures_owner" on public.preview_adventures;
+drop policy if exists "preview_adventures_staff_read" on public.preview_adventures;
 
 -- Profiles: read your own, parents read their kid, staff read all.
 create policy "profiles_select_self" on public.profiles
@@ -256,6 +282,33 @@ create policy "class_members_teacher_read" on public.class_members
   );
 create policy "class_members_self_read" on public.class_members
   for select using (student_id = auth.uid());
+
+-- Preview progress: students manage their own; staff read.
+create policy "preview_progress_owner" on public.preview_progress
+  for all using (user_id = auth.uid())
+  with check (user_id = auth.uid());
+create policy "preview_progress_staff_read" on public.preview_progress
+  for select using (
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('teacher','admin','tutor'))
+    or exists (
+      select 1 from public.class_members m
+      join public.classes c on c.id = m.class_id
+      where m.student_id = preview_progress.user_id and c.teacher_id = auth.uid()
+    )
+  );
+
+create policy "preview_adventures_owner" on public.preview_adventures
+  for all using (user_id = auth.uid())
+  with check (user_id = auth.uid());
+create policy "preview_adventures_staff_read" on public.preview_adventures
+  for select using (
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('teacher','admin','tutor'))
+    or exists (
+      select 1 from public.class_members m
+      join public.classes c on c.id = m.class_id
+      where m.student_id = preview_adventures.user_id and c.teacher_id = auth.uid()
+    )
+  );
 
 -- ----- RPC: join_class_with_code --------------------------------
 -- Students call this after signing in (anonymous or email). Avoids

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export type ClassRow = {
@@ -174,14 +175,12 @@ export default function TeacherClassesUI({
                 >
                   {busyId === c.id ? "Rotating…" : "Rotate code"}
                 </button>
-                <button
-                  type="button"
-                  disabled
-                  title="Roster view coming soon"
-                  className="flex-1 text-xs font-semibold text-white bg-[#7C3AED] rounded-full py-2 disabled:opacity-60"
+                <Link
+                  href={`/teacher/class/${c.id}`}
+                  className="flex-1 text-xs font-semibold text-white bg-[#7C3AED] hover:bg-[#6126c2] rounded-full py-2 text-center"
                 >
                   View roster
-                </button>
+                </Link>
               </div>
             </div>
           ))}
