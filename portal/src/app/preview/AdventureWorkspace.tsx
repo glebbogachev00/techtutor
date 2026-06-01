@@ -12,6 +12,8 @@ type Props = {
   isComplete: boolean;
   onComplete: () => void;
   onBack: () => void;
+  onNext?: () => void;
+  nextLabel?: string;
 };
 
 const SHIP_FEEDBACK: Record<string, string[]> = {
@@ -44,6 +46,8 @@ export default function AdventureWorkspace({
   isComplete,
   onComplete,
   onBack,
+  onNext,
+  nextLabel,
 }: Props) {
   const [startMode, setStartMode] = useState<StartMode>("choose");
   const [code, setCode] = useState("");
@@ -407,8 +411,18 @@ export default function AdventureWorkspace({
               </button>
             )}
             {isComplete && (
-              <span className="ml-auto text-sm font-semibold text-[#2C7A7B]">
-                Quest complete
+              <span className="ml-auto flex items-center gap-3">
+                <span className="text-sm font-semibold text-[#2C7A7B]">
+                  Quest complete
+                </span>
+                {onNext && (
+                  <button
+                    onClick={onNext}
+                    className="bg-[#193b92] hover:bg-[#0f2861] text-white font-semibold text-sm px-6 py-3 rounded-full transition"
+                  >
+                    {nextLabel ?? "Next adventure →"}
+                  </button>
+                )}
               </span>
             )}
           </div>

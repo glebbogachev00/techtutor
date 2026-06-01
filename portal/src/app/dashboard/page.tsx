@@ -258,26 +258,14 @@ export default async function DashboardHome() {
           <div className="flex items-end justify-between mb-3">
             <h2 className="text-lg font-bold">Tracks</h2>
             <span className="text-xs text-slate-400">
-              3 live · 6 coming soon
+              3 live · more coming soon
             </span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {(
-              [
-                "web",
-                "python",
-                "genai",
-                "web-games",
-                "web-3d-games",
-                "web-3d-design",
-                "gamedev-2d",
-                "gamedev-3d",
-                "design-3d",
-              ] as const
-            ).map((slug) => {
+            {(["web", "python", "genai"] as const).map((slug) => {
               const m = TRACK_META[slug];
               const stats = perTrack[slug];
-              const isLive = slug === "web" || slug === "python" || slug === "genai";
+              const isLive = true;
               const CardInner = (
                 <>
                   {!isLive && (

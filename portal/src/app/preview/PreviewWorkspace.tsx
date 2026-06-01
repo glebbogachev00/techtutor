@@ -4,11 +4,13 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { CHARACTERS, type Mission } from "./missions";
 import { runPython } from "./python-runner";
+import { checkMission } from "./mission-checks";
 
 const Editor = dynamic(() => import("@monaco-editor/react"), { ssr: false });
 
 type Props = {
   mission: Mission;
+  trackId: string;
   isComplete: boolean;
   onComplete: () => void;
   enableAiSandbox?: boolean;
@@ -23,6 +25,7 @@ const FAKE_FEEDBACK = [
 
 export default function PreviewWorkspace({
   mission,
+  trackId,
   isComplete,
   onComplete,
   enableAiSandbox = false,
@@ -43,10 +46,25 @@ export default function PreviewWorkspace({
     setFeedback(null);
     setPassed(false);
     setTimeout(() => {
-      setFeedback(FAKE_FEEDBACK[mission.n % FAKE_FEEDBACK.length]);
-      setPassed(true);
+      const result = checkMission(
+        trackId,
+        mission.n,
+        code,
+        isPython ? pythonOutput : "",
+        mission.starter,
+      );
+      if (result.ok) {
+        setFeedback(FAKE_FEEDBACK[mission.n % FAKE_FEEDBACK.length]);
+        setPassed(true);
+      } else {
+        setFeedback(
+          result.hint ??
+            "Not quite yet — re-read the task and try again.",
+        );
+        setPassed(false);
+      }
       setReviewing(false);
-    }, 800);
+    }, 600);
   }
 
   async function sendPromptToAi() {

@@ -16,6 +16,70 @@ const DEFAULT_PROGRESS: Record<string, number[]> = {
 
 const DEFAULT_ADVENTURE_PROGRESS: string[] = ["lumen"];
 
+const CACHE_KEY = "tt-preview-progress-v1";
+const SIGNED_IN_KEY = "tt-preview-signed-in-v1";
+
+function readCache():
+  | { missions: Record<string, number[]>; adventures: string[]; signedIn: boolean }
+  | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return null;
+    return {
+      missions: (parsed.missions as Record<string, number[]>) ?? {},
+      adventures: (parsed.adventures as string[]) ?? [],
+      signedIn: Boolean(parsed.signedIn),
+    };
+  } catch {
+    return null;
+  }
+}
+
+function writeCache(
+  missions: Record<string, number[]>,
+  adventures: string[],
+  signedIn?: boolean,
+) {
+  if (typeof window === "undefined") return;
+  try {
+    const prev = (() => {
+      try {
+        const raw = localStorage.getItem(CACHE_KEY);
+        return raw ? JSON.parse(raw) : {};
+      } catch {
+        return {};
+      }
+    })();
+    localStorage.setItem(
+      CACHE_KEY,
+      JSON.stringify({
+        missions,
+        adventures,
+        signedIn: signedIn ?? Boolean(prev?.signedIn),
+      }),
+    );
+  } catch {}
+}
+
+function readCachedSignedIn(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return localStorage.getItem(SIGNED_IN_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function writeCachedSignedIn(v: boolean) {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(SIGNED_IN_KEY, v ? "1" : "0");
+  } catch {}
+}
+
 type Mode = "missions" | "adventure" | "playground";
 
 export default function PreviewPage() {
@@ -35,8 +99,13 @@ export default function PreviewPage() {
     DEFAULT_ADVENTURE_PROGRESS,
   );
   const [openQuestId, setOpenQuestId] = useState<string | null>(null);
-  const [signedIn, setSignedIn] = useState(false);
-  const signedInRef = useRef(false);
+  // Start false to match SSR, then hydrate from cached flag in an effect to avoid a guest-mode flash.
+  const [signedIn, setSignedIn] = useState<boolean>(false);
+  const signedInRef = useRef<boolean>(false);
+
+  useEffect(() => {
+    if (readCachedSignedIn()) setSignedIn(true);
+  }, []);
 
   const track = TRACKS.find((t) => t.id === trackId)!;
   const completed = progress[trackId] ?? [];
@@ -70,18 +139,50 @@ export default function PreviewPage() {
     openQuestId ? ADVENTURES.find((q) => q.id === openQuestId) : undefined;
 
   // Load saved progress for signed-in students (anonymous + email both work).
+  // First hydrate from localStorage (instant), then merge DB result.
   useEffect(() => {
+    const cached = readCache();
+    if (cached) {
+      const mergedM: Record<string, number[]> = {
+        web: [],
+        python: [],
+        genai: [],
+      };
+      Object.keys(mergedM).forEach((k) => {
+        mergedM[k] = Array.from(
+          new Set([
+            ...(DEFAULT_PROGRESS[k] ?? []),
+            ...(cached.missions?.[k] ?? []),
+          ]),
+        ).sort((a, b) => a - b);
+      });
+      setProgress(mergedM);
+      setAdventureProgress(
+        Array.from(
+          new Set([...DEFAULT_ADVENTURE_PROGRESS, ...(cached.adventures ?? [])]),
+        ),
+      );
+    }
+
     let cancelled = false;
     fetch("/api/preview/progress")
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
-        if (cancelled || !data || !data.signedIn) return;
+        if (cancelled) return;
+        if (!data || !data.signedIn) {
+          // Server confirms not signed in — clear cached flag so future loads start as guest.
+          signedInRef.current = false;
+          setSignedIn(false);
+          writeCachedSignedIn(false);
+          return;
+        }
         if (data.role === "teacher" || data.role === "admin") {
           router.replace("/teacher");
           return;
         }
         signedInRef.current = true;
         setSignedIn(true);
+        writeCachedSignedIn(true);
         const dbMissions = data.missions as Record<string, number[]>;
         const merged: Record<string, number[]> = { web: [], python: [], genai: [] };
         Object.keys(merged).forEach((k) => {
@@ -92,9 +193,11 @@ export default function PreviewPage() {
         });
         setProgress(merged);
         const advFromDb = (data.adventures as string[]) ?? [];
-        setAdventureProgress(
-          Array.from(new Set([...DEFAULT_ADVENTURE_PROGRESS, ...advFromDb])),
+        const mergedAdv = Array.from(
+          new Set([...DEFAULT_ADVENTURE_PROGRESS, ...advFromDb]),
         );
+        setAdventureProgress(mergedAdv);
+        writeCache(merged, mergedAdv);
       })
       .catch(() => {});
     return () => {
@@ -103,9 +206,11 @@ export default function PreviewPage() {
   }, [router]);
 
   function completeQuest(id: string) {
-    setAdventureProgress((prev) =>
-      prev.includes(id) ? prev : [...prev, id],
-    );
+    setAdventureProgress((prev) => {
+      const next = prev.includes(id) ? prev : [...prev, id];
+      writeCache(progress, next);
+      return next;
+    });
     if (signedInRef.current) {
       const quest = ADVENTURES.find((q) => q.id === id);
       fetch("/api/preview/progress", {
@@ -129,7 +234,9 @@ export default function PreviewPage() {
 
   function markComplete(n: number) {
     const next = [...completed, n].sort((a, b) => a - b);
-    setProgress({ ...progress, [trackId]: Array.from(new Set(next)) });
+    const nextProgress = { ...progress, [trackId]: Array.from(new Set(next)) };
+    setProgress(nextProgress);
+    writeCache(nextProgress, adventureProgress);
     const upcoming = track.missions.find(
       (m) => m.n > n && !completed.includes(m.n),
     );
@@ -479,6 +586,7 @@ export default function PreviewPage() {
                     <PreviewWorkspace
                       key={`${trackId}-${m.n}`}
                       mission={m}
+                      trackId={trackId}
                       isComplete={isDone}
                       onComplete={() => markComplete(m.n)}
                       enableAiSandbox={trackId === "genai"}
@@ -525,6 +633,11 @@ function AdventureView({
 }: AdventureViewProps) {
   if (openQuest) {
     const isDone = adventureProgress.includes(openQuest.id);
+    const currentIdx = ADVENTURES.findIndex((q) => q.id === openQuest.id);
+    const nextQuest =
+      ADVENTURES.slice(currentIdx + 1).find(
+        (q) => !adventureProgress.includes(q.id),
+      ) ?? ADVENTURES.find((q) => !adventureProgress.includes(q.id) && q.id !== openQuest.id);
     return (
       <AdventureWorkspace
         key={openQuest.id}
@@ -532,6 +645,8 @@ function AdventureView({
         isComplete={isDone}
         onComplete={() => onCompleteQuest(openQuest.id)}
         onBack={onBack}
+        onNext={nextQuest ? () => onOpenQuest(nextQuest.id) : undefined}
+        nextLabel={nextQuest ? `Next: ${nextQuest.planet} →` : undefined}
       />
     );
   }
