@@ -201,12 +201,24 @@ drop policy if exists "preview_progress_staff_read" on public.preview_progress;
 drop policy if exists "preview_adventures_owner" on public.preview_adventures;
 drop policy if exists "preview_adventures_staff_read" on public.preview_adventures;
 
+-- Helper: read current user's role without triggering RLS recursion.
+create or replace function public.current_user_role()
+returns text
+language sql security definer stable set search_path = public
+as $$
+  select role::text from public.profiles where id = auth.uid();
+$$;
+
+grant execute on function public.current_user_role() to authenticated;
+
 -- Profiles: read your own, parents read their kid, staff read all.
+-- NOTE: the staff clause uses current_user_role() (SECURITY DEFINER) to
+-- avoid infinite recursion when a policy on `profiles` queries `profiles`.
 create policy "profiles_select_self" on public.profiles
   for select using (
     auth.uid() = id
     or auth.uid() = parent_id
-    or exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('tutor','teacher','admin'))
+    or public.current_user_role() in ('tutor','teacher','admin')
   );
 create policy "profiles_update_self" on public.profiles
   for update using (auth.uid() = id);
@@ -215,17 +227,17 @@ create policy "profiles_update_self" on public.profiles
 create policy "tracks_read_all" on public.tracks for select using (auth.role() = 'authenticated');
 create policy "missions_read_all" on public.missions for select using (auth.role() = 'authenticated');
 create policy "tracks_admin_all" on public.tracks for all using (
-  exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('tutor','teacher','admin'))
+  public.current_user_role() in ('tutor','teacher','admin')
 );
 create policy "missions_admin_all" on public.missions for all using (
-  exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('tutor','teacher','admin'))
+  public.current_user_role() in ('tutor','teacher','admin')
 );
 
 -- Submissions: own + parents (read) + staff (all).
 create policy "submissions_owner" on public.submissions
   for all using (
     auth.uid() = user_id
-    or exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('tutor','teacher','admin'))
+    or public.current_user_role() in ('tutor','teacher','admin')
   );
 create policy "submissions_parent_read" on public.submissions
   for select using (
@@ -237,7 +249,7 @@ create policy "submissions_parent_read" on public.submissions
 create policy "progress_owner" on public.progress
   for all using (
     auth.uid() = user_id
-    or exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('tutor','teacher','admin'))
+    or public.current_user_role() in ('tutor','teacher','admin')
   );
 create policy "progress_parent_read" on public.progress
   for select using (
@@ -250,7 +262,7 @@ create policy "progress_parent_read" on public.progress
 create policy "classes_owner_all" on public.classes
   for all using (
     teacher_id = auth.uid()
-    or exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
+    or public.current_user_role() = 'admin'
   );
 -- Students can read classes they belong to.
 create policy "classes_member_read" on public.classes
@@ -265,8 +277,7 @@ create policy "class_codes_owner_all" on public.class_codes
     exists (
       select 1 from public.classes c
       where c.id = class_codes.class_id
-        and (c.teacher_id = auth.uid()
-             or exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'))
+        and (c.teacher_id = auth.uid() or public.current_user_role() = 'admin')
     )
   );
 
@@ -276,8 +287,7 @@ create policy "class_members_teacher_read" on public.class_members
     exists (
       select 1 from public.classes c
       where c.id = class_members.class_id
-        and (c.teacher_id = auth.uid()
-             or exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'))
+        and (c.teacher_id = auth.uid() or public.current_user_role() = 'admin')
     )
   );
 create policy "class_members_self_read" on public.class_members
@@ -289,7 +299,7 @@ create policy "preview_progress_owner" on public.preview_progress
   with check (user_id = auth.uid());
 create policy "preview_progress_staff_read" on public.preview_progress
   for select using (
-    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('teacher','admin','tutor'))
+    public.current_user_role() in ('teacher','admin','tutor')
     or exists (
       select 1 from public.class_members m
       join public.classes c on c.id = m.class_id
@@ -302,7 +312,7 @@ create policy "preview_adventures_owner" on public.preview_adventures
   with check (user_id = auth.uid());
 create policy "preview_adventures_staff_read" on public.preview_adventures
   for select using (
-    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('teacher','admin','tutor'))
+    public.current_user_role() in ('teacher','admin','tutor')
     or exists (
       select 1 from public.class_members m
       join public.classes c on c.id = m.class_id
@@ -464,3 +474,32 @@ end;
 $$;
 
 grant execute on function public.create_class(text) to authenticated;
+
+-- ----- RPC: claim_teacher_role ----------------------------------
+-- Self-serve teacher promotion for accounts that signed in via the
+-- "Teacher sign-in" flow. Only promotes students (never demotes admins).
+-- TODO: replace with admin-approval workflow before public launch.
+create or replace function public.claim_teacher_role()
+returns text
+language plpgsql security definer set search_path = public
+as $$
+declare
+  v_user_id uuid := auth.uid();
+  v_current text;
+begin
+  if v_user_id is null then
+    raise exception 'not_authenticated' using errcode = '42501';
+  end if;
+
+  select role::text into v_current from public.profiles where id = v_user_id;
+
+  if v_current in ('teacher', 'admin', 'tutor') then
+    return v_current;
+  end if;
+
+  update public.profiles set role = 'teacher' where id = v_user_id;
+  return 'teacher';
+end;
+$$;
+
+grant execute on function public.claim_teacher_role() to authenticated;

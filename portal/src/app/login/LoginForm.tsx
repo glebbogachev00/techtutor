@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { t, type Locale } from "@/lib/i18n";
 
@@ -9,14 +9,26 @@ type Mode = "student" | "personal" | "guest";
 
 export default function LoginForm({ locale }: { locale: Locale }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [mode, setMode] = useState<Mode>("personal");
+  const [teacherIntent, setTeacherIntent] = useState(false);
 
-  // Personal (magic link)
+  useEffect(() => {
+    if (searchParams.get("teacher") === "1") {
+      setMode("personal");
+      setTeacherIntent(true);
+    }
+  }, [searchParams]);
+
+  // Personal (email OTP)
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
-    "idle",
-  );
+  const [otp, setOtp] = useState("");
+  const [password, setPassword] = useState("");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "sent" | "verifying" | "error"
+  >("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [resendCooldown, setResendCooldown] = useState(0);
 
   // Student code
   const [studentCode, setStudentCode] = useState("");
@@ -26,22 +38,125 @@ export default function LoginForm({ locale }: { locale: Locale }) {
   >("idle");
   const [codeError, setCodeError] = useState("");
 
+  async function handleTeacherPassword(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("verifying");
+    setErrorMsg("");
+    const supabase = createClient();
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email.trim().toLowerCase(),
+      password,
+    });
+    if (error) {
+      setStatus("idle");
+      const msg = error.message.toLowerCase();
+      if (msg.includes("invalid")) {
+        setErrorMsg("Email or password didn't match. Try again.");
+      } else if (msg.includes("not confirmed")) {
+        setErrorMsg(
+          "Email not confirmed yet. Ask the admin to confirm your account.",
+        );
+      } else {
+        setErrorMsg(error.message);
+      }
+      return;
+    }
+    router.push("/teacher");
+    router.refresh();
+  }
+
   async function handlePersonal(e: React.FormEvent) {
     e.preventDefault();
     setStatus("sending");
     setErrorMsg("");
     const supabase = createClient();
+    // No emailRedirectTo => Supabase sends a 6-digit OTP code ({{ .Token }}).
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback`,
+        shouldCreateUser: true,
       },
     });
     if (error) {
       setStatus("error");
-      setErrorMsg(error.message);
+      setErrorMsg(
+        error.message.includes("rate")
+          ? "Too many requests — please wait a minute and try again."
+          : error.message,
+      );
     } else {
       setStatus("sent");
+      startResendCooldown();
+    }
+  }
+
+  async function handleVerifyOtp(e: React.FormEvent) {
+    e.preventDefault();
+    const cleanOtp = otp.replace(/\s+/g, "");
+    if (cleanOtp.length < 8) return;
+    setStatus("verifying");
+    setErrorMsg("");
+    const supabase = createClient();
+    const { error } = await supabase.auth.verifyOtp({
+      email: email.trim().toLowerCase(),
+      token: cleanOtp,
+      type: "email",
+    });
+    if (error) {
+      setStatus("sent");
+      const msg = error.message.toLowerCase();
+      if (msg.includes("expired")) {
+        setErrorMsg(
+          "That code expired. Use the most recent email — older codes are invalidated when you resend. Tap resend if you need a fresh one.",
+        );
+      } else if (msg.includes("invalid")) {
+        setErrorMsg(
+          "That code didn't match. Make sure you copied the full code from the latest email (no spaces).",
+        );
+      } else {
+        setErrorMsg(error.message);
+      }
+      return;
+    }
+    if (teacherIntent) {
+      router.push("/teacher");
+    } else {
+      router.push("/dashboard");
+    }
+    router.refresh();
+  }
+
+  function startResendCooldown() {
+    setResendCooldown(60);
+    const tick = () => {
+      setResendCooldown((s) => {
+        if (s <= 1) return 0;
+        setTimeout(tick, 1000);
+        return s - 1;
+      });
+    };
+    setTimeout(tick, 1000);
+  }
+
+  async function handleResend() {
+    if (resendCooldown > 0) return;
+    setStatus("sending");
+    setErrorMsg("");
+    const supabase = createClient();
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: { shouldCreateUser: true },
+    });
+    if (error) {
+      setStatus("sent");
+      setErrorMsg(
+        error.message.includes("rate")
+          ? "Please wait a minute before requesting another code."
+          : error.message,
+      );
+    } else {
+      setStatus("sent");
+      startResendCooldown();
     }
   }
 
@@ -123,24 +238,145 @@ export default function LoginForm({ locale }: { locale: Locale }) {
         ))}
       </div>
 
-      {/* ── Personal (magic link) ─────────────────────────── */}
+      {/* ── Personal (email OTP code) ─────────────────────── */}
       {mode === "personal" && (
         <>
-          {status === "sent" ? (
-            <div className="text-center py-6">
-              <div
-                className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full"
-                style={{ background: "#E8F0FE" }}
-              >
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#193b92" strokeWidth="2" strokeLinecap="round">
-                  <path d="M4 6h16v12H4z" />
-                  <path d="M4 6l8 7 8-7" />
-                </svg>
+          {teacherIntent && status !== "sent" && status !== "verifying" && (
+            <div className="mb-4 rounded-2xl bg-[#E8F0FE] border border-[#193b92]/20 p-3 flex items-start gap-3">
+              <span className="text-lg">👩‍🏫</span>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-[#193b92]">
+                  Teacher sign-in
+                </p>
+                <p className="text-[11px] text-slate-600 mt-0.5">
+                  Use the email on your teacher account. After verifying, you&apos;ll
+                  land on the teacher dashboard.
+                </p>
               </div>
-              <p className="text-sm text-slate-700">
-                {t(locale, "login.checkInbox", { email })}
-              </p>
+              <button
+                type="button"
+                onClick={() => setTeacherIntent(false)}
+                className="text-slate-400 hover:text-slate-700 text-lg leading-none"
+                aria-label="Dismiss"
+              >
+                ×
+              </button>
             </div>
+          )}
+          {teacherIntent ? (
+            <form onSubmit={handleTeacherPassword} className="space-y-4">
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">
+                  Teacher email
+                </label>
+                <input
+                  type="email"
+                  required
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@school.edu"
+                  className="w-full px-4 py-3 text-sm border border-slate-300 rounded-xl outline-none focus:border-[#193b92] focus:ring-2 focus:ring-[#193b92]/15"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  required
+                  autoComplete="current-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full px-4 py-3 text-sm border border-slate-300 rounded-xl outline-none focus:border-[#193b92] focus:ring-2 focus:ring-[#193b92]/15"
+                />
+              </div>
+              {errorMsg && (
+                <p className="text-red-600 text-sm">{errorMsg}</p>
+              )}
+              <button
+                type="submit"
+                disabled={status === "verifying"}
+                className="w-full bg-[#193b92] hover:bg-[#0f2861] text-white font-semibold text-sm px-6 py-3 rounded-full transition disabled:opacity-60 shadow-[0_4px_15px_rgba(25,59,146,0.25)]"
+              >
+                {status === "verifying" ? "Signing in…" : "Sign in to teacher dashboard"}
+              </button>
+              <p className="text-xs text-slate-500 text-center">
+                Teacher accounts are created by an admin. Contact us if you need one.
+              </p>
+            </form>
+          ) : status === "sent" || status === "verifying" ? (
+            <form onSubmit={handleVerifyOtp} className="space-y-4">
+              <div className="text-center">
+                <div
+                  className="mx-auto mb-3 grid h-14 w-14 place-items-center rounded-full"
+                  style={{ background: "#E8F0FE" }}
+                >
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#193b92" strokeWidth="2" strokeLinecap="round">
+                    <path d="M4 6h16v12H4z" />
+                    <path d="M4 6l8 7 8-7" />
+                  </svg>
+                </div>
+                <p className="text-sm text-slate-700">
+                  We sent a sign-in code to
+                </p>
+                <p className="text-sm font-semibold text-[#0F172A]">{email}</p>
+              </div>
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2 text-center">
+                  Enter code
+                </label>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
+                  required
+                  autoFocus
+                  value={otp}
+                  onChange={(e) =>
+                    setOtp(e.target.value.replace(/\D/g, "").slice(0, 8))
+                  }
+                  placeholder="12345678"
+                  maxLength={8}
+                  className="w-full px-4 py-3 text-center text-2xl font-mono tracking-[0.4em] border border-slate-300 rounded-xl outline-none focus:border-[#193b92] focus:ring-2 focus:ring-[#193b92]/15"
+                />
+              </div>
+              {errorMsg && (
+                <p className="text-red-600 text-sm text-center">{errorMsg}</p>
+              )}
+              <button
+                type="submit"
+                disabled={otp.length < 8 || status === "verifying"}
+                className="w-full bg-[#193b92] hover:bg-[#0f2861] text-white font-semibold text-sm px-6 py-3 rounded-full transition disabled:opacity-60 shadow-[0_4px_15px_rgba(25,59,146,0.25)]"
+              >
+                {status === "verifying" ? "Verifying…" : "Verify & sign in"}
+              </button>
+              <div className="flex items-center justify-between text-xs text-slate-500">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setStatus("idle");
+                    setOtp("");
+                    setErrorMsg("");
+                  }}
+                  className="underline hover:text-[#193b92]"
+                >
+                  Use a different email
+                </button>
+                <button
+                  type="button"
+                  onClick={handleResend}
+                  disabled={resendCooldown > 0}
+                  className="underline hover:text-[#193b92] disabled:no-underline disabled:opacity-60"
+                >
+                  {resendCooldown > 0
+                    ? `Resend in ${resendCooldown}s`
+                    : "Resend code"}
+                </button>
+              </div>
+            </form>
           ) : (
             <form onSubmit={handlePersonal} className="space-y-4">
               <div>
@@ -167,12 +403,10 @@ export default function LoginForm({ locale }: { locale: Locale }) {
                 disabled={status === "sending"}
                 className="w-full bg-[#193b92] hover:bg-[#0f2861] text-white font-semibold text-sm px-6 py-3 rounded-full transition disabled:opacity-60 shadow-[0_4px_15px_rgba(25,59,146,0.25)]"
               >
-                {status === "sending"
-                  ? t(locale, "login.sending")
-                  : t(locale, "login.submit")}
+                {status === "sending" ? "Sending code…" : "Send code"}
               </button>
               <p className="text-xs text-slate-500 text-center">
-                We&apos;ll email you a magic link — no password to remember.
+                We&apos;ll email you a sign-in code &mdash; no password to remember.
               </p>
             </form>
           )}
@@ -249,6 +483,38 @@ export default function LoginForm({ locale }: { locale: Locale }) {
           </p>
         </div>
       )}
+
+      {/* ── Teacher sign-in footer ────────────────────────── */}
+      <div className="mt-8 pt-6 border-t border-slate-200">
+        <button
+          type="button"
+          onClick={() => {
+            setMode("personal");
+            setStatus("idle");
+            setErrorMsg("");
+            setTeacherIntent(true);
+            if (typeof window !== "undefined") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+          className="w-full flex items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-[#193b92]/30 px-4 py-3 text-left transition cursor-pointer"
+        >
+          <div className="flex items-center gap-3 min-w-0">
+            <span className="grid place-items-center h-9 w-9 rounded-full bg-[#E8F0FE] text-lg shrink-0">
+              👩‍🏫
+            </span>
+            <div className="min-w-0">
+              <p className="text-sm font-semibold text-[#0F172A] truncate">
+                Teacher sign-in
+              </p>
+              <p className="text-[11px] text-slate-500 truncate">
+                Use your work email — same code, lands on teacher dashboard.
+              </p>
+            </div>
+          </div>
+          <span className="text-[#193b92] font-bold shrink-0">→</span>
+        </button>
+      </div>
     </div>
   );
 }

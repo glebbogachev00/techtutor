@@ -36,7 +36,18 @@ export async function GET() {
 
   const adventures = (adventureRes.data ?? []).map((r) => r.quest_id as string);
 
-  return NextResponse.json({ signedIn: true, missions, adventures });
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  return NextResponse.json({
+    signedIn: true,
+    role: profile?.role ?? "student",
+    missions,
+    adventures,
+  });
 }
 
 // POST /api/preview/progress  { kind: "mission", trackSlug, missionN, xp } |

@@ -13,7 +13,7 @@ export default async function ClassRoster({ params }: PageProps) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) redirect("/teacher/login");
+  if (!user) redirect("/login?teacher=1");
 
   const { data: profile } = await supabase
     .from("profiles")

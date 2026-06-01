@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { TRACKS, CHARACTERS, ADVENTURES } from "./missions";
 import PreviewWorkspace from "./PreviewWorkspace";
@@ -18,8 +19,15 @@ const DEFAULT_ADVENTURE_PROGRESS: string[] = ["lumen"];
 type Mode = "missions" | "adventure" | "playground";
 
 export default function PreviewPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const initialTrack = (() => {
+    const t = searchParams.get("track");
+    if (t === "web" || t === "python" || t === "genai") return t;
+    return "web";
+  })();
   const [mode, setMode] = useState<Mode>("missions");
-  const [trackId, setTrackId] = useState<"web" | "python" | "genai">("web");
+  const [trackId, setTrackId] = useState<"web" | "python" | "genai">(initialTrack);
   const [progress, setProgress] =
     useState<Record<string, number[]>>(DEFAULT_PROGRESS);
   const [openMission, setOpenMission] = useState<number>(4);
@@ -68,6 +76,10 @@ export default function PreviewPage() {
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
         if (cancelled || !data || !data.signedIn) return;
+        if (data.role === "teacher" || data.role === "admin") {
+          router.replace("/teacher");
+          return;
+        }
         signedInRef.current = true;
         setSignedIn(true);
         const dbMissions = data.missions as Record<string, number[]>;
@@ -88,7 +100,7 @@ export default function PreviewPage() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [router]);
 
   function completeQuest(id: string) {
     setAdventureProgress((prev) =>
@@ -162,17 +174,25 @@ export default function PreviewPage() {
           <Link
             href="/"
             className="flex items-center gap-3 text-2xl font-black tracking-tight"
-            aria-label="TechTutor home"
+            aria-label="TechBash home"
           >
             <span>
               <span className="text-[#193b92]">Tech</span>
-              <span className="text-[#2C7A7B]">Tutor</span>
+              <span className="text-[#2C7A7B]">Bash</span>
             </span>
             <span className="hidden sm:inline text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400 border-l border-slate-200 pl-3">
               Portal
             </span>
           </Link>
           <div className="flex items-center gap-3">
+            {signedIn && (
+              <Link
+                href="/dashboard"
+                className="hidden sm:inline text-xs font-semibold text-[#193b92] hover:underline"
+              >
+                ← Dashboard
+              </Link>
+            )}
             <span className="hidden sm:inline text-sm text-slate-500">
               Total <span className="font-semibold text-[#193b92]">{totalXp}</span> XP
             </span>
@@ -184,13 +204,30 @@ export default function PreviewPage() {
               Reset demo
             </button>
             <span className="text-xs px-2 py-1 rounded-md bg-amber-50 text-amber-700 border border-amber-200 font-semibold">
-              PREVIEW
+              {signedIn ? "MISSIONS" : "GUEST"}
             </span>
           </div>
         </div>
       </header>
 
       <main className="max-w-3xl mx-auto px-6 py-12">
+        {!signedIn && (
+          <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50 p-4 flex items-start gap-3">
+            <span className="text-xl">👋</span>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-semibold text-amber-900">
+                You&apos;re in Guest mode
+              </p>
+              <p className="text-xs text-amber-800 mt-0.5">
+                Your progress won&apos;t be saved.{" "}
+                <Link href="/login" className="font-semibold underline">
+                  Sign in or join a class
+                </Link>{" "}
+                to keep your XP.
+              </p>
+            </div>
+          </div>
+        )}
         {/* Mode toggle */}
         <div className="flex items-center gap-1 mb-6 p-1 bg-slate-100 rounded-full w-fit">
           <button

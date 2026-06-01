@@ -10,6 +10,8 @@ export type ClassRow = {
   created_at: string;
   active_code: string | null;
   member_count: number;
+  top_student_name: string | null;
+  top_student_xp: number;
 };
 
 export default function TeacherClassesUI({
@@ -47,6 +49,8 @@ export default function TeacherClassesUI({
         created_at: new Date().toISOString(),
         active_code: json.class.code,
         member_count: 0,
+        top_student_name: null,
+        top_student_xp: 0,
       },
       ...prev,
     ]);
@@ -158,6 +162,20 @@ export default function TeacherClassesUI({
               <p className="text-xs text-slate-500 mt-1">
                 {c.member_count} {c.member_count === 1 ? "student" : "students"}
               </p>
+              {c.top_student_name ? (
+                <p className="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#7C3AED]" />
+                  <span className="font-semibold text-[#0F172A] truncate">
+                    {c.top_student_name}
+                  </span>
+                  <span className="text-slate-400">leads with</span>
+                  <span className="font-semibold text-[#7C3AED]">
+                    {c.top_student_xp} XP
+                  </span>
+                </p>
+              ) : c.member_count > 0 ? (
+                <p className="text-[11px] text-slate-400 mt-2">No XP earned yet</p>
+              ) : null}
               <div className="mt-4 pt-4 border-t border-slate-100">
                 <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400 mb-1">
                   Active code

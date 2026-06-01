@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import Logo from "@/components/Logo";
@@ -11,7 +12,7 @@ export default async function TeacherDashboard() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) redirect("/teacher/login");
+  if (!user) redirect("/login?teacher=1");
 
   const { data: profile } = await supabase
     .from("profiles")
@@ -41,23 +42,83 @@ export default async function TeacherDashboard() {
           .select("class_id, code")
           .in("class_id", ids)
           .eq("active", true),
-        supabase.from("class_members").select("class_id").in("class_id", ids),
+        supabase
+          .from("class_members")
+          .select("class_id, student_id")
+          .in("class_id", ids),
       ]);
 
       const codeMap = new Map<string, string>();
       (codes ?? []).forEach((c) => codeMap.set(c.class_id, c.code));
-      const memberMap = new Map<string, number>();
+
+      // class_id -> student_id[]
+      const classStudents = new Map<string, string[]>();
       (members ?? []).forEach((m) => {
-        memberMap.set(m.class_id, (memberMap.get(m.class_id) ?? 0) + 1);
+        const arr = classStudents.get(m.class_id) ?? [];
+        arr.push(m.student_id);
+        classStudents.set(m.class_id, arr);
       });
 
-      classes = rows.map((r) => ({
-        id: r.id,
-        name: r.name,
-        created_at: r.created_at,
-        active_code: codeMap.get(r.id) ?? null,
-        member_count: memberMap.get(r.id) ?? 0,
-      }));
+      // XP per student across preview tables
+      const allStudentIds = Array.from(
+        new Set((members ?? []).map((m) => m.student_id)),
+      );
+      const xpByStudent = new Map<string, number>();
+      const nameByStudent = new Map<string, string | null>();
+      if (allStudentIds.length > 0) {
+        const [{ data: prog }, { data: adv }, { data: profs }] =
+          await Promise.all([
+            supabase
+              .from("preview_progress")
+              .select("user_id, xp_earned")
+              .in("user_id", allStudentIds),
+            supabase
+              .from("preview_adventures")
+              .select("user_id, xp_earned")
+              .in("user_id", allStudentIds),
+            supabase
+              .from("profiles")
+              .select("id, full_name")
+              .in("id", allStudentIds),
+          ]);
+        (prog ?? []).forEach((r) => {
+          xpByStudent.set(
+            r.user_id as string,
+            (xpByStudent.get(r.user_id as string) ?? 0) + (r.xp_earned ?? 0),
+          );
+        });
+        (adv ?? []).forEach((r) => {
+          xpByStudent.set(
+            r.user_id as string,
+            (xpByStudent.get(r.user_id as string) ?? 0) + (r.xp_earned ?? 0),
+          );
+        });
+        (profs ?? []).forEach((p) => {
+          nameByStudent.set(p.id as string, (p.full_name as string) ?? null);
+        });
+      }
+
+      classes = rows.map((r) => {
+        const studentIds = classStudents.get(r.id) ?? [];
+        let topId: string | null = null;
+        let topXp = 0;
+        for (const sid of studentIds) {
+          const xp = xpByStudent.get(sid) ?? 0;
+          if (xp > topXp) {
+            topXp = xp;
+            topId = sid;
+          }
+        }
+        return {
+          id: r.id,
+          name: r.name,
+          created_at: r.created_at,
+          active_code: codeMap.get(r.id) ?? null,
+          member_count: studentIds.length,
+          top_student_name: topId ? nameByStudent.get(topId) ?? null : null,
+          top_student_xp: topXp,
+        };
+      });
     }
   } catch {
     classes = [];
@@ -74,6 +135,14 @@ export default async function TeacherDashboard() {
             <span className="text-slate-500 hidden sm:inline">
               {displayName}
             </span>
+            <Image
+              src="/characters/captain-pixel.png"
+              alt="Captain Pixel"
+              width={36}
+              height={36}
+              className="h-9 w-9 rounded-full bg-[#FEF3C7] ring-2 ring-[#193b92]/10 object-cover"
+              priority
+            />
             <Link
               href="/auth/signout"
               className="text-slate-500 hover:text-[#0F172A]"
