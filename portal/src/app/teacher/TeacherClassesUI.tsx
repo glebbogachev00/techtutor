@@ -80,6 +80,30 @@ export default function TeacherClassesUI({
     );
   }
 
+  async function deleteClass(classId: string, name: string) {
+    if (
+      !window.confirm(
+        `Delete the class "${name}"?\n\nThis removes the class, its codes, and every student's membership in it. Student accounts and XP are kept. This can't be undone.`,
+      )
+    )
+      return;
+    setError("");
+    setBusyId(classId);
+    const res = await fetch("/api/teacher/class/delete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ classId }),
+    });
+    const json = await res.json().catch(() => ({}));
+    setBusyId(null);
+    if (!res.ok) {
+      setError(json?.message || "Could not delete class.");
+      return;
+    }
+    setClasses((prev) => prev.filter((c) => c.id !== classId));
+    startTransition(() => router.refresh());
+  }
+
   return (
     <>
       <div className="flex items-end justify-between mb-8 flex-wrap gap-4">
@@ -191,7 +215,7 @@ export default function TeacherClassesUI({
                   disabled={busyId === c.id}
                   className="flex-1 text-xs font-semibold text-[#7C3AED] border border-[#7C3AED]/30 hover:bg-[#F5F0FF] rounded-full py-2 disabled:opacity-60"
                 >
-                  {busyId === c.id ? "Rotating…" : "Rotate code"}
+                  {busyId === c.id ? "Working…" : "Rotate code"}
                 </button>
                 <Link
                   href={`/teacher/class/${c.id}`}
@@ -200,6 +224,14 @@ export default function TeacherClassesUI({
                   View roster
                 </Link>
               </div>
+              <button
+                type="button"
+                onClick={() => deleteClass(c.id, c.name)}
+                disabled={busyId === c.id}
+                className="mt-2 text-[11px] font-semibold text-slate-400 hover:text-red-600 transition disabled:opacity-60"
+              >
+                Delete class
+              </button>
             </div>
           ))}
         </div>
