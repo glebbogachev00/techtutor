@@ -38,13 +38,15 @@ export async function GET() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("role")
+    .select("role, full_name, avatar_emoji")
     .eq("id", user.id)
     .maybeSingle();
 
   return NextResponse.json({
     signedIn: true,
     role: profile?.role ?? "student",
+    fullName: profile?.full_name ?? null,
+    avatarEmoji: profile?.avatar_emoji ?? null,
     missions,
     adventures,
   });

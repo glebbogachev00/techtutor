@@ -102,6 +102,10 @@ export default function PreviewPage() {
   const [openQuestId, setOpenQuestId] = useState<string | null>(null);
   // Start false to match SSR, then hydrate from cached flag in an effect to avoid a guest-mode flash.
   const [signedIn, setSignedIn] = useState<boolean>(false);
+  const [profile, setProfile] = useState<{
+    fullName: string | null;
+    avatarEmoji: string | null;
+  }>({ fullName: null, avatarEmoji: null });
   const signedInRef = useRef<boolean>(false);
 
   useEffect(() => {
@@ -184,6 +188,10 @@ export default function PreviewPage() {
         signedInRef.current = true;
         setSignedIn(true);
         writeCachedSignedIn(true);
+        setProfile({
+          fullName: (data.fullName as string | null) ?? null,
+          avatarEmoji: (data.avatarEmoji as string | null) ?? null,
+        });
         const dbMissions = data.missions as Record<string, number[]>;
         const merged: Record<string, number[]> = { web: [], python: [], genai: [] };
         Object.keys(merged).forEach((k) => {
@@ -287,17 +295,36 @@ export default function PreviewPage() {
             {signedIn && (
               <Link
                 href="/dashboard"
-                className="hidden sm:inline text-xs font-semibold text-[#193b92] hover:underline"
+                className="text-xs font-semibold text-[#193b92] hover:underline px-3 py-1.5 rounded-full border border-[#193b92]/20 hover:bg-[#193b92]/5 transition"
               >
-                ← Dashboard
+                Dashboard
               </Link>
             )}
             <span className="hidden sm:inline text-sm text-slate-500">
               Total <span className="font-semibold text-[#193b92]">{totalXp}</span> XP
             </span>
-            <span className="text-xs px-2 py-1 rounded-md bg-amber-50 text-amber-700 border border-amber-200 font-semibold">
-              {signedIn ? "MISSIONS" : "GUEST"}
-            </span>
+            {signedIn ? (
+              <Link
+                href="/profile"
+                aria-label="Your profile"
+                title={profile.fullName ?? "Your profile"}
+                className="w-9 h-9 rounded-full bg-gradient-to-br from-[#193b92] to-[#2C7A7B] text-white grid place-items-center text-base font-bold shadow-[0_2px_8px_rgba(15,23,42,0.15)] hover:scale-105 transition"
+              >
+                {profile.avatarEmoji ??
+                  (profile.fullName
+                    ? profile.fullName.trim().charAt(0).toUpperCase()
+                    : "★")}
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                aria-label="Sign in"
+                title="Sign in"
+                className="w-9 h-9 rounded-full bg-amber-50 border border-amber-200 text-amber-700 grid place-items-center text-base font-bold hover:bg-amber-100 transition"
+              >
+                👋
+              </Link>
+            )}
           </div>
         </div>
       </header>
