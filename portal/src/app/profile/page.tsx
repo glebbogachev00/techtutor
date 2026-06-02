@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import Logo from "@/components/Logo";
 import ProfileForm from "./ProfileForm";
 import { ACHIEVEMENTS } from "@/lib/achievements";
 import type { AchievementTier } from "@/lib/achievements";
@@ -64,15 +63,44 @@ export default async function ProfilePage() {
     <main className="min-h-screen bg-[#FAFAFA] text-[#0F172A]">
       <header className="bg-white border-b border-slate-200">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Logo href={homeHref} size="md" />
-          <form action="/auth/signout" method="POST">
-            <button
-              type="submit"
-              className="text-sm text-slate-500 hover:text-[#0F172A]"
+          <Link
+            href={homeHref}
+            className="flex items-center gap-3 text-2xl font-black tracking-tight"
+            aria-label="TechBash home"
+          >
+            <span>
+              <span className="text-[#193b92]">Tech</span>
+              <span className="text-[#2C7A7B]">Bash</span>
+            </span>
+            <span className="hidden sm:inline text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400 border-l border-slate-200 pl-3">
+              Portal
+            </span>
+          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href={homeHref}
+              className="text-xs font-semibold text-[#193b92] hover:underline px-3 py-1.5 rounded-full border border-[#193b92]/20 hover:bg-[#193b92]/5 transition"
             >
-              Sign out
-            </button>
-          </form>
+              Dashboard
+            </Link>
+            <Link
+              href="/preview"
+              className="text-xs font-semibold text-[#193b92] hover:underline px-3 py-1.5 rounded-full border border-[#193b92]/20 hover:bg-[#193b92]/5 transition"
+            >
+              Missions
+            </Link>
+            <span className="hidden sm:inline text-sm text-slate-500">
+              Total <span className="font-semibold text-[#193b92]">{totalXp.toLocaleString()}</span> XP
+            </span>
+            <form action="/auth/signout" method="POST">
+              <button
+                type="submit"
+                className="text-sm text-slate-500 hover:text-[#0F172A]"
+              >
+                Sign out
+              </button>
+            </form>
+          </div>
         </div>
       </header>
 
@@ -181,21 +209,6 @@ export default async function ProfilePage() {
               </dd>
             </div>
           </dl>
-        </div>
-
-        <div className="flex items-center justify-between">
-          <Link
-            href={homeHref}
-            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-[#0F172A] hover:bg-slate-50 transition"
-          >
-            ← Dashboard
-          </Link>
-          <Link
-            href="/preview"
-            className="inline-flex items-center gap-2 bg-[#193b92] hover:bg-[#2952b8] text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition"
-          >
-            Open Preview
-          </Link>
         </div>
       </div>
     </main>
