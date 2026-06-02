@@ -189,13 +189,13 @@ export default async function DashboardHome() {
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40">
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <Logo href="/dashboard" size="md" suffix="Portal" />
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <Link
               href="/profile"
-              className="h-8 w-8 rounded-full bg-gradient-to-br from-[#193b92] to-[#7C3AED] flex items-center justify-center text-white text-sm font-bold hover:opacity-90 transition"
-              title="Profile"
+              className="h-9 w-9 rounded-full overflow-hidden border-2 border-[#193b92]/20 hover:border-[#193b92]/60 transition"
+              title="Your profile"
             >
-              {(name[0] ?? "?").toUpperCase()}
+              <Image src="/characters/captain-pixel.png" alt="Profile" width={36} height={36} className="h-full w-full object-cover" />
             </Link>
             <Link
               href="/auth/signout"
@@ -208,34 +208,34 @@ export default async function DashboardHome() {
       </header>
 
       {/* ── Hero launch band ── */}
-      <section className="bg-gradient-to-br from-[#0F172A] via-[#162554] to-[#0F172A] text-white">
-        <div className="max-w-5xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-8">
+      <section className="bg-white border-b border-slate-200">
+        <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#E89F47] mb-2">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#193b92] mb-2">
               Your portal
             </p>
-            <h1 className="text-3xl md:text-4xl font-black leading-tight">
+            <h1 className="text-3xl md:text-4xl font-black leading-tight text-[#0F172A]">
               Welcome back,<br />{name}!
             </h1>
-            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-300">
+            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-500">
               <span>⭐ {totalXp.toLocaleString()} XP</span>
-              <span className="text-slate-600">·</span>
+              <span className="text-slate-300">·</span>
               <span>Level {level}</span>
-              <span className="text-slate-600">·</span>
+              <span className="text-slate-300">·</span>
               <span>{totalCompleted} missions done</span>
             </div>
             {/* Streak badge */}
             <div className="mt-4">
               {streakAlive && streakCount > 0 ? (
-                <span className="inline-flex items-center gap-1.5 bg-orange-500/20 border border-orange-400/30 text-orange-300 text-sm font-bold px-3 py-1 rounded-full">
+                <span className="inline-flex items-center gap-1.5 bg-orange-50 border border-orange-200 text-orange-700 text-sm font-bold px-3 py-1 rounded-full">
                   🔥 {streakCount}-day streak — keep it going!
                 </span>
               ) : guiltMessage ? (
-                <span className="inline-flex items-center gap-1.5 bg-slate-700/60 border border-slate-600 text-slate-300 text-sm px-3 py-1.5 rounded-full italic">
-                  💬 &quot;{guiltMessage}&quot; — <span className="font-semibold not-italic text-white">Captain Pixel</span>
+                <span className="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-500 text-sm px-3 py-1.5 rounded-full italic">
+                  💬 &quot;{guiltMessage}&quot; — <span className="font-semibold not-italic text-[#0F172A]">Captain Pixel</span>
                 </span>
               ) : (
-                <span className="inline-flex items-center gap-1.5 bg-slate-700/40 border border-slate-600/50 text-slate-400 text-xs px-3 py-1 rounded-full">
+                <span className="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-400 text-xs px-3 py-1 rounded-full">
                   🔥 Complete a mission today to start your streak
                 </span>
               )}
@@ -244,25 +244,25 @@ export default async function DashboardHome() {
           <div className="flex flex-col items-center md:items-end gap-3 shrink-0">
             <Link
               href={`/preview?track=${topTrack}`}
-              className="inline-flex items-center gap-2 bg-[#E89F47] hover:bg-[#d4883c] text-[#0F172A] font-black text-base px-8 py-4 rounded-2xl shadow-[0_8px_30px_rgba(232,159,71,0.4)] transition"
+              className="inline-flex items-center gap-2 bg-[#193b92] hover:bg-[#2952b8] text-white font-black text-base px-8 py-4 rounded-2xl shadow-[0_4px_20px_rgba(25,59,146,0.25)] transition"
             >
-              Launch TechBash
+              Continue Learning
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </Link>
             <p className="text-xs text-slate-400">
-              Continue from Mission {nextMissionN} · {TRACK_META[topTrack].title}
+              Mission {nextMissionN} · {TRACK_META[topTrack].title}
             </p>
           </div>
         </div>
         {/* XP progress strip */}
-        <div className="border-t border-white/10">
-          <div className="max-w-5xl mx-auto px-6 py-3 flex items-center gap-3 text-xs text-slate-400">
-            <span className="font-semibold text-white whitespace-nowrap">Level {level}</span>
-            <div className="flex-1 h-1.5 rounded-full bg-white/10 overflow-hidden">
+        <div className="border-t border-slate-100">
+          <div className="max-w-5xl mx-auto px-6 py-3 flex items-center gap-3 text-xs text-slate-500">
+            <span className="font-semibold text-[#0F172A] whitespace-nowrap">Level {level}</span>
+            <div className="flex-1 h-1.5 rounded-full bg-slate-100 overflow-hidden">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-[#E89F47] to-[#7C3AED] transition-all"
+                className="h-full rounded-full bg-gradient-to-r from-[#193b92] to-[#2C7A7B] transition-all"
                 style={{ width: `${pct}%` }}
               />
             </div>
