@@ -193,12 +193,17 @@ export default function LoginForm({ locale }: { locale: Locale }) {
         return;
       }
 
-      // Server returned session tokens — hydrate the client session.
-      if (json.accessToken && json.refreshToken) {
-        await supabase.auth.setSession({
-          access_token: json.accessToken,
-          refresh_token: json.refreshToken,
-        });
+      // Server verified credentials and returned the fabricated email.
+      // Sign in directly from the browser so cookies are set correctly.
+      const { error: signInErr } = await supabase.auth.signInWithPassword({
+        email: json.email,
+        password: studentPin.trim(),
+      });
+
+      if (signInErr) {
+        setCodeStatus("error");
+        setCodeError(signInErr.message ?? "Sign-in failed. Try again.");
+        return;
       }
 
       setCodeStatus("success");

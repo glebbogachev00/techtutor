@@ -52,26 +52,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "invalid_credentials", message: "Name or PIN didn't match." }, { status: 401 });
     }
 
-    // Sign in with the fabricated email + PIN as password.
-    const { data: signInData, error: signInError } =
-      await serviceClient.auth.signInWithPassword({
-        email: String(fabricatedEmail),
-        password: pin,
-      });
-
-    if (signInError || !signInData.session) {
-      return NextResponse.json(
-        { error: "sign_in_failed", message: signInError?.message ?? "Sign-in failed." },
-        { status: 401 },
-      );
-    }
-
-    // Return the session tokens so the client can call setSession().
+    // Return the email to the client — it will call signInWithPassword directly.
+    // (Server-side signInWithPassword with service role doesn't set browser cookies.)
     return NextResponse.json({
       ok: true,
       mode: "pin",
-      accessToken: signInData.session.access_token,
-      refreshToken: signInData.session.refresh_token,
+      email: String(fabricatedEmail),
     });
   }
 
