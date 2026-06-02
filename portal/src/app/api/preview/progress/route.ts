@@ -70,6 +70,7 @@ export async function POST(req: Request) {
 
   // Helper: update streak on the profile after any progress save.
   async function updateStreak() {
+    if (!user) return;
     const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD UTC
     const { data: prof } = await supabase
       .from("profiles")
