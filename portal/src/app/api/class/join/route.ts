@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { createClient as createServiceClient } from "@supabase/supabase-js";
 
 export const runtime = "nodejs";
 
@@ -7,15 +8,74 @@ export async function POST(req: Request) {
   const body = await req.json().catch(() => ({}));
   const code = String(body?.code ?? "").trim();
   const displayName = String(body?.displayName ?? "").trim();
+  const pin = String(body?.pin ?? "").trim();
 
   if (!code) {
     return NextResponse.json({ error: "missing_code" }, { status: 400 });
   }
 
-  const supabase = await createClient();
+  // ── PIN flow (teacher pre-registered student) ──────────────────────────
+  if (pin && displayName) {
+    // Use service client to look up the fabricated email via RPC.
+    const serviceClient = createServiceClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    );
 
-  // Must already have a session (anonymous or email). LoginForm signs in
-  // anonymously before calling this endpoint.
+    const { data: lookupData, error: lookupError } = await serviceClient.rpc(
+      "student_lookup",
+      { p_code: code, p_name: displayName, p_pin: pin },
+    );
+
+    if (lookupError) {
+      const msg = lookupError.message ?? "";
+      if (msg.includes("invalid_code")) {
+        return NextResponse.json(
+          { error: "invalid_code", message: "That class code didn't match an active class." },
+          { status: 404 },
+        );
+      }
+      if (msg.includes("invalid_credentials")) {
+        return NextResponse.json(
+          { error: "invalid_credentials", message: "Name or PIN didn't match. Try again." },
+          { status: 401 },
+        );
+      }
+      return NextResponse.json({ error: "lookup_failed", message: msg }, { status: 500 });
+    }
+
+    const fabricatedEmail =
+      Array.isArray(lookupData) ? lookupData[0] : lookupData;
+
+    if (!fabricatedEmail) {
+      return NextResponse.json({ error: "invalid_credentials", message: "Name or PIN didn't match." }, { status: 401 });
+    }
+
+    // Sign in with the fabricated email + PIN as password.
+    const { data: signInData, error: signInError } =
+      await serviceClient.auth.signInWithPassword({
+        email: String(fabricatedEmail),
+        password: pin,
+      });
+
+    if (signInError || !signInData.session) {
+      return NextResponse.json(
+        { error: "sign_in_failed", message: signInError?.message ?? "Sign-in failed." },
+        { status: 401 },
+      );
+    }
+
+    // Return the session tokens so the client can call setSession().
+    return NextResponse.json({
+      ok: true,
+      mode: "pin",
+      accessToken: signInData.session.access_token,
+      refreshToken: signInData.session.refresh_token,
+    });
+  }
+
+  // ── Anonymous flow (legacy — no PIN) ──────────────────────────────────
+  const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -45,7 +105,9 @@ export async function POST(req: Request) {
   const row = Array.isArray(data) ? data[0] : data;
   return NextResponse.json({
     ok: true,
+    mode: "anonymous",
     classId: row?.class_id ?? null,
     className: row?.class_name ?? null,
   });
 }
+

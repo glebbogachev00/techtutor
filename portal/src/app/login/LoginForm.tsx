@@ -33,6 +33,7 @@ export default function LoginForm({ locale }: { locale: Locale }) {
   // Student code
   const [studentCode, setStudentCode] = useState("");
   const [studentName, setStudentName] = useState("");
+  const [studentPin, setStudentPin] = useState("");
   const [codeStatus, setCodeStatus] = useState<
     "idle" | "checking" | "error" | "success"
   >("idle");
@@ -166,7 +167,46 @@ export default function LoginForm({ locale }: { locale: Locale }) {
     setCodeError("");
     const supabase = createClient();
 
-    // 1. Sign in anonymously if not already signed in.
+    // ── PIN flow: name + code + PIN ───────────────────────────────────────
+    if (studentPin.trim()) {
+      const res = await fetch("/api/class/join", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: studentCode,
+          displayName: studentName,
+          pin: studentPin.trim(),
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        setCodeStatus("error");
+        setCodeError(
+          json?.message ||
+            (json?.error === "invalid_code"
+              ? "That class code didn't match an active class."
+              : json?.error === "invalid_credentials"
+                ? "Name or PIN didn't match. Ask your teacher to check."
+                : "Could not sign in. Try again."),
+        );
+        return;
+      }
+
+      // Server returned session tokens — hydrate the client session.
+      if (json.accessToken && json.refreshToken) {
+        await supabase.auth.setSession({
+          access_token: json.accessToken,
+          refresh_token: json.refreshToken,
+        });
+      }
+
+      setCodeStatus("success");
+      window.location.assign("/dashboard");
+      return;
+    }
+
+    // ── Anonymous flow (legacy, no PIN) ───────────────────────────────────
     const { data: sessionData } = await supabase.auth.getSession();
     if (!sessionData.session) {
       const { error: anonErr } = await supabase.auth.signInAnonymously();
@@ -181,7 +221,6 @@ export default function LoginForm({ locale }: { locale: Locale }) {
       }
     }
 
-    // 2. Call the join endpoint.
     const res = await fetch("/api/class/join", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -443,6 +482,24 @@ export default function LoginForm({ locale }: { locale: Locale }) {
               className="w-full px-4 py-3 text-center text-lg font-mono tracking-widest border border-slate-300 rounded-xl outline-none focus:border-[#193b92] focus:ring-2 focus:ring-[#193b92]/15"
             />
           </div>
+          <div>
+            <label className="block text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">
+              PIN <span className="text-slate-400 font-normal normal-case">(from your teacher)</span>
+            </label>
+            <input
+              type="text"
+              inputMode="numeric"
+              pattern="\d{4}"
+              maxLength={4}
+              value={studentPin}
+              onChange={(e) => setStudentPin(e.target.value.replace(/\D/g, "").slice(0, 4))}
+              placeholder="1234"
+              className="w-full px-4 py-3 text-center text-2xl font-mono tracking-[0.5em] border border-slate-300 rounded-xl outline-none focus:border-[#193b92] focus:ring-2 focus:ring-[#193b92]/15"
+            />
+            <p className="text-[11px] text-slate-400 mt-1">
+              Leave blank to join as a guest student (progress may not save across devices).
+            </p>
+          </div>
           {codeStatus === "error" && (
             <p className="text-red-600 text-sm text-center">{codeError}</p>
           )}
@@ -454,7 +511,7 @@ export default function LoginForm({ locale }: { locale: Locale }) {
             {codeStatus === "checking" ? "Joining…" : "Join class"}
           </button>
           <p className="text-xs text-slate-500 text-center">
-            No email needed. Your teacher gives you a fresh code each week.
+            No email needed. Your teacher gives you a code and PIN.
           </p>
         </form>
       )}
