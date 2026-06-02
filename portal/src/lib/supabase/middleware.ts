@@ -33,10 +33,15 @@ export async function updateSession(request: NextRequest) {
     },
   );
 
-  // Refresh session if expired
+  // Use getSession() here so middleware only makes a Supabase network call when
+  // the access token is actually expired. Using getUser() on every request
+  // causes concurrent refresh attempts across parallel API calls, which makes
+  // Supabase invalidate the session immediately after login.
+  // Individual pages/routes still call getUser() for authoritative auth checks.
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    data: { session },
+  } = await supabase.auth.getSession();
+  const user = session?.user ?? null;
 
   const { pathname } = request.nextUrl;
   const isProtected =
