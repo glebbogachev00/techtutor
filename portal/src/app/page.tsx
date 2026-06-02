@@ -36,6 +36,7 @@ export default async function Home() {
             <a href="#crew" className="hover:text-[#193b92] transition">Meet the crew</a>
           </nav>
           <div className="flex items-center gap-3">
+            <a href="https://techtutor.academy" className="hidden md:inline text-xs text-slate-400 hover:text-slate-600 transition whitespace-nowrap">← TechTutor</a>
             <Link href="/login" className="rounded-full border-2 border-[#193b92] text-[#193b92] px-5 py-2 text-sm font-semibold hover:bg-[#193b92] hover:text-white transition whitespace-nowrap">
               Log in
             </Link>
