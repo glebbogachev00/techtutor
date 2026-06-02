@@ -61,8 +61,10 @@ export default function LoginForm({ locale }: { locale: Locale }) {
       }
       return;
     }
-    router.push("/teacher");
-    router.refresh();
+    // Hard navigation so the next request carries the freshly-set Supabase
+    // auth cookies. router.push() can race with cookie writes and leave the
+    // server thinking the user is still a guest.
+    window.location.assign("/teacher");
   }
 
   async function handlePersonal(e: React.FormEvent) {
@@ -118,12 +120,10 @@ export default function LoginForm({ locale }: { locale: Locale }) {
       }
       return;
     }
-    if (teacherIntent) {
-      router.push("/teacher");
-    } else {
-      router.push("/dashboard");
-    }
-    router.refresh();
+    // Hard navigation so the next request carries the freshly-set Supabase
+    // auth cookies. router.push() can race with cookie writes and leave the
+    // server thinking the user is still a guest.
+    window.location.assign(teacherIntent ? "/teacher" : "/dashboard");
   }
 
   function startResendCooldown() {
@@ -204,8 +204,7 @@ export default function LoginForm({ locale }: { locale: Locale }) {
     }
 
     setCodeStatus("success");
-    router.push("/dashboard");
-    router.refresh();
+    window.location.assign("/dashboard");
   }
 
   function handleGuest() {
