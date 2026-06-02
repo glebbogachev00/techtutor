@@ -34,7 +34,6 @@ export default async function Home() {
           <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-700">
             <a href="#demo" className="hover:text-[#193b92] transition">See it in action</a>
             <a href="#crew" className="hover:text-[#193b92] transition">Meet the crew</a>
-            <a href="https://techtutor.academy/en/plans-and-faq.html" className="hover:text-[#193b92] transition">Pricing</a>
           </nav>
           <div className="flex items-center gap-3">
             <Link href="/login" className="rounded-full border-2 border-[#193b92] text-[#193b92] px-5 py-2 text-sm font-semibold hover:bg-[#193b92] hover:text-white transition whitespace-nowrap">
@@ -338,7 +337,6 @@ export default async function Home() {
           </div>
           <div className="flex flex-wrap gap-6 text-sm text-slate-400">
             <a href="https://techtutor.academy" className="hover:text-white transition">TechTutor Academy</a>
-            <a href="https://techtutor.academy/en/plans-and-faq.html" className="hover:text-white transition">Pricing</a>
             <a href="https://techtutor.academy/en/blog.html" className="hover:text-white transition">Blog</a>
             <a href="mailto:hello@techtutor.academy" className="hover:text-white transition">Contact</a>
           </div>
