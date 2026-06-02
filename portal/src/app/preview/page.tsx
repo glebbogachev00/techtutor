@@ -98,7 +98,15 @@ function PreviewPageInner() {
   const [trackId, setTrackId] = useState<"web" | "python" | "genai">(initialTrack);
   const [progress, setProgress] =
     useState<Record<string, number[]>>(DEFAULT_PROGRESS);
-  const [openMission, setOpenMission] = useState<number>(4);
+  const [openMission, setOpenMission] = useState<number>(() => {
+    // Open the first uncompleted mission in the initial track on first render.
+    const initialTrackObj = TRACKS.find((t) => t.id === initialTrack);
+    const initialCompleted = DEFAULT_PROGRESS[initialTrack] ?? [];
+    return (
+      initialTrackObj?.missions.find((m) => !initialCompleted.includes(m.n))
+        ?.n ?? 1
+    );
+  });
   const [adventureProgress, setAdventureProgress] = useState<string[]>(
     DEFAULT_ADVENTURE_PROGRESS,
   );
@@ -167,6 +175,13 @@ function PreviewPageInner() {
           new Set([...DEFAULT_ADVENTURE_PROGRESS, ...(cached.adventures ?? [])]),
         ),
       );
+      // Open the first uncompleted mission for the current track.
+      const currentTrackObj = TRACKS.find((t) => t.id === initialTrack);
+      const currentCompleted = mergedM[initialTrack] ?? [];
+      const nextOpen = currentTrackObj?.missions.find(
+        (m) => !currentCompleted.includes(m.n),
+      );
+      if (nextOpen) setOpenMission(nextOpen.n);
     }
 
     let cancelled = false;
@@ -207,6 +222,13 @@ function PreviewPageInner() {
         );
         setAdventureProgress(mergedAdv);
         writeCache(merged, mergedAdv);
+        // Update open mission to the first uncompleted in current track.
+        const currentTrackObj = TRACKS.find((t) => t.id === trackId);
+        const currentCompleted = merged[trackId] ?? [];
+        const nextOpen = currentTrackObj?.missions.find(
+          (m) => !currentCompleted.includes(m.n),
+        );
+        if (nextOpen) setOpenMission(nextOpen.n);
       })
       .catch(() => {});
     return () => {
