@@ -51,5 +51,5 @@ export async function POST(req: Request) {
   }
 
   const row = Array.isArray(data) ? data[0] : data;
-  return NextResponse.json({ ok: true, pin: row?.pin ?? null, studentId: row?.student_id ?? null });
+  return NextResponse.json({ ok: true, pin: row?.out_pin ?? null, studentId: row?.out_student_id ?? null });
 }

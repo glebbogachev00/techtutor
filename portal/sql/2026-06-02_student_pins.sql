@@ -24,7 +24,7 @@ create or replace function public.teacher_add_student(
   p_class_id  uuid,
   p_name      text
 )
-returns table (pin text, student_id uuid)
+returns table (out_pin text, out_student_id uuid)
 language plpgsql
 security definer
 set search_path = public
