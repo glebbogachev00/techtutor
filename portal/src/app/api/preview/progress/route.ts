@@ -65,17 +65,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "not_authenticated" }, { status: 401 });
   }
 
+  const userId: string = user.id;
   const body = await req.json().catch(() => ({}));
   const kind = body?.kind;
 
   // Helper: update streak on the profile after any progress save.
   async function updateStreak() {
-    if (!user) return;
     const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD UTC
     const { data: prof } = await supabase
       .from("profiles")
       .select("streak_count, last_active_date")
-      .eq("id", user.id)
+      .eq("id", userId)
       .maybeSingle();
     const lastDate = prof?.last_active_date as string | null;
     const currentStreak = (prof?.streak_count as number) ?? 0;
@@ -85,7 +85,7 @@ export async function POST(req: Request) {
     await supabase
       .from("profiles")
       .update({ streak_count: newStreak, last_active_date: today })
-      .eq("id", user.id);
+      .eq("id", userId);
   }
 
   if (kind === "mission") {
