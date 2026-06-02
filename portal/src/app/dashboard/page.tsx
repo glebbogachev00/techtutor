@@ -210,35 +210,45 @@ export default async function DashboardHome() {
       {/* ── Hero launch band ── */}
       <section className="bg-white border-b border-slate-200">
         <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#193b92] mb-2">
-              Your portal
-            </p>
-            <h1 className="text-3xl md:text-4xl font-black leading-tight text-[#0F172A]">
-              Welcome back,<br />{name}!
-            </h1>
-            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-500">
-              <span>⭐ {totalXp.toLocaleString()} XP</span>
-              <span className="text-slate-300">·</span>
-              <span>Level {level}</span>
-              <span className="text-slate-300">·</span>
-              <span>{totalCompleted} missions done</span>
-            </div>
-            {/* Streak badge */}
-            <div className="mt-4">
-              {streakAlive && streakCount > 0 ? (
-                <span className="inline-flex items-center gap-1.5 bg-orange-50 border border-orange-200 text-orange-700 text-sm font-bold px-3 py-1 rounded-full">
-                  🔥 {streakCount}-day streak — keep it going!
-                </span>
-              ) : guiltMessage ? (
-                <span className="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-500 text-sm px-3 py-1.5 rounded-full italic">
-                  💬 &quot;{guiltMessage}&quot; — <span className="font-semibold not-italic text-[#0F172A]">Captain Pixel</span>
-                </span>
-              ) : (
-                <span className="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-400 text-xs px-3 py-1 rounded-full">
-                  🔥 Complete a mission today to start your streak
-                </span>
-              )}
+          <div className="flex items-center gap-5">
+            <Image
+              src="/characters/pixel-full.png"
+              alt="Captain Pixel"
+              width={96}
+              height={96}
+              className="h-20 w-20 md:h-24 md:w-24 object-contain shrink-0 drop-shadow-sm"
+              priority
+            />
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-[#193b92] mb-2">
+                Your portal
+              </p>
+              <h1 className="text-3xl md:text-4xl font-black leading-tight text-[#0F172A]">
+                Welcome back,<br />{name}!
+              </h1>
+              <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-500">
+                <span>⭐ {totalXp.toLocaleString()} XP</span>
+                <span className="text-slate-300">·</span>
+                <span>Level {level}</span>
+                <span className="text-slate-300">·</span>
+                <span>{totalCompleted} missions done</span>
+              </div>
+              {/* Streak badge */}
+              <div className="mt-4">
+                {streakAlive && streakCount > 0 ? (
+                  <span className="inline-flex items-center gap-1.5 bg-orange-50 border border-orange-200 text-orange-700 text-sm font-bold px-3 py-1 rounded-full">
+                    🔥 {streakCount}-day streak — keep it going!
+                  </span>
+                ) : guiltMessage ? (
+                  <span className="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-500 text-sm px-3 py-1.5 rounded-full italic">
+                    💬 &quot;{guiltMessage}&quot; — <span className="font-semibold not-italic text-[#0F172A]">Captain Pixel</span>
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-400 text-xs px-3 py-1 rounded-full">
+                    🔥 Complete a mission today to start your streak
+                  </span>
+                )}
+              </div>
             </div>
           </div>
           <div className="flex flex-col items-center md:items-end gap-3 shrink-0">
