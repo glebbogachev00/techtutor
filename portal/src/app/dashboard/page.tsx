@@ -3,6 +3,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import Logo from "@/components/Logo";
+import { ACHIEVEMENTS } from "@/lib/achievements";
+import type { AchievementTier } from "@/lib/achievements";
 
 export const metadata = { title: "Dashboard — TechBash" };
 
@@ -86,7 +88,7 @@ export default async function DashboardHome() {
   } = await supabase.auth.getUser();
   if (!user) redirect("/login");
 
-  const [{ data: profile }, progressRes, adventureRes, classRes] =
+  const [{ data: profile }, progressRes, adventureRes, classRes, achievementsRes] =
     await Promise.all([
       supabase
         .from("profiles")
@@ -105,7 +107,18 @@ export default async function DashboardHome() {
         .from("class_members")
         .select("class_id, classes(name)")
         .eq("student_id", user.id),
+      supabase
+        .from("user_achievements")
+        .select("achievement_id, earned_at")
+        .eq("user_id", user.id),
     ]);
+
+  const earnedMap = new Map(
+    (achievementsRes.data ?? []).map((r) => [
+      r.achievement_id as string,
+      r.earned_at as string,
+    ]),
+  );
 
   if (
     profile?.role === "teacher" ||
@@ -373,6 +386,56 @@ export default async function DashboardHome() {
           </section>
         )}
 
+        {/* ── Achievements ── */}
+        <section>
+          <div className="flex items-end justify-between mb-4">
+            <h2 className="text-lg font-bold">Achievements</h2>
+            <span className="text-xs text-slate-400">
+              {earnedMap.size}/{ACHIEVEMENTS.length} unlocked
+            </span>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+            {ACHIEVEMENTS.map((a) => {
+              const earned = earnedMap.has(a.id);
+              const earnedAt = earnedMap.get(a.id);
+              const ringColor =
+                a.tier === "gold"
+                  ? "ring-yellow-400/50"
+                  : a.tier === "silver"
+                    ? "ring-slate-400/40"
+                    : "ring-amber-700/30";
+              return (
+                <div
+                  key={a.id}
+                  className={`flex flex-col items-center text-center gap-2 rounded-2xl border p-4 transition ${
+                    earned
+                      ? `bg-white border-slate-200 ring-2 ${ringColor}`
+                      : "bg-slate-50 border-dashed border-slate-200 opacity-50"
+                  }`}
+                  title={earned && earnedAt ? `Earned ${new Date(earnedAt).toLocaleDateString()}` : a.description}
+                >
+                  <div className="h-12 w-12 rounded-full bg-slate-100 grid place-items-center overflow-hidden">
+                    <Image
+                      src={`/rewards/${a.tier}.png`}
+                      alt={a.tier}
+                      width={48}
+                      height={48}
+                      className={`h-full w-full object-contain ${earned ? "" : "grayscale"}`}
+                    />
+                  </div>
+                  <div>
+                    <p className={`text-[9px] font-bold uppercase tracking-widest ${
+                      a.tier === "gold" ? "text-yellow-500" : a.tier === "silver" ? "text-slate-500" : "text-amber-700"
+                    }`}>{a.tier}</p>
+                    <p className="text-xs font-bold leading-tight">{a.title}</p>
+                    <p className="text-[10px] text-slate-500 mt-0.5 leading-tight">{a.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
       </div>
     </main>
   );
@@ -404,3 +467,7 @@ function StatCard({
     </div>
   );
 }
+
+// Satisfy the AchievementTier import (used in JSX above via inline ternaries).
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _tier: AchievementTier = "bronze";

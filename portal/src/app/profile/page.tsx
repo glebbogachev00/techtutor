@@ -183,12 +183,18 @@ export default async function ProfilePage() {
           </dl>
         </div>
 
-        <div className="text-center">
+        <div className="flex items-center justify-between">
           <Link
             href={homeHref}
-            className="text-sm text-[#193b92] hover:underline"
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-[#0F172A] hover:bg-slate-50 transition"
           >
-            ← Back to dashboard
+            ← Dashboard
+          </Link>
+          <Link
+            href="/preview"
+            className="inline-flex items-center gap-2 bg-[#193b92] hover:bg-[#2952b8] text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition"
+          >
+            Open Preview
           </Link>
         </div>
       </div>
