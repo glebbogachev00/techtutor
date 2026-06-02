@@ -100,17 +100,14 @@ function PreviewPageInner() {
     DEFAULT_ADVENTURE_PROGRESS,
   );
   const [openQuestId, setOpenQuestId] = useState<string | null>(null);
-  // Start false to match SSR, then hydrate from cached flag in an effect to avoid a guest-mode flash.
-  const [signedIn, setSignedIn] = useState<boolean>(false);
+  // Initialise from localStorage synchronously (lazy useState) so there is no
+  // guest-mode flash for users who are already signed in.
+  const [signedIn, setSignedIn] = useState<boolean>(() => readCachedSignedIn());
   const [profile, setProfile] = useState<{
     fullName: string | null;
     avatarEmoji: string | null;
   }>({ fullName: null, avatarEmoji: null });
-  const signedInRef = useRef<boolean>(false);
-
-  useEffect(() => {
-    if (readCachedSignedIn()) setSignedIn(true);
-  }, []);
+  const signedInRef = useRef<boolean>(readCachedSignedIn());
 
   const track = TRACKS.find((t) => t.id === trackId)!;
   const completed = progress[trackId] ?? [];
