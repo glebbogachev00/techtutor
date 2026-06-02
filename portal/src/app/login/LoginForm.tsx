@@ -193,11 +193,11 @@ export default function LoginForm({ locale }: { locale: Locale }) {
         return;
       }
 
-      // Server verified credentials and returned the fabricated email.
+      // Server verified credentials and returned the fabricated email + password.
       // Sign in directly from the browser so cookies are set correctly.
       const { error: signInErr } = await supabase.auth.signInWithPassword({
         email: json.email,
-        password: studentPin.trim(),
+        password: json.password,
       });
 
       if (signInErr) {

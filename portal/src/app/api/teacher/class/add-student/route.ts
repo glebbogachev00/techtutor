@@ -97,11 +97,13 @@ export async function POST(req: Request) {
   // Fabricated email — must match what student_lookup builds.
   const slug = name.toLowerCase().replace(/[^a-z0-9]/g, "");
   const email = `${slug}.${codeRow.code.toLowerCase()}.${pin}@students.techbash.internal`;
+  // Supabase requires passwords >= 6 chars; derive from PIN with a fixed suffix.
+  const password = `${pin}-techbash`;
 
   // Create the auth user via the supported admin API.
   const { data: created, error: createErr } = await service.auth.admin.createUser({
     email,
-    password: pin,
+    password,
     email_confirm: true,
     user_metadata: { display_name: name },
   });

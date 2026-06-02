@@ -52,12 +52,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "invalid_credentials", message: "Name or PIN didn't match." }, { status: 401 });
     }
 
-    // Return the email to the client — it will call signInWithPassword directly.
-    // (Server-side signInWithPassword with service role doesn't set browser cookies.)
+    // Return the email + derived password to the client — it will call
+    // signInWithPassword directly (so the browser session cookies are set).
+    // The derived password matches what add-student created.
     return NextResponse.json({
       ok: true,
       mode: "pin",
       email: String(fabricatedEmail),
+      password: `${pin}-techbash`,
     });
   }
 
