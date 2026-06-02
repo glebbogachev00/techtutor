@@ -197,12 +197,14 @@ export default async function DashboardHome() {
             >
               <Image src="/characters/captain-pixel.png" alt="Profile" width={36} height={36} className="h-full w-full object-cover" />
             </Link>
-            <Link
-              href="/auth/signout"
-              className="text-xs text-slate-400 hover:text-[#0F172A] transition"
-            >
-              Sign out
-            </Link>
+            <form action="/auth/signout" method="POST">
+              <button
+                type="submit"
+                className="text-xs text-slate-400 hover:text-[#0F172A] transition"
+              >
+                Sign out
+              </button>
+            </form>
           </div>
         </div>
       </header>

@@ -143,12 +143,14 @@ export default async function TeacherDashboard() {
               className="h-9 w-9 rounded-full bg-[#FEF3C7] ring-2 ring-[#193b92]/10 object-cover"
               priority
             />
-            <Link
-              href="/auth/signout"
-              className="text-slate-500 hover:text-[#0F172A]"
-            >
-              Sign out
-            </Link>
+            <form action="/auth/signout" method="POST">
+              <button
+                type="submit"
+                className="text-slate-500 hover:text-[#0F172A]"
+              >
+                Sign out
+              </button>
+            </form>
           </div>
         </div>
       </header>

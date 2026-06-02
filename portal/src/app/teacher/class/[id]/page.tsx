@@ -98,12 +98,14 @@ export default async function ClassRoster({ params }: PageProps) {
       <header className="bg-white border-b border-slate-200">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
           <Logo href="/teacher" size="md" suffix="Teachers" />
-          <Link
-            href="/auth/signout"
-            className="text-sm text-slate-500 hover:text-[#0F172A]"
-          >
-            Sign out
-          </Link>
+          <form action="/auth/signout" method="POST">
+            <button
+              type="submit"
+              className="text-sm text-slate-500 hover:text-[#0F172A]"
+            >
+              Sign out
+            </button>
+          </form>
         </div>
       </header>
 
