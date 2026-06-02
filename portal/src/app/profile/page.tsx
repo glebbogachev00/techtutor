@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import Logo from "@/components/Logo";
 import ProfileForm from "./ProfileForm";
+import { ACHIEVEMENTS } from "@/lib/achievements";
+import type { AchievementTier } from "@/lib/achievements";
 
 export const metadata = { title: "Profile — TechBash" };
 
@@ -14,7 +16,7 @@ export default async function ProfilePage() {
   } = await supabase.auth.getUser();
   if (!user) redirect("/login");
 
-  const [{ data: profile }, progressRes, adventureRes] = await Promise.all([
+  const [{ data: profile }, progressRes, adventureRes, achievementsRes] = await Promise.all([
     supabase
       .from("profiles")
       .select("full_name, role, language, created_at")
@@ -28,7 +30,18 @@ export default async function ProfilePage() {
       .from("preview_adventures")
       .select("xp_earned")
       .eq("user_id", user.id),
+    supabase
+      .from("user_achievements")
+      .select("achievement_id, earned_at")
+      .eq("user_id", user.id),
   ]);
+
+  const earnedMap = new Map(
+    (achievementsRes.data ?? []).map((r) => [
+      r.achievement_id as string,
+      r.earned_at as string,
+    ]),
+  );
 
   const missionXp = (progressRes.data ?? []).reduce(
     (a, b) => a + (b.xp_earned ?? 0),
@@ -100,6 +113,52 @@ export default async function ProfilePage() {
 
         <ProfileForm initialName={initialName} />
 
+        {/* ── Achievements ── */}
+        <div className="rounded-2xl border border-slate-200 bg-white p-5">
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400 mb-4">
+            Achievements ({earnedMap.size}/{ACHIEVEMENTS.length})
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {ACHIEVEMENTS.map((a) => {
+              const earned = earnedMap.has(a.id);
+              const earnedAt = earnedMap.get(a.id);
+              return (
+                <div
+                  key={a.id}
+                  className={`flex items-center gap-3 rounded-xl border p-3 transition ${
+                    earned
+                      ? "border-slate-200 bg-white"
+                      : "border-dashed border-slate-200 bg-slate-50 opacity-50"
+                  }`}
+                >
+                  <div className="h-10 w-10 shrink-0 rounded-full bg-slate-100 grid place-items-center overflow-hidden">
+                    <Image
+                      src={`/rewards/${a.tier}.png`}
+                      alt={a.tier}
+                      width={40}
+                      height={40}
+                      className={`h-full w-full object-contain ${
+                        earned ? "" : "grayscale"
+                      }`}
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <TierLabel tier={a.tier} />
+                    <p className="text-xs font-bold leading-tight truncate">
+                      {a.title}
+                    </p>
+                    <p className="text-[10px] text-slate-500 leading-tight line-clamp-2">
+                      {earned && earnedAt
+                        ? new Date(earnedAt).toLocaleDateString()
+                        : a.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="rounded-2xl border border-slate-200 bg-white p-5">
           <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400 mb-2">
             Account
@@ -154,5 +213,21 @@ function Stat({
       </p>
       <p className="text-base sm:text-xl font-bold truncate">{value}</p>
     </div>
+  );
+}
+
+const TIER_COLORS: Record<AchievementTier, string> = {
+  bronze: "text-amber-700",
+  silver: "text-slate-500",
+  gold: "text-yellow-500",
+};
+
+function TierLabel({ tier }: { tier: AchievementTier }) {
+  return (
+    <p
+      className={`text-[9px] font-bold uppercase tracking-widest leading-tight ${TIER_COLORS[tier]}`}
+    >
+      {tier}
+    </p>
   );
 }

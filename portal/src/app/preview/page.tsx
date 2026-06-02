@@ -13,8 +13,8 @@ import { emitAchievements } from "@/components/AchievementToaster";
 import type { Achievement } from "@/lib/achievements";
 
 const DEFAULT_PROGRESS: Record<string, number[]> = {
-  web: [1, 2, 3],
-  python: [1],
+  web: [],
+  python: [],
   genai: [],
 };
 
