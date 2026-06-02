@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { TRACKS, CHARACTERS, ADVENTURES } from "./missions";
 import PreviewWorkspace from "./PreviewWorkspace";
 import GenAiWorkspace from "./GenAiWorkspace";
@@ -83,7 +83,7 @@ function writeCachedSignedIn(v: boolean) {
 
 type Mode = "missions" | "adventure" | "playground";
 
-export default function PreviewPage() {
+function PreviewPageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialTrack = (() => {
@@ -827,5 +827,13 @@ function AdventureView({
         })}
       </div>
     </section>
+  );
+}
+
+export default function PreviewPage() {
+  return (
+    <Suspense>
+      <PreviewPageInner />
+    </Suspense>
   );
 }
