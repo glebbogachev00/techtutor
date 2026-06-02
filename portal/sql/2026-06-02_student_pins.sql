@@ -198,8 +198,8 @@ begin
 
   -- Return the fabricated email.
   return query
-    select lower(regexp_replace(p_name, '[^a-z0-9]', '', 'g'))
-      || '.' || lower(upper(p_code))
+    select regexp_replace(lower(p_name), '[^a-z0-9]', '', 'g')
+      || '.' || lower(p_code)
       || '.' || p_pin
       || '@students.techbash.internal';
 end;

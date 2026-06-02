@@ -229,9 +229,9 @@ export default async function DashboardHome() {
             <Image
               src="/characters/pixel-full.png"
               alt="Captain Pixel"
-              width={96}
-              height={96}
-              className="h-20 w-20 md:h-24 md:w-24 object-contain shrink-0 drop-shadow-sm"
+              width={224}
+              height={224}
+              className="h-40 w-40 md:h-56 md:w-56 object-contain shrink-0 drop-shadow-md"
               priority
             />
             <div>
