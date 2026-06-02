@@ -1,24 +1,19 @@
--- Run in Supabase SQL editor AFTER 2026-06-02_achievements.sql
+-- Run in Supabase SQL editor.
 -- Adds PIN-based student identity so the same student account is recovered
 -- on any device using:  name + class code + PIN
 
--- 1. Add pin column to class_members (nullable for existing anonymous rows).
+-- 1. Add pin + display_name columns to class_members (nullable for existing anonymous rows).
 alter table public.class_members
   add column if not exists pin text,
   add column if not exists display_name text;
 
--- 2. Unique constraint: one name per class (case-insensitive) so two "Glebs"
---    can't exist in the same class. Use a unique index so we can drop it later.
+-- 2. Unique index: one name per class (case-insensitive).
 create unique index if not exists class_members_class_name_unique
   on public.class_members (class_id, lower(display_name))
   where display_name is not null;
 
--- 3. Service-role function: teacher adds a student → creates Supabase auth
---    user with a fabricated email and the PIN as password, inserts into
---    class_members, returns the generated PIN.
---
---    IMPORTANT: this function runs as SECURITY DEFINER so it can call
---    auth.users via the service role. Grant it to authenticated only.
+-- 3. Teacher adds a student → creates Supabase auth user + identity row,
+--    inserts into class_members, returns the generated PIN.
 
 drop function if exists public.teacher_add_student(uuid, text);
 
@@ -29,7 +24,7 @@ create or replace function public.teacher_add_student(
 returns table (out_pin text, out_student_id uuid)
 language plpgsql
 security definer
-set search_path = public
+set search_path = public, extensions, auth
 as $$
 declare
   v_teacher_id  uuid := auth.uid();
@@ -94,7 +89,9 @@ begin
     || '.' || v_pin
     || '@students.techbash.internal';
 
-  -- Create the Supabase auth user. signInWithPassword will work after this.
+  v_user_id := gen_random_uuid();
+
+  -- Create the auth user row.
   insert into auth.users (
     instance_id,
     id,
@@ -107,11 +104,13 @@ begin
     updated_at,
     raw_app_meta_data,
     raw_user_meta_data,
-    is_super_admin
+    is_super_admin,
+    confirmation_token,
+    recovery_token
   )
   values (
     '00000000-0000-0000-0000-000000000000',
-    gen_random_uuid(),
+    v_user_id,
     'authenticated',
     'authenticated',
     v_email,
@@ -121,9 +120,32 @@ begin
     now(),
     '{"provider":"email","providers":["email"]}',
     jsonb_build_object('display_name', p_name),
-    false
+    false,
+    '',
+    ''
+  );
+
+  -- Create the identity row — required for signInWithPassword to work.
+  insert into auth.identities (
+    id,
+    user_id,
+    identity_data,
+    provider,
+    provider_id,
+    last_sign_in_at,
+    created_at,
+    updated_at
   )
-  returning id into v_user_id;
+  values (
+    gen_random_uuid(),
+    v_user_id,
+    jsonb_build_object('sub', v_user_id::text, 'email', v_email),
+    'email',
+    v_email,
+    now(),
+    now(),
+    now()
+  );
 
   -- Create the profile row.
   insert into public.profiles (id, full_name, role)
@@ -138,23 +160,23 @@ begin
 end;
 $$;
 
--- 4. Look-up function used by the join API: given code + name + PIN,
---    return the fabricated email so the client can signInWithPassword.
+-- 4. Look-up function: given code + name + PIN -> return fabricated email for signInWithPassword.
+drop function if exists public.student_lookup(text, text, text);
+
 create or replace function public.student_lookup(
   p_code text,
   p_name text,
   p_pin  text
 )
-returns table (email text)
+returns table (out_email text)
 language plpgsql
 security definer
 set search_path = public
 as $$
 declare
   v_class_id uuid;
-  v_code_row  text;
 begin
-  -- Resolve code → class_id.
+  -- Resolve code -> class_id.
   select class_id into v_class_id
   from public.class_codes
   where code = upper(p_code) and active = true
@@ -183,11 +205,6 @@ begin
 end;
 $$;
 
--- Grant execute to authenticated users (teachers call teacher_add_student,
--- anon/service calls student_lookup).
-grant execute on function public.teacher_add_student(uuid, text) to authenticated;
-grant execute on function public.student_lookup(text, text, text) to anon, authenticated;
-
 -- 5. Allow teachers to delete members from their own classes.
 drop policy if exists "teacher delete class members" on public.class_members;
 create policy "teacher delete class members"
@@ -201,3 +218,7 @@ create policy "teacher delete class members"
       select 1 from public.profiles where id = auth.uid() and role = 'admin'
     )
   );
+
+-- Grants.
+grant execute on function public.teacher_add_student(uuid, text) to authenticated;
+grant execute on function public.student_lookup(text, text, text) to anon, authenticated;

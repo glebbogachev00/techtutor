@@ -44,8 +44,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "lookup_failed", message: msg }, { status: 500 });
     }
 
-    const fabricatedEmail =
-      Array.isArray(lookupData) ? lookupData[0] : lookupData;
+    const fabricatedEmail = Array.isArray(lookupData)
+      ? (lookupData[0]?.out_email ?? lookupData[0])
+      : (lookupData as { out_email?: string } | null)?.out_email ?? lookupData;
 
     if (!fabricatedEmail) {
       return NextResponse.json({ error: "invalid_credentials", message: "Name or PIN didn't match." }, { status: 401 });
