@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { TRACKS, CHARACTERS, ADVENTURES } from "./missions";
@@ -305,12 +306,15 @@ function PreviewPageInner() {
                 href="/profile"
                 aria-label="Your profile"
                 title={profile.fullName ?? "Your profile"}
-                className="w-9 h-9 rounded-full bg-gradient-to-br from-[#193b92] to-[#2C7A7B] text-white grid place-items-center text-base font-bold shadow-[0_2px_8px_rgba(15,23,42,0.15)] hover:scale-105 transition"
+                className="h-9 w-9 rounded-full overflow-hidden border-2 border-[#193b92]/20 hover:border-[#193b92]/60 transition"
               >
-                {profile.avatarEmoji ??
-                  (profile.fullName
-                    ? profile.fullName.trim().charAt(0).toUpperCase()
-                    : "★")}
+                <Image
+                  src="/characters/captain-pixel.png"
+                  alt="Profile"
+                  width={36}
+                  height={36}
+                  className="h-full w-full object-cover"
+                />
               </Link>
             ) : (
               <Link
