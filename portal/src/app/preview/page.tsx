@@ -9,6 +9,8 @@ import PreviewWorkspace from "./PreviewWorkspace";
 import GenAiWorkspace from "./GenAiWorkspace";
 import AdventureWorkspace from "./AdventureWorkspace";
 import Playground from "./Playground";
+import { emitAchievements } from "@/components/AchievementToaster";
+import type { Achievement } from "@/lib/achievements";
 
 const DEFAULT_PROGRESS: Record<string, number[]> = {
   web: [1, 2, 3],
@@ -228,7 +230,12 @@ function PreviewPageInner() {
           questId: id,
           xp: quest?.reward ?? 0,
         }),
-      }).catch(() => {});
+      })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data: { newAchievements?: Achievement[] } | null) => {
+          emitAchievements(data?.newAchievements);
+        })
+        .catch(() => {});
     }
   }
 
@@ -260,7 +267,12 @@ function PreviewPageInner() {
           missionN: n,
           xp: mission?.xp ?? 0,
         }),
-      }).catch(() => {});
+      })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data: { newAchievements?: Achievement[] } | null) => {
+          emitAchievements(data?.newAchievements);
+        })
+        .catch(() => {});
     }
   }
 

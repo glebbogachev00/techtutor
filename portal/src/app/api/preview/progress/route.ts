@@ -1,5 +1,11 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import {
+  evaluateAchievements,
+  ACHIEVEMENT_BY_ID,
+  type ProgressSnapshot,
+} from "@/lib/achievements";
+import { TRACKS, ADVENTURES } from "@/app/preview/missions";
 
 export const runtime = "nodejs";
 
@@ -88,6 +94,71 @@ export async function POST(req: Request) {
       .eq("id", userId);
   }
 
+  // Helper: evaluate achievements, insert any new ones, return newly-earned.
+  async function grantAchievements() {
+    const [progressRes, adventureRes, profRes, earnedRes] = await Promise.all([
+      supabase
+        .from("preview_progress")
+        .select("track_slug, mission_n, xp_earned")
+        .eq("user_id", userId),
+      supabase
+        .from("preview_adventures")
+        .select("quest_id, xp_earned")
+        .eq("user_id", userId),
+      supabase
+        .from("profiles")
+        .select("streak_count")
+        .eq("id", userId)
+        .maybeSingle(),
+      supabase
+        .from("user_achievements")
+        .select("achievement_id")
+        .eq("user_id", userId),
+    ]);
+
+    const perTrackCounts: Record<string, number> = {};
+    let missionXp = 0;
+    (progressRes.data ?? []).forEach((row) => {
+      const slug = row.track_slug as string;
+      perTrackCounts[slug] = (perTrackCounts[slug] ?? 0) + 1;
+      missionXp += (row.xp_earned as number) ?? 0;
+    });
+    const adventureXp = (adventureRes.data ?? []).reduce(
+      (sum, r) => sum + ((r.xp_earned as number) ?? 0),
+      0,
+    );
+
+    const perTrackTotals: Record<string, number> = {};
+    TRACKS.forEach((t) => {
+      perTrackTotals[t.id] = t.missions.length;
+    });
+
+    const snap: ProgressSnapshot = {
+      totalMissions: progressRes.data?.length ?? 0,
+      perTrackCounts,
+      perTrackTotals,
+      adventuresCompleted: adventureRes.data?.length ?? 0,
+      totalAdventures: ADVENTURES.length,
+      streak: (profRes.data?.streak_count as number) ?? 0,
+      totalXp: missionXp + adventureXp,
+    };
+
+    const shouldHave = evaluateAchievements(snap);
+    const alreadyHave = new Set(
+      (earnedRes.data ?? []).map((r) => r.achievement_id as string),
+    );
+    const fresh = shouldHave.filter((id) => !alreadyHave.has(id));
+    if (fresh.length === 0) return [];
+
+    await supabase
+      .from("user_achievements")
+      .insert(fresh.map((id) => ({ user_id: userId, achievement_id: id })));
+
+    return fresh
+      .map((id) => ACHIEVEMENT_BY_ID[id])
+      .filter((a): a is NonNullable<typeof a> => Boolean(a));
+  }
+
   if (kind === "mission") {
     const trackSlug = String(body?.trackSlug ?? "");
     const missionN = Number(body?.missionN);
@@ -111,7 +182,8 @@ export async function POST(req: Request) {
       );
     }
     await updateStreak();
-    return NextResponse.json({ ok: true });
+    const newAchievements = await grantAchievements();
+    return NextResponse.json({ ok: true, newAchievements });
   }
 
   if (kind === "adventure") {
@@ -131,7 +203,8 @@ export async function POST(req: Request) {
       );
     }
     await updateStreak();
-    return NextResponse.json({ ok: true });
+    const newAchievements = await grantAchievements();
+    return NextResponse.json({ ok: true, newAchievements });
   }
 
   return NextResponse.json({ error: "invalid_kind" }, { status: 400 });
