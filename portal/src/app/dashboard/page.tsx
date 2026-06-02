@@ -154,7 +154,184 @@ export default async function DashboardHome() {
 
   const name = profile?.full_name ?? user.email?.split("@")[0] ?? "friend";
 
+  // Level maths (used in hero)
+  const XP_PER_LVL = 500;
+  const level = Math.floor(totalXp / XP_PER_LVL) + 1;
+  const intoLevel = totalXp % XP_PER_LVL;
+  const pct = Math.min(100, Math.round((intoLevel / XP_PER_LVL) * 100));
+  const toNext = XP_PER_LVL - intoLevel;
+  const topTrack = (["web", "python", "genai"] as const).reduce(
+    (best, slug) =>
+      (perTrack[slug]?.xp ?? 0) > (perTrack[best]?.xp ?? 0) ? slug : best,
+    "web" as "web" | "python" | "genai",
+  );
+  const nextMissionN = (perTrack[topTrack]?.count ?? 0) + 1;
+
   return (
+    <main className="min-h-screen bg-[#F8FAFC] text-[#0F172A]">
+      {/* ── Header ── */}
+      <header className="bg-white border-b border-slate-200 sticky top-0 z-40">
+        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+          <Logo href="/dashboard" size="md" suffix="Portal" />
+          <div className="flex items-center gap-3">
+            <Link
+              href="/profile"
+              className="h-8 w-8 rounded-full bg-gradient-to-br from-[#193b92] to-[#7C3AED] flex items-center justify-center text-white text-sm font-bold hover:opacity-90 transition"
+              title="Profile"
+            >
+              {(name[0] ?? "?").toUpperCase()}
+            </Link>
+            <Link
+              href="/auth/signout"
+              className="text-xs text-slate-400 hover:text-[#0F172A] transition"
+            >
+              Sign out
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      {/* ── Hero launch band ── */}
+      <section className="bg-gradient-to-br from-[#0F172A] via-[#162554] to-[#0F172A] text-white">
+        <div className="max-w-5xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#E89F47] mb-2">
+              Your portal
+            </p>
+            <h1 className="text-3xl md:text-4xl font-black leading-tight">
+              Welcome back,<br />{name}!
+            </h1>
+            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-300">
+              <span>⭐ {totalXp.toLocaleString()} XP</span>
+              <span className="text-slate-600">·</span>
+              <span>Level {level}</span>
+              <span className="text-slate-600">·</span>
+              <span>{totalCompleted} missions done</span>
+            </div>
+          </div>
+          <div className="flex flex-col items-center md:items-end gap-3 shrink-0">
+            <Link
+              href={`/preview?track=${topTrack}`}
+              className="inline-flex items-center gap-2 bg-[#E89F47] hover:bg-[#d4883c] text-[#0F172A] font-black text-base px-8 py-4 rounded-2xl shadow-[0_8px_30px_rgba(232,159,71,0.4)] transition"
+            >
+              Launch TechBash
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+            <p className="text-xs text-slate-400">
+              Continue from Mission {nextMissionN} · {TRACK_META[topTrack].title}
+            </p>
+          </div>
+        </div>
+        {/* XP progress strip */}
+        <div className="border-t border-white/10">
+          <div className="max-w-5xl mx-auto px-6 py-3 flex items-center gap-3 text-xs text-slate-400">
+            <span className="font-semibold text-white whitespace-nowrap">Level {level}</span>
+            <div className="flex-1 h-1.5 rounded-full bg-white/10 overflow-hidden">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-[#E89F47] to-[#7C3AED] transition-all"
+                style={{ width: `${pct}%` }}
+              />
+            </div>
+            <span className="whitespace-nowrap">{toNext} XP to level {level + 1}</span>
+          </div>
+        </div>
+      </section>
+
+      <div className="max-w-5xl mx-auto px-6 py-10 space-y-10">
+
+        {/* ── Stats row ── */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <StatCard icon="⭐" label="Total XP" value={totalXp.toLocaleString()} accent="#E89F47" />
+          <StatCard icon="✅" label="Missions" value={String(missionCount)} accent="#193b92" />
+          <StatCard icon="🗺️" label="Adventures" value={String(adventureCount)} accent="#7C3AED" />
+          <StatCard icon="🎒" label="Classes" value={String(classes.length)} accent="#2C7A7B" />
+        </div>
+
+        {/* ── Tracks ── */}
+        <section>
+          <div className="flex items-end justify-between mb-4">
+            <h2 className="text-lg font-bold">Tracks</h2>
+            <span className="text-xs text-slate-400">3 live · more coming soon</span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {(["web", "python", "genai"] as const).map((slug) => {
+              const m = TRACK_META[slug];
+              const stats = perTrack[slug];
+              return (
+                <Link
+                  key={slug}
+                  href={`/preview?track=${slug}`}
+                  className="group rounded-2xl border border-slate-200 bg-white p-5 flex flex-col hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)] hover:-translate-y-0.5 transition-all"
+                >
+                  <div
+                    className="w-10 h-10 rounded-xl grid place-items-center text-xl mb-4"
+                    style={{ background: `${m.accent}15` }}
+                  >
+                    {m.icon}
+                  </div>
+                  <h3 className="font-bold text-[#0F172A]">{m.title}</h3>
+                  <p className="text-sm text-slate-500 mt-1 mb-4 leading-relaxed flex-1">{m.tagline}</p>
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                    <span className="text-slate-500">{stats.count} done · {stats.xp} XP</span>
+                    <span className="font-semibold transition" style={{ color: m.accent }}>
+                      {stats.count > 0 ? "Continue →" : "Start →"}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ── Adventure mode ── */}
+        <section>
+          <div className="rounded-2xl bg-gradient-to-br from-[#F5F0FF] to-[#EEF2FF] p-6 border border-[#7C3AED]/15 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+            <div className="w-12 h-12 rounded-2xl bg-[#7C3AED]/10 grid place-items-center text-2xl shrink-0">🗺️</div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-[#7C3AED] mb-0.5">Adventure mode</p>
+              <h3 className="text-lg font-bold text-[#0F172A]">Quests across the Bash-verse</h3>
+              <p className="text-sm text-slate-600 mt-0.5">
+                Story-driven quests with a different character for each — collect XP and unlock new regions.
+              </p>
+            </div>
+            <div className="flex flex-col items-start sm:items-end gap-1.5 shrink-0">
+              <Link
+                href="/preview"
+                className="bg-[#7C3AED] hover:bg-[#6126c2] text-white font-semibold text-sm px-5 py-2.5 rounded-full shadow-[0_4px_15px_rgba(124,58,237,0.25)] transition whitespace-nowrap"
+              >
+                Enter Adventure
+              </Link>
+              <span className="text-xs text-slate-500">{adventureCount} cleared · {adventureXp} XP</span>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Classes ── */}
+        {classes.length > 0 && (
+          <section>
+            <h2 className="text-lg font-bold mb-4">Your classes</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {classes.map((c) => (
+                <div
+                  key={c.id}
+                  className="rounded-2xl border border-slate-200 bg-white p-4 flex items-center gap-3"
+                >
+                  <div className="grid place-items-center h-10 w-10 rounded-full bg-[#F5F0FF] text-[#7C3AED] text-lg shrink-0">🎒</div>
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Class</p>
+                    <p className="font-semibold">{c.name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+      </div>
+    </main>
+  );
     <main className="min-h-screen bg-[#FAFAFA] text-[#0F172A]">
       <header className="bg-white border-b border-slate-200">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -357,110 +534,29 @@ export default async function DashboardHome() {
   );
 }
 
-function Stat({
+function StatCard({
   icon,
   label,
   value,
+  accent,
 }: {
   icon: string;
   label: string;
   value: string;
+  accent: string;
 }) {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-4">
-      <div className="text-2xl mb-1">{icon}</div>
+      <div
+        className="w-9 h-9 rounded-xl grid place-items-center text-lg mb-3"
+        style={{ background: `${accent}15` }}
+      >
+        {icon}
+      </div>
       <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
         {label}
       </p>
-      <p className="text-xl font-bold">{value}</p>
-    </div>
-  );
-}
-
-const XP_PER_LEVEL = 500;
-
-function LevelBar({ totalXp }: { totalXp: number }) {
-  const level = Math.floor(totalXp / XP_PER_LEVEL) + 1;
-  const intoLevel = totalXp % XP_PER_LEVEL;
-  const pct = Math.min(100, Math.round((intoLevel / XP_PER_LEVEL) * 100));
-  const toNext = XP_PER_LEVEL - intoLevel;
-  return (
-    <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-5">
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#193b92]">
-            Level {level}
-          </span>
-          <span className="text-[10px] text-slate-400">
-            · {intoLevel}/{XP_PER_LEVEL} XP
-          </span>
-        </div>
-        <span className="text-[11px] text-slate-500">
-          {toNext} XP to level {level + 1}
-        </span>
-      </div>
-      <div className="h-2.5 w-full rounded-full bg-slate-100 overflow-hidden">
-        <div
-          className="h-full rounded-full bg-gradient-to-r from-[#193b92] to-[#7C3AED] transition-all"
-          style={{ width: `${pct}%` }}
-        />
-      </div>
-    </div>
-  );
-}
-
-function NextMissionCard({
-  perTrack,
-}: {
-  perTrack: Record<string, { count: number; xp: number }>;
-}) {
-  // Continue the track with the most XP. Only consider live tracks.
-  const order = ["web", "python", "genai"] as const;
-  let topSlug: (typeof order)[number] = "web";
-  let topXp = -1;
-  for (const slug of order) {
-    const xp = perTrack[slug]?.xp ?? 0;
-    if (xp > topXp) {
-      topXp = xp;
-      topSlug = slug;
-    }
-  }
-  const meta = TRACK_META[topSlug];
-  const nextN = (perTrack[topSlug]?.count ?? 0) + 1;
-  const isFresh = topXp <= 0;
-  return (
-    <div
-      className="mt-4 rounded-2xl p-5 border flex items-center gap-4"
-      style={{
-        background: `linear-gradient(135deg, ${meta.accent}10, ${meta.accent}05)`,
-        borderColor: `${meta.accent}30`,
-      }}
-    >
-      <div
-        className="grid place-items-center h-12 w-12 rounded-2xl text-2xl shrink-0"
-        style={{ background: `${meta.accent}1a` }}
-      >
-        {meta.icon}
-      </div>
-      <div className="min-w-0 flex-1">
-        <p
-          className="text-[11px] font-semibold uppercase tracking-widest mb-0.5"
-          style={{ color: meta.accent }}
-        >
-          {isFresh ? "Start here" : "Up next"}
-        </p>
-        <p className="font-bold text-[#0F172A] truncate">
-          {meta.title} · Mission {nextN}
-        </p>
-        <p className="text-xs text-slate-500 truncate">{meta.tagline}</p>
-      </div>
-      <Link
-        href={`/preview?track=${topSlug}`}
-        className="shrink-0 text-white text-xs font-semibold px-4 py-2.5 rounded-full"
-        style={{ background: meta.accent }}
-      >
-        {isFresh ? "Begin →" : "Continue →"}
-      </Link>
+      <p className="text-2xl font-black mt-0.5">{value}</p>
     </div>
   );
 }
