@@ -90,7 +90,7 @@ export default async function DashboardHome() {
     await Promise.all([
       supabase
         .from("profiles")
-        .select("full_name, role")
+        .select("full_name, role, streak_count, last_active_date")
         .eq("id", user.id)
         .maybeSingle(),
       supabase
@@ -154,6 +154,22 @@ export default async function DashboardHome() {
 
   const name = profile?.full_name ?? user.email?.split("@")[0] ?? "friend";
 
+  // Streak maths
+  const streakCount = (profile?.streak_count as number) ?? 0;
+  const lastActiveDate = (profile?.last_active_date as string | null) ?? null;
+  const today = new Date().toISOString().slice(0, 10);
+  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  const streakAlive = lastActiveDate === today || lastActiveDate === yesterday;
+  const daysSinceActive = lastActiveDate
+    ? Math.floor((Date.now() - new Date(lastActiveDate).getTime()) / 86400000)
+    : null;
+  const guiltMessage =
+    !streakAlive && daysSinceActive !== null && daysSinceActive >= 2
+      ? daysSinceActive >= 5
+        ? "The ship has been drifting for days. Captain Pixel hasn't heard from you in a while…"
+        : "The ship is drifting. Captain Pixel needs you back."
+      : null;
+
   // Level maths (used in hero)
   const XP_PER_LVL = 500;
   const level = Math.floor(totalXp / XP_PER_LVL) + 1;
@@ -207,6 +223,22 @@ export default async function DashboardHome() {
               <span>Level {level}</span>
               <span className="text-slate-600">·</span>
               <span>{totalCompleted} missions done</span>
+            </div>
+            {/* Streak badge */}
+            <div className="mt-4">
+              {streakAlive && streakCount > 0 ? (
+                <span className="inline-flex items-center gap-1.5 bg-orange-500/20 border border-orange-400/30 text-orange-300 text-sm font-bold px-3 py-1 rounded-full">
+                  🔥 {streakCount}-day streak — keep it going!
+                </span>
+              ) : guiltMessage ? (
+                <span className="inline-flex items-center gap-1.5 bg-slate-700/60 border border-slate-600 text-slate-300 text-sm px-3 py-1.5 rounded-full italic">
+                  💬 &quot;{guiltMessage}&quot; — <span className="font-semibold not-italic text-white">Captain Pixel</span>
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 bg-slate-700/40 border border-slate-600/50 text-slate-400 text-xs px-3 py-1 rounded-full">
+                  🔥 Complete a mission today to start your streak
+                </span>
+              )}
             </div>
           </div>
           <div className="flex flex-col items-center md:items-end gap-3 shrink-0">

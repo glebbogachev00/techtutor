@@ -38,7 +38,7 @@ export async function GET() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("role, full_name, avatar_emoji")
+    .select("role, full_name, avatar_emoji, streak_count, last_active_date")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -47,6 +47,8 @@ export async function GET() {
     role: profile?.role ?? "student",
     fullName: profile?.full_name ?? null,
     avatarEmoji: profile?.avatar_emoji ?? null,
+    streakCount: profile?.streak_count ?? 0,
+    lastActiveDate: profile?.last_active_date ?? null,
     missions,
     adventures,
   });
@@ -65,6 +67,25 @@ export async function POST(req: Request) {
 
   const body = await req.json().catch(() => ({}));
   const kind = body?.kind;
+
+  // Helper: update streak on the profile after any progress save.
+  async function updateStreak() {
+    const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD UTC
+    const { data: prof } = await supabase
+      .from("profiles")
+      .select("streak_count, last_active_date")
+      .eq("id", user.id)
+      .maybeSingle();
+    const lastDate = prof?.last_active_date as string | null;
+    const currentStreak = (prof?.streak_count as number) ?? 0;
+    if (lastDate === today) return; // already counted today
+    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    const newStreak = lastDate === yesterday ? currentStreak + 1 : 1;
+    await supabase
+      .from("profiles")
+      .update({ streak_count: newStreak, last_active_date: today })
+      .eq("id", user.id);
+  }
 
   if (kind === "mission") {
     const trackSlug = String(body?.trackSlug ?? "");
@@ -88,6 +109,7 @@ export async function POST(req: Request) {
         { status: 500 },
       );
     }
+    await updateStreak();
     return NextResponse.json({ ok: true });
   }
 
@@ -107,6 +129,7 @@ export async function POST(req: Request) {
         { status: 500 },
       );
     }
+    await updateStreak();
     return NextResponse.json({ ok: true });
   }
 
