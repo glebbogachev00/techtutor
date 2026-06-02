@@ -35,7 +35,7 @@ export default function AddStudentForm({ classId }: Props) {
             ? "A student with that name already exists in this class."
             : json?.error === "no_active_code"
               ? "This class has no active code yet — create one first."
-              : "Could not add student. Try again."),
+              : `Could not add student. (${json?.error ?? res.status})`),
       );
       return;
     }
