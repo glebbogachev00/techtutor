@@ -20,6 +20,8 @@ create unique index if not exists class_members_class_name_unique
 --    IMPORTANT: this function runs as SECURITY DEFINER so it can call
 --    auth.users via the service role. Grant it to authenticated only.
 
+drop function if exists public.teacher_add_student(uuid, text);
+
 create or replace function public.teacher_add_student(
   p_class_id  uuid,
   p_name      text
@@ -113,7 +115,7 @@ begin
     'authenticated',
     'authenticated',
     v_email,
-    crypt(v_pin, gen_salt('bf')),
+    extensions.crypt(v_pin, extensions.gen_salt('bf')),
     now(),
     now(),
     now(),
@@ -185,3 +187,17 @@ $$;
 -- anon/service calls student_lookup).
 grant execute on function public.teacher_add_student(uuid, text) to authenticated;
 grant execute on function public.student_lookup(text, text, text) to anon, authenticated;
+
+-- 5. Allow teachers to delete members from their own classes.
+drop policy if exists "teacher delete class members" on public.class_members;
+create policy "teacher delete class members"
+  on public.class_members
+  for delete
+  using (
+    class_id in (
+      select id from public.classes where teacher_id = auth.uid()
+    )
+    or exists (
+      select 1 from public.profiles where id = auth.uid() and role = 'admin'
+    )
+  );

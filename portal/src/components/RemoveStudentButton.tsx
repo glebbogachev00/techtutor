@@ -9,16 +9,29 @@ interface Props {
 }
 
 export default function RemoveStudentButton({ classId, studentId, studentName }: Props) {
-  const [status, setStatus] = useState<"idle" | "confirming" | "removing">("idle");
+  const [status, setStatus] = useState<"idle" | "confirming" | "removing" | "error">("idle");
+  const [errMsg, setErrMsg] = useState("");
 
   async function handleRemove() {
     setStatus("removing");
-    await fetch("/api/teacher/class/remove-student", {
+    const res = await fetch("/api/teacher/class/remove-student", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ classId, studentId }),
     });
+    if (!res.ok) {
+      const json = await res.json().catch(() => ({}));
+      setErrMsg(json?.message ?? "Could not remove. Try again.");
+      setStatus("error");
+      return;
+    }
     window.location.reload();
+  }
+
+  if (status === "error") {
+    return (
+      <span className="text-xs text-red-500">{errMsg}</span>
+    );
   }
 
   if (status === "confirming") {
@@ -52,3 +65,4 @@ export default function RemoveStudentButton({ classId, studentId, studentName }:
     </button>
   );
 }
+
