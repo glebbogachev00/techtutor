@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   title: "TechBash — Learn to Code · by TechTutor",
   description:
     "TechBash is the self-paced coding portal from TechTutor Academy. Web development & Python missions with instant AI feedback for kids 8–15.",
-  icons: { icon: "/favicon.ico" },
 };
 
 export default function RootLayout({
