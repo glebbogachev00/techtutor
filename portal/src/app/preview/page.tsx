@@ -300,7 +300,7 @@ function PreviewPageInner() {
     }
   }
 
-  function switchTrack(id: "web" | "python" | "genai") {
+  function switchTrack(id: "web" | "python" | "genai" | "web-games") {
     setTrackId(id);
     const nextTrack = TRACKS.find((t) => t.id === id)!;
     const c = progress[id] ?? [];
