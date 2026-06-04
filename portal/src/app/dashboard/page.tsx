@@ -46,8 +46,8 @@ const TRACK_META: Record<
     accent: "#7C3AED",
   },
   "web-games": {
-    title: "Web 2D Games",
-    tagline: "Code arcade games with HTML5 Canvas and JavaScript.",
+    title: "2D Game Development",
+    tagline: "Build real 2D games in your browser with Kaplay.",
     icon: "🕹️",
     accent: "#DB2777",
   },
@@ -374,10 +374,10 @@ export default async function DashboardHome() {
         <section>
           <div className="flex items-end justify-between mb-4">
             <h2 className="text-lg font-bold">Tracks</h2>
-            <span className="text-xs text-slate-400">3 live · more coming soon</span>
+            <span className="text-xs text-slate-400">4 live · more coming soon</span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {(["web", "python", "genai"] as const).map((slug) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {(["web", "python", "genai", "web-games"] as const).map((slug) => {
               const m = TRACK_META[slug];
               const stats = perTrack[slug];
               return (

@@ -16,6 +16,7 @@ const DEFAULT_PROGRESS: Record<string, number[]> = {
   web: [],
   python: [],
   genai: [],
+  "web-games": [],
 };
 
 const DEFAULT_ADVENTURE_PROGRESS: string[] = ["lumen"];
@@ -91,11 +92,11 @@ function PreviewPageInner() {
   const searchParams = useSearchParams();
   const initialTrack = (() => {
     const t = searchParams.get("track");
-    if (t === "web" || t === "python" || t === "genai") return t;
+    if (t === "web" || t === "python" || t === "genai" || t === "web-games") return t;
     return "web";
   })();
   const [mode, setMode] = useState<Mode>("missions");
-  const [trackId, setTrackId] = useState<"web" | "python" | "genai">(initialTrack);
+  const [trackId, setTrackId] = useState<"web" | "python" | "genai" | "web-games">(initialTrack);
   const [progress, setProgress] =
     useState<Record<string, number[]>>(DEFAULT_PROGRESS);
   const [openMission, setOpenMission] = useState<number>(() => {
@@ -160,6 +161,7 @@ function PreviewPageInner() {
         web: [],
         python: [],
         genai: [],
+        "web-games": [],
       };
       Object.keys(mergedM).forEach((k) => {
         mergedM[k] = Array.from(
@@ -208,7 +210,7 @@ function PreviewPageInner() {
           avatarEmoji: (data.avatarEmoji as string | null) ?? null,
         });
         const dbMissions = data.missions as Record<string, number[]>;
-        const merged: Record<string, number[]> = { web: [], python: [], genai: [] };
+        const merged: Record<string, number[]> = { web: [], python: [], genai: [], "web-games": [] };
         Object.keys(merged).forEach((k) => {
           const fromDb = dbMissions?.[k] ?? [];
           merged[k] = Array.from(new Set([...(DEFAULT_PROGRESS[k] ?? []), ...fromDb])).sort(

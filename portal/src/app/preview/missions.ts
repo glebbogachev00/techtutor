@@ -1,5 +1,5 @@
 export type StoryBeat = {
-  character: "Captain Pixel" | "Bao" | "Mochi" | "Professor Loop";
+  character: "Captain Pixel" | "Bao" | "Mochi" | "Professor Loop" | "Jason" | "The Professor";
   text: string;
 };
 
@@ -22,7 +22,7 @@ export type Mission = {
 };
 
 export type Track = {
-  id: "web" | "python" | "genai";
+  id: "web" | "python" | "genai" | "web-games";
   name: string;
   tagline: string;
   accent: string;
@@ -50,6 +50,16 @@ export const CHARACTERS = {
     color: "#7C3AED",
     role: "The brilliant (and very forgetful) Python professor",
     avatar: "/characters/professor-loop.png",
+  },
+  Jason: {
+    color: "#DC2626",
+    role: "Tech tycoon who wants to replace every coder with a machine",
+    avatar: "/characters/jason.png",
+  },
+  "The Professor": {
+    color: "#991B1B",
+    role: "Jason's mentor — cold, calculating, and very into sabotage",
+    avatar: "/characters/The-Professor.png",
   },
 } as const;
 
@@ -2116,6 +2126,324 @@ greet()
         starter: "",
         starterPrompt: "",
         goal: "AI reply contains exactly 3 bullet-point lines (lines starting with -, *, or a number).",
+      },
+    ],
+  },
+  {
+    id: "web-games",
+    name: "2D Game Development",
+    tagline: "Build real 2D games in your browser using Kaplay.",
+    accent: "#DB2777",
+    storyIntro:
+      "Captain Pixel barges in carrying a smoking arcade cabinet. 'Jason. He hacked every game in the academy arcade. PAC-MAN walks backwards now. Mario refuses to jump. Tetris just... sighs.' She drops the cabinet. 'We're rebuilding the arcade. From scratch. You in?' Spoiler: you're in. Welcome to game dev.",
+    missions: [
+      {
+        n: 1,
+        title: "Boot the game engine",
+        blurb: "Load Kaplay and open your very first game window.",
+        xp: 60,
+        language: "html",
+        story: {
+          character: "Captain Pixel",
+          text: "Step one: power on the machine. Kaplay is a tiny game engine that runs right in the browser \u2014 no installs, no nonsense. The starter code already loads it from the internet. You just need to wake it up by calling kaplay(). Hit Run and watch a black game window appear. That's your canvas. The whole arcade will live in there.",
+        },
+        why: "Every game needs an engine. Kaplay handles the boring stuff (drawing, timing, input) so you can focus on making the FUN parts.",
+        concept:
+          "kaplay() initializes the game. You pass it an object with width, height, and background color. Once it runs, you have a game window ready for sprites, text, and chaos.",
+        example: "kaplay({ width: 400, height: 300, background: [20, 20, 40] })",
+        task: "Inside the second <script>, call kaplay() with width 400, height 300, and background [20, 20, 40]. Hit Run \u2014 you should see a dark blue/black window.",
+        starter: `<!DOCTYPE html>
+<html>
+<head><style>body{margin:0;background:#0f172a}</style></head>
+<body>
+<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script>
+  // Wake up the engine here
+</script>
+</body>
+</html>`,
+      },
+      {
+        n: 2,
+        title: "Put something on screen",
+        blurb: "Add your first shape \u2014 a glowing pink rectangle.",
+        xp: 70,
+        language: "html",
+        story: {
+          character: "Bao",
+          text: "Empty window? BORING. Let's slap something in there. In Kaplay, every thing in your game is a 'game object' made by add([...]). You feed it a list of traits \u2014 shape, position, color \u2014 and BOOM, it exists. Add a pink rectangle right in the middle.",
+        },
+        why: "Game objects are the building blocks of EVERYTHING you'll make: players, enemies, coins, walls, bullets. Learn add() and you've unlocked half the engine.",
+        concept:
+          "add([trait1, trait2, ...]) creates a new game object. Traits include rect(w,h) for a rectangle, pos(x,y) for position, and color(r,g,b) for color. Stack as many traits as you want.",
+        example: "add([ rect(60, 60), pos(170, 120), color(255, 100, 200) ])",
+        task: "After kaplay(), add a rectangle that is 60 wide, 60 tall, positioned at (170, 120), colored bright pink (255, 100, 200).",
+        starter: `<!DOCTYPE html>
+<html>
+<head><style>body{margin:0;background:#0f172a}</style></head>
+<body>
+<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script>
+  kaplay({ width: 400, height: 300, background: [20, 20, 40] })
+  // Add your rectangle below
+</script>
+</body>
+</html>`,
+      },
+      {
+        n: 3,
+        title: "Make it move",
+        blurb: "A character that drifts across the screen.",
+        xp: 80,
+        language: "html",
+        story: {
+          character: "Mochi",
+          text: "Beep boop! A square that just SITS there is not a game. That's a painting. I'm a robot pet, I should know the difference. Let's make it move! Save the object in a variable and slide it sideways every frame.",
+        },
+        why: "Movement is what makes pixels feel alive. Once you can move ONE thing, you can move enemies, bullets, particles \u2014 anything.",
+        concept:
+          "Save the object: const player = add([...]). Then onUpdate(() => { player.move(speed, 0) }) runs every frame. move(x, y) is pixels per second. Negative x = left, positive = right.",
+        example: "onUpdate(() => { player.move(60, 0) })",
+        task: "Save your rectangle in a variable called player. Then call onUpdate so it moves 60 pixels per second to the right.",
+        starter: `<!DOCTYPE html>
+<html>
+<head><style>body{margin:0;background:#0f172a}</style></head>
+<body>
+<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script>
+  kaplay({ width: 400, height: 300, background: [20, 20, 40] })
+  const player = add([ rect(40, 40), pos(40, 130), color(255, 100, 200) ])
+  // Make it move every frame
+</script>
+</body>
+</html>`,
+      },
+      {
+        n: 4,
+        title: "Player controls",
+        blurb: "Arrow keys to move left and right.",
+        xp: 90,
+        language: "html",
+        story: {
+          character: "Captain Pixel",
+          text: "Auto-pilot is fine for cargo ships. Not games. A game needs a HUMAN at the wheel \u2014 that's the magic. Wire up the left and right arrow keys so the player only moves when the player wants to move.",
+        },
+        why: "Input is what turns a moving picture into a GAME. Every joystick, jump, and grab starts with one of these key handlers.",
+        concept:
+          "onKeyDown('left', () => { ... }) fires every frame WHILE the key is held down. Inside, call player.move(-200, 0) to go left, or move(200, 0) to go right.",
+        example:
+          "onKeyDown('left',  () => player.move(-200, 0))\nonKeyDown('right', () => player.move(200, 0))",
+        task: "Remove the constant onUpdate motion. Add two onKeyDown handlers \u2014 left arrow moves player at -200, right arrow moves at +200. Click the game window first, then press arrows.",
+        starter: `<!DOCTYPE html>
+<html>
+<head><style>body{margin:0;background:#0f172a}</style></head>
+<body>
+<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script>
+  kaplay({ width: 400, height: 300, background: [20, 20, 40] })
+  const player = add([ rect(40, 40), pos(180, 130), color(255, 100, 200) ])
+  // Add arrow-key controls below
+</script>
+</body>
+</html>`,
+      },
+      {
+        n: 5,
+        title: "Gravity!",
+        blurb: "What goes up must come down.",
+        xp: 110,
+        language: "html",
+        story: {
+          character: "Bao",
+          text: "Okay so I tried adding gravity to my game by HAND yesterday. 200 lines of code. It looked like a confused balloon. Captain Pixel just laughed and pointed at body(). Turns out Kaplay does physics for you. Just add the body() trait, set world gravity, and your player FALLS.",
+        },
+        why: "Gravity is the heartbeat of platformers (Mario, Celeste, Hollow Knight). One trait, instant physics.",
+        concept:
+          "setGravity(1200) sets how strong gravity pulls down. Add body() as a trait on your player and it becomes a physics object that falls and can jump.",
+        example: "setGravity(1200)\nconst player = add([ rect(40, 40), pos(180, 50), color(255, 100, 200), body() ])",
+        task: "Add setGravity(1200) before creating the player. Then add body() as a trait inside the player's add([...]) list. Hit Run \u2014 the player should fall off the bottom of the screen.",
+        starter: `<!DOCTYPE html>
+<html>
+<head><style>body{margin:0;background:#0f172a}</style></head>
+<body>
+<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script>
+  kaplay({ width: 400, height: 300, background: [20, 20, 40] })
+  // Set gravity below, then update the player to use body()
+  const player = add([ rect(40, 40), pos(180, 50), color(255, 100, 200) ])
+</script>
+</body>
+</html>`,
+      },
+      {
+        n: 6,
+        title: "Build the floor",
+        blurb: "Add a platform so the player has something to stand on.",
+        xp: 110,
+        language: "html",
+        story: {
+          character: "Mochi",
+          text: "Beep! Player fell into the void! That's sad. Let's give him a FLOOR. In Kaplay, anything with body({ isStatic: true }) and area() becomes solid ground. Build a long thin rectangle at the bottom.",
+        },
+        why: "Floors, walls, ceilings, moving platforms \u2014 they're all built with the same recipe. Master this once and you can build any level.",
+        concept:
+          "area() gives an object a collision box. body({ isStatic: true }) makes it solid AND immovable. Together: a wall the player can't pass through.",
+        example: "add([ rect(400, 30), pos(0, 270), color(80, 80, 120), area(), body({ isStatic: true }) ])",
+        task: "Below the player, add a floor: rectangle 400 wide \u00d7 30 tall, positioned at (0, 270), color (80, 80, 120), with area() and body({ isStatic: true }) traits. The player should now land on it.",
+        starter: `<!DOCTYPE html>
+<html>
+<head><style>body{margin:0;background:#0f172a}</style></head>
+<body>
+<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script>
+  kaplay({ width: 400, height: 300, background: [20, 20, 40] })
+  setGravity(1200)
+  const player = add([ rect(40, 40), pos(180, 50), color(255, 100, 200), area(), body() ])
+  // Build the floor below
+</script>
+</body>
+</html>`,
+      },
+      {
+        n: 7,
+        title: "Jump!",
+        blurb: "Tap space to leap into the air.",
+        xp: 120,
+        language: "html",
+        story: {
+          character: "Captain Pixel",
+          text: "Standing on the floor is fine. JUMPING is iconic. Wire up the spacebar so a tap launches the player upward \u2014 but only if they're on the ground (no infinite double-jumps... yet).",
+        },
+        why: "The jump is the single most important mechanic in 2D games. Tuning jump feel = tuning the whole experience.",
+        concept:
+          "onKeyPress (not onKeyDown) fires ONCE per tap, not every frame. player.isGrounded() returns true when standing on something. player.jump(600) launches upward at 600 pixels/sec.",
+        example: "onKeyPress('space', () => { if (player.isGrounded()) player.jump(600) })",
+        task: "Add an onKeyPress for 'space'. Inside, check if the player isGrounded() \u2014 if so, call player.jump(600).",
+        starter: `<!DOCTYPE html>
+<html>
+<head><style>body{margin:0;background:#0f172a}</style></head>
+<body>
+<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script>
+  kaplay({ width: 400, height: 300, background: [20, 20, 40] })
+  setGravity(1200)
+  const player = add([ rect(40, 40), pos(180, 50), color(255, 100, 200), area(), body() ])
+  add([ rect(400, 30), pos(0, 270), color(80, 80, 120), area(), body({ isStatic: true }) ])
+  onKeyDown('left',  () => player.move(-200, 0))
+  onKeyDown('right', () => player.move(200, 0))
+  // Add jump below
+</script>
+</body>
+</html>`,
+      },
+      {
+        n: 8,
+        title: "Collect a coin",
+        blurb: "Touch the coin, the coin disappears, you feel powerful.",
+        xp: 130,
+        language: "html",
+        story: {
+          character: "Bao",
+          text: "What's a game without LOOT? Add a shiny coin. When the player touches it, it should vanish. We'll use 'tags' \u2014 labels you put on objects so collision code can recognize them.",
+        },
+        why: "Collectibles drive every platformer, every RPG, every roguelike. The 'touch \u2192 collect \u2192 react' pattern is the foundation of game feedback.",
+        concept:
+          "Add a string like \"coin\" as a trait \u2014 that's a tag. onCollide('coin', (c) => { destroy(c) }) runs whenever the player touches anything tagged 'coin'. destroy() removes the object.",
+        example: "add([ circle(12), pos(300, 240), color(255, 220, 0), area(), \"coin\" ])\nplayer.onCollide('coin', (c) => destroy(c))",
+        task: "Add a yellow circle (radius 12) at position (300, 240) with area() and the tag \"coin\". Then call player.onCollide('coin', c => destroy(c)) so it disappears on touch.",
+        starter: `<!DOCTYPE html>
+<html>
+<head><style>body{margin:0;background:#0f172a}</style></head>
+<body>
+<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script>
+  kaplay({ width: 400, height: 300, background: [20, 20, 40] })
+  setGravity(1200)
+  const player = add([ rect(40, 40), pos(40, 50), color(255, 100, 200), area(), body() ])
+  add([ rect(400, 30), pos(0, 270), color(80, 80, 120), area(), body({ isStatic: true }) ])
+  onKeyDown('left',  () => player.move(-200, 0))
+  onKeyDown('right', () => player.move(200, 0))
+  onKeyPress('space', () => { if (player.isGrounded()) player.jump(600) })
+  // Add a coin + collide handler below
+</script>
+</body>
+</html>`,
+      },
+      {
+        n: 9,
+        title: "Score counter",
+        blurb: "Show points in the top corner, +1 per coin.",
+        xp: 150,
+        language: "html",
+        story: {
+          character: "Mochi",
+          text: "Beep! Coin grabbed. But... nobody KNEW. No celebration. No number going up. I need that sweet dopamine number, friend. Add a score in the corner and bump it every time we grab a coin.",
+        },
+        why: "Score is feedback. Numbers going up = brain happy. Every arcade classic lives on this loop.",
+        concept:
+          "let score = 0 holds the number. const label = add([ text('Score: 0'), pos(10, 10) ]) shows it. In the coin collide handler, do score++; label.text = 'Score: ' + score.",
+        example: "let score = 0\nconst label = add([ text('Score: 0'), pos(10, 10) ])",
+        task: "Add THREE coins at different positions (e.g. x=150, 250, 350). Create a score variable and label. In the collide handler, increment score and update label.text.",
+        starter: `<!DOCTYPE html>
+<html>
+<head><style>body{margin:0;background:#0f172a}</style></head>
+<body>
+<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script>
+  kaplay({ width: 400, height: 300, background: [20, 20, 40] })
+  setGravity(1200)
+  const player = add([ rect(40, 40), pos(40, 50), color(255, 100, 200), area(), body() ])
+  add([ rect(400, 30), pos(0, 270), color(80, 80, 120), area(), body({ isStatic: true }) ])
+  onKeyDown('left',  () => player.move(-200, 0))
+  onKeyDown('right', () => player.move(200, 0))
+  onKeyPress('space', () => { if (player.isGrounded()) player.jump(600) })
+  // Add 3 coins, a score variable, a label, and the collide handler below
+</script>
+</body>
+</html>`,
+      },
+      {
+        n: 10,
+        title: "Your first mini-game",
+        blurb: "Win screen when all coins are collected.",
+        xp: 200,
+        language: "html",
+        story: {
+          character: "Captain Pixel",
+          text: "Recruit \u2014 look at you. Player. Floor. Jump. Coins. Score. That's a GAME. Final step: a win condition. When the last coin disappears, show 'YOU WIN!' across the screen. Then post a screenshot in the Wall of Recruits. I expect tears of joy. Mine. Yours. Whatever.",
+        },
+        why: "Every great game has an ending. A clear goal turns a toy into a CHALLENGE. Even a 10-second mini-game with a real win condition feels like a real game.",
+        concept:
+          "Check score against a target. When score >= 3, show a big text label in the center. Tip: add([ text('YOU WIN!', { size: 48 }), pos(80, 120), color(255, 255, 100) ]).",
+        example: "if (score >= 3) { add([ text('YOU WIN!', { size: 48 }), pos(60, 110), color(255, 255, 100) ]) }",
+        task: "After incrementing the score in the collide handler, check if score === 3 (or however many coins you have). If so, add a 'YOU WIN!' text in the middle of the screen.",
+        starter: `<!DOCTYPE html>
+<html>
+<head><style>body{margin:0;background:#0f172a}</style></head>
+<body>
+<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script>
+  kaplay({ width: 400, height: 300, background: [20, 20, 40] })
+  setGravity(1200)
+  const player = add([ rect(40, 40), pos(40, 50), color(255, 100, 200), area(), body() ])
+  add([ rect(400, 30), pos(0, 270), color(80, 80, 120), area(), body({ isStatic: true }) ])
+  add([ circle(12), pos(150, 240), color(255, 220, 0), area(), "coin" ])
+  add([ circle(12), pos(250, 240), color(255, 220, 0), area(), "coin" ])
+  add([ circle(12), pos(350, 240), color(255, 220, 0), area(), "coin" ])
+  let score = 0
+  const label = add([ text('Score: 0'), pos(10, 10) ])
+  onKeyDown('left',  () => player.move(-200, 0))
+  onKeyDown('right', () => player.move(200, 0))
+  onKeyPress('space', () => { if (player.isGrounded()) player.jump(600) })
+  player.onCollide('coin', (c) => {
+    destroy(c)
+    score++
+    label.text = 'Score: ' + score
+    // Show YOU WIN when all coins collected
+  })
+</script>
+</body>
+</html>`,
       },
     ],
   },
