@@ -57,11 +57,13 @@ export default function CharacterPicker({
     <div className="space-y-5">
       {/* Heroes */}
       <div>
-        <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Heroes</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-1">Heroes</p>
+        <p className="text-[11px] text-slate-400 mb-3">Locked heroes show how many more missions you need.</p>
         <div className="grid grid-cols-4 sm:grid-cols-5 gap-3">
           {heroes.map((c) => {
             const unlocked = isUnlocked(c.id);
             const isSelected = selected === c.id;
+            const remaining = Math.max(0, c.unlockMissions - totalMissions);
             return (
               <button
                 key={c.id}
@@ -73,7 +75,7 @@ export default function CharacterPicker({
                     ? "border-[#193b92] bg-[#193b92]/5 ring-2 ring-[#193b92]/20"
                     : unlocked
                       ? "border-slate-200 bg-white hover:border-[#193b92]/40 hover:bg-slate-50"
-                      : "border-dashed border-slate-200 bg-slate-50 opacity-50 cursor-not-allowed"
+                      : "border-dashed border-slate-300 bg-slate-50 cursor-not-allowed"
                   }`}
               >
                 <Image
@@ -81,14 +83,14 @@ export default function CharacterPicker({
                   alt={c.name}
                   width={56}
                   height={56}
-                  className="h-14 w-14 object-contain"
+                  className={`h-14 w-14 object-contain ${unlocked ? "" : "grayscale opacity-60"}`}
                 />
                 <span className="text-[10px] font-semibold text-slate-600 truncate w-full text-center">
                   {c.name}
                 </span>
                 {!unlocked && (
-                  <span className="absolute inset-0 flex items-center justify-center rounded-2xl bg-white/60">
-                    <span className="text-base">🔒</span>
+                  <span className="text-[9px] font-bold text-slate-500 leading-tight text-center px-1">
+                    {c.id === "president" ? "🔒 Finish GenAI" : `🔒 ${remaining} more`}
                   </span>
                 )}
                 {isSelected && (
@@ -105,11 +107,12 @@ export default function CharacterPicker({
       {/* Villains — can be selected once unlocked (kids love playing villain) */}
       <div>
         <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-1">Villains</p>
-        <p className="text-[11px] text-slate-400 mb-3">Defeat them first — then steal their look.</p>
+        <p className="text-[11px] text-slate-400 mb-3">Defeat them by completing missions — then steal their look.</p>
         <div className="grid grid-cols-4 sm:grid-cols-5 gap-3">
           {villains.map((c) => {
             const unlocked = isUnlocked(c.id);
             const isSelected = selected === c.id;
+            const remaining = Math.max(0, c.unlockMissions - totalMissions);
             return (
               <button
                 key={c.id}
@@ -121,7 +124,7 @@ export default function CharacterPicker({
                     ? "border-red-500 bg-red-50 ring-2 ring-red-200"
                     : unlocked
                       ? "border-slate-200 bg-white hover:border-red-300 hover:bg-red-50/40"
-                      : "border-dashed border-slate-200 bg-slate-50 opacity-50 cursor-not-allowed"
+                      : "border-dashed border-slate-300 bg-slate-50 cursor-not-allowed"
                   }`}
               >
                 <Image
@@ -129,23 +132,23 @@ export default function CharacterPicker({
                   alt={c.name}
                   width={56}
                   height={56}
-                  className="h-14 w-14 object-contain"
+                  className={`h-14 w-14 object-contain ${unlocked ? "" : "grayscale opacity-60"}`}
                 />
                 <span className="text-[10px] font-semibold text-slate-600 truncate w-full text-center">
                   {c.name}
                 </span>
                 {!unlocked && (
-                  <span className="absolute inset-0 flex items-center justify-center rounded-2xl bg-white/60">
-                    <span className="text-base">💀</span>
+                  <span className="text-[9px] font-bold text-red-500 leading-tight text-center px-1">
+                    ☠ {remaining} more
                   </span>
                 )}
-                {unlocked && (
+                {unlocked && !isSelected && (
                   <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full">
                     ☠
                   </span>
                 )}
                 {isSelected && (
-                  <span className="absolute -top-1.5 -left-1.5 bg-red-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full">
+                  <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full">
                     ✓
                   </span>
                 )}
