@@ -4067,6 +4067,165 @@ secret = random.randint(100, 1000)
       { line: "  </div>\n</body>\n</html>", note: "Close everything. Mochi salutes you." },
     ],
   },
+  // ── MEDIUM ADVENTURES ─────────────────────────────────────────────────────
+  {
+    id: "control-room",
+    planet: "Planet Control",
+    glyph: "C",
+    accent: "#1E3A8A",
+    client: "Captain Pixel",
+    tagline: "Build mission control: status panels + a live clock.",
+    brief:
+      "Recruit, the academy command room screen is BLANK. I need a mission control dashboard — three status panels (Power, Comms, Shields) with a colored dot each, AND a live clock in the corner that updates every second. Make it look like we know what we're doing.",
+    needs: [
+      "Three status panels labelled Power, Comms, Shields",
+      "Each panel has a colored circle next to its label (green = OK)",
+      "A clock in the top-right that updates every second",
+      "Dark dashboard background",
+    ],
+    hint: "setInterval(updateClock, 1000) keeps the time fresh. Use a flex row for the panels.",
+    reward: 240,
+    language: "html",
+    starter: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; padding: 32px; background: #0F172A; color: white; }
+    h1 { margin: 0; }
+    .clock { position: fixed; top: 20px; right: 32px; font-size: 22px; color: #38BDF8; }
+    .panels { display: flex; gap: 16px; margin-top: 32px; }
+    .panel { flex: 1; padding: 20px; background: #1E293B; border-radius: 12px; }
+    .dot { display: inline-block; width: 12px; height: 12px; border-radius: 999px; background: #22C55E; margin-right: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Mission Control</h1>
+  <div id="clock" class="clock">--:--:--</div>
+  <div class="panels">
+    <!-- Add Power, Comms, Shields panels here -->
+  </div>
+  <script>
+    // TODO: function updateClock() — set #clock to new Date().toLocaleTimeString()
+    // TODO: setInterval(updateClock, 1000); updateClock();
+  </script>
+</body>
+</html>`,
+    scaffold: [
+      { line: "<!-- Mission control dashboard -->", note: "Captain wants it operational ASAP." },
+      { line: "<div class=\"panel\"><span class=\"dot\"></span>Power</div>", note: "Panel 1 — Power." },
+      { line: "<div class=\"panel\"><span class=\"dot\"></span>Comms</div>", note: "Panel 2 — Comms." },
+      { line: "<div class=\"panel\"><span class=\"dot\"></span>Shields</div>", note: "Panel 3 — Shields." },
+      { line: "function updateClock() {\n  document.getElementById('clock').textContent = new Date().toLocaleTimeString();\n}", note: "Format the time and drop it in the corner." },
+      { line: "setInterval(updateClock, 1000);\nupdateClock();", note: "Tick every second + an immediate first paint." },
+    ],
+  },
+  {
+    id: "stormwatch",
+    planet: "Planet Stormwatch",
+    glyph: "S",
+    accent: "#0EA5E9",
+    client: "Storm",
+    tagline: "Random weather alert generator — push the button.",
+    brief:
+      "Recruit. The storm forecast network needs a button. Press it and a random weather alert appears: 'Hurricane', 'Snow', 'Sunshine', 'Hail', 'Lightning'. Each alert gets its own emoji and color. Citizens need to know what to wear.",
+    needs: [
+      "A 'New forecast' button",
+      "A display area that updates with a random alert from a list of 5",
+      "Each alert shows an emoji + the weather word",
+      "Background color changes to match (cold = blue, hot = orange, etc.)",
+    ],
+    hint: "Math.floor(Math.random() * arr.length) gives a random index. Store {emoji, label, color} objects in an array.",
+    reward: 260,
+    language: "html",
+    starter: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; padding: 40px; text-align: center; transition: background 0.4s; }
+    #out { font-size: 48px; margin: 24px 0; }
+    button { background: #0EA5E9; color: white; border: 0; padding: 14px 28px; border-radius: 999px; font-weight: 700; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Stormwatch</h1>
+  <div id="out">Press the button for today's forecast</div>
+  <button onclick="forecast()">New forecast</button>
+  <script>
+    // TODO: array of 5 alerts {emoji, label, color}
+    // TODO: forecast() picks a random one and updates #out + body background
+  </script>
+</body>
+</html>`,
+    scaffold: [
+      { line: "const alerts = [\n  { emoji: '🌀', label: 'Hurricane', color: '#475569' },\n  { emoji: '❄️', label: 'Snow', color: '#BFDBFE' },\n  { emoji: '☀️', label: 'Sunshine', color: '#FEF3C7' },\n  { emoji: '🌨️', label: 'Hail', color: '#E0E7FF' },\n  { emoji: '⚡', label: 'Lightning', color: '#FDE68A' },\n];", note: "Five forecast options bundled into one array." },
+      { line: "function forecast() {\n  const a = alerts[Math.floor(Math.random() * alerts.length)];\n  document.getElementById('out').textContent = a.emoji + ' ' + a.label;\n  document.body.style.background = a.color;\n}", note: "Pick one at random, update the display, tint the page." },
+    ],
+  },
+  {
+    id: "logica",
+    planet: "Planet Logica",
+    glyph: "λ",
+    accent: "#7C3AED",
+    client: "Professor Loop",
+    tagline: "Find the top 3 most common words in a paragraph.",
+    brief:
+      "Assistant! I'm proofreading a manuscript and I want to know which words I overuse. Given a paragraph (any sentence will do), count every word and print the THREE most common ones, with their counts. This is real text analysis — exactly what search engines do behind the scenes.",
+    needs: [
+      "Split the paragraph into words (use .split())",
+      "Count each word in a dictionary",
+      "Print the top 3 words with their counts, most common first",
+      "Words must be compared in lowercase",
+    ],
+    hint: "Use a dict: counts[word] = counts.get(word, 0) + 1. Then sorted(counts.items(), key=lambda x: -x[1])[:3].",
+    reward: 280,
+    language: "python",
+    starter: `# Word frequency analyzer.
+text = "the cat sat on the mat and the cat was happy because the mat was warm"
+
+# TODO: build a dict of word → count
+# TODO: print the top 3 most common words
+`,
+    scaffold: [
+      { line: "text = \"the cat sat on the mat and the cat was happy because the mat was warm\"", note: "Sample paragraph — swap in any string." },
+      { line: "counts = {}", note: "Empty dict to hold counts." },
+      { line: "for word in text.lower().split():", note: "Split into words, lowercase first." },
+      { line: "    counts[word] = counts.get(word, 0) + 1", note: "Bump the count for this word." },
+      { line: "top = sorted(counts.items(), key=lambda x: -x[1])[:3]", note: "Sort by count descending; keep top 3." },
+      { line: "for word, count in top:\n    print(word, '→', count)", note: "Print the leaderboard." },
+    ],
+  },
+  {
+    id: "moodlab",
+    planet: "Planet Moodlab",
+    glyph: "M",
+    accent: "#F59E0B",
+    client: "Bao",
+    tagline: "Analyze a week of moods and find the most common one.",
+    brief:
+      "Okay so my journal app crashed and I lost everything BUT I still remember my moods from the last 7 days: happy, tired, happy, anxious, happy, calm, tired. I want a script that prints each day's mood AND tells me which mood showed up the most this week. Self-awareness! With code!",
+    needs: [
+      "Store the 7 moods in a list",
+      "Print each day in the format 'Day 1: happy'",
+      "Find the mood that appears the most",
+      "Print the winning mood and how many times it appeared",
+    ],
+    hint: "Use max(set(moods), key=moods.count) to find the most common item.",
+    reward: 270,
+    language: "python",
+    starter: `# Weekly mood analyzer
+moods = ["happy", "tired", "happy", "anxious", "happy", "calm", "tired"]
+
+# TODO: print each day with its mood
+# TODO: print the most common mood and its count
+`,
+    scaffold: [
+      { line: "moods = [\"happy\", \"tired\", \"happy\", \"anxious\", \"happy\", \"calm\", \"tired\"]", note: "Bao's week, as a list." },
+      { line: "for i, mood in enumerate(moods, start=1):", note: "enumerate gives us day number + mood together." },
+      { line: "    print(\"Day\", i, \":\", mood)", note: "One status line per day." },
+      { line: "top = max(set(moods), key=moods.count)", note: "Find the mood that appears most often." },
+      { line: "print(\"Most common mood:\", top, \"(\", moods.count(top), \"times )\")", note: "Final verdict for Bao." },
+    ],
+  },
   // ── VILLAIN ADVENTURES (high stakes) ──────────────────────────────────────
   {
     id: "override",
@@ -4233,5 +4392,127 @@ for n in range(1000, 10000):
       { line: "        print(n)", note: "Match found \u2014 print the candidate code." },
     ],
   },
+  {
+    id: "deepfake",
+    planet: "Planet Deepfake",
+    glyph: "?",
+    accent: "#A21CAF",
+    client: "Jason",
+    tagline: "Jason cloned the President. Crowd-source real vs fake.",
+    brief:
+      "Hello again. I've made a few… let's call them 'video edits' of your beloved President. Citizens can't tell what's real anymore. Be a sport and build them a voting page: clip title, two buttons (REAL / FAKE), and a running tally so the planet can crowd-source the truth. Best of luck.",
+    needs: [
+      "A clip title (any text)",
+      "Two buttons: 'REAL' and 'FAKE'",
+      "A running tally that updates with each click (Real: X · Fake: Y)",
+      "A 'Verdict' line showing which side leads (or 'Tied')",
+    ],
+    hint: "Two counter variables. Each button increments one then re-renders the tally and verdict.",
+    reward: 340,
+    language: "html",
+    starter: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; padding: 32px; background: #1E1B4B; color: white; text-align: center; }
+    h1 { color: #F0ABFC; }
+    button { margin: 8px; padding: 12px 24px; border: 0; border-radius: 999px; font-weight: 700; cursor: pointer; }
+    .real { background: #22C55E; color: white; }
+    .fake { background: #DC2626; color: white; }
+    #tally { font-size: 22px; margin-top: 20px; }
+    #verdict { margin-top: 12px; color: #FDE68A; }
+  </style>
+</head>
+<body>
+  <h1>President speech — clip #427</h1>
+  <button class="real" onclick="vote('real')">REAL</button>
+  <button class="fake" onclick="vote('fake')">FAKE</button>
+  <div id="tally">Real: 0 · Fake: 0</div>
+  <div id="verdict">No votes yet.</div>
+  <script>
+    // TODO: track real + fake counts. Update tally + verdict on each vote.
+  </script>
+</body>
+</html>`,
+    scaffold: [
+      { line: "let real = 0;\nlet fake = 0;", note: "Two counters — one per side." },
+      { line: "function vote(side) {\n  if (side === 'real') real++; else fake++;\n  document.getElementById('tally').textContent = 'Real: ' + real + ' · Fake: ' + fake;\n  const v = real > fake ? 'Leaning REAL' : fake > real ? 'Leaning FAKE' : 'Tied';\n  document.getElementById('verdict').textContent = v;\n}", note: "One function handles both buttons." },
+    ],
+  },
+  {
+    id: "ransom",
+    planet: "Planet Ransom",
+    glyph: "$",
+    accent: "#7C2D12",
+    client: "The Professor",
+    tagline: "Decrypt the ransom note before the deadline.",
+    brief:
+      "I've encrypted every public file on your planet with a simple Caesar cipher. The shift is 3 — each letter was moved 3 positions forward in the alphabet. Take the message 'khoor zruog' and turn it back into readable English. Then I'll consider lowering the ransom. Maybe.",
+    needs: [
+      "Define the encrypted message as a string",
+      "Loop through every character",
+      "Shift each letter back by 3 (wraps around the alphabet)",
+      "Print the decrypted message",
+    ],
+    hint: "For a lowercase letter c: chr((ord(c) - ord('a') - 3) % 26 + ord('a')). Leave spaces alone.",
+    reward: 380,
+    language: "python",
+    starter: `# Decrypt the Professor's ransom note.
+# Caesar cipher with shift of 3. Letters only — keep spaces.
+
+msg = "khoor zruog"
+# TODO: decrypt and print
+`,
+    scaffold: [
+      { line: "msg = \"khoor zruog\"", note: "The encrypted ransom note." },
+      { line: "result = \"\"", note: "We'll build the decrypted message here." },
+      { line: "for c in msg:", note: "Walk every character." },
+      { line: "    if c == ' ':\n        result += ' '", note: "Spaces pass through unchanged." },
+      { line: "    else:\n        result += chr((ord(c) - ord('a') - 3) % 26 + ord('a'))", note: "Shift back by 3, wrapping with modulo." },
+      { line: "print(result)", note: "Should print: hello world. Decrypted." },
+    ],
+  },
+  {
+    id: "siege",
+    planet: "Planet Siege",
+    glyph: "X",
+    accent: "#450A0A",
+    client: "Jason",
+    tagline: "Drone army in 10 waves. Build the defence simulator.",
+    brief:
+      "Final showdown, hero. My drone army arrives in 10 waves. Each wave is twice as big as the last, starting with 3 drones. Your laser turret can shoot up to 50 drones per wave. Print each wave: incoming count, drones destroyed, drones that broke through. If total breakthroughs hit 200, print 'PLANET FALLS' and stop. Otherwise, end with 'PLANET HOLDS'.",
+    needs: [
+      "Start wave 1 with 3 drones; double each wave",
+      "Each wave the turret destroys up to 50 drones",
+      "Track the running total of drones that broke through",
+      "Print 'PLANET FALLS' and break if breakthroughs hit 200; otherwise print 'PLANET HOLDS' at the end",
+    ],
+    hint: "Use min(incoming, 50) for the kill count. breakthrough = incoming - destroyed. Track total; check it each wave.",
+    reward: 420,
+    language: "python",
+    starter: `# Final defence simulator
+# 10 waves; wave 1 = 3 drones, doubles each wave.
+# Turret kills up to 50 per wave.
+
+incoming = 3
+total_breakthrough = 0
+fell = False
+# TODO: loop 10 waves and print the report
+`,
+    scaffold: [
+      { line: "incoming = 3", note: "Wave 1 starts with 3 drones." },
+      { line: "total_breakthrough = 0", note: "Running total of drones that got past the turret." },
+      { line: "fell = False", note: "Flag so we know if the planet fell mid-loop." },
+      { line: "for wave in range(1, 11):", note: "Ten waves \u2014 range(1, 11) gives 1..10." },
+      { line: "    destroyed = min(incoming, 50)", note: "Turret caps out at 50 kills per wave." },
+      { line: "    breakthrough = incoming - destroyed", note: "Whatever survives breaks through." },
+      { line: "    total_breakthrough += breakthrough", note: "Add to the running total." },
+      { line: "    print(\"Wave\", wave, \"\u2014 incoming:\", incoming, \"destroyed:\", destroyed, \"through:\", breakthrough)", note: "One status line per wave." },
+      { line: "    if total_breakthrough >= 200:\n        print(\"PLANET FALLS\")\n        fell = True\n        break", note: "Hit the loss threshold — print, flag, exit." },
+      { line: "    incoming = incoming * 2", note: "Next wave is twice as big." },
+      { line: "if not fell:\n    print(\"PLANET HOLDS\")", note: "Survived all 10 waves. Heroic." },
+    ],
+  },
 ];
+
 
