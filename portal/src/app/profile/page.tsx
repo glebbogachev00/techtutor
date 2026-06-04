@@ -10,6 +10,8 @@ import type { AchievementTier } from "@/lib/achievements";
 import { CHARACTER_BY_ID, DEFAULT_CHARACTER_ID } from "@/lib/characters";
 
 export const metadata = { title: "Profile — TechBash" };
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function ProfilePage() {
   const supabase = await createClient();

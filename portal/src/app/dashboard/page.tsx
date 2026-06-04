@@ -13,6 +13,8 @@ import {
 } from "@/lib/characters";
 
 export const metadata = { title: "Dashboard — TechBash" };
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const TRACK_META: Record<
   string,
