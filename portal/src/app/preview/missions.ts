@@ -1225,6 +1225,119 @@ export const TRACKS: Track[] = [
 </body>
 </html>`,
       },
+      {
+        n: 41,
+        title: "SABOTAGE: The vanishing tag",
+        blurb: "Jason deleted a closing tag. Bring the page back.",
+        xp: 200,
+        language: "html",
+        story: {
+          character: "Jason",
+          text: "Cute little webpage you've got there. Shame I deleted one of your closing tags. The whole layout is collapsing like a bad startup. Fix it if you can — my robots could do it in 0.2 seconds. You? Let's see.",
+        },
+        why: "Real developers spend half their lives hunting bugs. A missing tag can crash an entire page. Spotting it fast is a superpower.",
+        concept:
+          "Every opening tag like <p> needs a matching closing tag like </p>. If one is missing, the browser gets confused and styling breaks. Read carefully from top to bottom and find the orphan.",
+        example: `<p>Hello</p>  ← good\n<p>Hello      ← broken: no </p>`,
+        task: "Find the missing closing tag and add it back so the page renders correctly.",
+        starter: `<!DOCTYPE html>
+<html>
+<body>
+  <h1>My Page</h1>
+  <p>Welcome to my website.
+  <p>This is the second paragraph.</p>
+  <p>And a third one.</p>
+</body>
+</html>`,
+      },
+      {
+        n: 42,
+        title: "SABOTAGE: Everything is beige",
+        blurb: "Jason turned your CSS the color of sadness.",
+        xp: 210,
+        language: "html",
+        story: {
+          character: "Jason",
+          text: "I logged into your stylesheet and changed every fun color to beige. Beige! The colour of giving up. Restore the vibe — if you remember how. My AI assistant has 4 billion colors memorised.",
+        },
+        why: "Color is the first thing a visitor notices. Knowing how to fix and tweak CSS values fast is what separates real builders from people who just stare at the screen.",
+        concept:
+          "CSS color values can be names (red, blue), hex codes (#193b92), or rgb(). Change the value, the look changes instantly. Bright colors = bright vibes.",
+        task: "Change the background and button color from beige to something bold (like #2C7A7B and #E89F47, or any colors you love).",
+        starter: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { background: beige; font-family: sans-serif; text-align: center; padding: 40px; }
+    h1 { color: beige; }
+    .btn { background: beige; color: beige; padding: 12px 24px; border: 0; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Welcome</h1>
+  <button class="btn">Click me</button>
+</body>
+</html>`,
+      },
+      {
+        n: 43,
+        title: "SABOTAGE: The silent button",
+        blurb: "The Professor mistyped your selector. Nothing works.",
+        xp: 240,
+        language: "html",
+        story: {
+          character: "The Professor",
+          text: "Observe. Your button looks fine. It IS fine. But it does nothing. I changed a single character in your JavaScript selector. One character. Find it. Most people give up here. I expect you will too.",
+        },
+        why: "Tiny typos cause most real-world bugs. Learning to read code carefully, character by character, is the most underrated skill in coding.",
+        concept:
+          "document.getElementById('id') finds an element by its id. If you typo the id (capital letter, extra letter, wrong word), it returns null and your code crashes silently.",
+        example: `// HTML: <button id="go">\ndocument.getElementById('go')   ← works\ndocument.getElementById('Go')   ← returns null`,
+        task: "Find the typo in the JavaScript selector and fix it so the button shows the alert.",
+        starter: `<!DOCTYPE html>
+<html>
+<body>
+  <button id="hello">Say hi</button>
+  <script>
+    document.getElementById('Helloo').addEventListener('click', () => {
+      alert('Hi there!');
+    });
+  </script>
+</body>
+</html>`,
+      },
+      {
+        n: 44,
+        title: "SABOTAGE: The math lies",
+        blurb: "The Professor turned your numbers into text.",
+        xp: 260,
+        language: "html",
+        story: {
+          character: "The Professor",
+          text: "A small lesson. In your calculator, when a user types '5' into a text box, JavaScript treats it as the STRING '5', not the NUMBER 5. So 5 + 5 becomes '55'. I've watched students cry over this. Don't be one of them.",
+        },
+        why: "Mixing up strings and numbers is one of the most common bugs in the world. Every professional developer has been burned by it. Now you'll know the fix forever.",
+        concept:
+          "Use Number(x) or parseInt(x) to convert text from an input into a real number before doing math on it.",
+        example: `Number('5') + Number('5') === 10   ✅\n'5' + '5' === '55'                 ❌`,
+        task: "Wrap the input values in Number(...) so the sum is actually added, not concatenated as text.",
+        starter: `<!DOCTYPE html>
+<html>
+<body>
+  <input id="a" type="number" value="5" />
+  <input id="b" type="number" value="5" />
+  <button onclick="go()">Add</button>
+  <p>Result: <span id="out">?</span></p>
+  <script>
+    function go() {
+      const a = document.getElementById('a').value;
+      const b = document.getElementById('b').value;
+      document.getElementById('out').textContent = a + b;
+    }
+  </script>
+</body>
+</html>`,
+      },
     ],
   },
   {
@@ -1969,6 +2082,89 @@ greet()
         starter: `text = "the cat sat on the mat the cat smiled"
 # build counts dict and print\n`,
       },
+      {
+        n: 41,
+        title: "SABOTAGE: Print is broken",
+        blurb: "Jason rewrote your prints in old-school style.",
+        xp: 200,
+        language: "python",
+        story: {
+          character: "Jason",
+          text: "I went back in time and changed your code to Python 2. Cute, right? Modern Python needs parentheses around print arguments. Without them — syntax error city. Fix it. My AI never makes this mistake.",
+        },
+        why: "Spotting syntax errors fast is a real-world dev skill. Python is strict: one missing parenthesis kills the whole script.",
+        concept:
+          "In Python 3, print is a FUNCTION. You always call it with parentheses: print('hello'). Without them, Python throws SyntaxError.",
+        example: `print 'hi'   ❌ SyntaxError\nprint('hi')  ✅`,
+        task: "Fix every print statement so it uses parentheses correctly.",
+        starter: `name = "Pixel"
+print "Booting up..."
+print "Hello,", name
+print "All systems go!"
+`,
+      },
+      {
+        n: 42,
+        title: "SABOTAGE: The off-by-one loop",
+        blurb: "Jason's loop counts wrong on purpose.",
+        xp: 220,
+        language: "python",
+        story: {
+          character: "Jason",
+          text: "Your loop is supposed to print numbers 1 through 5. Mine prints 0 through 4. Close enough, right? WRONG. Off-by-one bugs have crashed satellites. Fix the range so it prints 1, 2, 3, 4, 5.",
+        },
+        why: "Off-by-one errors are legendary. They've crashed video games, banking systems, and yes, actual rockets. Master ranges now and save your future self a headache.",
+        concept:
+          "range(a, b) goes from a UP TO but NOT INCLUDING b. So range(1, 5) gives 1, 2, 3, 4. To include 5, you need range(1, 6).",
+        example: `for i in range(1, 6): print(i)   → 1 2 3 4 5`,
+        task: "Change the range so the loop prints exactly 1 through 5.",
+        starter: `for i in range(0, 5):
+    print(i)
+`,
+      },
+      {
+        n: 43,
+        title: "SABOTAGE: Indentation chaos",
+        blurb: "The Professor scrambled your spaces.",
+        xp: 240,
+        language: "python",
+        story: {
+          character: "The Professor",
+          text: "A lesson in discipline. Python uses indentation to know what code belongs to what. I've shifted yours around. The code looks innocent. It will not run. Fix the indentation. Precision matters.",
+        },
+        why: "Indentation is HOW Python knows which lines belong inside a function or loop. Wrong indentation = IndentationError, and nothing runs.",
+        concept:
+          "Inside def, if, or for, the body must be indented (usually 4 spaces). All lines in the same block must indent the SAME amount.",
+        task: "Fix the indentation so the function defines correctly and runs when called.",
+        starter: `def greet(name):
+print("Hello, " + name)
+  print("Welcome to the Academy.")
+
+greet("Recruit")
+`,
+      },
+      {
+        n: 44,
+        title: "SABOTAGE: The function that gives nothing",
+        blurb: "The Professor stole your return statement.",
+        xp: 260,
+        language: "python",
+        story: {
+          character: "The Professor",
+          text: "Your function looks perfect. It calculates, it computes, it does math. And then it returns... None. Because I removed your return statement. A function without return is a beautiful, useless machine. Restore it.",
+        },
+        why: "Forgetting `return` is one of the top 5 Python bugs ever. The function runs, prints look right, but the caller gets None. Knowing this saves hours.",
+        concept:
+          "To send a value back from a function, use `return value`. Without it, the function returns None automatically — even if you printed things inside it.",
+        example: `def double(n):\n    return n * 2\nprint(double(5))   → 10`,
+        task: "Add a return statement so the function actually gives back the squared number.",
+        starter: `def square(n):
+    result = n * n
+
+answer = square(7)
+print("7 squared is:", answer)
+`,
+      },
     ],
   },
   {
@@ -2451,6 +2647,125 @@ greet()
     score++
     label.text = 'Score: ' + score
     // Show YOU WIN when all coins collected
+  })
+</script>
+</body>
+</html>`,
+      },
+      {
+        n: 11,
+        title: "SABOTAGE: The blank canvas",
+        blurb: "Jason typoed kaplay's options. Nothing renders.",
+        xp: 220,
+        language: "html",
+        story: {
+          character: "Jason",
+          text: "Tiny game. I made one tiny change. Now your canvas is empty. Find what I broke. My AI would catch it in 2ms. Tick tock.",
+        },
+        why: "Engines like Kaplay rely on exact option names. One typo and your whole game world disappears. Knowing where to look saves hours.",
+        concept:
+          "kaplay() takes options like { width, height, background }. Background must be a number array like [r, g, b]. A typoed key like 'backgroundd' is silently ignored and you get default settings (or nothing visible).",
+        task: "Fix the typo in the kaplay() options so the dark canvas + pink player appear again.",
+        starter: `<!DOCTYPE html>
+<html>
+<head><style>body{margin:0;background:#0f172a}</style></head>
+<body>
+<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
+<script>
+  kaplay({ widht: 400, hieght: 300, backgroundd: [20, 20, 40] })
+  add([ rect(40, 40), pos(180, 130), color(255, 100, 200) ])
+</script>
+</body>
+</html>`,
+      },
+      {
+        n: 12,
+        title: "SABOTAGE: Player won't move",
+        blurb: "Jason swapped your key names. The hero is frozen.",
+        xp: 240,
+        language: "html",
+        story: {
+          character: "Jason",
+          text: "Your player is paralysed. I changed the key names to ones Kaplay doesn't know. Arrow keys are called 'left', 'right', 'up', 'down' — not whatever I wrote. Have fun debugging.",
+        },
+        why: "Knowing exact event names is half of game development. Real games are built on hundreds of input handlers — one wrong name and players rage-quit.",
+        concept:
+          "In Kaplay, onKeyDown('left', () => ...) listens for the left arrow. Other keys: 'right', 'up', 'down', 'space', 'a', 'd'. Names are case-sensitive strings.",
+        task: "Fix the key names in onKeyDown so the pink square moves left and right with the arrow keys.",
+        starter: `<!DOCTYPE html>
+<html>
+<head><style>body{margin:0;background:#0f172a}</style></head>
+<body>
+<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
+<script>
+  kaplay({ width: 400, height: 300, background: [20, 20, 40] })
+  const player = add([ rect(40, 40), pos(180, 130), color(255, 100, 200) ])
+  onKeyDown('LEFT_ARROW', () => player.move(-200, 0))
+  onKeyDown('RIGHT_ARROW', () => player.move(200, 0))
+</script>
+</body>
+</html>`,
+      },
+      {
+        n: 13,
+        title: "SABOTAGE: Gravity is a typo",
+        blurb: "The Professor inverted physics.",
+        xp: 260,
+        language: "html",
+        story: {
+          character: "The Professor",
+          text: "Your gravity is now NEGATIVE. The player floats up forever, like a sad balloon. Restore gravity to a positive number. Also: a real physicist would notice this immediately. Are you a real physicist?",
+        },
+        why: "Physics values in games are just numbers — but tiny mistakes (negative, zero, missing zero) make the whole world feel wrong. Reading values critically is a key debugging skill.",
+        concept:
+          "setGravity(n) pulls bodies DOWN when n is positive (try 1200). Negative gravity pulls things up. Zero gravity means no falling at all.",
+        task: "Change setGravity to a positive value (like 1200) so the player falls onto the floor.",
+        starter: `<!DOCTYPE html>
+<html>
+<head><style>body{margin:0;background:#0f172a}</style></head>
+<body>
+<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
+<script>
+  kaplay({ width: 400, height: 300, background: [20, 20, 40] })
+  setGravity(-1200)
+  add([ rect(40, 40), pos(180, 30), color(255, 100, 200), area(), body() ])
+  add([ rect(400, 30), pos(0, 270), color(80, 80, 120), area(), body({ isStatic: true }) ])
+</script>
+</body>
+</html>`,
+      },
+      {
+        n: 14,
+        title: "SABOTAGE: The ghost coin",
+        blurb: "The Professor stripped area() from your coin. Collisions don't fire.",
+        xp: 300,
+        language: "html",
+        story: {
+          character: "The Professor",
+          text: "Final test. Your player walks right through the coin like a ghost. Why? Because I removed its area() component. Without area(), Kaplay doesn't track collisions. Add it back. Then — perhaps — you may be worth recruiting. To the other side.",
+        },
+        why: "Collision detection is the heart of every game. Without area(), objects can't 'feel' each other. Knowing exactly which component does what is what makes a real game dev.",
+        concept:
+          "In Kaplay, area() gives an object a hitbox. Without it, collide events never fire. Always add area() to anything that needs to bump into anything else.",
+        example: `add([ circle(12), pos(200, 240), color(255, 220, 0), area(), 'coin' ])`,
+        task: "Add area() to the coin so the player.onCollide('coin', ...) handler fires when they touch.",
+        starter: `<!DOCTYPE html>
+<html>
+<head><style>body{margin:0;background:#0f172a}</style></head>
+<body>
+<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
+<script>
+  kaplay({ width: 400, height: 300, background: [20, 20, 40] })
+  setGravity(1200)
+  const player = add([ rect(40, 40), pos(40, 50), color(255, 100, 200), area(), body() ])
+  add([ rect(400, 30), pos(0, 270), color(80, 80, 120), area(), body({ isStatic: true }) ])
+  const coin = add([ circle(12), pos(250, 240), color(255, 220, 0), 'coin' ])
+  onKeyDown('left',  () => player.move(-200, 0))
+  onKeyDown('right', () => player.move(200, 0))
+  onKeyPress('space', () => { if (player.isGrounded()) player.jump(600) })
+  player.onCollide('coin', () => {
+    destroy(coin)
+    add([ text('GOT IT!', { size: 32 }), pos(120, 110), color(255, 255, 100) ])
   })
 </script>
 </body>
