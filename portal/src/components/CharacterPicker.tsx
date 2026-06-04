@@ -8,12 +8,14 @@ interface Props {
   totalMissions: number;
   genaiTrackCompleted: boolean;
   currentCharacterId: string;
+  cheatUnlocked?: boolean;
 }
 
 export default function CharacterPicker({
   totalMissions,
   genaiTrackCompleted,
   currentCharacterId,
+  cheatUnlocked = false,
 }: Props) {
   const [selected, setSelected] = useState(currentCharacterId);
   const [saving, setSaving] = useState(false);
@@ -21,6 +23,7 @@ export default function CharacterPicker({
   const [error, setError] = useState("");
 
   function isUnlocked(id: string) {
+    if (cheatUnlocked) return true;
     if (id === "president") return genaiTrackCompleted;
     const c = CHARACTER_BY_ID[id];
     return !!c && totalMissions >= c.unlockMissions;

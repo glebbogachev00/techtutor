@@ -97,7 +97,7 @@ export default async function DashboardHome() {
     await Promise.all([
     supabase
         .from("profiles")
-        .select("full_name, role, streak_count, last_active_date, selected_character")
+        .select("full_name, role, streak_count, last_active_date, selected_character, cheat_unlocked")
         .eq("id", user.id)
         .maybeSingle(),
       supabase
@@ -177,6 +177,7 @@ export default async function DashboardHome() {
     (profile?.selected_character as string | null) ?? DEFAULT_CHARACTER_ID;
   const selectedCharacter =
     CHARACTER_BY_ID[selectedCharacterId] ?? CHARACTER_BY_ID[DEFAULT_CHARACTER_ID];
+  const theme = selectedCharacter.theme;
 
   // Active villain taunt
   const activeVillain = getActiveVillain(totalCompleted);
@@ -241,11 +242,11 @@ export default async function DashboardHome() {
       </header>
 
       {/* ── Hero launch band ── */}
-      <section className="bg-white border-b border-slate-200">
+      <section className="border-b border-slate-200" style={{ background: theme.heroGradient }}>
         <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-5">
             <Image
-              src={selectedCharacter.image}
+              src={selectedCharacter.fullImage}
               alt={selectedCharacter.name}
               width={224}
               height={224}
@@ -287,7 +288,8 @@ export default async function DashboardHome() {
           <div className="flex flex-col items-center md:items-end gap-3 shrink-0">
             <Link
               href={`/preview?track=${topTrack}`}
-              className="inline-flex items-center gap-2 bg-[#193b92] hover:bg-[#2952b8] text-white font-black text-base px-8 py-4 rounded-2xl shadow-[0_4px_20px_rgba(25,59,146,0.25)] transition"
+              className="inline-flex items-center gap-2 text-white font-black text-base px-8 py-4 rounded-2xl transition"
+              style={{ background: theme.accent, boxShadow: `0 4px 20px ${theme.shadow}` }}
             >
               Continue Learning
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -305,8 +307,8 @@ export default async function DashboardHome() {
             <span className="font-semibold text-[#0F172A] whitespace-nowrap">Level {level}</span>
             <div className="flex-1 h-1.5 rounded-full bg-slate-100 overflow-hidden">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-[#193b92] to-[#2C7A7B] transition-all"
-                style={{ width: `${pct}%` }}
+                className="h-full rounded-full transition-all"
+                style={{ width: `${pct}%`, background: theme.accent }}
               />
             </div>
             <span className="whitespace-nowrap">{toNext} XP to level {level + 1}</span>

@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import ProfileForm from "./ProfileForm";
 import CharacterPicker from "@/components/CharacterPicker";
+import UnlockCodeInput from "@/components/UnlockCodeInput";
 import { ACHIEVEMENTS } from "@/lib/achievements";
 import type { AchievementTier } from "@/lib/achievements";
 import { CHARACTER_BY_ID, DEFAULT_CHARACTER_ID } from "@/lib/characters";
@@ -20,7 +21,7 @@ export default async function ProfilePage() {
   const [{ data: profile }, progressRes, adventureRes, achievementsRes, genaiRes] = await Promise.all([
     supabase
       .from("profiles")
-      .select("full_name, role, language, created_at, selected_character")
+      .select("full_name, role, language, created_at, selected_character, cheat_unlocked")
       .eq("id", user.id)
       .maybeSingle(),
     supabase
@@ -62,6 +63,7 @@ export default async function ProfilePage() {
   const totalCompleted = totalMissions + (adventureRes.data?.length ?? 0);
   const genaiCount = genaiRes.data?.length ?? 0;
   const genaiTrackCompleted = genaiCount >= 5;
+  const cheatUnlocked = !!(profile?.cheat_unlocked);
 
   const selectedCharacterId =
     (profile?.selected_character as string | null) ?? DEFAULT_CHARACTER_ID;
@@ -163,8 +165,17 @@ export default async function ProfilePage() {
             totalMissions={totalMissions}
             genaiTrackCompleted={genaiTrackCompleted}
             currentCharacterId={selectedCharacterId}
+            cheatUnlocked={cheatUnlocked}
           />
         </div>
+
+        {/* ── Secret unlock code ── hidden in plain sight */}
+        {!cheatUnlocked && (
+          <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50/50 p-5">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-300 mb-3">Unlock code</p>
+            <UnlockCodeInput />
+          </div>
+        )}
 
         {/* ── Achievements ── */}
         <div className="rounded-2xl border border-slate-200 bg-white p-5">

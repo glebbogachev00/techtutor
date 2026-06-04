@@ -19,29 +19,19 @@ export async function PATCH(req: Request) {
     return NextResponse.json({ error: "not_authenticated" }, { status: 401 });
   }
 
-  // Fetch mission count + genai track count to verify unlock eligibility.
-  const [progressRes, genaiTotalRes] = await Promise.all([
-    supabase
-      .from("preview_progress")
-      .select("track_slug")
-      .eq("user_id", user.id),
-    supabase
-      .from("preview_progress")
-      .select("track_slug")
-      .eq("user_id", user.id)
-      .eq("track_slug", "genai"),
+  // Fetch mission count + genai + cheat flag.
+  const [progressRes, genaiTotalRes, profileRes] = await Promise.all([
+    supabase.from("preview_progress").select("track_slug").eq("user_id", user.id),
+    supabase.from("preview_progress").select("track_slug").eq("user_id", user.id).eq("track_slug", "genai"),
+    supabase.from("profiles").select("cheat_unlocked").eq("id", user.id).maybeSingle(),
   ]);
 
   const totalMissions = progressRes.data?.length ?? 0;
-
-  // For The President: check if genai track is complete (≥ its total missions).
-  // We approximate: if user has ≥ 1 genai missions completed treat it as a soft
-  // check here; real gating is done in the evaluator. For the character picker
-  // we need a threshold — use 5 genai missions as the bar.
   const genaiCount = genaiTotalRes.data?.length ?? 0;
   const genaiTrackCompleted = genaiCount >= 5;
+  const cheatUnlocked = !!(profileRes.data?.cheat_unlocked);
 
-  if (!isCharacterUnlocked(characterId, totalMissions, genaiTrackCompleted)) {
+  if (!isCharacterUnlocked(characterId, totalMissions, genaiTrackCompleted, cheatUnlocked)) {
     return NextResponse.json({ error: "character_locked" }, { status: 403 });
   }
 
