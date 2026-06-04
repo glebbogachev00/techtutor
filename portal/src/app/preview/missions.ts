@@ -3285,5 +3285,171 @@ secret = random.randint(100, 1000)
       { line: "  </div>\n</body>\n</html>", note: "Close everything. Mochi salutes you." },
     ],
   },
+  // ── VILLAIN ADVENTURES (high stakes) ──────────────────────────────────────
+  {
+    id: "override",
+    planet: "Planet Override",
+    glyph: "!",
+    accent: "#DC2626",
+    client: "Jason",
+    tagline: "Jason launched automation bots. Build the kill switch.",
+    brief:
+      "Hi there. Jason here. Just FYI — I've deployed my latest fleet of automation bots to your planet. They're replacing every worker in 3… 2… well, you get it. There IS a manual override. But I doubt you can build the control panel in time. Three systems: power grid, hospitals, schools. Each needs a SHUT DOWN button. Tick tock.",
+    needs: [
+      "A heading: 'Manual Override — Bot Shutdown'",
+      "Three buttons: 'Power Grid', 'Hospitals', 'Schools'",
+      "Each button shows an alert with the system name when clicked",
+      "Use red as the danger color (background or button)",
+    ],
+    hint: "Use onclick=\"alert('...')\" on each button. Style with background: #DC2626; color: white;",
+    reward: 300,
+    language: "html",
+    starter: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; padding: 32px; background: #fef2f2; text-align: center; }
+    h1 { color: #DC2626; }
+  </style>
+</head>
+<body>
+  <h1>Manual Override</h1>
+  <!-- Add three shutdown buttons -->
+</body>
+</html>`,
+    scaffold: [
+      { line: "<!DOCTYPE html>", note: "Page boots — clock is ticking." },
+      { line: "<html>\n<head>\n  <style>\n    body { font-family: sans-serif; padding: 32px; background: #fef2f2; text-align: center; }\n    h1 { color: #DC2626; }\n    .btn { background: #DC2626; color: white; border: 0; padding: 14px 28px; margin: 8px; border-radius: 999px; font-weight: 700; cursor: pointer; }\n    .btn:hover { background: #991b1b; }\n  </style>\n</head>", note: "Red alert styling. Big buttons. Panic-friendly UI." },
+      { line: "<body>\n  <h1>Manual Override — Bot Shutdown</h1>\n  <p>Take back control of your planet.</p>", note: "Clear heading + subtitle." },
+      { line: "  <button class=\"btn\" onclick=\"alert('Power Grid: bots shut down ✓')\">Power Grid</button>", note: "First system saved." },
+      { line: "  <button class=\"btn\" onclick=\"alert('Hospitals: bots shut down ✓')\">Hospitals</button>", note: "Lives saved." },
+      { line: "  <button class=\"btn\" onclick=\"alert('Schools: bots shut down ✓')\">Schools</button>", note: "Kids can learn from real humans again." },
+      { line: "</body>\n</html>", note: "Jason is fuming. You win this round." },
+    ],
+  },
+  {
+    id: "quarantine",
+    planet: "Planet Quarantine",
+    glyph: "Q",
+    accent: "#991B1B",
+    client: "The Professor",
+    tagline: "Simulate a virus spread. Trigger quarantine before it's too late.",
+    brief:
+      "Consider this a thought experiment. I have… released… a digital virus into the planet's networks. It doubles every day, starting from 2 infected systems. Your medics need a script that prints the infection count for 10 days AND announces 'QUARANTINE NOW' the moment it crosses 500. Without it — well. Goodbye internet. Goodbye power. Goodbye everything.",
+    needs: [
+      "Start with infected = 2",
+      "Loop through 10 days, doubling the count each day",
+      "Print each day in the format: 'Day X: N infected'",
+      "On the first day infected > 500, print 'QUARANTINE NOW' on its own line",
+    ],
+    hint: "Use a for loop with range(1, 11). Inside: double infected, print the day, check the threshold with an if.",
+    reward: 320,
+    language: "python",
+    starter: `# Virus spread simulation
+# Day 1 starts with 2 infected; doubles each day.
+
+infected = 2
+# build the loop below
+`,
+    scaffold: [
+      { line: "# Virus simulation — track infections day by day", note: "Comment for future medics." },
+      { line: "infected = 2", note: "Day 0 baseline — two systems compromised." },
+      { line: "quarantine_called = False", note: "We only want to print the warning ONCE." },
+      { line: "for day in range(1, 11):", note: "Ten days. range(1, 11) gives 1 through 10." },
+      { line: "    infected = infected * 2", note: "The virus doubles overnight. Brutal math." },
+      { line: '    print("Day", day, ":", infected, "infected")', note: "One status line per day." },
+      { line: "    if infected > 500 and not quarantine_called:", note: "First crossing of the danger threshold." },
+      { line: '        print("QUARANTINE NOW")', note: "The alert that saves the planet." },
+      { line: "        quarantine_called = True", note: "Flag it so we don't shout it every day after." },
+    ],
+  },
+  {
+    id: "firewall",
+    planet: "Planet Firewall",
+    glyph: "F",
+    accent: "#7F1D1D",
+    client: "The Professor",
+    tagline: "Build a threat dashboard. The Professor is hacking everything.",
+    brief:
+      "A little update from me. I'm currently inside your traffic lights, your school servers, your water plant, AND your radio towers. Four systems. All compromised. Your planet needs a live threat dashboard so the defence team knows what to patch first. Card per system. Status badge per card. Red means breached, green means clean. Start with everything red \u2014 then build a button that 'patches' them one by one.",
+    needs: [
+      "Four cards in a grid \u2014 one per system (Traffic, Schools, Water, Radio)",
+      "Each card shows the system name AND a status word (BREACHED or CLEAN)",
+      "A 'Patch next system' button \u2014 each click turns the next breached card green",
+      "Use red for BREACHED, green for CLEAN",
+    ],
+    hint: "Store system data in a JS array. On button click, find the first breached one and flip it to clean \u2014 then re-render.",
+    reward: 360,
+    language: "html",
+    starter: `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; padding: 32px; background: #0f172a; color: white; }
+    h1 { color: #fca5a5; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 480px; }
+    .card { padding: 16px; border-radius: 12px; background: #7F1D1D; }
+    .card.clean { background: #065F46; }
+    button { margin-top: 20px; background: #DC2626; color: white; border: 0; padding: 12px 24px; border-radius: 999px; font-weight: 700; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Planetary Threat Dashboard</h1>
+  <div id="grid" class="grid"></div>
+  <button onclick="patch()">Patch next system</button>
+  <script>
+    const systems = ["Traffic", "Schools", "Water", "Radio"];
+    // TODO: render each system as a card. Track which are breached.
+    // TODO: write patch() to clean the next breached one.
+  </script>
+</body>
+</html>`,
+    scaffold: [
+      { line: "<!DOCTYPE html>\n<html>\n<head>", note: "Standard opener." },
+      { line: "  <style>\n    body { font-family: sans-serif; padding: 32px; background: #0f172a; color: white; }\n    h1 { color: #fca5a5; }\n    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 480px; }\n    .card { padding: 16px; border-radius: 12px; background: #7F1D1D; }\n    .card.clean { background: #065F46; }\n    button { margin-top: 20px; background: #DC2626; color: white; border: 0; padding: 12px 24px; border-radius: 999px; font-weight: 700; cursor: pointer; }\n  </style>\n</head>", note: "Dark dashboard styling. Red = bad, green = patched." },
+      { line: "<body>\n  <h1>Planetary Threat Dashboard</h1>\n  <div id=\"grid\" class=\"grid\"></div>\n  <button onclick=\"patch()\">Patch next system</button>", note: "Grid container + the magic button." },
+      { line: "  <script>\n    const systems = [\n      { name: 'Traffic', breached: true },\n      { name: 'Schools', breached: true },\n      { name: 'Water', breached: true },\n      { name: 'Radio', breached: true }\n    ];", note: "An array of system objects \u2014 each tracks its own status." },
+      { line: "    function render() {\n      const grid = document.getElementById('grid');\n      grid.innerHTML = systems.map(s =>\n        `<div class=\"card ${s.breached ? '' : 'clean'}\"><strong>${s.name}</strong><br/>${s.breached ? 'BREACHED' : 'CLEAN'}</div>`\n      ).join('');\n    }", note: "Rebuild the grid every time something changes." },
+      { line: "    function patch() {\n      const next = systems.find(s => s.breached);\n      if (next) next.breached = false;\n      render();\n    }", note: "Find the first breached system and clean it." },
+      { line: "    render();\n  </script>\n</body>\n</html>", note: "Initial paint, then close everything. The Professor's network falls system by system." },
+    ],
+  },
+  {
+    id: "blackout",
+    planet: "Planet Blackout",
+    glyph: "*",
+    accent: "#991B1B",
+    client: "The Professor",
+    tagline: "Decode the Professor's password before the satellites fall.",
+    brief:
+      "Final test. I've locked your defence satellites with a 4-digit code. You have one shot. Lucky for you, my notes leaked. The code is a number between 1000 and 9999 where every digit is even, the digits add up to 20, and the first digit is the largest. Find it. Print it. Or watch the stars go dark.",
+    needs: [
+      "Loop through every 4-digit number from 1000 to 9999",
+      "Split each into its 4 digits",
+      "Check: all digits even, digits sum to 20, first digit is the largest",
+      "Print every code that matches",
+    ],
+    hint: "For a number n, the digits are int(str(n)[0]), int(str(n)[1]), etc. 'all even' means each % 2 == 0. 'largest first' means digits[0] >= digits[1], digits[2], digits[3].",
+    reward: 400,
+    language: "python",
+    starter: `# Crack The Professor's 4-digit satellite code.
+# Rules:
+#   - between 1000 and 9999
+#   - every digit is even
+#   - digits sum to 20
+#   - first digit is the largest
+
+for n in range(1000, 10000):
+    # split into digits and check the rules
+    pass
+`,
+    scaffold: [
+      { line: "# Crack The Professor's 4-digit satellite code", note: "Comment so future-you knows what this script does." },
+      { line: "for n in range(1000, 10000):", note: "Walk through every 4-digit number." },
+      { line: "    digits = [int(d) for d in str(n)]", note: "Turn the number into a list of its 4 digits." },
+      { line: "    if all(d % 2 == 0 for d in digits) \\\n       and sum(digits) == 20 \\\n       and digits[0] == max(digits):", note: "All three rules in one condition." },
+      { line: "        print(n)", note: "Match found \u2014 print the candidate code." },
+    ],
+  },
 ];
 
