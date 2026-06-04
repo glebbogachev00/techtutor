@@ -1,5 +1,5 @@
 export type StoryBeat = {
-  character: "Captain Pixel" | "Bao" | "Mochi" | "Professor Loop" | "Jason" | "The Professor";
+  character: "Captain Pixel" | "Bao" | "Mochi" | "Professor Loop" | "Storm" | "The President" | "Jason" | "The Professor";
   text: string;
 };
 
@@ -50,6 +50,16 @@ export const CHARACTERS = {
     color: "#7C3AED",
     role: "The brilliant (and very forgetful) Python professor",
     avatar: "/characters/professor-loop.png",
+  },
+  Storm: {
+    color: "#0F172A",
+    role: "The lone-wolf hero who only shows up when things get serious",
+    avatar: "/characters/storm.png",
+  },
+  "The President": {
+    color: "#065F46",
+    role: "President of the Milky Way — watching the galaxy's best coders",
+    avatar: "/characters/president.png",
   },
   Jason: {
     color: "#DC2626",
@@ -225,8 +235,8 @@ export const TRACKS: Track[] = [
         xp: 110,
         language: "html",
         story: {
-          character: "Captain Pixel",
-          text: "Recruit. Our 'Press Me' button is so boring people walk straight past it. Yesterday I watched seven people ignore it. SEVEN. Style this button. Give it your favorite color. Make it so loud and proud that no one in the galaxy can miss it.",
+          character: "Storm",
+          text: "Hey. New kid. I don't usually show up this early, but I heard you're styling a button. Make it loud. Make it the kind of button people press without thinking. Boring buttons get ignored — bold ones get clicked. Pick a colour. Own it.",
         },
         why: "Every 'Sign up' or 'Buy now' button you've ever clicked was designed by someone using CSS. A good button is the difference between people clicking and people leaving.",
         concept:
@@ -2410,8 +2420,8 @@ greet()
         xp: 200,
         language: "html",
         story: {
-          character: "Captain Pixel",
-          text: "Recruit \u2014 look at you. Player. Floor. Jump. Coins. Score. That's a GAME. Final step: a win condition. When the last coin disappears, show 'YOU WIN!' across the screen. Then post a screenshot in the Wall of Recruits. I expect tears of joy. Mine. Yours. Whatever.",
+          character: "The President",
+          text: "On behalf of the Milky Way Galaxy \u2014 I've been watching. You built a player, a floor, jumps, coins, AND a score. Most adults can't do that. One last thing: a real win condition. When the final coin disappears, show 'YOU WIN!' across the screen. Then the galaxy will know your name.",
         },
         why: "Every great game has an ending. A clear goal turns a toy into a CHALLENGE. Even a 10-second mini-game with a real win condition feels like a real game.",
         concept:
