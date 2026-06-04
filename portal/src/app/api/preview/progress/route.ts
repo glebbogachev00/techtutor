@@ -32,7 +32,7 @@ export async function GET() {
       .eq("user_id", user.id),
   ]);
 
-  const missions: Record<string, number[]> = { web: [], python: [], genai: [] };
+  const missions: Record<string, number[]> = { web: [], python: [], genai: [], "web-games": [] };
   (progressRes.data ?? []).forEach((row) => {
     const slug = row.track_slug as string;
     if (!missions[slug]) missions[slug] = [];
@@ -44,7 +44,7 @@ export async function GET() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("role, full_name, avatar_emoji, streak_count, last_active_date")
+    .select("role, full_name, avatar_emoji, selected_character, streak_count, last_active_date")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -53,6 +53,7 @@ export async function GET() {
     role: profile?.role ?? "student",
     fullName: profile?.full_name ?? null,
     avatarEmoji: profile?.avatar_emoji ?? null,
+    selectedCharacter: profile?.selected_character ?? null,
     streakCount: profile?.streak_count ?? 0,
     lastActiveDate: profile?.last_active_date ?? null,
     missions,

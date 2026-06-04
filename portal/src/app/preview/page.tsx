@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { TRACKS, CHARACTERS, ADVENTURES } from "./missions";
+import { CHARACTER_BY_ID, DEFAULT_CHARACTER_ID } from "@/lib/characters";
 import PreviewWorkspace from "./PreviewWorkspace";
 import GenAiWorkspace from "./GenAiWorkspace";
 import AdventureWorkspace from "./AdventureWorkspace";
@@ -118,7 +119,8 @@ function PreviewPageInner() {
   const [profile, setProfile] = useState<{
     fullName: string | null;
     avatarEmoji: string | null;
-  }>({ fullName: null, avatarEmoji: null });
+    selectedCharacter: string | null;
+  }>({ fullName: null, avatarEmoji: null, selectedCharacter: null });
   const signedInRef = useRef<boolean>(readCachedSignedIn());
 
   const track = TRACKS.find((t) => t.id === trackId)!;
@@ -208,6 +210,7 @@ function PreviewPageInner() {
         setProfile({
           fullName: (data.fullName as string | null) ?? null,
           avatarEmoji: (data.avatarEmoji as string | null) ?? null,
+          selectedCharacter: (data.selectedCharacter as string | null) ?? null,
         });
         const dbMissions = data.missions as Record<string, number[]>;
         const merged: Record<string, number[]> = { web: [], python: [], genai: [], "web-games": [] };
@@ -345,7 +348,7 @@ function PreviewPageInner() {
                 className="h-9 w-9 rounded-full overflow-hidden border-2 border-[#193b92]/20 hover:border-[#193b92]/60 transition"
               >
                 <Image
-                  src="/characters/captain-pixel.png"
+                  src={(CHARACTER_BY_ID[profile.selectedCharacter ?? DEFAULT_CHARACTER_ID] ?? CHARACTER_BY_ID[DEFAULT_CHARACTER_ID]).image}
                   alt="Profile"
                   width={36}
                   height={36}
