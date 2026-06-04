@@ -3,8 +3,10 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import ProfileForm from "./ProfileForm";
+import CharacterPicker from "@/components/CharacterPicker";
 import { ACHIEVEMENTS } from "@/lib/achievements";
 import type { AchievementTier } from "@/lib/achievements";
+import { CHARACTER_BY_ID, DEFAULT_CHARACTER_ID } from "@/lib/characters";
 
 export const metadata = { title: "Profile — TechBash" };
 
@@ -15,15 +17,15 @@ export default async function ProfilePage() {
   } = await supabase.auth.getUser();
   if (!user) redirect("/login");
 
-  const [{ data: profile }, progressRes, adventureRes, achievementsRes] = await Promise.all([
+  const [{ data: profile }, progressRes, adventureRes, achievementsRes, genaiRes] = await Promise.all([
     supabase
       .from("profiles")
-      .select("full_name, role, language, created_at")
+      .select("full_name, role, language, created_at, selected_character")
       .eq("id", user.id)
       .maybeSingle(),
     supabase
       .from("preview_progress")
-      .select("xp_earned")
+      .select("xp_earned, track_slug")
       .eq("user_id", user.id),
     supabase
       .from("preview_adventures")
@@ -33,6 +35,11 @@ export default async function ProfilePage() {
       .from("user_achievements")
       .select("achievement_id, earned_at")
       .eq("user_id", user.id),
+    supabase
+      .from("preview_progress")
+      .select("track_slug")
+      .eq("user_id", user.id)
+      .eq("track_slug", "genai"),
   ]);
 
   const earnedMap = new Map(
@@ -51,8 +58,15 @@ export default async function ProfilePage() {
     0,
   );
   const totalXp = missionXp + adventureXp;
-  const totalCompleted =
-    (progressRes.data?.length ?? 0) + (adventureRes.data?.length ?? 0);
+  const totalMissions = progressRes.data?.length ?? 0;
+  const totalCompleted = totalMissions + (adventureRes.data?.length ?? 0);
+  const genaiCount = genaiRes.data?.length ?? 0;
+  const genaiTrackCompleted = genaiCount >= 5;
+
+  const selectedCharacterId =
+    (profile?.selected_character as string | null) ?? DEFAULT_CHARACTER_ID;
+  const selectedCharacter =
+    CHARACTER_BY_ID[selectedCharacterId] ?? CHARACTER_BY_ID[DEFAULT_CHARACTER_ID];
 
   const initialName = profile?.full_name ?? "";
   const isStaff =
@@ -107,11 +121,11 @@ export default async function ProfilePage() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-8">
         <div className="flex items-start gap-4 sm:gap-5">
           <Image
-            src="/characters/captain-pixel.png"
-            alt="Captain Pixel"
+            src={selectedCharacter.image}
+            alt={selectedCharacter.name}
             width={88}
             height={88}
-            className="h-16 w-16 sm:h-20 sm:w-20 rounded-2xl bg-[#FEF3C7] ring-2 ring-[#193b92]/10 object-cover shrink-0"
+            className="h-16 w-16 sm:h-20 sm:w-20 rounded-2xl bg-[#EEF2FF] ring-2 ring-[#193b92]/10 object-contain shrink-0"
             priority
           />
           <div className="min-w-0">
@@ -141,13 +155,24 @@ export default async function ProfilePage() {
 
         <ProfileForm initialName={initialName} />
 
+        {/* ── Character picker ── */}
+        <div className="rounded-2xl border border-slate-200 bg-white p-5">
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400 mb-1">Your character</p>
+          <p className="text-xs text-slate-400 mb-4">Complete missions to unlock more.</p>
+          <CharacterPicker
+            totalMissions={totalMissions}
+            genaiTrackCompleted={genaiTrackCompleted}
+            currentCharacterId={selectedCharacterId}
+          />
+        </div>
+
         {/* ── Achievements ── */}
         <div className="rounded-2xl border border-slate-200 bg-white p-5">
           <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400 mb-4">
-            Achievements ({earnedMap.size}/{ACHIEVEMENTS.length})
+            Achievements ({earnedMap.size}/{ACHIEVEMENTS.filter(a => !a.hidden).length + (earnedMap.has("ghost-coder") ? 1 : 0)})
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {ACHIEVEMENTS.map((a) => {
+            {ACHIEVEMENTS.filter(a => !a.hidden || earnedMap.has(a.id)).map((a) => {
               const earned = earnedMap.has(a.id);
               const earnedAt = earnedMap.get(a.id);
               return (

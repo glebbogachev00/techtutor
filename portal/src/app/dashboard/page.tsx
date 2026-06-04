@@ -5,6 +5,11 @@ import { createClient } from "@/lib/supabase/server";
 import Logo from "@/components/Logo";
 import { ACHIEVEMENTS } from "@/lib/achievements";
 import type { AchievementTier } from "@/lib/achievements";
+import {
+  CHARACTER_BY_ID,
+  DEFAULT_CHARACTER_ID,
+  getActiveVillain,
+} from "@/lib/characters";
 
 export const metadata = { title: "Dashboard — TechBash" };
 
@@ -90,9 +95,9 @@ export default async function DashboardHome() {
 
   const [{ data: profile }, progressRes, adventureRes, classRes, achievementsRes] =
     await Promise.all([
-      supabase
+    supabase
         .from("profiles")
-        .select("full_name, role, streak_count, last_active_date")
+        .select("full_name, role, streak_count, last_active_date, selected_character")
         .eq("id", user.id)
         .maybeSingle(),
       supabase
@@ -167,6 +172,19 @@ export default async function DashboardHome() {
 
   const name = profile?.full_name ?? user.email?.split("@")[0] ?? "friend";
 
+  // Selected character
+  const selectedCharacterId =
+    (profile?.selected_character as string | null) ?? DEFAULT_CHARACTER_ID;
+  const selectedCharacter =
+    CHARACTER_BY_ID[selectedCharacterId] ?? CHARACTER_BY_ID[DEFAULT_CHARACTER_ID];
+
+  // Active villain taunt
+  const activeVillain = getActiveVillain(totalCompleted);
+  // Pick a deterministic taunt based on mission count so it doesn't flicker on SSR
+  const villainTaunt = activeVillain?.taunts
+    ? activeVillain.taunts[totalCompleted % activeVillain.taunts.length]
+    : null;
+
   // Streak maths
   const streakCount = (profile?.streak_count as number) ?? 0;
   const lastActiveDate = (profile?.last_active_date as string | null) ?? null;
@@ -208,7 +226,7 @@ export default async function DashboardHome() {
               className="h-9 w-9 rounded-full overflow-hidden border-2 border-[#193b92]/20 hover:border-[#193b92]/60 transition"
               title="Your profile"
             >
-              <Image src="/characters/captain-pixel.png" alt="Profile" width={36} height={36} className="h-full w-full object-cover" />
+              <Image src={selectedCharacter.image} alt={selectedCharacter.name} width={36} height={36} className="h-full w-full object-contain" />
             </Link>
             <form action="/auth/signout" method="POST">
               <button
@@ -227,8 +245,8 @@ export default async function DashboardHome() {
         <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-5">
             <Image
-              src="/characters/pixel-full.png"
-              alt="Captain Pixel"
+              src={selectedCharacter.image}
+              alt={selectedCharacter.name}
               width={224}
               height={224}
               className="h-40 w-40 md:h-56 md:w-56 object-contain shrink-0 drop-shadow-md"
@@ -297,6 +315,38 @@ export default async function DashboardHome() {
       </section>
 
       <div className="max-w-5xl mx-auto px-6 py-10 space-y-10">
+
+        {/* ── Villain taunt banner ── */}
+        {activeVillain && villainTaunt && (
+          <div className="rounded-2xl border border-red-200 bg-red-50 p-4 flex items-center gap-4">
+            <Image
+              src={activeVillain.image}
+              alt={activeVillain.name}
+              width={56}
+              height={56}
+              className="h-14 w-14 object-contain shrink-0 drop-shadow-sm"
+            />
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-red-400 mb-0.5">
+                ⚠ Transmission from {activeVillain.name}
+              </p>
+              <p className="text-sm font-semibold text-red-700 italic">
+                &ldquo;{villainTaunt}&rdquo;
+              </p>
+            </div>
+            <div className="shrink-0 text-right">
+              <p className="text-[10px] text-red-400 font-semibold">
+                {activeVillain.unlockMissions - totalCompleted} missions to defeat
+              </p>
+              <Link
+                href="/preview"
+                className="mt-1 inline-block text-[11px] font-bold text-red-600 hover:text-red-800 underline"
+              >
+                Fight back →
+              </Link>
+            </div>
+          </div>
+        )}
 
         {/* ── Stats row ── */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
