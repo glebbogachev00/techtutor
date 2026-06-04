@@ -42,9 +42,8 @@ export default function CharacterPicker({
     setSaving(false);
     if (res.ok) {
       setSaved(true);
-      setTimeout(() => setSaved(false), 2500);
-      // Reload so header + dashboard reflect new character.
-      window.location.reload();
+      // Hard navigate (cache-busted) so dashboard + header pick up the new character.
+      window.location.href = "/dashboard?c=" + Date.now();
     } else {
       const json = await res.json().catch(() => ({}));
       setError(json?.error === "character_locked" ? "That character isn't unlocked yet." : "Could not save. Try again.");

@@ -2151,14 +2151,15 @@ greet()
         concept:
           "kaplay() initializes the game. You pass it an object with width, height, and background color. Once it runs, you have a game window ready for sprites, text, and chaos.",
         example: "kaplay({ width: 400, height: 300, background: [20, 20, 40] })",
-        task: "Inside the second <script>, call kaplay() with width 400, height 300, and background [20, 20, 40]. Hit Run \u2014 you should see a dark blue/black window.",
+        task: "Below the kaplay() call, add a rectangle 60×60 at position (170, 120) colored bright pink (255, 100, 200). Hit Run — a pink square should appear on the dark canvas.",
         starter: `<!DOCTYPE html>
 <html>
 <head><style>body{margin:0;background:#0f172a}</style></head>
 <body>
-<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
 <script>
-  // Wake up the engine here
+  kaplay({ width: 400, height: 300, background: [20, 20, 40] })
+  // Add your pink rectangle below
 </script>
 </body>
 </html>`,
@@ -2182,7 +2183,7 @@ greet()
 <html>
 <head><style>body{margin:0;background:#0f172a}</style></head>
 <body>
-<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
 <script>
   kaplay({ width: 400, height: 300, background: [20, 20, 40] })
   // Add your rectangle below
@@ -2209,7 +2210,7 @@ greet()
 <html>
 <head><style>body{margin:0;background:#0f172a}</style></head>
 <body>
-<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
 <script>
   kaplay({ width: 400, height: 300, background: [20, 20, 40] })
   const player = add([ rect(40, 40), pos(40, 130), color(255, 100, 200) ])
@@ -2238,7 +2239,7 @@ greet()
 <html>
 <head><style>body{margin:0;background:#0f172a}</style></head>
 <body>
-<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
 <script>
   kaplay({ width: 400, height: 300, background: [20, 20, 40] })
   const player = add([ rect(40, 40), pos(180, 130), color(255, 100, 200) ])
@@ -2266,7 +2267,7 @@ greet()
 <html>
 <head><style>body{margin:0;background:#0f172a}</style></head>
 <body>
-<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
 <script>
   kaplay({ width: 400, height: 300, background: [20, 20, 40] })
   // Set gravity below, then update the player to use body()
@@ -2294,7 +2295,7 @@ greet()
 <html>
 <head><style>body{margin:0;background:#0f172a}</style></head>
 <body>
-<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
 <script>
   kaplay({ width: 400, height: 300, background: [20, 20, 40] })
   setGravity(1200)
@@ -2323,7 +2324,7 @@ greet()
 <html>
 <head><style>body{margin:0;background:#0f172a}</style></head>
 <body>
-<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
 <script>
   kaplay({ width: 400, height: 300, background: [20, 20, 40] })
   setGravity(1200)
@@ -2355,7 +2356,7 @@ greet()
 <html>
 <head><style>body{margin:0;background:#0f172a}</style></head>
 <body>
-<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
 <script>
   kaplay({ width: 400, height: 300, background: [20, 20, 40] })
   setGravity(1200)
@@ -2388,7 +2389,7 @@ greet()
 <html>
 <head><style>body{margin:0;background:#0f172a}</style></head>
 <body>
-<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
 <script>
   kaplay({ width: 400, height: 300, background: [20, 20, 40] })
   setGravity(1200)
@@ -2421,7 +2422,7 @@ greet()
 <html>
 <head><style>body{margin:0;background:#0f172a}</style></head>
 <body>
-<script src="https://unpkg.com/kaplay@3001.0.0-alpha.27/dist/kaplay.js"></script>
+<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
 <script>
   kaplay({ width: 400, height: 300, background: [20, 20, 40] })
   setGravity(1200)
