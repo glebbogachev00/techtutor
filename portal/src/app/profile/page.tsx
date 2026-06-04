@@ -158,7 +158,7 @@ export default async function ProfilePage() {
         <ProfileForm initialName={initialName} />
 
         {/* ── Character picker ── */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-5">
+        <div id="character" className="rounded-2xl border border-slate-200 bg-white p-5 scroll-mt-20">
           <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400 mb-1">Your character</p>
           <p className="text-xs text-slate-400 mb-4">Complete missions to unlock more.</p>
           <CharacterPicker

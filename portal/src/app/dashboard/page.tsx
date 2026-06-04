@@ -3,6 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import Logo from "@/components/Logo";
+import CharacterOnboardModal from "@/components/CharacterOnboardModal";
 import { ACHIEVEMENTS } from "@/lib/achievements";
 import type { AchievementTier } from "@/lib/achievements";
 import {
@@ -173,8 +174,9 @@ export default async function DashboardHome() {
   const name = profile?.full_name ?? user.email?.split("@")[0] ?? "friend";
 
   // Selected character
-  const selectedCharacterId =
-    (profile?.selected_character as string | null) ?? DEFAULT_CHARACTER_ID;
+  const rawCharacterId = profile?.selected_character as string | null | undefined;
+  const needsOnboarding = !rawCharacterId;
+  const selectedCharacterId = rawCharacterId ?? DEFAULT_CHARACTER_ID;
   const selectedCharacter =
     CHARACTER_BY_ID[selectedCharacterId] ?? CHARACTER_BY_ID[DEFAULT_CHARACTER_ID];
   const theme = selectedCharacter.theme;
@@ -217,6 +219,7 @@ export default async function DashboardHome() {
 
   return (
     <main className="min-h-screen bg-[#F8FAFC] text-[#0F172A]">
+      {needsOnboarding && <CharacterOnboardModal />}
       {/* ── Header ── */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40">
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
@@ -254,8 +257,8 @@ export default async function DashboardHome() {
               priority
             />
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-[#193b92] mb-2">
-                Your portal
+              <p className="text-[11px] font-semibold uppercase tracking-widest mb-2" style={{ color: theme.accent }}>
+                Playing as {selectedCharacter.name}
               </p>
               <h1 className="text-3xl md:text-4xl font-black leading-tight text-[#0F172A]">
                 Welcome back,<br />{name}!
@@ -268,20 +271,27 @@ export default async function DashboardHome() {
                 <span>{totalCompleted} missions done</span>
               </div>
               {/* Streak badge */}
-              <div className="mt-4">
+              <div className="mt-4 flex flex-wrap items-center gap-2">
                 {streakAlive && streakCount > 0 ? (
                   <span className="inline-flex items-center gap-1.5 bg-orange-50 border border-orange-200 text-orange-700 text-sm font-bold px-3 py-1 rounded-full">
                     🔥 {streakCount}-day streak — keep it going!
                   </span>
                 ) : guiltMessage ? (
                   <span className="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-500 text-sm px-3 py-1.5 rounded-full italic">
-                    💬 &quot;{guiltMessage}&quot; — <span className="font-semibold not-italic text-[#0F172A]">Captain Pixel</span>
+                    💬 &quot;{guiltMessage}&quot; — <span className="font-semibold not-italic text-[#0F172A]">{selectedCharacter.name}</span>
                   </span>
                 ) : (
                   <span className="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-400 text-xs px-3 py-1 rounded-full">
                     🔥 Complete a mission today to start your streak
                   </span>
                 )}
+                <Link
+                  href="/profile#character"
+                  className="inline-flex items-center gap-1 bg-white border border-slate-200 hover:border-slate-300 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full transition"
+                  title="Change character"
+                >
+                  🔄 Change character
+                </Link>
               </div>
             </div>
           </div>

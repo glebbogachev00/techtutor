@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { CHARACTER_BY_ID, isCharacterUnlocked } from "@/lib/characters";
 
@@ -43,6 +44,9 @@ export async function PATCH(req: Request) {
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
+
+  revalidatePath("/dashboard");
+  revalidatePath("/profile");
 
   return NextResponse.json({ ok: true, characterId });
 }

@@ -27,6 +27,10 @@ export type Character = {
   image: string;
   /** Full-body illustration for dashboard hero */
   fullImage: string;
+  /** One-line description shown in picker and onboarding */
+  tagline: string;
+  /** Longer flavour text shown on hover/onboarding */
+  bio: string;
   unlockMissions: number;
   lockHint: string;
   theme: CharacterTheme;
@@ -42,6 +46,8 @@ export const CHARACTERS: Character[] = [
     role: "hero",
     image: "/characters/captain-pixel.png",
     fullImage: "/characters/pixel-full.png",
+    tagline: "The fearless explorer",
+    bio: "Leads every mission with a calm head and big ideas. Loves spaceships, clean code, and never leaving anyone behind.",
     unlockMissions: 0,
     lockHint: "",
     theme: {
@@ -59,6 +65,8 @@ export const CHARACTERS: Character[] = [
     role: "hero",
     image: "/characters/Nina.png",
     fullImage: "/characters/Nina_full.png",
+    tagline: "The fearless tinkerer",
+    bio: "Builds robots out of whatever's lying around. If something is broken, Nina is already taking it apart.",
     unlockMissions: 0,
     lockHint: "",
     theme: {
@@ -76,6 +84,8 @@ export const CHARACTERS: Character[] = [
     role: "hero",
     image: "/characters/lumo.png",
     fullImage: "/characters/lumo_full.png",
+    tagline: "The cosmic optimist",
+    bio: "Sees a glow-in-the-dark adventure in every error message. Powered by curiosity and snacks.",
     unlockMissions: 0,
     lockHint: "",
     theme: {
@@ -93,6 +103,8 @@ export const CHARACTERS: Character[] = [
     role: "hero",
     image: "/characters/tim.png",
     fullImage: "/characters/tim_full.png",
+    tagline: "The quiet genius",
+    bio: "Talks little, thinks a lot. Writes one line of code and somehow it solves three problems.",
     unlockMissions: 0,
     lockHint: "",
     theme: {
@@ -110,6 +122,8 @@ export const CHARACTERS: Character[] = [
     role: "hero",
     image: "/characters/mochi.png",
     fullImage: "/characters/moci_full.png",
+    tagline: "The hype crew",
+    bio: "Tiny but mighty. Celebrates every single XP point like it just won the championship.",
     unlockMissions: 0,
     lockHint: "",
     theme: {
@@ -127,6 +141,8 @@ export const CHARACTERS: Character[] = [
     role: "hero",
     image: "/characters/bao.png",
     fullImage: "/characters/bao_full.png",
+    tagline: "The strategist",
+    bio: "Always two moves ahead. Has a plan for everything — including what happens if the plan fails.",
     unlockMissions: 0,
     lockHint: "",
     theme: {
@@ -145,6 +161,8 @@ export const CHARACTERS: Character[] = [
     role: "hero",
     image: "/characters/storm.png",
     fullImage: "/characters/Storm_full.png",
+    tagline: "The lone wolf",
+    bio: "Shows up when things get serious. Earned, not given — only joins your crew after you prove yourself.",
     unlockMissions: 10,
     lockHint: "Complete 10 missions to unlock",
     theme: {
@@ -163,6 +181,8 @@ export const CHARACTERS: Character[] = [
     role: "hero",
     image: "/characters/president.png",
     fullImage: "/characters/President_full.png",
+    tagline: "President of the Milky Way",
+    bio: "Leader of the entire galaxy. Only the most accomplished coders earn his recognition — and his stylish cape.",
     unlockMissions: 0,
     lockHint: "Complete the full Generative AI track to unlock",
     theme: {
@@ -186,6 +206,8 @@ export const CHARACTERS: Character[] = [
     role: "villain",
     image: "/characters/jason.png",
     fullImage: "/characters/jason_full.png",
+    tagline: "The tech tycoon",
+    bio: "Wants to replace every worker with a machine. Defeat him to wear his look — and prove humans still got it.",
     unlockMissions: 5,
     lockHint: "Defeat Jason by completing 5 missions",
     theme: {
@@ -214,6 +236,8 @@ export const CHARACTERS: Character[] = [
     role: "villain",
     image: "/characters/The-Professor.png",
     fullImage: "/characters/The_Professor_full.png",
+    tagline: "The mastermind",
+    bio: "Jason's mentor and the brain behind it all. Cold, calculating, and convinced humans are obsolete.",
     unlockMissions: 15,
     lockHint: "Defeat The Professor by completing 15 missions",
     theme: {
