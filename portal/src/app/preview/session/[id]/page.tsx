@@ -1,163 +1,261 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import { SESSION_BY_CONTENT_ID, type ClassSession, type SessionExercise } from "../../sessions";
-
-// ─── Types ──────────────────────────────────────────────────────────────────
+import { CHARACTER_BY_ID, DEFAULT_CHARACTER_ID } from "@/lib/characters";
+import {
+  SESSION_BY_CONTENT_ID,
+  type ClassSession,
+  type SessionExercise,
+} from "../../sessions";
 
 type DbSession = {
   id: string;
   content_id: string;
   zoom_url: string;
   scheduled_at: string;
-  unlocked_stage: number; // 0=none 1=easy 2=medium 3=hard 4=boss
+  unlocked_stage: number;
   is_active: boolean;
 };
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
+const STAGE_LABELS = ["Warming up…", "Easy unlocked", "Medium unlocked", "Hard unlocked", "Boss fight LIVE"];
 
-function minutesUntil(isoDate: string): number {
-  return Math.round((new Date(isoDate).getTime() - Date.now()) / 60000);
+function getCharacter(id: string) {
+  return CHARACTER_BY_ID[id] ?? CHARACTER_BY_ID[DEFAULT_CHARACTER_ID];
 }
 
-function ZoomBanner({ zoomUrl, scheduledAt }: { zoomUrl: string; scheduledAt: string }) {
-  const [mins, setMins] = useState(() => minutesUntil(scheduledAt));
+function minutesUntil(iso: string) {
+  return Math.round((new Date(iso).getTime() - Date.now()) / 60000);
+}
 
+// ── Zoom Banner ─────────────────────────────────────────────────────────────
+function ZoomBanner({ zoomUrl, scheduledAt, accent }: { zoomUrl: string; scheduledAt: string; accent: string }) {
+  const [mins, setMins] = useState(() => minutesUntil(scheduledAt));
   useEffect(() => {
-    const t = setInterval(() => setMins(minutesUntil(scheduledAt)), 30000);
-    return () => clearInterval(t);
+    const id = setInterval(() => setMins(minutesUntil(scheduledAt)), 30000);
+    return () => clearInterval(id);
   }, [scheduledAt]);
 
-  if (mins > 30) return null;
+  if (mins > 30) {
+    return (
+      <div className="rounded-2xl border border-slate-200 bg-white p-4 flex items-center gap-3 shadow-[0_4px_20px_rgba(15,23,42,0.04)]">
+        <span className="text-xl">⏰</span>
+        <div className="flex-1 min-w-0">
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Class starts</p>
+          <p className="text-sm font-bold text-[#0F172A] truncate">
+            {new Date(scheduledAt).toLocaleString("en-US", { weekday: "long", hour: "2-digit", minute: "2-digit" })}
+          </p>
+        </div>
+        <a
+          href={zoomUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs font-semibold text-slate-500 hover:text-[#0F172A] underline whitespace-nowrap"
+        >
+          Test Zoom link
+        </a>
+      </div>
+    );
+  }
 
-  const label =
-    mins <= 0
-      ? "Class is live right now"
-      : `Your class starts in ${mins} minute${mins === 1 ? "" : "s"}`;
+  const label = mins <= 0 ? "Your class is LIVE — join now" : `Your class starts in ${mins} minute${mins === 1 ? "" : "s"}`;
 
   return (
     <a
       href={zoomUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-3 rounded-2xl px-6 py-4 text-white font-bold text-lg shadow-lg mb-8 hover:opacity-90 transition-opacity"
-      style={{ background: "linear-gradient(90deg, #2563EB, #1d4ed8)" }}
+      className="block rounded-2xl p-5 text-white relative overflow-hidden shadow-[0_12px_40px_rgba(15,23,42,0.18)] hover:opacity-95 transition"
+      style={{ background: `linear-gradient(135deg, ${accent} 0%, ${accent}dd 100%)` }}
     >
-      <span className="text-2xl">📹</span>
-      <span className="flex-1">{label}</span>
-      <span className="rounded-full bg-white/20 px-4 py-1 text-sm">Join Zoom →</span>
+      <div className="flex items-center gap-4">
+        <span className="text-3xl">📹</span>
+        <div className="flex-1">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-white/70">Live class</p>
+          <p className="font-bold leading-tight">{label}</p>
+        </div>
+        <span className="rounded-full bg-white/20 backdrop-blur px-4 py-1.5 text-xs font-semibold whitespace-nowrap">
+          Open Zoom →
+        </span>
+      </div>
     </a>
   );
 }
 
+// ── Character speech bubble ────────────────────────────────────────────────
+function SpeechCard({ characterId, body, role }: { characterId: string; body: string; role?: string }) {
+  const c = getCharacter(characterId);
+  return (
+    <div className="rounded-2xl bg-white border border-slate-200 p-5 shadow-[0_4px_20px_rgba(15,23,42,0.04)]">
+      <div className="flex items-start gap-4">
+        <Image
+          src={c.image}
+          alt={c.name}
+          width={56}
+          height={56}
+          className="shrink-0 w-14 h-14 rounded-full object-cover shadow-[0_2px_10px_rgba(15,23,42,0.08)]"
+        />
+        <div className="flex-1 min-w-0">
+          <div className="flex items-baseline gap-2 mb-1 flex-wrap">
+            <span className="font-bold text-[#0F172A]">{c.name}</span>
+            <span className="text-xs text-slate-400">{role ?? c.tagline}</span>
+          </div>
+          <p className="text-sm text-[#0F172A] leading-relaxed">{body}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Exercise Card ──────────────────────────────────────────────────────────
 function ExerciseCard({
   exercise,
   index,
   unlocked,
   completed,
   onComplete,
+  accent,
 }: {
   exercise: SessionExercise;
   index: number;
   unlocked: boolean;
   completed: boolean;
   onComplete: () => void;
+  accent: string;
 }) {
   const [open, setOpen] = useState(false);
   const [hintOpen, setHintOpen] = useState(false);
 
-  const difficultyColor =
-    exercise.difficulty === "easy"
-      ? "#16a34a"
-      : exercise.difficulty === "medium"
-        ? "#d97706"
-        : "#dc2626";
+  const difficultyBg =
+    exercise.difficulty === "easy" ? "#16a34a" : exercise.difficulty === "medium" ? "#d97706" : "#dc2626";
+  const character = getCharacter(exercise.speakerId);
 
   if (!unlocked) {
     return (
-      <div className="rounded-2xl border-2 border-dashed border-gray-200 p-6 flex items-center gap-4 opacity-50">
-        <span className="text-3xl">🔒</span>
-        <div>
-          <div className="font-bold text-gray-400">Exercise {index + 1} — locked</div>
-          <div className="text-sm text-gray-400">Your teacher will unlock this shortly</div>
+      <div className="rounded-2xl border-2 border-dashed border-slate-200 bg-white/40 p-5 flex items-center gap-4">
+        <div className="shrink-0 w-11 h-11 rounded-full bg-slate-100 grid place-items-center text-slate-400 font-bold">
+          {String(index + 1).padStart(2, "0")}
         </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">Mission · {exercise.difficulty}</p>
+          <p className="text-sm font-bold text-slate-400">Locked — teacher will reveal this next</p>
+        </div>
+        <span className="text-slate-300 text-xl">🔒</span>
       </div>
     );
   }
 
   return (
     <div
-      className="rounded-2xl border-2 p-6"
-      style={{ borderColor: completed ? "#16a34a" : difficultyColor + "40" }}
+      className={`rounded-2xl bg-white border transition shadow-[0_4px_20px_rgba(15,23,42,0.04)] ${
+        open ? "border-[#0F172A]/30" : "border-slate-200"
+      }`}
     >
-      {/* Header */}
-      <div className="flex items-start gap-4 cursor-pointer" onClick={() => setOpen(!open)}>
-        <span className="text-3xl">{completed ? "✅" : exercise.emoji}</span>
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-1">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="w-full text-left p-5 flex items-start gap-4"
+      >
+        <div
+          className="shrink-0 w-11 h-11 rounded-full grid place-items-center text-white font-black text-sm shadow-[0_4px_15px_rgba(15,23,42,0.18)]"
+          style={{ background: completed ? "#16a34a" : difficultyBg }}
+        >
+          {completed ? "✓" : String(index + 1).padStart(2, "0")}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1 flex-wrap">
             <span
-              className="text-xs font-bold uppercase px-2 py-0.5 rounded-full text-white"
-              style={{ background: difficultyColor }}
+              className="text-[10px] font-bold uppercase tracking-widest text-white px-2 py-0.5 rounded-full"
+              style={{ background: difficultyBg }}
             >
               {exercise.difficulty}
             </span>
-            <span className="font-bold text-lg text-gray-900">{exercise.title}</span>
+            {completed && (
+              <span className="text-[10px] font-bold uppercase tracking-widest text-green-700">· Complete</span>
+            )}
           </div>
-          <p className="text-gray-500 text-sm italic">{exercise.storyBeat}</p>
+          <h3 className="text-base font-bold text-[#0F172A] leading-tight">{exercise.title}</h3>
+          <p className="text-xs text-slate-500 mt-1">{exercise.concept}</p>
         </div>
-        <span className="text-gray-400 text-xl">{open ? "▲" : "▼"}</span>
-      </div>
+        <div className="shrink-0 text-right">
+          <div className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">XP</div>
+          <div className="text-base font-bold" style={{ color: accent }}>+{exercise.xp}</div>
+        </div>
+      </button>
 
-      {/* Expanded */}
       {open && (
-        <div className="mt-5 space-y-4">
-          <ol className="space-y-2">
-            {exercise.instructions.map((step, i) => (
-              <li key={i} className="flex gap-3 text-sm text-gray-700">
-                <span
-                  className="flex-shrink-0 w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center"
-                  style={{ background: difficultyColor }}
-                >
-                  {i + 1}
-                </span>
-                <span className="pt-0.5">{step}</span>
-              </li>
-            ))}
-          </ol>
+        <div className="px-5 pb-5 -mt-1 space-y-4">
+          {/* Story beat from the character */}
+          <div className="rounded-xl bg-slate-50 border border-slate-200 p-4">
+            <div className="flex items-start gap-3">
+              <Image
+                src={character.image}
+                alt={character.name}
+                width={36}
+                height={36}
+                className="shrink-0 w-9 h-9 rounded-full object-cover"
+              />
+              <div className="flex-1 min-w-0">
+                <p className="text-[11px] font-semibold text-[#0F172A] mb-0.5">{character.name}</p>
+                <p className="text-sm text-slate-700 italic leading-relaxed">{exercise.storyBeat}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Instructions */}
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-500 mb-2">Steps</p>
+            <ol className="space-y-2">
+              {exercise.instructions.map((step, i) => (
+                <li key={i} className="flex gap-3 text-sm text-slate-700">
+                  <span
+                    className="flex-shrink-0 w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center"
+                    style={{ background: difficultyBg }}
+                  >
+                    {i + 1}
+                  </span>
+                  <span className="pt-0.5 leading-relaxed">{step}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
 
           {/* Hint */}
           <div>
             <button
-              className="text-sm text-blue-600 underline"
+              type="button"
               onClick={() => setHintOpen(!hintOpen)}
+              className="text-xs font-semibold underline"
+              style={{ color: accent }}
             >
-              {hintOpen ? "Hide hint" : "Show hint"}
+              {hintOpen ? "Hide hint" : "💡 Show hint"}
             </button>
             {hintOpen && (
-              <div className="mt-2 bg-blue-50 border border-blue-200 rounded-xl p-3 text-sm text-blue-800">
-                💡 {exercise.hint}
+              <div className="mt-2 rounded-xl bg-amber-50 border border-amber-200 px-4 py-3 text-sm text-amber-900">
+                {exercise.hint}
               </div>
             )}
           </div>
 
-          {/* Success criteria + done button */}
-          <div className="flex items-center justify-between gap-4 pt-2 border-t border-gray-100">
-            <p className="text-xs text-gray-500">
-              <strong>Done when:</strong> {exercise.successCriteria}
+          {/* Done */}
+          <div className="flex items-center justify-between gap-3 pt-3 border-t border-slate-100">
+            <p className="text-xs text-slate-500">
+              <span className="font-semibold text-[#0F172A]">Done when:</span> {exercise.successCriteria}
             </p>
-            {!completed && (
+            {!completed ? (
               <button
+                type="button"
                 onClick={onComplete}
-                className="flex-shrink-0 rounded-full px-5 py-2 text-sm font-bold text-white"
-                style={{ background: difficultyColor }}
+                className="shrink-0 rounded-full px-5 py-2 text-xs font-bold text-white shadow-[0_4px_15px_rgba(15,23,42,0.18)] hover:opacity-90 transition"
+                style={{ background: accent }}
               >
                 Mark done ✓
               </button>
-            )}
-            {completed && (
-              <span className="text-sm font-bold text-green-600">Completed!</span>
+            ) : (
+              <span className="shrink-0 text-xs font-bold text-green-700">+{exercise.xp} XP earned</span>
             )}
           </div>
         </div>
@@ -166,87 +264,111 @@ function ExerciseCard({
   );
 }
 
-function BossFightCard({
+// ── Boss Fight Card ────────────────────────────────────────────────────────
+function BossCard({
   session,
   unlocked,
   completed,
   onComplete,
-  accentColor,
 }: {
   session: ClassSession;
   unlocked: boolean;
   completed: boolean;
   onComplete: () => void;
-  accentColor: string;
 }) {
   const [open, setOpen] = useState(false);
   const bf = session.bossFight;
+  const villain = getCharacter(bf.speakerId);
+  const accent = session.accentColor;
 
   if (!unlocked) {
     return (
       <div
-        className="rounded-2xl border-2 border-dashed p-6 flex items-center gap-4 opacity-50"
-        style={{ borderColor: accentColor + "60" }}
+        className="rounded-3xl border-2 border-dashed p-6 flex items-center gap-4"
+        style={{ borderColor: `${accent}50`, background: `${accent}05` }}
       >
         <span className="text-3xl">⚔️</span>
-        <div>
-          <div className="font-bold text-gray-400">Boss Fight — locked</div>
-          <div className="text-sm text-gray-400">Finish the exercises first</div>
+        <div className="flex-1">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">Boss fight</p>
+          <p className="text-sm font-bold text-slate-500">Finish the exercises first…</p>
         </div>
+        <span className="text-2xl">🔒</span>
       </div>
     );
   }
 
   return (
     <div
-      className="rounded-2xl border-2 p-6"
-      style={{ borderColor: accentColor, background: accentColor + "08" }}
+      className="rounded-3xl border-2 overflow-hidden shadow-[0_20px_60px_rgba(15,23,42,0.15)]"
+      style={{ borderColor: accent, background: "white" }}
     >
-      <div className="flex items-start gap-4 cursor-pointer" onClick={() => setOpen(!open)}>
-        <span className="text-3xl">{completed ? "🏆" : "⚔️"}</span>
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-1">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="w-full text-left p-6 flex items-start gap-4"
+        style={{ background: `linear-gradient(135deg, ${accent}10 0%, transparent 60%)` }}
+      >
+        <Image
+          src={villain.image}
+          alt={villain.name}
+          width={64}
+          height={64}
+          className="shrink-0 w-16 h-16 rounded-full object-cover ring-4 ring-white shadow-[0_4px_15px_rgba(15,23,42,0.18)]"
+        />
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1 flex-wrap">
             <span
-              className="text-xs font-bold uppercase px-2 py-0.5 rounded-full text-white"
-              style={{ background: accentColor }}
+              className="text-[10px] font-bold uppercase tracking-widest text-white px-2 py-0.5 rounded-full"
+              style={{ background: accent }}
             >
-              Boss Fight
+              Boss fight
             </span>
-            <span className="font-bold text-lg text-gray-900">{bf.title}</span>
-            <span className="text-xs text-gray-400">⏱ {bf.timeLimitMinutes} min</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">⏱ {bf.timeLimitMinutes} min</span>
+            {completed && (
+              <span className="text-[10px] font-bold uppercase tracking-widest text-green-700">· Defeated</span>
+            )}
           </div>
-          <p className="text-gray-600 text-sm italic">{bf.storyBeat}</p>
+          <h3 className="text-lg font-black text-[#0F172A] leading-tight">{bf.title}</h3>
+          <p className="text-sm text-slate-600 mt-1 italic">"{bf.storyBeat}"</p>
         </div>
-        <span className="text-gray-400 text-xl">{open ? "▲" : "▼"}</span>
-      </div>
+        <div className="shrink-0 text-right">
+          <div className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">Reward</div>
+          <div className="text-base font-bold" style={{ color: accent }}>+{bf.xp} XP</div>
+        </div>
+      </button>
 
       {open && (
-        <div className="mt-5 space-y-4">
-          <ol className="space-y-3">
-            {bf.challenges.map((c, i) => (
-              <li key={i} className="flex gap-3 text-sm text-gray-700">
-                <span
-                  className="flex-shrink-0 w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center"
-                  style={{ background: accentColor }}
-                >
-                  {i + 1}
-                </span>
-                <span className="pt-0.5">{c}</span>
-              </li>
-            ))}
-          </ol>
+        <div className="px-6 pb-6 space-y-4">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-500 mb-2">Challenges</p>
+            <ol className="space-y-3">
+              {bf.challenges.map((c, i) => (
+                <li key={i} className="flex gap-3 text-sm text-slate-700">
+                  <span
+                    className="flex-shrink-0 w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center"
+                    style={{ background: accent }}
+                  >
+                    {i + 1}
+                  </span>
+                  <span className="pt-0.5 leading-relaxed">{c}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
 
           {!completed ? (
             <button
+              type="button"
               onClick={onComplete}
-              className="rounded-full px-6 py-3 text-sm font-bold text-white"
-              style={{ background: accentColor }}
+              className="w-full rounded-full py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(15,23,42,0.18)] hover:opacity-90 transition"
+              style={{ background: accent }}
             >
-              I finished the boss fight! 🏆
+              I defeated {bf.title} 🏆
             </button>
           ) : (
-            <div className="flex items-center gap-3 text-green-700 font-bold">
-              🏆 Badge earned: <span style={{ color: accentColor }}>{bf.reward}</span>
+            <div className="rounded-xl border-2 p-4 text-center" style={{ borderColor: accent, background: `${accent}10` }}>
+              <p className="text-2xl mb-1">🏆</p>
+              <p className="text-sm font-bold text-[#0F172A]">Badge earned: <span style={{ color: accent }}>{bf.reward}</span></p>
             </div>
           )}
         </div>
@@ -255,18 +377,16 @@ function BossFightCard({
   );
 }
 
-// ─── Main Page ────────────────────────────────────────────────────────────────
-
+// ── Page ──────────────────────────────────────────────────────────────────
 export default function SessionPage() {
   const params = useParams<{ id: string }>();
-  const sessionId = params.id; // Supabase row UUID
+  const sessionId = params.id;
 
   const [dbSession, setDbSession] = useState<DbSession | null>(null);
   const [content, setContent] = useState<ClassSession | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Local completion state (persisted to localStorage per session)
   const storageKey = `tt-session-done-${sessionId}`;
   const [doneStages, setDoneStages] = useState<number[]>(() => {
     if (typeof window === "undefined") return [];
@@ -291,12 +411,11 @@ export default function SessionPage() {
     [storageKey],
   );
 
-  // ── Load session from Supabase ──────────────────────────────────────────
   useEffect(() => {
-    let channel: ReturnType<ReturnType<typeof createClient>["channel"]> | null = null;
+    const supabase = createClient();
+    let channel: ReturnType<typeof supabase.channel> | null = null;
 
     async function load() {
-      const supabase = createClient();
       const { data, error: err } = await supabase
         .from("class_sessions")
         .select("id, content_id, zoom_url, scheduled_at, unlocked_stage, is_active")
@@ -304,32 +423,25 @@ export default function SessionPage() {
         .maybeSingle();
 
       if (err || !data) {
-        setError("Session not found. Check the link and try again.");
+        setError("Session not found. Check the link from your teacher.");
         setLoading(false);
         return;
       }
-
       setDbSession(data as DbSession);
       const c = SESSION_BY_CONTENT_ID[(data as DbSession).content_id];
       if (!c) {
-        setError("Session content not found.");
+        setError("Lesson content not found.");
         setLoading(false);
         return;
       }
       setContent(c);
       setLoading(false);
 
-      // Subscribe to real-time updates for unlocked_stage
       channel = supabase
         .channel(`session:${sessionId}`)
         .on(
           "postgres_changes",
-          {
-            event: "UPDATE",
-            schema: "public",
-            table: "class_sessions",
-            filter: `id=eq.${sessionId}`,
-          },
+          { event: "UPDATE", schema: "public", table: "class_sessions", filter: `id=eq.${sessionId}` },
           (payload) => {
             setDbSession((prev) =>
               prev ? { ...prev, unlocked_stage: (payload.new as DbSession).unlocked_stage } : prev,
@@ -341,113 +453,136 @@ export default function SessionPage() {
 
     load();
     return () => {
-      if (channel) createClient().removeChannel(channel);
+      if (channel) supabase.removeChannel(channel);
     };
   }, [sessionId]);
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <span className="text-gray-400 text-lg">Loading your session…</span>
-      </div>
+      <main className="min-h-screen bg-[#FAFAFA] grid place-items-center">
+        <div className="text-center space-y-3">
+          <div className="text-3xl">📡</div>
+          <p className="text-sm text-slate-500">Connecting to your class…</p>
+        </div>
+      </main>
     );
   }
 
   if (error || !dbSession || !content) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center space-y-3">
+      <main className="min-h-screen bg-[#FAFAFA] grid place-items-center">
+        <div className="text-center space-y-3 max-w-sm">
           <div className="text-5xl">😕</div>
-          <p className="text-gray-600 text-lg">{error ?? "Something went wrong."}</p>
-          <a href="/preview" className="text-blue-600 underline text-sm">
-            ← Back to the portal
-          </a>
+          <p className="text-base text-[#0F172A] font-bold">{error ?? "Something went wrong."}</p>
+          <Link href="/preview" className="text-sm text-[#193b92] underline">← Back to the portal</Link>
         </div>
-      </div>
+      </main>
     );
   }
 
   const stage = dbSession.unlocked_stage;
+  const accent = content.accentColor;
+  const stageDone = doneStages.length;
+  const totalXp =
+    content.exercises.reduce((s, e, i) => (doneStages.includes(i) ? s + e.xp : s), 0) +
+    (doneStages.includes(99) ? content.bossFight.xp : 0);
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <div className="max-w-2xl mx-auto px-4 py-10 space-y-6">
-        {/* Header */}
-        <div>
-          <a href="/preview" className="text-sm text-gray-400 hover:text-gray-600 mb-4 inline-block">
-            ← Back to portal
-          </a>
-          <div className="flex items-center gap-3 mb-1">
-            <span className="text-3xl">{content.introCharacterEmoji}</span>
-            <span
-              className="text-xs font-bold uppercase px-3 py-1 rounded-full text-white"
-              style={{ background: content.accentColor }}
-            >
-              {content.program === "gdevelop" ? "GDevelop" : "Roblox"} · Lesson {content.lessonNumber}
+    <main className="min-h-screen bg-[#FAFAFA] text-[#0F172A]">
+      {/* Hero */}
+      <div
+        className="relative overflow-hidden text-white px-6 py-10 sm:py-14"
+        style={{ background: `linear-gradient(135deg, #0F172A 0%, ${accent} 70%, ${accent} 100%)` }}
+      >
+        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ background: "radial-gradient(circle at 20% 20%, white, transparent 50%)" }} />
+        <div className="max-w-2xl mx-auto relative">
+          <Link href="/preview" className="text-[11px] uppercase tracking-widest text-white/70 hover:text-white inline-flex items-center gap-1 mb-6">
+            ← TechBash portal
+          </Link>
+          <div className="flex items-center gap-2 mb-3 flex-wrap">
+            <span className="text-[10px] font-bold uppercase tracking-widest bg-white/15 backdrop-blur px-2.5 py-1 rounded-full">
+              {content.program === "gdevelop" ? "🎮 GDevelop" : "🌋 Roblox"}
+            </span>
+            <span className="text-[10px] font-bold uppercase tracking-widest bg-white/15 backdrop-blur px-2.5 py-1 rounded-full">
+              Lesson {content.lessonNumber}
+            </span>
+            <span className="text-[10px] font-bold uppercase tracking-widest bg-white/15 backdrop-blur px-2.5 py-1 rounded-full">
+              {STAGE_LABELS[stage]}
             </span>
           </div>
-          <h1 className="text-3xl font-black text-gray-900">{content.title}</h1>
-        </div>
+          <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-2 leading-tight">{content.title}</h1>
+          <p className="text-white/80 text-base mb-6">{content.tagline}</p>
 
-        {/* Zoom banner — appears 30 min before class */}
-        <ZoomBanner zoomUrl={dbSession.zoom_url} scheduledAt={dbSession.scheduled_at} />
+          {/* Progress + XP bar */}
+          <div className="flex items-center gap-4 mb-6">
+            <div className="flex-1 h-2 rounded-full bg-white/15 overflow-hidden">
+              <div className="h-full rounded-full bg-white transition-all" style={{ width: `${(stageDone / 4) * 100}%` }} />
+            </div>
+            <span className="text-xs font-bold whitespace-nowrap">{totalXp} XP</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Body */}
+      <div className="max-w-2xl mx-auto px-6 -mt-6 sm:-mt-8 pb-16 space-y-6 relative">
+        {/* Zoom banner */}
+        <ZoomBanner zoomUrl={dbSession.zoom_url} scheduledAt={dbSession.scheduled_at} accent={accent} />
 
         {/* Story intro */}
-        <div className="rounded-2xl bg-white border border-gray-200 p-6 shadow-sm">
-          <div className="flex gap-3 items-start">
-            <span className="text-4xl flex-shrink-0">{content.introCharacterEmoji}</span>
-            <div>
-              <div className="font-bold text-sm text-gray-500 mb-1">{content.introCharacter}</div>
-              <p className="text-gray-700 leading-relaxed italic">"{content.storyIntro}"</p>
-            </div>
-          </div>
+        <SpeechCard characterId={content.introCharacterId} body={content.storyIntro} />
+
+        {/* Big idea */}
+        <div className="rounded-xl bg-[#F0F9F8] border border-[#2C7A7B]/20 px-5 py-4">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#2C7A7B] mb-1">Today's big idea</p>
+          <p className="text-sm text-[#0F172A] leading-relaxed">{content.bigIdea}</p>
         </div>
 
         {/* Exercises */}
-        <div className="space-y-4">
-          <h2 className="font-black text-gray-700 text-sm uppercase tracking-wider">
-            Today's exercises
-          </h2>
-          {content.exercises.map((ex, i) => (
-            <ExerciseCard
-              key={i}
-              exercise={ex}
-              index={i}
-              unlocked={stage > i}
-              completed={doneStages.includes(i)}
-              onComplete={() => markDone(i)}
-            />
-          ))}
+        <div>
+          <h2 className="text-[11px] font-semibold uppercase tracking-widest text-slate-500 mb-3">Lesson missions</h2>
+          <div className="space-y-3">
+            {content.exercises.map((ex, i) => (
+              <ExerciseCard
+                key={i}
+                exercise={ex}
+                index={i}
+                unlocked={stage > i}
+                completed={doneStages.includes(i)}
+                onComplete={() => markDone(i)}
+                accent={accent}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Boss Fight */}
-        <div className="space-y-4">
-          <h2 className="font-black text-gray-700 text-sm uppercase tracking-wider">
-            Boss Fight
-          </h2>
-          <BossFightCard
+        {/* Boss fight */}
+        <div>
+          <h2 className="text-[11px] font-semibold uppercase tracking-widest text-slate-500 mb-3">Boss fight</h2>
+          <BossCard
             session={content}
             unlocked={stage >= 4}
             completed={doneStages.includes(99)}
             onComplete={() => markDone(99)}
-            accentColor={content.accentColor}
           />
         </div>
 
-        {/* Footer CTA */}
+        {/* Victory CTA */}
         {doneStages.includes(99) && (
-          <div className="rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 p-8 text-center text-white shadow-xl">
+          <div
+            className="rounded-3xl p-8 text-center text-white shadow-[0_20px_60px_rgba(15,23,42,0.25)]"
+            style={{ background: `linear-gradient(135deg, ${accent} 0%, #0F172A 100%)` }}
+          >
             <div className="text-5xl mb-3">🎉</div>
             <h3 className="text-2xl font-black mb-2">Class complete!</h3>
-            <p className="text-white/80 mb-5">
-              You earned the <strong>{content.bossFight.reward}</strong> badge. Want to keep going?
+            <p className="text-white/80 mb-5 text-sm">
+              You earned <strong>+{totalXp} XP</strong> and the <strong>{content.bossFight.reward}</strong> badge. Want to keep going?
             </p>
-            <a
+            <Link
               href="/preview"
-              className="inline-block rounded-full bg-white text-indigo-700 font-bold px-6 py-3 hover:bg-gray-100 transition-colors"
+              className="inline-block rounded-full bg-white text-[#0F172A] font-bold text-sm px-6 py-3 hover:bg-slate-100 transition"
             >
               Explore more missions →
-            </a>
+            </Link>
           </div>
         )}
       </div>
