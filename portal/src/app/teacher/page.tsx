@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import Logo from "@/components/Logo";
 import TeacherClassesUI, { type ClassRow } from "./TeacherClassesUI";
+import TeacherSessionsUI, { type SessionRow } from "./TeacherSessionsUI";
 
 export const metadata = { title: "Teacher dashboard — TechBash" };
 
@@ -124,6 +125,20 @@ export default async function TeacherDashboard() {
     classes = [];
   }
 
+  // ── Fetch sessions ──────────────────────────────────────────────────────
+  let sessions: SessionRow[] = [];
+  try {
+    const { data: sessionRows } = await supabase
+      .from("class_sessions")
+      .select("id, content_id, zoom_url, scheduled_at, unlocked_stage")
+      .eq("teacher_id", user.id)
+      .order("scheduled_at", { ascending: false })
+      .limit(50);
+    sessions = (sessionRows ?? []) as SessionRow[];
+  } catch {
+    sessions = [];
+  }
+
   const displayName = profile.full_name ?? user.email ?? "Teacher";
 
   return (
@@ -157,6 +172,10 @@ export default async function TeacherDashboard() {
 
       <div className="max-w-5xl mx-auto px-6 py-10">
         <TeacherClassesUI initialClasses={classes} />
+
+        <div className="mt-12">
+          <TeacherSessionsUI initialSessions={sessions} />
+        </div>
 
         <div className="mt-10 rounded-2xl bg-[#F0F9F8] border border-[#2C7A7B]/20 p-5">
           <p className="text-[11px] font-semibold uppercase tracking-widest text-[#2C7A7B] mb-2">
