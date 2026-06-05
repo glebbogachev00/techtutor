@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Operating Plan v1.0 | TechTutor (Internal)</title>
+  <link rel="icon" type="image/png" href="/images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            teal: { DEFAULT: '#2C7A7B', light: '#319795', dark: '#234E52' },
+            ink: '#0F172A',
+            cream: '#FAF7F2',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(ellipse at top left, #eef2ff 0%, transparent 50%),
+                  radial-gradient(ellipse at bottom right, #ecfdf5 0%, transparent 50%),
+                  #FAFAFA;
+      min-height: 100vh;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04), 0 12px 32px rgba(15, 23, 42, 0.06);
+      border: 1px solid rgba(15, 23, 42, 0.04);
+    }
+    .card-tight { padding: 24px; }
+    .card-pad { padding: 32px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .chip-primary { background: rgba(25, 59, 146, 0.08); color: #193b92; }
+    .chip-teal { background: rgba(44, 122, 123, 0.1); color: #2C7A7B; }
+    .chip-amber { background: rgba(217, 119, 6, 0.1); color: #b45309; }
+    .chip-slate { background: rgba(15, 23, 42, 0.06); color: #0F172A; }
+    .chip-rose { background: rgba(225, 29, 72, 0.08); color: #be123c; }
+
+    .section-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #64748b;
+      font-weight: 700;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #0F172A;
+      line-height: 1.15;
+    }
+    @media (min-width: 768px) {
+      .section-title { font-size: 2.5rem; }
+    }
+
+    .gradient-text {
+      background: linear-gradient(120deg, #193b92 0%, #2C7A7B 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .metric-bar {
+      position: relative;
+      height: 10px;
+      background: rgba(15, 23, 42, 0.06);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .metric-bar > span {
+      position: absolute;
+      top: 0; bottom: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #193b92, #2C7A7B);
+    }
+
+    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .dot-green { background: #10b981; box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15); }
+    .dot-amber { background: #f59e0b; box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15); }
+
+    .grid-soft-line {
+      background-image:
+        linear-gradient(rgba(15,23,42,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15,23,42,0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+
+    .pillar {
+      position: relative;
+      padding: 28px;
+      border-radius: 20px;
+      background: white;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .pillar:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08); }
+
+    .axis-label { font-size: 11px; color: #64748b; font-weight: 600; }
+
+    .quote-card {
+      background: linear-gradient(135deg, #0f2861 0%, #193b92 50%, #2C7A7B 100%);
+      color: white;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 20px 50px rgba(25, 59, 146, 0.25);
+    }
+
+    .stat-num { font-size: 2.25rem; font-weight: 800; letter-spacing: -0.02em; color: #0F172A; line-height: 1; }
+    .stat-label { font-size: 12px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(15,23,42,0.1), transparent);
+    }
+
+    /* range marker on a scale */
+    .range-scale {
+      position: relative;
+      height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(90deg, #eef2ff, #ecfdf5);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+    }
+    .range-scale .band {
+      position: absolute;
+      top: 8px; bottom: 8px;
+      background: linear-gradient(90deg, rgba(25,59,146,0.85), rgba(44,122,123,0.85));
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(25,59,146,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+    .range-scale .tick {
+      position: absolute;
+      top: 100%;
+      transform: translate(-50%, 4px);
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    .nav-pill a {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      transition: all 0.15s ease;
+    }
+    .nav-pill a:hover { background: rgba(25,59,146,0.08); color: #193b92; }
+
+    .check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: rgba(44,122,123,0.12);
+      color: #2C7A7B;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .cross {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: rgba(225, 29, 72, 0.1);
+      color: #be123c;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .role-card {
+      position: relative;
+      padding: 24px;
+      border-radius: 20px;
+      background: white;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .role-avatar {
+      width: 44px; height: 44px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; color: white;
+      font-size: 18px;
+    }
+
+    .phase-card {
+      border-radius: 24px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .phase-current {
+      background: linear-gradient(135deg, #193b92 0%, #2952b8 100%);
+      color: white;
+    }
+    .phase-future {
+      background: white;
+      border: 1px dashed rgba(15, 23, 42, 0.15);
+    }
+
+    .ecosystem-node {
+      padding: 20px;
+      border-radius: 18px;
+      background: white;
+      border: 1px solid rgba(15,23,42,0.06);
+      text-align: center;
+    }
+
+    .print-hide { }
+    @media print {
+      body { background: white; }
+      .print-hide { display: none !important; }
+      .card, .pillar, .role-card { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+      .quote-card { background: #0f2861 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body class="antialiased text-slate-800">
+
+  <!-- Top bar -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-white/80 border-b border-slate-200/70 print-hide">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
+      <a href="/" class="flex items-center gap-2 text-lg font-black tracking-tight text-slate-900">
+        <span class="text-primary">Tech</span><span class="text-teal-500">Tutor</span>
+        <span class="chip chip-slate ml-2">Internal</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-1 nav-pill">
+        <a href="#purpose">Purpose</a>
+        <a href="#metrics">Metrics</a>
+        <a href="#programs">Programs</a>
+        <a href="#team">Team</a>
+        <a href="#marketing">Marketing</a>
+        <a href="#ecosystem">Ecosystem</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button onclick="window.print()" class="text-xs font-semibold px-3 py-2 rounded-full border border-slate-200 text-slate-600 hover:bg-slate-50">Print</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-10 md:py-14 space-y-16">
+
+    <!-- HERO -->
+    <section id="purpose" class="space-y-6">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="chip chip-primary">v1.0</span>
+        <span class="chip chip-teal">Operating Manual</span>
+        <span class="chip chip-slate">Last updated · June 2026</span>
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-black tracking-tight text-ink leading-[1.05]">
+        TechTutor is being optimized for
+        <span class="gradient-text">quality, stability, and freedom</span>
+        — not growth.
+      </h1>
+
+      <p class="text-lg md:text-xl text-slate-600 max-w-3xl leading-relaxed">
+        A personal operating manual for running a small, high-quality, profitable education business that funds new products and gives the founders room to build.
+      </p>
+
+      <div class="quote-card grid md:grid-cols-3 gap-6 items-center mt-6">
+        <div class="md:col-span-2 space-y-3">
+          <div class="text-xs uppercase tracking-[0.18em] opacity-80">North Star</div>
+          <p class="text-2xl md:text-3xl font-bold leading-tight">
+            Exceptional technology education through highly personalized learning experiences.
+          </p>
+          <p class="opacity-90 leading-relaxed">
+            The goal is not to become the largest education company. The goal is to build a small, capable team that delivers outstanding outcomes for students and families.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="bg-white/10 rounded-2xl p-4 backdrop-blur">
+            <div class="text-3xl font-black">20–40</div>
+            <div class="text-xs opacity-80 uppercase tracking-wider">Active Students</div>
+          </div>
+          <div class="bg-white/10 rounded-2xl p-4 backdrop-blur">
+            <div class="text-3xl font-black">150–300M</div>
+            <div class="text-xs opacity-80 uppercase tracking-wider">VND / Month</div>
+          </div>
+          <div class="bg-white/10 rounded-2xl p-4 backdrop-blur">
+            <div class="text-3xl font-black">25–50%</div>
+            <div class="text-xs opacity-80 uppercase tracking-wider">Premium Mix</div>
+          </div>
+          <div class="bg-white/10 rounded-2xl p-4 backdrop-blur">
+            <div class="text-3xl font-black">Lean</div>
+            <div class="text-xs opacity-80 uppercase tracking-wider">Team Size</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUSINESS PHILOSOPHY -->
+    <section class="space-y-6">
+      <div class="flex items-end justify-between flex-wrap gap-4">
+        <div>
+          <div class="section-eyebrow">Business Philosophy</div>
+          <h2 class="section-title mt-2">We choose this, not that.</h2>
+        </div>
+        <span class="chip chip-teal">TechTutor stays lean</span>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="card card-pad">
+          <div class="text-sm font-bold text-teal uppercase tracking-wider mb-4">We prioritize</div>
+          <ul class="space-y-3">
+            <li class="flex gap-3"><span class="check">✓</span><span><strong>Quality</strong> over quantity</span></li>
+            <li class="flex gap-3"><span class="check">✓</span><span><strong>Long-term relationships</strong> over quick sales</span></li>
+            <li class="flex gap-3"><span class="check">✓</span><span><strong>Premium service</strong> over mass-market offerings</span></li>
+            <li class="flex gap-3"><span class="check">✓</span><span><strong>Small, capable teams</strong> over large organizations</span></li>
+            <li class="flex gap-3"><span class="check">✓</span><span><strong>Product innovation</strong> over operational complexity</span></li>
+          </ul>
+        </div>
+        <div class="card card-pad">
+          <div class="text-sm font-bold text-rose-700 uppercase tracking-wider mb-4">We deprioritize</div>
+          <ul class="space-y-3">
+            <li class="flex gap-3"><span class="cross">×</span><span>Scaling for the sake of headcount</span></li>
+            <li class="flex gap-3"><span class="cross">×</span><span>Cheap lessons for the largest audience</span></li>
+            <li class="flex gap-3"><span class="cross">×</span><span>Roles that don't clearly add value</span></li>
+            <li class="flex gap-3"><span class="cross">×</span><span>Operational complexity that distracts from teaching</span></li>
+            <li class="flex gap-3"><span class="cross">×</span><span>Growth that lowers service quality</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUCCESS METRICS -->
+    <section id="metrics" class="space-y-6">
+      <div>
+        <div class="section-eyebrow">Success Metrics</div>
+        <h2 class="section-title mt-2">What we measure (and what we ignore).</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Revenue -->
+        <div class="card card-pad space-y-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-xs uppercase tracking-wider font-bold text-primary">Primary Metric</div>
+              <div class="text-xl font-bold mt-1">Monthly Revenue</div>
+            </div>
+            <span class="chip chip-primary">VND / month</span>
+          </div>
+          <div class="range-scale">
+            <div class="band" style="left: 30%; right: 30%;">Target 150M – 300M</div>
+            <span class="tick" style="left: 0%;">0</span>
+            <span class="tick" style="left: 30%;">150M</span>
+            <span class="tick" style="left: 70%;">300M</span>
+            <span class="tick" style="left: 100%;">500M+</span>
+          </div>
+          <p class="text-sm text-slate-600 mt-8">Revenue is prioritized over total student count. We grow ARPU, not roster size.</p>
+        </div>
+
+        <!-- Active Students -->
+        <div class="card card-pad space-y-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-xs uppercase tracking-wider font-bold text-teal">Secondary Metric</div>
+              <div class="text-xl font-bold mt-1">Active Students</div>
+            </div>
+            <span class="chip chip-teal">Count</span>
+          </div>
+          <div class="range-scale">
+            <div class="band" style="left: 20%; right: 20%;">Target 20 – 40</div>
+            <span class="tick" style="left: 0%;">0</span>
+            <span class="tick" style="left: 20%;">20</span>
+            <span class="tick" style="left: 60%;">40</span>
+            <span class="tick" style="left: 100%;">100+</span>
+          </div>
+          <p class="text-sm text-slate-600 mt-8">This range lets us maintain high-quality service without unnecessary complexity.</p>
+        </div>
+      </div>
+
+      <!-- Premium goal -->
+      <div class="card card-pad">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+          <div>
+            <div class="text-xs uppercase tracking-wider font-bold text-amber-700">Premium Mix Goal</div>
+            <div class="text-xl font-bold mt-1">25 – 50% of students in Premium offerings</div>
+          </div>
+          <span class="chip chip-amber">Quality lever</span>
+        </div>
+
+        <div class="grid grid-cols-10 gap-1.5">
+          <!-- 10 slots representing 10% each. 1-2 = premium target (yellow), 3-5 = stretch, 6-10 = standard -->
+          <div class="h-10 rounded-md bg-amber-400" title="Premium"></div>
+          <div class="h-10 rounded-md bg-amber-400" title="Premium"></div>
+          <div class="h-10 rounded-md bg-amber-200" title="Premium stretch"></div>
+          <div class="h-10 rounded-md bg-amber-200" title="Premium stretch"></div>
+          <div class="h-10 rounded-md bg-amber-200" title="Premium stretch"></div>
+          <div class="h-10 rounded-md bg-slate-200" title="Standard / Group"></div>
+          <div class="h-10 rounded-md bg-slate-200" title="Standard / Group"></div>
+          <div class="h-10 rounded-md bg-slate-200" title="Standard / Group"></div>
+          <div class="h-10 rounded-md bg-slate-200" title="Standard / Group"></div>
+          <div class="h-10 rounded-md bg-slate-200" title="Standard / Group"></div>
+        </div>
+        <div class="flex flex-wrap items-center gap-5 mt-4 text-xs text-slate-600">
+          <span class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-amber-400"></span>Premium (baseline 25%)</span>
+          <span class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-amber-200"></span>Premium (stretch to 50%)</span>
+          <span class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-slate-200"></span>Standard & Group</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- IDEAL CUSTOMER -->
+    <section class="space-y-6">
+      <div>
+        <div class="section-eyebrow">Ideal Customer</div>
+        <h2 class="section-title mt-2">Who we serve.</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="pillar">
+          <div class="text-3xl mb-2">🎯</div>
+          <h3 class="font-bold text-lg mb-1">Value Education Highly</h3>
+          <p class="text-sm text-slate-600">Parents who treat learning as investment, not childcare.</p>
+        </div>
+        <div class="pillar">
+          <div class="text-3xl mb-2">🤝</div>
+          <h3 class="font-bold text-lg mb-1">Want Personalized Support</h3>
+          <p class="text-sm text-slate-600">Families who want to know their teacher and be known.</p>
+        </div>
+        <div class="pillar">
+          <div class="text-3xl mb-2">💎</div>
+          <h3 class="font-bold text-lg mb-1">Appreciate Premium Service</h3>
+          <p class="text-sm text-slate-600">Willing to invest in their child's growth over time.</p>
+        </div>
+        <div class="pillar">
+          <div class="text-3xl mb-2">🌱</div>
+          <h3 class="font-bold text-lg mb-1">Care About Long-Term Outcomes</h3>
+          <p class="text-sm text-slate-600">Not chasing the cheapest lesson — chasing real growth.</p>
+        </div>
+        <div class="pillar">
+          <div class="text-3xl mb-2">🧭</div>
+          <h3 class="font-bold text-lg mb-1">Patient & Committed</h3>
+          <p class="text-sm text-slate-600">Comfortable with curriculum unfolding over months.</p>
+        </div>
+        <div class="pillar">
+          <div class="text-3xl mb-2">📣</div>
+          <h3 class="font-bold text-lg mb-1">Become Advocates</h3>
+          <p class="text-sm text-slate-600">When served well, they refer the next great family.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section id="programs" class="space-y-6">
+      <div>
+        <div class="section-eyebrow">Programs</div>
+        <h2 class="section-title mt-2">Three tiers, one philosophy.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4">
+        <!-- Group -->
+        <div class="card card-pad space-y-4 relative">
+          <div class="flex items-center justify-between">
+            <span class="chip chip-slate">Tier 1</span>
+            <span class="text-xs font-semibold text-slate-500">Entry</span>
+          </div>
+          <h3 class="text-xl font-bold">Group Programs</h3>
+          <p class="text-sm text-slate-600">Accessible entry point, community learning, and long-term retention.</p>
+          <div class="divider"></div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider font-bold">Current Example</div>
+          <div class="font-semibold text-slate-800">24 Lessons</div>
+        </div>
+
+        <!-- Standard 1:1 -->
+        <div class="card card-pad space-y-4 relative ring-1 ring-primary/10">
+          <div class="flex items-center justify-between">
+            <span class="chip chip-primary">Tier 2</span>
+            <span class="text-xs font-semibold text-slate-500">Personalized</span>
+          </div>
+          <h3 class="text-xl font-bold">Standard 1-to-1</h3>
+          <p class="text-sm text-slate-600">Personalized instruction, faster progress, higher engagement.</p>
+          <div class="divider"></div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider font-bold">Examples</div>
+          <div class="font-semibold text-slate-800">8-Lesson Package · 24-Lesson Package</div>
+        </div>
+
+        <!-- Premium -->
+        <div class="card card-pad space-y-4 relative" style="background: linear-gradient(160deg, #fffbeb 0%, #fff 70%); border: 1px solid #fde68a;">
+          <div class="flex items-center justify-between">
+            <span class="chip chip-amber">Tier 3 · Flagship</span>
+            <span class="text-xs font-semibold text-amber-700">Premium</span>
+          </div>
+          <h3 class="text-xl font-bold">Premium Personal</h3>
+          <p class="text-sm text-slate-600">Highest customization, strong parent involvement, fully tailored learning path.</p>
+          <div class="divider"></div>
+          <div class="text-xs text-slate-500 uppercase tracking-wider font-bold">Strategic Role</div>
+          <div class="font-semibold text-slate-800">Becomes the major share of future revenue.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" class="space-y-6">
+      <div>
+        <div class="section-eyebrow">Team Structure</div>
+        <h2 class="section-title mt-2">Small team. Clear lanes.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <!-- Founder -->
+        <div class="role-card">
+          <div class="flex items-center gap-3">
+            <div class="role-avatar" style="background: linear-gradient(135deg, #193b92, #2952b8);">G</div>
+            <div>
+              <div class="font-bold">Founder · Gleb</div>
+              <div class="text-xs text-slate-500">Product & Strategy</div>
+            </div>
+          </div>
+          <ul class="text-sm text-slate-700 space-y-1.5">
+            <li>• Product vision & program development</li>
+            <li>• TechBash & new initiatives</li>
+            <li>• Systems, processes, business strategy</li>
+            <li>• Customer experience improvements</li>
+            <li>• Teaching selected clients</li>
+          </ul>
+          <div class="text-xs font-semibold text-primary mt-auto">Goal · Build products and systems that improve the business.</div>
+        </div>
+
+        <!-- Co-Founder -->
+        <div class="role-card">
+          <div class="flex items-center gap-3">
+            <div class="role-avatar" style="background: linear-gradient(135deg, #2C7A7B, #319795);">M</div>
+            <div>
+              <div class="font-bold">Co-Founder · Manthan</div>
+              <div class="text-xs text-slate-500">Teaching & Educational Quality</div>
+            </div>
+          </div>
+          <ul class="text-sm text-slate-700 space-y-1.5">
+            <li>• Teaching & student outcomes</li>
+            <li>• Curriculum delivery & quality</li>
+            <li>• Operational support</li>
+          </ul>
+          <div class="text-xs font-semibold text-teal mt-auto">Goal · Deliver exceptional educational experiences.</div>
+        </div>
+
+        <!-- Customer Success -->
+        <div class="role-card">
+          <div class="flex items-center gap-3">
+            <div class="role-avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);">CS</div>
+            <div>
+              <div class="font-bold">Customer Success / Admin</div>
+              <div class="text-xs text-slate-500">Parent Experience</div>
+            </div>
+          </div>
+          <ul class="text-sm text-slate-700 space-y-1.5">
+            <li>• Parent communication, scheduling, attendance</li>
+            <li>• Enrollment support & inquiry follow-up</li>
+            <li>• Explaining programs and pricing</li>
+            <li>• Maintaining customer records</li>
+          </ul>
+          <div class="text-xs font-semibold text-amber-700 mt-auto">Goal · A smooth experience for parents and students. Compensation reflects real workload & responsibility.</div>
+        </div>
+
+        <!-- Optional Teacher -->
+        <div class="role-card border-dashed" style="border-style: dashed;">
+          <div class="flex items-center gap-3">
+            <div class="role-avatar" style="background: rgba(15,23,42,0.5);">T</div>
+            <div>
+              <div class="font-bold">Additional Teacher</div>
+              <div class="text-xs text-slate-500">Optional · added only when capacity requires</div>
+            </div>
+          </div>
+          <ul class="text-sm text-slate-700 space-y-1.5">
+            <li>• Maintain teaching quality as the roster grows</li>
+            <li>• Specialist / contractor preferred</li>
+          </ul>
+          <div class="text-xs font-semibold text-slate-600 mt-auto">Goal · Protect teaching quality during growth.</div>
+        </div>
+      </div>
+
+      <!-- Hiring philosophy -->
+      <div class="card card-pad bg-gradient-to-br from-slate-900 to-primary text-white">
+        <div class="grid md:grid-cols-4 gap-6 items-center">
+          <div class="md:col-span-1">
+            <div class="text-xs uppercase tracking-[0.18em] opacity-70">Hiring Philosophy</div>
+            <div class="text-2xl font-bold mt-2">Hire slowly.<br>Keep the team small.</div>
+          </div>
+          <div class="md:col-span-3 grid sm:grid-cols-2 gap-3 text-sm">
+            <div class="bg-white/10 rounded-xl p-4">Pay strong contributors well.</div>
+            <div class="bg-white/10 rounded-xl p-4">Avoid roles that don't clearly add value.</div>
+            <div class="bg-white/10 rounded-xl p-4">Prefer specialists & contractors over permanent hires.</div>
+            <div class="bg-white/10 rounded-xl p-4">Compensation should reflect actual workload and impact.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARKETING -->
+    <section id="marketing" class="space-y-6">
+      <div>
+        <div class="section-eyebrow">Marketing Philosophy</div>
+        <h2 class="section-title mt-2">Attract the right families, not the most leads.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Growth Phase -->
+        <div class="phase-card phase-current">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="dot dot-amber"></span>
+            <span class="text-xs uppercase tracking-[0.16em] opacity-80 font-bold">Current Phase</span>
+          </div>
+          <h3 class="text-2xl font-bold">Growth Phase</h3>
+          <p class="opacity-90 mt-2">Reach 20–40 active students.</p>
+          <div class="mt-6 grid grid-cols-2 gap-2 text-sm">
+            <div class="bg-white/10 rounded-lg px-3 py-2">Referrals</div>
+            <div class="bg-white/10 rounded-lg px-3 py-2">Parent testimonials</div>
+            <div class="bg-white/10 rounded-lg px-3 py-2">Success stories</div>
+            <div class="bg-white/10 rounded-lg px-3 py-2">Content creation</div>
+            <div class="bg-white/10 rounded-lg px-3 py-2">Partnerships</div>
+            <div class="bg-white/10 rounded-lg px-3 py-2">Outreach</div>
+            <div class="bg-white/10 rounded-lg px-3 py-2 col-span-2">Limited paid advertising</div>
+          </div>
+        </div>
+
+        <!-- Reputation Phase -->
+        <div class="phase-card phase-future">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="dot dot-green"></span>
+            <span class="text-xs uppercase tracking-[0.16em] text-slate-500 font-bold">Next Phase</span>
+          </div>
+          <h3 class="text-2xl font-bold text-ink">Reputation Phase</h3>
+          <p class="text-slate-600 mt-2">Maintain a steady stream of qualified families.</p>
+          <div class="mt-6 grid grid-cols-2 gap-2 text-sm">
+            <div class="bg-slate-100 rounded-lg px-3 py-2 text-slate-700">Testimonials</div>
+            <div class="bg-slate-100 rounded-lg px-3 py-2 text-slate-700">Case studies</div>
+            <div class="bg-slate-100 rounded-lg px-3 py-2 text-slate-700">Website updates</div>
+            <div class="bg-slate-100 rounded-lg px-3 py-2 text-slate-700">Referral systems</div>
+            <div class="bg-slate-100 rounded-lg px-3 py-2 text-slate-700 col-span-2">Community building</div>
+          </div>
+          <p class="text-xs text-slate-500 mt-4 italic">Large-scale marketing is not required if the business is operating at desired capacity.</p>
+        </div>
+      </div>
+
+      <!-- Optional growth role -->
+      <div class="card card-pad">
+        <div class="flex items-start gap-4 flex-wrap">
+          <div class="text-3xl">📈</div>
+          <div class="flex-1 min-w-[260px]">
+            <div class="flex items-center gap-2 flex-wrap">
+              <h3 class="font-bold text-lg">Growth & Content Specialist</h3>
+              <span class="chip chip-slate">Optional · contract</span>
+            </div>
+            <p class="text-sm text-slate-600 mt-1">Brought in <strong>only when growth becomes the bottleneck.</strong> Compensation tied to measurable business impact.</p>
+            <div class="mt-3 flex flex-wrap gap-1.5 text-xs">
+              <span class="chip chip-slate">Strategy</span>
+              <span class="chip chip-slate">Content</span>
+              <span class="chip chip-slate">Advertising</span>
+              <span class="chip chip-slate">Referrals</span>
+              <span class="chip chip-slate">Lead gen</span>
+              <span class="chip chip-slate">Website optimization</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ECOSYSTEM -->
+    <section id="ecosystem" class="space-y-6">
+      <div>
+        <div class="section-eyebrow">Ecosystem</div>
+        <h2 class="section-title mt-2">TechTutor's role in the bigger picture.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4 items-stretch">
+        <div class="ecosystem-node">
+          <div class="text-3xl mb-2">🎓</div>
+          <h3 class="font-bold text-lg text-primary">TechTutor</h3>
+          <p class="text-sm text-slate-600 mt-1">Premium education business · stable revenue source</p>
+        </div>
+        <div class="ecosystem-node" style="background: linear-gradient(160deg, #ecfdf5, white);">
+          <div class="text-3xl mb-2">⚡</div>
+          <h3 class="font-bold text-lg text-teal">TechBash</h3>
+          <p class="text-sm text-slate-600 mt-1">Scalable educational product · long-term growth opportunity</p>
+        </div>
+        <div class="ecosystem-node border-dashed" style="border-style: dashed;">
+          <div class="text-3xl mb-2">🚀</div>
+          <h3 class="font-bold text-lg text-slate-700">Future Products</h3>
+          <p class="text-sm text-slate-600 mt-1">Built from insights gained working directly with students & parents</p>
+        </div>
+      </div>
+
+      <div class="card card-pad">
+        <p class="text-slate-700 leading-relaxed">
+          The long-term goal is to use <strong>TechTutor</strong> as a foundation for creating products that can impact a larger audience — while keeping the core business <em>small, profitable, and a joy to operate</em>.
+        </p>
+      </div>
+    </section>
+
+    <!-- CLOSING REMINDER -->
+    <section>
+      <div class="quote-card">
+        <div class="text-xs uppercase tracking-[0.18em] opacity-80">Reminder when in doubt</div>
+        <p class="text-2xl md:text-3xl font-bold mt-3 leading-tight">
+          Growth is welcome — but only if service quality remains high.
+        </p>
+        <p class="opacity-90 mt-3 max-w-2xl">
+          Once you accept that TechTutor is optimized for quality, stability, and freedom, decisions about hiring, salaries, marketing, and partnerships become much easier.
+        </p>
+      </div>
+    </section>
+
+    <footer class="text-center text-xs text-slate-400 pt-8 pb-4">
+      Internal document · TechTutor Operating Plan v1.0 · Not for public distribution
+    </footer>
+  </main>
+
+</body>
+</html>

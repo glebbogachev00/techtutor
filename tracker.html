@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Client Tracker | TechTutor (Internal)</title>
+  <link rel="icon" type="image/png" href="/images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            teal: { DEFAULT: '#2C7A7B', light: '#319795', dark: '#234E52' },
+            ink: '#0F172A',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+
+    body.app-active {
+      background: radial-gradient(ellipse at top left, #eef2ff 0%, transparent 50%),
+                  radial-gradient(ellipse at bottom right, #ecfdf5 0%, transparent 50%),
+                  #FAFAFA;
+      min-height: 100vh;
+    }
+
+    /* ── Auth ─────────────────────────────────────── */
+    #auth-overlay {
+      position: fixed; inset: 0;
+      background: radial-gradient(ellipse at top left, #eef2ff 0%, transparent 50%),
+                  radial-gradient(ellipse at bottom right, #ecfdf5 0%, transparent 50%), #f8fafc;
+      display: flex; align-items: center; justify-content: center; z-index: 100;
+    }
+    #auth-overlay.hidden { display: none; }
+    .auth-card {
+      background: white; border-radius: 24px; padding: 40px;
+      box-shadow: 0 4px 16px rgba(15,23,42,0.06), 0 24px 64px rgba(15,23,42,0.1);
+      width: 100%; max-width: 400px; margin: 16px;
+    }
+
+    /* ── Cards ────────────────────────────────────── */
+    .card {
+      background: white; border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(15,23,42,0.04), 0 12px 32px rgba(15,23,42,0.06);
+      border: 1px solid rgba(15,23,42,0.04);
+    }
+    .card-pad { padding: 28px; }
+
+    /* ── Chips ────────────────────────────────────── */
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 3px 10px; border-radius: 999px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap;
+    }
+    .chip-primary { background: rgba(25,59,146,0.08); color: #193b92; }
+    .chip-teal    { background: rgba(44,122,123,0.10); color: #2C7A7B; }
+    .chip-amber   { background: rgba(217,119,6,0.10);  color: #b45309; }
+    .chip-green   { background: rgba(16,185,129,0.10); color: #047857; }
+    .chip-slate   { background: rgba(15,23,42,0.06);   color: #475569; }
+
+    /* ── Inputs ───────────────────────────────────── */
+    .input {
+      width: 100%; padding: 10px 14px;
+      border: 1.5px solid #e2e8f0; border-radius: 12px;
+      font-size: 14px; font-family: 'Inter', sans-serif;
+      outline: none; transition: border-color 0.15s ease; background: white;
+    }
+    .input:focus { border-color: #193b92; box-shadow: 0 0 0 3px rgba(25,59,146,0.1); }
+    .input-label {
+      display: block; font-size: 12px; font-weight: 600;
+      color: #475569; margin-bottom: 6px;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    select.input { cursor: pointer; }
+
+    /* ── Buttons ──────────────────────────────────── */
+    .btn-primary {
+      background: #193b92; color: white; padding: 11px 22px; border-radius: 12px;
+      font-weight: 600; font-size: 14px; font-family: 'Inter', sans-serif;
+      border: none; cursor: pointer; transition: background 0.15s, transform 0.1s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-primary:hover { background: #0f2861; }
+    .btn-primary:active { transform: scale(0.98); }
+    .btn-secondary {
+      background: rgba(15,23,42,0.06); color: #0F172A; padding: 11px 22px; border-radius: 12px;
+      font-weight: 600; font-size: 14px; font-family: 'Inter', sans-serif;
+      border: none; cursor: pointer; transition: background 0.15s;
+    }
+    .btn-secondary:hover { background: rgba(15,23,42,0.12); }
+    .btn-danger {
+      background: rgba(225,29,72,0.08); color: #be123c; padding: 11px 22px; border-radius: 12px;
+      font-weight: 600; font-size: 14px; font-family: 'Inter', sans-serif;
+      border: none; cursor: pointer; transition: background 0.15s;
+    }
+    .btn-danger:hover { background: rgba(225,29,72,0.15); }
+    .btn-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(15,23,42,0.06); border: none; cursor: pointer;
+      transition: background 0.15s; color: #475569; flex-shrink: 0;
+    }
+    .btn-icon:hover { background: rgba(15,23,42,0.12); }
+
+    /* ── Range Scale ──────────────────────────────── */
+    .range-scale {
+      position: relative; height: 48px; border-radius: 14px;
+      background: linear-gradient(90deg, #eef2ff, #ecfdf5);
+      border: 1px solid rgba(15,23,42,0.06); margin-top: 28px; margin-bottom: 28px;
+    }
+    .range-scale .band {
+      position: absolute; top: 7px; bottom: 7px;
+      background: linear-gradient(90deg, rgba(25,59,146,0.8), rgba(44,122,123,0.8));
+      border-radius: 8px; box-shadow: 0 4px 14px rgba(25,59,146,0.2);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 700; font-size: 12px;
+    }
+    .range-scale .tick {
+      position: absolute; top: calc(100% + 4px); transform: translateX(-50%);
+      font-size: 10px; color: #94a3b8; font-weight: 600;
+    }
+    .range-scale .cur-marker {
+      position: absolute; top: 4px; bottom: 4px; width: 3px;
+      background: #f59e0b; border-radius: 999px;
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.25);
+      transform: translateX(-50%); transition: left 0.4s ease;
+    }
+    .range-scale .cur-label {
+      position: absolute; bottom: calc(100% + 8px); transform: translateX(-50%);
+      font-size: 10px; font-weight: 700; color: #b45309; white-space: nowrap;
+      background: #fffbeb; border: 1px solid #fde68a; padding: 2px 6px; border-radius: 6px;
+      transition: left 0.4s ease;
+    }
+
+    /* ── Modal overlay ────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(15,23,42,0.45); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 50; padding: 16px;
+    }
+    .modal-overlay.hidden { display: none; }
+    .modal-card {
+      background: white; border-radius: 24px;
+      box-shadow: 0 25px 80px rgba(15,23,42,0.2);
+      width: 100%; max-width: 520px; max-height: 92vh; overflow-y: auto; padding: 32px;
+    }
+
+    /* ── Table ────────────────────────────────────── */
+    .ct { width: 100%; border-collapse: collapse; }
+    .ct th {
+      text-align: left; font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8;
+      padding: 12px 16px; border-bottom: 1px solid #f1f5f9;
+    }
+    .ct td {
+      padding: 13px 16px; border-bottom: 1px solid #f8fafc;
+      font-size: 14px; color: #0F172A; vertical-align: middle;
+    }
+    .ct tbody tr:last-child td { border-bottom: none; }
+    .ct tbody tr:hover td { background: #f8fafc; }
+
+    /* ── Filter tabs ──────────────────────────────── */
+    .ftab {
+      padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 600;
+      color: #64748b; cursor: pointer; border: none; background: transparent;
+      transition: all 0.15s; font-family: 'Inter', sans-serif;
+    }
+    .ftab.active { background: #193b92; color: white; }
+    .ftab:not(.active):hover { background: rgba(25,59,146,0.08); color: #193b92; }
+    .ftab-teal.active { background: #2C7A7B; }
+
+    /* ── Stat card ────────────────────────────────── */
+    .stat-card {
+      background: white; border-radius: 20px;
+      border: 1px solid rgba(15,23,42,0.04);
+      box-shadow: 0 2px 8px rgba(15,23,42,0.04); padding: 24px;
+    }
+    .stat-num { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.02em; color: #0F172A; line-height: 1; }
+    .stat-lbl { font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.1em; }
+
+    /* ── Misc ─────────────────────────────────────── */
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(15,23,42,0.08), transparent); }
+    .eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #64748b; font-weight: 700; }
+    .gradient-text {
+      background: linear-gradient(120deg, #193b92, #2C7A7B);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .err-msg { color: #be123c; font-size: 13px; font-weight: 500; margin-top: 6px; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-thumb { background: rgba(15,23,42,0.12); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- AUTH OVERLAY                                                 -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div id="auth-overlay">
+
+  <!-- FIRST-RUN SETUP -->
+  <div id="setup-view" class="auth-card hidden">
+    <div class="flex items-center gap-2 mb-6">
+      <span class="text-xl font-black" style="color:#193b92">Tech</span><span class="text-xl font-black" style="color:#2C7A7B">Tutor</span>
+      <span class="chip chip-slate ml-1">Client Tracker</span>
+    </div>
+    <h2 class="text-2xl font-bold text-ink mb-1">Set up your password</h2>
+    <p class="text-sm text-slate-500 mb-6">Data is stored locally in your browser. Set a password to protect this page.</p>
+    <div class="space-y-4">
+      <div>
+        <label class="input-label">Password</label>
+        <input type="password" id="setup-pw" class="input" placeholder="At least 6 characters" autocomplete="new-password" />
+      </div>
+      <div>
+        <label class="input-label">Confirm Password</label>
+        <input type="password" id="setup-pw2" class="input" placeholder="Confirm password" autocomplete="new-password"
+          onkeydown="if(event.key==='Enter') handleSetup()" />
+      </div>
+      <div id="setup-err" class="err-msg hidden"></div>
+      <button class="btn-primary" style="width:100%;justify-content:center;" onclick="handleSetup()">Create Password & Enter</button>
+    </div>
+    <p class="text-xs text-slate-400 mt-6 text-center">
+      <a href="#" class="underline" onclick="showResetInfo(event)">Forgot password?</a>
+    </p>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="login-view" class="auth-card hidden">
+    <div class="flex items-center gap-2 mb-6">
+      <span class="text-xl font-black" style="color:#193b92">Tech</span><span class="text-xl font-black" style="color:#2C7A7B">Tutor</span>
+      <span class="chip chip-slate ml-1">Client Tracker</span>
+    </div>
+    <h2 class="text-2xl font-bold text-ink mb-1">Internal Access</h2>
+    <p class="text-sm text-slate-500 mb-6">Enter your password to view the client dashboard.</p>
+    <div class="space-y-4">
+      <div>
+        <label class="input-label">Password</label>
+        <input type="password" id="login-pw" class="input" placeholder="Password" autocomplete="current-password"
+          onkeydown="if(event.key==='Enter') handleLogin()" />
+      </div>
+      <div id="login-err" class="err-msg hidden"></div>
+      <button class="btn-primary" style="width:100%;justify-content:center;" onclick="handleLogin()">Enter</button>
+    </div>
+    <p class="text-xs text-slate-400 mt-6 text-center">
+      <a href="#" class="underline" onclick="showResetInfo(event)">Forgot password?</a>
+    </p>
+  </div>
+
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- MAIN APP                                                     -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div id="app" class="hidden">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-white/80 border-b border-slate-200/70">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-2">
+        <a href="/" class="text-lg font-black tracking-tight">
+          <span style="color:#193b92">Tech</span><span style="color:#2C7A7B">Tutor</span>
+        </a>
+        <span class="chip chip-slate">Client Tracker</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="operating-plan.html"
+          class="text-xs font-semibold px-3 py-2 rounded-full border border-slate-200 text-slate-600 hover:bg-slate-50"
+          style="text-decoration:none">
+          ← Operating Plan
+        </a>
+
+        <!-- Import -->
+        <label class="btn-icon cursor-pointer" title="Import JSON backup">
+          <input type="file" accept=".json" class="hidden" onchange="handleImport(event)" />
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+        </label>
+
+        <!-- Export -->
+        <button class="btn-icon" title="Export data as JSON" onclick="handleExport()">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+          </svg>
+        </button>
+
+        <!-- Settings / change password -->
+        <button class="btn-icon" title="Change password" onclick="openPwModal()">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+          </svg>
+        </button>
+
+        <!-- Lock -->
+        <button class="btn-icon" title="Lock" onclick="lockApp()">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0110 0v4"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-8 space-y-10">
+
+    <!-- ── DASHBOARD ─────────────────────────────────── -->
+    <section>
+      <div class="eyebrow mb-5">Live Dashboard</div>
+
+      <!-- Stat cards -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="stat-card">
+          <div class="stat-lbl mb-2">Active Students</div>
+          <div class="stat-num" id="d-students">0</div>
+          <div class="text-xs text-slate-400 mt-2">Target: 20–40</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-lbl mb-2">Monthly Revenue</div>
+          <div class="stat-num gradient-text" id="d-revenue">0M ₫</div>
+          <div class="text-xs text-slate-400 mt-2">Target: 150M–300M ₫</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-lbl mb-2">Premium Mix</div>
+          <div class="stat-num" id="d-premium">0%</div>
+          <div class="text-xs text-slate-400 mt-2">Target: 25–50%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-lbl mb-2">Avg. ARPU</div>
+          <div class="stat-num" id="d-arpu">—</div>
+          <div class="text-xs text-slate-400 mt-2">Per active student</div>
+        </div>
+      </div>
+
+      <!-- Progress bars -->
+      <div class="grid md:grid-cols-2 gap-5 mb-5">
+        <!-- Revenue -->
+        <div class="card card-pad">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-semibold text-sm">Monthly Revenue vs. Target</span>
+            <span class="chip chip-primary text-xs" id="rev-chip">0M ₫</span>
+          </div>
+          <div class="range-scale">
+            <div class="band" style="left:30%;right:30%;">150M – 300M</div>
+            <span class="tick" style="left:0%">0</span>
+            <span class="tick" style="left:30%">150M</span>
+            <span class="tick" style="left:70%">300M</span>
+            <span class="tick" style="left:100%">500M+</span>
+            <div class="cur-marker hidden" id="rev-marker"></div>
+            <div class="cur-label hidden" id="rev-label"></div>
+          </div>
+        </div>
+
+        <!-- Students -->
+        <div class="card card-pad">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-semibold text-sm">Active Students vs. Target</span>
+            <span class="chip chip-teal text-xs" id="stu-chip">0</span>
+          </div>
+          <div class="range-scale">
+            <div class="band" style="left:33%;right:33%;">20 – 40</div>
+            <span class="tick" style="left:0%">0</span>
+            <span class="tick" style="left:33%">20</span>
+            <span class="tick" style="left:67%">40</span>
+            <span class="tick" style="left:100%">60+</span>
+            <div class="cur-marker hidden" id="stu-marker"></div>
+            <div class="cur-label hidden" id="stu-label"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier breakdown -->
+      <div class="card card-pad">
+        <div class="eyebrow mb-4">Breakdown by Tier · Active Only</div>
+        <div class="grid grid-cols-3 gap-4 text-center" id="tier-breakdown">
+          <!-- rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CLIENTS ────────────────────────────────────── -->
+    <section>
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+        <div class="eyebrow">Clients</div>
+        <button class="btn-primary" onclick="openAddModal()">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+          Add Client
+        </button>
+      </div>
+
+      <!-- Filters -->
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <div class="flex bg-slate-100 rounded-full p-1 gap-0.5">
+          <button class="ftab active" data-sf="all"      onclick="setSF('all',this)">All</button>
+          <button class="ftab"        data-sf="active"   onclick="setSF('active',this)">Active</button>
+          <button class="ftab"        data-sf="paused"   onclick="setSF('paused',this)">Paused</button>
+          <button class="ftab"        data-sf="inactive" onclick="setSF('inactive',this)">Inactive</button>
+        </div>
+        <div class="flex bg-slate-100 rounded-full p-1 gap-0.5">
+          <button class="ftab ftab-teal active" data-tf="all"      onclick="setTF('all',this)">All Tiers</button>
+          <button class="ftab ftab-teal"        data-tf="group"    onclick="setTF('group',this)">Group</button>
+          <button class="ftab ftab-teal"        data-tf="standard" onclick="setTF('standard',this)">1:1</button>
+          <button class="ftab ftab-teal"        data-tf="premium"  onclick="setTF('premium',this)">Premium</button>
+        </div>
+        <input type="search" id="search-input" class="input" style="width:200px;padding:8px 14px;"
+          placeholder="Search by name…" oninput="renderClients()" />
+      </div>
+
+      <!-- Table -->
+      <div class="card overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="ct">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Tier</th>
+                <th>Monthly Fee</th>
+                <th>Status</th>
+                <th>Since</th>
+                <th>Notes</th>
+                <th style="width:56px"></th>
+              </tr>
+            </thead>
+            <tbody id="clients-tbody"></tbody>
+          </table>
+        </div>
+        <div id="empty-state" class="hidden py-16 text-center text-slate-400">
+          <div class="text-4xl mb-3">📋</div>
+          <div class="font-semibold text-slate-600">No clients yet</div>
+          <div class="text-sm mt-1">Click "Add Client" to get started.</div>
+        </div>
+      </div>
+
+      <div id="client-count" class="text-xs text-slate-400 mt-3 text-right"></div>
+    </section>
+
+    <footer class="text-center text-xs text-slate-400 pt-4 pb-8 space-y-1">
+      <div>Data stored locally in your browser · Export JSON regularly as a backup</div>
+      <div>Internal · TechTutor Client Tracker · Not for public distribution</div>
+    </footer>
+
+  </main>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- ADD / EDIT CLIENT MODAL                                      -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div id="client-modal" class="modal-overlay hidden" onclick="handleOutsideClick(event,'client-modal')">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-bold" id="modal-title">Add Client</h2>
+      <button class="btn-icon" onclick="closeClientModal()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <form id="client-form" onsubmit="handleSave(event)" class="space-y-4" novalidate>
+      <input type="hidden" id="f-id" />
+
+      <div class="grid grid-cols-2 gap-4">
+        <div class="col-span-2">
+          <label class="input-label">Student Name *</label>
+          <input type="text" id="f-name" class="input" required placeholder="e.g. Minh Anh" />
+        </div>
+        <div class="col-span-2">
+          <label class="input-label">Parent / Contact Name</label>
+          <input type="text" id="f-parent" class="input" placeholder="e.g. Mrs. Nguyen" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="input-label">Program Tier *</label>
+          <select id="f-tier" class="input" required>
+            <option value="">— Select —</option>
+            <option value="group">Group Program</option>
+            <option value="standard">Standard 1-to-1</option>
+            <option value="premium">Premium Personal</option>
+          </select>
+        </div>
+        <div>
+          <label class="input-label">Status *</label>
+          <select id="f-status" class="input" required>
+            <option value="active">Active</option>
+            <option value="paused">Paused</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="input-label">Monthly Fee (VND) *</label>
+          <input type="number" id="f-fee" class="input" required min="0" step="100000" placeholder="e.g. 3500000" />
+        </div>
+        <div>
+          <label class="input-label">Start Month</label>
+          <input type="month" id="f-start" class="input" />
+        </div>
+      </div>
+
+      <div>
+        <label class="input-label">Notes</label>
+        <textarea id="f-notes" class="input" rows="2" style="resize:vertical"
+          placeholder="e.g. very motivated, prefers morning sessions…"></textarea>
+      </div>
+
+      <div id="form-err" class="err-msg hidden"></div>
+
+      <div class="divider"></div>
+
+      <div class="flex items-center gap-3 pt-1">
+        <button type="button" id="delete-btn" class="btn-danger hidden" onclick="handleDelete()">Delete</button>
+        <div class="flex gap-3 ml-auto">
+          <button type="button" class="btn-secondary" onclick="closeClientModal()">Cancel</button>
+          <button type="submit" class="btn-primary">Save Client</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- CHANGE PASSWORD MODAL                                        -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div id="pw-modal" class="modal-overlay hidden" onclick="handleOutsideClick(event,'pw-modal')">
+  <div class="modal-card" style="max-width:380px" onclick="event.stopPropagation()">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-bold">Change Password</h2>
+      <button class="btn-icon" onclick="closePwModal()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="space-y-4">
+      <div>
+        <label class="input-label">Current Password</label>
+        <input type="password" id="pw-cur" class="input" placeholder="Current password" />
+      </div>
+      <div>
+        <label class="input-label">New Password</label>
+        <input type="password" id="pw-new" class="input" placeholder="New password (min 6 chars)" />
+      </div>
+      <div>
+        <label class="input-label">Confirm New Password</label>
+        <input type="password" id="pw-new2" class="input" placeholder="Confirm new password"
+          onkeydown="if(event.key==='Enter') handleChangePw()" />
+      </div>
+      <div id="pw-err" class="err-msg hidden"></div>
+      <div id="pw-ok" class="hidden" style="color:#047857;font-size:13px;font-weight:600"></div>
+      <button class="btn-primary" style="width:100%;justify-content:center;" onclick="handleChangePw()">Update Password</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SCRIPT                                                       -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<script>
+  // ── CONSTANTS ──────────────────────────────────────────────────
+  const STORAGE_KEY = 'tt_tracker_v1';
+  const AUTH_KEY    = 'tt_auth_v1';
+  const SESSION_KEY = 'tt_session_v1';
+  const SALT        = 'techtutor_internal_salt_2026';
+
+  // ── CRYPTO ─────────────────────────────────────────────────────
+  async function hashPw(pw) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(SALT + pw));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  // ── DATA ───────────────────────────────────────────────────────
+  function getData() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { clients: [] }; }
+    catch { return { clients: [] }; }
+  }
+  function saveData(d) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ clients: d.clients || [], updatedAt: Date.now() }));
+  }
+  function genId() {
+    return crypto.randomUUID ? crypto.randomUUID()
+      : (Math.random().toString(36).slice(2) + Date.now().toString(36));
+  }
+
+  // ── AUTH ───────────────────────────────────────────────────────
+  const isFirstRun   = () => !localStorage.getItem(AUTH_KEY);
+  const isAuthed     = () => sessionStorage.getItem(SESSION_KEY) === '1';
+  const setAuthed    = () => sessionStorage.setItem(SESSION_KEY, '1');
+
+  function lockApp() {
+    sessionStorage.removeItem(SESSION_KEY);
+    document.getElementById('app').classList.add('hidden');
+    document.body.classList.remove('app-active');
+    document.getElementById('auth-overlay').classList.remove('hidden');
+    document.getElementById('login-pw').value = '';
+    el('login-err').classList.add('hidden');
+    showAuthView();
+  }
+
+  function showAuthView() {
+    if (isFirstRun()) {
+      show('setup-view'); hide('login-view');
+    } else {
+      hide('setup-view'); show('login-view');
+      setTimeout(() => el('login-pw').focus(), 60);
+    }
+  }
+
+  async function handleSetup() {
+    const pw  = el('setup-pw').value.trim();
+    const pw2 = el('setup-pw2').value.trim();
+    const err = el('setup-err');
+    if (pw.length < 6) { showErr(err, 'Password must be at least 6 characters.'); return; }
+    if (pw !== pw2)    { showErr(err, 'Passwords do not match.'); return; }
+    err.classList.add('hidden');
+    localStorage.setItem(AUTH_KEY, await hashPw(pw));
+    setAuthed();
+    enterApp();
+  }
+
+  async function handleLogin() {
+    const pw  = el('login-pw').value;
+    const err = el('login-err');
+    if (!pw) { showErr(err, 'Please enter your password.'); return; }
+    if (await hashPw(pw) === localStorage.getItem(AUTH_KEY)) {
+      err.classList.add('hidden');
+      setAuthed();
+      enterApp();
+    } else {
+      showErr(err, 'Incorrect password.');
+      el('login-pw').select();
+    }
+  }
+
+  function enterApp() {
+    el('auth-overlay').classList.add('hidden');
+    el('app').classList.remove('hidden');
+    document.body.classList.add('app-active');
+    renderAll();
+  }
+
+  function showResetInfo(e) {
+    e.preventDefault();
+    alert(
+      'To reset your password:\n\n' +
+      '1. Open browser DevTools → Application → Local Storage\n' +
+      '2. Delete the entry: "tt_auth_v1"\n' +
+      '3. Reload this page to set a new password\n\n' +
+      'Your client data ("tt_tracker_v1") will remain intact.'
+    );
+  }
+
+  async function handleChangePw() {
+    const cur  = el('pw-cur').value;
+    const nw   = el('pw-new').value.trim();
+    const nw2  = el('pw-new2').value.trim();
+    const err  = el('pw-err');
+    const ok   = el('pw-ok');
+    err.classList.add('hidden'); ok.classList.add('hidden');
+    if (await hashPw(cur) !== localStorage.getItem(AUTH_KEY)) { showErr(err, 'Current password is incorrect.'); return; }
+    if (nw.length < 6) { showErr(err, 'New password must be at least 6 characters.'); return; }
+    if (nw !== nw2)    { showErr(err, 'New passwords do not match.'); return; }
+    localStorage.setItem(AUTH_KEY, await hashPw(nw));
+    ok.textContent = '✓ Password updated successfully.';
+    ok.classList.remove('hidden');
+    el('pw-cur').value = ''; el('pw-new').value = ''; el('pw-new2').value = '';
+  }
+
+  // ── HELPERS ────────────────────────────────────────────────────
+  const el   = id => document.getElementById(id);
+  const show = id => el(id).classList.remove('hidden');
+  const hide = id => el(id).classList.add('hidden');
+  function showErr(node, msg) { node.textContent = msg; node.classList.remove('hidden'); }
+
+  function esc(s) {
+    if (!s) return '';
+    return String(s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
+  function fmtVND(n) {
+    if (n == null || n === '' || isNaN(n)) return '—';
+    n = Number(n);
+    if (n >= 1_000_000) {
+      const m = n / 1_000_000;
+      return (Number.isInteger(m) ? m : parseFloat(m.toFixed(1))) + 'M ₫';
+    }
+    return n.toLocaleString('en') + ' ₫';
+  }
+
+  function fmtDate(ym) {
+    if (!ym) return '—';
+    const [y, m] = ym.split('-');
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return (months[parseInt(m,10)-1] || '') + ' ' + y;
+  }
+
+  const TIER_LABEL  = { group:'Group', standard:'Standard 1:1', premium:'Premium' };
+  const TIER_CHIP   = { group:'chip-slate', standard:'chip-primary', premium:'chip-amber' };
+  const STATUS_CHIP = { active:'chip-green', paused:'chip-amber', inactive:'chip-slate' };
+
+  // ── FILTER STATE ───────────────────────────────────────────────
+  let _sf = 'all';  // status filter
+  let _tf = 'all';  // tier filter
+
+  function setSF(val) {
+    _sf = val;
+    document.querySelectorAll('[data-sf]').forEach(b => b.classList.toggle('active', b.dataset.sf === val));
+    renderClients();
+  }
+  function setTF(val) {
+    _tf = val;
+    document.querySelectorAll('[data-tf]').forEach(b => b.classList.toggle('active', b.dataset.tf === val));
+    renderClients();
+  }
+
+  // ── RENDER ─────────────────────────────────────────────────────
+  function renderAll() { renderDashboard(); renderClients(); }
+
+  function renderDashboard() {
+    const d       = getData();
+    const active  = d.clients.filter(c => c.status === 'active');
+    const revenue = active.reduce((s,c) => s + (Number(c.monthlyFee) || 0), 0);
+    const premium = active.filter(c => c.tier === 'premium').length;
+    const premPct = active.length ? Math.round(premium / active.length * 100) : 0;
+    const arpu    = active.length ? Math.round(revenue / active.length) : null;
+
+    el('d-students').textContent = active.length;
+    el('d-revenue').textContent  = fmtVND(revenue);
+    el('d-premium').textContent  = premPct + '%';
+    el('d-arpu').textContent     = arpu != null ? fmtVND(arpu) : '—';
+    el('rev-chip').textContent   = fmtVND(revenue);
+    el('stu-chip').textContent   = active.length + ' students';
+
+    // Revenue marker (0–500M = 0–100%)
+    setMarker('rev-marker', 'rev-label', revenue, 500_000_000, fmtVND(revenue));
+    // Students marker (0–60 = 0–100%)
+    setMarker('stu-marker', 'stu-label', active.length, 60, active.length + ' students');
+
+    // Tier breakdown
+    const tiers = ['group','standard','premium'];
+    const counts = Object.fromEntries(tiers.map(t => [t, active.filter(c=>c.tier===t).length]));
+    const revs   = Object.fromEntries(tiers.map(t => [t, active.filter(c=>c.tier===t).reduce((s,c)=>s+(Number(c.monthlyFee)||0),0)]));
+
+    el('tier-breakdown').innerHTML = `
+      <div>
+        <div class="text-2xl font-black">${counts.group}</div>
+        <div class="stat-lbl mb-2" style="font-size:10px">Group</div>
+        <span class="chip chip-slate">${fmtVND(revs.group)}</span>
+      </div>
+      <div>
+        <div class="text-2xl font-black" style="color:#193b92">${counts.standard}</div>
+        <div class="stat-lbl mb-2" style="font-size:10px">Standard 1:1</div>
+        <span class="chip chip-primary">${fmtVND(revs.standard)}</span>
+      </div>
+      <div>
+        <div class="text-2xl font-black" style="color:#b45309">${counts.premium}</div>
+        <div class="stat-lbl mb-2" style="font-size:10px">Premium</div>
+        <span class="chip chip-amber">${fmtVND(revs.premium)}</span>
+      </div>
+    `;
+  }
+
+  function setMarker(markerId, labelId, value, max, text) {
+    const pct = Math.min(value / max * 100, 99.5);
+    const m   = el(markerId);
+    const l   = el(labelId);
+    if (value > 0) {
+      m.style.left = pct + '%'; m.classList.remove('hidden');
+      l.style.left = pct + '%'; l.textContent = text; l.classList.remove('hidden');
+    } else {
+      m.classList.add('hidden'); l.classList.add('hidden');
+    }
+  }
+
+  function renderClients() {
+    const d      = getData();
+    const search = (el('search-input')?.value || '').toLowerCase().trim();
+
+    let list = d.clients.filter(c => {
+      const ms = _sf === 'all' || c.status === _sf;
+      const mt = _tf === 'all' || c.tier   === _tf;
+      const mn = !search || c.name.toLowerCase().includes(search)
+               || (c.parentName || '').toLowerCase().includes(search);
+      return ms && mt && mn;
+    });
+
+    list.sort((a, b) => {
+      const o = { active:0, paused:1, inactive:2 };
+      return (o[a.status]||0) - (o[b.status]||0) || a.name.localeCompare(b.name);
+    });
+
+    const tbody = el('clients-tbody');
+    const empty = el('empty-state');
+    const count = el('client-count');
+
+    if (list.length === 0) {
+      tbody.innerHTML = '';
+      empty.classList.remove('hidden');
+      count.textContent = '';
+    } else {
+      empty.classList.add('hidden');
+      tbody.innerHTML = list.map(c => `
+        <tr>
+          <td>
+            <div class="font-semibold">${esc(c.name)}</div>
+            ${c.parentName ? `<div class="text-xs text-slate-400 mt-0.5">${esc(c.parentName)}</div>` : ''}
+          </td>
+          <td><span class="chip ${TIER_CHIP[c.tier]||'chip-slate'}">${esc(TIER_LABEL[c.tier]||c.tier)}</span></td>
+          <td class="font-semibold tabular-nums">${fmtVND(c.monthlyFee)}</td>
+          <td><span class="chip ${STATUS_CHIP[c.status]||'chip-slate'}">${esc(c.status)}</span></td>
+          <td class="text-slate-500">${fmtDate(c.startDate)}</td>
+          <td class="text-slate-500" style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"
+            title="${esc(c.notes)}">${esc(c.notes)||'—'}</td>
+          <td>
+            <button class="btn-icon" onclick="openEditModal('${esc(c.id)}')" title="Edit">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+      count.textContent = `Showing ${list.length} of ${d.clients.length} client${d.clients.length !== 1 ? 's' : ''}`;
+    }
+  }
+
+  // ── CLIENT MODAL ───────────────────────────────────────────────
+  let _editId = null;
+
+  function openAddModal() {
+    _editId = null;
+    el('modal-title').textContent = 'Add Client';
+    el('client-form').reset();
+    el('f-id').value = '';
+    hide('delete-btn'); hide('form-err');
+    show('client-modal');
+    setTimeout(() => el('f-name').focus(), 60);
+  }
+
+  function openEditModal(id) {
+    const c = getData().clients.find(x => x.id === id);
+    if (!c) return;
+    _editId = id;
+    el('modal-title').textContent = 'Edit Client';
+    el('f-id').value     = c.id;
+    el('f-name').value   = c.name || '';
+    el('f-parent').value = c.parentName || '';
+    el('f-tier').value   = c.tier || '';
+    el('f-status').value = c.status || 'active';
+    el('f-fee').value    = c.monthlyFee || '';
+    el('f-start').value  = c.startDate || '';
+    el('f-notes').value  = c.notes || '';
+    show('delete-btn'); hide('form-err');
+    show('client-modal');
+  }
+
+  function closeClientModal() { hide('client-modal'); _editId = null; }
+
+  function handleSave(e) {
+    e.preventDefault();
+    const name   = el('f-name').value.trim();
+    const parent = el('f-parent').value.trim();
+    const tier   = el('f-tier').value;
+    const status = el('f-status').value;
+    const fee    = parseFloat(el('f-fee').value);
+    const start  = el('f-start').value;
+    const notes  = el('f-notes').value.trim();
+
+    if (!name)            { showErr(el('form-err'), 'Student name is required.');         return; }
+    if (!tier)            { showErr(el('form-err'), 'Please select a program tier.');     return; }
+    if (isNaN(fee)||fee<0){ showErr(el('form-err'), 'Please enter a valid monthly fee.'); return; }
+
+    const d = getData();
+    if (_editId) {
+      const i = d.clients.findIndex(c => c.id === _editId);
+      if (i > -1) d.clients[i] = { ...d.clients[i], name, parentName:parent, tier, status, monthlyFee:fee, startDate:start, notes };
+    } else {
+      d.clients.push({ id:genId(), name, parentName:parent, tier, status, monthlyFee:fee, startDate:start, notes, createdAt:Date.now() });
+    }
+    saveData(d);
+    closeClientModal();
+    renderAll();
+  }
+
+  function handleDelete() {
+    if (!_editId) return;
+    const c = getData().clients.find(x => x.id === _editId);
+    if (!c) return;
+    if (!confirm(`Delete "${c.name}"?\n\nThis cannot be undone.`)) return;
+    const d = getData();
+    d.clients = d.clients.filter(x => x.id !== _editId);
+    saveData(d);
+    closeClientModal();
+    renderAll();
+  }
+
+  // ── PASSWORD MODAL ─────────────────────────────────────────────
+  function openPwModal() {
+    ['pw-cur','pw-new','pw-new2'].forEach(id => el(id).value = '');
+    hide('pw-err'); hide('pw-ok');
+    show('pw-modal');
+    setTimeout(() => el('pw-cur').focus(), 60);
+  }
+  function closePwModal() { hide('pw-modal'); }
+
+  // ── OUTSIDE CLICK ──────────────────────────────────────────────
+  function handleOutsideClick(e, id) {
+    if (e.target === el(id)) {
+      if (id === 'client-modal') closeClientModal();
+      else if (id === 'pw-modal') closePwModal();
+    }
+  }
+
+  // ── EXPORT ─────────────────────────────────────────────────────
+  function handleExport() {
+    const json = JSON.stringify(getData(), null, 2);
+    const a    = Object.assign(document.createElement('a'), {
+      href:     URL.createObjectURL(new Blob([json], { type:'application/json' })),
+      download: `techtutor-clients-${new Date().toISOString().slice(0,10)}.json`
+    });
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  // ── IMPORT ─────────────────────────────────────────────────────
+  function handleImport(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const r = new FileReader();
+    r.onload = ev => {
+      try {
+        const imp = JSON.parse(ev.target.result);
+        if (!imp.clients || !Array.isArray(imp.clients))
+          throw new Error('Missing clients array');
+        if (!confirm(
+          `Import ${imp.clients.length} client(s) from file?\n\n` +
+          `This will REPLACE your current data.\n` +
+          `Export a backup first if needed.`
+        )) return;
+        saveData({ clients: imp.clients });
+        renderAll();
+        alert('Import successful.');
+      } catch { alert('Invalid file. Please use a JSON file exported from this tool.'); }
+      e.target.value = '';
+    };
+    r.readAsText(file);
+  }
+
+  // ── INIT ───────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    if (isAuthed()) { enterApp(); } else { showAuthView(); }
+  });
+</script>
+</body>
+</html>
