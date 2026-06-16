@@ -109,15 +109,15 @@ export default function TeacherSessionPage() {
   }
 
   if (loading) {
-    return <main className="min-h-screen bg-[#0F172A] grid place-items-center text-white/60">Loading…</main>;
+    return <main className="min-h-screen bg-[#FAFAFA] grid place-items-center text-slate-400">Loading…</main>;
   }
   if (error || !db || !content) {
     return (
-      <main className="min-h-screen bg-[#0F172A] grid place-items-center text-center">
-        <div className="text-white">
+      <main className="min-h-screen bg-[#FAFAFA] grid place-items-center text-center">
+        <div className="text-[#0F172A]">
           <p className="text-5xl mb-3">😕</p>
           <p className="font-bold mb-2">{error ?? "Not found"}</p>
-          <Link href="/teacher" className="text-sm text-white/60 underline">← Back to teacher dashboard</Link>
+          <Link href="/teacher" className="text-sm text-[#193b92] underline">← Back to teacher dashboard</Link>
         </div>
       </main>
     );
@@ -131,12 +131,12 @@ export default function TeacherSessionPage() {
   const bossC = getCharacter(content.bossFight.speakerId);
 
   return (
-    <main className="min-h-screen bg-[#0F172A] text-white">
+    <main className="min-h-screen bg-[#FAFAFA] text-[#0F172A]">
       {/* Top bar */}
-      <header className="border-b border-white/10 bg-white/5 backdrop-blur">
+      <header className="border-b border-slate-200 bg-white">
         <div className="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
-          <Link href="/teacher" className="text-xs text-white/60 hover:text-white">← Teacher dashboard</Link>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">Live control panel</span>
+          <Link href="/teacher" className="text-xs text-slate-500 hover:text-[#0F172A]">← Teacher dashboard</Link>
+          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Live control panel</span>
         </div>
       </header>
 

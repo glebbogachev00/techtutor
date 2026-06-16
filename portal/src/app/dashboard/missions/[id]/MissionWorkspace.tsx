@@ -132,7 +132,7 @@ export default function MissionWorkspace({
           {mission.language === "html" ? (
             <iframe
               title="Live preview"
-              sandbox="allow-scripts"
+              sandbox="allow-scripts allow-same-origin allow-modals"
               srcDoc={previewSrcDoc}
               className="w-full h-[420px] bg-white"
             />

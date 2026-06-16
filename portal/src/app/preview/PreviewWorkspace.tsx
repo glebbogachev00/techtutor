@@ -36,6 +36,10 @@ export default function PreviewWorkspace({
   const [passed, setPassed] = useState(false);
   const [aiReply, setAiReply] = useState<string | null>(null);
   const [aiLoading, setAiLoading] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatMessages, setChatMessages] = useState<Array<{ role: "user" | "assistant"; content: string }>>([]);
+  const [chatInput, setChatInput] = useState("");
+  const [chatLoading, setChatLoading] = useState(false);
 
   const isPython = mission.language === "python";
   const pythonOutput = isPython ? runPython(code) : "";
@@ -94,6 +98,62 @@ export default function PreviewWorkspace({
       setAiReply("Something broke. Try sending again in a moment.");
     } finally {
       setAiLoading(false);
+    }
+  }
+
+  async function sendChatMessage() {
+    if (!chatInput.trim() || chatLoading) return;
+
+    const userMessage = chatInput.trim();
+
+    // Add mission context to the first message
+    const contextualMessage = chatMessages.length === 0
+      ? `I'm working on: "${mission.title}" - ${mission.task}\n\nMy question: ${userMessage}`
+      : userMessage;
+
+    setChatInput("");
+    setChatMessages((prev) => [...prev, { role: "user", content: userMessage }]);
+    setChatLoading(true);
+
+    try {
+      const res = await fetch("/api/ai-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [
+            ...chatMessages.map(m => ({ role: m.role, content: m.content })),
+            { role: "user", content: contextualMessage }
+          ],
+        }),
+      });
+      const data = await res.json();
+
+      if (res.status === 401) {
+        setChatMessages((prev) => [
+          ...prev,
+          {
+            role: "assistant",
+            content: `🔒 ${data?.message ?? "Sign in to chat with Professor Loop."}`,
+          },
+        ]);
+        return;
+      }
+
+      const reply = data?.reply || data?.error || "Professor Loop didn't reply. Try again?";
+      setChatMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: reply },
+      ]);
+    } catch (err) {
+      setChatMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: err instanceof Error ? err.message : "Sorry, I'm having trouble right now. Try again?",
+        },
+      ]);
+    } finally {
+      setChatLoading(false);
     }
   }
 
@@ -187,7 +247,7 @@ export default function PreviewWorkspace({
           ) : (
             <iframe
               title="Live preview"
-              sandbox="allow-scripts"
+              sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms"
               srcDoc={code}
               className="w-full h-[320px] bg-white"
             />
@@ -223,6 +283,93 @@ export default function PreviewWorkspace({
           </span>
         )}
       </div>
+
+      {/* Floating Professor Loop chat button */}
+      <button
+        onClick={() => setChatOpen(!chatOpen)}
+        className="fixed bottom-6 right-6 w-16 h-16 rounded-full shadow-[0_8px_30px_rgba(124,58,237,0.4)] hover:shadow-[0_8px_40px_rgba(124,58,237,0.5)] transition-all hover:scale-110 z-50"
+        title="Ask Professor Loop"
+      >
+        <img
+          src="/characters/professor-loop.png"
+          alt="Professor Loop"
+          className="w-full h-full rounded-full border-4 border-white"
+        />
+      </button>
+
+      {chatOpen && (
+        <div className="fixed bottom-24 right-6 w-96 rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.15)] z-50">
+          <div className="px-4 py-2 border-b border-slate-200 bg-[#7C3AED] flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <img
+                src="/characters/professor-loop.png"
+                alt="Professor Loop"
+                className="w-8 h-8 rounded-full border-2 border-white"
+              />
+              <span className="text-sm font-bold text-white">Professor Loop</span>
+            </div>
+            <button
+              onClick={() => setChatOpen(false)}
+              className="text-white hover:text-slate-200 text-xl leading-none"
+            >
+              ×
+            </button>
+          </div>
+          <div className="max-h-[360px] overflow-auto p-4 space-y-3 bg-[#FAFAFA]">
+            {chatMessages.length === 0 && (
+              <p className="text-xs text-slate-400 text-center py-6">
+                Your conversation will show up here.
+              </p>
+            )}
+            {chatMessages.map((msg, idx) => (
+              <div
+                key={idx}
+                className={msg.role === "user" ? "flex justify-end" : "flex justify-start"}
+              >
+                <div
+                  className={
+                    msg.role === "user"
+                      ? "max-w-[80%] rounded-2xl rounded-br-sm bg-[#193b92] text-white text-sm px-4 py-2 whitespace-pre-wrap"
+                      : "max-w-[80%] rounded-2xl rounded-bl-sm bg-white border border-slate-200 text-[#0F172A] text-sm px-4 py-2 whitespace-pre-wrap"
+                  }
+                >
+                  {msg.content}
+                </div>
+              </div>
+            ))}
+            {chatLoading && (
+              <div className="flex justify-start">
+                <div className="rounded-2xl bg-white border border-slate-200 text-slate-400 text-sm px-4 py-2">
+                  Professor Loop is thinking…
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="border-t border-slate-200 p-3 flex items-end gap-2">
+            <textarea
+              value={chatInput}
+              onChange={(e) => setChatInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+                  e.preventDefault();
+                  sendChatMessage();
+                }
+              }}
+              rows={3}
+              placeholder="Type your question..."
+              className="flex-1 resize-none rounded-lg border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#7C3AED]/30"
+              disabled={chatLoading}
+            />
+            <button
+              onClick={sendChatMessage}
+              disabled={chatLoading || !chatInput.trim()}
+              className="bg-[#7C3AED] hover:bg-[#5B21B6] text-white font-semibold text-sm px-5 py-3 rounded-full transition disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_4px_15px_rgba(124,58,237,0.25)]"
+            >
+              {chatLoading ? "Sending…" : "Send"}
+            </button>
+          </div>
+        </div>
+      )}
 
       {feedback && (
         <div className="rounded-2xl border border-[#2C7A7B]/30 bg-[#F0F9F8] p-5">
