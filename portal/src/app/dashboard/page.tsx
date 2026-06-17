@@ -447,38 +447,21 @@ export default async function DashboardHome() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {allPrograms.map((p) => {
                 const started = startedPrograms.has(p.slug);
-                const card = (
-                  <div
-                    className={`group rounded-2xl border border-slate-200 bg-white p-5 flex flex-col relative overflow-hidden transition-all ${
-                      started
-                        ? "hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)] cursor-pointer"
-                        : "opacity-50 grayscale cursor-not-allowed"
-                    }`}
-                  >
-                    {started && (
-                      <div
-                        className="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                        style={{ background: p.color }}
-                      />
-                    )}
+                return (
+                  <Link key={p.slug} href={`/programs/${p.slug}`}
+                    className="group rounded-2xl border border-slate-200 bg-white p-5 flex flex-col relative overflow-hidden transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)]">
+                    <div
+                      className="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                      style={{ background: p.color }}
+                    />
                     <div className="flex items-start justify-between mb-4">
-                      <div
-                        className="w-12 h-12 rounded-xl grid place-items-center text-2xl"
-                        style={{ background: p.colorLight }}
-                      >
+                      <div className="w-12 h-12 rounded-xl grid place-items-center text-2xl" style={{ background: p.colorLight }}>
                         {p.emoji}
                       </div>
-                      {!started && (
-                        <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded-full bg-slate-100 text-slate-400">
-                          Not started
-                        </span>
-                      )}
-                      {started && (
-                        <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded-full"
-                          style={{ background: p.colorLight, color: p.color }}>
-                          In progress
-                        </span>
-                      )}
+                      <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded-full"
+                        style={{ background: p.colorLight, color: p.color }}>
+                        {started ? "In progress" : "New"}
+                      </span>
                     </div>
                     <h3 className="font-black text-[#0F172A] mb-1">{p.title}</h3>
                     <p className="text-sm text-slate-500 mb-3 flex-1">{p.tagline}</p>
@@ -486,12 +469,7 @@ export default async function DashboardHome() {
                       <span className="font-black uppercase tracking-widest">Skills: </span>
                       {p.levels.map(l => l.project.title).join(", ")}
                     </p>
-                  </div>
-                );
-                return started ? (
-                  <Link key={p.slug} href={`/programs/${p.slug}`}>{card}</Link>
-                ) : (
-                  <div key={p.slug}>{card}</div>
+                  </Link>
                 );
               })}
             </div>
