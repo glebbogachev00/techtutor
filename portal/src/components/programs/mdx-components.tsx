@@ -1,55 +1,76 @@
 import React from "react";
-import { Quiz } from "./Quiz";
 import { QuizById } from "./QuizById";
 import { Reveal } from "./Reveal";
 
-export function Callout({ type = "info", children }: { type?: "story" | "tip" | "warning" | "info"; children: React.ReactNode }) {
+export function Callout({
+  type = "info",
+  children,
+}: {
+  type?: "story" | "tip" | "warning" | "info";
+  children: React.ReactNode;
+}) {
   const styles = {
-    story:   { border: "var(--color-primary)", bg: "#EFF6FF", icon: "✨", label: "Story" },
-    tip:     { border: "var(--color-teal)",    bg: "#F0FDF4", icon: "💡", label: "Pro tip" },
-    warning: { border: "#D97706",              bg: "#FFFBEB", icon: "⚠️", label: "Watch out" },
-    info:    { border: "#6366F1",              bg: "#EEF2FF", icon: "ℹ️",  label: "Note" },
+    story:   { bg: "bg-[#EFF6FF] border-[#193b92]/20",   bar: "#193b92", icon: "✨", label: "Story" },
+    tip:     { bg: "bg-[#F0FDF4] border-[#2C7A7B]/20",   bar: "#2C7A7B", icon: "💡", label: "Pro tip" },
+    warning: { bg: "bg-amber-50 border-amber-200",        bar: "#D97706", icon: "⚠️", label: "Watch out" },
+    info:    { bg: "bg-slate-50 border-slate-200",        bar: "#64748B", icon: "ℹ️",  label: "Note" },
   };
   const s = styles[type] ?? styles.info;
   return (
-    <div className="card my-6 p-5" style={{ borderLeft: `5px solid ${s.border}`, background: s.bg, borderRadius: "0 16px 16px 0", boxShadow: "none" }}>
-      <p className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: s.border }}>{s.icon} {s.label}</p>
-      <div className="text-sm leading-7" style={{ color: "var(--color-ink)" }}>{children}</div>
+    <div className={`rounded-xl border px-5 py-4 my-5 ${s.bg}`} style={{ borderLeftColor: s.bar, borderLeftWidth: 4 }}>
+      <p className="text-[11px] font-black uppercase tracking-widest mb-2" style={{ color: s.bar }}>
+        {s.icon} {s.label}
+      </p>
+      <div className="text-sm leading-7 text-[#0F172A]">{children}</div>
     </div>
   );
 }
 
-export function Activity({ title, xp = 25, children }: { title: string; xp?: number; children: React.ReactNode }) {
+export function Activity({
+  title,
+  xp = 25,
+  children,
+}: {
+  title: string;
+  xp?: number;
+  children: React.ReactNode;
+}) {
   return (
-    <div className="card my-8 overflow-hidden" style={{ border: "2px solid var(--color-primary)" }}>
-      <div className="px-6 py-4 flex items-center gap-3 primary-gradient">
-        <span className="text-xl">🎯</span>
+    <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden my-6">
+      <div className="px-5 py-3 flex items-center gap-3 bg-[#193b92]">
+        <span className="text-lg">🎯</span>
         <span className="font-black text-white text-sm uppercase tracking-wider flex-1">{title}</span>
-        <span className="xp-pill bg-white" style={{ color: "var(--color-primary)" }}>+{xp} XP</span>
+        <span className="text-[10px] font-bold uppercase tracking-widest text-white/70 bg-white/10 px-2 py-1 rounded-full">
+          +{xp} XP
+        </span>
       </div>
-      <div className="px-6 py-5 text-sm leading-7" style={{ color: "var(--color-ink)" }}>{children}</div>
+      <div className="px-5 py-4 text-sm leading-7 text-[#0F172A]">{children}</div>
     </div>
   );
 }
 
 export function ProjectMap() {
   const projects = [
-    { n: 1, emoji: "🎬", title: "AI Trailer",       level: 1, color: "var(--color-primary)" },
-    { n: 2, emoji: "🌐", title: "GenAI Web App",    level: 2, color: "var(--color-teal)" },
-    { n: 3, emoji: "🕹️",  title: "2D Game",          level: 2, color: "var(--color-teal)" },
-    { n: 4, emoji: "🎮", title: "3D Game",            level: 3, color: "#7C3AED" },
-    { n: 5, emoji: "🏫", title: "Educational Site",  level: 3, color: "#7C3AED" },
-    { n: 6, emoji: "💬", title: "Discord App + PWA", level: 3, color: "#7C3AED" },
+    { n: 1, emoji: "🎬", title: "AI Trailer",        level: 1, color: "#193b92", bg: "#EFF6FF" },
+    { n: 2, emoji: "🌐", title: "GenAI Web App",     level: 2, color: "#2C7A7B", bg: "#F0FDF4" },
+    { n: 3, emoji: "🕹️",  title: "2D Game",           level: 2, color: "#2C7A7B", bg: "#F0FDF4" },
+    { n: 4, emoji: "🎮", title: "3D Game",             level: 3, color: "#7C3AED", bg: "#F5F3FF" },
+    { n: 5, emoji: "🏫", title: "Educational Site",   level: 3, color: "#7C3AED", bg: "#F5F3FF" },
+    { n: 6, emoji: "💬", title: "Discord App + PWA",  level: 3, color: "#7C3AED", bg: "#F5F3FF" },
   ];
   return (
-    <div className="my-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
-      {projects.map(p => (
-        <div key={p.n} className="card p-4">
-          <div className="text-2xl mb-2">{p.emoji}</div>
-          <p className="text-[10px] font-black uppercase tracking-widest mb-1" style={{ color: p.color }}>
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 my-5">
+      {projects.map((p) => (
+        <div
+          key={p.n}
+          className="rounded-2xl border border-slate-200 p-4 flex flex-col gap-2"
+          style={{ background: p.bg }}
+        >
+          <span className="text-2xl">{p.emoji}</span>
+          <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: p.color }}>
             Project {p.n} · Level {p.level}
           </p>
-          <p className="text-xs font-bold" style={{ color: "var(--color-ink)" }}>{p.title}</p>
+          <p className="text-xs font-bold text-[#0F172A]">{p.title}</p>
         </div>
       ))}
     </div>
@@ -61,50 +82,71 @@ export const mdxComponents: Record<string, React.ComponentType<any>> = {
   Callout,
   Activity,
   ProjectMap,
-  Quiz,
   QuizById,
   Reveal,
+
   h2: (p) => (
-    <div className="flex items-center gap-3 mt-10 mb-4">
-      <div className="h-px flex-1" style={{ background: "#E2E8F0" }} />
-      <h2 className="text-lg font-black uppercase tracking-wider whitespace-nowrap" style={{ color: "var(--color-teal)" }} {...p} />
-      <div className="h-px flex-1" style={{ background: "#E2E8F0" }} />
-    </div>
+    <h2
+      className="text-lg font-black text-[#0F172A] mt-10 mb-4 pb-3 border-b border-slate-200"
+      {...p}
+    />
   ),
-  h3: (p) => <h3 className="text-base font-black mt-6 mb-2" style={{ color: "var(--color-ink)" }} {...p} />,
-  p:  (p) => <p  className="text-base leading-8 mb-4" style={{ color: "#334155" }} {...p} />,
+  h3: (p) => (
+    <h3 className="text-base font-black text-[#0F172A] mt-6 mb-2" {...p} />
+  ),
+  p: (p) => (
+    <p className="text-sm leading-7 text-slate-600 mb-4" {...p} />
+  ),
   ul: (p) => <ul className="my-4 space-y-2" {...p} />,
-  ol: (p) => <ol className="my-4 space-y-2 list-decimal pl-5" style={{ color: "#334155" }} {...p} />,
+  ol: (p) => (
+    <ol className="my-4 space-y-2 list-decimal pl-5 text-slate-600" {...p} />
+  ),
   li: (p) => (
-    <li className="flex gap-2.5 text-base leading-7" style={{ color: "#334155" }}>
-      <span style={{ color: "var(--color-primary)", fontWeight: 900, flexShrink: 0 }}>▸</span>
+    <li className="flex gap-2.5 text-sm leading-7 text-slate-600">
+      <span className="text-[#193b92] font-black shrink-0 mt-0.5">▸</span>
       <span {...p} />
     </li>
   ),
   blockquote: (p) => (
-    <blockquote className="my-5 pl-5 py-3 text-sm leading-7 rounded-r-xl italic"
-      style={{ borderLeft: "4px solid var(--color-teal)", background: "#F0FDF4", color: "#134E4A" }} {...p} />
+    <blockquote
+      className="my-5 pl-4 py-3 rounded-r-xl text-sm leading-7 text-[#134E4A] italic bg-[#F0F9F8] border-l-4"
+      style={{ borderLeftColor: "#2C7A7B" }}
+      {...p}
+    />
   ),
   code: (p) => (
-    <code className="text-sm px-1.5 py-0.5 rounded-lg font-mono font-bold"
-      style={{ background: "#F1F5F9", color: "var(--color-primary)" }} {...p} />
+    <code
+      className="text-xs px-1.5 py-0.5 rounded-md font-mono font-bold bg-slate-100 text-[#193b92]"
+      {...p}
+    />
   ),
   pre: (p) => (
-    <pre className="code-editor my-6 rounded-2xl overflow-x-auto" {...p} />
+    <pre
+      className="my-5 p-5 rounded-2xl overflow-x-auto text-sm leading-7 font-mono bg-[#0F172A] text-slate-200"
+      style={{ boxShadow: "0 4px 20px rgba(15,23,42,0.2)" }}
+      {...p}
+    />
   ),
-  strong: (p) => <strong className="font-black" style={{ color: "var(--color-ink)" }} {...p} />,
-  em: (p) => <em className="italic" style={{ color: "var(--color-teal)" }} {...p} />,
+  strong: (p) => <strong className="font-black text-[#0F172A]" {...p} />,
+  em: (p) => <em className="italic text-[#2C7A7B]" {...p} />,
   table: (p) => (
-    <div className="card my-6 overflow-hidden p-0">
+    <div className="my-5 rounded-2xl border border-slate-200 bg-white overflow-hidden">
       <table className="w-full text-sm" {...p} />
     </div>
   ),
   th: (p) => (
-    <th className="text-left px-5 py-3 text-xs font-black uppercase tracking-wider"
-      style={{ background: "#F8FAFC", color: "var(--color-teal)", borderBottom: "2px solid #E2E8F0" }} {...p} />
+    <th
+      className="text-left px-5 py-3 text-[11px] font-black uppercase tracking-widest bg-slate-50 border-b border-slate-200 text-[#2C7A7B]"
+      {...p}
+    />
   ),
   td: (p) => (
-    <td className="px-5 py-3 text-sm" style={{ color: "#334155", borderBottom: "1px solid #F1F5F9" }} {...p} />
+    <td
+      className="px-5 py-3 text-sm text-slate-600 border-b border-slate-100"
+      {...p}
+    />
   ),
-  hr: () => <hr className="my-8 border-0 h-px" style={{ background: "#E2E8F0" }} />,
+  hr: () => (
+    <hr className="my-8 border-0 h-px bg-slate-200" />
+  ),
 };

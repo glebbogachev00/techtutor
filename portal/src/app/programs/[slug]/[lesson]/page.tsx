@@ -1,11 +1,18 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { createClient } from "@/lib/supabase/server";
+import { CHARACTER_BY_ID, DEFAULT_CHARACTER_ID } from "@/lib/characters";
 import { getProgramMeta, getLessons, getLessonContent } from "@/lib/programs";
 import { mdxComponents } from "@/components/programs/mdx-components";
 
-export default async function LessonPage({ params }: { params: Promise<{ slug: string; lesson: string }> }) {
+export default async function LessonPage({
+  params,
+}: {
+  params: Promise<{ slug: string; lesson: string }>;
+}) {
   const { slug, lesson: lessonSlug } = await params;
+
   const program = getProgramMeta(slug);
   if (!program) notFound();
 
@@ -18,128 +25,163 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
   const next = currentIndex < lessons.length - 1 ? lessons[currentIndex + 1] : null;
   const level = program.levels.find((l) => l.number === result.meta.level);
 
+  // Get character theme
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  let theme = CHARACTER_BY_ID[DEFAULT_CHARACTER_ID];
+  if (user) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("selected_character")
+      .eq("id", user.id)
+      .single();
+    if (profile?.selected_character) {
+      theme = CHARACTER_BY_ID[profile.selected_character] ?? theme;
+    }
+  }
+
   return (
-    <div className="min-h-screen" style={{ background: "var(--color-surface)" }}>
+    <div className="min-h-screen bg-[#FAFAFA]">
 
       {/* ── Top nav ── */}
-      <div className="sticky top-0 z-20 border-b bg-white" style={{ borderColor: "#E2E8F0" }}>
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center gap-4">
-          <Link href={`/programs/${slug}`}
-            className="text-sm font-semibold flex items-center gap-1.5 shrink-0"
-            style={{ color: "var(--color-primary)" }}>
+      <header className="bg-white border-b border-slate-200 sticky top-0 z-40">
+        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
+          <Link
+            href={`/programs/${slug}`}
+            className="text-sm font-semibold text-slate-500 hover:text-[#0F172A] transition flex items-center gap-1.5"
+          >
             ← {program.title}
           </Link>
-          <div className="flex-1 hidden sm:flex items-center gap-2 min-w-0">
+          <div className="hidden sm:flex items-center gap-2">
             {level && (
-              <span className="text-xs font-bold px-2.5 py-1 rounded-full shrink-0"
-                style={{ background: level.color + "18", color: level.color }}>
+              <span
+                className="text-[11px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full"
+                style={{ background: `${level.color}18`, color: level.color }}
+              >
                 Level {level.number}
               </span>
             )}
-            <span className="text-sm font-semibold truncate" style={{ color: "#64748B" }}>
-              {result.meta.title}
+            <span className="text-[11px] font-semibold text-slate-400">
+              Lesson {result.meta.order} of {lessons.filter(l => l.level === result.meta.level).length}
             </span>
           </div>
-          <span className="text-xs font-semibold shrink-0 px-2.5 py-1 rounded-full"
-            style={{ background: "#F1F5F9", color: "#64748B" }}>
+          <span className="text-xs font-semibold text-slate-400 bg-slate-100 px-3 py-1 rounded-full">
             ⏱ {result.meta.duration}
           </span>
         </div>
-      </div>
+      </header>
 
-      <div className="max-w-6xl mx-auto flex">
+      <div className="max-w-5xl mx-auto px-6 flex gap-8 py-10">
 
         {/* ── Sidebar ── */}
-        <aside className="hidden lg:block w-64 shrink-0 sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto py-6 px-3 border-r bg-white"
-          style={{ borderColor: "#E2E8F0" }}>
-          {program.levels.map((lvl) => {
-            const lvlLessons = lessons.filter((l) => l.level === lvl.number);
-            return (
-              <div key={lvl.number} className="mb-6">
-                <p className="text-[10px] font-black uppercase tracking-widest px-3 mb-2" style={{ color: lvl.color }}>
-                  {lvl.title}
-                </p>
-                {lvlLessons.length === 0 ? (
-                  <p className="px-3 text-xs py-2 rounded-xl" style={{ color: "#94A3B8", background: "#F8FAFC" }}>
-                    Coming soon ✨
+        <aside className="hidden lg:block w-56 shrink-0">
+          <div className="sticky top-24 space-y-6">
+            {program.levels.map((lvl) => {
+              const lvlLessons = lessons.filter((l) => l.level === lvl.number);
+              return (
+                <div key={lvl.number}>
+                  <p
+                    className="text-[10px] font-black uppercase tracking-widest mb-2 px-1"
+                    style={{ color: lvl.color }}
+                  >
+                    Level {lvl.number}
                   </p>
-                ) : (
-                  lvlLessons.map((l) => {
-                    const isActive = l.slug === lessonSlug;
-                    return (
-                      <Link key={l.slug} href={`/programs/${slug}/${l.slug}`}
-                        className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold mb-0.5 transition-all"
-                        style={isActive
-                          ? { background: "var(--color-primary)", color: "#fff" }
-                          : { color: "#64748B" }}>
-                        <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black shrink-0 ${isActive ? "bg-white/20" : ""}`}
-                          style={isActive ? { color: "#fff" } : { background: "#F1F5F9", color: "#94A3B8" }}>
-                          {l.order}
-                        </span>
-                        {l.title}
-                      </Link>
-                    );
-                  })
-                )}
-              </div>
-            );
-          })}
+                  <div className="space-y-0.5">
+                    {lvlLessons.length === 0 ? (
+                      <p className="text-xs text-slate-400 px-3 py-2 italic">Coming soon</p>
+                    ) : (
+                      lvlLessons.map((l) => {
+                        const isActive = l.slug === lessonSlug;
+                        return (
+                          <Link
+                            key={l.slug}
+                            href={`/programs/${slug}/${l.slug}`}
+                            className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
+                              isActive
+                                ? "text-white"
+                                : "text-slate-500 hover:text-[#0F172A] hover:bg-slate-100"
+                            }`}
+                            style={isActive ? { background: theme.accent } : {}}
+                          >
+                            <span
+                              className="w-5 h-5 rounded-full grid place-items-center text-[10px] font-black shrink-0"
+                              style={
+                                isActive
+                                  ? { background: "rgba(255,255,255,0.2)", color: "#fff" }
+                                  : { background: "#F1F5F9", color: "#94A3B8" }
+                              }
+                            >
+                              {l.order}
+                            </span>
+                            {l.title}
+                          </Link>
+                        );
+                      })
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </aside>
 
-        {/* ── Main ── */}
-        <main className="flex-1 min-w-0 px-4 sm:px-10 py-10 max-w-3xl">
+        {/* ── Main content ── */}
+        <main className="flex-1 min-w-0">
 
-          {/* Lesson header */}
-          {level && (
-            <div className="inline-flex items-center gap-2 mb-4 px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-widest"
-              style={{ background: level.color + "18", color: level.color }}>
-              <span>Level {level.number}</span>
-              <span style={{ opacity: 0.4 }}>·</span>
-              <span>Lesson {result.meta.order}</span>
-            </div>
-          )}
-
-          <h1 className="text-3xl sm:text-4xl font-black mb-3 leading-tight" style={{ color: "var(--color-ink)" }}>
-            {result.meta.title}
-          </h1>
-          <p className="text-base mb-8" style={{ color: "#64748B" }}>{result.meta.description}</p>
-
-          {/* What you'll learn strip */}
-          <div className="card p-5 mb-10 flex items-start gap-4">
-            <div className="w-10 h-10 rounded-xl grid place-items-center text-xl shrink-0"
-              style={{ background: "var(--color-teal)", color: "#fff" }}>📋</div>
-            <div>
-              <p className="text-xs font-black uppercase tracking-widest mb-1" style={{ color: "var(--color-teal)" }}>
-                Mission brief
+          {/* Lesson header card */}
+          <div
+            className="rounded-2xl p-8 mb-8 border border-slate-200"
+            style={{ background: theme.heroGradient }}
+          >
+            {level && (
+              <p
+                className="text-[11px] font-bold uppercase tracking-widest mb-3"
+                style={{ color: theme.accent }}
+              >
+                {level.title} · Lesson {result.meta.order}
               </p>
-              <p className="text-sm leading-6" style={{ color: "var(--color-ink)" }}>
-                {result.meta.description}
-              </p>
-            </div>
+            )}
+            <h1 className="text-3xl font-black text-[#0F172A] leading-tight mb-3">
+              {result.meta.title}
+            </h1>
+            <p className="text-slate-500 text-base">{result.meta.description}</p>
           </div>
 
-          {/* MDX content */}
-          <MDXRemote source={result.content} components={mdxComponents} />
+          {/* MDX */}
+          <div className="space-y-1">
+            <MDXRemote source={result.content} components={mdxComponents} />
+          </div>
 
           {/* Prev / Next */}
-          <div className="mt-16 pt-8 border-t flex gap-4" style={{ borderColor: "#E2E8F0" }}>
+          <div className="mt-12 pt-8 border-t border-slate-200 flex gap-4">
             {prev ? (
-              <Link href={`/programs/${slug}/${prev.slug}`}
-                className="card flex-1 p-4 hover:scale-[1.01] transition-transform">
-                <p className="text-xs font-semibold mb-1" style={{ color: "#94A3B8" }}>← Previous</p>
-                <p className="text-sm font-bold" style={{ color: "var(--color-ink)" }}>{prev.title}</p>
-              </Link>
-            ) : <div className="flex-1" />}
-
-            {next ? (
-              <Link href={`/programs/${slug}/${next.slug}`}
-                className="card flex-1 p-4 text-right hover:scale-[1.01] transition-transform">
-                <p className="text-xs font-semibold mb-1" style={{ color: "#94A3B8" }}>Next →</p>
-                <p className="text-sm font-bold" style={{ color: "var(--color-ink)" }}>{next.title}</p>
+              <Link
+                href={`/programs/${slug}/${prev.slug}`}
+                className="flex-1 rounded-2xl border border-slate-200 bg-white p-4 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)] transition-all"
+              >
+                <p className="text-[11px] font-semibold text-slate-400 mb-1">← Previous</p>
+                <p className="text-sm font-bold text-[#0F172A]">{prev.title}</p>
               </Link>
             ) : (
-              <Link href={`/programs/${slug}`}
-                className="flex-1 p-4 rounded-2xl text-right font-black text-sm text-white transition-transform hover:scale-[1.01] primary-gradient">
+              <div className="flex-1" />
+            )}
+            {next ? (
+              <Link
+                href={`/programs/${slug}/${next.slug}`}
+                className="flex-1 rounded-2xl border border-slate-200 bg-white p-4 text-right hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)] transition-all"
+              >
+                <p className="text-[11px] font-semibold text-slate-400 mb-1">Next →</p>
+                <p className="text-sm font-bold text-[#0F172A]">{next.title}</p>
+              </Link>
+            ) : (
+              <Link
+                href={`/programs/${slug}`}
+                className="flex-1 rounded-2xl p-4 text-right text-white font-black text-sm transition-all hover:-translate-y-0.5"
+                style={{
+                  background: theme.accent,
+                  boxShadow: `0 4px 20px ${theme.shadow}`,
+                }}
+              >
                 ✓ Back to {program.title}
               </Link>
             )}
