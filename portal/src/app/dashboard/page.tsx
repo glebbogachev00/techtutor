@@ -11,6 +11,7 @@ import {
   DEFAULT_CHARACTER_ID,
   getActiveVillain,
 } from "@/lib/characters";
+import { getAllPrograms } from "@/lib/programs";
 
 export const metadata = { title: "Dashboard — TechBash" };
 export const dynamic = "force-dynamic";
@@ -96,7 +97,9 @@ export default async function DashboardHome() {
   } = await supabase.auth.getUser();
   if (!user) redirect("/login");
 
-  const [{ data: profile }, progressRes, adventureRes, classRes, achievementsRes] =
+  const allPrograms = getAllPrograms();
+
+  const [{ data: profile }, progressRes, adventureRes, classRes, achievementsRes, lessonProgressRes] =
     await Promise.all([
     supabase
         .from("profiles")
@@ -119,7 +122,15 @@ export default async function DashboardHome() {
         .from("user_achievements")
         .select("achievement_id, earned_at")
         .eq("user_id", user.id),
+      supabase
+        .from("lesson_progress")
+        .select("program_slug")
+        .eq("user_id", user.id),
     ]);
+
+  const startedPrograms = new Set(
+    (lessonProgressRes.data ?? []).map((r) => r.program_slug as string)
+  );
 
   const earnedMap = new Map(
     (achievementsRes.data ?? []).map((r) => [
@@ -430,25 +441,62 @@ export default async function DashboardHome() {
         </section>
 
         {/* ── Programs ── */}
-        <section>
-          <h2 className="text-lg font-bold mb-4">Programs</h2>
-          <Link href="/programs/generative-ai-magic"
-            className="rounded-2xl border border-[#7C3AED]/20 bg-gradient-to-br from-[#F5F0FF] to-[#EDE9FE] p-6 flex flex-col sm:flex-row items-start sm:items-center gap-5 hover:shadow-md transition-shadow block">
-            <div className="w-12 h-12 rounded-2xl bg-[#7C3AED]/10 grid place-items-center text-2xl shrink-0">✨</div>
-            <div className="flex-1 min-w-0">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-[#7C3AED] mb-0.5">24 lessons · 3 levels · 6 projects</p>
-              <h3 className="text-lg font-bold text-[#0F172A]">Generative AI Magic</h3>
-              <p className="text-sm text-slate-600 mt-0.5">
-                From AI trailer to Discord app — become a Generative AI founder.
-              </p>
+        {allPrograms.length > 0 && (
+          <section>
+            <h2 className="text-lg font-bold mb-4">Programs</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {allPrograms.map((p) => {
+                const started = startedPrograms.has(p.slug);
+                const card = (
+                  <div
+                    className={`group rounded-2xl border border-slate-200 bg-white p-5 flex flex-col relative overflow-hidden transition-all ${
+                      started
+                        ? "hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)] cursor-pointer"
+                        : "opacity-50 grayscale cursor-not-allowed"
+                    }`}
+                  >
+                    {started && (
+                      <div
+                        className="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                        style={{ background: p.color }}
+                      />
+                    )}
+                    <div className="flex items-start justify-between mb-4">
+                      <div
+                        className="w-12 h-12 rounded-xl grid place-items-center text-2xl"
+                        style={{ background: p.colorLight }}
+                      >
+                        {p.emoji}
+                      </div>
+                      {!started && (
+                        <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded-full bg-slate-100 text-slate-400">
+                          Not started
+                        </span>
+                      )}
+                      {started && (
+                        <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded-full"
+                          style={{ background: p.colorLight, color: p.color }}>
+                          In progress
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="font-black text-[#0F172A] mb-1">{p.title}</h3>
+                    <p className="text-sm text-slate-500 mb-3 flex-1">{p.tagline}</p>
+                    <p className="text-[11px] text-slate-400">
+                      <span className="font-black uppercase tracking-widest">Skills: </span>
+                      {p.levels.map(l => l.project.title).join(", ")}
+                    </p>
+                  </div>
+                );
+                return started ? (
+                  <Link key={p.slug} href={`/programs/${p.slug}`}>{card}</Link>
+                ) : (
+                  <div key={p.slug}>{card}</div>
+                );
+              })}
             </div>
-            <div className="shrink-0">
-              <span className="bg-[#7C3AED] text-white font-semibold text-sm px-5 py-2.5 rounded-full shadow-[0_4px_15px_rgba(124,58,237,0.25)] whitespace-nowrap">
-                Open Program →
-              </span>
-            </div>
-          </Link>
-        </section>
+          </section>
+        )}
 
         {/* ── Classes ── */}
         {classes.length > 0 && (
