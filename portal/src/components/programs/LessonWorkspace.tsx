@@ -133,7 +133,7 @@ export default function LessonWorkspace({
         <p className="text-[11px] font-semibold uppercase tracking-widest text-[#7C3AED] mb-2">
           Learn the concept
         </p>
-        <p className="text-sm text-[#0F172A] leading-relaxed">{mission.concept}</p>
+        <p className="text-sm text-[#0F172A] leading-relaxed whitespace-pre-line">{mission.concept}</p>
         {mission.example && (
           <pre className="mt-3 bg-[#0F172A] text-[#E2E8F0] text-xs font-mono p-3 rounded-lg overflow-auto whitespace-pre-wrap">
             {mission.example}
