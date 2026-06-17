@@ -429,6 +429,27 @@ export default async function DashboardHome() {
           </div>
         </section>
 
+        {/* ── Programs ── */}
+        <section>
+          <h2 className="text-lg font-bold mb-4">Programs</h2>
+          <Link href="/programs/generative-ai-magic"
+            className="rounded-2xl border border-[#7C3AED]/20 bg-gradient-to-br from-[#F5F0FF] to-[#EDE9FE] p-6 flex flex-col sm:flex-row items-start sm:items-center gap-5 hover:shadow-md transition-shadow block">
+            <div className="w-12 h-12 rounded-2xl bg-[#7C3AED]/10 grid place-items-center text-2xl shrink-0">✨</div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-[#7C3AED] mb-0.5">24 lessons · 3 levels · 6 projects</p>
+              <h3 className="text-lg font-bold text-[#0F172A]">Generative AI Magic</h3>
+              <p className="text-sm text-slate-600 mt-0.5">
+                From AI trailer to Discord app — become a Generative AI founder.
+              </p>
+            </div>
+            <div className="shrink-0">
+              <span className="bg-[#7C3AED] text-white font-semibold text-sm px-5 py-2.5 rounded-full shadow-[0_4px_15px_rgba(124,58,237,0.25)] whitespace-nowrap">
+                Open Program →
+              </span>
+            </div>
+          </Link>
+        </section>
+
         {/* ── Classes ── */}
         {classes.length > 0 && (
           <section>
