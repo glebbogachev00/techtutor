@@ -2,7 +2,7 @@
   "slug": "generative-ai-magic",
   "title": "Generative AI Magic",
   "tagline": "From zero to AI founder in 24 lessons",
-  "description": "You're not just learning AI — you're becoming a creator who uses it to build real things. Over 24 lessons and 6 signature projects, you'll go from understanding how AI works to shipping a trailer, a web app, two games, an educational experience, and a full Discord community app.",
+  "description": "You're not just learning AI — you're becoming a creator who uses it to build real things. Over 24 lessons and 6 signature projects, you'll go from understanding how AI works to shipping a hero-card pack, a web app, two games, an educational experience, and a full Discord community app.",
   "emoji": "✨",
   "color": "#7C3AED",
   "colorLight": "#EDE9FE",
@@ -12,9 +12,9 @@
     {
       "number": 1,
       "title": "The Founder's Origin",
-      "description": "Master prompting, visuals, and audio — then ship your first project: an AI-generated trailer.",
+      "description": "Master prompting, visuals, and audio — then ship your first project: a pack of AI-designed trading cards.",
       "color": "#7C3AED",
-      "project": { "number": 1, "title": "Generative AI Trailer", "emoji": "🎬" },
+      "project": { "number": 1, "title": "Hero Card Pack", "emoji": "🃏" },
       "lessons": ["01","02","03","04","05","06","07","08"]
     },
     {

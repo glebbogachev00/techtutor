@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CHARACTERS, type Mission } from "./missions";
 import { checkGenAi } from "./mission-checks";
+import { ListenButton } from "@/components/ListenButton";
 
 type Props = {
   mission: Mission;
@@ -102,10 +103,14 @@ export default function GenAiWorkspace({
               </span>
               <span className="text-xs text-slate-400">{speaker.role}</span>
             </div>
-            <p className="text-sm text-[#0F172A] leading-relaxed">
+            <p className="text-sm text-[#0F172A] leading-relaxed pr-9">
               {mission.story.text}
             </p>
           </div>
+          <ListenButton
+            text={`${mission.story.text} Why this matters: ${mission.why} Learn the concept: ${mission.concept}`}
+            className="mt-1"
+          />
         </div>
       </div>
 
@@ -119,9 +124,12 @@ export default function GenAiWorkspace({
 
       {/* Concept */}
       <div className="rounded-xl bg-white border border-slate-200 px-5 py-4">
-        <p className="text-[11px] font-semibold uppercase tracking-widest text-[#7C3AED] mb-2">
-          Learn the concept
-        </p>
+        <div className="flex items-center justify-between gap-2 mb-2">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#7C3AED]">
+            Learn the concept
+          </p>
+          <ListenButton text={mission.concept} />
+        </div>
         <p className="text-sm text-[#0F172A] leading-relaxed">
           {mission.concept}
         </p>

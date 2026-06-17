@@ -11,6 +11,7 @@ import GenAiWorkspace from "./GenAiWorkspace";
 import AdventureWorkspace from "./AdventureWorkspace";
 import Playground from "./Playground";
 import { emitAchievements } from "@/components/AchievementToaster";
+import { ListenButton } from "@/components/ListenButton";
 import type { Achievement } from "@/lib/achievements";
 
 const DEFAULT_PROGRESS: Record<string, number[]> = {
@@ -499,6 +500,7 @@ function PreviewPageInner() {
                 {track.storyIntro}
               </p>
             </div>
+            <ListenButton text={track.storyIntro} className="ml-auto" />
           </div>
 
           <div className="mt-4 rounded-2xl bg-white border border-slate-200 p-5 shadow-[0_4px_20px_rgba(15,23,42,0.04)]">

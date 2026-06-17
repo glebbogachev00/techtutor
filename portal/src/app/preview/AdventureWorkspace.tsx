@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { CHARACTERS, type Quest } from "./missions";
 import { runPython } from "./python-runner";
+import { ListenButton } from "@/components/ListenButton";
 
 const Editor = dynamic(() => import("@monaco-editor/react"), { ssr: false });
 
@@ -156,10 +157,11 @@ export default function AdventureWorkspace({
                   : speaker.role}
               </span>
             </div>
-            <p className="text-sm text-[#0F172A] leading-relaxed whitespace-pre-line">
+            <p className="text-sm text-[#0F172A] leading-relaxed whitespace-pre-line pr-9">
               {quest.brief}
             </p>
           </div>
+          <ListenButton text={quest.brief} className="mt-1" />
         </div>
       </div>
 

@@ -1,8 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { CHARACTER_BY_ID } from "@/lib/characters";
 import { getProgram } from "@/lib/lesson-registry";
+import ProgramLessons from "@/components/programs/ProgramLessons";
+import CosmosBackground from "@/components/CosmosBackground";
+import { ListenButton } from "@/components/ListenButton";
 
 export default async function ProgramPage({
   params,
@@ -26,133 +30,102 @@ export default async function ProgramPage({
     completedSlugs = (data ?? []).map((r) => r.lesson_slug);
   }
 
+  const accent = program.color;
   const totalLessons = program.lessons.length;
   const doneLessons = completedSlugs.length;
+  const pct = totalLessons > 0 ? (doneLessons / totalLessons) * 100 : 0;
 
   return (
-    <div className="space-y-6">
-      <Link href="/programs" className="text-sm text-gray-600 hover:text-[color:var(--color-primary)]">
-        ← Programs
-      </Link>
+    <main className="min-h-screen bg-[#FAFAFA] text-[#0F172A]">
+      {/* Hero */}
+      <div
+        className="relative overflow-hidden text-white px-6 pt-20 pb-12 sm:pt-28 sm:pb-16"
+        style={{ background: `linear-gradient(135deg, #0F172A 0%, ${accent} 70%, ${accent} 100%)` }}
+      >
+        <div
+          className="absolute inset-0 opacity-10 pointer-events-none"
+          style={{ background: "radial-gradient(circle at 20% 20%, white, transparent 50%)" }}
+        />
+        {/* Cosmos starfield + Planet Chroma, centred behind the hero */}
+        <CosmosBackground />
+        <div className="max-w-2xl mx-auto relative z-10">
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-white/70 mb-6">
+            <Link href="/dashboard" className="hover:text-white">Dashboard</Link>
+            <span className="text-white/40">/</span>
+            <Link href="/programs" className="hover:text-white">Programs</Link>
+          </nav>
 
-      {/* Header */}
-      <div className="flex items-center gap-4">
-        <div className="text-5xl">{program.emoji}</div>
-        <div>
-          <h1 className="text-3xl font-extrabold text-[color:var(--color-ink)]">{program.title}</h1>
-          <p className="text-gray-500">{program.tagline}</p>
-        </div>
-      </div>
-
-      {/* Story intro */}
-      <div className="rounded-2xl bg-white border border-slate-200 p-5 shadow-[0_4px_20px_rgba(15,23,42,0.04)]">
-        <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-2">
-          The story so far
-        </p>
-        <p className="text-sm leading-relaxed text-[#0F172A]">{program.storyIntro}</p>
-      </div>
-
-      {/* Cast card */}
-      {program.castIds.length > 0 && (
-        <div className="rounded-2xl bg-white border border-slate-200 p-5 shadow-[0_4px_20px_rgba(15,23,42,0.04)]">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-4">
-            Meet the cast
-          </p>
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
-            {program.castIds.map((id) => {
-              const c = CHARACTER_BY_ID[id];
-              if (!c) return null;
-              return (
-                <div key={id} className="flex flex-col items-center text-center">
-                  <img
-                    src={c.image}
-                    alt={c.name}
-                    className="w-14 h-14 rounded-full mb-2 shadow-[0_2px_10px_rgba(15,23,42,0.08)] object-cover"
-                  />
-                  <p className="text-xs font-bold text-[#0F172A] leading-tight">{c.name}</p>
-                  <p className="text-[10px] text-slate-500 leading-snug mt-0.5">{c.tagline}</p>
-                </div>
-              );
-            })}
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-16 h-16 rounded-2xl bg-white/15 backdrop-blur grid place-items-center text-4xl shrink-0">
+              {program.emoji}
+            </div>
+            <div>
+              <h1 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight">
+                {program.title}
+              </h1>
+              <p className="text-white/80 text-sm sm:text-base mt-1">{program.tagline}</p>
+            </div>
           </div>
-        </div>
-      )}
 
-      {/* Progress */}
-      {totalLessons > 0 && (
-        <div>
-          <div className="flex items-center gap-4 text-sm text-slate-500 mb-2">
-            <span>
-              <span className="font-semibold text-[#0F172A]">{doneLessons}</span> of {totalLessons} lessons
+          {/* Progress bar */}
+          <div className="flex items-center gap-4 mt-6">
+            <div className="flex-1 h-2 rounded-full bg-white/15 overflow-hidden">
+              <div className="h-full rounded-full bg-white transition-all" style={{ width: `${pct}%` }} />
+            </div>
+            <span className="text-xs font-bold whitespace-nowrap">
+              {doneLessons}/{totalLessons} lessons
             </span>
           </div>
-          <div className="h-1.5 rounded-full bg-slate-200 overflow-hidden">
-            <div
-              className="h-full rounded-full transition-all"
-              style={{
-                width: `${totalLessons > 0 ? (doneLessons / totalLessons) * 100 : 0}%`,
-                background: program.color,
-              }}
-            />
-          </div>
         </div>
-      )}
+      </div>
 
-      {/* Lessons by level */}
-      {program.levels.map((level) => {
-        const lvlLessons = program.lessons.filter((l) => l.meta.level === level.number);
-        return (
-          <div key={level.number}>
-            <div className="flex items-center gap-3 mb-3">
-              <p className="text-sm font-bold text-gray-500 uppercase tracking-widest">
-                Level {level.number} — {level.title}
-              </p>
-              <span
-                className="text-xs font-semibold px-2.5 py-1 rounded-full"
-                style={{ background: `${level.color}18`, color: level.color }}
-              >
-                {level.project.emoji} {level.project.title}
-              </span>
-            </div>
-
-            {lvlLessons.length === 0 ? (
-              <div className="card p-5 text-sm text-gray-400 italic">Coming soon ✨</div>
-            ) : (
-              <ol className="space-y-3">
-                {lvlLessons.map((lesson) => {
-                  const done = completedSlugs.includes(lesson.meta.slug);
-                  return (
-                    <li key={lesson.meta.slug}>
-                      <Link
-                        href={`/programs/${slug}/${lesson.meta.slug}`}
-                        className="card p-5 flex items-center gap-4 hover:shadow-md transition-shadow"
-                      >
-                        <div
-                          className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white shrink-0"
-                          style={{ background: done ? "#2C7A7B" : level.color }}
-                        >
-                          {done ? "✓" : lesson.meta.order}
-                        </div>
-                        <div className="flex-1">
-                          <p className="font-semibold text-[color:var(--color-ink)]">
-                            {lesson.meta.title}
-                          </p>
-                          <p className="text-xs text-gray-500">
-                            +{lesson.meta.xp} XP · {lesson.meta.duration}
-                          </p>
-                        </div>
-                        {done && (
-                          <span className="text-xs font-bold text-[#2C7A7B]">Done</span>
-                        )}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ol>
-            )}
+      {/* Body */}
+      <div className="max-w-2xl mx-auto px-6 -mt-6 sm:-mt-8 pb-16 space-y-6 relative">
+        {/* Story intro */}
+        <div className="rounded-2xl bg-white border border-slate-200 p-5 shadow-[0_4px_20px_rgba(15,23,42,0.04)]">
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">
+              The story so far
+            </p>
+            <ListenButton text={program.storyIntro} />
           </div>
-        );
-      })}
-    </div>
+          <p className="text-sm leading-relaxed text-[#0F172A]">{program.storyIntro}</p>
+        </div>
+
+        {/* Cast */}
+        {program.castIds.length > 0 && (
+          <div className="rounded-2xl bg-white border border-slate-200 p-5 shadow-[0_4px_20px_rgba(15,23,42,0.04)]">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-4">
+              Meet the cast
+            </p>
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
+              {program.castIds.map((id) => {
+                const c = CHARACTER_BY_ID[id];
+                if (!c) return null;
+                return (
+                  <div key={id} className="flex flex-col items-center text-center">
+                    <Image
+                      src={c.image}
+                      alt={c.name}
+                      width={56}
+                      height={56}
+                      className="w-14 h-14 rounded-full mb-2 shadow-[0_2px_10px_rgba(15,23,42,0.08)] object-cover"
+                    />
+                    <p className="text-xs font-bold text-[#0F172A] leading-tight">{c.name}</p>
+                    <p className="text-[11px] text-slate-500 leading-snug mt-1">
+                      {program.castIntros?.[id] ?? c.tagline}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Lessons by level — tabbed, mirrors the missions section */}
+        <ProgramLessons program={program} completedSlugs={completedSlugs} />
+      </div>
+    </main>
   );
 }
