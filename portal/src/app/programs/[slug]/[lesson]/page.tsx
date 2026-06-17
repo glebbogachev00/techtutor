@@ -1,11 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import remarkGfm from "remark-gfm";
 import { createClient } from "@/lib/supabase/server";
 import { CHARACTER_BY_ID, DEFAULT_CHARACTER_ID } from "@/lib/characters";
-import { getProgramMeta, getLessons, getLessonContent } from "@/lib/programs";
-import { mdxComponents } from "@/components/programs/mdx-components";
+import { getProgram, getLesson } from "@/lib/lesson-registry";
 import { LessonComplete } from "@/components/programs/LessonComplete";
 
 export default async function LessonPage({
@@ -15,16 +12,16 @@ export default async function LessonPage({
 }) {
   const { slug, lesson: lessonSlug } = await params;
 
-  const program = getProgramMeta(slug);
+  const program = getProgram(slug);
   if (!program) notFound();
 
-  const result = getLessonContent(slug, lessonSlug);
-  if (!result) notFound();
+  const lesson = getLesson(slug, lessonSlug);
+  if (!lesson) notFound();
 
-  const lessons = getLessons(slug);
-  const currentIndex = lessons.findIndex((l) => l.slug === lessonSlug);
+  const lessons = program.lessons;
+  const currentIndex = lessons.findIndex((l) => l.meta.slug === lessonSlug);
   const next = currentIndex < lessons.length - 1 ? lessons[currentIndex + 1] : null;
-  const level = program.levels.find((l) => l.number === result.meta.level);
+  const level = program.levels.find((l) => l.number === lesson.meta.level);
 
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -44,6 +41,8 @@ export default async function LessonPage({
     alreadyDone = !!progressRes.data;
   }
 
+  const { Content } = lesson;
+
   return (
     <div className="space-y-5">
       <Link
@@ -60,31 +59,29 @@ export default async function LessonPage({
       )}
 
       <h1 className="text-2xl sm:text-3xl font-extrabold text-[color:var(--color-ink)]">
-        {result.meta.title}
+        {lesson.meta.title}
       </h1>
 
       <div className="card p-5">
         <h2 className="text-sm font-bold uppercase tracking-wide text-[color:var(--color-teal)] mb-2">
-          {level ? `${level.title} · Lesson ${result.meta.order}` : "Lesson brief"}
+          {level ? `${level.title} · Lesson ${lesson.meta.order}` : "Lesson brief"}
         </h2>
-        <p className="text-gray-800">{result.meta.description}</p>
-        <p className="text-xs text-gray-400 mt-2">⏱ {result.meta.duration} · +100 XP on completion</p>
+        <p className="text-gray-800">{lesson.meta.description}</p>
+        <p className="text-xs text-gray-400 mt-2">
+          ⏱ {lesson.meta.duration} · +{lesson.meta.xp} XP on completion
+        </p>
       </div>
 
-      <div className="card p-5 sm:p-8">
-        <MDXRemote
-          source={result.content}
-          components={mdxComponents}
-          options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
-        />
-      </div>
+      {/* Lesson content — same structure as PreviewWorkspace */}
+      <Content />
 
+      {/* Complete */}
       <div className="card p-5">
         <LessonComplete
           programSlug={slug}
           lessonSlug={lessonSlug}
-          xp={100}
-          nextHref={next ? `/programs/${slug}/${next.slug}` : `/programs/${slug}`}
+          xp={lesson.meta.xp}
+          nextHref={next ? `/programs/${slug}/${next.meta.slug}` : `/programs/${slug}`}
           alreadyDone={alreadyDone}
           accentColor={theme.accent}
           accentShadow={theme.shadow}

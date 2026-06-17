@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProgramMeta, getLessons } from "@/lib/programs";
+import { getProgram } from "@/lib/lesson-registry";
 
 export default async function ProgramPage({
   params,
@@ -8,9 +8,8 @@ export default async function ProgramPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const program = getProgramMeta(slug);
+  const program = getProgram(slug);
   if (!program) notFound();
-  const lessons = getLessons(slug);
 
   return (
     <div className="space-y-6">
@@ -32,7 +31,7 @@ export default async function ProgramPage({
       </div>
 
       {program.levels.map((level) => {
-        const lvlLessons = lessons.filter((l) => l.level === level.number);
+        const lvlLessons = program.lessons.filter((l) => l.meta.level === level.number);
         return (
           <div key={level.number}>
             <div className="flex items-center gap-3 mb-3">
@@ -48,32 +47,29 @@ export default async function ProgramPage({
             </div>
 
             {lvlLessons.length === 0 ? (
-              <div className="card p-5 text-sm text-gray-400 italic">
-                Coming soon ✨
-              </div>
+              <div className="card p-5 text-sm text-gray-400 italic">Coming soon ✨</div>
             ) : (
               <ol className="space-y-3">
                 {lvlLessons.map((lesson) => (
-                  <li key={lesson.slug}>
+                  <li key={lesson.meta.slug}>
                     <Link
-                      href={`/programs/${slug}/${lesson.slug}`}
+                      href={`/programs/${slug}/${lesson.meta.slug}`}
                       className="card p-5 flex items-center gap-4"
                     >
                       <div
                         className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white shrink-0"
                         style={{ background: level.color }}
                       >
-                        {lesson.order}
+                        {lesson.meta.order}
                       </div>
                       <div className="flex-1">
                         <p className="font-semibold text-[color:var(--color-ink)]">
-                          {lesson.title}
+                          {lesson.meta.title}
                         </p>
                         <p className="text-xs text-gray-500">
-                          {lesson.duration} · {lesson.description}
+                          +{lesson.meta.xp} XP · {lesson.meta.duration}
                         </p>
                       </div>
-                      <span className="text-sm text-gray-400">→</span>
                     </Link>
                   </li>
                 ))}
