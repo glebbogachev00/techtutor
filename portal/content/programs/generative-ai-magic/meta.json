@@ -1,0 +1,37 @@
+{
+  "slug": "generative-ai-magic",
+  "title": "Generative AI Magic",
+  "tagline": "From zero to AI founder in 24 lessons",
+  "description": "You're not just learning AI — you're becoming a creator who uses it to build real things. Over 24 lessons and 6 signature projects, you'll go from understanding how AI works to shipping a trailer, a web app, two games, an educational experience, and a full Discord community app.",
+  "emoji": "✨",
+  "color": "#7C3AED",
+  "colorLight": "#EDE9FE",
+  "ages": "10–15",
+  "totalLessons": 24,
+  "levels": [
+    {
+      "number": 1,
+      "title": "The Founder's Origin",
+      "description": "Master prompting, visuals, and audio — then ship your first project: an AI-generated trailer.",
+      "color": "#7C3AED",
+      "project": { "number": 1, "title": "Generative AI Trailer", "emoji": "🎬" },
+      "lessons": ["01","02","03","04","05","06","07","08"]
+    },
+    {
+      "number": 2,
+      "title": "The Builder Rises",
+      "description": "Learn to build AI-powered web apps and your first 2D game — code meets creativity.",
+      "color": "#0891B2",
+      "project": { "number": 2, "title": "GenAI Web App + 2D Game", "emoji": "🕹️" },
+      "lessons": ["09","10","11","12","13","14","15","16"]
+    },
+    {
+      "number": 3,
+      "title": "The Creator's Masterclass",
+      "description": "Go 3D, build immersive educational experiences, and ship a full Discord community app with PWA support.",
+      "color": "#059669",
+      "project": { "number": 3, "title": "3D Game + Discord App + PWA", "emoji": "🌐" },
+      "lessons": ["17","18","19","20","21","22","23","24"]
+    }
+  ]
+}
