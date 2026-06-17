@@ -1,5 +1,6 @@
 import React from "react";
 import { Quiz } from "./Quiz";
+import { QuizById } from "./QuizById";
 import { Reveal } from "./Reveal";
 
 export function Callout({ type = "info", children }: { type?: "story" | "tip" | "warning" | "info"; children: React.ReactNode }) {
@@ -61,6 +62,7 @@ export const mdxComponents: Record<string, React.ComponentType<any>> = {
   Activity,
   ProjectMap,
   Quiz,
+  QuizById,
   Reveal,
   h2: (p) => (
     <div className="flex items-center gap-3 mt-10 mb-4">
