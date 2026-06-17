@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { CHARACTER_BY_ID, DEFAULT_CHARACTER_ID } from "@/lib/characters";
 import { getProgram, getLesson } from "@/lib/lesson-registry";
-import { LessonComplete } from "@/components/programs/LessonComplete";
+import LessonWorkspace from "@/components/programs/LessonWorkspace";
 
 export default async function LessonPage({
   params,
@@ -26,22 +26,18 @@ export default async function LessonPage({
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  let theme = CHARACTER_BY_ID[DEFAULT_CHARACTER_ID];
   let alreadyDone = false;
 
   if (user) {
-    const [profileRes, progressRes] = await Promise.all([
-      supabase.from("profiles").select("selected_character").eq("id", user.id).single(),
-      supabase.from("lesson_progress").select("id")
-        .eq("user_id", user.id).eq("program_slug", slug).eq("lesson_slug", lessonSlug).maybeSingle(),
-    ]);
-    if (profileRes.data?.selected_character) {
-      theme = CHARACTER_BY_ID[profileRes.data.selected_character] ?? theme;
-    }
+    const progressRes = await supabase
+      .from("lesson_progress")
+      .select("id")
+      .eq("user_id", user.id)
+      .eq("program_slug", slug)
+      .eq("lesson_slug", lessonSlug)
+      .maybeSingle();
     alreadyDone = !!progressRes.data;
   }
-
-  const { Content } = lesson;
 
   return (
     <div className="space-y-5">
@@ -58,35 +54,26 @@ export default async function LessonPage({
         </span>
       )}
 
-      <h1 className="text-2xl sm:text-3xl font-extrabold text-[color:var(--color-ink)]">
-        {lesson.meta.title}
-      </h1>
-
-      <div className="card p-5">
-        <h2 className="text-sm font-bold uppercase tracking-wide text-[color:var(--color-teal)] mb-2">
-          {level ? `${level.title} · Lesson ${lesson.meta.order}` : "Lesson brief"}
-        </h2>
-        <p className="text-gray-800">{lesson.meta.description}</p>
-        <p className="text-xs text-gray-400 mt-2">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">
+          {level ? `${level.title} · Lesson ${lesson.meta.order}` : `Lesson ${lesson.meta.order}`}
+        </p>
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[color:var(--color-ink)]">
+          {lesson.meta.title}
+        </h1>
+        <p className="text-xs text-gray-400 mt-1">
           ⏱ {lesson.meta.duration} · +{lesson.meta.xp} XP on completion
         </p>
       </div>
 
-      {/* Lesson content — same structure as PreviewWorkspace */}
-      <Content />
-
-      {/* Complete */}
-      <div className="card p-5">
-        <LessonComplete
-          programSlug={slug}
-          lessonSlug={lessonSlug}
-          xp={lesson.meta.xp}
-          nextHref={next ? `/programs/${slug}/${next.meta.slug}` : `/programs/${slug}`}
-          alreadyDone={alreadyDone}
-          accentColor={theme.accent}
-          accentShadow={theme.shadow}
-        />
-      </div>
+      <LessonWorkspace
+        programSlug={slug}
+        lessonSlug={lessonSlug}
+        xp={lesson.meta.xp}
+        mission={lesson.mission}
+        nextHref={next ? `/programs/${slug}/${next.meta.slug}` : `/programs/${slug}`}
+        alreadyDone={alreadyDone}
+      />
     </div>
   );
 }
