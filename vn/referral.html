@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZ1XEZXB6"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18127330947"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4MZ1XEZXB6');
+    gtag('config', 'AW-18127330947');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Giới thiệu bạn bè đến TechTutor Academy và nhận 500,000₫ giảm giá khi họ đăng ký gói học." />
+  <title>Chương Trình Giới Thiệu — TechTutor Academy</title>
+  <link rel="icon" type="image/png" href="../images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            teal: { DEFAULT: '#2C7A7B', light: '#319795', dark: '#234E52' },
+            ink: '#0F172A',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; }
+    .btn-primary { background: #193b92; color: white; padding: 14px 32px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; display: inline-block; text-decoration: none; }
+    .btn-primary:hover { background: #0f2861; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(25, 59, 146, 0.4); }
+    .card { background: white; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); }
+    .section-title { font-size: 2.5rem; font-weight: 800; line-height: 1.2; color: #0F172A; }
+    @media (max-width: 768px) { .section-title { font-size: 2rem; } }
+    .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px); width: 288px; background: rgba(255,255,255,0.95); border-radius: 16px; border: 1px solid #f1f5f9; box-shadow: 0 4px 20px rgba(0,0,0,0.15); opacity: 0; visibility: hidden; transition: all 0.2s; z-index: 50; padding: 12px; display: flex; flex-direction: column; gap: 4px; }
+    .group:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .dropdown-menu a { display: block; padding: 8px 12px; border-radius: 12px; color: #374151; text-decoration: none; font-size: 0.875rem; transition: background 0.15s; }
+    .dropdown-menu a:hover { background: #f1f5f9; color: #193b92; }
+  </style>
+  <style>@keyframes techbash-pop{0%,88%,100%{transform:translateY(0) scale(1)}94%{transform:translateY(-2px) scale(1.07)}}.techbash-nav{animation:techbash-pop 5s ease-in-out infinite;transform-origin:center;display:inline-block}.techbash-nav:hover{animation-play-state:paused}</style>
+  <script src="../js/geo-redirect.js" defer></script>
+</head>
+<body class="antialiased">
+
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between gap-6">
+        <a href="index.html" class="text-2xl font-black tracking-tight text-slate-900 flex items-center gap-1" aria-label="TechTutor home">
+          <span class="text-primary">Tech</span><span class="text-teal-500">Tutor</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-700">
+          <div class="relative hidden md:block group">
+            <a href="index.html#programs" class="inline-flex items-center gap-1 text-slate-700 hover:text-primary transition">
+              <span>Chương Trình</span>
+              <svg class="h-4 w-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </a>
+            <div class="dropdown-menu">
+              <a href="programs/scratch-game-coder.html">Lập Trình Game Scratch</a>
+              <a href="programs/gdevelop-game-designer.html">Thiết Kế Game GDevelop</a>
+              <a href="programs/roblox-world-creator.html">Sáng Tạo Thế Giới Roblox</a>
+              <a href="programs/3d-designer.html">Thiết Kế 3D</a>
+              <a href="programs/ai-programming-quest.html">Khám Phá AI &amp; Lập Trình</a>
+              <a href="programs/generative-ai-magic.html">Phép Thuật AI Tạo Sinh</a>
+              <a href="programs/app-development.html">Phát Triển Ứng Dụng</a>
+              <a href="programs/startup-foundations.html">Nền Tảng Khởi Nghiệp</a>
+            </div>
+          </div>
+          <a href="https://bash.techtutor.academy" class="techbash-nav hover:text-primary transition font-semibold">TechBash</a>
+          <a href="/vn/student-projects.html" class="hover:text-primary transition">Dự Án</a>
+          <a href="/vn/how-it-works.html" class="hover:text-primary transition">Quy Trình</a>
+          <a href="/vn/online-courses.html" class="hover:text-primary transition">Khóa Học Miễn Phí</a>
+          <a href="/vn/plans-and-faq.html" class="hover:text-primary transition">Học Phí</a>
+          <a href="/vn/blog.html" class="hover:text-primary transition">Blog</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-4">
+          <a href="/vn/login.html" class="rounded-full border-2 border-primary text-primary px-5 py-2 text-sm font-semibold transition hover:bg-primary hover:text-white flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+            Đăng Nhập
+          </a>
+          <a href="/vn/free-trial.html" class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light">Dùng Thử Miễn Phí</a>
+        </div>
+
+        <button id="mobile-menu-button" class="md:hidden px-4 py-2 rounded-full border-2 border-primary text-primary font-medium text-sm" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+      </div>
+
+      <div id="mobile-menu" class="md:hidden hidden mt-4 border-t border-slate-200 pt-4">
+        <div class="flex flex-col gap-4 text-sm font-medium text-slate-700">
+          <a href="https://bash.techtutor.academy" class="techbash-nav hover:text-primary transition font-semibold">TechBash</a>
+          <a href="/vn/student-projects.html" class="hover:text-primary transition">Dự Án</a>
+          <a href="/vn/how-it-works.html" class="hover:text-primary transition">Quy Trình</a>
+          <a href="/vn/online-courses.html" class="hover:text-primary transition">Khóa Học Miễn Phí</a>
+          <a href="/vn/plans-and-faq.html" class="hover:text-primary transition">Học Phí</a>
+          <a href="/vn/blog.html" class="hover:text-primary transition">Blog</a>
+          <a href="/vn/free-trial.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm">Dùng Thử Miễn Phí</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-12">
+
+    <section class="mb-16 text-center">
+      <img src="../images/refer.png" alt="Giới thiệu" class="mx-auto mb-6 h-72 w-auto" />
+      <h1 class="section-title mb-4">Giới Thiệu Bạn Bè.<br/>Cả Hai Cùng Được Giảm.</h1>
+      <p class="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
+        Khi gia đình bạn giới thiệu mua gói TechTutor đầu tiên, cả hai đều nhận được <strong class="text-primary">500,000₫ giảm giá</strong> cho lần đăng ký tiếp theo. Không giới hạn — mỗi lượt giới thiệu đều có giá trị.
+      </p>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold text-ink mb-8 text-center">Cách Hoạt Động</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+
+        <div class="card p-8 flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg" style="background:#193b92;">1</div>
+          <h3 class="font-bold text-ink text-lg">Nhận liên kết của bạn</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Liên hệ với chúng tôi qua WhatsApp, Zalo hoặc email và chúng tôi sẽ gửi liên kết giới thiệu cá nhân trong vòng 24 giờ.</p>
+        </div>
+
+        <div class="card p-8 flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg" style="background:#193b92;">2</div>
+          <h3 class="font-bold text-ink text-lg">Chia sẻ</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Gửi liên kết của bạn cho phụ huynh bạn nghĩ sẽ yêu thích TechTutor — qua WhatsApp, Zalo, email hoặc chỉ cần sao chép liên kết.</p>
+        </div>
+
+        <div class="card p-8 flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg" style="background:#193b92;">3</div>
+          <h3 class="font-bold text-ink text-lg">Họ đăng ký</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Bạn của bạn thử học miễn phí, sau đó mua gói đầu tiên. Tín dụng chỉ áp dụng sau khi đăng ký gói học phí — không áp dụng cho buổi thử học.</p>
+        </div>
+
+        <div class="card p-8 flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg" style="background:#193b92;">4</div>
+          <h3 class="font-bold text-ink text-lg">Cả hai cùng tiết kiệm</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">500,000₫ được ghi vào tài khoản của bạn và 500,000₫ vào tài khoản của họ — tự động trừ vào hóa đơn đăng ký tiếp theo.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold text-ink mb-8 text-center">Bạn Nhận Được Gì</h2>
+      <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+
+        <div class="card p-8 text-center">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl mx-auto mb-4" style="background-color: #E8F1FD;">👤</div>
+          <h3 class="font-bold text-ink text-lg mb-2">Bạn (người giới thiệu)</h3>
+          <p class="text-3xl font-black text-primary mb-3">500,000₫</p>
+          <p class="text-gray-600 text-sm leading-relaxed">Giảm cho gói tiếp theo. Giới thiệu bao nhiêu bạn bè tùy thích — mỗi lượt giới thiệu thành công đều mang lại thêm tín dụng, không giới hạn.</p>
+        </div>
+
+        <div class="card p-8 text-center">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl mx-auto mb-4" style="background-color: #E8F1FD;">🤝</div>
+          <h3 class="font-bold text-ink text-lg mb-2">Bạn của bạn</h3>
+          <p class="text-3xl font-black text-primary mb-3">500,000₫</p>
+          <p class="text-gray-600 text-sm leading-relaxed">Giảm cho gói đầu tiên. Quà tặng chào mừng khi gia nhập gia đình TechTutor — áp dụng trực tiếp vào hóa đơn đầu tiên.</p>
+        </div>
+
+      </div>
+      <p class="text-center text-sm text-gray-500 mt-6">Tín dụng có thể cộng dồn. Giới thiệu 3 bạn bè, tiết kiệm 1,500,000₫ cho lần đăng ký tiếp theo.</p>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold text-ink mb-3 text-center">Giới Thiệu Càng Nhiều, Tiết Kiệm Càng Nhiều</h2>
+      <p class="text-gray-600 text-center mb-10 max-w-xl mx-auto">Tín dụng được cộng dồn không giới hạn — mỗi lượt giới thiệu đều hoàn tiền cho bạn trong lần đăng ký tiếp theo.</p>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+        <div class="card p-6 text-center">
+          <p class="text-3xl font-black text-primary mb-1">1</p>
+          <p class="text-sm text-gray-500 mb-3">người được giới thiệu</p>
+          <p class="text-xl font-bold text-ink">500,000₫</p>
+          <p class="text-xs text-gray-400 mt-1">tiết kiệm</p>
+        </div>
+        <div class="card p-6 text-center">
+          <p class="text-3xl font-black text-primary mb-1">2</p>
+          <p class="text-sm text-gray-500 mb-3">người được giới thiệu</p>
+          <p class="text-xl font-bold text-ink">1,000,000₫</p>
+          <p class="text-xs text-gray-400 mt-1">tiết kiệm</p>
+        </div>
+        <div class="card p-6 text-center border-2 border-primary relative">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">Phổ biến nhất</span>
+          <p class="text-3xl font-black text-primary mb-1">3</p>
+          <p class="text-sm text-gray-500 mb-3">người được giới thiệu</p>
+          <p class="text-xl font-bold text-ink">1,500,000₫</p>
+          <p class="text-xs text-gray-400 mt-1">tiết kiệm</p>
+        </div>
+        <div class="card p-6 text-center">
+          <p class="text-3xl font-black text-primary mb-1">4</p>
+          <p class="text-sm text-gray-500 mb-3">người được giới thiệu</p>
+          <p class="text-xl font-bold text-ink">2,000,000₫</p>
+          <p class="text-xs text-gray-400 mt-1">tiết kiệm</p>
+        </div>
+      </div>
+
+      <p class="text-center text-sm text-gray-500 mt-6">
+        Đó là tới <strong class="text-ink">2,000,000₫</strong> giảm cho một lần đăng ký — chỉ cần chia sẻ điều bạn đã yêu thích. Không giới hạn, mãi mãi.
+      </p>
+    </section>
+
+    <section class="mb-16 max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold text-ink mb-8 text-center">Câu Hỏi Thường Gặp</h2>
+      <div class="card p-8 space-y-6">
+
+        <div class="border-b border-slate-100 pb-6">
+          <h3 class="font-bold text-ink mb-2">Khi nào tôi nhận được tín dụng?</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Khi bạn của bạn mua gói học phí đầu tiên — không phải khi họ đặt lịch thử học. Chúng tôi sẽ thông báo ngay khi được xác nhận.</p>
+        </div>
+
+        <div class="border-b border-slate-100 pb-6">
+          <h3 class="font-bold text-ink mb-2">Có giới hạn số người tôi có thể giới thiệu không?</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Không giới hạn. Mỗi lượt giới thiệu thành công đều mang lại 500,000₫. Giới thiệu 5 người bạn, tiết kiệm 2,500,000₫ cho các gói tương lai.</p>
+        </div>
+
+        <div class="border-b border-slate-100 pb-6">
+          <h3 class="font-bold text-ink mb-2">Làm thế nào để nhận liên kết giới thiệu?</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Chỉ cần liên hệ qua WhatsApp, Zalo hoặc email và chúng tôi sẽ gửi trong vòng 24 giờ. Ưu tiên cho các gia đình đang theo học.</p>
+        </div>
+
+        <div class="border-b border-slate-100 pb-6">
+          <h3 class="font-bold text-ink mb-2">Tôi có thể kết hợp tín dụng từ nhiều lượt giới thiệu không?</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Có. Nếu bạn đã giới thiệu nhiều người, tín dụng được cộng dồn và trừ hết vào hóa đơn tiếp theo của bạn.</p>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-ink mb-2">Tín dụng có hết hạn không?</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Tín dụng có hiệu lực 12 tháng kể từ ngày cấp và áp dụng cho bất kỳ gói đăng ký nào trong thời gian đó.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="py-8">
+      <div class="max-w-3xl mx-auto">
+        <div class="card p-10 md:p-14 text-center bg-gradient-to-br from-primary to-primary-dark text-white">
+          <h2 class="text-3xl font-bold mb-4">Sẵn Sàng Chia Sẻ TechTutor?</h2>
+          <p class="text-white/90 text-lg mb-8 leading-relaxed">Nhắn tin cho chúng tôi để nhận liên kết giới thiệu — chúng tôi sẽ gửi trong vòng 24 giờ.</p>
+          <div class="flex flex-wrap gap-4 justify-center">
+            <a href="https://wa.me/84902776753?text=Xin+ch%C3%A0o%2C+t%C3%B4i+mu%E1%BB%91n+nh%E1%BA%ADn+li%C3%AAn+k%E1%BA%BFt+gi%E1%BB%9Bi+thi%E1%BB%87u!" target="_blank" rel="noopener" class="inline-block bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-100 transition">
+              Nhắn WhatsApp / Zalo
+            </a>
+            <a href="mailto:hello@techtutor.academy?subject=Yêu cầu liên kết giới thiệu" class="inline-block border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition">
+              Gửi Email
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16">
+    <div class="mx-auto max-w-7xl px-6 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div class="lg:col-span-1">
+          <img src="../images/robot-rocket.png" alt="TechTutor" class="h-40 w-auto" />
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">LIÊN HỆ CHÚNG TÔI!</h3>
+          <div class="space-y-3 text-sm">
+            <div>
+              <p class="text-slate-400 mb-1">Tel/WA/Zalo:</p>
+              <a href="tel:0902776753" class="text-white hover:text-primary-light transition">0902 776 753</a>
+            </div>
+            <div>
+              <p class="text-slate-400 mb-1">Email:</p>
+              <a href="mailto:hello@techtutor.academy" class="text-white hover:text-primary-light transition">hello@techtutor.academy</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">GIỜ MỞ CỬA</h3>
+          <div class="space-y-2 text-sm">
+            <p class="text-slate-300">Thứ 2 - Thứ 6: 8:00 - 21:00</p>
+            <p class="text-slate-300">Thứ 7 - CN: 8:00 - 20:00</p>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">BẮT ĐẦU HỌC</h3>
+          <div class="space-y-2 text-sm">
+            <a href="index.html#programs" class="block text-slate-300 hover:text-primary-light transition">Chương Trình</a>
+            <a href="/vn/student-projects.html" class="block text-slate-300 hover:text-primary-light transition">Dự Án</a>
+            <a href="/vn/plans-and-faq.html" class="block text-slate-300 hover:text-primary-light transition">Học Phí</a>
+            <a href="/vn/blog.html" class="block text-slate-300 hover:text-primary-light transition">Blog</a>
+            <a href="/vn/vision.html" class="block text-slate-300 hover:text-primary-light transition">Tầm Nhìn Của Chúng Tôi</a>
+            <a href="/vn/free-trial.html" class="block text-slate-300 hover:text-primary-light transition">Dùng Thử Miễn Phí</a>
+            <a href="referral.html" class="block text-slate-300 hover:text-primary-light transition">Chương Trình Giới Thiệu</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">KẾT NỐI VỚI CHÚNG TÔI!</h3>
+          <div class="flex gap-3">
+            <a href="https://www.facebook.com/share/1An2WsT9X5/" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Facebook">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/techtutor.academy?igsh=MWljOWJjbndwY2l0dQ==" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Instagram">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://zalo.me/0902776753" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Zalo">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0zm.5 14.969h-4.25a.469.469 0 110-.938h4.25a.469.469 0 110 .938zm2.406-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938zm0-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-slate-700 text-center">
+        <p class="text-sm text-slate-400">© 2025 TechTutor Academy. Bảo lưu mọi quyền.</p>
+        <p class="text-xs text-slate-500 mt-2">Hỗ trợ song ngữ Tiếng Anh / Tiếng Việt</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    if (btn && menu) {
+      btn.addEventListener('click', () => {
+        const open = menu.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!open));
+      });
+    }
+  </script>
+  <script src="../js/site.js" defer></script>
+
+</body>
+</html>
