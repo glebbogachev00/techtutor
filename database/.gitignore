@@ -1,0 +1,5 @@
+# Never commit the connection string or the data dumps.
+.env
+backups/
+*.sql.gz
+*.dump
