@@ -9,6 +9,7 @@ cd "$(dirname "$0")"
 if [ -f .env ]; then set -a; . ./.env; set +a; fi
 : "${PGHOST:?Set PGHOST/PGUSER/PGPASSWORD in database/.env (see .env.example)}"
 : "${PGPASSWORD:?Set PGPASSWORD in database/.env}"
+export PGCONNECT_TIMEOUT="${PGCONNECT_TIMEOUT:-20}"  # never hang if the DB is unreachable
 
 command -v pg_dump >/dev/null || {
   echo "pg_dump not found. Install it:  brew install postgresql@16" >&2
