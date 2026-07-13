@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hành Trình Học Tập | TechTutor Academy</title>
+  <meta name="description" content="Xây dựng hành trình học tập lâu dài cùng TechTutor. Chọn lộ trình, hình thức và hành trình học — luôn tự do thay đổi bất cứ lúc nào với Cam Kết Tự Do." />
+  <link rel="icon" type="image/png" href="../images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            teal: { DEFAULT: '#2C7A7B', light: '#319795', dark: '#234E52' },
+            ink: '#0F172A',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; color: #0F172A; }
+    .btn-primary { background: #193b92; color: white; padding: 14px 32px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; display: inline-block; text-decoration: none; }
+    .btn-primary:hover { background: #0f2861; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(25, 59, 146, 0.4); }
+    .card { background: white; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); }
+    .section-title { font-size: 2.5rem; font-weight: 800; line-height: 1.2; color: #0F172A; }
+    @media (max-width: 768px) { .section-title { font-size: 2rem; } }
+    .opt { cursor: pointer; border: 2px solid #E5E7EB; border-radius: 20px; transition: all 0.2s ease; background: #fff; }
+    .opt:hover { border-color: #c7d0e8; transform: translateY(-2px); }
+    .opt.selected { border-color: #193b92; box-shadow: 0 8px 24px rgba(25,59,146,0.15); }
+    .opt.selected .opt-check { opacity: 1; transform: scale(1); }
+    .opt-check { opacity: 0; transform: scale(0.6); transition: all 0.2s ease; }
+    .pathway-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
+    .pathway-body.open { grid-template-rows: 1fr; }
+    .pathway-body > div { overflow: hidden; }
+    .pathway-chevron { transition: transform 0.3s ease; }
+    .pathway.open .pathway-chevron { transform: rotate(180deg); }
+    .toggle-track { background: #E5E7EB; border-radius: 999px; padding: 4px; display: inline-flex; }
+    .toggle-btn { padding: 10px 24px; border-radius: 999px; font-weight: 600; transition: all 0.25s ease; color: #475569; }
+    .toggle-btn.active { background: #193b92; color: #fff; box-shadow: 0 4px 12px rgba(25,59,146,0.3); }
+  </style>
+  <link rel="alternate" hreflang="en" href="https://techtutor.academy/en/learning-system.html" />
+  <link rel="alternate" hreflang="vi" href="https://techtutor.academy/vn/learning-system.html" />
+  <link rel="alternate" hreflang="x-default" href="https://techtutor.academy/en/learning-system.html" />
+  <link rel="canonical" href="https://techtutor.academy/vn/learning-system.html" />
+  <style>@keyframes techbash-pop{0%,88%,100%{transform:translateY(0) scale(1)}94%{transform:translateY(-2px) scale(1.07)}}.techbash-nav{animation:techbash-pop 5s ease-in-out infinite;transform-origin:center;display:inline-block}.techbash-nav:hover{animation-play-state:paused}</style>
+</head>
+<body class="antialiased">
+
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between gap-6">
+        <a href="index.html" class="text-2xl font-black tracking-tight text-slate-900 flex items-center gap-1" aria-label="TechTutor home">
+          <span class="text-primary">Tech</span><span class="text-teal-500">Tutor</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-5 lg:gap-7 text-sm font-medium text-slate-700">
+          <div class="relative hidden md:block group">
+            <a href="index.html#programs" class="inline-flex items-center gap-1 text-slate-700 hover:text-primary transition whitespace-nowrap">
+              <span>Chương Trình</span>
+              <svg class="h-4 w-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+            <div class="absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 rounded-2xl border border-slate-100 bg-white/95 p-3 shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+              <div class="flex flex-col gap-1 text-sm">
+                <a href="programs/scratch-game-coder.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Lập Trình Game Scratch</a>
+                <a href="programs/gdevelop-game-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Thiết Kế Game GDevelop</a>
+                <a href="programs/roblox-world-creator.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Sáng Tạo Thế Giới Roblox</a>
+                <a href="programs/3d-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Thiết Kế 3D</a>
+                <a href="programs/ai-programming-quest.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Khám Phá AI & Lập Trình</a>
+                <a href="programs/generative-ai-magic.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Phép Thuật AI Tạo Sinh</a>
+                <a href="programs/app-development.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Phát Triển Ứng Dụng</a>
+                <a href="programs/website-creation.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Tạo Website</a>
+                <a href="programs/startup-foundations.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Nền Tảng Khởi Nghiệp</a>
+              </div>
+            </div>
+          </div>
+          <a href="https://bash.techtutor.academy" class="techbash-nav hover:text-primary transition font-semibold inline-block transform hover:-translate-y-0.5 hover:scale-105 whitespace-nowrap">TechBash</a>
+          <a href="student-projects.html" class="hover:text-primary transition whitespace-nowrap">Dự Án</a>
+          <a href="how-it-works.html" class="hover:text-primary transition whitespace-nowrap">Quy Trình</a>
+          <a href="online-courses.html" class="hover:text-primary transition whitespace-nowrap">Khóa Học Miễn Phí</a>
+          <a href="plans-and-faq.html" class="hover:text-primary transition whitespace-nowrap">Học Phí</a>
+          <a href="blog.html" class="hover:text-primary transition whitespace-nowrap">Blog</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-3">
+          <div class="relative group">
+            <button class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-primary hover:bg-primary hover:bg-opacity-10 transition" aria-label="Switch language">
+              <span class="text-xl">🇻🇳</span>
+            </button>
+            <div class="absolute right-0 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+              <div class="p-2">
+                <a href="../en/learning-system.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-100 transition">
+                  <span class="text-2xl">🇬🇧</span>
+                  <span class="text-sm font-medium text-slate-700">English</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="login.html" class="rounded-full border-2 border-primary text-primary px-4 py-2 text-sm font-semibold transition hover:bg-primary hover:text-white flex items-center gap-2 whitespace-nowrap">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+            Đăng Nhập
+          </a>
+
+          <a aria-label="Start your free trial with TechTutor Academy" href="free-trial.html" class="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light whitespace-nowrap">Dùng Thử Miễn Phí</a>
+        </div>
+
+        <div class="flex items-center gap-3 md:hidden">
+          <div class="relative group">
+            <button class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-primary hover:bg-primary hover:bg-opacity-10 transition" aria-label="Switch language">
+              <span class="text-xl">🇻🇳</span>
+            </button>
+            <div class="absolute right-0 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+              <div class="p-2">
+                <a href="../en/learning-system.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-100 transition">
+                  <span class="text-2xl">🇬🇧</span>
+                  <span class="text-sm font-medium text-slate-700">English</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <button id="mobile-menu-button" class="px-4 py-2 rounded-full border-2 border-primary text-primary font-medium text-sm hover:bg-primary hover:bg-opacity-10 transition" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+            Menu
+          </button>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="md:hidden hidden mt-4 border-t border-slate-200 pt-4">
+        <div class="flex flex-col gap-4 text-sm font-medium text-slate-700">
+          <div class="rounded-2xl border border-slate-200 p-4">
+            <button id="mobile-programs-toggle" class="flex w-full items-center justify-between text-left" aria-label="Toggle programs submenu" aria-expanded="false">
+              <span>Chương Trình</span>
+              <svg id="programs-arrow" class="h-5 w-5 text-slate-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div id="mobile-programs-menu" class="mt-3 hidden flex flex-col gap-3 border-l-2 border-primary pl-4 text-sm">
+              <a href="programs/scratch-game-coder.html" class="text-slate-700 hover:text-primary py-1">Lập Trình Game Scratch</a>
+              <a href="programs/gdevelop-game-designer.html" class="text-slate-700 hover:text-primary py-1">Thiết Kế Game GDevelop</a>
+              <a href="programs/roblox-world-creator.html" class="text-slate-700 hover:text-primary py-1">Sáng Tạo Thế Giới Roblox</a>
+              <a href="programs/3d-designer.html" class="text-slate-700 hover:text-primary py-1">Thiết Kế 3D</a>
+              <a href="programs/ai-programming-quest.html" class="text-slate-700 hover:text-primary py-1">Khám Phá AI & Lập Trình</a>
+              <a href="programs/generative-ai-magic.html" class="text-slate-700 hover:text-primary py-1">Phép Thuật AI Tạo Sinh</a>
+              <a href="programs/app-development.html" class="text-slate-700 hover:text-primary py-1">Phát Triển Ứng Dụng</a>
+              <a href="programs/website-creation.html" class="text-slate-700 hover:text-primary py-1">Tạo Website</a>
+              <a href="programs/startup-foundations.html" class="text-slate-700 hover:text-primary py-1">Nền Tảng Khởi Nghiệp</a>
+            </div>
+          </div>
+          <a href="https://bash.techtutor.academy" class="techbash-nav hover:text-primary transition font-semibold inline-block transform hover:-translate-y-0.5 hover:scale-105 whitespace-nowrap">TechBash</a>
+          <a href="student-projects.html" class="hover:text-primary transition whitespace-nowrap">Dự Án</a>
+          <a href="how-it-works.html" class="hover:text-primary transition whitespace-nowrap">Quy Trình</a>
+          <a href="online-courses.html" class="hover:text-primary transition whitespace-nowrap">Khóa Học Miễn Phí</a>
+          <a href="plans-and-faq.html" class="hover:text-primary transition whitespace-nowrap">Học Phí</a>
+          <a href="blog.html" class="hover:text-primary transition whitespace-nowrap">Blog</a>
+
+          <a href="login.html" class="flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+            Đăng Nhập
+          </a>
+
+          <a aria-label="Start your free trial with TechTutor Academy" href="free-trial.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm">Dùng Thử Miễn Phí</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script src="../js/app.js" defer></script>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-6 py-16 md:py-24 text-center">
+      <span class="inline-block bg-teal/10 text-teal-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-6">Một hành trình học tập, không phải một gói khoá học</span>
+      <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6">Chọn một <span class="text-primary">hành trình</span> giáo dục, không phải một chồng khoá học.</h1>
+      <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-8">Bạn cam kết với sự phát triển của con — không bao giờ bị ràng buộc vào một lĩnh vực. Khám phá mọi lộ trình, đổi hướng bất cứ lúc nào, và không bao giờ mất buổi học đã trả phí.</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="#builder" class="btn-primary">Tạo kế hoạch của bạn</a>
+        <a href="#freedom" class="inline-block px-8 py-3.5 rounded-full font-semibold text-primary border-2 border-primary/20 hover:border-primary transition">Xem Cam Kết Tự Do</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 Steps -->
+  <section class="max-w-6xl mx-auto px-6 py-12">
+    <h2 class="section-title text-center mb-4">Bốn bước đơn giản</h2>
+    <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto">Mọi gia đình đều đi theo cùng một lộ trình rõ ràng — và luôn nắm quyền chủ động ở mọi giai đoạn.</p>
+    <div class="grid md:grid-cols-4 gap-6">
+      <div class="card p-6 text-center"><div class="text-3xl mb-3">🧭</div><div class="text-xs font-bold text-teal uppercase tracking-wide mb-1">Bước 1</div><h3 class="font-bold text-lg mb-2">Lộ trình</h3><p class="text-sm text-slate-600">Hôm nay con quan tâm điều gì?</p></div>
+      <div class="card p-6 text-center"><div class="text-3xl mb-3">🎒</div><div class="text-xs font-bold text-teal uppercase tracking-wide mb-1">Bước 2</div><h3 class="font-bold text-lg mb-2">Hình thức</h3><p class="text-sm text-slate-600">Kèm riêng hay học nhóm?</p></div>
+      <div class="card p-6 text-center"><div class="text-3xl mb-3">🌱</div><div class="text-xs font-bold text-teal uppercase tracking-wide mb-1">Bước 3</div><h3 class="font-bold text-lg mb-2">Hành trình</h3><p class="text-sm text-slate-600">Explorer hay Academy?</p></div>
+      <div class="card p-6 text-center"><div class="text-3xl mb-3">💳</div><div class="text-xs font-bold text-teal uppercase tracking-wide mb-1">Bước 4</div><h3 class="font-bold text-lg mb-2">Thanh toán</h3><p class="text-sm text-slate-600">Trả toàn bộ hoặc chia 2 lần.</p></div>
+    </div>
+  </section>
+
+  <!-- Pathways -->
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <div class="text-center mb-10">
+      <h2 class="section-title mb-4">1 · Lộ Trình Học Tập</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto">Lộ trình là một lĩnh vực yêu thích lâu dài — gồm nhiều chương trình bổ trợ cho nhau. Đây là <strong>gợi ý, không phải hợp đồng</strong>. Nhấn vào lộ trình để xem các chương trình.</p>
+    </div>
+    <div class="space-y-4">
+      <div class="pathway card overflow-hidden">
+        <button class="w-full flex items-center justify-between p-6 text-left" onclick="togglePathway(this)">
+          <span class="flex items-center gap-4"><span class="text-3xl">🎮</span><span><span class="block font-bold text-lg">Phát Triển Game</span><span class="text-sm text-slate-500">Thiết kế và xây dựng game</span></span></span>
+          <svg class="pathway-chevron h-6 w-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="pathway-body">
+          <div><div class="grid sm:grid-cols-3 gap-3 px-6 pb-6">
+            <div class="bg-slate-50 rounded-xl p-4 text-sm"><span class="font-semibold">Scratch Game Coder</span><span class="block text-slate-500 text-xs mt-1">24 buổi học</span></div>
+            <div class="bg-slate-50 rounded-xl p-4 text-sm"><span class="font-semibold">GDevelop Game Designer</span><span class="block text-slate-500 text-xs mt-1">24 buổi học</span></div>
+            <div class="bg-slate-50 rounded-xl p-4 text-sm"><span class="font-semibold">Roblox World Creator</span><span class="block text-slate-500 text-xs mt-1">24 buổi học</span></div>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="pathway card overflow-hidden">
+        <button class="w-full flex items-center justify-between p-6 text-left" onclick="togglePathway(this)">
+          <span class="flex items-center gap-4"><span class="text-3xl">🤖</span><span><span class="block font-bold text-lg">Trí Tuệ Nhân Tạo</span><span class="text-sm text-slate-500">Hiểu và sáng tạo cùng AI</span></span></span>
+          <svg class="pathway-chevron h-6 w-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="pathway-body">
+          <div><div class="grid sm:grid-cols-3 gap-3 px-6 pb-6">
+            <div class="bg-slate-50 rounded-xl p-4 text-sm"><span class="font-semibold">AI & Programming Quest</span><span class="block text-slate-500 text-xs mt-1">24 buổi học</span></div>
+            <div class="bg-slate-50 rounded-xl p-4 text-sm"><span class="font-semibold">Generative AI Magic</span><span class="block text-slate-500 text-xs mt-1">24 buổi học</span></div>
+            <div class="bg-slate-50 rounded-xl p-4 text-sm"><span class="font-semibold">Python Fundamentals</span><span class="block text-slate-500 text-xs mt-1">24 buổi học</span></div>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="pathway card overflow-hidden">
+        <button class="w-full flex items-center justify-between p-6 text-left" onclick="togglePathway(this)">
+          <span class="flex items-center gap-4"><span class="text-3xl">💻</span><span><span class="block font-bold text-lg">Phát Triển Phần Mềm</span><span class="text-sm text-slate-500">Xây dựng ứng dụng và website thật</span></span></span>
+          <svg class="pathway-chevron h-6 w-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="pathway-body">
+          <div><div class="grid sm:grid-cols-3 gap-3 px-6 pb-6">
+            <div class="bg-slate-50 rounded-xl p-4 text-sm"><span class="font-semibold">Website Creation</span><span class="block text-slate-500 text-xs mt-1">24 buổi học</span></div>
+            <div class="bg-slate-50 rounded-xl p-4 text-sm"><span class="font-semibold">App Development</span><span class="block text-slate-500 text-xs mt-1">24 buổi học</span></div>
+            <div class="bg-slate-50 rounded-xl p-4 text-sm"><span class="font-semibold">Startup Foundations</span><span class="block text-slate-500 text-xs mt-1">24 buổi học</span></div>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="pathway card overflow-hidden">
+        <button class="w-full flex items-center justify-between p-6 text-left" onclick="togglePathway(this)">
+          <span class="flex items-center gap-4"><span class="text-3xl">🎨</span><span><span class="block font-bold text-lg">Thiết Kế Số</span><span class="text-sm text-slate-500">Sáng tạo 2D và 3D</span></span></span>
+          <svg class="pathway-chevron h-6 w-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="pathway-body">
+          <div><div class="grid sm:grid-cols-3 gap-3 px-6 pb-6">
+            <div class="bg-slate-50 rounded-xl p-4 text-sm"><span class="font-semibold">3D Designer</span><span class="block text-slate-500 text-xs mt-1">24 buổi học</span></div>
+            <div class="bg-slate-50 rounded-xl p-4 text-sm"><span class="font-semibold">Generative AI Magic</span><span class="block text-slate-500 text-xs mt-1">24 buổi học</span></div>
+            <div class="bg-slate-50 rounded-xl p-4 text-sm"><span class="font-semibold">Website Creation</span><span class="block text-slate-500 text-xs mt-1">24 buổi học</span></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Freedom Guarantee -->
+  <section id="freedom" class="py-16">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="rounded-3xl bg-primary text-white p-8 md:p-14 relative overflow-hidden">
+        <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-white/5"></div>
+        <div class="absolute -left-10 -bottom-10 w-48 h-48 rounded-full bg-teal/20"></div>
+        <div class="relative">
+          <span class="inline-block bg-white/15 px-4 py-1.5 rounded-full text-sm font-semibold mb-5">🔓 Cam Kết Tự Do</span>
+          <h2 class="text-3xl md:text-4xl font-black mb-5 max-w-2xl">Con bạn có thể đổi ý. Khoản đầu tư của bạn thì không.</h2>
+          <p class="text-white/90 text-lg max-w-2xl mb-8">Bạn không bao giờ cam kết với một lĩnh vực — bạn cam kết với các chương trình. Nếu sở thích của con thay đổi, chúng tôi chỉ cần chuyển các chương trình còn lại sang lộ trình mới. Cùng một khoản đầu tư. Hướng đi mới. Không mất gì.</p>
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div class="bg-white/10 rounded-2xl p-5"><div class="text-2xl mb-2">🔁</div><h3 class="font-bold mb-1">Đổi lộ trình bất cứ lúc nào</h3><p class="text-sm text-white/80">Chuyển giữa Game, AI, Phần mềm hoặc Thiết kế tại mỗi buổi Đánh Giá Tiến Bộ.</p></div>
+            <div class="bg-white/10 rounded-2xl p-5"><div class="text-2xl mb-2">♾️</div><h3 class="font-bold mb-1">Chương trình không hết hạn</h3><p class="text-sm text-white/80">Các chương trình còn lại luôn là của bạn cho đến khi con sẵn sàng học.</p></div>
+            <div class="bg-white/10 rounded-2xl p-5"><div class="text-2xl mb-2">🛡️</div><h3 class="font-bold mb-1">Bảo vệ khoản đầu tư</h3><p class="text-sm text-white/80">Bạn trả cho việc học của con — không phải cho ba khoá học cụ thể.</p></div>
+          </div>
+          <div class="mt-8 bg-white/10 rounded-2xl p-6">
+            <p class="text-sm text-white/70 font-semibold uppercase tracking-wide mb-2">Áp dụng thực tế</p>
+            <p class="text-white/90">Một học sinh bắt đầu với <strong>Phát Triển Game</strong>. Sau khi hoàn thành GDevelop, con yêu thích <strong>AI</strong>. Thay vì ép con tiếp tục với Roblox, chúng tôi chuyển các chương trình còn lại sang lộ trình AI. Kế hoạch thay đổi — học phí thì không.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Builder -->
+  <section id="builder" class="py-16 bg-white border-y border-slate-100">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="section-title mb-4">Tạo kế hoạch của bạn</h2>
+        <p class="text-slate-600 max-w-2xl mx-auto">Chọn hình thức, hành trình và mức cam kết. Ước tính cập nhật ngay lập tức. Không ràng buộc — mọi lựa chọn đều đi kèm Cam Kết Tự Do.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2 space-y-10">
+
+          <!-- Format -->
+          <div>
+            <h3 class="font-bold text-lg mb-1"><span class="text-teal">Bước 2 ·</span> Hình Thức Học</h3>
+            <p class="text-sm text-slate-500 mb-4">Con bạn muốn học theo cách nào?</p>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="opt selected p-6" data-format="private" onclick="selectFormat(this,'private')">
+                <div class="flex items-start justify-between"><span class="text-3xl">👤</span><span class="opt-check text-primary">✓</span></div>
+                <h4 class="font-bold text-lg mt-3">Kèm Riêng 1:1</h4>
+                <p class="text-sm text-slate-600 mt-1">Giáo viên riêng, một kèm một, điều chỉnh theo nhịp độ của con.</p>
+                <p class="text-xs text-slate-500 mt-2">Lớp 90 phút, 2–3 buổi mỗi tuần.</p>
+                <p class="mt-3 font-bold text-primary">15.000.000 <span class="text-sm font-medium text-slate-500">/ chương trình</span></p>
+              </div>
+              <div class="opt p-6" data-format="shared" onclick="selectFormat(this,'shared')">
+                <div class="flex items-start justify-between"><span class="text-3xl">👥</span><span class="opt-check text-primary">✓</span></div>
+                <h4 class="font-bold text-lg mt-3">Học Nhóm</h4>
+                <p class="text-sm text-slate-600 mt-1">Học cùng bạn bè. Bắt đầu học riêng cho tới khi có thêm bạn.</p>
+                <p class="text-xs text-slate-500 mt-2">Lớp 90 phút khi có từ hai học sinh trở lên (60 phút nếu học một mình), 2–3 buổi mỗi tuần.</p>
+                <p class="mt-3 font-bold text-primary">8.400.000 <span class="text-sm font-medium text-slate-500">/ chương trình</span></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Journey -->
+          <div>
+            <h3 class="font-bold text-lg mb-1"><span class="text-teal">Bước 3 ·</span> Hành Trình Học</h3>
+            <p class="text-sm text-slate-500 mb-4">Cùng một chương trình học. Khác biệt nằm ở cách ghi nhận và trưng bày tiến bộ.</p>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="opt selected p-6" data-journey="explorer" onclick="selectJourney(this,'explorer')">
+                <div class="flex items-start justify-between"><span class="text-3xl">🌱</span><span class="opt-check text-primary">✓</span></div>
+                <h4 class="font-bold text-lg mt-3">Explorer</h4>
+                <p class="text-sm text-slate-600 mt-1">Trải nghiệm TechTutor trọn vẹn — sáng tạo, linh hoạt, dựa trên dự án. Có bài tập về nhà nhưng tuỳ chọn.</p>
+                <p class="mt-3 font-bold text-teal-dark">Đã bao gồm</p>
+              </div>
+              <div class="opt p-6" data-journey="academy" onclick="selectJourney(this,'academy')">
+                <div class="flex items-start justify-between"><span class="text-3xl">🎓</span><span class="opt-check text-primary">✓</span></div>
+                <h4 class="font-bold text-lg mt-3">Nâng cấp Academy</h4>
+                <p class="text-sm text-slate-600 mt-1">Thêm bài tập được chấm & lưu, lộ trình học, hồ sơ kỹ năng, portfolio trưng bày được trửau chuốt & bảng thành tích.</p>
+                <p class="mt-3 font-bold text-primary">+2.000.000 <span class="text-sm font-medium text-slate-500">/ chương trình</span></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Commitment -->
+          <div>
+            <h3 class="font-bold text-lg mb-1"><span class="text-teal">Bước 1 ·</span> Mức Cam Kết</h3>
+            <p class="text-sm text-slate-500 mb-4">Mọi cam kết đều linh hoạt chuyển đổi trên cả bốn lộ trình. Cam kết nhiều hơn, tiết kiệm nhiều hơn.</p>
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div class="opt selected p-5 text-center" data-count="1" data-discount="0" onclick="selectPlan(this)">
+                <span class="opt-check text-primary block text-right">✓</span>
+                <div class="text-2xl mb-1">🎯</div>
+                <h4 class="font-bold">Một Chương Trình</h4>
+                <p class="text-xs text-slate-500 mt-1">1 chương trình · 24 buổi</p>
+                <p class="text-xs text-slate-400 mt-2">Linh hoạt hoàn toàn</p>
+              </div>
+              <div class="opt p-5 text-center relative" data-count="3" data-discount="0.10" onclick="selectPlan(this)">
+                <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-teal text-white text-[11px] font-bold px-3 py-1 rounded-full whitespace-nowrap">Phổ biến nhất</span>
+                <span class="opt-check text-primary block text-right">✓</span>
+                <div class="text-2xl mb-1">🚀</div>
+                <h4 class="font-bold">Kế Hoạch Học</h4>
+                <p class="text-xs text-slate-500 mt-1">3 chương trình · giảm 10%</p>
+                <p class="text-xs text-teal-dark font-semibold mt-2">Lộ trình linh hoạt</p>
+              </div>
+              <div class="opt p-5 text-center" data-count="6" data-discount="0.15" onclick="selectPlan(this)">
+                <span class="opt-check text-primary block text-right">✓</span>
+                <div class="text-2xl mb-1">🏆</div>
+                <h4 class="font-bold">Hành Trình Trọn Vẹn</h4>
+                <p class="text-xs text-slate-500 mt-1">6 chương trình · giảm 15%</p>
+                <p class="text-xs text-teal-dark font-semibold mt-2">Giá trị tốt nhất</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment -->
+          <div>
+            <h3 class="font-bold text-lg mb-1"><span class="text-teal">Bước 4 ·</span> Thanh Toán</h3>
+            <p class="text-sm text-slate-500 mb-4">Cam kết học lâu dài mà không cần trả trước một khoản lớn.</p>
+            <div class="toggle-track" role="tablist" aria-label="Phương thức thanh toán">
+              <button class="toggle-btn active" id="payFull" onclick="selectPayment('full')">Trả toàn bộ</button>
+              <button class="toggle-btn" id="paySplit" onclick="selectPayment('split')">Chia 2 lần</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="lg:col-span-1">
+          <div class="card p-7 sticky top-24">
+            <p class="text-xs font-bold uppercase tracking-wide text-slate-400 mb-4">Ước tính của bạn</p>
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between"><span class="text-slate-500">Hình thức</span><span class="font-semibold" id="sumFormat">Kèm Riêng 1:1</span></div>
+              <div class="flex justify-between"><span class="text-slate-500">Hành trình</span><span class="font-semibold" id="sumJourney">Explorer</span></div>
+              <div class="flex justify-between"><span class="text-slate-500">Số chương trình</span><span class="font-semibold" id="sumCount">1</span></div>
+              <div class="flex justify-between"><span class="text-slate-500">Mỗi chương trình</span><span class="font-semibold" id="sumPer">15.000.000 ₫</span></div>
+              <div class="flex justify-between text-teal-dark" id="rowDiscount"><span>Ưu đãi cam kết</span><span class="font-semibold" id="sumDiscount">–0 ₫</span></div>
+            </div>
+            <hr class="my-5 border-slate-100" />
+            <div class="flex items-end justify-between mb-1">
+              <span class="text-slate-500 text-sm">Tổng cộng</span>
+              <span class="text-3xl font-black text-primary" id="sumTotal">15.000.000 ₫</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-6" id="sumSessions">24 buổi học</p>
+            <div id="splitNote" class="hidden bg-teal/5 border border-teal/20 rounded-xl p-3 text-sm text-teal-dark mb-6">
+              Hai lần thanh toán, mỗi lần <strong id="sumSplit">7.500.000 ₫</strong>
+            </div>
+            <a href="free-trial.html" class="btn-primary w-full text-center block">Bắt đầu với buổi học thử</a>
+            <p class="text-center text-xs text-slate-400 mt-3">🔓 Mọi kế hoạch đều có Cam Kết Tự Do</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Explorer vs Academy detail -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <div class="text-center mb-10">
+      <h2 class="section-title mb-4">Explorer và Academy</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto">Cùng chương trình, cùng giáo viên. Khác biệt rất đơn giản: <strong>Academy cho phụ huynh một hồ sơ rõ ràng về tiến bộ của con</strong> — bài tập được chấm điểm, kỹ năng được theo dõi và bảng thành tích để lưu giữ.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="card p-8 border-2 border-transparent">
+        <div class="flex items-center gap-3 mb-4"><span class="text-3xl">🌱</span><h3 class="text-2xl font-bold">Explorer</h3></div>
+        <p class="text-slate-600 mb-2">Trải nghiệm học tập TechTutor trọn vẹn — sáng tạo, thực hành và theo nhịp độ của con.</p>
+        <p class="text-sm font-semibold text-teal-dark mb-5">Phù hợp với: gia đình muốn con làm ra dự án thật và yêu thích việc học lập trình.</p>
+        <ul class="space-y-2 text-sm text-slate-700">
+          <li class="flex gap-2"><span class="text-teal">✓</span> Toàn bộ chương trình TechTutor</li>
+          <li class="flex gap-2"><span class="text-teal">✓</span> Quyền truy cập TechBash</li>
+          <li class="flex gap-2"><span class="text-teal">✓</span> Học tập dựa trên dự án</li>
+          <li class="flex gap-2"><span class="text-teal">✓</span> Nhận xét của giáo viên & chứng chỉ hoàn thành</li>
+          <li class="flex gap-2"><span class="text-teal">✓</span> Báo cáo tiến bộ mỗi 8 buổi học</li>
+          <li class="flex gap-2"><span class="text-teal">✓</span> Có bài tập về nhà (tuỳ chọn) & nhịp độ linh hoạt</li>
+          <li class="flex gap-2"><span class="text-teal">✓</span> Portfolio dự án</li>
+        </ul>
+      </div>
+      <div class="card p-8 border-2 border-primary relative">
+        <span class="absolute -top-3 left-8 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">+2.000.000 ₫ / chương trình</span>
+        <div class="flex items-center gap-3 mb-4"><span class="text-3xl">🎓</span><h3 class="text-2xl font-bold">Academy</h3></div>
+        <p class="text-slate-600 mb-2">Tất cả những gì có trong Explorer, với bài tập được kiểm tra nghiêm túc và mọi kết quả được ghi lại — để phụ huynh luôn biết con đang học đến đâu.</p>
+        <p class="text-sm font-semibold text-primary mb-5">Phù hợp với: gia đình muốn thấy tiến bộ đo lường được và có hồ sơ cho hồ sơ xét tuyển trường/đại học.</p>
+        <ul class="space-y-2 text-sm text-slate-700">
+          <li class="flex gap-2"><span class="text-primary">➕</span> Bài tập bắt buộc — được chấm, nhận xét & lưu vào tài khoản học sinh</li>
+          <li class="flex gap-2"><span class="text-primary">➕</span> Lộ trình học tập cá nhân với mục tiêu & cột mốc rõ ràng</li>
+          <li class="flex gap-2"><span class="text-primary">➕</span> Kỹ năng được theo dõi và cập nhật sau mỗi buổi học</li>
+          <li class="flex gap-2"><span class="text-primary">➕</span> Portfolio trưng bày — giáo viên trau chuốt, sẵn sàng chia sẻ với nhà trường</li>
+          <li class="flex gap-2"><span class="text-primary">➕</span> Bảng điểm kỹ năng & dự án được chấm</li>
+          <li class="flex gap-2"><span class="text-primary">➕</span> Buổi họp phụ huynh–giáo viên mỗi kỳ (tuỳ chọn)</li>
+        </ul>
+      </div>
+    </div>
+    <p class="text-center text-sm text-slate-500 mt-6">Cả hai hành trình đều có cùng giáo viên và sự tận tâm như nhau. Academy chỉ mang lại <strong>sự chặt chẽ hơn và một hồ sơ để lưu giữ</strong> — không phải dạy tốt hơn.</p>
+  </section>
+
+  <!-- Progress Reviews -->
+  <section class="bg-slate-50 py-16">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <h2 class="section-title mb-4">Mỗi chương trình kết thúc bằng buổi Đánh Giá Tiến Bộ</h2>
+        <p class="text-slate-600 max-w-2xl mx-auto">Sau 24 buổi học, giáo viên và gia đình cùng nhìn lại — và quyết định bước tiếp theo dựa trên sự phát triển của con, không bao giờ theo một kế hoạch bán hàng.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card p-6">
+          <div class="w-10 h-10 rounded-full bg-teal text-white flex items-center justify-center font-bold mb-4">1</div>
+          <h3 class="font-bold mb-2">Tiếp tục lộ trình</h3>
+          <p class="text-sm text-slate-600">Chuyển sang chương trình được gợi ý tiếp theo trong cùng lĩnh vực yêu thích.</p>
+        </div>
+        <div class="card p-6">
+          <div class="w-10 h-10 rounded-full bg-teal text-white flex items-center justify-center font-bold mb-4">2</div>
+          <h3 class="font-bold mb-2">Đổi lộ trình</h3>
+          <p class="text-sm text-slate-600">Sở thích thay đổi? Chuyển các chương trình còn lại sang lộ trình mới — miễn phí, không mất gì.</p>
+        </div>
+        <div class="card p-6">
+          <div class="w-10 h-10 rounded-full bg-teal text-white flex items-center justify-center font-bold mb-4">3</div>
+          <h3 class="font-bold mb-2">Hoàn thành hành trình</h3>
+          <p class="text-sm text-slate-600">Đạt mục tiêu? Cùng ăn mừng các dự án, portfolio và sự tự tin con đã xây dựng.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mentorship -->
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <div class="card p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+      <div class="text-6xl">🧠</div>
+      <div class="flex-1">
+        <h2 class="text-2xl md:text-3xl font-bold mb-3">Cố Vấn (Mentorship)</h2>
+        <p class="text-slate-600 mb-4">Dành cho học sinh có mục tiêu vượt ra ngoài chương trình tiêu chuẩn. Hoàn toàn cá nhân hoá — từ phát triển startup, nghiên cứu AI, đến chuẩn bị đại học, kỹ thuật phần mềm nâng cao và xây dựng portfolio chuyên nghiệp.</p>
+        <div class="flex flex-wrap gap-2 mb-5">
+          <span class="text-xs bg-slate-100 px-3 py-1.5 rounded-full">Phát triển Startup</span>
+          <span class="text-xs bg-slate-100 px-3 py-1.5 rounded-full">Nghiên cứu AI</span>
+          <span class="text-xs bg-slate-100 px-3 py-1.5 rounded-full">Chuẩn bị Đại học</span>
+          <span class="text-xs bg-slate-100 px-3 py-1.5 rounded-full">Kỹ thuật nâng cao</span>
+          <span class="text-xs bg-slate-100 px-3 py-1.5 rounded-full">Portfolio chuyên nghiệp</span>
+        </div>
+        <a href="free-trial.html" class="text-primary font-semibold hover:underline">Học phí sau khi tư vấn →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why it works -->
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <h2 class="section-title text-center mb-10">Vì sao hệ thống này hiệu quả</h2>
+    <div class="grid sm:grid-cols-2 gap-5">
+      <div class="flex gap-4"><span class="text-2xl">🧭</span><p class="text-slate-700"><strong>Linh hoạt mà không bất định.</strong> Một lộ trình dài hạn mà bạn không bao giờ bị ràng buộc.</p></div>
+      <div class="flex gap-4"><span class="text-2xl">🔓</span><p class="text-slate-700"><strong>Tự do khám phá.</strong> Sở thích mới không bao giờ khiến bạn mất khoản đầu tư.</p></div>
+      <div class="flex gap-4"><span class="text-2xl">📈</span><p class="text-slate-700"><strong>Ưu đãi rõ ràng.</strong> Cam kết nhiều chương trình hơn, tiết kiệm nhiều hơn — bậc giá đơn giản.</p></div>
+      <div class="flex gap-4"><span class="text-2xl">🎓</span><p class="text-slate-700"><strong>Kết quả thực.</strong> Mỗi trẻ ra về với dự án, portfolio và sự tự tin.</p></div>
+    </div>
+    <div class="text-center mt-12">
+      <a href="free-trial.html" class="btn-primary">Đặt buổi học thử miễn phí</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16">
+    <div class="mx-auto max-w-7xl px-6 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div class="lg:col-span-1">
+          <img src="../images/robot-rocket.png" alt="TechTutor" class="h-40 w-auto" />
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">LIÊN HỆ!</h3>
+          <div class="space-y-3 text-sm">
+            <div>
+              <p class="text-slate-400 mb-1">Tel/WA/Zalo:</p>
+              <a href="tel:0902776753" class="text-white hover:text-primary-light transition">0902 776 753</a>
+            </div>
+            <div>
+              <p class="text-slate-400 mb-1">Email:</p>
+              <a href="mailto:hello@techtutor.academy" class="text-white hover:text-primary-light transition">hello@techtutor.academy</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">GIỜ MỞ CỬA</h3>
+          <div class="space-y-2 text-sm">
+            <p class="text-slate-300">Thứ Hai - Thứ Sáu: 8am - 9pm</p>
+            <p class="text-slate-300">Thứ Bảy - Chủ Nhật: 8am - 8pm</p>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">BẮT ĐẦU HỌC</h3>
+          <div class="space-y-2 text-sm">
+            <a href="index.html#programs" class="block text-slate-300 hover:text-primary-light transition">Chương Trình</a>
+            <a href="student-projects.html" class="block text-slate-300 hover:text-primary-light transition">Dự Án</a>
+            <a href="plans-and-faq.html" class="block text-slate-300 hover:text-primary-light transition">Học Phí</a>
+            <a href="blog.html" class="block text-slate-300 hover:text-primary-light transition">Blog</a>
+            <a href="vision.html" class="block text-slate-300 hover:text-primary-light transition">Tầm Nhìn</a>
+            <a href="free-trial.html" class="block text-slate-300 hover:text-primary-light transition">Dùng Thử Miễn Phí</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">KẾT NỐI VỚI CHÚNG TÔI!</h3>
+          <div class="flex gap-3">
+            <a href="https://www.facebook.com/share/1An2WsT9X5/" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Facebook">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/techtutor.academy?igsh=MWljOWJjbndwY2l0dQ==" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Instagram">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://zalo.me/0902776753" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Zalo">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0zm.5 14.969h-4.25a.469.469 0 110-.938h4.25a.469.469 0 110 .938zm2.406-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938zm0-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-slate-700 text-center">
+        <p class="text-sm text-slate-400">© 2026 TechTutor Academy. Bảo lưu mọi quyền.</p>
+        <p class="text-xs text-slate-500 mt-2">Hỗ trợ song ngữ Tiếng Anh / Tiếng Việt</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const state = { base: 15000000, format: 'private', journey: 'explorer', academy: 0, count: 1, discount: 0, payment: 'full' };
+    const FORMAT_PRICE = { private: 15000000, shared: 8400000 };
+    const ACADEMY_ADD = 2000000;
+
+    const fmt = n => new Intl.NumberFormat('vi-VN').format(Math.round(n)) + ' ₫';
+
+    function togglePathway(btn){ btn.parentElement.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); }
+
+    function selectFormat(el, val){
+      document.querySelectorAll('[data-format]').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+      state.format = val; state.base = FORMAT_PRICE[val];
+      update();
+    }
+    function selectJourney(el, val){
+      document.querySelectorAll('[data-journey]').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+      state.journey = val; state.academy = (val === 'academy') ? ACADEMY_ADD : 0;
+      update();
+    }
+    function selectPlan(el){
+      document.querySelectorAll('[data-count]').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+      state.count = parseInt(el.dataset.count, 10);
+      state.discount = parseFloat(el.dataset.discount);
+      update();
+    }
+    function selectPayment(val){
+      state.payment = val;
+      document.getElementById('payFull').classList.toggle('active', val === 'full');
+      document.getElementById('paySplit').classList.toggle('active', val === 'split');
+      update();
+    }
+
+    function update(){
+      const perProgram = state.base + state.academy;
+      const gross = perProgram * state.count;
+      const saving = gross * state.discount;
+      const total = gross - saving;
+
+      document.getElementById('sumFormat').textContent = state.format === 'private' ? 'Kèm Riêng 1:1' : 'Học Nhóm';
+      document.getElementById('sumJourney').textContent = state.journey === 'academy' ? 'Academy' : 'Explorer';
+      document.getElementById('sumCount').textContent = state.count;
+      document.getElementById('sumPer').textContent = fmt(perProgram);
+      document.getElementById('sumSessions').textContent = 'Tổng ' + (state.count * 24) + ' buổi học';
+
+      const rowDiscount = document.getElementById('rowDiscount');
+      if (saving > 0){ rowDiscount.classList.remove('hidden'); document.getElementById('sumDiscount').textContent = '– ' + fmt(saving); }
+      else { rowDiscount.classList.add('hidden'); }
+
+      document.getElementById('sumTotal').textContent = fmt(total);
+
+      const splitNote = document.getElementById('splitNote');
+      if (state.payment === 'split'){ splitNote.classList.remove('hidden'); document.getElementById('sumSplit').textContent = fmt(total / 2); }
+      else { splitNote.classList.add('hidden'); }
+    }
+
+    update();
+  </script>
+</body>
+</html>
