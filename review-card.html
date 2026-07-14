@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leave a Review — TechTutor Academy</title>
+  <link rel="icon" type="image/png" href="images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(25,59,146,0.12), 0 0 0 1px rgba(25,59,146,0.07);
+      overflow: hidden;
+    }
+
+    .card-header {
+      position: relative;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      overflow: hidden;
+    }
+    .card-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #193b92 0%, #2C7A7B 100%);
+    }
+    .card-header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 100' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C100,70 200,90 300,70 S380,50 400,60 L400,0 L0,0 Z' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E") no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .trophy-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .stars button {
+      font-size: 32px;
+      padding: 0 2px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s;
+      filter: grayscale(1) opacity(0.3);
+    }
+    .stars button:hover,
+    .stars button.active { filter: none; transform: scale(1.15); }
+
+    textarea {
+      width: 100%;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      color: #374151;
+      resize: none;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    textarea:focus { border-color: #193b92; }
+    textarea::placeholder { color: #cbd5e1; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      border-radius: 16px;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      background: #e2e8f0;
+      color: #94a3b8;
+      transition: all 0.2s;
+    }
+    .btn-submit.active {
+      background: linear-gradient(135deg, #193b92, #2952b8);
+      color: white;
+      box-shadow: 0 6px 20px rgba(25,59,146,0.25);
+    }
+    .btn-submit.active:hover { opacity: 0.92; }
+
+    .btn-google {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 16px;
+      font-size: 15px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #193b92, #2952b8);
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(25,59,146,0.28);
+      transition: opacity 0.2s;
+    }
+    .btn-google:hover { opacity: 0.9; }
+
+    .state { display: none; }
+    .state.active { display: flex; }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6">
+
+  <div style="width:100%;max-width:380px;display:flex;flex-direction:column;gap:0;">
+
+    <!-- ── State: form ── -->
+    <div id="state-form" class="state active" style="flex-direction:column;">
+      <div class="card">
+
+        <!-- Header -->
+        <div class="card-header">
+          <div class="trophy-icon" style="position:relative;z-index:1;">🏆</div>
+          <div style="position:relative;z-index:1;">
+            <p style="color:rgba(255,255,255,0.6);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 3px;">Program complete</p>
+            <h3 style="color:white;font-weight:900;font-size:18px;line-height:1.2;margin:0 0 2px;" id="student-name">Minh Khoa</h3>
+            <p style="color:rgba(255,255,255,0.65);font-size:13px;margin:0;" id="course-name">Python Basics · 12 lessons</p>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div style="padding:24px 28px;display:flex;flex-direction:column;gap:20px;">
+
+          <!-- Stars -->
+          <div>
+            <p style="font-weight:700;color:#0F172A;margin:0 0 12px;font-size:15px;">How was the experience?</p>
+            <div class="stars" id="stars">
+              <button data-star="1" onclick="setRating(1)">⭐</button>
+              <button data-star="2" onclick="setRating(2)">⭐</button>
+              <button data-star="3" onclick="setRating(3)">⭐</button>
+              <button data-star="4" onclick="setRating(4)">⭐</button>
+              <button data-star="5" onclick="setRating(5)">⭐</button>
+            </div>
+          </div>
+
+          <!-- Review text -->
+          <div>
+            <p style="font-size:13px;font-weight:600;color:#475569;margin:0 0 6px;">Anything you'd like to share? <span style="color:#94a3b8;font-weight:400;">(optional)</span></p>
+            <textarea id="review-text" rows="3" placeholder="What did your child enjoy most? Any feedback for us?"></textarea>
+          </div>
+
+          <button class="btn-submit" id="submit-btn" disabled onclick="handleSubmit()">Submit</button>
+
+          <p style="font-size:11px;color:#94a3b8;text-align:center;margin:0;">
+            Glowing reviews may be shared on our website — we'll always ask first.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── State: thank you (1–3 stars) ── -->
+    <div id="state-thanks" class="state" style="flex-direction:column;">
+      <div class="card" style="padding:40px 32px;text-align:center;align-items:center;display:flex;flex-direction:column;gap:16px;">
+        <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid #bbf7d0;display:grid;place-items:center;font-size:30px;">✅</div>
+        <h3 style="font-weight:900;font-size:22px;color:#0F172A;margin:0;">Thank you!</h3>
+        <p style="color:#64748b;font-size:14px;line-height:1.6;margin:0;">Your feedback helps us keep improving for every family.</p>
+      </div>
+    </div>
+
+    <!-- ── State: google prompt (4–5 stars) ── -->
+    <div id="state-google" class="state" style="flex-direction:column;">
+      <div class="card" style="padding:40px 28px;text-align:center;align-items:center;display:flex;flex-direction:column;gap:20px;">
+        <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#fffbeb,#fef3c7);border:2px solid #fde68a;display:grid;place-items:center;font-size:30px;">⭐</div>
+        <div>
+          <h3 style="font-weight:900;font-size:22px;color:#0F172A;margin:0 0 8px;">Glad you loved it!</h3>
+          <p style="color:#64748b;font-size:14px;line-height:1.6;margin:0;">Would you take 30 seconds to share that on Google? It helps other parents find us.</p>
+        </div>
+        <a href="https://g.page/r/YOUR_GOOGLE_REVIEW_ID/review" target="_blank" rel="noopener" class="btn-google">
+          <svg width="18" height="18" viewBox="0 0 48 48">
+            <path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 33.1 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 7.9 2.9l5.7-5.7C34.5 6.9 29.5 4.9 24 4.9 13.5 4.9 5 13.4 5 23.9S13.5 43 24 43c10.5 0 19-8.5 19-19 0-1.3-.1-2.5-.4-3.6z"/>
+            <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.3 19 12 24 12c3.1 0 5.8 1.1 7.9 2.9l5.7-5.7C34.5 6.9 29.5 4.9 24 4.9c-7.7 0-14.3 4.3-17.7 10.8z"/>
+            <path fill="#4CAF50" d="M24 43c5.4 0 10.3-1.9 14-5.1l-6.5-5.5C29.6 34.5 27 35.5 24 35.5c-5.2 0-9.6-2.9-11.3-7l-6.6 5.1C9.6 39.5 16.4 43 24 43z"/>
+            <path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.9 2.5-2.6 4.6-4.8 6l6.5 5.5C37 38.9 43 32 43 24c0-1.3-.1-2.5-.4-3.6z"/>
+          </svg>
+          Post on Google Reviews
+        </a>
+        <button onclick="showState('state-thanks')" style="font-size:12px;color:#94a3b8;background:none;border:none;cursor:pointer;padding:0;">No thanks, skip</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentRating = 0;
+
+    function setRating(n) {
+      currentRating = n;
+      document.querySelectorAll('#stars button').forEach((btn, i) => {
+        btn.classList.toggle('active', i < n);
+      });
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.disabled = false;
+      submitBtn.classList.add('active');
+    }
+
+    function handleSubmit() {
+      if (currentRating === 0) return;
+      if (currentRating >= 4) {
+        showState('state-google');
+      } else {
+        showState('state-thanks');
+      }
+    }
+
+    function showState(id) {
+      document.querySelectorAll('.state').forEach(el => el.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    // Populate from URL params when embedded: ?student=Minh+Khoa&course=Python+Basics
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('student')) document.getElementById('student-name').textContent = params.get('student');
+    if (params.get('course')) document.getElementById('course-name').textContent = params.get('course');
+  </script>
+</body>
+</html>
