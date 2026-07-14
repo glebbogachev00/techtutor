@@ -6,6 +6,12 @@
 (function() {
   'use strict';
 
+  // Skip geo-redirection during local development so /en/ can be previewed.
+  const host = window.location.hostname;
+  if (host === 'localhost' || host === '127.0.0.1' || host === '' || host.endsWith('.local')) {
+    return;
+  }
+
   // Check if we should skip redirection (if already on regional site)
   const currentPath = window.location.pathname;
   if (currentPath.startsWith('/in/') || currentPath.startsWith('/us/')) {
