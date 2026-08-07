@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "content-console",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["ops/content-console.py"],
+      "port": 8778
+    },
+    {
+      "name": "portal",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "portal", "run", "dev"],
+      "port": 3000
+    }
+  ]
+}
