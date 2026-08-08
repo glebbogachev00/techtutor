@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+/* =========================================================
+   Gurren Grow — design system
+   Black, polished, quiet confidence (Cursor / Resend look)
+   ========================================================= */
+
+@theme inline {
+  --color-bg: #0a0a0a;
+  --color-panel: #111111;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-fg: #ededed;
+  --color-muted: #a1a1a1;
+  --color-faint: #666666;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, "SF Mono", monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0a0a0a;
+  color: #ededed;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #ededed;
+  color: #0a0a0a;
+}
+
+/* Subtle top glow, Resend-style */
+.hero-glow {
+  background:
+    radial-gradient(ellipse 60% 40% at 50% -10%, rgba(255, 255, 255, 0.08), transparent),
+    radial-gradient(ellipse 40% 30% at 80% 0%, rgba(255, 255, 255, 0.04), transparent);
+}
+
+/* Hairline borders */
+.hairline {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.hairline-t {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Mono eyebrow labels */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #a1a1a1;
+}
+
+/* Primary button — white on black, like Resend */
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ededed;
+  color: #0a0a0a;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.btn-white:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Ghost button */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ededed;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Card */
+.panel {
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  transition: border-color 0.25s ease;
+}
+.panel:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Entrance animation */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.fade-up-1 { animation-delay: 0.08s; }
+.fade-up-2 { animation-delay: 0.16s; }
+.fade-up-3 { animation-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { animation: none; }
+}
