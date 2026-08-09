@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What is 3D modelling? | TechTutor Academy</title>
+<meta name="description" content="A one-minute, hands-on explanation of 3D design for parents. Spin a real mesh, add points, and see what a 3D model is actually made of." />
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#d9dde5;
+    --accent:#193B92;
+    --accent-soft:#eef2fb;
+  }
+  html{-webkit-text-size-adjust:100%}
+  body{background:#fff;color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;font-size:16px}
+  a{color:inherit}
+
+  .top{max-width:820px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    font-size:24px;font-weight:900;letter-spacing:-.025em;text-decoration:none;line-height:1}
+  .brand .b1{color:#193b92}
+  .brand .b2{color:#14b8a6}
+  .back{font-size:13px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+  .back:hover{color:var(--accent);border-color:var(--accent)}
+
+  main{max-width:820px;margin:0 auto;padding:0 24px 80px}
+
+  .kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
+  h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(34px,6vw,52px);line-height:1.08;letter-spacing:-.02em;margin-bottom:16px}
+  .lead-text{font-size:clamp(17px,2.2vw,19px);color:#333;max-width:640px}
+  .lead-text strong{font-weight:600;color:var(--accent)}
+  .lead{padding:18px 0 34px}
+
+  /* ---------- demo ---------- */
+  .demo{border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff}
+  .demo-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .demo-head{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .rep{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);font-weight:500;cursor:pointer}
+  .rep input{width:16px;height:16px;accent-color:var(--accent)}
+
+  canvas{display:block;width:100%;height:290px;border:1px solid var(--line);border-radius:12px;
+    background:#fcfcfd;cursor:grab;touch-action:none}
+  canvas:active{cursor:grabbing}
+
+  .readout{margin-top:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:15px;background:#fbfcfe;
+    transition:border-color .18s ease,box-shadow .18s ease}
+  .readout.live{border-color:var(--accent);box-shadow:0 0 0 3px rgba(25,59,146,.10)}
+  .readout strong{color:var(--accent)}
+
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .chip{font-family:inherit;font-size:13px;font-weight:600;color:var(--accent);background:var(--accent-soft);
+    border:1px solid #dbe3f3;border-radius:999px;padding:9px 15px;cursor:pointer}
+  .chip:hover{background:#e2eaf8}
+  .chip.ghost{color:var(--muted);background:#fff;border-color:var(--line)}
+
+  .demo-note{margin-top:18px;font-size:15px;color:#333;border-top:1px solid var(--line);padding-top:16px}
+  .demo-note strong{font-weight:600;color:var(--accent)}
+
+  /* ---------- lists ---------- */
+  h2{font-family:'DM Serif Display',serif;font-weight:400;font-size:28px;letter-spacing:-.01em;margin-bottom:18px}
+  .make{padding:52px 0 0}
+  .item{border-top:1px solid var(--line);padding:18px 0;display:grid;grid-template-columns:150px 1fr;gap:6px 24px}
+  .item h3{font-size:15px;font-weight:600;color:var(--accent);line-height:1.4}
+  .item p{font-size:15px;color:var(--muted)}
+
+  .why{padding:52px 0 0}
+  .why-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .why-card{border:1px solid var(--line);border-radius:14px;padding:20px}
+  .why-card h3{font-size:15px;font-weight:600;color:var(--accent);margin-bottom:6px;line-height:1.4}
+  .why-card p{font-size:14px;color:var(--muted)}
+
+  /* ---------- fit + cta ---------- */
+  .fit{margin-top:52px;border:1px solid var(--line);border-radius:16px;padding:26px}
+  .facts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+  .fact{font-size:13px;font-weight:500;color:#1f2937;background:var(--accent-soft);border:1px solid #dbe3f3;border-radius:999px;padding:6px 14px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{display:inline-block;text-decoration:none;font-size:15px;font-weight:600;border-radius:10px;padding:13px 26px}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:#122f77}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+  button,a.btn{touch-action:manipulation}
+
+  @media (max-width:600px){
+    .top{padding:18px 20px}
+    main{padding:0 20px 64px}
+    .lead{padding:14px 0 26px}
+    .item{grid-template-columns:1fr;gap:4px}
+    .make,.why{padding-top:42px}
+    .demo{padding:16px}
+    canvas{height:250px}
+    .chips{width:100%}
+    .chip{flex:1;text-align:center;padding:12px 10px}
+    .why-grid{grid-template-columns:1fr}
+    .fit{padding:20px}
+    .cta-row{flex-direction:column;align-items:stretch}
+    .btn{text-align:center;padding:15px 26px}
+  }
+  .tools{margin-bottom:18px;font-size:14px;color:var(--muted)}
+  .tools strong{color:var(--ink);font-weight:600}
+  .tools a{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(25,59,146,.3)}
+  .tools a:hover{border-color:var(--accent)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="/en/index.html" aria-label="TechTutor home"><span class="b1">Tech</span><span class="b2">Tutor</span></a>
+  <a class="back" href="/en/resources.html">Back to resources</a>
+</header>
+
+<main>
+
+  <section class="lead">
+    <p class="kicker">Program explainer</p>
+    <h1>What is 3D modelling?</h1>
+    <p class="lead-text">A 3D model isn't a drawing. It's <strong>a set of points in space, joined into
+      flat faces</strong> — and every character, prop and building you've seen in a game or a film is made
+      this way. Drag the shape below to spin it.</p>
+  </section>
+
+  <section class="demo">
+    <div class="demo-top">
+      <p class="demo-head">Spin it, then add points</p>
+      <label class="rep"><input type="checkbox" id="wire" checked> show the mesh</label>
+    </div>
+
+    <canvas id="stage" aria-label="A 3D mesh you can drag to rotate"></canvas>
+
+    <div class="readout" id="readout"></div>
+
+    <div class="chips">
+      <button type="button" class="chip" id="moreBtn">Add more points</button>
+      <button type="button" class="chip ghost" id="resetBtn">Back to the start</button>
+    </div>
+
+    <p class="demo-note">More points means a smoother surface and more work for the computer — the trade-off
+      3D artists make every day. <strong>Everything after this — colour, texture, lighting, animation — is
+      layered on top of these points.</strong></p>
+  </section>
+
+  <section class="make">
+    <h2>What they'll actually make</h2>
+
+    <div class="item">
+      <h3>Models, built properly</h3>
+      <p>Starting from cubes, spheres and cylinders in Blender, then moving to real modelling techniques —
+        the same free tool used in studios, not a simplified toy version.</p>
+    </div>
+    <div class="item">
+      <h3>Texture, light and render</h3>
+      <p>Surfaces that look like metal, wood or skin; lighting a scene so it reads; and rendering a finished
+        image. This is where a grey shape starts looking like a photograph.</p>
+    </div>
+    <div class="item">
+      <h3>A portfolio, and some Python</h3>
+      <p>Projects are portfolio-ready pieces rather than exercises, and later levels use Python to generate
+        models — geometry described in code instead of placed by hand.</p>
+    </div>
+  </section>
+
+  <section class="why">
+    <h2>Why choose this program</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>Blender is the industry tool</h3>
+        <p>Free, professional, and used in real studios for film, games and product design. Nothing here has
+          to be unlearned later.</p>
+      </div>
+      <div class="why-card">
+        <h3>Creative and technical at once</h3>
+        <p>It rewards children who like drawing as much as those who like building. The artistic side is real,
+          but so is the spatial and mathematical thinking underneath it.</p>
+      </div>
+      <div class="why-card">
+        <h3>You can see the progress</h3>
+        <p>3D work is visual by nature. Each week produces an image you can look at, which makes it one of the
+          easiest programs to follow without understanding the software.</p>
+      </div>
+      <div class="why-card">
+        <h3>It leads somewhere</h3>
+        <p>3D feeds directly into game art, animation, architecture, product design and VFX — and the Python
+          modelling in level 3 opens the door to the programming side of it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fit">
+    <p class="tools"><strong>The tool:</strong> <a href="https://www.blender.org" target="_blank" rel="noopener">Blender</a> — free and open source, and the same software used in film and game studios.</p>
+    <div class="facts">
+      <span class="fact">Ages 10–16</span>
+      <span class="fact">24 lessons, 3 levels</span>
+      <span class="fact">90-minute live sessions</span>
+      <span class="fact">Blender is free</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="/en/free-trial.html">Book a free trial</a>
+      <a class="btn btn-ghost" href="/en/brochures/3d-designer.html">See all 24 lessons</a>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var cvs = document.getElementById('stage');
+  var ctx = cvs.getContext('2d');
+  var readout = document.getElementById('readout');
+  var wireBox = document.getElementById('wire');
+
+  var STEPS = [4, 8, 16, 32];
+  var level = 0;
+  var W = 0, H = 0, rx = -0.35, ry = 0.6, spin = true;
+
+  function resize(){
+    var r = cvs.getBoundingClientRect();
+    var dpr = window.devicePixelRatio || 1;
+    W = r.width; H = r.height;
+    cvs.width = Math.round(W * dpr);
+    cvs.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  // a UV sphere: lat bands x lon segments
+  function build(seg){
+    var lat = Math.max(3, Math.floor(seg / 2)), verts = [], faces = [];
+    for (var i = 0; i <= lat; i++){
+      var theta = i / lat * Math.PI;
+      for (var j = 0; j < seg; j++){
+        var phi = j / seg * Math.PI * 2;
+        verts.push([
+          Math.sin(theta) * Math.cos(phi),
+          Math.cos(theta),
+          Math.sin(theta) * Math.sin(phi)
+        ]);
+      }
+    }
+    for (var i2 = 0; i2 < lat; i2++){
+      for (var j2 = 0; j2 < seg; j2++){
+        var a = i2 * seg + j2;
+        var b = i2 * seg + (j2 + 1) % seg;
+        faces.push([a, b, b + seg, a + seg]);
+      }
+    }
+    return { verts: verts, faces: faces };
+  }
+
+  var mesh = build(STEPS[level]);
+
+  function shade(t){
+    // one hue, dark to light — keeps the page on a single accent
+    t = Math.max(0, Math.min(1, t));
+    var r = Math.round(13 + t * 134), g = Math.round(31 + t * 130), b = Math.round(77 + t * 128);
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    var R = Math.min(W, H) * 0.32, cx = W / 2, cy = H / 2, focal = 3.2;
+    var cxr = Math.cos(rx), sxr = Math.sin(rx), cyr = Math.cos(ry), syr = Math.sin(ry);
+
+    var pts = mesh.verts.map(function(v){
+      var x = v[0] * cyr + v[2] * syr;
+      var z = -v[0] * syr + v[2] * cyr;
+      var y = v[1] * cxr - z * sxr;
+      z = v[1] * sxr + z * cxr;
+      var k = focal / (focal + z);
+      // keep the rotated 3D position too, so faces can be lit by their normal
+      return { x: cx + x * R * k, y: cy + y * R * k, z: z, X: x, Y: y, Z: z };
+    });
+
+    var quads = [];
+    mesh.faces.forEach(function(f){
+      // the shape is convex, so sorting back-to-front is enough — no culling needed
+      var zAvg = 0;
+      for (var i = 0; i < f.length; i++) zAvg += pts[f[i]].z;
+
+      // flat shading: how squarely does this face meet the light?
+      var a = pts[f[0]], b = pts[f[1]], c = pts[f[2]], d = pts[f[3]];
+      // on the polar bands two corners coincide, so pick a corner that isn't degenerate
+      var e1 = [b.X - a.X, b.Y - a.Y, b.Z - a.Z];
+      if (Math.abs(e1[0]) + Math.abs(e1[1]) + Math.abs(e1[2]) < 1e-6){
+        e1 = [c.X - a.X, c.Y - a.Y, c.Z - a.Z];
+      }
+      var e2 = [d.X - a.X, d.Y - a.Y, d.Z - a.Z];
+      var nx = e1[1] * e2[2] - e1[2] * e2[1];
+      var ny = e1[2] * e2[0] - e1[0] * e2[2];
+      var nz = e1[0] * e2[1] - e1[1] * e2[0];
+      var len = Math.sqrt(nx * nx + ny * ny + nz * nz) || 1;
+      // light from the upper left, slightly in front
+      var lit = Math.abs((nx * -0.35 + ny * -0.6 + nz * -0.72) / len);
+
+      quads.push({ f: f, z: zAvg / f.length, lit: lit });
+    });
+    quads.sort(function(a, b){ return b.z - a.z; });
+
+    var showWire = wireBox.checked;
+    quads.forEach(function(q){
+      ctx.beginPath();
+      for (var i = 0; i < q.f.length; i++){
+        var p = pts[q.f[i]];
+        if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
+      }
+      ctx.closePath();
+      ctx.fillStyle = shade(0.15 + q.lit * 0.85);
+      ctx.fill();
+      if (showWire){
+        ctx.strokeStyle = 'rgba(255,255,255,0.55)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    });
+
+    if (showWire){
+      ctx.fillStyle = '#0d1f4d';
+      pts.forEach(function(p){
+        if (p.z > 0.15) return; // only the points facing us
+        ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI * 2); ctx.fill();
+      });
+    }
+  }
+
+  function report(flash){
+    readout.innerHTML = 'This shape is <strong>' + mesh.verts.length + ' points</strong> joined into <strong>' +
+      mesh.faces.length + ' faces</strong>.';
+    if (flash){
+      readout.classList.add('live');
+      setTimeout(function(){ readout.classList.remove('live'); }, 380);
+    }
+  }
+
+  // drag to rotate
+  var dragging = false, lastX = 0, lastY = 0;
+  cvs.addEventListener('pointerdown', function(e){
+    dragging = true; spin = false; lastX = e.clientX; lastY = e.clientY;
+    cvs.setPointerCapture(e.pointerId);
+  });
+  cvs.addEventListener('pointermove', function(e){
+    if (!dragging) return;
+    ry += (e.clientX - lastX) * 0.01;
+    rx += (e.clientY - lastY) * 0.01;
+    rx = Math.max(-1.4, Math.min(1.4, rx));
+    lastX = e.clientX; lastY = e.clientY;
+    draw();
+  });
+  function endDrag(){ dragging = false; }
+  cvs.addEventListener('pointerup', endDrag);
+  cvs.addEventListener('pointercancel', endDrag);
+
+  document.getElementById('moreBtn').addEventListener('click', function(){
+    level = (level + 1) % STEPS.length;
+    mesh = build(STEPS[level]);
+    draw(); report(true);
+  });
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    level = 0; mesh = build(STEPS[level]); rx = -0.35; ry = 0.6; spin = true;
+    draw(); report(true);
+  });
+  wireBox.addEventListener('change', draw);
+  window.addEventListener('resize', function(){ resize(); draw(); });
+
+  var last = 0, visible = true;
+  function loop(now){
+    var dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
+    last = now;
+    if (visible && spin && !dragging){ ry += dt * 0.45; draw(); }
+    requestAnimationFrame(loop);
+  }
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(en){
+      visible = en[0].isIntersecting;
+      if (visible) last = 0;
+    }, { threshold: 0.05 }).observe(cvs);
+  }
+
+  resize(); draw(); report(false);
+  requestAnimationFrame(loop);
+})();
+</script>
+
+</body>
+</html>
