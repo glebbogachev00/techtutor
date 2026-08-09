@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZ1XEZXB6"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18127330947"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4MZ1XEZXB6');
+  gtag('config', 'AW-18127330947');
+</script>
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Brochure Tạo Website | TechTutor Academy</title>
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link rel="shortcut icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#f4f4f5;
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#cfd4dc;
+    --brand:#244d9a;
+    --brand-soft:#eaf0fb;
+    --teal:#44bea4;
+    --panel:#1f4a97;
+    --lv1:#e8f7f3;
+    --lv2:#ecf2ff;
+    --lv3:#f4efff;
+  }
+  body{background:#ffffff;color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65;font-size:15px}
+  .hero{max-width:920px;margin:0 auto;padding:64px 56px 44px;border-bottom:1px solid var(--line);background:#ffffff}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .logo{width:250px;max-width:72%;height:auto}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:var(--brand)}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+
+  .progression{margin:24px 0;padding:20px;background:linear-gradient(to right,var(--lv1),var(--lv2),var(--lv3));border-radius:12px;border:1px solid var(--line)}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative}
+  .prog-step::after{content:'→';position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--brand);font-size:20px;font-weight:700}
+  .prog-step:last-child::after{display:none}
+  .prog-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#fff;border:2px solid var(--brand);border-radius:50%;font-weight:700;color:var(--brand);margin-bottom:6px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--ink)}
+  @page{size:A4;margin:10mm}
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .level-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+<style>@keyframes techbash-pop{0%,88%,100%{transform:translateY(0) scale(1)}94%{transform:translateY(-2px) scale(1.07)}}.techbash-nav{animation:techbash-pop 5s ease-in-out infinite;transform-origin:center;display:inline-block}.techbash-nav:hover{animation-play-state:paused}</style></head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Brochure Chương Trình</div>
+    </div>
+    <h1>Tạo Website</h1>
+    <p class="hero-sub">Lộ trình có cấu trúc, lấy dự án làm trọng tâm, nơi học viên học ba ngôn ngữ tạo nên mọi trang web, rồi đưa những trang web thật lên Internet để bất kỳ ai cũng vào xem được.</p>
+    <div class="meta">
+      <div class="pill">Độ tuổi 10-16</div>
+      <div class="pill">Tổng 24 Buổi Học</div>
+      <div class="pill">3 Cấp Độ Tăng Dần</div>
+      <div class="pill">Học Theo Dự Án + Thuyết Trình</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title">Tổng Quan Chương Trình</h2>
+      </div>
+      <div class="overview">
+        <p>Dành cho học viên muốn tạo ra thứ người khác dùng được thật, chương trình dạy ba ngôn ngữ tạo nên mọi trang web — HTML cho cấu trúc, CSS cho hình thức và JavaScript cho hành vi — bằng đúng trình soạn thảo, công cụ trình duyệt và quy trình xuất bản mà lập trình viên chuyên nghiệp dùng hằng ngày. Học viên đi từ một trang đơn có style đến một website nhiều trang có tương tác, được đưa lên một đường link chạy thật, đồng thời học cách đọc lỗi, sắp xếp tệp và cắt bớt phạm vi công việc.</p>
+        <ul>
+          <li><strong>Mô hình học:</strong> Cấu trúc &rarr; Kiểu dáng &rarr; Tương tác &rarr; Xuất bản &rarr; Cải tiến.</li>
+          <li><strong>Hình thức lớp:</strong> Buổi dự án hằng tuần, có giáo viên kèm và các mốc kiểm tra rõ ràng.</li>
+          <li><strong>Phụ huynh theo dõi:</strong> Mỗi dự án là một trang web bạn mở được ngay trên điện thoại của mình.</li>
+          <li><strong>Đo tiến bộ:</strong> Tính năng chạy được, code dễ đọc, và một website đã xuất bản ở cuối mỗi cấp độ.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">LV1</div>
+            <div class="prog-label">Khám Phá<br/>8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV2</div>
+            <div class="prog-label">Xây Dựng<br/>8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV3</div>
+            <div class="prog-label">Sáng Tạo<br/>8 tuần</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Khám Phá (WEBDV-LV1)</h2>
+        <div class="section-meta">8 Buổi Học</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Web hoạt động thế nào</h3><p class="lesson-desc">Học viên hiểu website thực chất là gì: một tập tệp mà trình duyệt đọc và vẽ ra. Các em mở tệp HTML đầu tiên trên máy, làm quen công cụ dành cho nhà phát triển của trình duyệt, và thấy mối liên hệ trực tiếp giữa tệp mình sửa và trang hiện ra trước mắt. Trọng tâm là xóa bỏ sự bí ẩn trước khi học bất kỳ cú pháp nào.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Cấu trúc HTML</h3><p class="lesson-desc">Học viên dựng trang thật đầu tiên bằng tiêu đề, đoạn văn, danh sách, liên kết và hình ảnh. Các em hiểu cách các thẻ lồng vào nhau, vì sao cấu trúc quan trọng với cả người đọc lẫn công cụ tìm kiếm, và nhận ra hậu quả khi quên đóng một thẻ.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">CSS cơ bản</h3><p class="lesson-desc">Học viên thêm màu sắc, kiểu chữ và khoảng cách cho trang. Các em học bộ chọn, thuộc tính và giá trị, rồi thấy một tệp style duy nhất có thể đổi giao diện cả website cùng lúc — khoảnh khắc đầu tiên sản phẩm trông như được thiết kế chứ không phải chỉ được gõ ra.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Mô hình hộp</h3><p class="lesson-desc">Học viên hiểu mọi phần tử đều là một chiếc hộp có padding, viền và margin. Các em dựng một khối thẻ dùng lại được và nhận ra phần lớn lỗi khoảng cách đều là lỗi mô hình hộp — nhờ vậy sửa được thay vì thấy khó hiểu.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Bố cục với Flexbox</h3><p class="lesson-desc">Học viên xếp các phần tử thành hàng và cột, canh chỉnh và phân bố chúng, rồi dựng một thanh điều hướng và một thư viện ảnh chạy được. Đây là lúc trang thôi xếp dọc đơn thuần và bắt đầu có bố cục có chủ ý.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Thiết kế responsive</h3><p class="lesson-desc">Học viên dùng media query để cùng một trang chạy tốt trên laptop và điện thoại. Các em đổi kích thước trình duyệt, tìm chỗ vỡ và sửa — hiểu rằng phần lớn người xem đến từ màn hình nhỏ và website phải đáp ứng được điều đó.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Website nhiều trang</h3><p class="lesson-desc">Học viên tách sản phẩm thành nhiều trang liên kết dùng chung một tệp style, và học cách sắp xếp tệp và thư mục để dự án vẫn dễ hiểu khi vượt quá vài tệp.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Thuyết trình cấp độ 1</h3><p class="lesson-desc">Học viên hoàn thiện và trình bày một website cá nhân nhiều trang. Các em giải thích lựa chọn cấu trúc và thiết kế, trình diễn ở cả cỡ điện thoại lẫn laptop, và góp ý xây dựng cho sản phẩm của bạn cùng lớp.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Xây Dựng (WEBDV-LV2)</h2>
+        <div class="section-meta">8 Buổi Học</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">JavaScript cơ bản</h3><p class="lesson-desc">Học viên làm quen biến, số, chuỗi và cửa sổ console của trình duyệt. Các em viết đoạn script đầu tiên làm thay đổi nội dung trang, và tập đọc console để biết chỗ sai thay vì đoán mò.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Sự kiện</h3><p class="lesson-desc">Học viên nối code với hành động của người xem — bấm, gõ, gửi biểu mẫu. Các em dựng nút và ô nhập biết phản hồi, nắm được khuôn mẫu duy nhất nằm dưới mọi trang web có tương tác.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Điều kiện và logic</h3><p class="lesson-desc">Học viên dùng if và else để trang xử sự khác nhau tùy tình huống, và dựng một biểu mẫu tự kiểm tra dữ liệu nhập rồi giải thích vấn đề trước khi chấp nhận.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Vòng lặp và mảng</h3><p class="lesson-desc">Học viên lưu danh sách dữ liệu và cho hiển thị tự động lên trang. Các em thấy ngay vì sao viết tay từng mục sẽ sớm bế tắc, và vòng lặp giữ cho code ngắn gọn khi danh sách dài ra.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Hàm</h3><p class="lesson-desc">Học viên gói hành vi vào các hàm dùng lại được có tham số, rồi quay lại các dự án cũ để rút gọn. Trọng tâm là đặt tên rõ ràng và không lặp cùng một đoạn code ở ba nơi.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">DOM</h3><p class="lesson-desc">Học viên tạo, sửa và xóa phần tử hoàn toàn bằng code, dựng một danh sách việc cần làm tự cập nhật khi dùng. Đây là buổi mà trang web thôi là một tài liệu và trở thành một ứng dụng.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Làm việc với dữ liệu</h3><p class="lesson-desc">Học viên tải dữ liệu JSON bằng fetch và hiển thị lên trang, để website trình bày được thông tin đến từ nơi khác thay vì gõ tay. Các em cũng xử lý tình huống dữ liệu không tải được.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Thuyết trình cấp độ 2</h3><p class="lesson-desc">Học viên trình bày một ứng dụng web có tương tác, trình diễn từng tính năng và dẫn cả lớp qua đoạn code phía sau — giải thích không chỉ nó làm gì mà còn vì sao làm theo cách đó.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Sáng Tạo (WEBDV-LV3)</h2>
+        <div class="section-meta">8 Buổi Học</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Git và GitHub</h3><p class="lesson-desc">Học viên học quản lý phiên bản: commit, lịch sử, và vì sao công việc chuyên nghiệp không bao giờ là một thư mục đầy tệp tên final-v2. Các em đưa một dự án sẵn có vào quản lý phiên bản và đọc lại chính lịch sử của mình.</p></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Xuất bản</h3><p class="lesson-desc">Học viên đưa sản phẩm lên GitHub Pages hoặc Netlify và nhận một đường link thật. Các em gửi link cho người khác và thấy website mở ra trên một thiết bị không phải của mình — thường là buổi học đáng nhớ nhất của cấp độ này.</p></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Hệ thống thiết kế và khả năng tiếp cận</h3><p class="lesson-desc">Học viên xây một hệ cỡ chữ, bảng màu và nhịp khoảng cách nhất quán thay vì chọn giá trị tùy hứng, đồng thời học những điều cơ bản về khả năng tiếp cận — độ tương phản, văn bản thay thế cho ảnh, dùng bàn phím — thứ quyết định mọi người có dùng được website hay không.</p></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Biểu mẫu chạy thật</h3><p class="lesson-desc">Học viên dựng một biểu mẫu biết kiểm tra dữ liệu nhập, phản hồi rõ ràng, xử lý lỗi tử tế và kết nối tới dịch vụ thu thập câu trả lời thật.</p></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Tốc độ và hình ảnh</h3><p class="lesson-desc">Học viên tìm hiểu vì sao trang chạy chậm — ảnh quá nặng, quá nhiều yêu cầu, script chặn hiển thị — rồi tự đo website của mình trên trình duyệt và thực hiện những thay đổi cụ thể để tăng tốc.</p></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Lập kế hoạch dự án</h3><p class="lesson-desc">Học viên chia website cuối khóa của mình thành từng giai đoạn, quyết định phiên bản đầu bắt buộc phải có gì, và ghi rõ những gì mình cố ý bỏ ra. Biết cắt bớt phạm vi chính là điều khiến dự án hoàn thành được.</p></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Tuần xây dựng</h3><p class="lesson-desc">Thời gian tự xây dựng với giáo viên kèm cặp. Học viên triển khai kế hoạch của mình, tự gỡ lỗi, và tập cách hỏi xin trợ giúp như một lập trình viên: kèm thông báo lỗi, bối cảnh và những gì đã thử.</p></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Thuyết trình cuối khóa</h3><p class="lesson-desc">Học viên trình bày website đã xuất bản, dẫn qua đoạn code và các quyết định phía sau, thu thập góp ý từ lớp, và ra về với một kế hoạch bằng văn bản cho phiên bản tiếp theo.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Công Cụ Học Viên Dùng</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">💻 VS Code: Trình soạn thảo mà lập trình viên chuyên nghiệp dùng</div>
+        <div class="tool">🌐 Chrome DevTools: Kiểm tra, gỡ lỗi và thử nghiệm trang</div>
+        <div class="tool">🏗️ HTML &amp; CSS: Cấu trúc và hình thức của mọi trang</div>
+        <div class="tool">⚙️ JavaScript: Hành vi, tương tác và dữ liệu</div>
+        <div class="tool">🔀 Git &amp; GitHub: Quản lý phiên bản và lịch sử code</div>
+        <div class="tool">🚀 GitHub Pages / Netlify: Xuất bản lên một đường link thật</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>Học Viên Thực Sự Làm Ra Gì</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Website cá nhân</h4>
+          <p>Một website nhiều trang về chính học viên — cấu trúc bằng HTML, tạo kiểu bằng CSS, chạy tốt trên cả điện thoại lẫn laptop.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Thư viện ảnh responsive</h4>
+          <p>Bố cục thẻ và thư viện ảnh dựng bằng Flexbox, tự sắp xếp hợp lý ở mọi chiều rộng màn hình.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Ứng dụng việc cần làm</h4>
+          <p>Một ứng dụng chạy thật, nơi các mục được thêm, đánh dấu hoàn thành và xóa hoàn toàn bằng JavaScript, cập nhật trang ngay khi dùng.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Trang chạy bằng dữ liệu</h4>
+          <p>Một trang tải thông tin từ tệp JSON và hiển thị tự động, kèm thông báo hợp lý khi dữ liệu không tải được.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Biểu mẫu liên hệ chạy thật</h4>
+          <p>Một biểu mẫu kiểm tra nội dung nhập, phản hồi rõ ràng và gửi đi thật chứ không phải giả vờ.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Website tốt nghiệp đã xuất bản</h4>
+          <p>Một website do chính học viên thiết kế, lên kế hoạch theo giai đoạn, quản lý phiên bản trên GitHub và xuất bản tới một đường link ai cũng mở được.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Vì Sao Phụ Huynh Chọn Chương Trình Này</h2>
+      </div>
+      <div class="overview">
+        <p>Lập trình web là tầng nền của phần lớn những thứ con bạn đang dùng. Ứng dụng, bảng số liệu, cửa hàng online và hầu hết công cụ AI đều chạy qua trình duyệt, và HTML, CSS, JavaScript chính là thứ tạo nên chúng. Đây cũng là vòng phản hồi nhanh nhất trong lập trình: sửa một dòng, tải lại, thấy ngay — lý do phần lớn lập trình viên tự học đều bắt đầu từ web.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Gõ code thật từ buổi đầu</h4>
+          <p>Cú pháp thật, tệp thật, thông báo lỗi thật. Học cách đọc xem trình duyệt đang than phiền điều gì là một phần của việc học, không phải chướng ngại.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Thấy kết quả sau vài giây</h4>
+          <p>Lưu tệp, tải lại trang, thấy kết quả. Vòng lặp đủ ngắn để giữ chân người mới qua những tuần đầu khó khăn.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Kết thúc bằng một đường link</h4>
+          <p>Mỗi cấp độ kết thúc bằng thứ mở được trên điện thoại. Không còn mơ hồ về chuyện việc đã xong hay chưa.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Nền tảng cho mọi thứ về sau</h4>
+          <p>Cùng những ngôn ngữ đó đi tiếp sang phát triển ứng dụng, dự án khởi nghiệp và bất kỳ framework nào sau này. Không có gì học ở đây phải bỏ đi để học lại.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Con Bạn Trưởng Thành Ra Sao</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">Đọc lỗi mà không hoảng</h3>
+          <p class="lesson-desc">Học viên hiểu thông báo lỗi là thông tin, không phải thất bại. Các em đọc nó, xác định dòng gây lỗi và đặt giả thuyết trước khi sửa bất cứ thứ gì.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Tư duy cấu trúc</h3>
+          <p class="lesson-desc">Việc lồng thẻ, phân cấp và sắp xếp trong HTML chuyển thẳng sang cách tổ chức bài luận, ghi chép và lập luận ở trường.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">Cảm quan thị giác</h3>
+          <p class="lesson-desc">Khoảng cách, canh lề, tương phản và kiểu chữ trở thành thứ học viên nhận ra và điều khiển được, thay vì thứ tự nhiên xảy ra.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Gỡ lỗi như một phương pháp</h3>
+          <p class="lesson-desc">Khoanh vùng vấn đề, thử từng thay đổi một và hoàn tác thứ không hiệu quả là thói quen giải quyết vấn đề nói chung, không phải mẹo lập trình.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Làm việc với dữ liệu có hình dạng</h3>
+          <p class="lesson-desc">Hiểu rằng thông tin có hình dạng — danh sách, bản ghi, trường dữ liệu — là nền cho bảng tính, cơ sở dữ liệu và phần lớn công việc kỹ thuật về sau.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">Kỷ luật quản lý phiên bản</h3>
+          <p class="lesson-desc">Lưu lại công việc theo từng bước có ý nghĩa và quay lui được dạy một cách làm việc khiến ta hết sợ làm hỏng.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">07</div>
+        <div>
+          <h3 class="lesson-title">Hoàn thành và đưa ra thế giới</h3>
+          <p class="lesson-desc">Khoanh phạm vi dự án, cắt bỏ thứ không vừa và đưa được nó lên mạng là một chu trình trọn vẹn mà phần lớn học viên chưa từng trải qua.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Kết Quả Chương Trình</h3>
+      <ul>
+        <li>Một website nhiều trang đã xuất bản tại đường link của chính học viên</li>
+        <li>Nắm chắc HTML, CSS và JavaScript, viết bằng tay</li>
+        <li>Một hồ sơ GitHub với lịch sử commit thật thể hiện quá trình làm</li>
+        <li>Thói quen tự lên kế hoạch, khoanh phạm vi và hoàn thành một dự án</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎓</span>Kỹ Năng Đạt Được</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>HTML &amp; cấu trúc ngữ nghĩa</h4>
+          <p>Dựng trang có cấu trúc đúng cho cả người đọc, trình duyệt lẫn công cụ tìm kiếm.</p>
+        </article>
+        <article class="parent-card">
+          <h4>CSS &amp; bố cục responsive</h4>
+          <p>Flexbox, mô hình hộp và media query — bố cục một trang chạy tốt ở mọi cỡ màn hình.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Lập trình JavaScript</h4>
+          <p>Biến, điều kiện, vòng lặp, hàm, sự kiện và DOM: lập trình phổ quát, học ngay trong trình duyệt.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Làm việc với dữ liệu có hình dạng</h4>
+          <p>Mảng, JSON và fetch — hiển thị thông tin đến từ bên ngoài trang.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Git &amp; GitHub</h4>
+          <p>Commit, lịch sử và quản lý phiên bản như một phần bình thường của cách làm việc.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Xuất bản &amp; đưa lên mạng</h4>
+          <p>Đưa một dự án từ thư mục trên máy tới một địa chỉ thật mà người khác vào xem được.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Câu Hỏi Thường Gặp Của Phụ Huynh</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Con tôi có cần biết lập trình trước không?</h3>
+          <p class="lesson-desc">Không. Cấp độ 1 chỉ giả định con biết dùng máy tính. Bạn nào đã học Scratch hoặc GDevelop sẽ thấy quen và đi nhanh hơn, nhưng đó không phải điều kiện bắt buộc.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">Đây là lập trình thật hay bản rút gọn?</h3>
+          <p class="lesson-desc">Là thật. Học viên tự gõ HTML, CSS và JavaScript trong một trình soạn thảo chuyên nghiệp, dùng công cụ nhà phát triển của trình duyệt và xuất bản bằng Git. Không có lớp đơn giản hóa nào ở giữa.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">Khác gì với Nền Tảng Khởi Nghiệp?</h3>
+          <p class="lesson-desc">Công cụ có trùng nhau, nhưng mục tiêu khác. Chương trình này đào sâu vào chính lập trình web; Nền Tảng Khởi Nghiệp hướng đúng những công cụ đó vào một sản phẩm có người dùng thật, kèm phần kiểm chứng, khoanh phạm vi và thu thập phản hồi.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">Ở nhà con tôi cần gì?</h3>
+          <p class="lesson-desc">Một máy tính xách tay hoặc để bàn có Chrome. Mọi công cụ dùng trong chương trình đều miễn phí, và mọi thứ con làm ra đều mở được trên điện thoại của bạn.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">Tôi theo dõi tiến bộ của con bằng cách nào?</h3>
+          <p class="lesson-desc">Mỗi cấp độ kết thúc bằng một buổi thuyết trình, và từ cấp độ 3 trở đi sản phẩm nằm ở một đường link công khai cùng lịch sử GitHub mà bạn xem lại bất cứ lúc nào.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Bắt Đầu</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Đặt một buổi học thử miễn phí để xem chương trình có phù hợp với con bạn không.</p>
+      <p>Điện thoại/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Giờ làm việc: Thứ 2-6 8:00-21:00 | Thứ 7-CN 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>

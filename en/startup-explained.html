@@ -40,28 +40,42 @@
   .demo{border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff}
   .demo-head{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:12px}
 
-  .ideas{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-  .idea{font-family:inherit;font-size:13px;font-weight:600;color:var(--accent);background:var(--accent-soft);
-    border:1px solid #dbe3f3;border-radius:999px;padding:9px 15px;cursor:pointer;text-align:left}
-  .idea:hover{background:#e2eaf8}
-  .idea.is-on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .split{display:grid;grid-template-columns:1fr 260px;gap:22px;align-items:start}
+  .split > div{min-width:0}
 
-  .q{border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:10px}
-  .q-label{font-size:15px;font-weight:600;margin-bottom:9px}
-  .opts{display:flex;gap:7px;flex-wrap:wrap}
-  .opt{font-family:inherit;font-size:13px;font-weight:600;color:var(--muted);background:#fff;border:1px solid var(--line);
-    border-radius:999px;padding:8px 14px;cursor:pointer}
-  .opt:hover{border-color:var(--accent);color:var(--accent)}
-  .opt.is-on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .panel{border:1px solid var(--line);border-radius:12px;padding:4px 14px}
+  .ctrl{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}
+  .ctrl:last-child{border-bottom:none}
+  .ctrl-label{font-size:13px;font-weight:600;color:var(--muted);white-space:nowrap}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:2px;background:#fff;flex:none}
+  .seg button{font-family:inherit;font-size:12px;font-weight:600;padding:6px 13px;border:none;background:none;
+    border-radius:999px;color:var(--muted);cursor:pointer}
+  .seg button.is-on{background:var(--accent);color:#fff}
 
-  .verdict{margin-top:14px;border:1px solid var(--line);border-left:4px solid var(--line);
-    border-radius:12px;padding:14px 16px;background:#fbfcfe;transition:border-color .2s ease}
-  .verdict.pass{border-color:#dbe3f3;border-left-color:var(--accent);background:var(--accent-soft)}
-  .verdict h4{font-size:16px;font-weight:600;margin-bottom:6px;color:var(--accent)}
-  .verdict ul{list-style:none;margin-top:8px}
-  .verdict li{font-size:14px;color:#444;padding-left:18px;position:relative;margin:6px 0}
-  .verdict li::before{content:'—';position:absolute;left:0;color:var(--muted)}
-  .verdict p{font-size:14px;color:#444}
+  /* the site itself */
+  .browser{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+  .bar{display:flex;align-items:center;gap:7px;padding:8px 10px;background:#f4f6fa;border-bottom:1px solid var(--line)}
+  .dot{width:8px;height:8px;border-radius:50%;background:#cfd6e4}
+  .url{flex:1;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:var(--muted);
+    background:#fff;border:1px solid var(--line);border-radius:5px;padding:3px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .page{padding:18px 16px}
+  .p-head{font-size:19px;font-weight:700;line-height:1.25;margin-bottom:6px}
+  .p-sub{font-size:13px;color:var(--muted);margin-bottom:14px}
+  .p-form{display:flex;gap:6px;flex-wrap:wrap}
+  .p-input{flex:1 1 130px;border:1px solid var(--line);border-radius:8px;padding:9px 10px;font-size:12px;color:#9aa3af;min-width:0}
+  .p-btn{flex:0 0 auto;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:9px 13px;
+    font-family:inherit;font-size:12px;font-weight:600;white-space:nowrap}
+
+  .launch{font-family:inherit;font-size:15px;font-weight:600;color:#fff;background:var(--accent);border:none;
+    border-radius:10px;padding:13px 24px;cursor:pointer;margin-top:14px}
+  .launch:disabled{opacity:.55;cursor:default}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+  .stat{border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;background:#fbfcfe}
+  .stat b{display:block;font-size:24px;font-weight:600;color:var(--accent);line-height:1.15}
+  .stat span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .best{margin-top:12px;font-size:14px;color:var(--muted)}
+  .best strong{color:var(--accent);font-weight:600}
 
   .demo-note{margin-top:18px;font-size:15px;color:#333;border-top:1px solid var(--line);padding-top:16px}
   .demo-note strong{font-weight:600;color:var(--accent)}
@@ -103,8 +117,8 @@
     .item{grid-template-columns:1fr;gap:4px}
     .make,.why{padding-top:42px}
     .demo{padding:16px}
-    .idea{flex:1 1 100%;text-align:center;padding:12px}
-    .opt{flex:1 1 auto;text-align:center;padding:11px 12px}
+    .split{grid-template-columns:1fr;gap:18px}
+    .launch{width:100%}
     .why-grid{grid-template-columns:1fr}
     .fit{padding:20px}
     .cta-row{flex-direction:column;align-items:stretch}
@@ -125,21 +139,45 @@
     <p class="kicker">Program explainer</p>
     <h1>What is Startup Foundations?</h1>
     <p class="lead-text">Most "entrepreneurship for kids" ends in a pitch deck. This one ends in
-      <strong>a working link and someone actually using it</strong> — and it starts with the test below,
-      which every idea has to pass before a single line of code gets written.</p>
+      <strong>a working link and real people signing up</strong> — a site your child builds, publishes, and then
+      changes based on what visitors actually do. Try it below.</p>
   </section>
 
   <section class="demo">
-    <p class="demo-head">Pick an idea, then test it</p>
+    <p class="demo-head">Change the page, then launch it</p>
 
-    <div class="ideas" id="ideas"></div>
+    <div class="split">
+      <div>
+        <div class="browser">
+          <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">mai-bakery.netlify.app</span></div>
+          <div class="page">
+            <p class="p-head" id="pHead"></p>
+            <p class="p-sub" id="pSub"></p>
+            <div class="p-form">
+              <span class="p-input">your@email.com</span>
+              <button class="p-btn" id="pBtn" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <div id="questions"></div>
+      <div>
+        <div class="panel" id="controls"></div>
+        <button class="launch" id="launch" type="button">Send 100 visitors</button>
+      </div>
+    </div>
 
-    <div class="verdict" id="verdict"></div>
+    <div class="stats">
+      <div class="stat"><b id="sVisit">0</b><span>Visitors</span></div>
+      <div class="stat"><b id="sSign">0</b><span>Signed up</span></div>
+      <div class="stat"><b id="sRate">0%</b><span>Conversion</span></div>
+    </div>
+    <p class="best" id="best">Press <strong>Send 100 visitors</strong> to see how many sign up.</p>
 
-    <p class="demo-note">This runs before any building, in the first lesson. <strong>Most first ideas fail
-      it — that is the lesson.</strong> The skill is noticing in week one instead of after six weeks of work.</p>
+    <p class="demo-note">Same product, same code — only the words changed.
+      <strong>That loop is the job: ship it, measure what real people did, change one thing, ship again.</strong>
+      Guessing which version is better is exactly what this program teaches students to stop doing.</p>
   </section>
 
   <section class="make">
@@ -210,93 +248,106 @@
 
 <script>
 (function(){
-  var ideasEl = document.getElementById('ideas');
-  var qEl = document.getElementById('questions');
-  var vEl = document.getElementById('verdict');
+  var controlsEl = document.getElementById('controls');
+  var pHead = document.getElementById('pHead'), pSub = document.getElementById('pSub'), pBtn = document.getElementById('pBtn');
+  var launchBtn = document.getElementById('launch');
+  var sVisit = document.getElementById('sVisit'), sSign = document.getElementById('sSign'), sRate = document.getElementById('sRate');
+  var bestEl = document.getElementById('best');
 
-  var IDEAS = [
-    { id:'game',   label:'A game like Roblox, but better', a:{ who:'everyone', seen:'no',  miss:'no'  } },
-    { id:'bakery', label:"A website for my mum's bakery",  a:{ who:'one',      seen:'yes', miss:'yes' } },
-    { id:'hw',     label:'An app that reminds my class about homework', a:{ who:'group', seen:'yes', miss:'no' } }
+  var VISITORS = 100;
+
+  var CHOICES = [
+    { key:'head', label:'Headline', opts:[
+      { t:'Vague',    lift:0.02, text:'Welcome to our website' },
+      { t:'Specific', lift:0.16, text:'Fresh bread, delivered before 8am' } ] },
+    { key:'sub', label:'Sub-line', opts:[
+      { t:'Vague',    lift:0.01, text:'We are passionate about quality.' },
+      { t:'Specific', lift:0.08, text:'Order by 9pm, it is at your door by 8am.' } ] },
+    { key:'btn', label:'Button', opts:[
+      { t:'Generic',  lift:0.01, text:'Submit' },
+      { t:'Specific', lift:0.09, text:"Get Friday's loaf" } ] }
   ];
 
-  var QUESTIONS = [
-    { key:'who',  label:'Who exactly is it for?', opts:[
-      { v:'everyone', t:'Everyone' }, { v:'group', t:'A group I can name' }, { v:'one', t:'One person I know' } ] },
-    { key:'seen', label:'Have you watched them have this problem?', opts:[
-      { v:'yes', t:'Yes, this week' }, { v:'no', t:'Not yet' } ] },
-    { key:'miss', label:'Would they notice if it vanished tomorrow?', opts:[
-      { v:'yes', t:"They'd ask for it back" }, { v:'no', t:'Probably not' } ] }
-  ];
+  var picked = { head:0, sub:0, btn:0 };
+  var best = null, running = false;
 
-  var FLAGS = {
-    who:  '"Everyone" is not a person. Pick someone you can walk up to and ask.',
-    seen: "You haven't watched the problem happen. Right now it's a guess, not a fact.",
-    miss: "If nobody would miss it, it's a nice-to-have. Real products get missed."
-  };
-
-  var current = IDEAS[0].id;
-  var answers = { who: IDEAS[0].a.who, seen: IDEAS[0].a.seen, miss: IDEAS[0].a.miss };
-
-  function drawIdeas(){
-    ideasEl.innerHTML = '';
-    IDEAS.forEach(function(idea){
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'idea' + (idea.id === current ? ' is-on' : '');
-      b.textContent = idea.label;
-      b.addEventListener('click', function(){
-        current = idea.id;
-        answers = { who: idea.a.who, seen: idea.a.seen, miss: idea.a.miss };
-        render();
-      });
-      ideasEl.appendChild(b);
-    });
+  function optOf(key){
+    var c = CHOICES.filter(function(x){ return x.key === key; })[0];
+    return c.opts[picked[key]];
+  }
+  function rate(){
+    return Math.min(0.6, 0.02 + optOf('head').lift + optOf('sub').lift + optOf('btn').lift);
   }
 
-  function drawQuestions(){
-    qEl.innerHTML = '';
-    QUESTIONS.forEach(function(q){
-      var wrap = document.createElement('div');
-      wrap.className = 'q';
-      var lab = document.createElement('p');
-      lab.className = 'q-label';
-      lab.textContent = q.label;
-      wrap.appendChild(lab);
-      var opts = document.createElement('div');
-      opts.className = 'opts';
-      q.opts.forEach(function(o){
+  function drawControls(){
+    controlsEl.innerHTML = '';
+    CHOICES.forEach(function(c){
+      var row = document.createElement('div'); row.className = 'ctrl';
+      var lab = document.createElement('span'); lab.className = 'ctrl-label'; lab.textContent = c.label;
+      var seg = document.createElement('div'); seg.className = 'seg';
+      c.opts.forEach(function(o, i){
         var b = document.createElement('button');
         b.type = 'button';
-        b.className = 'opt' + (answers[q.key] === o.v ? ' is-on' : '');
+        b.className = picked[c.key] === i ? 'is-on' : '';
         b.textContent = o.t;
-        b.addEventListener('click', function(){ answers[q.key] = o.v; render(); });
-        opts.appendChild(b);
+        b.addEventListener('click', function(){ if (running) return; picked[c.key] = i; drawControls(); drawPage(); });
+        seg.appendChild(b);
       });
-      wrap.appendChild(opts);
-      qEl.appendChild(wrap);
+      row.appendChild(lab); row.appendChild(seg);
+      controlsEl.appendChild(row);
     });
   }
 
-  function drawVerdict(){
-    var problems = [];
-    if (answers.who === 'everyone') problems.push(FLAGS.who);
-    if (answers.seen === 'no')      problems.push(FLAGS.seen);
-    if (answers.miss === 'no')      problems.push(FLAGS.miss);
-
-    vEl.className = 'verdict' + (problems.length ? '' : ' pass');
-    if (!problems.length){
-      vEl.innerHTML = '<h4>Worth building.</h4><p>Smallest next step: put something in front of them this week ' +
-        '— even a drawing on paper — and watch what they do with it.</p>';
-      return;
-    }
-    var html = '<h4>Not yet — ' + problems.length + (problems.length === 1 ? ' problem' : ' problems') + '.</h4><ul>';
-    problems.forEach(function(p){ html += '<li>' + p + '</li>'; });
-    vEl.innerHTML = html + '</ul>';
+  function drawPage(){
+    pHead.textContent = optOf('head').text;
+    pSub.textContent  = optOf('sub').text;
+    pBtn.textContent  = optOf('btn').text;
   }
 
-  function render(){ drawIdeas(); drawQuestions(); drawVerdict(); }
-  render();
+  function launch(){
+    if (running) return;
+    running = true; launchBtn.disabled = true;
+    var r = rate(), started = null, signups = 0, shown = 0;
+    var DURATION = 1200;
+    sVisit.textContent = '0'; sSign.textContent = '0'; sRate.textContent = '0%';
+
+    // a timer rather than requestAnimationFrame: rAF pauses completely in a background
+    // tab, whereas a throttled timer still fires. progress comes from elapsed time, so
+    // the run always finishes correctly however often it is called.
+    var timer = setInterval(tick, 32);
+    function tick(){
+      var now = Date.now();
+      if (started === null) started = now;
+      var p = Math.min(1, (now - started) / DURATION);
+      var target = Math.round(p * VISITORS);
+      while (shown < target){
+        shown++;
+        if (Math.random() < r) signups++;
+      }
+      sVisit.textContent = shown;
+      sSign.textContent = signups;
+      sRate.textContent = shown ? Math.round(signups / shown * 100) + '%' : '0%';
+      if (p < 1) return;
+      clearInterval(timer);
+
+      running = false; launchBtn.disabled = false;
+      var pct = Math.round(signups / VISITORS * 100);
+      if (best === null){
+        bestEl.innerHTML = '<strong>' + signups + ' of 100</strong> signed up. Change something and launch again.';
+      } else if (pct > best){
+        bestEl.innerHTML = 'Better: <strong>' + pct + '%</strong>, up from ' + best + '%.';
+      } else if (pct < best){
+        bestEl.innerHTML = 'Worse: <strong>' + pct + '%</strong>, down from ' + best + '%.';
+      } else {
+        bestEl.innerHTML = 'About the same: <strong>' + pct + '%</strong>.';
+      }
+      best = (best === null || pct > best) ? pct : best;
+    }
+    tick();
+  }
+
+  launchBtn.addEventListener('click', launch);
+  drawControls(); drawPage();
 })();
 </script>
 
