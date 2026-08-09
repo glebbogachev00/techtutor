@@ -51,10 +51,19 @@
     .dropdown-menu a:first-child { border-radius: 12px 12px 0 0; }
     .dropdown-menu a:last-child { border-radius: 0 0 12px 12px; }
     .dropdown-menu a:hover { background: #F3F4F6; color: #193b92; padding-left: 24px; }
-      .hero-cta-row a { white-space: nowrap; }
+      /* secondary hero button: identical box metrics to .btn-primary.
+       inset shadow instead of a border so it adds no width or height */
+    .btn-secondary { background: #fff; color: #193b92; box-shadow: inset 0 0 0 2px #193b92;
+      border-radius: 50px; font-weight: 600; display: inline-block; text-decoration: none;
+      transition: all 0.3s ease; }
+    .btn-secondary:hover { background: #193b92; color: #fff; transform: translateY(-2px);
+      box-shadow: inset 0 0 0 2px #193b92, 0 4px 15px rgba(25, 59, 146, 0.35); }
+    /* doubled class beats Tailwind's .items-center, which loads after this block */
+    .hero-cta-row.hero-cta-row { align-items: stretch; }
+    .hero-cta-row > a { white-space: nowrap; }
     @media (max-width: 640px) {
-      .hero-cta-row { flex-direction: column; align-items: stretch; }
-      .hero-cta-row a { width: 100%; text-align: center; white-space: normal; }
+      .hero-cta-row.hero-cta-row { flex-direction: column; }
+      .hero-cta-row > a { width: 100%; text-align: center; white-space: normal; }
     }
 </style>
 
@@ -208,7 +217,7 @@
           </p>
           <div class="flex items-center gap-4 mb-8 hero-cta-row">
             <a href="../free-trial.html" class="btn-primary text-lg px-10 py-4">Bắt Đầu →</a>
-            <span class="hero-explainer"><a href="../gdevelop-explained.html" class="text-lg px-10 py-4 rounded-full font-semibold border-2 transition inline-block" style="border-color:#193b92;color:#193b92;" onmouseover="this.style.background='#193b92';this.style.color='#fff';" onmouseout="this.style.background='transparent';this.style.color='#193b92';">Thử trong 1 phút →</a></span>
+            <a href="../gdevelop-explained.html" class="btn-secondary hero-explainer text-lg px-10 py-4">Thử trong 1 phút →</a>
           </div>
           <div class="flex items-center gap-6 text-sm text-gray-600">
             <div class="flex items-center gap-2">
