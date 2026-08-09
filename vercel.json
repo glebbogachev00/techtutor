@@ -6,6 +6,26 @@
       "source": "/custom-courses",
       "destination": "/en/custom-courses",
       "permanent": false
+    },
+    {
+      "source": "/in/resources",
+      "destination": "/en/resources",
+      "permanent": false
+    },
+    {
+      "source": "/us/resources",
+      "destination": "/en/resources",
+      "permanent": false
+    },
+    {
+      "source": "/in/:slug(.*-explained)",
+      "destination": "/en/:slug",
+      "permanent": false
+    },
+    {
+      "source": "/us/:slug(.*-explained)",
+      "destination": "/en/:slug",
+      "permanent": false
     }
   ]
 }
