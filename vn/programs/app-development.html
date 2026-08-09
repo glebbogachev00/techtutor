@@ -51,7 +51,12 @@
     .dropdown-menu a:first-child { border-radius: 12px 12px 0 0; }
     .dropdown-menu a:last-child { border-radius: 0 0 12px 12px; }
     .dropdown-menu a:hover { background: #F3F4F6; color: #193b92; padding-left: 24px; }
-  </style>
+      .hero-cta-row a { white-space: nowrap; }
+    @media (max-width: 640px) {
+      .hero-cta-row { flex-direction: column; align-items: stretch; }
+      .hero-cta-row a { width: 100%; text-align: center; white-space: normal; }
+    }
+</style>
 
   <!-- SEO: Hreflang tags for multilingual support -->
     <!-- SEO: Hreflang tags for multilingual support -->
@@ -201,8 +206,9 @@
           <p class="text-xl text-gray-600 mb-8 leading-relaxed">
             Xây dựng ứng dụng di động và web thực bằng các công cụ phát triển chuyên nghiệp. Học cách tạo ứng dụng mà mọi người thực sự sử dụng với nền tảng no-code mạnh mẽ của Thunkable.
           </p>
-          <div class="flex items-center gap-4 mb-8">
+          <div class="flex items-center gap-4 mb-8 hero-cta-row">
             <a href="../free-trial.html" class="btn-primary text-lg px-10 py-4">Bắt Đầu →</a>
+            <span class="hero-explainer"><a href="../app-development-explained.html" class="text-lg px-10 py-4 rounded-full font-semibold border-2 transition inline-block" style="border-color:#193b92;color:#193b92;" onmouseover="this.style.background='#193b92';this.style.color='#fff';" onmouseout="this.style.background='transparent';this.style.color='#193b92';">Thử trong 1 phút →</a></span>
           </div>
           <div class="flex items-center gap-6 text-sm text-gray-600">
             <div class="flex items-center gap-2">
@@ -305,6 +311,20 @@
           </div>
           <h3 class="text-2xl font-bold mb-3 text-ink">App Logic & Data</h3>
           <p class="text-gray-600 text-lg">Databases, APIs, and app functionality</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Try it in simple words -->
+    <section class="mb-20">
+      <div class="rounded-[2rem] border-2 p-8 md:p-12" style="border-color:rgba(25,59,146,0.18);background:rgba(25,59,146,0.05);">
+        <div class="flex flex-col md:flex-row md:items-center gap-8">
+          <div class="flex-1">
+            <span class="inline-block text-xs font-bold tracking-widest uppercase mb-3" style="color:#193b92;">Nói cho dễ hiểu</span>
+            <h2 class="text-3xl md:text-4xl font-black text-ink mb-3">Chưa rõ đây là gì? Thử trong một phút.</h2>
+            <p class="text-lg text-gray-700 max-w-2xl">Dựng một màn hình điện thoại, rồi làm cho nút bấm thực sự hoạt động. Không cần đăng ký, dùng được trên điện thoại — cách nhanh nhất để thấy con bạn sẽ thực sự làm gì.</p>
+          </div>
+          <div class="shrink-0"><a href="../app-development-explained.html" class="btn-primary text-lg px-10 py-4">Thử ngay →</a></div>
         </div>
       </div>
     </section>

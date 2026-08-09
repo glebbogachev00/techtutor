@@ -51,7 +51,12 @@
     .dropdown-menu a:first-child { border-radius: 12px 12px 0 0; }
     .dropdown-menu a:last-child { border-radius: 0 0 12px 12px; }
     .dropdown-menu a:hover { background: #F3F4F6; color: #193b92; padding-left: 24px; }
-  </style>
+      .hero-cta-row a { white-space: nowrap; }
+    @media (max-width: 640px) {
+      .hero-cta-row { flex-direction: column; align-items: stretch; }
+      .hero-cta-row a { width: 100%; text-align: center; white-space: normal; }
+    }
+</style>
 
   <!-- SEO: Hreflang tags for multilingual support -->
   <link rel="alternate" hreflang="en" href="https://techtutor.academy/en/programs/ai-programming-quest.html" />
@@ -203,8 +208,9 @@
           <p class="text-xl text-gray-600 mb-8 leading-relaxed" data-i18n="hero.description">
             Dive into the world of Python programming and artificial intelligence. Learn to code intelligent programs, build chatbots, and understand how AI shapes our future.
           </p>
-          <div class="flex items-center gap-4 mb-8">
+          <div class="flex items-center gap-4 mb-8 hero-cta-row">
             <a href="../free-trial.html" class="btn-primary text-lg px-10 py-4" data-i18n="hero.cta">Get Started →</a>
+            <span class="hero-explainer"><a href="../ai-programming-explained.html" class="text-lg px-10 py-4 rounded-full font-semibold border-2 transition inline-block" style="border-color:#193b92;color:#193b92;" onmouseover="this.style.background='#193b92';this.style.color='#fff';" onmouseout="this.style.background='transparent';this.style.color='#193b92';">Try it in 1 minute →</a></span>
           </div>
           <div class="flex items-center gap-6 text-sm text-gray-600">
             <div class="flex items-center gap-2">
