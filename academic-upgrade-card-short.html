@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic Upgrade | TechTutor Academy</title>
+  <link rel="icon" type="image/png" href="images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#193b92', 'primary-dark': '#0f2861', ink: '#0F172A' },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #FBFBFD; }
+    .card { background: #fff; border-radius: 26px; box-shadow: 0 4px 28px rgba(15,23,42,.08); }
+    .label { font-size: 9.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    /* Type is sized up relative to the card so this reads at full-image scale on a phone. */
+    .item { display: flex; gap: 11px; align-items: baseline; font-size: 15.5px; font-weight: 650; color: #0F172A; line-height: 1.35; }
+    .item::before { content: "+"; color: #193b92; font-weight: 900; font-size: 16px; flex: none; }
+  </style>
+</head>
+<!-- Vertically centred so a screenshot stays balanced even when the window height
+     doesn't match the card exactly — never clipped at the bottom. -->
+<body class="antialiased flex items-center justify-center min-h-screen p-6">
+
+  <div class="w-full max-w-[600px]">
+    <div class="card overflow-hidden">
+
+      <!-- Header -->
+      <div class="bg-gradient-to-br from-primary to-primary-dark px-8 pt-7 pb-8">
+        <div class="flex items-center gap-3 mb-6">
+          <img src="images/robot-rocket.png" alt="TechTutor" class="h-7 w-auto" />
+          <p class="text-white/70 label">TechTutor Academy</p>
+        </div>
+        <h1 class="text-white text-[34px] font-black tracking-tight leading-none">Academic Upgrade</h1>
+        <div class="flex items-baseline gap-3 mt-4">
+          <!-- Inter's ₫ sits tight against a preceding digit at heavy weights — needs the nudge. -->
+          <p class="text-white text-[26px] font-black leading-none">+2.000.000<span class="font-bold ml-[2px]">&#8363;</span></p>
+          <p class="text-white/60 text-[12px] font-semibold">per 24-lesson program</p>
+        </div>
+      </div>
+
+      <div class="px-8 py-7 flex flex-col gap-6">
+
+        <p class="text-[16px] text-ink font-medium leading-relaxed">
+          Same teachers, same lessons. Homework becomes required and graded &mdash;
+          and you get the written record of it.
+        </p>
+
+        <!-- What is added. Tinted block echoes the upgrade column on the full card. -->
+        <div class="rounded-2xl bg-[#E9EFFC] border-l-[3px] border-primary px-6 py-6 flex flex-col gap-3.5">
+          <p class="item">A recording of every lesson, sent to you</p>
+          <p class="item">Homework graded, with a comment, saved to the account</p>
+          <p class="item">A set path on TechBash with a final project</p>
+          <p class="item">An extended report every 8 lessons</p>
+          <p class="item">A teacher-polished portfolio, ready to submit</p>
+        </div>
+
+        <p class="text-[13.5px] text-slate-600 leading-relaxed">
+          For parents who want to keep track of the work week by week &mdash;
+          and for parents preparing a study-abroad application.
+        </p>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="bg-slate-50 border-t border-slate-100 px-8 py-4 flex items-center justify-between">
+        <p class="text-[12px] font-bold text-ink">about 83.000&#8363; a lesson</p>
+        <p class="text-[12px] text-slate-500">techtutor.academy</p>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

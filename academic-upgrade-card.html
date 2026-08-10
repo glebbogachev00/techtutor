@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic Upgrade | TechTutor Academy</title>
+  <link rel="icon" type="image/png" href="images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#193b92', 'primary-dark': '#0f2861', ink: '#0F172A' },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #FBFBFD; }
+    .card { background: #fff; border-radius: 28px; box-shadow: 0 4px 28px rgba(15,23,42,.08); }
+    .label { font-size: 9.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+
+    /* Comparison grid — the whole product, defined by what changes. */
+    .cmp { display: grid; grid-template-columns: 118px 1fr 1.3fr; }
+    .cmp > * { padding: 14px 16px; border-top: 1px solid #EDEFF5; }
+    .cmp > .h { border-top: 0; padding-bottom: 9px; }
+    /* The upgrade column has to win at a glance: a real tint (not a near-white one),
+       a solid accent edge down the side, and separators dark enough to survive the
+       tint — otherwise the two columns read as the same thing twice. */
+    .cmp > :nth-child(3n) { background: #E9EFFC; border-top-color: #D2DDF6; border-left: 3px solid #193b92; }
+    .cmp > :nth-child(3n).h { background: #193b92; border-radius: 12px 12px 0 0; }
+    .rowlabel { font-size: 10.5px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: #94A3B8; align-self: center; }
+    /* Deliberately recessed — this column is the "before". */
+    .was { font-size: 13px; color: #9AA6BC; align-self: center; }
+    .now { font-size: 13.5px; font-weight: 700; color: #0F172A; align-self: center; line-height: 1.4; display: flex; gap: 9px; align-items: baseline; }
+    /* Plain ASCII "+", not an emoji — inherits the accent, marks what is added. */
+    .now::before { content: "+"; color: #193b92; font-weight: 900; font-size: 14px; flex: none; }
+  </style>
+</head>
+<!-- Vertically centred so a screenshot stays balanced even when the window height
+     doesn't match the card exactly — never clipped at the bottom. -->
+<body class="antialiased flex items-center justify-center min-h-screen p-6">
+
+  <div class="w-full max-w-[720px]">
+    <div class="card overflow-hidden">
+
+      <!-- Header: what it is + what it costs, in one glance -->
+      <div class="bg-gradient-to-br from-primary to-primary-dark px-9 pt-8 pb-9">
+        <div class="flex items-center gap-3 mb-7">
+          <img src="images/robot-rocket.png" alt="TechTutor" class="h-8 w-auto" />
+          <p class="text-white/70 label">TechTutor Academy</p>
+        </div>
+        <div class="flex items-end justify-between gap-6">
+          <div>
+            <h1 class="text-white text-[40px] font-black tracking-tight leading-[1.05]">Academic<br />Upgrade</h1>
+          </div>
+          <div class="text-right shrink-0">
+            <!-- Inter's ₫ sits tight against a preceding digit at heavy weights — needs the nudge. -->
+            <p class="text-white text-[30px] font-black leading-none">+2.000.000<span class="font-bold ml-[2px]">&#8363;</span></p>
+            <p class="text-white/60 text-[12px] font-semibold mt-2">per 24-lesson program &middot; about $80</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-9 py-8 flex flex-col gap-7">
+
+        <!-- One sentence. -->
+        <p class="text-[17px] text-ink leading-relaxed font-medium">
+          Same teachers, same lessons. Homework stops being optional and starts being graded &mdash;
+          and everything your child does gets written down, so you can check progress instead of trusting it.
+        </p>
+
+        <!-- Why it exists: the two families who asked for it. -->
+        <div>
+          <p class="label text-slate-400 mb-3.5">Who it is for</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="rounded-2xl border border-slate-100 px-5 py-4">
+              <p class="text-[14px] font-bold text-primary leading-snug">Parents who want to keep track</p>
+              <p class="text-[13.5px] text-slate-600 mt-2 leading-snug">You take your child&rsquo;s education seriously and want to see the work &mdash; not hear a summary at the end. After every lesson: the recording, the grade, the teacher&rsquo;s comment.</p>
+            </div>
+            <div class="rounded-2xl border border-slate-100 px-5 py-4">
+              <p class="text-[14px] font-bold text-primary leading-snug">Parents planning to study abroad</p>
+              <p class="text-[13.5px] text-slate-600 mt-2 leading-snug">Applications need supporting material. Your child finishes with a portfolio of real, graded projects and a written record of progress you can show.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- The delta -->
+        <div>
+          <div class="cmp">
+            <div class="h"></div>
+            <div class="h"><p class="label text-slate-400">Included now</p></div>
+            <div class="h"><p class="label text-white">With the upgrade</p></div>
+
+            <div class="rowlabel">Homework</div>
+            <div class="was">Optional</div>
+            <div class="now">Required, graded, saved to the account</div>
+
+            <div class="rowlabel">Lessons</div>
+            <div class="was">Live class only</div>
+            <div class="now">A recording of every lesson, sent to you</div>
+
+            <div class="rowlabel">TechBash</div>
+            <div class="was">Lesson by lesson</div>
+            <div class="now">A set path with milestones and a final project</div>
+
+            <div class="rowlabel">Every 8 lessons</div>
+            <div class="was">Short progress note</div>
+            <div class="now">Extended report &mdash; skills learned, grades, what comes next</div>
+
+            <div class="rowlabel">Portfolio</div>
+            <div class="was">Your child&rsquo;s projects</div>
+            <div class="now">Polished by the teacher, grades shown, ready to submit</div>
+          </div>
+        </div>
+
+        <!-- The honest line -->
+        <div class="rounded-2xl bg-slate-50 border border-slate-100 px-6 py-5">
+          <p class="text-[14px] text-slate-700 leading-relaxed">
+            <strong class="text-ink">This is not better teaching.</strong>
+            The teachers, the curriculum and the care are exactly the same.
+            What you are buying is accountability on the homework, and a record you keep.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="bg-slate-50 border-t border-slate-100 px-9 py-5 flex items-center justify-between">
+        <p class="text-[12px] text-slate-500">Add to Private Coaching or Shared Learning</p>
+        <p class="text-[12px] font-bold text-ink">techtutor.academy</p>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

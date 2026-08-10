@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dành cho phụ huynh | TechTutor Academy</title>
+<meta name="description" content="Chọn đúng thứ bạn cần — chương trình phù hợp cho con, con sẽ học gì, con sẽ làm ra gì, hay học phí bao nhiêu. Một cú nhấp là tới câu trả lời." />
+<link rel="canonical" href="https://www.techtutor.academy/vn/lo-trinh-hoc-lap-trinh.html" />
+<link rel="alternate" hreflang="en" href="https://www.techtutor.academy/vn/lo-trinh-hoc-lap-trinh.html" />
+<link rel="alternate" hreflang="vi" href="https://www.techtutor.academy/vn/lo-trinh-hoc-lap-trinh.html" />
+<link rel="alternate" hreflang="x-default" href="https://www.techtutor.academy/vn/lo-trinh-hoc-lap-trinh.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="TechTutor Academy" />
+<meta property="og:url" content="https://www.techtutor.academy/vn/lo-trinh-hoc-lap-trinh.html" />
+<meta property="og:title" content="Dành cho phụ huynh | TechTutor Academy" />
+<meta property="og:description" content="Chọn đúng thứ bạn cần — chương trình phù hợp, con sẽ học gì, làm ra gì, hay học phí bao nhiêu." />
+<meta property="og:image" content="https://www.techtutor.academy/images/family-portrait.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="vi_VN" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Dành cho phụ huynh | TechTutor Academy" />
+<meta name="twitter:description" content="Chọn đúng thứ bạn cần. Một cú nhấp là tới câu trả lời." />
+<meta name="twitter:image" content="https://www.techtutor.academy/images/family-portrait.jpg" />
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--ink:#171717;--muted:#5f6368;--line:#d9dde5;--accent:#193B92;--accent-soft:#eef2fb}
+  html{-webkit-text-size-adjust:100%}
+  body{background:#fff;color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;font-size:16px}
+  a{color:inherit}
+
+  .top{max-width:640px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    font-size:24px;font-weight:900;letter-spacing:-.025em;text-decoration:none;line-height:1}
+  .brand .b1{color:#193b92}
+  .brand .b2{color:#14b8a6}
+  .back{font-size:13px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+  .back:hover{color:var(--accent);border-color:var(--accent)}
+
+  main{max-width:640px;margin:0 auto;padding:22px 24px 90px;min-height:62vh}
+  h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(28px,5vw,38px);
+    line-height:1.15;letter-spacing:-.01em;margin-bottom:28px}
+
+  .choices{display:flex;flex-direction:column;gap:10px}
+  .choice{font-family:inherit;font-size:16px;font-weight:500;color:var(--ink);text-align:left;width:100%;
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    transition:border-color .15s ease,background .15s ease}
+  .choice:hover{border-color:var(--accent);background:var(--accent-soft)}
+  .arrow{color:var(--muted);flex:none}
+  .choice:hover .arrow{color:var(--accent)}
+
+  .panel{display:none}
+  .panel.on{display:block}
+  .p-back{font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);background:none;border:none;
+    cursor:pointer;padding:0;margin-bottom:20px}
+  .p-back:hover{color:var(--accent)}
+  .p-title{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(24px,4.4vw,30px);line-height:1.2;margin-bottom:8px}
+  .p-line{font-size:16px;color:var(--muted);margin-bottom:22px}
+
+  .links{display:flex;flex-direction:column;gap:10px}
+  .links a{display:flex;align-items:center;justify-content:space-between;gap:14px;text-decoration:none;
+    border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-size:16px;font-weight:500}
+  .links a:hover{border-color:var(--accent);background:var(--accent-soft)}
+  .links b{font-weight:600}
+  .links em{font-style:normal;font-size:13px;color:var(--muted);display:block;font-weight:400;margin-top:2px}
+  .links a.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .links a.primary:hover{background:#122f77}
+  .links a.primary em{color:rgba(255,255,255,.75)}
+  .links a.primary .arrow{color:rgba(255,255,255,.8)}
+
+  .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .grid2 a{display:block;text-decoration:none;border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+    font-size:14.5px;font-weight:600}
+  .grid2 a:hover{border-color:var(--accent);background:var(--accent-soft)}
+
+  button{touch-action:manipulation}
+
+  @media (max-width:600px){
+    .top{padding:18px 20px}
+    main{padding:18px 20px 70px}
+    .grid2{grid-template-columns:1fr}
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Trang chủ",
+      "item": "https://www.techtutor.academy/vn/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Dành cho phụ huynh",
+      "item": "https://www.techtutor.academy/vn/lo-trinh-hoc-lap-trinh.html"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="/vn/index.html" aria-label="TechTutor home"><span class="b1">Tech</span><span class="b2">Tutor</span></a>
+  <a class="back" href="/vn/index.html">&larr; Trang chủ</a>
+</header>
+
+<main>
+  <div id="home">
+    <h1>Bạn đang cần gì?</h1>
+    <div class="choices" id="choices"></div>
+  </div>
+
+  <div class="panel" id="panel">
+    <button class="p-back" id="pBack" type="button">← Tất cả lựa chọn</button>
+    <h2 class="p-title" id="pTitle"></h2>
+    <p class="p-line" id="pLine"></p>
+    <div id="pBody"></div>
+  </div>
+</main>
+
+<script>
+(function(){
+  var PANELS = [
+    { k:'fit', c:'Tìm chương trình phù hợp cho con',
+      t:'Tìm chương trình phù hợp',
+      l:'Năm câu hỏi về con bạn — con thích gì, đã thử qua những gì, và muốn khoe với người khác thứ gì.',
+      links:[
+        { h:'/vn/trac-nghiem.html', n:'Làm trắc nghiệm', s:'Khoảng một phút. Một gợi ý, kèm lý do.', primary:true },
+        { h:'/vn/free-trial.html', n:'Nói chuyện trực tiếp', s:'Một buổi học thử miễn phí và một câu trả lời thành thật.' } ] },
+
+    { k:'learn', c:'Hiểu con sẽ học những gì',
+      t:'Con sẽ học những gì',
+      l:'Mỗi chương trình một trang, kèm bản thử chạy được của chính công cụ đó. Không cần đăng ký, dùng được trên điện thoại.',
+      grid:[
+        ['/vn/scratch-explained.html','Scratch'], ['/vn/gdevelop-explained.html','GDevelop'],
+        ['/vn/roblox-explained.html','Roblox'], ['/vn/web-development-explained.html','Lập trình web'],
+        ['/vn/app-development-explained.html','Phát triển ứng dụng'], ['/vn/3d-design-explained.html','Mô hình 3D'],
+        ['/vn/ai-programming-explained.html','Học máy'], ['/vn/generative-ai-explained.html','AI tạo sinh'],
+        ['/vn/startup-explained.html','Nền Tảng Khởi Nghiệp'] ] },
+
+    { k:'build', c:'Xem con sẽ làm ra thứ gì',
+      t:'Con thực sự làm ra gì',
+      l:'Sản phẩm thật của học viên, và kế hoạch từng buổi học phía sau.',
+      links:[
+        { h:'/vn/student-projects.html', n:'Dự án của học viên', s:'Game và trang web học viên đã xuất bản.' },
+        { h:'/vn/resources.html', n:'Chi tiết từng buổi học', s:'Đủ 24 buổi, cho mọi chương trình.' } ] },
+
+    { k:'home', c:'Giúp con duy trì giữa các buổi học',
+      t:'Giữa các buổi học',
+      l:'TechBash là cổng học lập trình tự học của chúng tôi — nhiệm vụ theo cốt truyện và trình soạn code thật. Không quảng cáo, không chat, dùng thử miễn phí.',
+      links:[
+        { h:'https://bash.techtutor.academy', n:'Mở TechBash', s:'Nhiệm vụ, phiêu lưu và khu tự do sáng tạo.', primary:true, ext:true },
+        { h:'/vn/online-courses.html', n:'Khóa học miễn phí tự học', s:'Con tự học ở nhà theo nhịp riêng.' } ] },
+
+    { k:'cost', c:'Biết học phí bao nhiêu',
+      t:'Học phí',
+      l:'Tính theo từng chương trình 24 buổi. Các buổi đã đăng ký chuyển được sang mọi chương trình.',
+      links:[
+        { h:'/vn/plans-and-faq.html', n:'Học phí và câu hỏi thường gặp', s:'Lớp riêng và lớp nhóm, ưu đãi theo gói.' },
+        { h:'/vn/referral.html', n:'Giới thiệu bạn bè, cả hai cùng tiết kiệm', s:'Giảm 500.000đ cho bạn và cho họ. Lấy liên kết trong một chạm.' },
+        { h:'/vn/learning-system.html#builder', n:'Tự lên kế hoạch học', s:'Chọn hình thức và số buổi, xem tổng chi phí.' } ] }
+  ];
+
+  var homeEl=document.getElementById('home'), panelEl=document.getElementById('panel'),
+      choicesEl=document.getElementById('choices'), bodyEl=document.getElementById('pBody');
+
+  PANELS.forEach(function(p){
+    var b=document.createElement('button');
+    b.type='button'; b.className='choice';
+    b.innerHTML = p.c + '<span class="arrow">&rarr;</span>';
+    b.addEventListener('click', function(){ go(p); });
+    choicesEl.appendChild(b);
+  });
+
+  function open(p){
+    document.getElementById('pTitle').textContent=p.t;
+    document.getElementById('pLine').textContent=p.l;
+    bodyEl.innerHTML='';
+    if (p.links){
+      var wrap=document.createElement('div'); wrap.className='links';
+      p.links.forEach(function(l){
+        var a=document.createElement('a');
+        a.href=l.h;
+        if (l.primary) a.className='primary';
+        if (l.ext){ a.target='_blank'; a.rel='noopener'; }
+        a.innerHTML='<span><b>'+l.n+'</b><em>'+l.s+'</em></span><span class="arrow">&rarr;</span>';
+        wrap.appendChild(a);
+      });
+      bodyEl.appendChild(wrap);
+    }
+    if (p.grid){
+      var g=document.createElement('div'); g.className='grid2';
+      p.grid.forEach(function(x){
+        var a=document.createElement('a'); a.href=x[0]; a.textContent=x[1]; g.appendChild(a);
+      });
+      bodyEl.appendChild(g);
+    }
+    homeEl.style.display='none'; panelEl.classList.add('on');
+    window.scrollTo(0,0);
+  }
+
+  function home(){
+    panelEl.classList.remove('on'); homeEl.style.display='';
+    window.scrollTo(0,0);
+  }
+
+  /* Each panel is a history entry, so the phone's own back gesture returns to
+     the choices instead of leaving the site. popstate is the single place that
+     decides what is showing; the buttons only push/pop. */
+  function show(k){
+    var found=null;
+    PANELS.forEach(function(p){ if (p.k===k) found=p; });
+    if (found) open(found); else home();
+  }
+  function go(p){
+    if (history.pushState) history.pushState({k:p.k},'','#'+p.k);
+    open(p);
+  }
+  window.addEventListener('popstate', function(){
+    show((location.hash||'').replace('#',''));
+  });
+  document.getElementById('pBack').addEventListener('click', function(){
+    if (history.state && history.state.k && history.length>1) history.back();
+    else { if (history.replaceState) history.replaceState(null,'',location.pathname); home(); }
+  });
+
+  show((location.hash||'').replace('#',''));
+})();
+</script>
+
+</body>
+</html>

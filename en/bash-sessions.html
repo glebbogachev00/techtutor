@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bash Sessions | TechTutor Academy</title>
+  <meta name="description" content="Full TechBash access plus guided 1-on-1 sessions whenever your child wants them. Self-driven learning with a mentor on call — a low-commitment way to start." />
+  <link rel="icon" type="image/png" href="../images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#193b92',
+            'primary-light': '#2952b8',
+            'primary-dark': '#0f2861',
+            teal: { DEFAULT: '#2C7A7B', light: '#319795', dark: '#234E52' },
+            ink: '#0F172A',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; color: #0F172A; }
+    .btn-primary { background: #193b92; color: white; padding: 14px 32px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; display: inline-block; text-decoration: none; }
+    .btn-primary:hover { background: #0f2861; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(25, 59, 146, 0.4); }
+    .card { background: white; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); }
+    .section-title { font-size: 2.5rem; font-weight: 800; line-height: 1.2; color: #0F172A; }
+    @media (max-width: 768px) { .section-title { font-size: 2rem; } }
+    .fade-in { animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+  <link rel="alternate" hreflang="en" href="https://www.techtutor.academy/en/bash-sessions.html" />
+  <link rel="alternate" hreflang="x-default" href="https://www.techtutor.academy/en/bash-sessions.html" />
+  <link rel="canonical" href="https://www.techtutor.academy/en/bash-sessions.html"
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="TechTutor Academy" />
+<meta property="og:url" content="https://www.techtutor.academy/en/bash-sessions.html" />
+<meta property="og:title" content="Bash Sessions | TechTutor Academy" />
+<meta property="og:description" content="Full TechBash access plus guided 1-on-1 sessions whenever your child wants them. Self-driven learning with a mentor on call — a low-commitment way to start." />
+<meta property="og:image" content="https://www.techtutor.academy/images/family-portrait.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_GB" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Bash Sessions | TechTutor Academy" />
+<meta name="twitter:description" content="Full TechBash access plus guided 1-on-1 sessions whenever your child wants them. Self-driven learning with a mentor on call — a low-commitment way to start." />
+<meta name="twitter:image" content="https://www.techtutor.academy/images/family-portrait.jpg" /> />
+  <style>@keyframes techbash-pop{0%,88%,100%{transform:translateY(0) scale(1)}94%{transform:translateY(-2px) scale(1.07)}}.techbash-nav{animation:techbash-pop 5s ease-in-out infinite;transform-origin:center;display:inline-block}.techbash-nav:hover{animation-play-state:paused}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.techtutor.academy/en/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Bash Sessions",
+      "item": "https://www.techtutor.academy/en/bash-sessions.html"
+    }
+  ]
+}
+</script>
+</head>
+<body class="antialiased">
+
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between gap-6">
+        <a href="index.html" class="text-2xl font-black tracking-tight text-slate-900 flex items-center gap-1" aria-label="TechTutor home">
+          <span class="text-primary">Tech</span><span class="text-teal-500">Tutor</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-700">
+          <div class="relative hidden md:block group">
+            <a href="index.html#programs" class="inline-flex items-center gap-1 text-slate-700 hover:text-primary transition">
+              <span>Programs</span>
+              <svg class="h-4 w-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+            <div class="absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 rounded-2xl border border-slate-100 bg-white/95 p-3 shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+              <div class="flex flex-col gap-1 text-sm">
+                <a href="programs/scratch-game-coder.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Scratch Game Coder</a>
+                <a href="programs/gdevelop-game-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">GDevelop Game Designer</a>
+                <a href="programs/roblox-world-creator.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Roblox World Creator</a>
+                <a href="programs/3d-designer.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">3D Designer</a>
+                <a href="programs/ai-programming-quest.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">AI &amp; Programming Quest</a>
+                <a href="programs/generative-ai-magic.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Generative AI Magic</a>
+                <a href="programs/app-development.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">App Development</a>
+                <a href="programs/website-creation.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Website Creation</a>
+                <a href="programs/startup-foundations.html" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Startup Foundations</a>
+              </div>
+            </div>
+          </div>
+          <a href="https://bash.techtutor.academy" class="techbash-nav hover:text-primary transition font-semibold inline-block transform hover:-translate-y-0.5 hover:scale-105">TechBash</a>
+          <a href="student-projects.html" class="hover:text-primary transition">Projects</a>
+          <a href="how-it-works.html" class="hover:text-primary transition">How It Works</a>
+          <a href="online-courses.html" class="hover:text-primary transition">Free Courses</a>
+          <a href="/en/learning-roadmap.html" class="hover:text-primary transition" data-nav="parents"><span class="nav-parents">For Parents</span></a>
+          <a href="plans-and-faq.html" class="hover:text-primary transition">Pricing</a>
+          <a href="blog.html" class="hover:text-primary transition">Blog</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-4">
+          <a href="login.html" class="rounded-full border-2 border-primary text-primary px-5 py-2 text-sm font-semibold transition hover:bg-primary hover:text-white flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+            Login
+          </a>
+          <a aria-label="Start your free trial with TechTutor Academy" href="free-trial.html" class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-light">Free Trial</a>
+        </div>
+
+        <div class="flex items-center gap-3 md:hidden">
+          <button id="mobile-menu-button" class="px-4 py-2 rounded-full border-2 border-primary text-primary font-medium text-sm hover:bg-primary hover:bg-opacity-10 transition" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+            Menu
+          </button>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="md:hidden hidden mt-4 border-t border-slate-200 pt-4">
+        <div class="flex flex-col gap-4 text-sm font-medium text-slate-700">
+          <a href="index.html#programs" class="hover:text-primary transition">Programs</a>
+          <a href="https://bash.techtutor.academy" class="techbash-nav hover:text-primary transition font-semibold inline-block transform hover:-translate-y-0.5 hover:scale-105">TechBash</a>
+          <a href="student-projects.html" class="hover:text-primary transition">Projects</a>
+          <a href="how-it-works.html" class="hover:text-primary transition">How It Works</a>
+          <a href="online-courses.html" class="hover:text-primary transition">Free Courses</a>
+          <a href="/en/learning-roadmap.html" class="hover:text-primary transition" data-nav="parents"><span class="nav-parents">For Parents</span></a>
+          <a href="plans-and-faq.html" class="hover:text-primary transition">Pricing</a>
+          <a href="blog.html" class="hover:text-primary transition">Blog</a>
+          <a href="login.html" class="flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition">Login</a>
+          <a aria-label="Start your free trial with TechTutor Academy" href="free-trial.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-sm">Free Trial</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script src="../js/app.js" defer></script>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-6 py-16 md:py-24 text-center">
+      <span class="inline-block bg-teal/10 text-teal-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-6">A lighter way in — self-driven, with a mentor on call</span>
+      <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6">Learn on your own terms — with a <span class="text-primary">mentor</span> whenever you're stuck.</h1>
+      <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-8">Bash Sessions unlock <strong>all of TechBash</strong> — every program, every mission — and give your child <strong>guided 1-on-1 sessions</strong> to use whenever they want a hand. No big commitment. No curriculum to keep up with. Just learning at their pace, with an expert a click away.</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="free-trial.html" class="btn-primary">Start with a free trial</a>
+        <a href="#how" class="inline-block px-8 py-3.5 rounded-full font-semibold text-primary border-2 border-primary/20 hover:border-primary transition">See how it works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you get -->
+  <section class="max-w-6xl mx-auto px-6 py-8 md:py-12">
+    <div class="text-center mb-10">
+      <h2 class="section-title mb-4">Two things, one simple plan</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto">The platform does the teaching. The mentor helps when it matters. That's it.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="card p-8">
+        <div class="flex items-center gap-3 mb-4"><span class="text-3xl">🚀</span><h3 class="text-2xl font-bold">Full TechBash, unlocked</h3></div>
+        <p class="text-slate-600 mb-5">Everything on the platform opens up — your child picks what to build, in any order.</p>
+        <ul class="space-y-2 text-sm text-slate-700">
+          <li class="flex gap-2"><span class="text-teal">✓</span> All 9 programs — Scratch, Roblox, Web, Python, AI &amp; more</li>
+          <li class="flex gap-2"><span class="text-teal">✓</span> Every guided mission and project</li>
+          <li class="flex gap-2"><span class="text-teal">✓</span> Daily Bash — a short daily challenge to build the habit</li>
+          <li class="flex gap-2"><span class="text-teal">✓</span> Their own portfolio of everything they make</li>
+        </ul>
+      </div>
+      <div class="card p-8 border-2 border-primary relative">
+        <span class="absolute -top-3 left-8 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">On call — use when you want</span>
+        <div class="flex items-center gap-3 mb-4"><span class="text-3xl">🧠</span><h3 class="text-2xl font-bold">8 guided sessions</h3></div>
+        <p class="text-slate-600 mb-5">One-to-one time with a real teacher — to unblock, review progress and explain anything that isn't clicking.</p>
+        <ul class="space-y-2 text-sm text-slate-700">
+          <li class="flex gap-2"><span class="text-primary">➕</span> 45 minutes, one-to-one with a teacher</li>
+          <li class="flex gap-2"><span class="text-primary">➕</span> About once a week — or faster if they're flying</li>
+          <li class="flex gap-2"><span class="text-primary">➕</span> Bring questions, show what you built, get guided</li>
+          <li class="flex gap-2"><span class="text-primary">➕</span> Use all 8 across roughly 3 months — no strict clock</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Price -->
+  <section class="max-w-3xl mx-auto px-6 py-12">
+    <div class="card p-8 md:p-10 text-center border-2 border-primary/10">
+      <p class="text-xs font-bold uppercase tracking-wide text-teal-dark mb-3">Bash Sessions</p>
+      <div class="flex items-end justify-center gap-2 mb-2">
+        <span class="text-5xl md:text-6xl font-black text-primary">3,500,000</span>
+        <span class="text-2xl font-bold text-slate-400 mb-1">₫</span>
+      </div>
+      <p class="text-slate-600 mb-6">Full TechBash access <strong>+ 8 guided 1-on-1 sessions</strong></p>
+      <div class="grid sm:grid-cols-3 gap-3 text-sm text-left mb-8">
+        <div class="bg-slate-50 rounded-xl p-4"><span class="block font-semibold text-ink">8 sessions</span><span class="text-slate-500 text-xs">45 min, one-to-one</span></div>
+        <div class="bg-slate-50 rounded-xl p-4"><span class="block font-semibold text-ink">~3-month window</span><span class="text-slate-500 text-xs">use them at your pace</span></div>
+        <div class="bg-slate-50 rounded-xl p-4"><span class="block font-semibold text-ink">Everything unlocked</span><span class="text-slate-500 text-xs">the whole platform</span></div>
+      </div>
+      <a href="free-trial.html" class="btn-primary w-full sm:w-auto">Start with a free trial</a>
+      <p class="text-sm text-slate-400 mt-4">Run out of sessions and want more? Just grab another block.</p>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="bg-white border-y border-slate-100 py-16">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="section-title text-center mb-10">How it works</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card p-6">
+          <div class="w-10 h-10 rounded-full bg-teal text-white flex items-center justify-center font-bold mb-4">1</div>
+          <h3 class="font-bold mb-2">Everything unlocks</h3>
+          <p class="text-sm text-slate-600">The moment you start, the whole of TechBash opens. Your child explores whatever they're curious about — no fixed path.</p>
+        </div>
+        <div class="card p-6">
+          <div class="w-10 h-10 rounded-full bg-teal text-white flex items-center justify-center font-bold mb-4">2</div>
+          <h3 class="font-bold mb-2">They build at their pace</h3>
+          <p class="text-sm text-slate-600">Missions, projects and the Daily Bash carry the learning. A little every day, whenever it suits them.</p>
+        </div>
+        <div class="card p-6">
+          <div class="w-10 h-10 rounded-full bg-teal text-white flex items-center justify-center font-bold mb-4">3</div>
+          <h3 class="font-bold mb-2">A mentor checks in</h3>
+          <p class="text-sm text-slate-600">Book a session whenever they want one — to get unstuck, show off progress, or understand something tricky.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bash Sessions vs Full Programs -->
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <div class="text-center mb-10">
+      <h2 class="section-title mb-4">Is this right for us?</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto">Bash Sessions are a <strong>low-commitment way to start</strong>. If your child wants structured, teacher-led classes and a formal record, a full program is the better fit.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="card p-8">
+        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🧭</span><h3 class="text-xl font-bold">Bash Sessions</h3></div>
+        <p class="text-sm font-semibold text-teal-dark mb-4">Best for: dipping in, testing the waters, self-motivated kids.</p>
+        <ul class="space-y-2 text-sm text-slate-700">
+          <li class="flex gap-2"><span class="text-teal">✓</span> Self-driven — they choose what to build</li>
+          <li class="flex gap-2"><span class="text-teal">✓</span> Whole platform unlocked</li>
+          <li class="flex gap-2"><span class="text-teal">✓</span> A mentor on call, 8 sessions</li>
+          <li class="flex gap-2"><span class="text-teal">✓</span> Small, flexible commitment</li>
+        </ul>
+      </div>
+      <div class="card p-8">
+        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🎓</span><h3 class="text-xl font-bold">Full Programs</h3></div>
+        <p class="text-sm font-semibold text-primary mb-4">Best for: steady, guided learning and a record to keep.</p>
+        <ul class="space-y-2 text-sm text-slate-700">
+          <li class="flex gap-2"><span class="text-primary">➕</span> Teacher-led curriculum, 90-min classes</li>
+          <li class="flex gap-2"><span class="text-primary">➕</span> A structured 24-session journey</li>
+          <li class="flex gap-2"><span class="text-primary">➕</span> Report cards, transcript &amp; polished portfolio <span class="text-slate-400">(Academy)</span></li>
+          <li class="flex gap-2"><span class="text-primary">➕</span> The Freedom Guarantee across pathways</li>
+        </ul>
+        <a href="learning-system.html" class="inline-block mt-5 text-primary font-semibold hover:underline">See full programs →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reassurance / FAQ -->
+  <section class="bg-slate-50 py-16">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="section-title text-center mb-10">Good to know</h2>
+      <div class="space-y-4">
+        <div class="card p-6">
+          <h3 class="font-bold mb-1">What if we don't use all the sessions?</h3>
+          <p class="text-sm text-slate-600">No problem — the sessions are there when you want them, not a schedule you have to keep. Even if your child only books one, they still have the whole platform to learn from for the full period. The sessions are help on call, not the only thing you're paying for.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-bold mb-1">Do the sessions expire?</h3>
+          <p class="text-sm text-slate-600">You have roughly three months to use all eight — plenty of slack to skip a week here and there. Platform access runs for that same window.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-bold mb-1">What happens when the sessions run out?</h3>
+          <p class="text-sm text-slate-600">Grab another block whenever you like. Or, if your child wants steadier, guided learning, move up to a full program — we'll help you pick the right pathway.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-bold mb-1">Is this teacher-led like your programs?</h3>
+          <p class="text-sm text-slate-600">Not quite — and that's the point. Programs are led by a teacher through a set curriculum. Bash Sessions are led by your child, with a mentor to guide and unblock. Lighter, more flexible, lower commitment.</p>
+        </div>
+      </div>
+      <div class="text-center mt-10">
+        <a href="free-trial.html" class="btn-primary">Start with a free trial</a>
+        <p class="text-sm text-slate-400 mt-3">Not sure which fits? A free trial helps you decide.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16">
+    <div class="mx-auto max-w-7xl px-6 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div class="lg:col-span-1">
+          <img src="../images/robot-rocket.png" alt="TechTutor" class="h-40 w-auto" />
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">CONTACT US!</h3>
+          <div class="space-y-3 text-sm">
+            <div>
+              <p class="text-slate-400 mb-1">Tel/WA/Zalo:</p>
+              <a href="tel:0902776753" class="text-white hover:text-primary-light transition">0902 776 753</a>
+            </div>
+            <div>
+              <p class="text-slate-400 mb-1">Email:</p>
+              <a href="mailto:hello@techtutor.academy" class="text-white hover:text-primary-light transition">hello@techtutor.academy</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">OPENING HOURS</h3>
+          <div class="space-y-2 text-sm">
+            <p class="text-slate-300">Monday - Friday: 8am - 9pm</p>
+            <p class="text-slate-300">Saturday - Sunday: 8am - 8pm</p>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">START LEARNING</h3>
+          <div class="space-y-2 text-sm">
+            <a href="index.html#programs" class="block text-slate-300 hover:text-primary-light transition">Programs</a>
+            <a href="student-projects.html" class="block text-slate-300 hover:text-primary-light transition">Projects</a>
+            <a href="plans-and-faq.html" class="block text-slate-300 hover:text-primary-light transition">Pricing</a>
+            <a href="blog.html" class="block text-slate-300 hover:text-primary-light transition">Blog</a>
+            <a href="vision.html" class="block text-slate-300 hover:text-primary-light transition">Our Vision</a>
+            <a href="free-trial.html" class="block text-slate-300 hover:text-primary-light transition">Free trial</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white">CONNECT WITH US!</h3>
+          <div class="flex gap-3">
+            <a href="https://www.facebook.com/share/1An2WsT9X5/" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Facebook">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/techtutor.academy?igsh=MWljOWJjbndwY2l0dQ==" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Instagram">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://zalo.me/0902776753" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-light transition flex items-center justify-center" aria-label="Zalo">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0zm.5 14.969h-4.25a.469.469 0 110-.938h4.25a.469.469 0 110 .938zm2.406-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938zm0-3h-9.312a.469.469 0 110-.938h9.312a.469.469 0 110 .938z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-slate-700 text-center">
+        <p class="text-sm text-slate-400">© 2026 TechTutor Academy. All rights reserved.</p>
+        <p class="text-xs text-slate-500 mt-2">English / Vietnamese bilingual support</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

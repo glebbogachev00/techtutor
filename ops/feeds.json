@@ -1,0 +1,13 @@
+[
+  {"name":"Fireship","channel":"YT","url":"https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA"},
+  {"name":"OpenAI","channel":"YT","url":"https://www.youtube.com/feeds/videos.xml?channel_id=UCXZCJLdBC09xxGZ6gcdrc6A"},
+  {"name":"Matthew Berman","channel":"YT","url":"https://www.youtube.com/feeds/videos.xml?channel_id=UCawZsQWqfGSbCI5yjkdVkTA"},
+  {"name":"Tina Huang","channel":"YT","url":"https://www.youtube.com/feeds/videos.xml?channel_id=UCW8EsVj1T3G2UX2ltLTgWMg"},
+  {"name":"3blue1brown","channel":"YT","url":"https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esU3uAjD878RfOQ"},
+  {"name":"Anthropic","channel":"YT","url":"https://www.youtube.com/feeds/videos.xml?channel_id=UCweoNpFQ80L55sG3e7uP5Jw"},
+  {"name":"Jeff Su","channel":"YT","url":"https://www.youtube.com/feeds/videos.xml?channel_id=UCzRBkt4a2hy6HObM3cl-x7g"},
+  {"name":"Greg Isenberg","channel":"YT","url":"https://www.youtube.com/feeds/videos.xml?channel_id=UCPjNBjflYl0-HQtUvOx0Ibw"},
+  {"name":"Lex Fridman","channel":"YT","url":"https://www.youtube.com/feeds/videos.xml?channel_id=UC-G5EvISe5CW47EeQjBPzNg"},
+  {"name":"SuperSimpleDev","channel":"YT","url":"https://www.youtube.com/feeds/videos.xml?channel_id=UCjhNuAhYZxRyA6mnFQlOH6A"},
+  {"name":"Hacker News","channel":"RSS","url":"https://hnrss.org/frontpage"}
+]

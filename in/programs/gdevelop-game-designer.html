@@ -51,13 +51,104 @@
     .dropdown-menu a:first-child { border-radius: 12px 12px 0 0; }
     .dropdown-menu a:last-child { border-radius: 0 0 12px 12px; }
     .dropdown-menu a:hover { background: #F3F4F6; color: #193b92; padding-left: 24px; }
-  </style>
+      /* secondary hero button: identical box metrics to .btn-primary.
+       inset shadow instead of a border so it adds no width or height */
+    .btn-secondary { background: #fff; color: #193b92; box-shadow: inset 0 0 0 2px #193b92;
+      border-radius: 50px; font-weight: 600; display: inline-block; text-decoration: none;
+      transition: all 0.3s ease; }
+    .btn-secondary:hover { background: #193b92; color: #fff; transform: translateY(-2px);
+      box-shadow: inset 0 0 0 2px #193b92, 0 4px 15px rgba(25, 59, 146, 0.35); }
+    /* doubled class beats Tailwind's .items-center, which loads after this block */
+    .hero-cta-row.hero-cta-row { align-items: stretch; }
+    .hero-cta-row > a { white-space: nowrap; }
+    @media (max-width: 640px) {
+      .hero-cta-row.hero-cta-row { flex-direction: column; }
+      .hero-cta-row > a { width: 100%; text-align: center; white-space: normal; }
+    }
+</style>
 
   <!-- SEO: Hreflang tags for multilingual support -->
-  <link rel="alternate" hreflang="en" href="https://techtutor.academy/us/programs/gdevelop-game-designer.html" />
-  <link rel="alternate" hreflang="x-default" href="https://techtutor.academy/us/programs/gdevelop-game-designer.html" />
-  <link rel="canonical" href="https://techtutor.academy/us/programs/gdevelop-game-designer.html" />
-<style>@keyframes techbash-pop{0%,88%,100%{transform:translateY(0) scale(1)}94%{transform:translateY(-2px) scale(1.07)}}.techbash-nav{animation:techbash-pop 5s ease-in-out infinite;transform-origin:center;display:inline-block}.techbash-nav:hover{animation-play-state:paused}</style></head>
+  <link rel="alternate" hreflang="en-VN" href="https://www.techtutor.academy/en/programs/gdevelop-game-designer.html" />
+  <link rel="alternate" hreflang="vi" href="https://www.techtutor.academy/vn/programs/gdevelop-game-designer.html" />
+  <link rel="alternate" hreflang="en-IN" href="https://www.techtutor.academy/in/programs/gdevelop-game-designer.html" />
+  <link rel="alternate" hreflang="en-US" href="https://www.techtutor.academy/us/programs/gdevelop-game-designer.html" />
+  <link rel="alternate" hreflang="x-default" href="https://www.techtutor.academy/en/programs/gdevelop-game-designer.html" />
+  <link rel="canonical" href="https://www.techtutor.academy/in/programs/gdevelop-game-designer.html"
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="TechTutor Academy" />
+<meta property="og:url" content="https://www.techtutor.academy/in/programs/gdevelop-game-designer.html" />
+<meta property="og:title" content="GDevelop Game Designer | TechTutor Academy" />
+<meta property="og:description" content="Create 2D games without coding using GDevelop's visual programming. Perfect for kids aged 8-14 who want to design and publish their own games." />
+<meta property="og:image" content="https://www.techtutor.academy/images/family-portrait.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_IN" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="GDevelop Game Designer | TechTutor Academy" />
+<meta name="twitter:description" content="Create 2D games without coding using GDevelop's visual programming. Perfect for kids aged 8-14 who want to design and publish their own games." />
+<meta name="twitter:image" content="https://www.techtutor.academy/images/family-portrait.jpg" /> />
+<style>@keyframes techbash-pop{0%,88%,100%{transform:translateY(0) scale(1)}94%{transform:translateY(-2px) scale(1.07)}}.techbash-nav{animation:techbash-pop 5s ease-in-out infinite;transform-origin:center;display:inline-block}.techbash-nav:hover{animation-play-state:paused}</style><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "@id": "https://www.techtutor.academy/us/programs/gdevelop-game-designer.html#course",
+  "name": "GDevelop Game Designer",
+  "description": "Create 2D games without coding using GDevelop's visual programming. Perfect for kids aged 8-14 who want to design and publish their own games.",
+  "url": "https://www.techtutor.academy/us/programs/gdevelop-game-designer.html",
+  "inLanguage": "en",
+  "provider": {
+    "@type": "EducationalOrganization",
+    "name": "TechTutor Academy",
+    "url": "https://www.techtutor.academy",
+    "sameAs": [
+      "https://www.facebook.com/share/1An2WsT9X5/",
+      "https://www.instagram.com/techtutor.academy"
+    ]
+  },
+  "typicalAgeRange": "8-14",
+  "teaches": [
+    "GDevelop",
+    "Event-based logic",
+    "2D game design"
+  ],
+  "isAccessibleForFree": false,
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "online",
+    "courseSchedule": {
+      "@type": "Schedule",
+      "repeatFrequency": "Weekly",
+      "repeatCount": 24
+    },
+    "instructor": {
+      "@type": "Organization",
+      "name": "TechTutor Academy"
+    }
+  },
+  "educationalLevel": "Beginner"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.techtutor.academy/in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "GDevelop Game Designer",
+      "item": "https://www.techtutor.academy/in/programs/gdevelop-game-designer.html"
+    }
+  ]
+}
+</script>
+</head>
 <body class="antialiased">
 
   <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
@@ -105,6 +196,7 @@
           <a href="../student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
           <a href="../how-it-works.html" class="hover:text-primary transition" data-i18n="nav.how-it-works">How It Works</a>
           <a href="../online-courses.html" class="hover:text-primary transition" data-i18n="nav.free-courses">Free Courses</a>
+          <a href="/en/learning-roadmap.html" class="hover:text-primary transition" data-nav="parents"><span class="nav-parents">For Parents</span></a>
           <a href="../plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
           <a href="../blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
         </div>
@@ -164,6 +256,7 @@
           <a href="../student-projects.html" class="hover:text-primary transition" data-i18n="nav.projects">Projects</a>
           <a href="../how-it-works.html" class="hover:text-primary transition" data-i18n="nav.how-it-works">How It Works</a>
           <a href="../online-courses.html" class="hover:text-primary transition" data-i18n="nav.free-courses">Free Courses</a>
+          <a href="/en/learning-roadmap.html" class="hover:text-primary transition" data-nav="parents"><span class="nav-parents">For Parents</span></a>
           <a href="../plans-and-faq.html" class="hover:text-primary transition" data-i18n="nav.pricing">Pricing</a>
           <a href="../blog.html" class="hover:text-primary transition" data-i18n="nav.blog">Blog</a>
 
@@ -197,8 +290,9 @@
           <p class="text-xl text-gray-600 mb-8 leading-relaxed" data-i18n="hero.description">
             Design and publish your own 2D games without writing code! Use GDevelop's intuitive visual programming to create platformers, puzzle games, and more.
           </p>
-          <div class="flex items-center gap-4 mb-8">
+          <div class="flex items-center gap-4 mb-8 hero-cta-row">
             <a href="../free-trial.html" class="btn-primary text-lg px-10 py-4" data-i18n="hero.cta">Get Started →</a>
+            <a href="/en/gdevelop-explained.html" class="btn-secondary hero-explainer text-lg px-10 py-4">Try it in 1 minute →</a>
           </div>
           <div class="flex items-center gap-6 text-sm text-gray-600">
             <div class="flex items-center gap-2">
@@ -303,6 +397,22 @@
           </div>
           <h3 class="text-2xl font-bold mb-3 text-ink" data-i18n="tool3.title">Game Design Thinking</h3>
           <p class="text-gray-600 text-lg" data-i18n="tool3.desc">Level design, player experience, and game balance</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Try it in simple words -->
+    <section class="mb-20">
+      <div class="rounded-[2rem] border-2 p-8 md:p-12" style="border-color:rgba(25,59,146,0.18);background:rgba(25,59,146,0.05);">
+        <div class="flex flex-col md:flex-row md:items-center gap-8">
+          <div class="flex-1">
+            <span class="inline-block text-xs font-bold tracking-widest uppercase mb-3" style="color:#193b92;">In simple words</span>
+            <h2 class="text-3xl md:text-4xl font-black text-ink mb-3">New to this? Try it in a minute.</h2>
+            <p class="text-lg text-gray-700 max-w-2xl">Change one rule and watch the game change. No sign-up, works on your phone — the quickest way to see what your child would actually be doing.</p>
+          </div>
+          <div class="shrink-0">
+            <a href="/en/gdevelop-explained.html" class="btn-primary text-lg px-10 py-4">Try it now →</a>
+          </div>
         </div>
       </div>
     </section>

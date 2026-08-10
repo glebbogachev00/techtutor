@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What is GDevelop? | TechTutor Academy</title>
+<meta name="description" content="A one-minute, hands-on explanation of GDevelop for parents. Change a rule, watch the game change." />
+  <link rel="alternate" hreflang="en" href="https://www.techtutor.academy/en/gdevelop-explained.html" />
+  <link rel="alternate" hreflang="vi" href="https://www.techtutor.academy/vn/gdevelop-explained.html" />
+  <link rel="alternate" hreflang="x-default" href="https://www.techtutor.academy/en/gdevelop-explained.html" />
+  <link rel="canonical" href="https://www.techtutor.academy/en/gdevelop-explained.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="TechTutor Academy" />
+<meta property="og:url" content="https://www.techtutor.academy/en/gdevelop-explained.html" />
+<meta property="og:title" content="What is GDevelop? | TechTutor Academy" />
+<meta property="og:description" content="A one-minute, hands-on explanation of GDevelop for parents. Change a rule, watch the game change." />
+<meta property="og:image" content="https://www.techtutor.academy/images/family-portrait.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_GB" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="What is GDevelop? | TechTutor Academy" />
+<meta name="twitter:description" content="A one-minute, hands-on explanation of GDevelop for parents. Change a rule, watch the game change." />
+<meta name="twitter:image" content="https://www.techtutor.academy/images/family-portrait.jpg" />
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#d9dde5;
+    --accent:#193B92;
+    --accent-soft:#eef2fb;
+  }
+  html{-webkit-text-size-adjust:100%}
+  body{background:#fff;color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;font-size:16px}
+  a{color:inherit}
+
+  .top{max-width:820px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  /* wordmark matches the main site header exactly */
+  .brand{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    font-size:24px;font-weight:900;letter-spacing:-.025em;text-decoration:none;line-height:1}
+  .brand .b1{color:#193b92}
+  .brand .b2{color:#14b8a6}
+  .back{font-size:13px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+  .back:hover{color:var(--accent);border-color:var(--accent)}
+
+  main{max-width:820px;margin:0 auto;padding:0 24px 80px}
+
+  .kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
+  h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(34px,6vw,52px);line-height:1.08;letter-spacing:-.02em;margin-bottom:16px}
+  .lead-text{font-size:clamp(17px,2.2vw,19px);color:#333;max-width:640px}
+  .lead-text strong{font-weight:600;color:var(--accent)}
+  .lead{padding:18px 0 34px}
+
+  /* ---------- demo ---------- */
+  .demo{border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff}
+  .demo-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .demo-head{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .modes{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:#fff}
+  .mode-btn{font-family:inherit;font-size:13px;font-weight:600;color:var(--muted);background:none;border:none;border-radius:999px;padding:6px 15px;cursor:pointer;transition:background .15s ease,color .15s ease}
+  .mode-btn:hover{color:var(--accent)}
+  .mode-btn.is-on{background:var(--accent);color:#fff}
+
+  .event-card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;transition:border-color .18s ease,box-shadow .18s ease}
+  .event-card.fired{border-color:var(--accent);box-shadow:0 0 0 3px rgba(25,59,146,.10)}
+  .ev-row{display:flex;align-items:center;gap:12px;padding:12px 14px;flex-wrap:wrap}
+  .ev-row + .ev-row{border-top:1px solid var(--line)}
+  .ev-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--muted);width:44px;flex:none;transition:color .18s ease}
+  .event-card.fired .ev-label{color:var(--accent)}
+  select{
+    flex:1;min-width:200px;font-family:inherit;font-size:15px;font-weight:500;color:var(--ink);
+    background:var(--accent-soft);border:1px solid #dbe3f3;border-radius:8px;padding:9px 34px 9px 12px;
+    appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23193B92' stroke-width='1.8' stroke-linecap='round'/></svg>");
+    background-repeat:no-repeat;background-position:right 12px center;
+  }
+  select:focus{outline:2px solid var(--accent);outline-offset:1px}
+
+  .stage-wrap{margin-top:16px;position:relative}
+  canvas{display:block;width:100%;height:150px;border:1px solid var(--line);border-radius:12px;background:#fcfcfd}
+  .controls{display:flex;align-items:center;gap:12px;margin-top:12px;min-height:38px;flex-wrap:wrap}
+  .space-btn{
+    font-family:inherit;font-size:14px;font-weight:600;color:#fff;background:var(--accent);
+    border:none;border-radius:8px;padding:10px 26px;cursor:pointer;letter-spacing:.02em;
+  }
+  .space-btn:active{transform:translateY(1px)}
+  .hint{font-size:13px;color:var(--muted)}
+  .demo-note{margin-top:18px;font-size:15px;color:#333;border-top:1px solid var(--line);padding-top:16px}
+  .demo-note strong{font-weight:600;color:var(--accent)}
+
+  /* ---------- lists ---------- */
+  h2{font-family:'DM Serif Display',serif;font-weight:400;font-size:28px;letter-spacing:-.01em;margin-bottom:18px}
+  .make{padding:52px 0 0}
+  .item{border-top:1px solid var(--line);padding:18px 0;display:grid;grid-template-columns:150px 1fr;gap:6px 24px}
+  .item h3{font-size:15px;font-weight:600;color:var(--accent);line-height:1.4}
+  .item p{font-size:15px;color:var(--muted)}
+  .proof{border-top:1px solid var(--line);padding-top:18px;font-size:15px}
+  .proof a{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(25,59,146,.3)}
+  .proof a:hover{border-color:var(--accent)}
+
+  .why{padding:52px 0 0}
+  .why-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .why-card{border:1px solid var(--line);border-radius:14px;padding:20px}
+  .why-card h3{font-size:15px;font-weight:600;color:var(--accent);margin-bottom:6px;line-height:1.4}
+  .why-card p{font-size:14px;color:var(--muted)}
+
+  /* ---------- fit + cta ---------- */
+  .fit{margin-top:52px;border:1px solid var(--line);border-radius:16px;padding:26px}
+  .facts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+  .fact{font-size:13px;font-weight:500;color:#1f2937;background:var(--accent-soft);border:1px solid #dbe3f3;border-radius:999px;padding:6px 14px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{display:inline-block;text-decoration:none;font-size:15px;font-weight:600;border-radius:10px;padding:13px 26px}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:#122f77}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+  button,select,a.btn{touch-action:manipulation}
+
+  @media (max-width:600px){
+    body{font-size:16px}
+    .top{padding:18px 20px}
+    main{padding:0 20px 64px}
+    .lead{padding:14px 0 26px}
+    .item{grid-template-columns:1fr;gap:4px}
+    .make,.why{padding-top:42px}
+
+    /* demo: more room for the stage, thumb-sized targets */
+    .demo{padding:16px}
+    .demo-top{gap:10px}
+    .modes{width:100%}
+    .mode-btn{flex:1;padding:12px;font-size:14px}
+    .ev-row{padding:11px 12px;gap:8px}
+    .ev-label{width:100%}
+    select{min-width:0;width:100%;padding:12px 34px 12px 12px;font-size:16px}
+    .space-btn{width:100%;padding:14px 26px;font-size:16px}
+    .hint{display:none}
+
+    .why-grid{grid-template-columns:1fr}
+    .fit{padding:20px}
+    .cta-row{flex-direction:column;align-items:stretch}
+    .btn{text-align:center;padding:15px 26px}
+  }
+  .tools{margin-bottom:18px;font-size:14px;color:var(--muted)}
+  .tools strong{color:var(--ink);font-weight:600}
+  .tools a{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(25,59,146,.3)}
+  .tools a:hover{border-color:var(--accent)}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.techtutor.academy/en/gdevelop-explained.html",
+  "url": "https://www.techtutor.academy/en/gdevelop-explained.html",
+  "name": "What is GDevelop? | TechTutor Academy",
+  "description": "A one-minute, hands-on explanation of GDevelop for parents. Change a rule, watch the game change.",
+  "inLanguage": "en",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "TechTutor Academy",
+    "url": "https://www.techtutor.academy"
+  },
+  "publisher": {
+    "@type": "EducationalOrganization",
+    "name": "TechTutor Academy",
+    "url": "https://www.techtutor.academy",
+    "logo": "https://www.techtutor.academy/images/robot-rocket.png"
+  },
+  "about": {
+    "@type": "Course",
+    "name": "GDevelop Game Designer",
+    "url": "https://www.techtutor.academy/en/programs/gdevelop-game-designer.html",
+    "provider": {
+      "@type": "EducationalOrganization",
+      "name": "TechTutor Academy",
+      "url": "https://www.techtutor.academy"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.techtutor.academy/en/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "What is GDevelop?",
+      "item": "https://www.techtutor.academy/en/gdevelop-explained.html"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="/en/index.html" aria-label="TechTutor home"><span class="b1">Tech</span><span class="b2">Tutor</span></a>
+  <a class="back" href="/en/index.html">&larr; Main page</a>
+</header>
+
+<main>
+
+  <section class="lead">
+    <p class="kicker">Program explainer</p>
+    <h1>What is GDevelop?</h1>
+    <p class="lead-text">It's a real game engine — but instead of typing code, your child builds the game out of rules:
+      <strong>when</strong> something happens, <strong>then</strong> something else happens.
+      Change the rule below and watch the game change.</p>
+  </section>
+
+  <section class="demo">
+    <div class="demo-top">
+      <p class="demo-head">One rule, live</p>
+      <div class="modes" role="group" aria-label="Kind of game">
+        <button type="button" class="mode-btn is-on" data-mode="platformer">Platformer</button>
+        <button type="button" class="mode-btn" data-mode="topdown">Top-down</button>
+      </div>
+    </div>
+
+    <div class="event-card" id="eventCard">
+      <div class="ev-row">
+        <span class="ev-label">When</span>
+        <select id="cond" aria-label="Condition">
+          <option value="space">the player presses Space</option>
+          <option value="coin">the player touches the coin</option>
+          <option value="timer">every 2 seconds</option>
+        </select>
+      </div>
+      <div class="ev-row">
+        <span class="ev-label">Then</span>
+        <select id="act" aria-label="Action">
+          <option value="jump">the player jumps</option>
+          <option value="grow">the player grows</option>
+          <option value="score">add 1 to the score</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="stage-wrap">
+      <canvas id="stage"></canvas>
+    </div>
+
+    <div class="controls" id="controls">
+      <button class="space-btn" id="spaceBtn" type="button">Space</button>
+      <span class="hint" id="hint">or press the spacebar</span>
+    </div>
+
+    <p class="demo-note">You just edited a game. Switch the game type and the same rule still works — that's the point.
+      A finished GDevelop project is a few dozen rules like this one, stacked together —
+      <strong>that stack is the programming.</strong></p>
+  </section>
+
+  <section class="make">
+    <h2>What they'll actually make</h2>
+
+    <div class="item">
+      <h3>Three kinds of game</h3>
+      <p>A side-on <strong>platformer</strong>, a <strong>top-down</strong> game seen from above (adventure, shooter,
+        or puzzle), and in the final level, <strong>3D</strong>. Three genres instead of one template — so what your
+        child learns transfers, rather than being one recipe repeated six times.</p>
+    </div>
+    <div class="item">
+      <h3>Systems, not just scenes</h3>
+      <p>Inventories, scores, health bars, characters that react to the player. This is where the programming
+        surfaces: variables, loops, and functions — in visual form, but the real concepts.</p>
+    </div>
+    <div class="item">
+      <h3>Something published</h3>
+      <p>The final project exports to a web link. Your child sends you a URL and you play their game on your phone.</p>
+    </div>
+
+    <div class="proof">
+      <a href="https://gd.games/games/ea46779c-b9b6-468a-8314-ddd089f42bdd" target="_blank" rel="noopener">Play a game published by a TechTutor student →</a>
+    </div>
+  </section>
+
+  <section class="why">
+    <h2>Why choose this program</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>Real concepts, without the syntax wall</h3>
+        <p>Events are conditions and actions — the same logic as written code. Your child meets variables, loops,
+          and functions early, without losing a lesson to a missing semicolon.</p>
+      </div>
+      <div class="why-card">
+        <h3>Something playable every few lessons</h3>
+        <p>Each project ends in a game you can actually play, so motivation doesn't depend on a payoff months away.</p>
+      </div>
+      <div class="why-card">
+        <h3>A real bridge to typed code</h3>
+        <p>Students who finish here move into Roblox Lua or Python already understanding how a program is
+          structured — the hard part is behind them.</p>
+      </div>
+      <div class="why-card">
+        <h3>Proof at the end, not just progress</h3>
+        <p>Games export to a link that works on any phone. Your child finishes with a portfolio to show,
+          not a folder of exercises.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fit">
+    <p class="tools"><strong>The tool:</strong> <a href="https://gdevelop.io" target="_blank" rel="noopener">GDevelop</a> — free and open source, so your child can keep building at home between lessons.</p>
+    <div class="facts">
+      <span class="fact">Ages 8–14</span>
+      <span class="fact">24 lessons, 3 levels</span>
+      <span class="fact">90-minute live sessions</span>
+      <span class="fact">Needs a laptop and Chrome</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="/en/free-trial.html">Book a free trial</a>
+      <a class="btn btn-ghost" href="/en/programs/gdevelop-game-designer.html">Program page</a>
+      <a class="btn btn-ghost" href="/en/brochures/gdevelop-game-designer.html">See all 24 lessons</a>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var cvs = document.getElementById('stage');
+  var ctx = cvs.getContext('2d');
+  var card = document.getElementById('eventCard');
+  var condSel = document.getElementById('cond');
+  var actSel = document.getElementById('act');
+  var spaceBtn = document.getElementById('spaceBtn');
+  var hint = document.getElementById('hint');
+  var controls = document.getElementById('controls');
+
+  var W = 0, H = 0;
+  function resize(){
+    var r = cvs.getBoundingClientRect();
+    var dpr = window.devicePixelRatio || 1;
+    W = r.width; H = r.height;
+    cvs.width = Math.round(W * dpr);
+    cvs.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  var ACCENT = '#193B92';
+  var groundY = function(){ return H - 24; };
+
+  var mode = 'platformer';
+  var p, coin, score, timerAcc, firedUntil, wasTouching, pendingSpace;
+
+  function reset(){
+    p = { x: 40, y: groundY(), vy: 0, size: 26, dx: 0.82, dy: -0.57, boost: 0 };
+    coin = { x: 0, y: 0, r: 9, pulse: 0 };
+    score = 0;
+    timerAcc = 0;
+    firedUntil = 0;
+    wasTouching = false;
+    pendingSpace = false;
+    placeCoin();
+  }
+
+  function placeCoin(){
+    if (mode === 'topdown'){
+      var m = 30;
+      coin.x = m + Math.random() * Math.max(1, W - 2 * m);
+      coin.y = 34 + Math.random() * Math.max(1, H - 34 - m);
+    } else {
+      coin.x = W * 0.62;
+      coin.y = groundY() - 16;
+    }
+  }
+
+  function setMode(next){
+    mode = next;
+    p.size = 26; p.vy = 0; p.boost = 0;
+    if (mode === 'topdown'){
+      p.x = W * 0.28; p.y = H * 0.6; p.dx = 0.82; p.dy = -0.57;
+    } else {
+      p.x = 40; p.y = groundY();
+    }
+    wasTouching = false; timerAcc = 0; pendingSpace = false;
+    // the same action reads differently once the camera is overhead
+    actSel.options[0].text = (mode === 'topdown') ? 'the player dashes' : 'the player jumps';
+    placeCoin();
+  }
+
+  function playerCenter(){
+    return mode === 'topdown'
+      ? { x: p.x, y: p.y }
+      : { x: p.x, y: p.y - p.size / 2 };
+  }
+
+  function doAction(now){
+    var a = actSel.value;
+    if (a === 'jump'){
+      if (mode === 'topdown') p.boost = 0.4;
+      else if (p.y >= groundY() - 0.5) p.vy = -290;
+    } else if (a === 'grow'){
+      p.size = p.size >= 44 ? 26 : p.size + 5;
+    } else if (a === 'score'){
+      score += 1;
+    }
+    firedUntil = now + 300;
+  }
+
+  function moveWorld(dt){
+    if (mode === 'platformer'){
+      // side view: auto-run right, wrap around, gravity pulls down
+      p.x += 64 * dt;
+      if (p.x > W + 24) p.x = -24;
+      p.vy += 900 * dt;
+      p.y += p.vy * dt;
+      if (p.y > groundY()){ p.y = groundY(); p.vy = 0; }
+      coin.x = W * 0.62;
+      coin.y = groundY() - 16;
+    } else {
+      // overhead view: no gravity — the player steers toward the pickup
+      if (p.boost > 0) p.boost -= dt;
+      var want = Math.atan2(coin.y - p.y, coin.x - p.x);
+      var cur = Math.atan2(p.dy, p.dx);
+      var diff = Math.atan2(Math.sin(want - cur), Math.cos(want - cur));
+      var turn = 2.6 * dt;
+      cur += Math.max(-turn, Math.min(turn, diff));
+      p.dx = Math.cos(cur); p.dy = Math.sin(cur);
+      var sp = 74 + (p.boost > 0 ? 170 : 0);
+      p.x += p.dx * sp * dt;
+      p.y += p.dy * sp * dt;
+      var m = p.size / 2 + 4;
+      p.x = Math.max(m, Math.min(W - m, p.x));
+      p.y = Math.max(m + 16, Math.min(H - m, p.y));
+    }
+    if (coin.pulse > 0) coin.pulse -= dt;
+  }
+
+  function step(dt, now){
+    moveWorld(dt);
+
+    // world behaviour: picking the coin up is the same in both views
+    var c = playerCenter();
+    var dx = c.x - coin.x, dy = c.y - coin.y;
+    var touching = Math.sqrt(dx * dx + dy * dy) < (p.size / 2 + coin.r);
+    var newTouch = touching && !wasTouching;
+    wasTouching = touching;
+    if (newTouch){
+      coin.pulse = 0.35;
+      if (mode === 'topdown') placeCoin();
+    }
+
+    // the rule
+    var cond = condSel.value;
+    if (cond === 'space'){
+      if (pendingSpace){ pendingSpace = false; doAction(now); }
+    } else if (cond === 'coin'){
+      if (newTouch) doAction(now);
+    } else if (cond === 'timer'){
+      timerAcc += dt;
+      if (timerAcc >= 2){ timerAcc -= 2; doAction(now); }
+    }
+  }
+
+  function roundRect(x, y, w, h, r){
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  function draw(now){
+    ctx.clearRect(0, 0, W, H);
+
+    if (mode === 'platformer'){
+      // side view: a floor to stand on
+      ctx.strokeStyle = '#d9dde5';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(0, groundY() + 0.5);
+      ctx.lineTo(W, groundY() + 0.5);
+      ctx.stroke();
+    } else {
+      // overhead view: a floor you look down on
+      ctx.strokeStyle = '#eef1f6';
+      ctx.lineWidth = 1;
+      for (var gx = 32; gx < W; gx += 32){
+        ctx.beginPath(); ctx.moveTo(gx + 0.5, 0); ctx.lineTo(gx + 0.5, H); ctx.stroke();
+      }
+      for (var gy = 32; gy < H; gy += 32){
+        ctx.beginPath(); ctx.moveTo(0, gy + 0.5); ctx.lineTo(W, gy + 0.5); ctx.stroke();
+      }
+    }
+
+    // coin
+    ctx.strokeStyle = ACCENT;
+    ctx.lineWidth = coin.pulse > 0 ? 3 : 1.8;
+    ctx.beginPath();
+    ctx.arc(coin.x, coin.y, coin.r + (coin.pulse > 0 ? 2 : 0), 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(coin.x, coin.y, 3, 0, Math.PI * 2);
+    ctx.fillStyle = ACCENT;
+    ctx.fill();
+
+    // player
+    var s = p.size;
+    var pc = playerCenter();
+    ctx.fillStyle = ACCENT;
+    roundRect(pc.x - s / 2, pc.y - s / 2, s, s, 7);
+    ctx.fill();
+    // eyes — facing forward from the side, facing the heading from above
+    ctx.fillStyle = '#fff';
+    if (mode === 'topdown'){
+      var fx = p.dx * s * 0.2, fy = p.dy * s * 0.2;
+      var sx = -p.dy * s * 0.17, sy = p.dx * s * 0.17;
+      ctx.beginPath(); ctx.arc(pc.x + fx + sx, pc.y + fy + sy, s * 0.075, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(pc.x + fx - sx, pc.y + fy - sy, s * 0.075, 0, Math.PI * 2); ctx.fill();
+    } else {
+      var eyeY = pc.y - s * 0.14;
+      ctx.beginPath(); ctx.arc(pc.x - s * 0.16, eyeY, s * 0.075, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(pc.x + s * 0.16, eyeY, s * 0.075, 0, Math.PI * 2); ctx.fill();
+    }
+
+    // score
+    ctx.fillStyle = '#5f6368';
+    ctx.font = '600 11px "DM Sans", system-ui, sans-serif';
+    ctx.textBaseline = 'top';
+    ctx.fillText('SCORE  ' + score, 14, 14);
+
+    // rule highlight
+    if (now < firedUntil) card.classList.add('fired');
+    else card.classList.remove('fired');
+  }
+
+  var last = 0, visible = true;
+  function loop(now){
+    var dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
+    last = now;
+    if (visible){ step(dt, now); draw(now); }
+    requestAnimationFrame(loop);
+  }
+
+  function triggerSpace(){
+    if (condSel.value === 'space') pendingSpace = true;
+  }
+
+  function syncControls(){
+    var isSpace = condSel.value === 'space';
+    controls.style.visibility = isSpace ? 'visible' : 'hidden';
+  }
+
+  spaceBtn.addEventListener('click', triggerSpace);
+  window.addEventListener('keydown', function(e){
+    if (e.code === 'Space' || e.key === ' '){
+      if (condSel.value === 'space' && visible){
+        e.preventDefault();
+        if (!e.repeat) triggerSpace();
+      }
+    }
+  });
+  condSel.addEventListener('change', function(){
+    wasTouching = false; timerAcc = 0; pendingSpace = false;
+    syncControls();
+  });
+  actSel.addEventListener('change', function(){ p.size = 26; });
+
+  var modeBtns = document.querySelectorAll('.mode-btn');
+  Array.prototype.forEach.call(modeBtns, function(b){
+    b.addEventListener('click', function(){
+      Array.prototype.forEach.call(modeBtns, function(o){ o.classList.remove('is-on'); });
+      b.classList.add('is-on');
+      setMode(b.getAttribute('data-mode'));
+    });
+  });
+
+  window.addEventListener('resize', function(){
+    resize();
+    var m = p.size / 2 + 4;
+    if (mode === 'topdown'){
+      p.x = Math.max(m, Math.min(W - m, p.x));
+      p.y = Math.max(m + 16, Math.min(H - m, p.y));
+    } else if (p.y > groundY()){
+      p.y = groundY();
+    }
+    placeCoin();
+  });
+
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      visible = entries[0].isIntersecting;
+      if (visible) last = 0;
+    }, { threshold: 0.05 }).observe(cvs);
+  }
+  document.addEventListener('visibilitychange', function(){
+    if (!document.hidden) last = 0;
+  });
+
+  resize();
+  reset();
+  syncControls();
+  requestAnimationFrame(loop);
+})();
+</script>
+
+</body>
+</html>
