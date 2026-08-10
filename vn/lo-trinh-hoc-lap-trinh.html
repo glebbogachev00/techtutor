@@ -89,7 +89,7 @@
 
 <header class="top">
   <a class="brand" href="/vn/index.html" aria-label="TechTutor home"><span class="b1">Tech</span><span class="b2">Tutor</span></a>
-  <a class="back" href="/vn/free-trial.html">Đặt lịch học thử miễn phí</a>
+  <a class="back" href="/vn/index.html">&larr; Trang chủ</a>
 </header>
 
 <main>
@@ -155,7 +155,7 @@
     var b=document.createElement('button');
     b.type='button'; b.className='choice';
     b.innerHTML = p.c + '<span class="arrow">&rarr;</span>';
-    b.addEventListener('click', function(){ open(p); });
+    b.addEventListener('click', function(){ go(p); });
     choicesEl.appendChild(b);
   });
 
@@ -183,19 +183,35 @@
       bodyEl.appendChild(g);
     }
     homeEl.style.display='none'; panelEl.classList.add('on');
-    if (history.replaceState) history.replaceState(null,'','#'+p.k);
     window.scrollTo(0,0);
   }
 
   function home(){
     panelEl.classList.remove('on'); homeEl.style.display='';
-    if (history.replaceState) history.replaceState(null,'',location.pathname);
     window.scrollTo(0,0);
   }
-  document.getElementById('pBack').addEventListener('click', home);
 
-  var k=(location.hash||'').replace('#','');
-  if (k) PANELS.forEach(function(p){ if (p.k===k) open(p); });
+  /* Each panel is a history entry, so the phone's own back gesture returns to
+     the choices instead of leaving the site. popstate is the single place that
+     decides what is showing; the buttons only push/pop. */
+  function show(k){
+    var found=null;
+    PANELS.forEach(function(p){ if (p.k===k) found=p; });
+    if (found) open(found); else home();
+  }
+  function go(p){
+    if (history.pushState) history.pushState({k:p.k},'','#'+p.k);
+    open(p);
+  }
+  window.addEventListener('popstate', function(){
+    show((location.hash||'').replace('#',''));
+  });
+  document.getElementById('pBack').addEventListener('click', function(){
+    if (history.state && history.state.k && history.length>1) history.back();
+    else { if (history.replaceState) history.replaceState(null,'',location.pathname); home(); }
+  });
+
+  show((location.hash||'').replace('#',''));
 })();
 </script>
 
