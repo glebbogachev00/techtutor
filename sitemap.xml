@@ -1,692 +1,632 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://techtutor.academy/en/admin-portal.html</loc>
+    <loc>https://www.techtutor.academy/en/blog-build-tech-portfolio.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/blog-build-tech-portfolio.html</loc>
+    <loc>https://www.techtutor.academy/en/blog-project-based-learning.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/blog-project-based-learning.html</loc>
+    <loc>https://www.techtutor.academy/en/blog-spot-nurture-tech-skill.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/blog-spot-nurture-tech-skill.html</loc>
+    <loc>https://www.techtutor.academy/en/blog-tech-like-playtime.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/blog-tech-like-playtime.html</loc>
+    <loc>https://www.techtutor.academy/en/blog.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/blog.html</loc>
+    <loc>https://www.techtutor.academy/en/courses/generative-ai-course.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/courses/generative-ai-course.html</loc>
+    <loc>https://www.techtutor.academy/en/free-trial.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/free-trial.html</loc>
+    <loc>https://www.techtutor.academy/en/how-it-works.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/how-it-works.html</loc>
+    <loc>https://www.techtutor.academy/en/index.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/index.html</loc>
+    <loc>https://www.techtutor.academy/en/online-courses.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/login.html</loc>
+    <loc>https://www.techtutor.academy/en/plans-and-faq.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/online-courses.html</loc>
+    <loc>https://www.techtutor.academy/en/programs/3d-designer.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/plans-and-faq.html</loc>
+    <loc>https://www.techtutor.academy/en/programs/ai-programming-quest.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/programs/3d-designer.html</loc>
+    <loc>https://www.techtutor.academy/en/programs/app-development.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/programs/ai-programming-quest.html</loc>
+    <loc>https://www.techtutor.academy/en/programs/gdevelop-game-designer.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/programs/app-development.html</loc>
+    <loc>https://www.techtutor.academy/en/programs/generative-ai-magic.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/programs/gdevelop-game-designer.html</loc>
+    <loc>https://www.techtutor.academy/en/programs/roblox-world-creator.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/programs/generative-ai-magic.html</loc>
+    <loc>https://www.techtutor.academy/en/programs/scratch-game-coder.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/programs/roblox-world-creator.html</loc>
+    <loc>https://www.techtutor.academy/en/programs/startup-foundations.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/programs/scratch-game-coder.html</loc>
+    <loc>https://www.techtutor.academy/en/student-projects.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/programs/startup-foundations.html</loc>
+    <loc>https://www.techtutor.academy/en/vision.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/student-portal.html</loc>
+    <loc>https://www.techtutor.academy/vn/blog-build-tech-portfolio.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/student-projects.html</loc>
+    <loc>https://www.techtutor.academy/vn/blog-project-based-learning.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/vision.html</loc>
+    <loc>https://www.techtutor.academy/vn/blog-spot-nurture-tech-skill.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/admin-portal.html</loc>
+    <loc>https://www.techtutor.academy/vn/blog-tech-like-playtime.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/blog-build-tech-portfolio.html</loc>
+    <loc>https://www.techtutor.academy/vn/blog.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/blog-project-based-learning.html</loc>
+    <loc>https://www.techtutor.academy/vn/courses/generative-ai-course.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/blog-spot-nurture-tech-skill.html</loc>
+    <loc>https://www.techtutor.academy/vn/free-trial.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/blog-tech-like-playtime.html</loc>
+    <loc>https://www.techtutor.academy/vn/how-it-works.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/blog.html</loc>
+    <loc>https://www.techtutor.academy/vn/index.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/courses/generative-ai-course.html</loc>
+    <loc>https://www.techtutor.academy/vn/online-courses.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/free-trial.html</loc>
+    <loc>https://www.techtutor.academy/vn/plans-and-faq.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/how-it-works.html</loc>
+    <loc>https://www.techtutor.academy/vn/programs/3d-designer.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/index.html</loc>
+    <loc>https://www.techtutor.academy/vn/programs/ai-programming-quest.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/login.html</loc>
+    <loc>https://www.techtutor.academy/vn/programs/app-development.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/online-courses.html</loc>
+    <loc>https://www.techtutor.academy/vn/programs/gdevelop-game-designer.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/plans-and-faq.html</loc>
+    <loc>https://www.techtutor.academy/vn/programs/generative-ai-magic.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/programs/3d-designer.html</loc>
+    <loc>https://www.techtutor.academy/vn/programs/roblox-world-creator.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/programs/ai-programming-quest.html</loc>
+    <loc>https://www.techtutor.academy/vn/programs/scratch-game-coder.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/programs/app-development.html</loc>
+    <loc>https://www.techtutor.academy/vn/programs/startup-foundations.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/programs/gdevelop-game-designer.html</loc>
+    <loc>https://www.techtutor.academy/vn/student-projects.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/programs/generative-ai-magic.html</loc>
+    <loc>https://www.techtutor.academy/vn/vision.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/programs/roblox-world-creator.html</loc>
+    <loc>https://www.techtutor.academy/in/blog-build-tech-portfolio.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/programs/scratch-game-coder.html</loc>
+    <loc>https://www.techtutor.academy/in/blog-project-based-learning.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/programs/startup-foundations.html</loc>
+    <loc>https://www.techtutor.academy/in/blog-spot-nurture-tech-skill.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/student-portal.html</loc>
+    <loc>https://www.techtutor.academy/in/blog-tech-like-playtime.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/student-projects.html</loc>
+    <loc>https://www.techtutor.academy/in/blog.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/vision.html</loc>
+    <loc>https://www.techtutor.academy/in/courses/generative-ai-course.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/admin-portal.html</loc>
+    <loc>https://www.techtutor.academy/in/free-trial.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/blog-build-tech-portfolio.html</loc>
+    <loc>https://www.techtutor.academy/in/how-it-works.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/blog-project-based-learning.html</loc>
+    <loc>https://www.techtutor.academy/in/index.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/blog-spot-nurture-tech-skill.html</loc>
+    <loc>https://www.techtutor.academy/in/online-courses.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/blog-tech-like-playtime.html</loc>
+    <loc>https://www.techtutor.academy/in/plans-and-faq.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/blog.html</loc>
+    <loc>https://www.techtutor.academy/in/programs/3d-designer.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/courses/generative-ai-course.html</loc>
+    <loc>https://www.techtutor.academy/in/programs/ai-programming-quest.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/free-trial.html</loc>
+    <loc>https://www.techtutor.academy/in/programs/app-development.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/how-it-works.html</loc>
+    <loc>https://www.techtutor.academy/in/programs/gdevelop-game-designer.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/index.html</loc>
+    <loc>https://www.techtutor.academy/in/programs/generative-ai-magic.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/login.html</loc>
+    <loc>https://www.techtutor.academy/in/programs/roblox-world-creator.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/online-courses.html</loc>
+    <loc>https://www.techtutor.academy/in/programs/scratch-game-coder.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/plans-and-faq.html</loc>
+    <loc>https://www.techtutor.academy/in/programs/startup-foundations.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/programs/3d-designer.html</loc>
+    <loc>https://www.techtutor.academy/in/student-projects.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/programs/ai-programming-quest.html</loc>
+    <loc>https://www.techtutor.academy/in/vision.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/programs/app-development.html</loc>
+    <loc>https://www.techtutor.academy/us/blog-build-tech-portfolio.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/programs/gdevelop-game-designer.html</loc>
+    <loc>https://www.techtutor.academy/us/blog-project-based-learning.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/programs/generative-ai-magic.html</loc>
+    <loc>https://www.techtutor.academy/us/blog-spot-nurture-tech-skill.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/programs/roblox-world-creator.html</loc>
+    <loc>https://www.techtutor.academy/us/blog-tech-like-playtime.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/programs/scratch-game-coder.html</loc>
+    <loc>https://www.techtutor.academy/us/blog.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/programs/startup-foundations.html</loc>
+    <loc>https://www.techtutor.academy/us/courses/generative-ai-course.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/student-portal.html</loc>
+    <loc>https://www.techtutor.academy/us/free-trial.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/student-projects.html</loc>
+    <loc>https://www.techtutor.academy/us/how-it-works.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/in/vision.html</loc>
+    <loc>https://www.techtutor.academy/us/index.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/us/admin-portal.html</loc>
+    <loc>https://www.techtutor.academy/us/online-courses.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/us/blog-build-tech-portfolio.html</loc>
+    <loc>https://www.techtutor.academy/us/plans-and-faq.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/us/blog-project-based-learning.html</loc>
+    <loc>https://www.techtutor.academy/us/programs/3d-designer.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/us/blog-spot-nurture-tech-skill.html</loc>
+    <loc>https://www.techtutor.academy/us/programs/ai-programming-quest.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/us/blog-tech-like-playtime.html</loc>
+    <loc>https://www.techtutor.academy/us/programs/app-development.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/us/blog.html</loc>
+    <loc>https://www.techtutor.academy/us/programs/gdevelop-game-designer.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/us/courses/generative-ai-course.html</loc>
+    <loc>https://www.techtutor.academy/us/programs/generative-ai-magic.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/us/free-trial.html</loc>
+    <loc>https://www.techtutor.academy/us/programs/roblox-world-creator.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/us/how-it-works.html</loc>
+    <loc>https://www.techtutor.academy/us/programs/scratch-game-coder.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/us/index.html</loc>
+    <loc>https://www.techtutor.academy/us/programs/startup-foundations.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/us/login.html</loc>
+    <loc>https://www.techtutor.academy/us/student-projects.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/us/online-courses.html</loc>
+    <loc>https://www.techtutor.academy/us/vision.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/us/plans-and-faq.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://techtutor.academy/us/programs/3d-designer.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://techtutor.academy/us/programs/ai-programming-quest.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://techtutor.academy/us/programs/app-development.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://techtutor.academy/us/programs/gdevelop-game-designer.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://techtutor.academy/us/programs/generative-ai-magic.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://techtutor.academy/us/programs/roblox-world-creator.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://techtutor.academy/us/programs/scratch-game-coder.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://techtutor.academy/us/programs/startup-foundations.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://techtutor.academy/us/student-portal.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://techtutor.academy/us/student-projects.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://techtutor.academy/us/vision.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://techtutor.academy/en/3d-design-explained.html</loc>
+    <loc>https://www.techtutor.academy/en/3d-design-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/ai-programming-explained.html</loc>
+    <loc>https://www.techtutor.academy/en/ai-programming-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/app-development-explained.html</loc>
+    <loc>https://www.techtutor.academy/en/app-development-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/gdevelop-explained.html</loc>
+    <loc>https://www.techtutor.academy/en/gdevelop-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/roblox-explained.html</loc>
+    <loc>https://www.techtutor.academy/en/roblox-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/scratch-explained.html</loc>
+    <loc>https://www.techtutor.academy/en/scratch-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/startup-explained.html</loc>
+    <loc>https://www.techtutor.academy/en/startup-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/web-development-explained.html</loc>
+    <loc>https://www.techtutor.academy/en/web-development-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/3d-design-explained.html</loc>
+    <loc>https://www.techtutor.academy/vn/3d-design-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/ai-programming-explained.html</loc>
+    <loc>https://www.techtutor.academy/vn/ai-programming-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/app-development-explained.html</loc>
+    <loc>https://www.techtutor.academy/vn/app-development-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/gdevelop-explained.html</loc>
+    <loc>https://www.techtutor.academy/vn/gdevelop-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/roblox-explained.html</loc>
+    <loc>https://www.techtutor.academy/vn/roblox-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/scratch-explained.html</loc>
+    <loc>https://www.techtutor.academy/vn/scratch-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/startup-explained.html</loc>
+    <loc>https://www.techtutor.academy/vn/startup-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/web-development-explained.html</loc>
+    <loc>https://www.techtutor.academy/vn/web-development-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/brochures/3d-designer.html</loc>
+    <loc>https://www.techtutor.academy/en/brochures/3d-designer.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/brochures/ai-game-adventure.html</loc>
+    <loc>https://www.techtutor.academy/en/brochures/ai-game-adventure.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/brochures/app-development.html</loc>
+    <loc>https://www.techtutor.academy/en/brochures/app-development.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/brochures/before-class-checklist.html</loc>
+    <loc>https://www.techtutor.academy/en/brochures/before-class-checklist.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/brochures/gdevelop-game-designer.html</loc>
+    <loc>https://www.techtutor.academy/en/brochures/gdevelop-game-designer.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/brochures/generative-ai-program.html</loc>
+    <loc>https://www.techtutor.academy/en/brochures/generative-ai-program.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/brochures/roblox-world-creator.html</loc>
+    <loc>https://www.techtutor.academy/en/brochures/roblox-world-creator.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/brochures/scratch-world.html</loc>
+    <loc>https://www.techtutor.academy/en/brochures/scratch-world.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/brochures/startup-foundation.html</loc>
+    <loc>https://www.techtutor.academy/en/brochures/startup-foundation.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/brochures/web-development.html</loc>
+    <loc>https://www.techtutor.academy/en/brochures/web-development.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/brochures/3d-designer.html</loc>
+    <loc>https://www.techtutor.academy/vn/brochures/3d-designer.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/brochures/ai-game-adventure.html</loc>
+    <loc>https://www.techtutor.academy/vn/brochures/ai-game-adventure.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/brochures/app-development.html</loc>
+    <loc>https://www.techtutor.academy/vn/brochures/app-development.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/brochures/before-class-checklist.html</loc>
+    <loc>https://www.techtutor.academy/vn/brochures/before-class-checklist.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/brochures/gdevelop-game-designer.html</loc>
+    <loc>https://www.techtutor.academy/vn/brochures/gdevelop-game-designer.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/brochures/generative-ai-program.html</loc>
+    <loc>https://www.techtutor.academy/vn/brochures/generative-ai-program.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/brochures/roblox-world-creator.html</loc>
+    <loc>https://www.techtutor.academy/vn/brochures/roblox-world-creator.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/brochures/scratch-world.html</loc>
+    <loc>https://www.techtutor.academy/vn/brochures/scratch-world.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/brochures/startup-foundation.html</loc>
+    <loc>https://www.techtutor.academy/vn/brochures/startup-foundation.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/brochures/web-development.html</loc>
+    <loc>https://www.techtutor.academy/vn/brochures/web-development.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/generative-ai-explained.html</loc>
+    <loc>https://www.techtutor.academy/en/generative-ai-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/generative-ai-explained.html</loc>
+    <loc>https://www.techtutor.academy/vn/generative-ai-explained.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/learning-roadmap.html</loc>
+    <loc>https://www.techtutor.academy/en/learning-roadmap.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/lo-trinh-hoc-lap-trinh.html</loc>
+    <loc>https://www.techtutor.academy/vn/lo-trinh-hoc-lap-trinh.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/en/quiz.html</loc>
+    <loc>https://www.techtutor.academy/en/quiz.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://techtutor.academy/vn/trac-nghiem.html</loc>
+    <loc>https://www.techtutor.academy/vn/trac-nghiem.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>

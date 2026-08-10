@@ -1,19 +1,21 @@
 User-agent: *
-Allow: /en/
-Allow: /vn/
-Disallow: /*.backup
-Disallow: /*.original
+
+# Private surfaces: blocked for every locale, and carrying noindex on the page too.
+Disallow: /*/admin-portal.html
+Disallow: /*/student-portal.html
+Disallow: /*/login.html
 Disallow: /admin-portal.html
 Disallow: /student-portal.html
 Disallow: /login.html
-Disallow: /vision.html
-Disallow: /blog*.html
-Disallow: /free-trial.html
-Disallow: /how-it-works.html
-Disallow: /online-courses.html
-Disallow: /plans-and-faq.html
-Disallow: /student-projects.html
-Disallow: /programs/
-Disallow: /courses/
+Disallow: /login-supabase.html
+Disallow: /tracker.html
+Disallow: /operating-plan.html
 
-Sitemap: https://techtutor.academy/sitemap.xml
+Disallow: /*.backup
+Disallow: /*.original
+
+# The root-level copies of blog/pricing/etc. already canonicalise to their /en/
+# versions. They are deliberately left crawlable so that canonical can be honoured;
+# blocking them only hides the signal.
+
+Sitemap: https://www.techtutor.academy/sitemap.xml
