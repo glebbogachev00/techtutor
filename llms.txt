@@ -10,6 +10,7 @@
 - https://techtutor.academy/student-projects.html (Student project portfolio)
 - https://techtutor.academy/free-trial.html (Book a free trial lesson)
 - https://techtutor.academy/online-courses.html (Free self-paced courses)
+- https://techtutor.academy/en/quiz.html (Five questions about the child — interests, experience, what they'd want to show someone — returns one recommended program with the reason. Vietnamese: /vn/trac-nghiem.html)
 - https://techtutor.academy/en/learning-roadmap.html (Parent roadmap — pick a child's age, see which of the nine programs fit now and what comes next. Vietnamese: /vn/lo-trinh-hoc-lap-trinh.html)
 - https://techtutor.academy/en/resources.html (Interactive explainers + full 24-lesson brochures for every program)
 

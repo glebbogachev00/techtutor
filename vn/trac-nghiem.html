@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chương trình nào hợp với con tôi? | TechTutor Academy</title>
+<meta name="description" content="Năm câu hỏi về con bạn — không phải bài kiểm tra. Nhận một chương trình được gợi ý kèm lý do, trong chưa đầy một phút." />
+<link rel="canonical" href="https://techtutor.academy/vn/trac-nghiem.html" />
+<link rel="alternate" hreflang="en" href="https://techtutor.academy/vn/trac-nghiem.html" />
+<link rel="alternate" hreflang="vi" href="https://techtutor.academy/vn/trac-nghiem.html" />
+<link rel="alternate" hreflang="x-default" href="https://techtutor.academy/vn/trac-nghiem.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="TechTutor Academy" />
+<meta property="og:url" content="https://techtutor.academy/vn/trac-nghiem.html" />
+<meta property="og:title" content="Chương trình nào hợp với con tôi?" />
+<meta property="og:description" content="Năm câu hỏi về con bạn — không phải bài kiểm tra. Một gợi ý, kèm lý do." />
+<meta property="og:image" content="https://techtutor.academy/images/family-portrait.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="vi_VN" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Chương trình nào hợp với con tôi?" />
+<meta name="twitter:description" content="Năm câu hỏi về con bạn — không phải bài kiểm tra. Một gợi ý, kèm lý do." />
+<meta name="twitter:image" content="https://techtutor.academy/images/family-portrait.jpg" />
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--ink:#171717;--muted:#5f6368;--line:#d9dde5;--accent:#193B92;--accent-soft:#eef2fb}
+  html{-webkit-text-size-adjust:100%}
+  body{background:#fff;color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;font-size:16px}
+  a{color:inherit}
+
+  .top{max-width:640px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    font-size:24px;font-weight:900;letter-spacing:-.025em;text-decoration:none;line-height:1}
+  .brand .b1{color:#193b92}
+  .brand .b2{color:#14b8a6}
+  .back{font-size:13px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+  .back:hover{color:var(--accent);border-color:var(--accent)}
+
+  main{max-width:640px;margin:0 auto;padding:12px 24px 90px;min-height:60vh}
+
+  /* progress */
+  .dots{display:flex;gap:6px;margin-bottom:30px}
+  .dot{height:4px;flex:1;border-radius:99px;background:var(--line)}
+  .dot.done{background:var(--accent)}
+
+  h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(26px,4.6vw,34px);
+    line-height:1.2;letter-spacing:-.01em;margin-bottom:26px}
+
+  .opts{display:flex;flex-direction:column;gap:10px}
+  .opt{font-family:inherit;font-size:16px;font-weight:500;color:var(--ink);text-align:left;
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:17px 18px;cursor:pointer;
+    transition:border-color .15s ease,background .15s ease}
+  .opt:hover{border-color:var(--accent);background:var(--accent-soft)}
+
+  .nav{margin-top:26px;display:flex;align-items:center;gap:14px;min-height:24px}
+  .prev{font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;padding:0}
+  .prev:hover{color:var(--accent)}
+  .step{font-size:13px;color:var(--muted)}
+
+  /* result */
+  .result{display:none}
+  .result.on{display:block}
+  .r-kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px}
+  .r-name{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(30px,5.4vw,40px);line-height:1.1;margin-bottom:12px}
+  .r-why{font-size:17px;color:#333;margin-bottom:8px}
+  .r-meta{font-size:14px;color:var(--muted);margin-bottom:24px}
+  .r-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+  .btn{display:inline-block;text-decoration:none;font-size:15px;font-weight:600;border-radius:10px;padding:14px 24px}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:#122f77}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .r-alt{border-top:1px solid var(--line);padding-top:18px;font-size:15px;color:var(--muted)}
+  .r-alt a{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(25,59,146,.3)}
+  .r-alt a:hover{border-color:var(--accent)}
+  .again{margin-top:22px;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);
+    background:none;border:none;cursor:pointer;padding:0;text-decoration:underline}
+  .again:hover{color:var(--accent)}
+
+  button{touch-action:manipulation}
+
+  @media (max-width:600px){
+    .top{padding:18px 20px}
+    main{padding:12px 20px 70px}
+    .opt{font-size:16px;padding:16px}
+    .r-cta{flex-direction:column}
+    .btn{text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="/vn/index.html" aria-label="TechTutor home"><span class="b1">Tech</span><span class="b2">Tutor</span></a>
+  <a class="back" href="/vn/lo-trinh-hoc-lap-trinh.html">Xem tất cả chương trình</a>
+</header>
+
+<main>
+  <div class="dots" id="dots"></div>
+
+  <div id="quiz">
+    <h1 id="q"></h1>
+    <div class="opts" id="opts"></div>
+    <div class="nav">
+      <button class="prev" id="prev" type="button" hidden>← Quay lại</button>
+      <span class="step" id="step"></span>
+    </div>
+  </div>
+
+  <div class="result" id="result">
+    <p class="r-kicker">Phù hợp nhất</p>
+    <h2 class="r-name" id="rName"></h2>
+    <p class="r-why" id="rWhy"></p>
+    <p class="r-meta" id="rMeta"></p>
+    <div class="r-cta">
+      <a class="btn btn-primary" id="rTry" href="#">Thử trong 1 phút</a>
+      <a class="btn btn-ghost" href="/vn/free-trial.html">Đặt lịch học thử miễn phí</a>
+    </div>
+    <p class="r-alt" id="rAlt"></p>
+    <button class="again" id="again" type="button">Làm lại</button>
+  </div>
+</main>
+
+<script>
+(function(){
+  var P = {
+    scratch:  { n:'Lập Trình Game Scratch',     from:7,  to:12, x:'scratch-explained.html' },
+    gdevelop: { n:'Thiết Kế Game GDevelop', from:8,  to:14, x:'gdevelop-explained.html' },
+    roblox:   { n:'Sáng Tạo Thế Giới Roblox',   from:9,  to:15, x:'roblox-explained.html' },
+    web:      { n:'Tạo Website',       from:10, to:16, x:'web-development-explained.html' },
+    d3:       { n:'Thiết Kế 3D',            from:10, to:16, x:'3d-design-explained.html' },
+    app:      { n:'Phát Triển Ứng Dụng',        from:10, to:17, x:'app-development-explained.html' },
+    genai:    { n:'Phép Thuật AI Tạo Sinh',    from:10, to:17, x:'generative-ai-explained.html' },
+    ai:       { n:'Khám Phá AI & Lập Trình', from:11, to:16, x:'ai-programming-explained.html' },
+    startup:  { n:'Nền Tảng Khởi Nghiệp',    from:10, to:17, x:'startup-explained.html' }
+  };
+
+  var Q = [
+    { q:'Con bạn bao nhiêu tuổi?', a:[
+      { t:'7 đến 9',   band:[7,9] },
+      { t:'10 đến 12', band:[10,12] },
+      { t:'13 đến 15', band:[13,15] },
+      { t:'16 hoặc 17', band:[16,17] } ] },
+
+    { q:'Khi không ai bảo phải làm gì, con thường sa vào việc gì?', a:[
+      { t:'Game — chơi game, nói về game', s:{gdevelop:3,roblox:3,scratch:1} },
+      { t:'Vẽ, thiết kế, chỉnh cho mọi thứ đẹp mắt', s:{d3:3,genai:2,web:1} },
+      { t:'Tháo đồ ra xem bên trong hoạt động thế nào', s:{ai:3,web:2,app:1} },
+      { t:'Ý tưởng và kế hoạch — con hay thuyết phục người khác', s:{startup:3,app:1} } ] },
+
+    { q:'Con đã viết code bao giờ chưa?', a:[
+      { t:'Chưa bao giờ', s:{scratch:3,gdevelop:2,ai:-3,startup:-2,web:-1} },
+      { t:'Một chút Scratch hoặc tương tự', s:{gdevelop:2,roblox:2,web:1} },
+      { t:'Rồi — code gõ tay thật sự', s:{web:2,ai:3,startup:2,app:1,scratch:-4} } ] },
+
+    { q:'Con thích khoe với người khác thứ gì nhất?', a:[
+      { t:'Một trò chơi bạn bè chơi được', s:{roblox:3,gdevelop:3} },
+      { t:'Một trang web hoặc ứng dụng người ta dùng thật', s:{web:3,app:3} },
+      { t:'Một bức tranh hoặc nhân vật con tự làm', s:{d3:3,genai:3} },
+      { t:'Thứ con nghĩ ra để giải quyết một vấn đề', s:{startup:3,app:2} } ] },
+
+    { q:'Khi gặp chuyện khó chịu, con thường…', a:[
+      { t:'Mày mò tiếp cho tới khi chạy được', s:{ai:1,startup:1,web:1} },
+      { t:'Muốn có người ngồi cạnh cùng làm', s:{scratch:1,gdevelop:1} },
+      { t:'Chán và chuyển sang việc khác', s:{roblox:2,genai:2,scratch:1} } ] }
+  ];
+
+  var WHY = {
+    scratch:  'Bắt đầu từ trước cả code — chuột, bàn phím, tệp tin — rồi tiến tới game thật bằng khối lệnh con đọc lại cho bạn nghe được.',
+    gdevelop: 'Game dựng từ các quy tắc đọc được thay vì gõ chữ, nên phần khó là tư duy chứ không phải cú pháp.',
+    roblox:   'Biến thứ con đã chơi hàng giờ thành thứ con tự xuất bản — quãng đường ngắn nhất từ thói quen đến việc tạo ra sản phẩm.',
+    web:      'Sửa một dòng, tải lại, thấy ngay. Vòng phản hồi nhanh nhất trong lập trình, kết thúc bằng một đường link ai cũng mở được.',
+    d3:       'Đề cao cảm quan thị giác trước, phần kỹ thuật đưa vào dần — mỗi tuần đều cho ra một hình ảnh.',
+    app:      'Thiết kế và logic đi song song, kết thúc bằng thứ cài được lên điện thoại và đưa tận tay bạn.',
+    genai:    'Dạy khả năng phán đoán chứ không phải bấm nút: lấy được kết quả đúng, thay vì chấp nhận kết quả đầu tiên.',
+    ai:       'Python thật và mô hình huấn luyện thật, kể cả việc nhìn mô hình của chính mình sai vì dữ liệu mình chọn.',
+    startup:  'Chương trình duy nhất lấy người dùng thật làm mục tiêu thay vì một bài tập — hợp khi con đã có sẵn ý tưởng.'
+  };
+
+  var dotsEl=document.getElementById('dots'), qEl=document.getElementById('q'), optsEl=document.getElementById('opts'),
+      stepEl=document.getElementById('step'), prevBtn=document.getElementById('prev'),
+      quizEl=document.getElementById('quiz'), resEl=document.getElementById('result');
+  var i=0, answers=[];
+
+  Q.forEach(function(){ var d=document.createElement('span'); d.className='dot'; dotsEl.appendChild(d); });
+
+  function paintDots(){
+    Array.prototype.forEach.call(dotsEl.children, function(d,n){ d.classList.toggle('done', n <= i-1); });
+  }
+
+  function show(){
+    if (i >= Q.length){ finish(); return; }
+    var item=Q[i];
+    qEl.textContent=item.q;
+    optsEl.innerHTML='';
+    item.a.forEach(function(opt,n){
+      var b=document.createElement('button');
+      b.type='button'; b.className='opt'; b.textContent=opt.t;
+      b.addEventListener('click',function(){ answers[i]=n; i++; paintDots(); show(); });
+      optsEl.appendChild(b);
+    });
+    prevBtn.hidden = i === 0;
+    stepEl.textContent = 'Câu ' + (i+1) + ' trên ' + Q.length;
+    paintDots();
+  }
+
+  function finish(){
+    var band=Q[0].a[answers[0]].band;
+    var score={};
+    Object.keys(P).forEach(function(k){ score[k]=0; });
+    for (var n=1;n<Q.length;n++){
+      var s=Q[n].a[answers[n]].s || {};
+      Object.keys(s).forEach(function(k){ score[k]+=s[k]; });
+    }
+    // only programs whose age range overlaps the band they chose
+    var eligible=Object.keys(P).filter(function(k){ return P[k].from <= band[1] && P[k].to >= band[0]; });
+    eligible.sort(function(a,b){ return score[b]-score[a]; });
+    var top=eligible[0], alt=eligible[1];
+
+    document.getElementById('rName').textContent=P[top].n;
+    document.getElementById('rWhy').textContent=WHY[top];
+    document.getElementById('rMeta').textContent='Tuổi ' + P[top].from + '–' + P[top].to +
+      ' · 24 buổi học, 3 cấp độ · buổi trực tiếp 90 phút';
+    document.getElementById('rTry').setAttribute('href', P[top].x);
+    document.getElementById('rAlt').innerHTML = alt
+      ? 'Cũng đáng xem: <a href="' + P[alt].x + '">' + P[alt].n + '</a>.'
+      : '';
+    quizEl.style.display='none';
+    resEl.classList.add('on');
+    Array.prototype.forEach.call(dotsEl.children,function(d){ d.classList.add('done'); });
+  }
+
+  prevBtn.addEventListener('click',function(){ if(i>0){ i--; paintDots(); show(); } });
+  document.getElementById('again').addEventListener('click',function(){
+    i=0; answers=[]; resEl.classList.remove('on'); quizEl.style.display=''; show();
+  });
+
+  show();
+})();
+</script>
+
+</body>
+</html>
