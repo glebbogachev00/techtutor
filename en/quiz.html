@@ -55,6 +55,13 @@
     transition:border-color .15s ease,background .15s ease}
   .opt:hover{border-color:var(--accent);background:var(--accent-soft)}
 
+  .agesel{width:100%;font-family:inherit;font-size:17px;font-weight:500;color:var(--ink);background:#fff;
+    border:1px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23193B92' stroke-width='1.8' stroke-linecap='round'/></svg>");
+    background-repeat:no-repeat;background-position:right 18px center}
+  .agesel:focus{outline:2px solid var(--accent);outline-offset:1px}
+  .hint{margin-top:12px;font-size:13.5px;color:var(--muted)}
+
   .nav{margin-top:26px;display:flex;align-items:center;gap:14px;min-height:24px}
   .prev{font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;padding:0}
   .prev:hover{color:var(--accent)}
@@ -139,11 +146,7 @@
   };
 
   var Q = [
-    { q:'How old are they?', a:[
-      { t:'7 to 9',   band:[7,9] },
-      { t:'10 to 12', band:[10,12] },
-      { t:'13 to 15', band:[13,15] },
-      { t:'16 or 17', band:[16,17] } ] },
+    { q:'How old are they?', age:true },
 
     { q:'What do they gravitate to when nobody is telling them what to do?', a:[
       { t:'Games — playing them, talking about them', s:{gdevelop:3,roblox:3,scratch:1} },
@@ -196,6 +199,38 @@
     var item=Q[i];
     qEl.textContent=item.q;
     optsEl.innerHTML='';
+
+    if (item.age){
+      var sel=document.createElement('select');
+      sel.className='agesel';
+      sel.setAttribute('aria-label','Your child\'s age');
+      var opts=['Choose an age','6 or under'];
+      for (var y=7;y<=17;y++) opts.push(String(y));
+      opts.push('18 or older');
+      opts.forEach(function(label,n){
+        var o=document.createElement('option');
+        o.value = n===0 ? '' : (n===1 ? 'under' : (label==='18 or older' ? 'over' : label));
+        o.textContent = label;
+        if (n===0){ o.disabled=true; o.selected=true; }
+        sel.appendChild(o);
+      });
+      if (answers[i] != null) sel.value = answers[i];
+      sel.addEventListener('change', function(){
+        answers[i]=sel.value;
+        // no point asking four more questions if we already cannot help
+        if (sel.value==='under' || sel.value==='over'){ outOfRange(sel.value); return; }
+        i++; paintDots(); show();
+      });
+      optsEl.appendChild(sel);
+      var h=document.createElement('p'); h.className='hint';
+      h.textContent='We teach 7 to 17 — pick the closest age.';
+      optsEl.appendChild(h);
+      prevBtn.hidden = i === 0;
+      stepEl.textContent = 'Question ' + (i+1) + ' of ' + Q.length;
+      paintDots();
+      return;
+    }
+
     item.a.forEach(function(opt,n){
       var b=document.createElement('button');
       b.type='button'; b.className='opt'; b.textContent=opt.t;
@@ -207,8 +242,27 @@
     paintDots();
   }
 
+  function outOfRange(kind){
+    document.getElementById('rName').textContent = kind==='under' ? 'A little early' : 'Worth a conversation';
+    document.getElementById('rWhy').textContent = kind==='under'
+      ? 'Our youngest program, Scratch Game Coder, is written for 7 and up — it starts with mouse, keyboard and file skills before any code. At 6 it genuinely depends on the child.'
+      : 'These nine programs are built for 7 to 17, and the pacing assumes that. Past 18 the material still stands up, but a path built around what you want to make is the honest route.';
+    document.getElementById('rMeta').textContent='';
+    var t=document.getElementById('rTry');
+    t.setAttribute('href', kind==='under' ? '/en/free-trial.html' : '/en/custom-courses.html');
+    t.textContent = kind==='under' ? 'Book a free trial' : 'See custom courses';
+    document.getElementById('rAlt').innerHTML = kind==='under'
+      ? 'We will tell you honestly whether to wait a year.'
+      : 'Tell us what you want to build and we will say whether we can help.';
+    quizEl.style.display='none'; resEl.classList.add('on');
+    Array.prototype.forEach.call(dotsEl.children,function(d){ d.classList.add('done'); });
+  }
+
   function finish(){
-    var band=Q[0].a[answers[0]].band;
+    var a0=answers[0];
+    if (a0==='under' || a0==='over'){ outOfRange(a0); return; }
+    var age=parseInt(a0,10);
+    var band=[age,age];
     var score={};
     Object.keys(P).forEach(function(k){ score[k]=0; });
     for (var n=1;n<Q.length;n++){
@@ -224,7 +278,9 @@
     document.getElementById('rWhy').textContent=WHY[top];
     document.getElementById('rMeta').textContent='Ages ' + P[top].from + '–' + P[top].to +
       ' · 24 lessons over 3 levels · 90-minute live sessions';
-    document.getElementById('rTry').setAttribute('href', P[top].x);
+    var tryBtn=document.getElementById('rTry');
+    tryBtn.setAttribute('href', P[top].x);
+    tryBtn.textContent='Try it in 1 minute';
     document.getElementById('rAlt').innerHTML = alt
       ? 'Also worth a look: <a href="' + P[alt].x + '">' + P[alt].n + '</a>.'
       : '';

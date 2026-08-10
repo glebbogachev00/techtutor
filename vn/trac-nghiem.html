@@ -55,6 +55,13 @@
     transition:border-color .15s ease,background .15s ease}
   .opt:hover{border-color:var(--accent);background:var(--accent-soft)}
 
+  .agesel{width:100%;font-family:inherit;font-size:17px;font-weight:500;color:var(--ink);background:#fff;
+    border:1px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23193B92' stroke-width='1.8' stroke-linecap='round'/></svg>");
+    background-repeat:no-repeat;background-position:right 18px center}
+  .agesel:focus{outline:2px solid var(--accent);outline-offset:1px}
+  .hint{margin-top:12px;font-size:13.5px;color:var(--muted)}
+
   .nav{margin-top:26px;display:flex;align-items:center;gap:14px;min-height:24px}
   .prev{font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;padding:0}
   .prev:hover{color:var(--accent)}
@@ -95,7 +102,7 @@
 
 <header class="top">
   <a class="brand" href="/vn/index.html" aria-label="TechTutor home"><span class="b1">Tech</span><span class="b2">Tutor</span></a>
-  <a class="back" href="/vn/lo-trinh-hoc-lap-trinh.html">Xem tất cả chương trình</a>
+  <a class="back" href="/vn/lo-trinh-hoc-lap-trinh.html">Tất cả lựa chọn</a>
 </header>
 
 <main>
@@ -139,11 +146,7 @@
   };
 
   var Q = [
-    { q:'Con bạn bao nhiêu tuổi?', a:[
-      { t:'7 đến 9',   band:[7,9] },
-      { t:'10 đến 12', band:[10,12] },
-      { t:'13 đến 15', band:[13,15] },
-      { t:'16 hoặc 17', band:[16,17] } ] },
+    { q:'Con bạn bao nhiêu tuổi?', age:true },
 
     { q:'Khi không ai bảo phải làm gì, con thường sa vào việc gì?', a:[
       { t:'Game — chơi game, nói về game', s:{gdevelop:3,roblox:3,scratch:1} },
@@ -196,6 +199,38 @@
     var item=Q[i];
     qEl.textContent=item.q;
     optsEl.innerHTML='';
+
+    if (item.age){
+      var sel=document.createElement('select');
+      sel.className='agesel';
+      sel.setAttribute('aria-label','Tuổi của con bạn');
+      var opts=['Chọn tuổi','6 trở xuống'];
+      for (var y=7;y<=17;y++) opts.push(String(y));
+      opts.push('18 trở lên');
+      opts.forEach(function(label,n){
+        var o=document.createElement('option');
+        o.value = n===0 ? '' : (n===1 ? 'under' : (label==='18 trở lên' ? 'over' : label));
+        o.textContent = label;
+        if (n===0){ o.disabled=true; o.selected=true; }
+        sel.appendChild(o);
+      });
+      if (answers[i] != null) sel.value = answers[i];
+      sel.addEventListener('change', function(){
+        answers[i]=sel.value;
+        // no point asking four more questions if we already cannot help
+        if (sel.value==='under' || sel.value==='over'){ outOfRange(sel.value); return; }
+        i++; paintDots(); show();
+      });
+      optsEl.appendChild(sel);
+      var h=document.createElement('p'); h.className='hint';
+      h.textContent='Chúng tôi dạy từ 7 đến 17 tuổi — chọn mức gần nhất.';
+      optsEl.appendChild(h);
+      prevBtn.hidden = i === 0;
+      stepEl.textContent = 'Câu ' + (i+1) + ' trên ' + Q.length;
+      paintDots();
+      return;
+    }
+
     item.a.forEach(function(opt,n){
       var b=document.createElement('button');
       b.type='button'; b.className='opt'; b.textContent=opt.t;
@@ -207,8 +242,27 @@
     paintDots();
   }
 
+  function outOfRange(kind){
+    document.getElementById('rName').textContent = kind==='under' ? 'Hơi sớm một chút' : 'Nên trao đổi thêm';
+    document.getElementById('rWhy').textContent = kind==='under'
+      ? 'Chương trình nhỏ tuổi nhất, Lập Trình Game Scratch, viết cho các bạn từ 7 tuổi — bắt đầu bằng chuột, bàn phím và quản lý tệp trước khi học code. Ở tuổi 6 thì thật sự tùy từng bạn.'
+      : 'Chín chương trình này xây cho lứa 7 đến 17 tuổi, và nhịp học dựa trên đó. Từ 18 tuổi trở lên nội dung vẫn dùng được, nhưng hợp lý nhất là một lộ trình xây quanh đúng thứ bạn muốn làm.';
+    document.getElementById('rMeta').textContent='';
+    var t=document.getElementById('rTry');
+    t.setAttribute('href', kind==='under' ? '/vn/free-trial.html' : '/vn/custom-courses.html');
+    t.textContent = kind==='under' ? 'Đặt lịch học thử miễn phí' : 'Xem khóa thiết kế riêng';
+    document.getElementById('rAlt').innerHTML = kind==='under'
+      ? 'Chúng tôi sẽ nói thật xem có nên đợi thêm một năm không.'
+      : 'Hãy cho chúng tôi biết bạn muốn làm gì, chúng tôi sẽ nói thẳng là có giúp được không.';
+    quizEl.style.display='none'; resEl.classList.add('on');
+    Array.prototype.forEach.call(dotsEl.children,function(d){ d.classList.add('done'); });
+  }
+
   function finish(){
-    var band=Q[0].a[answers[0]].band;
+    var a0=answers[0];
+    if (a0==='under' || a0==='over'){ outOfRange(a0); return; }
+    var age=parseInt(a0,10);
+    var band=[age,age];
     var score={};
     Object.keys(P).forEach(function(k){ score[k]=0; });
     for (var n=1;n<Q.length;n++){
@@ -224,7 +278,9 @@
     document.getElementById('rWhy').textContent=WHY[top];
     document.getElementById('rMeta').textContent='Tuổi ' + P[top].from + '–' + P[top].to +
       ' · 24 buổi học, 3 cấp độ · buổi trực tiếp 90 phút';
-    document.getElementById('rTry').setAttribute('href', P[top].x);
+    var tryBtn=document.getElementById('rTry');
+    tryBtn.setAttribute('href', P[top].x);
+    tryBtn.textContent='Thử trong 1 phút';
     document.getElementById('rAlt').innerHTML = alt
       ? 'Cũng đáng xem: <a href="' + P[alt].x + '">' + P[alt].n + '</a>.'
       : '';

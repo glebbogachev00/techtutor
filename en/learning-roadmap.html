@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Which coding program, and when? A parent's roadmap for ages 7–17 | TechTutor Academy</title>
-<meta name="description" content="Tell us your child's age and see which coding program fits now, what comes next, and what each one ends with. A plain-language roadmap for parents of 7 to 17 year olds." />
+<title>For parents | TechTutor Academy</title>
+<meta name="description" content="Pick what you need — the right program for your child, what they'd be learning, what they'd build, or what it costs. One click to the answer." />
 <link rel="canonical" href="https://techtutor.academy/en/learning-roadmap.html" />
 <link rel="alternate" hreflang="en" href="https://techtutor.academy/en/learning-roadmap.html" />
 <link rel="alternate" hreflang="vi" href="https://techtutor.academy/vn/lo-trinh-hoc-lap-trinh.html" />
 <link rel="alternate" hreflang="x-default" href="https://techtutor.academy/en/learning-roadmap.html" />
-<meta property="og:type" content="article" />
+<meta property="og:type" content="website" />
 <meta property="og:site_name" content="TechTutor Academy" />
 <meta property="og:url" content="https://techtutor.academy/en/learning-roadmap.html" />
-<meta property="og:title" content="Which coding program, and when? A parent's roadmap for ages 7–17" />
-<meta property="og:description" content="Tell us your child's age and see which coding program fits now, what comes next, and what each one ends with." />
+<meta property="og:title" content="For parents | TechTutor Academy" />
+<meta property="og:description" content="Pick what you need — the right program, what they'd be learning, what they'd build, or what it costs." />
 <meta property="og:image" content="https://techtutor.academy/images/family-portrait.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:locale" content="en_GB" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Which coding program, and when? A parent's roadmap for ages 7–17" />
-<meta name="twitter:description" content="Tell us your child's age and see which coding program fits now, what comes next, and what each one ends with." />
+<meta name="twitter:title" content="For parents | TechTutor Academy" />
+<meta name="twitter:description" content="Pick what you need. One click to the answer." />
 <meta name="twitter:image" content="https://techtutor.academy/images/family-portrait.jpg" />
 <link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
   body{background:#fff;color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;font-size:16px}
   a{color:inherit}
 
-  .top{max-width:880px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .top{max-width:640px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
   .brand{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
     font-size:24px;font-weight:900;letter-spacing:-.025em;text-decoration:none;line-height:1}
   .brand .b1{color:#193b92}
@@ -39,78 +39,49 @@
   .back{font-size:13px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
   .back:hover{color:var(--accent);border-color:var(--accent)}
 
-  main{max-width:880px;margin:0 auto;padding:0 24px 80px}
-  .kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
-  h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(32px,5.4vw,48px);line-height:1.1;letter-spacing:-.02em;margin-bottom:16px}
-  .lead-text{font-size:clamp(17px,2.2vw,19px);color:#333;max-width:660px}
-  .lead-text strong{font-weight:600;color:var(--accent)}
-  .lead{padding:18px 0 30px}
+  main{max-width:640px;margin:0 auto;padding:22px 24px 90px;min-height:62vh}
+  h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(28px,5vw,38px);
+    line-height:1.15;letter-spacing:-.01em;margin-bottom:28px}
 
-  /* age picker */
-  .picker{border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff}
-  .picker-head{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:14px}
-  .ages{display:flex;gap:7px;flex-wrap:wrap}
-  .age{font-family:inherit;font-size:15px;font-weight:600;color:var(--accent);background:var(--accent-soft);
-    border:1px solid #dbe3f3;border-radius:10px;min-width:46px;height:46px;padding:0 12px;cursor:pointer}
-  .age:hover{background:#e2eaf8}
-  .age.is-on{background:var(--accent);color:#fff;border-color:var(--accent)}
-  .answer{margin-top:16px;font-size:16px;color:#333;border-top:1px solid var(--line);padding-top:16px}
-  .answer strong{color:var(--accent);font-weight:600}
-  .answer a{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(25,59,146,.3)}
-  .answer a:hover{border-color:var(--accent)}
+  .choices{display:flex;flex-direction:column;gap:10px}
+  .choice{font-family:inherit;font-size:16px;font-weight:500;color:var(--ink);text-align:left;width:100%;
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    transition:border-color .15s ease,background .15s ease}
+  .choice:hover{border-color:var(--accent);background:var(--accent-soft)}
+  .arrow{color:var(--muted);flex:none}
+  .choice:hover .arrow{color:var(--accent)}
 
-  .group{margin-top:22px}
-  .group-h{display:flex;align-items:baseline;gap:10px;margin-bottom:10px}
-  .group-h h3{font-size:15px;font-weight:600;color:var(--accent)}
-  .group-h span{font-size:12.5px;color:var(--muted)}
-  .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-  .p-card{border:1px solid var(--line);border-radius:14px;padding:16px}
-  .p-card h4{font-size:16px;font-weight:600;margin-bottom:3px}
-  .p-card .ages-line{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.03em;margin-bottom:8px}
-  .p-card p{font-size:14px;color:var(--muted);margin-bottom:12px}
-  .p-links{display:flex;gap:8px;flex-wrap:wrap}
-  .p-links a{font-size:12.5px;font-weight:600;text-decoration:none;border-radius:999px;padding:7px 13px}
-  .p-try{background:var(--accent);color:#fff}
-  .p-try:hover{background:#122f77}
-  .p-les{border:1px solid var(--line);color:var(--muted)}
-  .p-les:hover{border-color:var(--accent);color:var(--accent)}
+  .panel{display:none}
+  .panel.on{display:block}
+  .p-back{font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);background:none;border:none;
+    cursor:pointer;padding:0;margin-bottom:20px}
+  .p-back:hover{color:var(--accent)}
+  .p-title{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(24px,4.4vw,30px);line-height:1.2;margin-bottom:8px}
+  .p-line{font-size:16px;color:var(--muted);margin-bottom:22px}
 
-  h2{font-family:'DM Serif Display',serif;font-weight:400;font-size:28px;letter-spacing:-.01em;margin-bottom:16px}
-  section.block{padding:52px 0 0}
-  .path{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;font-weight:600;color:var(--accent)}
-  .path span{background:var(--accent-soft);border:1px solid #dbe3f3;border-radius:999px;padding:8px 14px}
-  .path i{color:var(--muted);font-style:normal}
-  .path-note{margin-top:12px;font-size:15px;color:var(--muted)}
+  .links{display:flex;flex-direction:column;gap:10px}
+  .links a{display:flex;align-items:center;justify-content:space-between;gap:14px;text-decoration:none;
+    border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-size:16px;font-weight:500}
+  .links a:hover{border-color:var(--accent);background:var(--accent-soft)}
+  .links b{font-weight:600}
+  .links em{font-style:normal;font-size:13px;color:var(--muted);display:block;font-weight:400;margin-top:2px}
+  .links a.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .links a.primary:hover{background:#122f77}
+  .links a.primary em{color:rgba(255,255,255,.75)}
+  .links a.primary .arrow{color:rgba(255,255,255,.8)}
 
-  .choose{border-top:1px solid var(--line);padding:16px 0;display:grid;grid-template-columns:210px 1fr;gap:6px 24px}
-  .choose h3{font-size:15px;font-weight:600;color:var(--accent);line-height:1.4}
-  .choose p{font-size:15px;color:var(--muted)}
+  .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .grid2 a{display:block;text-decoration:none;border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+    font-size:14.5px;font-weight:600}
+  .grid2 a:hover{border-color:var(--accent);background:var(--accent-soft)}
 
-  .faq{border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:10px}
-  .faq h3{font-size:15px;font-weight:600;margin-bottom:5px}
-  .faq p{font-size:14px;color:var(--muted)}
+  button{touch-action:manipulation}
 
-  .fit{margin-top:52px;border:1px solid var(--line);border-radius:16px;padding:26px}
-  .facts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
-  .fact{font-size:13px;font-weight:500;color:#1f2937;background:var(--accent-soft);border:1px solid #dbe3f3;border-radius:999px;padding:6px 14px}
-  .cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-  .btn{display:inline-block;text-decoration:none;font-size:15px;font-weight:600;border-radius:10px;padding:13px 26px}
-  .btn-primary{background:var(--accent);color:#fff}
-  .btn-primary:hover{background:#122f77}
-  .btn-ghost{border:1px solid var(--line);color:var(--ink)}
-  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
-
-  button,a.btn{touch-action:manipulation}
-
-  @media (max-width:640px){
+  @media (max-width:600px){
     .top{padding:18px 20px}
-    main{padding:0 20px 64px}
-    .cards{grid-template-columns:1fr}
-    .choose{grid-template-columns:1fr;gap:4px}
-    .picker{padding:16px}
-    .fit{padding:20px}
-    .cta-row{flex-direction:column;align-items:stretch}
-    .btn{text-align:center;padding:15px 26px}
+    main{padding:18px 20px 70px}
+    .grid2{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -118,217 +89,114 @@
 
 <header class="top">
   <a class="brand" href="/en/index.html" aria-label="TechTutor home"><span class="b1">Tech</span><span class="b2">Tutor</span></a>
-  <a class="back" href="/en/resources.html">All resources</a>
+  <a class="back" href="/en/free-trial.html">Book a free trial</a>
 </header>
 
 <main>
+  <div id="home">
+    <h1>What are you here to do?</h1>
+    <div class="choices" id="choices"></div>
+  </div>
 
-  <section class="lead">
-    <p class="kicker">Parent roadmap</p>
-    <h1>Which program, and when?</h1>
-    <p class="lead-text">Nine programs, ages 7 to 17. The order matters less than starting in the right place —
-      so <strong>pick your child's age below</strong> and see what fits now, what comes after, and what each one
-      actually ends with.</p>
-  </section>
-
-  <section class="picker">
-    <p class="picker-head">How old is your child?</p>
-    <div class="ages" id="ages"></div>
-    <p class="answer" id="answer">Pick an age to see the path.</p>
-    <div id="groups"></div>
-  </section>
-
-  <section class="block">
-    <h2>A typical path</h2>
-    <div class="path">
-      <span>Scratch</span><i>→</i><span>GDevelop</span><i>→</i><span>Roblox</span><i>→</i><span>Website Creation</span><i>→</i><span>Startup Foundations</span>
-    </div>
-    <p class="path-note">Nobody has to do all of them, and plenty of children start in the middle. The pattern that
-      works is: blocks first, then typed code, then something with real users attached. A child who starts at
-      twelve usually skips straight to GDevelop or Roblox.</p>
-  </section>
-
-  <section class="block">
-    <h2>Choosing between two</h2>
-    <div class="choose">
-      <h3>They play games constantly</h3>
-      <p>GDevelop or Roblox. Roblox especially — it converts the thing they already do for hours into something
-        they publish. It is the shortest distance between an existing habit and building.</p>
-    </div>
-    <div class="choose">
-      <h3>They like drawing more than machines</h3>
-      <p>3D Designer. It rewards visual judgement first and brings the technical side in gradually, and the
-        weekly output is an image you can look at.</p>
-    </div>
-    <div class="choose">
-      <h3>They want to make something people use</h3>
-      <p>Website Creation, then App Development. Both end with a link or an install you can open on your own
-        phone, which is a very different motivation from a score.</p>
-    </div>
-    <div class="choose">
-      <h3>They are curious about AI</h3>
-      <p>Generative AI Magic first — it is about using the tools with judgement. AI &amp; Programming Quest is the
-        harder one: Python, trained models and bias, and it wants some coding behind it already.</p>
-    </div>
-    <div class="choose">
-      <h3>They have an idea they keep talking about</h3>
-      <p>Startup Foundations. It is the only program where the goal is a real user rather than a finished
-        exercise, and it assumes they can already build a little.</p>
-    </div>
-  </section>
-
-  <section class="block">
-    <h2>What parents usually ask next</h2>
-    <div class="faq">
-      <h3>How long does one program take?</h3>
-      <p>24 lessons across 3 levels, 90 minutes each, usually 2–3 sessions a week. Each level of 8 lessons ends
-        with the student presenting what they built.</p>
-    </div>
-    <div class="faq">
-      <h3>What if we pick the wrong one?</h3>
-      <p>Commitments are portable across every program, so nothing paid for is lost if your child moves. In
-        practice the concepts overlap heavily — sequence, loops, variables and events appear in all of them.</p>
-    </div>
-    <div class="faq">
-      <h3>Does my child need any experience?</h3>
-      <p>Not for Scratch, GDevelop, Roblox, Website Creation or 3D Designer. AI &amp; Programming Quest and
-        Startup Foundations go faster if there is some coding behind them.</p>
-    </div>
-    <div class="faq">
-      <h3>What do we need at home?</h3>
-      <p>A laptop or desktop and Chrome. Every tool used across the nine programs is free to download, and most
-        of what your child builds can be opened on your own phone.</p>
-    </div>
-    <div class="faq">
-      <h3>How do I know it is working?</h3>
-      <p>Every program produces something you can look at or open — a playable game, a live URL, a rendered
-        image, an app on a phone. If you cannot see it, ask; that is the point of the showcase lessons.</p>
-    </div>
-  </section>
-
-  <section class="fit">
-    <div class="facts">
-      <span class="fact">9 programs, ages 7–17</span>
-      <span class="fact">24 lessons, 3 levels each</span>
-      <span class="fact">90-minute live sessions</span>
-      <span class="fact">English and Vietnamese</span>
-    </div>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="/en/free-trial.html">Book a free trial</a>
-      <a class="btn btn-ghost" href="/en/resources.html">Try any program in a minute</a>
-    </div>
-  </section>
-
+  <div class="panel" id="panel">
+    <button class="p-back" id="pBack" type="button">← All options</button>
+    <h2 class="p-title" id="pTitle"></h2>
+    <p class="p-line" id="pLine"></p>
+    <div id="pBody"></div>
+  </div>
 </main>
 
 <script>
 (function(){
-  var PROGRAMS = [
-    { n:'Scratch Game Coder',     from:7,  to:12, tier:1, ends:'Block-based coding and computer skills, ending in published Scratch games.',
-      x:'scratch-explained.html', b:'brochures/scratch-world.html' },
-    { n:'GDevelop Game Designer', from:8,  to:14, tier:1, ends:'Rule-based game logic — platformer, top-down and 3D games exported to a web link.',
-      x:'gdevelop-explained.html', b:'brochures/gdevelop-game-designer.html' },
-    { n:'Roblox World Creator',   from:9,  to:15, tier:2, ends:'Lua scripting and 3D building, published to Roblox where their friends already are.',
-      x:'roblox-explained.html', b:'brochures/roblox-world-creator.html' },
-    { n:'Website Creation',       from:10, to:16, tier:2, ends:'HTML, CSS and JavaScript written by hand, deployed to a live URL.',
-      x:'web-development-explained.html', b:'brochures/web-development.html' },
-    { n:'3D Designer',            from:10, to:16, tier:2, ends:'Modelling, texturing and rendering in Blender, plus Python-generated geometry.',
-      x:'3d-design-explained.html', b:'brochures/3d-designer.html' },
-    { n:'App Development',        from:10, to:17, tier:2, ends:'Multi-screen apps with real data that install on a phone.',
-      x:'app-development-explained.html', b:'brochures/app-development.html' },
-    { n:'Generative AI Magic',    from:10, to:17, tier:2, ends:'Image, audio and video tools used with judgement, inside finished projects.',
-      x:'generative-ai-explained.html', b:'brochures/generative-ai-program.html' },
-    { n:'AI & Programming Quest', from:11, to:16, tier:3, ends:'Python and trained models with measurable accuracy — including where they go wrong.',
-      x:'ai-programming-explained.html', b:'brochures/ai-game-adventure.html' },
-    { n:'Startup Foundations',    from:10, to:17, tier:3, ends:'A validated idea shipped to a live URL with real users on it.',
-      x:'startup-explained.html', b:'brochures/startup-foundation.html' }
+  var PANELS = [
+    { k:'fit', c:'Find the right program for my child',
+      t:'Find the right program',
+      l:'Five questions about your child — what they like, what they have tried, what they would want to show someone.',
+      links:[
+        { h:'/en/quiz.html', n:'Take the quiz', s:'About a minute. One recommendation, and why.', primary:true },
+        { h:'/en/free-trial.html', n:'Just talk to someone', s:'A free trial lesson, and an honest answer.' } ] },
+
+    { k:'learn', c:'Understand what they would be learning',
+      t:'What they would be learning',
+      l:'One page per program, each with a working demo of the actual tool. No sign-up, works on your phone.',
+      grid:[
+        ['/en/scratch-explained.html','Scratch'], ['/en/gdevelop-explained.html','GDevelop'],
+        ['/en/roblox-explained.html','Roblox'], ['/en/web-development-explained.html','Web development'],
+        ['/en/app-development-explained.html','App development'], ['/en/3d-design-explained.html','3D modelling'],
+        ['/en/ai-programming-explained.html','Machine learning'], ['/en/generative-ai-explained.html','Generative AI'],
+        ['/en/startup-explained.html','Startup Foundations'] ] },
+
+    { k:'build', c:'See what they would actually build',
+      t:'What they actually build',
+      l:'Real student work, and the lesson-by-lesson plan behind it.',
+      links:[
+        { h:'/en/student-projects.html', n:'Student projects', s:'Games and sites our students published.' },
+        { h:'/en/resources.html', n:'Full lesson breakdowns', s:'All 24 lessons, for every program.' } ] },
+
+    { k:'home', c:'Keep them going between lessons',
+      t:'Between lessons',
+      l:'TechBash is our self-paced coding portal — story-driven missions and a real code editor. No ads, no chat, free to try.',
+      links:[
+        { h:'https://bash.techtutor.academy', n:'Open TechBash', s:'Missions, adventures and a playground.', primary:true, ext:true },
+        { h:'/en/online-courses.html', n:'Free self-paced courses', s:'Work through them at home.' } ] },
+
+    { k:'cost', c:'Know what it costs',
+      t:'What it costs',
+      l:'Priced per 24-lesson program. Commitments are portable across every program.',
+      links:[
+        { h:'/en/plans-and-faq.html', n:'Pricing and FAQ', s:'Private and shared options, bundle discounts.' },
+        { h:'/en/learning-system.html#builder', n:'Build your plan', s:'Pick format and commitment, see the total.' } ] }
   ];
-  var TIERS = [
-    { t:1, h:'Start here',  s:'no experience needed' },
-    { t:2, h:'Then',        s:'building real things' },
-    { t:3, h:'Go deeper',   s:'easier with some coding behind them' }
-  ];
 
-  var agesEl = document.getElementById('ages');
-  var groupsEl = document.getElementById('groups');
-  var answerEl = document.getElementById('answer');
-  var chosen = null;
+  var homeEl=document.getElementById('home'), panelEl=document.getElementById('panel'),
+      choicesEl=document.getElementById('choices'), bodyEl=document.getElementById('pBody');
 
-  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+  PANELS.forEach(function(p){
+    var b=document.createElement('button');
+    b.type='button'; b.className='choice';
+    b.innerHTML = p.c + '<span class="arrow">&rarr;</span>';
+    b.addEventListener('click', function(){ open(p); });
+    choicesEl.appendChild(b);
+  });
 
-  function render(){
-    if (chosen === 'under'){
-      answerEl.innerHTML = 'Our youngest program, <strong>Scratch Game Coder</strong>, is written for 7 and up — it starts ' +
-        'with mouse, keyboard and file skills before any code. At 6 it genuinely depends on the child, so ' +
-        '<a href="/en/free-trial.html">book a free trial</a> and we will tell you honestly whether to wait a year.';
-      groupsEl.innerHTML = '';
-      return;
-    }
-    if (chosen === 'over'){
-      answerEl.innerHTML = 'These nine programs are built for 7 to 17 — the pacing and the class structure assume that. ' +
-        'Past 18 the material still stands up, but the right route is a path built around what you actually want to make: ' +
-        '<a href="/en/custom-courses.html">see custom courses</a> or <a href="/en/free-trial.html">talk to us first</a>.';
-      groupsEl.innerHTML = '';
-      return;
-    }
-
-    var fits = PROGRAMS.filter(function(p){ return chosen >= p.from && chosen <= p.to; });
-    answerEl.innerHTML = 'At <strong>' + chosen + '</strong>, <strong>' + fits.length +
-      (fits.length === 1 ? ' program</strong> fits' : ' programs</strong> fit') + ' right now.';
-
-    var html = '';
-    TIERS.forEach(function(tier){
-      var inTier = fits.filter(function(p){ return p.tier === tier.t; });
-      if (!inTier.length) return;
-      html += '<div class="group"><div class="group-h"><h3>' + tier.h + '</h3><span>' + tier.s + '</span></div><div class="cards">';
-      inTier.forEach(function(p){
-        html += '<article class="p-card">' +
-                '<h4>' + esc(p.n) + '</h4>' +
-                '<p class="ages-line">AGES ' + p.from + '–' + p.to + '</p>' +
-                '<p>' + esc(p.ends) + '</p>' +
-                '<div class="p-links">' +
-                '<a class="p-try" href="' + p.x + '">Try it in 1 minute →</a>' +
-                '<a class="p-les" href="' + p.b + '">All 24 lessons</a>' +
-                '</div></article>';
+  function open(p){
+    document.getElementById('pTitle').textContent=p.t;
+    document.getElementById('pLine').textContent=p.l;
+    bodyEl.innerHTML='';
+    if (p.links){
+      var wrap=document.createElement('div'); wrap.className='links';
+      p.links.forEach(function(l){
+        var a=document.createElement('a');
+        a.href=l.h;
+        if (l.primary) a.className='primary';
+        if (l.ext){ a.target='_blank'; a.rel='noopener'; }
+        a.innerHTML='<span><b>'+l.n+'</b><em>'+l.s+'</em></span><span class="arrow">&rarr;</span>';
+        wrap.appendChild(a);
       });
-      html += '</div></div>';
-    });
-    groupsEl.innerHTML = html;
+      bodyEl.appendChild(wrap);
+    }
+    if (p.grid){
+      var g=document.createElement('div'); g.className='grid2';
+      p.grid.forEach(function(x){
+        var a=document.createElement('a'); a.href=x[0]; a.textContent=x[1]; g.appendChild(a);
+      });
+      bodyEl.appendChild(g);
+    }
+    homeEl.style.display='none'; panelEl.classList.add('on');
+    if (history.replaceState) history.replaceState(null,'','#'+p.k);
+    window.scrollTo(0,0);
   }
 
-  var OPTIONS = ['under'];
-  for (var a = 7; a <= 17; a++) OPTIONS.push(a);
-  OPTIONS.push('over');
+  function home(){
+    panelEl.classList.remove('on'); homeEl.style.display='';
+    if (history.replaceState) history.replaceState(null,'',location.pathname);
+    window.scrollTo(0,0);
+  }
+  document.getElementById('pBack').addEventListener('click', home);
 
-  OPTIONS.forEach(function(age){
-    (function(age){
-      var b = document.createElement('button');
-      b.type = 'button'; b.className = 'age';
-      b.textContent = age === 'under' ? '6 or under' : (age === 'over' ? '18+' : age);
-      b.addEventListener('click', function(){
-        chosen = age;
-        Array.prototype.forEach.call(agesEl.children, function(o){ o.classList.remove('is-on'); });
-        b.classList.add('is-on');
-        render();
-      });
-      agesEl.appendChild(b);
-    })(age);
-  });
+  var k=(location.hash||'').replace('#','');
+  if (k) PANELS.forEach(function(p){ if (p.k===k) open(p); });
 })();
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    { "@type": "Question", "name": "How long does one coding program take?", "acceptedAnswer": { "@type": "Answer", "text": "24 lessons across 3 levels, 90 minutes each, usually 2 to 3 sessions a week. Each level of 8 lessons ends with the student presenting what they built." } },
-    { "@type": "Question", "name": "What if we pick the wrong program?", "acceptedAnswer": { "@type": "Answer", "text": "Commitments are portable across every program, so nothing paid for is lost if your child moves. The concepts overlap heavily — sequence, loops, variables and events appear in all of them." } },
-    { "@type": "Question", "name": "Does my child need coding experience?", "acceptedAnswer": { "@type": "Answer", "text": "Not for Scratch, GDevelop, Roblox, Website Creation or 3D Designer. AI & Programming Quest and Startup Foundations go faster with some coding behind them." } },
-    { "@type": "Question", "name": "What do we need at home?", "acceptedAnswer": { "@type": "Answer", "text": "A laptop or desktop and Chrome. Every tool used across the nine programs is free to download, and most of what your child builds can be opened on your own phone." } },
-    { "@type": "Question", "name": "How do I know it is working?", "acceptedAnswer": { "@type": "Answer", "text": "Every program produces something you can look at or open — a playable game, a live URL, a rendered image, an app on a phone." } }
-  ]
-}
 </script>
 
 </body>
