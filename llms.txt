@@ -25,6 +25,18 @@ in-browser demo of the actual tool. All are also available in Vietnamese at /vn/
 - https://techtutor.academy/en/generative-ai-explained.html (What is generative AI? Describe a game, website or picture and watch it get made)
 - https://techtutor.academy/en/startup-explained.html (What is Startup Foundations? Ship a landing page, measure signups, iterate)
 
+## Programs at a glance (age range, tools, what the student ends up with)
+Every program is 24 lessons across 3 progressive levels, 90-minute live sessions.
+- **Scratch Game Coder** — ages 7-12. Scratch (free, browser-based, made by MIT). Starts with computer literacy, ends with published Scratch games.
+- **GDevelop Game Designer** — ages 8-14. GDevelop (free, open source). Event-based logic; platformer, top-down and 3D games, exported to a web link.
+- **Roblox World Creator** — ages 9-15. Roblox Studio (free). Lua scripting and 3D building; games published to Roblox.
+- **3D Designer** — ages 10-16. Blender (free, open source). Modelling, texturing, lighting, rendering, plus Python-generated geometry in level 3.
+- **Website Creation** — ages 10-16. VS Code, Chrome, GitHub, GitHub Pages/Netlify. HTML, CSS and JavaScript by hand, deployed to a live URL.
+- **App Development** — ages 10-17. Thunkable, with Airtable and Google Sheets for data. Multi-screen apps that install on a real phone.
+- **Generative AI Magic** — ages 10-17. A rotating set of current image, audio and video tools, taught with the judgement to use them.
+- **AI & Programming Quest** — ages 11-16. Teachable Machine, Machine Learning for Kids, then Python. Trained models with measurable accuracy, including bias.
+- **Startup Foundations** — ages 10-17. VS Code, GitHub, GitHub Pages/Netlify. Validate an idea, scope it, ship it, get real users.
+
 ## Full lesson breakdowns (24 lessons, 3 levels each)
 - https://techtutor.academy/en/brochures/scratch-world.html
 - https://techtutor.academy/en/brochures/gdevelop-game-designer.html
