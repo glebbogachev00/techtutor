@@ -21,6 +21,18 @@
         }
       });
     }
+
+    const techbashToggle = document.getElementById('mobile-techbash-toggle');
+    const techbashMenu = document.getElementById('mobile-techbash-menu');
+    const techbashArrow = document.getElementById('techbash-arrow');
+    if (techbashToggle && techbashMenu) {
+      techbashToggle.addEventListener('click', () => {
+        techbashMenu.classList.toggle('hidden');
+        if (techbashArrow) {
+          techbashArrow.classList.toggle('rotate-180');
+        }
+      });
+    }
   }
 
   function initLanguagePreference() {

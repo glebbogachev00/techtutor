@@ -78,7 +78,19 @@
               <a href="programs/startup-foundations.html">Nền Tảng Khởi Nghiệp</a>
             </div>
           </div>
-          <a href="https://bash.techtutor.academy" class="techbash-nav hover:text-primary transition font-semibold">TechBash</a>
+          <div class="relative hidden md:block group">
+            <a href="https://bash.techtutor.academy" class="techbash-nav inline-flex items-center gap-1 text-slate-700 hover:text-primary transition font-semibold transform hover:-translate-y-0.5 hover:scale-105 whitespace-nowrap">
+              TechBash
+              <svg class="h-4 w-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+            <div class="absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 rounded-2xl border border-slate-100 bg-white/95 p-3 shadow-xl opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+              <div class="flex flex-col gap-1 text-sm">
+                <a href="https://bash.techtutor.academy/bashverse" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">BashVerse</a>
+              </div>
+            </div>
+          </div>
           <a href="/vn/student-projects.html" class="hover:text-primary transition">Dự Án</a>
           <a href="/vn/how-it-works.html" class="hover:text-primary transition">Quy Trình</a>
           <a href="/vn/online-courses.html" class="hover:text-primary transition">Khóa Học Miễn Phí</a>
@@ -99,7 +111,18 @@
 
       <div id="mobile-menu" class="md:hidden hidden mt-4 border-t border-slate-200 pt-4">
         <div class="flex flex-col gap-4 text-sm font-medium text-slate-700">
-          <a href="https://bash.techtutor.academy" class="techbash-nav hover:text-primary transition font-semibold">TechBash</a>
+          <div class="rounded-2xl border border-slate-200 p-4">
+            <button id="mobile-techbash-toggle" class="flex w-full items-center justify-between text-left techbash-nav" aria-label="Toggle TechBash submenu" aria-expanded="false">
+              <span class="font-semibold">TechBash</span>
+              <svg id="techbash-arrow" class="h-5 w-5 text-slate-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div id="mobile-techbash-menu" class="mt-3 hidden flex flex-col gap-3 border-l-2 border-primary pl-4 text-sm">
+              <a href="https://bash.techtutor.academy" class="text-slate-700 hover:text-primary py-1">Mở TechBash →</a>
+              <a href="https://bash.techtutor.academy/bashverse" class="text-slate-700 hover:text-primary py-1">BashVerse</a>
+            </div>
+          </div>
           <a href="/vn/student-projects.html" class="hover:text-primary transition">Dự Án</a>
           <a href="/vn/how-it-works.html" class="hover:text-primary transition">Quy Trình</a>
           <a href="/vn/online-courses.html" class="hover:text-primary transition">Khóa Học Miễn Phí</a>

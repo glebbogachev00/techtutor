@@ -88,7 +88,7 @@ export const COPY = {
       quote: "“Bảo Minh has been learning with Teacher Gleb for almost a year now. At first, my son was shy and didn't know where to start with computers. Now he confidently builds small games and even created an AI chatbot for his science project!”",
       quoteBy: "— Parent of a TechTutor student",
       stats: [
-        { n: "200+", label: "students served" },
+        { n: "2000+", label: "students served" },
         { n: "4K+", label: "lessons delivered" },
         { n: "90%+", label: "retention rate" },
         { n: "6+", label: "years in business" },
@@ -277,7 +277,7 @@ export const COPY = {
       quote: "“Bảo Minh học với thầy Gleb gần một năm nay. Ban đầu con trai tôi nhút nhát và không biết bắt đầu từ đâu với máy tính. Giờ con tự tin làm game nhỏ và còn tạo chatbot AI cho dự án khoa học của mình!”",
       quoteBy: "— Phụ huynh học viên TechTutor",
       stats: [
-        { n: "200+", label: "học viên" },
+        { n: "2000+", label: "học viên" },
         { n: "4K+", label: "buổi học đã dạy" },
         { n: "90%+", label: "tỷ lệ học viên gắn bó" },
         { n: "6+", label: "năm hoạt động" },
