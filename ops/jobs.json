@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "laugh",
+    "name": "Make them laugh",
+    "family": "entertain",
+    "does": "Gets a laugh or a grin, and gets shared. The funniest thing about a coding class is always something a kid actually said or did.",
+    "reader_leaves_with": "A screenshot they send to their partner.",
+    "action": "Reply with their own version, or tag the parent of the kid who would do exactly this.",
+    "writer_note": "The humour is in the specific, not in the joke. Report what happened deadpan and get out. Never explain why it is funny. Never add a punchline that was not there. If nothing genuinely funny happened, say so in the thin field rather than manufacturing it.",
+    "weight": "80/20: this is non-promotional. No pitch."
+  },
+  {
+    "slug": "teach",
+    "name": "Teach one usable thing",
+    "family": "educate",
+    "does": "Hands the reader one concrete thing they did not know, small enough to use today.",
+    "reader_leaves_with": "One technique, one setting, one explanation they can repeat to someone else.",
+    "action": "Try the exact thing described, with their own kid, in under 15 minutes.",
+    "writer_note": "One thing only. Name it, show it in the real situation it came from, and stop. Give the actual steps or the actual bug, not a summary of them. If the reader cannot do it tonight, it is too abstract.",
+    "weight": "80/20: non-promotional. The teaching IS the value."
+  },
+  {
+    "slug": "curious",
+    "name": "Make them want to learn it",
+    "family": "inspire",
+    "does": "Makes a parent or a kid think: I did not know that was possible, and I want to see it.",
+    "reader_leaves_with": "The feeling that this is more within reach than they assumed.",
+    "action": "Watch the thing, open the tool, or ask what their kid would build first.",
+    "writer_note": "Lead with the surprising fact or the finished thing, not with the effort. Show the gap between how hard people assume it is and how it actually went. No motivational language, no 'anyone can do it'. The specifics do the inspiring.",
+    "weight": "80/20: non-promotional."
+  },
+  {
+    "slug": "reassure",
+    "name": "Answer a real doubt",
+    "family": "educate",
+    "does": "Takes a worry a parent actually has and answers it honestly, including the parts that are true.",
+    "reader_leaves_with": "Less worry, and the sense that they were told the truth.",
+    "action": "Ask their own question in the comments or by DM.",
+    "writer_note": "State the doubt fairly first, in the parent's own words, before answering it. Concede whatever is genuinely true about the doubt. Never condescend to a parent who is unsure. Never win the argument, just answer it.",
+    "weight": "80/20: non-promotional."
+  },
+  {
+    "slug": "proof",
+    "name": "Show real work",
+    "family": "inspire",
+    "does": "Proves the thing is real by showing what a specific kid actually built.",
+    "reader_leaves_with": "Belief that these are real projects by real children, not marketing.",
+    "action": "Look at the project properly, or come and see a class in person.",
+    "writer_note": "Describe the artefact, not the achievement. What does it do, who was it for, what broke on the way. The praise is implied by the detail. Never call the child talented, gifted, or amazing.",
+    "weight": "80/20: non-promotional."
+  },
+  {
+    "slug": "invite",
+    "name": "Ask for the trial",
+    "family": "convert",
+    "does": "Makes the ask plainly, once, after the reader already has a reason to say yes.",
+    "reader_leaves_with": "A clear next step and no pressure.",
+    "action": "Book the trial class, or reply with a day that works.",
+    "writer_note": "Earn it in the first two thirds, ask in the last line. Honest capacity language only: 'we have two spots left this month' if true, never 'limited spots!'. One ask, one link. If there is nothing true to say about capacity, do not mention capacity.",
+    "weight": "80/20: this is the 20%. Use it sparingly, roughly one post in five."
+  }
+]

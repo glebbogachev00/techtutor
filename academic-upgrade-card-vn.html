@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nâng cấp Academy | TechTutor Academy</title>
+  <link rel="icon" type="image/png" href="images/robot-rocket.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#193b92', 'primary-dark': '#0f2861', ink: '#0F172A' },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #FBFBFD; }
+    .card { background: #fff; border-radius: 28px; box-shadow: 0 4px 28px rgba(15,23,42,.08); }
+    .label { font-size: 9.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+
+    .cmp { display: grid; grid-template-columns: 128px 1fr 1.3fr; }
+    .cmp > * { padding: 14px 16px; border-top: 1px solid #EDEFF5; }
+    .cmp > .h { border-top: 0; padding-bottom: 9px; }
+    /* The upgrade column has to win at a glance: a real tint (not a near-white one),
+       a solid accent edge down the side, and separators dark enough to survive the
+       tint — otherwise the two columns read as the same thing twice. */
+    .cmp > :nth-child(3n) { background: #E9EFFC; border-top-color: #D2DDF6; border-left: 3px solid #193b92; }
+    .cmp > :nth-child(3n).h { background: #193b92; border-radius: 12px 12px 0 0; }
+    .rowlabel { font-size: 10.5px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: #94A3B8; align-self: center; }
+    /* Deliberately recessed — this column is the "before". */
+    .was { font-size: 13px; color: #9AA6BC; align-self: center; }
+    .now { font-size: 13.5px; font-weight: 700; color: #0F172A; align-self: center; line-height: 1.4; display: flex; gap: 9px; align-items: baseline; }
+    /* Plain ASCII "+", not an emoji — inherits the accent, marks what is added. */
+    .now::before { content: "+"; color: #193b92; font-weight: 900; font-size: 14px; flex: none; }
+  </style>
+</head>
+<!-- Vertically centred so a screenshot stays balanced even when the window height
+     doesn't match the card exactly — never clipped at the bottom. -->
+<body class="antialiased flex items-center justify-center min-h-screen p-6">
+
+  <div class="w-full max-w-[720px]">
+    <div class="card overflow-hidden">
+
+      <!-- Header: what it is + what it costs, in one glance -->
+      <div class="bg-gradient-to-br from-primary to-primary-dark px-9 pt-8 pb-9">
+        <div class="flex items-center gap-3 mb-7">
+          <img src="images/robot-rocket.png" alt="TechTutor" class="h-8 w-auto" />
+          <p class="text-white/70 label">TechTutor Academy</p>
+        </div>
+        <div class="flex items-end justify-between gap-6">
+          <div>
+            <h1 class="text-white text-[40px] font-black tracking-tight leading-[1.05]">Nâng cấp<br />Academy</h1>
+          </div>
+          <div class="text-right shrink-0">
+            <!-- Inter's ₫ sits tight against a preceding digit at heavy weights — needs the nudge. -->
+            <p class="text-white text-[30px] font-black leading-none">+2.000.000<span class="font-bold ml-[2px]">&#8363;</span></p>
+            <p class="text-white/60 text-[12px] font-semibold mt-2">cho chương trình 24 buổi</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-9 py-8 flex flex-col gap-7">
+
+        <!-- One sentence. -->
+        <p class="text-[17px] text-ink leading-relaxed font-medium">
+          Cùng giáo viên, cùng bài học. Bài tập không còn tùy chọn mà được chấm điểm &mdash;
+          và mọi việc con làm đều được ghi lại, để ba mẹ kiểm tra được tiến bộ thay vì phải tin.
+        </p>
+
+        <!-- Why it exists: the two families who asked for it. -->
+        <div>
+          <p class="label text-slate-400 mb-3.5">Dành cho ai</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="rounded-2xl border border-slate-100 px-5 py-4">
+              <p class="text-[14px] font-bold text-primary leading-snug">Ba mẹ muốn theo sát việc học</p>
+              <p class="text-[13.5px] text-slate-600 mt-2 leading-snug">Ba mẹ nghiêm túc với việc học của con và muốn thấy chính bài làm &mdash; không phải chờ tổng kết cuối kỳ. Sau mỗi buổi: bản ghi, điểm, nhận xét của giáo viên.</p>
+            </div>
+            <div class="rounded-2xl border border-slate-100 px-5 py-4">
+              <p class="text-[14px] font-bold text-primary leading-snug">Ba mẹ dự định cho con du học</p>
+              <p class="text-[13.5px] text-slate-600 mt-2 leading-snug">Hồ sơ du học cần tài liệu bổ trợ. Kết thúc chương trình, con có portfolio dự án thật đã được chấm và một hồ sơ tiến bộ bằng văn bản để trình bày.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- The delta -->
+        <div>
+          <div class="cmp">
+            <div class="h"></div>
+            <div class="h"><p class="label text-slate-400">Hiện đã có</p></div>
+            <div class="h"><p class="label text-white">Khi nâng cấp</p></div>
+
+            <div class="rowlabel">Bài tập</div>
+            <div class="was">Tùy chọn</div>
+            <div class="now">Bắt buộc, được chấm, lưu vào tài khoản</div>
+
+            <div class="rowlabel">Buổi học</div>
+            <div class="was">Chỉ học trực tiếp</div>
+            <div class="now">Bản ghi của mỗi buổi học, gửi cho ba mẹ</div>
+
+            <div class="rowlabel">TechBash</div>
+            <div class="was">Học theo từng buổi</div>
+            <div class="now">Lộ trình cố định có cột mốc và dự án tổng kết</div>
+
+            <div class="rowlabel">Mỗi 8 buổi</div>
+            <div class="was">Ghi chú tiến bộ ngắn</div>
+            <div class="now">Báo cáo mở rộng &mdash; kỹ năng đã học, điểm, bước tiếp theo</div>
+
+            <div class="rowlabel">Portfolio</div>
+            <div class="was">Dự án của con</div>
+            <div class="now">Giáo viên trau chuốt, hiện điểm, sẵn sàng để nộp</div>
+          </div>
+        </div>
+
+        <!-- The honest line -->
+        <div class="rounded-2xl bg-slate-50 border border-slate-100 px-6 py-5">
+          <p class="text-[14px] text-slate-700 leading-relaxed">
+            <strong class="text-ink">Đây không phải là dạy tốt hơn.</strong>
+            Giáo viên, chương trình và sự tận tâm hoàn toàn như nhau.
+            Điều ba mẹ nhận thêm là trách nhiệm với bài tập, và một hồ sơ giữ lại được.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="bg-slate-50 border-t border-slate-100 px-9 py-5 flex items-center justify-between">
+        <p class="text-[12px] text-slate-500">Thêm vào lớp Kèm riêng hoặc Học nhóm</p>
+        <p class="text-[12px] font-bold text-ink">techtutor.academy</p>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
