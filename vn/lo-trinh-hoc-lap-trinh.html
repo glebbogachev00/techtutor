@@ -51,11 +51,13 @@
   .picker-head{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:14px}
   .ages{display:flex;gap:7px;flex-wrap:wrap}
   .age{font-family:inherit;font-size:15px;font-weight:600;color:var(--accent);background:var(--accent-soft);
-    border:1px solid #dbe3f3;border-radius:10px;width:46px;height:46px;cursor:pointer}
+    border:1px solid #dbe3f3;border-radius:10px;min-width:46px;height:46px;padding:0 12px;cursor:pointer}
   .age:hover{background:#e2eaf8}
   .age.is-on{background:var(--accent);color:#fff;border-color:var(--accent)}
   .answer{margin-top:16px;font-size:16px;color:#333;border-top:1px solid var(--line);padding-top:16px}
   .answer strong{color:var(--accent);font-weight:600}
+  .answer a{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(25,59,146,.3)}
+  .answer a:hover{border-color:var(--accent)}
 
   .group{margin-top:22px}
   .group-h{display:flex;align-items:baseline;gap:10px;margin-bottom:10px}
@@ -106,7 +108,6 @@
     .cards{grid-template-columns:1fr}
     .choose{grid-template-columns:1fr;gap:4px}
     .picker{padding:16px}
-    .age{width:calc((100% - 42px)/7);min-width:40px}
     .fit{padding:20px}
     .cta-row{flex-direction:column;align-items:stretch}
     .btn{text-align:center;padding:15px 26px}
@@ -257,12 +258,22 @@
   function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
 
   function render(){
-    var fits = PROGRAMS.filter(function(p){ return chosen >= p.from && chosen <= p.to; });
-    if (!fits.length){
-      answerEl.innerHTML = 'Chúng tôi dạy các bạn 7 đến 17 tuổi — <strong>hãy liên hệ</strong> và chúng tôi sẽ nói thật xem có quá sớm không.';
+    if (chosen === 'under'){
+      answerEl.innerHTML = 'Chương trình nhỏ tuổi nhất của chúng tôi, <strong>Lập Trình Game Scratch</strong>, viết cho ' +
+        'các bạn từ 7 tuổi — bắt đầu bằng chuột, bàn phím và quản lý tệp trước khi học code. Ở tuổi 6 thì tùy từng bạn, ' +
+        'nên hãy <a href="/vn/free-trial.html">đặt một buổi học thử miễn phí</a> và chúng tôi sẽ nói thật xem có nên đợi thêm một năm không.';
       groupsEl.innerHTML = '';
       return;
     }
+    if (chosen === 'over'){
+      answerEl.innerHTML = 'Chín chương trình này được xây cho lứa 7 đến 17 tuổi — nhịp học và cách tổ chức lớp đều dựa trên đó. ' +
+        'Từ 18 tuổi trở lên, nội dung vẫn dùng được, nhưng cách hợp lý là một lộ trình xây quanh đúng thứ bạn muốn làm: ' +
+        '<a href="/vn/custom-courses.html">xem khóa học thiết kế riêng</a> hoặc <a href="/vn/free-trial.html">trao đổi với chúng tôi trước</a>.';
+      groupsEl.innerHTML = '';
+      return;
+    }
+
+    var fits = PROGRAMS.filter(function(p){ return chosen >= p.from && chosen <= p.to; });
     answerEl.innerHTML = 'Ở tuổi <strong>' + chosen + '</strong> có <strong>' + fits.length + ' chương trình</strong> phù hợp ngay bây giờ.';
 
     var html = '';
@@ -285,10 +296,15 @@
     groupsEl.innerHTML = html;
   }
 
-  for (var a = 7; a <= 17; a++){
+  var OPTIONS = ['under'];
+  for (var a = 7; a <= 17; a++) OPTIONS.push(a);
+  OPTIONS.push('over');
+
+  OPTIONS.forEach(function(age){
     (function(age){
       var b = document.createElement('button');
-      b.type = 'button'; b.className = 'age'; b.textContent = age;
+      b.type = 'button'; b.className = 'age';
+      b.textContent = age === 'under' ? '6 trở xuống' : (age === 'over' ? '18+' : age);
       b.addEventListener('click', function(){
         chosen = age;
         Array.prototype.forEach.call(agesEl.children, function(o){ o.classList.remove('is-on'); });
@@ -296,8 +312,8 @@
         render();
       });
       agesEl.appendChild(b);
-    })(a);
-  }
+    })(age);
+  });
 })();
 </script>
 
