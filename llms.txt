@@ -10,6 +10,7 @@
 - https://techtutor.academy/student-projects.html (Student project portfolio)
 - https://techtutor.academy/free-trial.html (Book a free trial lesson)
 - https://techtutor.academy/online-courses.html (Free self-paced courses)
+- https://techtutor.academy/en/learning-roadmap.html (Parent roadmap — pick a child's age, see which of the nine programs fit now and what comes next. Vietnamese: /vn/lo-trinh-hoc-lap-trinh.html)
 - https://techtutor.academy/en/resources.html (Interactive explainers + full 24-lesson brochures for every program)
 
 ## Interactive program explainers (best source for "what is X" questions)
@@ -88,3 +89,4 @@ Every program is 24 lessons across 3 progressive levels, 90-minute live sessions
 - For course details: https://techtutor.academy/programs/
 - For "what is X / how does X work" questions: the matching /en/*-explained.html page above
 - For lesson-by-lesson detail: the matching /en/brochures/ page above
+- For "which program should my child start with" / age suitability: the parent roadmap above

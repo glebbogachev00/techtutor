@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lộ trình học lập trình cho trẻ 7–17 tuổi | TechTutor Academy</title>
+<meta name="description" content="Chọn tuổi của con và xem chương trình lập trình nào phù hợp ngay bây giờ, học gì tiếp theo, và mỗi chương trình kết thúc bằng sản phẩm gì. Lộ trình dễ hiểu dành cho phụ huynh có con 7–17 tuổi." />
+<link rel="canonical" href="https://techtutor.academy/vn/lo-trinh-hoc-lap-trinh.html" />
+<link rel="alternate" hreflang="en" href="https://techtutor.academy/vn/lo-trinh-hoc-lap-trinh.html" />
+<link rel="alternate" hreflang="vi" href="https://techtutor.academy/vn/lo-trinh-hoc-lap-trinh.html" />
+<link rel="alternate" hreflang="x-default" href="https://techtutor.academy/vn/lo-trinh-hoc-lap-trinh.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="TechTutor Academy" />
+<meta property="og:url" content="https://techtutor.academy/vn/lo-trinh-hoc-lap-trinh.html" />
+<meta property="og:title" content="Lộ trình học lập trình cho trẻ 7–17 tuổi" />
+<meta property="og:description" content="Chọn tuổi của con và xem chương trình nào phù hợp ngay bây giờ, học gì tiếp theo, và kết thúc bằng sản phẩm gì." />
+<meta property="og:image" content="https://techtutor.academy/images/family-portrait.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="vi_VN" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Lộ trình học lập trình cho trẻ 7–17 tuổi" />
+<meta name="twitter:description" content="Chọn tuổi của con và xem chương trình nào phù hợp ngay bây giờ, học gì tiếp theo, và kết thúc bằng sản phẩm gì." />
+<meta name="twitter:image" content="https://techtutor.academy/images/family-portrait.jpg" />
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--ink:#171717;--muted:#5f6368;--line:#d9dde5;--accent:#193B92;--accent-soft:#eef2fb}
+  html{-webkit-text-size-adjust:100%}
+  body{background:#fff;color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;font-size:16px}
+  a{color:inherit}
+
+  .top{max-width:880px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    font-size:24px;font-weight:900;letter-spacing:-.025em;text-decoration:none;line-height:1}
+  .brand .b1{color:#193b92}
+  .brand .b2{color:#14b8a6}
+  .back{font-size:13px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+  .back:hover{color:var(--accent);border-color:var(--accent)}
+
+  main{max-width:880px;margin:0 auto;padding:0 24px 80px}
+  .kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
+  h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(32px,5.4vw,48px);line-height:1.1;letter-spacing:-.02em;margin-bottom:16px}
+  .lead-text{font-size:clamp(17px,2.2vw,19px);color:#333;max-width:660px}
+  .lead-text strong{font-weight:600;color:var(--accent)}
+  .lead{padding:18px 0 30px}
+
+  /* age picker */
+  .picker{border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff}
+  .picker-head{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:14px}
+  .ages{display:flex;gap:7px;flex-wrap:wrap}
+  .age{font-family:inherit;font-size:15px;font-weight:600;color:var(--accent);background:var(--accent-soft);
+    border:1px solid #dbe3f3;border-radius:10px;width:46px;height:46px;cursor:pointer}
+  .age:hover{background:#e2eaf8}
+  .age.is-on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .answer{margin-top:16px;font-size:16px;color:#333;border-top:1px solid var(--line);padding-top:16px}
+  .answer strong{color:var(--accent);font-weight:600}
+
+  .group{margin-top:22px}
+  .group-h{display:flex;align-items:baseline;gap:10px;margin-bottom:10px}
+  .group-h h3{font-size:15px;font-weight:600;color:var(--accent)}
+  .group-h span{font-size:12.5px;color:var(--muted)}
+  .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .p-card{border:1px solid var(--line);border-radius:14px;padding:16px}
+  .p-card h4{font-size:16px;font-weight:600;margin-bottom:3px}
+  .p-card .ages-line{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.03em;margin-bottom:8px}
+  .p-card p{font-size:14px;color:var(--muted);margin-bottom:12px}
+  .p-links{display:flex;gap:8px;flex-wrap:wrap}
+  .p-links a{font-size:12.5px;font-weight:600;text-decoration:none;border-radius:999px;padding:7px 13px}
+  .p-try{background:var(--accent);color:#fff}
+  .p-try:hover{background:#122f77}
+  .p-les{border:1px solid var(--line);color:var(--muted)}
+  .p-les:hover{border-color:var(--accent);color:var(--accent)}
+
+  h2{font-family:'DM Serif Display',serif;font-weight:400;font-size:28px;letter-spacing:-.01em;margin-bottom:16px}
+  section.block{padding:52px 0 0}
+  .path{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;font-weight:600;color:var(--accent)}
+  .path span{background:var(--accent-soft);border:1px solid #dbe3f3;border-radius:999px;padding:8px 14px}
+  .path i{color:var(--muted);font-style:normal}
+  .path-note{margin-top:12px;font-size:15px;color:var(--muted)}
+
+  .choose{border-top:1px solid var(--line);padding:16px 0;display:grid;grid-template-columns:210px 1fr;gap:6px 24px}
+  .choose h3{font-size:15px;font-weight:600;color:var(--accent);line-height:1.4}
+  .choose p{font-size:15px;color:var(--muted)}
+
+  .faq{border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:10px}
+  .faq h3{font-size:15px;font-weight:600;margin-bottom:5px}
+  .faq p{font-size:14px;color:var(--muted)}
+
+  .fit{margin-top:52px;border:1px solid var(--line);border-radius:16px;padding:26px}
+  .facts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+  .fact{font-size:13px;font-weight:500;color:#1f2937;background:var(--accent-soft);border:1px solid #dbe3f3;border-radius:999px;padding:6px 14px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{display:inline-block;text-decoration:none;font-size:15px;font-weight:600;border-radius:10px;padding:13px 26px}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:#122f77}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+  button,a.btn{touch-action:manipulation}
+
+  @media (max-width:640px){
+    .top{padding:18px 20px}
+    main{padding:0 20px 64px}
+    .cards{grid-template-columns:1fr}
+    .choose{grid-template-columns:1fr;gap:4px}
+    .picker{padding:16px}
+    .age{width:calc((100% - 42px)/7);min-width:40px}
+    .fit{padding:20px}
+    .cta-row{flex-direction:column;align-items:stretch}
+    .btn{text-align:center;padding:15px 26px}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="/vn/index.html" aria-label="TechTutor home"><span class="b1">Tech</span><span class="b2">Tutor</span></a>
+  <a class="back" href="/vn/resources.html">Tất cả tài nguyên</a>
+</header>
+
+<main>
+
+  <section class="lead">
+    <p class="kicker">Lộ trình cho phụ huynh</p>
+    <h1>Học chương trình nào, và khi nào?</h1>
+    <p class="lead-text">Chín chương trình, cho trẻ 7 đến 17 tuổi. Thứ tự không quan trọng bằng việc bắt đầu đúng chỗ —
+      hãy <strong>chọn tuổi của con bên dưới</strong> để xem cái gì phù hợp ngay bây giờ, cái gì học tiếp,
+      và mỗi chương trình kết thúc bằng sản phẩm gì.</p>
+  </section>
+
+  <section class="picker">
+    <p class="picker-head">Con bạn bao nhiêu tuổi?</p>
+    <div class="ages" id="ages"></div>
+    <p class="answer" id="answer">Chọn một độ tuổi để xem lộ trình.</p>
+    <div id="groups"></div>
+  </section>
+
+  <section class="block">
+    <h2>Một lộ trình điển hình</h2>
+    <div class="path">
+      <span>Scratch</span><i>→</i><span>GDevelop</span><i>→</i><span>Roblox</span><i>→</i><span>Website Creation</span><i>→</i><span>Startup Foundations</span>
+    </div>
+    <p class="path-note">Không ai bắt buộc phải học hết, và rất nhiều bạn bắt đầu từ giữa lộ trình. Quy luật hiệu quả là: khối lệnh
+      trước, rồi đến code gõ tay, rồi đến thứ có người dùng thật. Một bạn bắt đầu năm mười hai tuổi thường vào
+      thẳng GDevelop hoặc Roblox.</p>
+  </section>
+
+  <section class="block">
+    <h2>Khi phân vân giữa hai lựa chọn</h2>
+    <div class="choose">
+      <h3>Con chơi game suốt ngày</h3>
+      <p>GDevelop hoặc Roblox. Nhất là Roblox — nó biến thứ con đã dành hàng giờ để chơi thành thứ con tự xuất bản.
+        Đây là quãng đường ngắn nhất từ một thói quen sẵn có đến việc tự tạo ra sản phẩm.</p>
+    </div>
+    <div class="choose">
+      <h3>Con thích vẽ hơn thích máy móc</h3>
+      <p>Thiết Kế 3D. Chương trình đề cao cảm quan thị giác trước, phần kỹ thuật đưa vào dần dần, và mỗi tuần đều
+        cho ra một hình ảnh bạn nhìn thấy được.</p>
+    </div>
+    <div class="choose">
+      <h3>Con muốn làm ra thứ người khác dùng</h3>
+      <p>Tạo Website, rồi Phát Triển Ứng Dụng. Cả hai đều kết thúc bằng một đường link hoặc một bản cài mở được ngay
+        trên điện thoại của bạn — một động lực rất khác so với điểm số.</p>
+    </div>
+    <div class="choose">
+      <h3>Con tò mò về AI</h3>
+      <p>Phép Thuật AI Tạo Sinh trước — chương trình này dạy dùng công cụ một cách có phán đoán. Khám Phá AI &amp;
+        Lập Trình khó hơn: Python, huấn luyện mô hình và thiên lệch dữ liệu, và cần có chút nền lập trình.</p>
+    </div>
+    <div class="choose">
+      <h3>Con có một ý tưởng cứ nhắc đi nhắc lại</h3>
+      <p>Nền Tảng Khởi Nghiệp. Đây là chương trình duy nhất lấy người dùng thật làm mục tiêu thay vì một bài tập
+        hoàn chỉnh, và giả định con đã tự dựng được chút ít.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Câu hỏi phụ huynh thường hỏi tiếp</h2>
+    <div class="faq">
+      <h3>Một chương trình kéo dài bao lâu?</h3>
+      <p>24 buổi học chia làm 3 cấp độ, mỗi buổi 90 phút, thường 2–3 buổi mỗi tuần. Mỗi cấp độ 8 buổi kết thúc bằng
+        việc học viên thuyết trình sản phẩm mình làm ra.</p>
+    </div>
+    <div class="faq">
+      <h3>Nếu chọn nhầm chương trình thì sao?</h3>
+      <p>Các buổi đã đăng ký chuyển được sang mọi chương trình, nên không mất gì nếu con đổi hướng. Trên thực tế các
+        khái niệm trùng nhau rất nhiều — trình tự, vòng lặp, biến và sự kiện xuất hiện ở tất cả.</p>
+    </div>
+    <div class="faq">
+      <h3>Con tôi có cần biết gì trước không?</h3>
+      <p>Không cần, với Scratch, GDevelop, Roblox, Tạo Website hay Thiết Kế 3D. Khám Phá AI &amp; Lập Trình và Nền
+        Tảng Khởi Nghiệp sẽ đi nhanh hơn nếu con đã có chút nền lập trình.</p>
+    </div>
+    <div class="faq">
+      <h3>Ở nhà cần chuẩn bị gì?</h3>
+      <p>Một máy tính xách tay hoặc để bàn và trình duyệt Chrome. Mọi công cụ dùng trong chín chương trình đều tải
+        về miễn phí, và phần lớn sản phẩm của con mở được ngay trên điện thoại của bạn.</p>
+    </div>
+    <div class="faq">
+      <h3>Làm sao biết con đang tiến bộ?</h3>
+      <p>Mỗi chương trình đều tạo ra thứ bạn xem hoặc mở được — một trò chơi chơi được, một đường link chạy thật,
+        một bức ảnh kết xuất, một ứng dụng trên điện thoại. Nếu chưa thấy, hãy hỏi — đó chính là mục đích của
+        các buổi thuyết trình.</p>
+    </div>
+  </section>
+
+  <section class="fit">
+    <div class="facts">
+      <span class="fact">9 chương trình, 7–17 tuổi</span>
+      <span class="fact">24 buổi học, 3 cấp độ mỗi chương trình</span>
+      <span class="fact">Buổi học trực tiếp 90 phút</span>
+      <span class="fact">Tiếng Anh và tiếng Việt</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="/vn/free-trial.html">Đặt lịch học thử miễn phí</a>
+      <a class="btn btn-ghost" href="/vn/resources.html">Thử bất kỳ chương trình nào trong một phút</a>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var PROGRAMS = [
+    { n:'Lập Trình Game Scratch',   from:7,  to:12, tier:1, ends:'Lập trình bằng khối lệnh và kỹ năng máy tính, kết thúc bằng game Scratch được đăng công khai.',
+      x:'scratch-explained.html', b:'brochures/scratch-world.html' },
+    { n:'Thiết Kế Game GDevelop',   from:8,  to:14, tier:1, ends:'Logic game theo quy tắc — game nhìn ngang, nhìn từ trên và 3D, xuất ra một đường link.',
+      x:'gdevelop-explained.html', b:'brochures/gdevelop-game-designer.html' },
+    { n:'Sáng Tạo Thế Giới Roblox', from:9,  to:15, tier:2, ends:'Lập trình Lua và dựng 3D, xuất bản lên Roblox nơi bạn bè của con đang chơi.',
+      x:'roblox-explained.html', b:'brochures/roblox-world-creator.html' },
+    { n:'Tạo Website',              from:10, to:16, tier:2, ends:'HTML, CSS và JavaScript tự gõ tay, đưa lên một đường link chạy thật.',
+      x:'web-development-explained.html', b:'brochures/web-development.html' },
+    { n:'Thiết Kế 3D',              from:10, to:16, tier:2, ends:'Dựng hình, chất liệu và kết xuất trong Blender, cùng hình khối sinh bằng Python.',
+      x:'3d-design-explained.html', b:'brochures/3d-designer.html' },
+    { n:'Phát Triển Ứng Dụng',      from:10, to:17, tier:2, ends:'Ứng dụng nhiều màn hình có dữ liệu thật, cài được lên điện thoại.',
+      x:'app-development-explained.html', b:'brochures/app-development.html' },
+    { n:'Phép Thuật AI Tạo Sinh',   from:10, to:17, tier:2, ends:'Công cụ hình ảnh, âm thanh và video dùng có phán đoán, bên trong dự án hoàn chỉnh.',
+      x:'generative-ai-explained.html', b:'brochures/generative-ai-program.html' },
+    { n:'Khám Phá AI & Lập Trình',  from:11, to:16, tier:3, ends:'Python và mô hình huấn luyện có độ chính xác đo được — kể cả chỗ chúng sai.',
+      x:'ai-programming-explained.html', b:'brochures/ai-game-adventure.html' },
+    { n:'Nền Tảng Khởi Nghiệp',     from:10, to:17, tier:3, ends:'Một ý tưởng đã kiểm chứng, đưa lên link chạy thật và có người dùng thật.',
+      x:'startup-explained.html', b:'brochures/startup-foundation.html' }
+  ];
+  var TIERS = [
+    { t:1, h:'Bắt đầu từ đây', s:'không cần biết gì trước' },
+    { t:2, h:'Rồi đến',        s:'làm ra sản phẩm thật' },
+    { t:3, h:'Đi sâu hơn',     s:'dễ hơn khi đã có chút nền lập trình' }
+  ];
+
+  var agesEl = document.getElementById('ages');
+  var groupsEl = document.getElementById('groups');
+  var answerEl = document.getElementById('answer');
+  var chosen = null;
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+  function render(){
+    var fits = PROGRAMS.filter(function(p){ return chosen >= p.from && chosen <= p.to; });
+    if (!fits.length){
+      answerEl.innerHTML = 'Chúng tôi dạy các bạn 7 đến 17 tuổi — <strong>hãy liên hệ</strong> và chúng tôi sẽ nói thật xem có quá sớm không.';
+      groupsEl.innerHTML = '';
+      return;
+    }
+    answerEl.innerHTML = 'Ở tuổi <strong>' + chosen + '</strong> có <strong>' + fits.length + ' chương trình</strong> phù hợp ngay bây giờ.';
+
+    var html = '';
+    TIERS.forEach(function(tier){
+      var inTier = fits.filter(function(p){ return p.tier === tier.t; });
+      if (!inTier.length) return;
+      html += '<div class="group"><div class="group-h"><h3>' + tier.h + '</h3><span>' + tier.s + '</span></div><div class="cards">';
+      inTier.forEach(function(p){
+        html += '<article class="p-card">' +
+                '<h4>' + esc(p.n) + '</h4>' +
+                '<p class="ages-line">TUỔI ' + p.from + '–' + p.to + '</p>' +
+                '<p>' + esc(p.ends) + '</p>' +
+                '<div class="p-links">' +
+                '<a class="p-try" href="' + p.x + '">Thử trong 1 phút →</a>' +
+                '<a class="p-les" href="' + p.b + '">Xem đủ 24 buổi học</a>' +
+                '</div></article>';
+      });
+      html += '</div></div>';
+    });
+    groupsEl.innerHTML = html;
+  }
+
+  for (var a = 7; a <= 17; a++){
+    (function(age){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'age'; b.textContent = age;
+      b.addEventListener('click', function(){
+        chosen = age;
+        Array.prototype.forEach.call(agesEl.children, function(o){ o.classList.remove('is-on'); });
+        b.classList.add('is-on');
+        render();
+      });
+      agesEl.appendChild(b);
+    })(a);
+  }
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How long does one coding program take?", "acceptedAnswer": { "@type": "Answer", "text": "24 lessons across 3 levels, 90 minutes each, usually 2 to 3 sessions a week. Each level of 8 lessons ends with the student presenting what they built." } },
+    { "@type": "Question", "name": "What if we pick the wrong program?", "acceptedAnswer": { "@type": "Answer", "text": "Commitments are portable across every program, so nothing paid for is lost if your child moves. The concepts overlap heavily — sequence, loops, variables and events appear in all of them." } },
+    { "@type": "Question", "name": "Does my child need coding experience?", "acceptedAnswer": { "@type": "Answer", "text": "Not for Scratch, GDevelop, Roblox, Website Creation or 3D Designer. AI & Programming Quest and Startup Foundations go faster with some coding behind them." } },
+    { "@type": "Question", "name": "What do we need at home?", "acceptedAnswer": { "@type": "Answer", "text": "A laptop or desktop and Chrome. Every tool used across the nine programs is free to download, and most of what your child builds can be opened on your own phone." } },
+    { "@type": "Question", "name": "How do I know it is working?", "acceptedAnswer": { "@type": "Answer", "text": "Every program produces something you can look at or open — a playable game, a live URL, a rendered image, an app on a phone." } }
+  ]
+}
+</script>
+
+</body>
+</html>
