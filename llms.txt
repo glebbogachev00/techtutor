@@ -22,6 +22,7 @@ in-browser demo of the actual tool. All are also available in Vietnamese at /vn/
 - https://techtutor.academy/en/app-development-explained.html (What is app development? Screen components plus the event logic that wires them)
 - https://techtutor.academy/en/ai-programming-explained.html (What is machine learning? Train a classifier by example, then see bias break it)
 - https://techtutor.academy/en/3d-design-explained.html (What is 3D modelling? A rotatable mesh — points joined into faces, subdivided)
+- https://techtutor.academy/en/generative-ai-explained.html (What is generative AI? Describe a game, website or picture and watch it get made)
 - https://techtutor.academy/en/startup-explained.html (What is Startup Foundations? Ship a landing page, measure signups, iterate)
 
 ## Full lesson breakdowns (24 lessons, 3 levels each)
