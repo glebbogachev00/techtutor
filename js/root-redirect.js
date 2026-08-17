@@ -6,6 +6,14 @@
 (function() {
   'use strict';
 
+  // Carry the query string across the region hop. Without this, a shared
+  // https://techtutor.academy?ref=fam-XXXX loses its code on the very first
+  // redirect and the referral can never be attributed.
+  function withQuery(path) {
+    var qs = window.location.search || '';
+    return qs ? path + qs : path;
+  }
+
   // Check URL parameter to force a specific region or clear localStorage
   const urlParams = new URLSearchParams(window.location.search);
   const forceRegion = urlParams.get('region');
@@ -17,7 +25,7 @@
   } else if (forceRegion && ['en', 'vn', 'in', 'us'].includes(forceRegion)) {
     // Force redirect to specific region
     console.log('🔗 URL parameter forcing region:', forceRegion);
-    window.location.href = `${forceRegion}/index.html`;
+    window.location.href = withQuery(`${forceRegion}/index.html`);
     return;
   }
 
@@ -26,7 +34,7 @@
   if (manualRegion) {
     // User has manually selected, respect their choice
     console.log('💾 Using saved region preference:', manualRegion);
-    window.location.href = `${manualRegion}/index.html`;
+    window.location.href = withQuery(`${manualRegion}/index.html`);
     return;
   }
 
@@ -144,7 +152,7 @@
   // Perform redirection
   function redirectToRegion() {
     const detectedCountry = detectCountry();
-    const targetUrl = `${detectedCountry}/index.html`;
+    const targetUrl = withQuery(`${detectedCountry}/index.html`);
 
     console.log(`Redirecting to ${detectedCountry.toUpperCase()} site:`, targetUrl);
     window.location.href = targetUrl;
