@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What is Tinkercad? | TechTutor Academy</title>
+<meta name="description" content="A one-minute, hands-on explanation of Tinkercad for parents and children. Turn a shape into a hole, group it, and make a donut — the one idea the whole program is built on." />
+  <link rel="alternate" hreflang="en" href="https://www.techtutor.academy/en/tinkercad-explained.html" />
+  <link rel="alternate" hreflang="vi" href="https://www.techtutor.academy/vn/tinkercad-explained.html" />
+  <link rel="alternate" hreflang="x-default" href="https://www.techtutor.academy/en/tinkercad-explained.html" />
+  <link rel="canonical" href="https://www.techtutor.academy/en/tinkercad-explained.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="TechTutor Academy" />
+<meta property="og:url" content="https://www.techtutor.academy/en/tinkercad-explained.html" />
+<meta property="og:title" content="What is Tinkercad? | TechTutor Academy" />
+<meta property="og:description" content="A one-minute, hands-on explanation of Tinkercad for parents and children. Turn a shape into a hole, group it, and make a donut." />
+<meta property="og:image" content="https://www.techtutor.academy/images/family-portrait.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_GB" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="What is Tinkercad? | TechTutor Academy" />
+<meta name="twitter:description" content="A one-minute, hands-on explanation of Tinkercad for parents and children. Turn a shape into a hole, group it, and make a donut." />
+<meta name="twitter:image" content="https://www.techtutor.academy/images/family-portrait.jpg" />
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#d9dde5;
+    --accent:#193B92;
+    --accent-soft:#eef2fb;
+    --teal:#14b8a6;
+  }
+  html{-webkit-text-size-adjust:100%}
+  body{background:#fff;color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;font-size:16px}
+  a{color:inherit}
+
+  .top{max-width:820px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    font-size:24px;font-weight:900;letter-spacing:-.025em;text-decoration:none;line-height:1}
+  .brand .b1{color:#193b92}
+  .brand .b2{color:#14b8a6}
+  .back{font-size:13px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+  .back:hover{color:var(--accent);border-color:var(--accent)}
+
+  main{max-width:820px;margin:0 auto;padding:0 24px 80px}
+
+  .kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
+  h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(34px,6vw,52px);line-height:1.08;letter-spacing:-.02em;margin-bottom:16px}
+  .lead-text{font-size:clamp(17px,2.2vw,19px);color:#333;max-width:640px}
+  .lead-text strong{font-weight:600;color:var(--accent)}
+  .lead{padding:18px 0 34px}
+
+  /* ---------- demo ---------- */
+  .demo{border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff}
+  .demo-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .demo-head{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .steps{display:flex;gap:6px;align-items:center}
+  .dot{width:9px;height:9px;border-radius:50%;background:#dfe4ec;transition:background .25s ease,transform .25s ease}
+  .dot.on{background:var(--accent);transform:scale(1.25)}
+
+  canvas{display:block;width:100%;height:330px;border:1px solid var(--line);border-radius:12px;
+    background:#fcfcfd;cursor:grab;touch-action:none}
+  canvas:active{cursor:grabbing}
+  .spin-hint{margin-top:8px;font-size:12px;color:#9aa4b2;text-align:center}
+
+  .readout{margin-top:12px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:16px;background:#fbfcfe;
+    transition:border-color .18s ease,box-shadow .18s ease;min-height:74px}
+  .readout.live{border-color:var(--accent);box-shadow:0 0 0 3px rgba(25,59,146,.10)}
+  .readout.win{border-color:var(--teal);box-shadow:0 0 0 3px rgba(20,184,166,.14);background:#f2fdfa}
+  .readout strong{color:var(--accent);font-weight:600}
+
+  .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;align-items:stretch}
+  .go{font-family:inherit;font-size:17px;font-weight:700;color:#fff;background:var(--accent);
+    border:0;border-radius:12px;padding:16px 26px;cursor:pointer;flex:1;min-width:230px;
+    transition:background .18s ease,transform .12s ease}
+  .go:hover{background:#122f77}
+  .go:active{transform:translateY(1px)}
+  .go.done{background:var(--teal)}
+  .go.done:hover{background:#0f9184}
+  .chip{font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);background:#fff;
+    border:1px solid var(--line);border-radius:12px;padding:16px 20px;cursor:pointer}
+  .chip:hover{border-color:var(--accent);color:var(--accent)}
+
+  .demo-note{margin-top:18px;font-size:15px;color:#333;border-top:1px solid var(--line);padding-top:16px}
+  .demo-note strong{font-weight:600;color:var(--accent)}
+
+  /* ---------- lists ---------- */
+  h2{font-family:'DM Serif Display',serif;font-weight:400;font-size:28px;letter-spacing:-.01em;margin-bottom:18px}
+  .make{padding:52px 0 0}
+  .item{border-top:1px solid var(--line);padding:18px 0;display:grid;grid-template-columns:150px 1fr;gap:6px 24px}
+  .item h3{font-size:15px;font-weight:600;color:var(--accent);line-height:1.4}
+  .item p{font-size:15px;color:var(--muted)}
+
+  .why{padding:52px 0 0}
+  .why-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .why-card{border:1px solid var(--line);border-radius:14px;padding:20px}
+  .why-card h3{font-size:15px;font-weight:600;color:var(--accent);margin-bottom:6px;line-height:1.4}
+  .why-card p{font-size:14px;color:var(--muted)}
+
+  /* ---------- fit + cta ---------- */
+  .fit{margin-top:52px;border:1px solid var(--line);border-radius:16px;padding:26px}
+  .facts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+  .fact{font-size:13px;font-weight:500;color:#1f2937;background:var(--accent-soft);border:1px solid #dbe3f3;border-radius:999px;padding:6px 14px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{display:inline-block;text-decoration:none;font-size:15px;font-weight:600;border-radius:10px;padding:13px 26px}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:#122f77}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+  button,a.btn{touch-action:manipulation}
+
+  @media (max-width:600px){
+    .top{padding:18px 20px}
+    main{padding:0 20px 64px}
+    .lead{padding:14px 0 26px}
+    .item{grid-template-columns:1fr;gap:4px}
+    .make,.why{padding-top:42px}
+    .demo{padding:16px}
+    canvas{height:270px}
+    .readout{font-size:15px}
+    .chips{width:100%;flex-direction:column}
+    .go{width:100%;min-width:0;padding:17px 18px;font-size:16px}
+    .chip{width:100%;text-align:center;padding:14px 18px}
+    .why-grid{grid-template-columns:1fr}
+    .fit{padding:20px}
+    .cta-row{flex-direction:column;align-items:stretch}
+    .btn{text-align:center;padding:15px 26px}
+  }
+  .tools{margin-bottom:18px;font-size:14px;color:var(--muted)}
+  .tools strong{color:var(--ink);font-weight:600}
+  .tools a{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(25,59,146,.3)}
+  .tools a:hover{border-color:var(--accent)}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.techtutor.academy/en/tinkercad-explained.html",
+  "url": "https://www.techtutor.academy/en/tinkercad-explained.html",
+  "name": "What is Tinkercad? | TechTutor Academy",
+  "description": "A one-minute, hands-on explanation of Tinkercad for parents and children.",
+  "inLanguage": "en",
+  "isPartOf": { "@type": "WebSite", "name": "TechTutor Academy", "url": "https://www.techtutor.academy" },
+  "publisher": {
+    "@type": "EducationalOrganization",
+    "name": "TechTutor Academy",
+    "url": "https://www.techtutor.academy",
+    "logo": "https://www.techtutor.academy/images/robot-rocket.png"
+  },
+  "about": {
+    "@type": "Course",
+    "name": "Tinkercad 3D Maker",
+    "url": "https://www.techtutor.academy/en/brochures/tinkercad-3d-maker.html",
+    "provider": { "@type": "EducationalOrganization", "name": "TechTutor Academy", "url": "https://www.techtutor.academy" }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.techtutor.academy/en/" },
+    { "@type": "ListItem", "position": 2, "name": "What is Tinkercad?", "item": "https://www.techtutor.academy/en/tinkercad-explained.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="/en/index.html" aria-label="TechTutor home"><span class="b1">Tech</span><span class="b2">Tutor</span></a>
+  <a class="back" href="/en/index.html">&larr; Main page</a>
+</header>
+
+<main>
+
+  <section class="lead">
+    <p class="kicker">Program explainer</p>
+    <h1>What is Tinkercad?</h1>
+    <p class="lead-text">Tinkercad is 3D design built for beginners, and the whole thing rests on one idea small
+      enough for a six-year-old to hold in their head: every shape is either something you
+      <strong>add</strong>, or something you <strong>take away</strong>. Two taps below and you'll have it.</p>
+  </section>
+
+  <section class="demo">
+    <div class="demo-top">
+      <p class="demo-head">Try it — make a donut</p>
+      <div class="steps" aria-hidden="true">
+        <span class="dot on" id="d1"></span><span class="dot" id="d2"></span><span class="dot" id="d3"></span>
+      </div>
+    </div>
+
+    <canvas id="stage" aria-label="A blue disc with an orange tube through it. Turn the tube into a hole, then group them to make a donut."></canvas>
+    <p class="spin-hint">Drag the picture to spin it around</p>
+
+    <div class="readout live" id="readout"></div>
+
+    <div class="chips">
+      <button type="button" class="go" id="goBtn"></button>
+      <button type="button" class="chip" id="resetBtn">Start again</button>
+    </div>
+
+    <p class="demo-note">That is genuinely it. <strong>Add a shape, subtract a shape, group them.</strong>
+      Rockets, monsters, cookie cutters, a name keyring — everything children build in this program comes from
+      repeating those three moves. The grown-up CAD software used by architects and engineers works on exactly
+      the same logic.</p>
+  </section>
+
+  <section class="make">
+    <h2>What they'll actually make</h2>
+
+    <div class="item">
+      <h3>Real objects, every lesson</h3>
+      <p>A donut, a rocket, a butterfly, their own monster, a cookie cutter, a treasure chest with a lid that
+        actually fits. Nothing is left half-finished between weeks — each session ends with something named and
+        spinnable.</p>
+    </div>
+    <div class="item">
+      <h3>Their own name in 3D</h3>
+      <p>Chunky 3D letters pulled up out of the workplane, sat on a plate, with a hole punched for a keyring.
+        This is usually the design families ask to print first.</p>
+    </div>
+    <div class="item">
+      <h3>Models built by code</h3>
+      <p>In the final level children move to Tinkercad Codeblocks, where models are assembled by dragging
+        instruction blocks. A single Repeat block builds a whole staircase — their first real taste of why
+        programmers bother with loops.</p>
+    </div>
+  </section>
+
+  <section class="why">
+    <h2>Why choose this program</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>It genuinely works at age six</h3>
+        <p>No typing, no syntax, almost no reading. Everything is drag, drop, add, subtract — and lessons are
+          taught by demonstration, so an early reader is never held back by the interface.</p>
+      </div>
+      <div class="why-card">
+        <h3>You can see the progress</h3>
+        <p>Every design has a share link that opens on your phone. You can spin your child's work yourself
+          without understanding a single thing about the software.</p>
+      </div>
+      <div class="why-card">
+        <h3>Spatial thinking, early</h3>
+        <p>Turning objects in your head, breaking a complicated thing into simple parts, working out what fits
+          inside what — the groundwork for later maths, engineering and design.</p>
+      </div>
+      <div class="why-card">
+        <h3>It leads somewhere</h3>
+        <p>Tinkercad is made by Autodesk, so it is a real first rung rather than a toy. Children move on to
+          Blender in 3D Designer, or sideways into Scratch and the programming tracks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fit">
+    <p class="tools"><strong>The tool:</strong> <a href="https://www.tinkercad.com" target="_blank" rel="noopener">Tinkercad</a> — free, made by Autodesk, and runs in an ordinary web browser with nothing to install.</p>
+    <div class="facts">
+      <span class="fact">Ages 6&ndash;10</span>
+      <span class="fact">24 lessons, 3 levels</span>
+      <span class="fact">60-minute live sessions</span>
+      <span class="fact">Tinkercad is free</span>
+      <span class="fact">No 3D printer needed</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="/en/free-trial.html">Book a free trial</a>
+      <a class="btn btn-ghost" href="/en/brochures/tinkercad-3d-maker.html">See all 24 lessons</a>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var cvs = document.getElementById('stage');
+  if(!cvs) return;
+  var ctx = cvs.getContext('2d', { alpha:false });
+  var readout = document.getElementById('readout');
+  var goBtn = document.getElementById('goBtn');
+  var resetBtn = document.getElementById('resetBtn');
+  var dots = [document.getElementById('d1'), document.getElementById('d2'), document.getElementById('d3')];
+
+  // ---- the three states of the demo -------------------------------------
+  // solid   : two ordinary shapes, one sitting inside the other
+  // hole    : the tube is flagged as a hole (Tinkercad draws these hatched)
+  // grouped : the hole has been subtracted, leaving a donut
+  var STATES = ['solid','hole','grouped'];
+  var COPY = {
+    solid: {
+      text: 'Two ordinary solid shapes. The orange tube is just sitting inside the blue disc — nothing has happened yet.',
+      btn: 'Turn the tube into a hole'
+    },
+    hole: {
+      text: 'The tube is a <strong>hole</strong> now — see the stripes? A hole is not a thing. It is a space waiting to be taken out of whatever it touches.',
+      btn: 'Group them together'
+    },
+    grouped: {
+      text: '🍩 Grouped! The hole cut straight through and you made a donut. <strong>That is the whole idea behind Tinkercad.</strong>',
+      btn: 'Do it again'
+    }
+  };
+  var step = 0;
+
+  // ---- scene ------------------------------------------------------------
+  var BASE_R = 1.0,  BASE_H = 0.30;   // the disc
+  var CUT_R  = 0.40, CUT_H  = 0.62;   // the tube, tall enough to pass right through
+  var PLANE_Y = -BASE_H;              // the workplane the disc sits on
+  var DIST = 4.3, FOCAL = 2.35;
+
+  // Buffer scales, in device pixels per rendered pixel. Derived from a pixel
+  // budget rather than fixed, so a phone renders at native resolution while a
+  // wide desktop canvas stays inside the same millisecond cost.
+  function scaleFor(budget){
+    var total = cvs.width * cvs.height;
+    if (!total) return 4;
+    var sc = Math.sqrt(total/budget);
+    return sc < 1 ? 1 : sc;
+  }
+  function MOVINGf(){ return scaleFor(26000); }   // spinning or dragging
+  function MIDf(){ return scaleFor(90000); }      // the instant a step changes
+  function SHARPf(){ return scaleFor(340000); }   // once everything settles
+  var rx = -0.42, ry = 0.70;
+  var autoSpin = true, dragging = false, lastX = 0, lastY = 0;
+  var sharpTimer = null, rafId = null;
+
+  var buf = document.createElement('canvas');
+  var bctx = buf.getContext('2d');
+  var imgData = null, bufW = 0, bufH = 0;
+
+  function sdCyl(x, y, z, r, h){
+    var dxz = Math.sqrt(x*x + z*z) - r;
+    var dy = Math.abs(y) - h;
+    var ox = dxz > 0 ? dxz : 0;
+    var oy = dy > 0 ? dy : 0;
+    var inner = dxz > dy ? dxz : dy;
+    if (inner > 0) inner = 0;
+    return inner + Math.sqrt(ox*ox + oy*oy);
+  }
+  function sdBase(x,y,z){ return sdCyl(x,y,z,BASE_R,BASE_H); }
+  function sdCut(x,y,z){ return sdCyl(x,y,z,CUT_R,CUT_H); }
+
+  // The opaque scene for the current state. Subtraction is max(a, -b) — the
+  // same "solid minus hole" operation Tinkercad performs when you group.
+  function sceneFor(state){
+    if (state === 'grouped') return function(x,y,z){
+      var a = sdBase(x,y,z), b = sdCut(x,y,z);
+      return a > -b ? a : -b;
+    };
+    if (state === 'hole') return sdBase;
+    return function(x,y,z){
+      var a = sdBase(x,y,z), b = sdCut(x,y,z);
+      return a < b ? a : b;
+    };
+  }
+
+  function march(ox,oy,oz, dx,dy,dz, f){
+    var t = 0.6;
+    for (var i = 0; i < 72; i++){
+      var h = f(ox + dx*t, oy + dy*t, oz + dz*t);
+      if (h < 0.0018) return t;
+      t += h;
+      if (t > 11) break;
+    }
+    return -1;
+  }
+
+  function normal(f, x, y, z, out){
+    var e = 0.0022;
+    var nx = f(x+e,y,z) - f(x-e,y,z);
+    var ny = f(x,y+e,z) - f(x,y-e,z);
+    var nz = f(x,y,z+e) - f(x,y,z-e);
+    var l = Math.sqrt(nx*nx + ny*ny + nz*nz) || 1;
+    out[0] = nx/l; out[1] = ny/l; out[2] = nz/l;
+  }
+
+  var LX = 0.42, LY = 0.84, LZ = 0.34;
+  (function(){ var l = Math.sqrt(LX*LX+LY*LY+LZ*LZ); LX/=l; LY/=l; LZ/=l; })();
+
+  var N = [0,0,0];
+
+  function render(scale){
+    var t0 = (window.performance && performance.now) ? performance.now() : 0;
+    var rect = cvs.getBoundingClientRect();
+    var cssW = Math.max(1, rect.width), cssH = Math.max(1, rect.height);
+    var dpr = window.devicePixelRatio || 1;
+    if (cvs.width !== Math.round(cssW*dpr) || cvs.height !== Math.round(cssH*dpr)){
+      cvs.width = Math.round(cssW*dpr);
+      cvs.height = Math.round(cssH*dpr);
+    }
+
+    // Sized from the backing store, not CSS pixels: on a 2x display a
+    // CSS-sized buffer gets upscaled twice over and the silhouette stairsteps.
+    var W = Math.max(2, Math.round(cvs.width/scale));
+    var H = Math.max(2, Math.round(cvs.height/scale));
+    if (W !== bufW || H !== bufH){
+      bufW = W; bufH = H;
+      buf.width = W; buf.height = H;
+      imgData = bctx.createImageData(W, H);
+    }
+    var px32 = imgData.data;
+
+    var state = STATES[step];
+    var f = sceneFor(state);
+    var showGhost = (state === 'hole');
+
+    var cx = Math.cos(rx), sx = Math.sin(rx);
+    var cy = Math.cos(ry), sy = Math.sin(ry);
+
+    // camera origin: (0,0,DIST) rotated by pitch then yaw
+    var o1y = -DIST*sx, o1z = DIST*cx;
+    var oX = o1z*sy, oY = o1y, oZ = o1z*cy;
+
+    var aspect = W/H;
+    var idx = 0;
+
+    for (var j = 0; j < H; j++){
+      var v = 1 - (j + 0.5)/H*2;
+      for (var i = 0; i < W; i++){
+        var u = ((i + 0.5)/W*2 - 1)*aspect;
+
+        // ray direction: normalise, pitch, then yaw
+        var dx0 = u, dy0 = v, dz0 = -FOCAL;
+        var il = 1/Math.sqrt(dx0*dx0 + dy0*dy0 + dz0*dz0);
+        dx0 *= il; dy0 *= il; dz0 *= il;
+        var d1y = dy0*cx - dz0*sx, d1z = dy0*sx + dz0*cx;
+        var dX = dx0*cy + d1z*sy, dY = d1y, dZ = -dx0*sy + d1z*cy;
+
+        var r = 252, g = 252, b = 253;
+
+        // workplane first — analytic, and it also tells us how far to trust a miss
+        var tPlane = 1e9;
+        if (dY < -1e-6){
+          var tp = (PLANE_Y - oY)/dY;
+          if (tp > 0) tPlane = tp;
+        }
+
+        var tObj = march(oX,oY,oZ, dX,dY,dZ, f);
+
+        if (tPlane < 1e8 && (tObj < 0 || tPlane < tObj)){
+          var pxw = oX + dX*tPlane, pzw = oZ + dZ*tPlane;
+          var rad = Math.sqrt(pxw*pxw + pzw*pzw);
+          if (rad < 4.4){
+            var cu = Math.floor(pxw/0.55), cv2 = Math.floor(pzw/0.55);
+            var chk = (((cu + cv2) % 2) + 2) % 2 === 0;
+            var pr = chk ? 226 : 238, pg = chk ? 233 : 243, pb = chk ? 245 : 250;
+            // contact shadow under the disc
+            if (rad < 1.7){
+              var k = 1 - rad/1.7; k = k*k;
+              var s = 1 - 0.34*k;
+              pr *= s; pg *= s; pb *= s;
+            }
+            var fade = rad > 2.1 ? Math.min(1, (rad - 2.1)/2.0) : 0;
+            r = pr + (252 - pr)*fade;
+            g = pg + (252 - pg)*fade;
+            b = pb + (253 - pb)*fade;
+          }
+        }
+
+        if (tObj > 0 && (tPlane > 1e8 || tObj < tPlane)){
+          var hx = oX + dX*tObj, hy = oY + dY*tObj, hz = oZ + dZ*tObj;
+          normal(f, hx, hy, hz, N);
+          var diff = N[0]*LX + N[1]*LY + N[2]*LZ;
+          if (diff < 0) diff = 0;
+
+          // pick the material: in the union state the tube keeps its own colour
+          var cr = 76, cg = 141, cb = 255;
+          if (state === 'solid' && sdCut(hx,hy,hz) < sdBase(hx,hy,hz)){
+            cr = 249; cg = 115; cb = 22;
+          }
+
+          // Key light plus a camera-facing fill. Without the fill the vertical
+          // sides catch almost no key (it comes from above) and read as a
+          // different, much darker colour than the top.
+          var face = -(N[0]*dX + N[1]*dY + N[2]*dZ);
+          if (face < 0) face = 0;
+          var lit = 0.45 + 0.40*diff + 0.24*face;
+          // specular
+          var hX = LX - dX, hY = LY - dY, hZ = LZ - dZ;
+          var hl = Math.sqrt(hX*hX + hY*hY + hZ*hZ) || 1;
+          var sp = (N[0]*hX + N[1]*hY + N[2]*hZ)/hl;
+          if (sp < 0) sp = 0;
+          sp = Math.pow(sp, 30)*0.35;
+
+          r = cr*lit + 255*sp;
+          g = cg*lit + 255*sp;
+          b = cb*lit + 255*sp;
+        }
+
+        // the hole, drawn as a hatched ghost in front of whatever it covers
+        if (showGhost){
+          var tG = march(oX,oY,oZ, dX,dY,dZ, sdCut);
+          if (tG > 0 && (tObj < 0 || tG < tObj) && (tPlane > 1e8 || tG < tPlane)){
+            var gx = oX + dX*tG, gy = oY + dY*tG, gz = oZ + dZ*tG;
+            normal(sdCut, gx, gy, gz, N);
+            var gd = N[0]*LX + N[1]*LY + N[2]*LZ;
+            if (gd < 0) gd = 0;
+            var gface = -(N[0]*dX + N[1]*dY + N[2]*dZ);
+            if (gface < 0) gface = 0;
+            var glit = 0.52 + 0.38*gd + 0.20*gface;
+            var stripe = (((i + j) % 8) < 4) ? 0.80 : 1.0;
+            var gr = 150*glit*stripe, gg = 163*glit*stripe, gb = 184*glit*stripe;
+            var a = 0.55;
+            r = r*(1-a) + gr*a;
+            g = g*(1-a) + gg*a;
+            b = b*(1-a) + gb*a;
+          }
+        }
+
+        px32[idx++] = r; px32[idx++] = g; px32[idx++] = b; px32[idx++] = 255;
+      }
+    }
+
+    bctx.putImageData(imgData, 0, 0);
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(buf, 0, 0, cvs.width, cvs.height);
+    if (t0) cvs.dataset.ms = Math.round(performance.now() - t0) + '@' + W + 'x' + H;
+  }
+
+  function scheduleSharp(){
+    if (sharpTimer) clearTimeout(sharpTimer);
+    sharpTimer = setTimeout(function(){ render(SHARPf()); }, 170);
+  }
+
+  function loop(){
+    if (!autoSpin) return;
+    ry += 0.007;
+    render(MOVINGf());
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function stopSpin(){
+    if (!autoSpin) return;
+    autoSpin = false;
+    if (rafId) cancelAnimationFrame(rafId);
+    scheduleSharp();
+  }
+
+  function paintUI(){
+    var state = STATES[step];
+    readout.innerHTML = COPY[state].text;
+    goBtn.textContent = COPY[state].btn;
+    goBtn.classList.toggle('done', state === 'grouped');
+    readout.classList.toggle('win', state === 'grouped');
+    readout.classList.toggle('live', state !== 'grouped');
+    for (var i = 0; i < dots.length; i++) dots[i].classList.toggle('on', i <= step);
+  }
+
+  goBtn.addEventListener('click', function(){
+    step = (step + 1) % STATES.length;
+    paintUI();
+    render(autoSpin ? MOVINGf() : MIDf());
+    if (!autoSpin) scheduleSharp();
+  });
+
+  resetBtn.addEventListener('click', function(){
+    step = 0; rx = -0.42; ry = 0.70;
+    paintUI();
+    render(autoSpin ? MOVINGf() : MIDf());
+    if (!autoSpin) scheduleSharp();
+  });
+
+  cvs.addEventListener('pointerdown', function(e){
+    dragging = true; lastX = e.clientX; lastY = e.clientY;
+    cvs.setPointerCapture(e.pointerId);
+    stopSpin();
+  });
+  cvs.addEventListener('pointermove', function(e){
+    if (!dragging) return;
+    ry += (e.clientX - lastX)*0.011;
+    rx += (e.clientY - lastY)*0.009;
+    if (rx < -1.25) rx = -1.25;
+    if (rx > 0.35) rx = 0.35;
+    lastX = e.clientX; lastY = e.clientY;
+    render(MOVINGf());
+  });
+  function endDrag(e){
+    if (!dragging) return;
+    dragging = false;
+    try { cvs.releasePointerCapture(e.pointerId); } catch(err){}
+    scheduleSharp();
+  }
+  cvs.addEventListener('pointerup', endDrag);
+  cvs.addEventListener('pointercancel', endDrag);
+
+  var rz = null;
+  window.addEventListener('resize', function(){
+    if (rz) clearTimeout(rz);
+    rz = setTimeout(function(){ render(autoSpin ? MOVINGf() : SHARPf()); }, 140);
+  });
+
+  paintUI();
+  render(MOVINGf());
+  rafId = requestAnimationFrame(loop);
+  // The spin is an invitation, not a screensaver — it stops on its own.
+  setTimeout(stopSpin, 7000);
+})();
+</script>
+
+</body>
+</html>

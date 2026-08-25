@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZ1XEZXB6"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18127330947"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4MZ1XEZXB6');
+  gtag('config', 'AW-18127330947');
+</script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Brochure Tinkercad 3D Maker | TechTutor Academy</title>
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link rel="shortcut icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#f4f4f5;
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#cfd4dc;
+    --brand:#244d9a;
+    --brand-soft:#eaf0fb;
+    --teal:#44bea4;
+    --panel:#1f4a97;
+    --lv1:#e8f7f3;
+    --lv2:#ecf2ff;
+    --lv3:#f4efff;
+  }
+  body{background:#ffffff;color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65;font-size:15px}
+  .hero{max-width:920px;margin:0 auto;padding:64px 56px 44px;border-bottom:1px solid var(--line);background:#ffffff}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .logo{width:250px;max-width:72%;height:auto}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:var(--brand)}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .lesson-make{display:inline-block;margin-top:7px;font-size:12px;font-weight:600;color:#1f2f57;background:var(--brand-soft);border:1px solid #d5e0f5;border-radius:999px;padding:4px 11px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+
+  .progression{margin:24px 0;padding:20px;background:linear-gradient(to right,var(--lv1),var(--lv2),var(--lv3));border-radius:12px;border:1px solid var(--line)}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative}
+  .prog-step::after{content:'→';position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--brand);font-size:20px;font-weight:700}
+  .prog-step:last-child::after{display:none}
+  .prog-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#fff;border:2px solid var(--brand);border-radius:50%;font-weight:700;color:var(--brand);margin-bottom:6px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--ink)}
+  @page{size:A4;margin:10mm}
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .level-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+  <link rel="alternate" hreflang="en" href="https://www.techtutor.academy/en/brochures/tinkercad-3d-maker.html" />
+  <link rel="alternate" hreflang="vi" href="https://www.techtutor.academy/vn/brochures/tinkercad-3d-maker.html" />
+  <link rel="alternate" hreflang="x-default" href="https://www.techtutor.academy/en/brochures/tinkercad-3d-maker.html" />
+  <link rel="canonical" href="https://www.techtutor.academy/vn/brochures/tinkercad-3d-maker.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.techtutor.academy/vn/" },
+    { "@type": "ListItem", "position": 2, "name": "Brochures", "item": "https://www.techtutor.academy/vn/resources.html" },
+    { "@type": "ListItem", "position": 3, "name": "Brochure Tinkercad 3D Maker", "item": "https://www.techtutor.academy/vn/brochures/tinkercad-3d-maker.html" }
+  ]
+}
+</script>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Brochure Chương Trình</div>
+    </div>
+    <h1>Tinkercad 3D Maker</h1>
+    <p class="hero-sub">Chương trình thiết kế 3D đầu tiên dành cho các nhà sáng tạo nhí. Các em tạo ra bánh donut, tên lửa, quái vật và móc khóa tên mình từ những khối hình đơn giản trong Tinkercad — và mang về một tệp 3D thật sau mỗi buổi học.</p>
+    <div class="meta">
+      <div class="pill">Độ tuổi 6-10</div>
+      <div class="pill">24 Bài Học</div>
+      <div class="pill">3 Cấp Độ Tiến Bộ</div>
+      <div class="pill">Hoàn Thành Một Sản Phẩm Mỗi Buổi</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title">Tổng Quan Chương Trình</h2>
+      </div>
+      <div class="overview">
+        <p>Tinkercad 3D Maker là nơi kỹ năng thiết kế thật sự đầu tiên của một đứa trẻ bắt đầu. Mọi thứ trong Tinkercad đều được tạo theo cùng một cách — con kéo một khối hình vào, rồi hoặc <strong>cộng thêm</strong>, hoặc <strong>khoét đi</strong>. Ý tưởng đó đủ đơn giản để một em bé 6 tuổi ghi nhớ, và đủ mạnh để các kỹ sư chuyên nghiệp dùng mỗi ngày. Suốt chương trình, các em sẽ khám phá xem có thể tạo ra bao nhiêu thứ chỉ từ ý tưởng ấy.</p>
+        <p>Ở đây không có phiếu bài tập. Mỗi buổi học kết thúc bằng một sản phẩm hoàn chỉnh mà con tự đặt tên, xoay quanh và khoe với bố mẹ — một cái bánh donut, một con quái vật ngộ nghĩnh, một tên lửa, hay chính tên mình bằng chữ 3D. Tinkercad chạy trực tiếp trên trình duyệt web, nên không cần cài đặt gì và cũng không cần máy tính đắt tiền.</p>
+        <ul>
+          <li><strong>Mô hình học:</strong> Thả khối hình → Chỉnh sửa → Cộng thêm hoặc khoét đi → Gộp lại → Đặt tên và trình bày.</li>
+          <li><strong>Định dạng lớp học:</strong> Buổi học trực tiếp 60 phút, xoay quanh một ý tưởng có thể tạo được, với nhiều thao tác mẫu.</li>
+          <li><strong>Phụ huynh dễ theo dõi:</strong> Mỗi buổi học tạo ra một hình ảnh và một đường liên kết chia sẻ. Bố mẹ có thể xoay mô hình của con ngay trên điện thoại.</li>
+          <li><strong>Đo lường tiến bộ:</strong> Con có tạo được sản phẩm không, có giải thích được cách mình làm không, và có tự sửa được khi muốn thay đổi không?</li>
+          <li><strong>Yêu cầu đọc hiểu:</strong> Cố ý giữ ở mức thấp. Hướng dẫn được làm mẫu và nói bằng lời, nên các em mới biết đọc không bao giờ bị chậm lại.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">LV1</div>
+            <div class="prog-label">Khám Phá Hình Khối<br/>8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV2</div>
+            <div class="prog-label">Xây Dựng Hình Khối<br/>8 tuần</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV3</div>
+            <div class="prog-label">Sáng Tạo Hình Khối<br/>8 tuần</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Khám Phá Hình Khối (TINK-LV1)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Chào Mừng Đến Mặt Phẳng Làm Việc</h3><p class="lesson-desc">Các em làm quen với thế giới 3D và hiểu điều khác biệt lớn nhất so với vẽ trên giấy: con có thể đi vòng quanh nó. Các em xoay góc nhìn, ngó xuống phía dưới tác phẩm của mình, và kéo những khối đầu tiên vào mặt phẳng làm việc. Kết thúc buổi học, các em có một người tuyết đứng vững trên màn hình và xem được từ mọi phía.</p><span class="lesson-make">Sản phẩm: một người tuyết</span></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">To, Nhỏ, Xoay Tròn</h3><p class="lesson-desc">Mỗi khối hình đều có các nút điều khiển: nút trắng để kéo giãn, nút đen để nâng lên, và mũi tên cong để xoay. Các em tập bẹp một khối lập phương thành cái bánh kếp, kéo quả cầu thành quả trứng, rồi xếp một tòa tháp ngộ nghĩnh và lắc lư nhất có thể mà không bị đổ.</p><span class="lesson-make">Sản phẩm: tòa tháp ngộ nghĩnh nhất lớp</span></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Cái Lỗ Thần Kỳ</h3><p class="lesson-desc">Bài học quan trọng nhất của cả chương trình. Các em khám phá rằng bất kỳ khối hình nào cũng có thể chuyển từ đặc sang <em>lỗ rỗng</em> — và cái lỗ sẽ ăn xuyên qua bất cứ thứ gì nó chạm vào. Các em khoét một lỗ xuyên qua khối trụ dày và nhìn chiếc bánh donut hiện ra. Ý tưởng duy nhất này chi phối mọi thứ các em tạo ra về sau.</p><span class="lesson-make">Sản phẩm: một chiếc bánh donut</span></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Dính Lại Với Nhau</h3><p class="lesson-desc">Các em học nút Gộp (Group) — nút dán một đống khối rời rạc thành một vật thể duy nhất — và nút Tách (Ungroup) khi đổi ý. Các em lắp một tên lửa từ một hình nón, một ống trụ và ba cánh, rồi gộp lại để nó di chuyển như một khối và không bao giờ bị rơi rời ra.</p><span class="lesson-make">Sản phẩm: một tên lửa</span></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Tên Con Bằng Chữ 3D</h3><p class="lesson-desc">Các em dùng khối Chữ (Text) để kéo tên mình nổi lên khỏi mặt phẳng thành những chữ cái 3D dày dặn, đặt lên một tấm nền, rồi khoét một lỗ để xỏ móc khóa. Đây thường là buổi học đầu tiên phụ huynh thốt lên "khoan đã, cái này in ra được thật à?" — và đúng vậy, tệp đó là của con.</p><span class="lesson-make">Sản phẩm: một móc khóa tên mình</span></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Sao Chép và Lật Gương</h3><p class="lesson-desc">Tại sao phải làm cánh tay thứ hai khi máy tính có thể làm hộ? Các em học Nhân bản (Duplicate) và Lật gương (Mirror), rồi dùng chúng để tạo những thứ cân đối hai bên. Các em làm một con bướm có đôi cánh phản chiếu hoàn hảo, và khám phá tính đối xứng bằng cách sử dụng nó chứ không phải bằng cách nghe giảng.</p><span class="lesson-make">Sản phẩm: một con bướm đối xứng</span></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Tạo Một Con Quái Vật</h3><p class="lesson-desc">Một buổi tự do sáng tạo với một quy tắc: con quái vật phải có ít nhất một cái lỗ, một phần được gộp lại, và một cái tên. Các em nói ra ý tưởng của mình trước, rồi tạo nó bằng mọi kỹ năng đã học. Quy tắc đủ lỏng để giống như chơi, và đủ chặt để chứng minh kỹ năng đã thấm.</p><span class="lesson-make">Sản phẩm: con quái vật của riêng con, có tên</span></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Trình Bày và Chia Sẻ</h3><p class="lesson-desc">Các em chụp ảnh con quái vật của mình, xoay nó cho cả lớp xem, và giải thích bằng lời của chính mình rằng đã bắt đầu từ những khối hình nào và đặt lỗ ở đâu. Nói được cách mình tạo ra một thứ gì đó chính là điểm mấu chốt — đó là khác biệt giữa bấm chuột lung tung và thiết kế thật sự.</p><span class="lesson-make">Sản phẩm: bài trình bày về tác phẩm của mình</span></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Xây Dựng Hình Khối (TINK-LV2)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Tô Màu Cho Nó</h3><p class="lesson-desc">Các em học rằng màu sắc là một thuộc tính con điều khiển được, không phải thứ trang trí xuất hiện ngẫu nhiên. Các em tô màu riêng cho từng bộ phận, phát hiện ra rằng gộp khối làm chúng dùng chung một màu, và tìm ra mẹo giữ màu sau khi gộp. Con quái vật cũ được sơn lại toàn bộ.</p><span class="lesson-make">Sản phẩm: con quái vật được sơn mới</span></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Xếp Cho Thẳng Hàng</h3><p class="lesson-desc">Công cụ Căn chỉnh (Align) xếp các khối thẳng hàng hoàn hảo — canh giữa, sát cạnh, xếp chồng. Các em so sánh một tác phẩm đặt tay lệch lạc với một tác phẩm đã căn chỉnh và thấy ngay vì sao điều đó quan trọng. Các em làm một cột đèn giao thông có ba bóng đèn thật sự thẳng hàng.</p><span class="lesson-make">Sản phẩm: một cột đèn giao thông</span></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Xưởng Khuôn Bánh Quy</h3><p class="lesson-desc">Một vật thể thật, hữu ích và in được. Các em thiết kế khuôn cắt bánh quy bằng cách tạo một hình bên ngoài rồi khoét đi một bản sao nhỏ hơn một chút, qua đó hiểu rằng một bức tường cần có độ dày mới tồn tại được. Ngôi sao, trái tim, khủng long và chữ cái đầu tên đều lần lượt xuất hiện.</p><span class="lesson-make">Sản phẩm: một khuôn bánh quy in được</span></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Tạo Thú Cưng Của Con</h3><p class="lesson-desc">Các em quan sát một con vật thật và tìm ra những khối hình đơn giản ẩn bên trong nó — thân là quả cầu kéo dài, chân là các ống trụ, tai là hình nón. Chia nhỏ một thứ phức tạp thành các khối đã biết chính là kỹ năng cốt lõi của thiết kế, và ở đây các em luyện nó trên thứ mình yêu quý.</p><span class="lesson-make">Sản phẩm: thú cưng của con, hoặc con vật con ao ước</span></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Lâu Đài Trên Đồi</h3><p class="lesson-desc">Tác phẩm đầu tiên đủ lớn để cần có kế hoạch. Các em lập kế hoạch trước khi bắt đầu, dựng một tòa tháp rồi nhân bản ra, và dùng lỗ để cắt cửa sổ và cửa ra vào. Các em học cách phóng to nhìn tổng thể thay vì loay hoay mãi ở một góc.</p><span class="lesson-make">Sản phẩm: một lâu đài có cửa sổ và cửa chính</span></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Rương Kho Báu Có Nắp</h3><p class="lesson-desc">Hai bộ phận riêng biệt phải khớp với nhau. Các em làm một cái hộp và một cái nắp đậy vừa vặn, và phát hiện ra rằng cái nắp có kích thước y hệt sẽ không đậy được mà cần chừa ra một chút. Đây là lần đầu tiên các em nếm tư duy kỹ thuật thật sự, và nó thấm vì cái nắp hoặc vừa hoặc không, thấy được ngay.</p><span class="lesson-make">Sản phẩm: một rương kho báu hai phần</span></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Tuần Tự Do Sáng Tạo</h3><p class="lesson-desc">Các em chọn dự án của riêng mình và thực hiện với giáo viên đóng vai người hướng dẫn thay vì người ra lệnh. Các em phải nói mình định làm gì trước khi bắt đầu, và được hỗ trợ giữ cho dự án đủ nhỏ để thật sự hoàn thành — một kỹ năng còn quan trọng hơn bất kỳ công cụ nào.</p><span class="lesson-make">Sản phẩm: dự án do con tự chọn</span></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Buổi Trình Diễn</h3><p class="lesson-desc">Các em trình bày dự án tuần tự do của mình và trả lời hai câu hỏi: phần nào khó nhất, và lần sau con sẽ thay đổi điều gì? Các em cũng học cách xuất thiết kế thành tệp 3D, để gia đình nào có máy in có thể mang sản phẩm về nhà.</p><span class="lesson-make">Sản phẩm: một tệp 3D đã xuất</span></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Sáng Tạo Hình Khối (TINK-LV3)</h2>
+        <div class="section-meta">8 Bài Học</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Vẽ Nguệch Ngoạc</h3><p class="lesson-desc">Cho đến giờ mọi khối hình đều lấy từ menu. Với công cụ Scribble, các em vẽ một nét nguệch ngoạc bằng chuột và Tinkercad biến nó thành vật thể 3D đặc. Các em vẽ chữ cái đầu tên mình, một tia sét, hoặc một hình mà chẳng ai gọi tên được — và nó trở thành thật.</p><span class="lesson-make">Sản phẩm: một hình khối do chính con vẽ</span></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Bộ Tạo Hình Khối</h3><p class="lesson-desc">Các em khám phá các bộ tạo hình của Tinkercad — những khối có thanh trượt thay đổi trực tiếp, như bánh răng chỉnh được số răng và ngôi sao chỉnh được số cánh. Kéo thanh trượt và nhìn vật thể tự dựng lại là lần đầu tiên các em gặp ý tưởng rằng một thiết kế có thể có "cài đặt".</p><span class="lesson-make">Sản phẩm: một bánh răng do con tự chỉnh</span></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Codeblocks: Hình Khối Từ Mã Lệnh</h3><p class="lesson-desc">Các em chuyển sang Tinkercad Codeblocks, nơi mô hình được dựng bằng cách kéo các khối lệnh màu thay vì kéo hình khối. Các em viết một chuỗi ngắn — thêm hộp, di chuyển, thêm quả cầu — bấm Chạy, và xem mô hình tự lắp ráp từng bước. Vẫn là kỹ năng cũ, nhưng với siêu năng lực mới.</p><span class="lesson-make">Sản phẩm: mô hình dựng bằng lệnh của chính con</span></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Codeblocks: Lặp Lại!</h3><p class="lesson-desc">Khối Lặp (Repeat) làm đi làm lại cùng một việc, nên năm dòng lệnh rút gọn thành một. Các em dựng một cầu thang, một tòa tháp và một hàng cọc rào chỉ từ một lệnh lặp, và cảm nhận ngay vì sao lập trình viên quan tâm đến vòng lặp: đỡ chán hơn làm tay rất nhiều.</p><span class="lesson-make">Sản phẩm: một cầu thang dựng bằng vòng lặp</span></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Làm Nó Sáng Lên</h3><p class="lesson-desc">Một chút nếm thử Tinkercad Circuits. Các em nối pin với đèn LED ngay trên màn hình, bấm Bắt đầu và thấy nó sáng lên — rồi tìm hiểu vì sao nó tắt khi rút một sợi dây. Đây là cái nhìn đầu tiên về điện tử và là cầu nối tự nhiên sang các chương trình lập trình và robot sau này.</p><span class="lesson-make">Sản phẩm: một mạch điện sáng được</span></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Dự Án Mơ Ước: Lên Kế Hoạch</h3><p class="lesson-desc">Các em quyết định dự án cuối khóa của mình và phác thảo ra giấy trước khi chạm vào máy tính. Các em liệt kê những khối hình cần dùng và vị trí đặt lỗ, và được hướng dẫn chọn thứ đủ tham vọng để thấy hào hứng nhưng đủ nhỏ để hoàn thành trong hai buổi.</p><span class="lesson-make">Sản phẩm: bản kế hoạch và danh sách khối hình</span></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Dự Án Mơ Ước: Bắt Tay Làm</h3><p class="lesson-desc">Ngày thi công. Các em làm theo kế hoạch của chính mình, dùng mọi kỹ thuật đã học — gộp khối, khoét lỗ, lật gương, căn chỉnh, bộ tạo hình và cả mã lệnh nếu cần. Giáo viên hướng dẫn chứ không chỉ đạo, và các em luyện thói quen hoàn thành thứ đã bắt đầu thay vì bỏ dở để làm cái mới.</p><span class="lesson-make">Sản phẩm: dự án tốt nghiệp của con</span></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Buổi Trình Diễn Lớn</h3><p class="lesson-desc">Các em trình bày dự án hoàn chỉnh trước các bạn và gia đình được mời. Các em xoay mô hình, giải thích cách mình đã làm, chỉ ra phần khó nhất và trả lời câu hỏi. Hai mươi bốn tuần trước các em chưa từng mở một phần mềm 3D nào; giờ các em đang giải thích những quyết định thiết kế của chính mình.</p><span class="lesson-make">Sản phẩm: một tác phẩm danh mục và bài trình bày</span></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Công Cụ Học Sinh Sử Dụng</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">🧊 Tinkercad 3D Design: Miễn phí, chạy trên trình duyệt, của Autodesk</div>
+        <div class="tool">🕳️ Đặc &amp; Lỗ: Cộng thêm và khoét đi — ý tưởng cốt lõi</div>
+        <div class="tool">🔗 Gộp, Căn Chỉnh &amp; Lật Gương: Biến nhiều khối thành một vật thể gọn gàng</div>
+        <div class="tool">🔤 Chữ &amp; Scribble: Tên bằng chữ 3D và hình tự vẽ tay</div>
+        <div class="tool">⚙️ Bộ Tạo Hình: Bánh răng, ngôi sao, lò xo chỉnh được bằng thanh trượt</div>
+        <div class="tool">🧩 Codeblocks: Dựng mô hình 3D bằng cách kéo khối lệnh</div>
+        <div class="tool">💡 Tinkercad Circuits: Mạch đèn LED đầu tiên, mô phỏng an toàn trên màn hình</div>
+        <div class="tool">📦 Xuất STL: Tệp 3D thật để gia đình in hoặc lưu giữ</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>Học Sinh Thực Sự Xây Dựng Gì</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Chiếc Donut, và Ý Tưởng Đằng Sau Nó</h4>
+          <p>Buổi học khoét lỗ xuyên qua khối trụ là khoảnh khắc thiết kế 3D "bật sáng". Các em không bao giờ quên nó, và dùng lại trong mọi tác phẩm về sau.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Tên Con Bằng Chữ 3D</h4>
+          <p>Chữ cái 3D dày dặn trên một tấm nền có lỗ xỏ móc khóa — thiết kế đầu tiên mà hầu hết gia đình muốn đem in.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Quái Vật, Thú Cưng và Tên Lửa</h4>
+          <p>Những tác phẩm sinh vật, nơi các em tìm ra các khối hình đơn giản ẩn trong một vật phức tạp rồi lắp ráp lại.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Khuôn Bánh Quy Thật</h4>
+          <p>Một vật dụng thật sự hữu ích được thiết kế từ đầu, và là bài học đầu tiên về việc vì sao bức tường cần độ dày.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Rương và Nắp Vừa Khít</h4>
+          <p>Hai bộ phận riêng phải phối hợp với nhau — bài toán kỹ thuật thật sự đầu tiên, với kết quả thành hay bại nhìn thấy ngay.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Mô Hình Dựng Bằng Mã Lệnh</h4>
+          <p>Trong Codeblocks, một cầu thang hoặc tòa tháp được lắp ráp bởi lệnh lặp do chính con viết ra.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Vì Sao Phụ Huynh Chọn Chương Trình Này</h2>
+      </div>
+      <div class="overview">
+        <p>Hầu hết các khóa công nghệ đầu tiên cho lứa tuổi này hoặc là xem video thụ động, hoặc là trò chơi khoác áo học tập. Chương trình này yêu cầu một em bé sáu tuổi tạo ra thứ chưa từng tồn tại, và trao tệp thành phẩm cho con khi kết thúc. Tiến bộ nhìn thấy được mà phụ huynh không cần hiểu gì về phần mềm.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Thật Sự Phù Hợp Với Trẻ 6 Tuổi</h4>
+          <p>Toàn bộ cách làm việc của Tinkercad là kéo, thả, cộng, trừ. Không gõ phím, không cú pháp và rất ít đọc, nên một em mới biết đọc không bị giao diện cản trở.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Hoàn Thành Một Sản Phẩm Mỗi Buổi</h4>
+          <p>Các em rời mỗi buổi học với một vật thể có tên, xoay xem được. Không có gì bị bỏ dở giữa các tuần — điều cực kỳ quan trọng để giữ động lực cho trẻ nhỏ.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Tư Duy Không Gian Từ Sớm</h4>
+          <p>Xoay vật thể trong đầu, chia hình phức tạp thành hình đơn giản, và suy luận xem cái gì lọt vừa cái gì — đó chính là những kỹ năng nền cho toán học và kỹ thuật về sau.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Không Cần Mua hay Cài Đặt Gì</h4>
+          <p>Tinkercad miễn phí và chạy trên trình duyệt với máy tính phổ thông. Máy in 3D là món quà thêm thú vị chứ không bắt buộc — thiết kế có thể chỉ cần lưu và chia sẻ.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Công Cụ Thật Của Autodesk</h4>
+          <p>Tinkercad do Autodesk phát triển — chính công ty làm ra phần mềm CAD chuyên nghiệp dùng trong kiến trúc và kỹ thuật. Đây là bậc thang đầu tiên thật sự, không phải đồ chơi phải học lại từ đầu.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Có Lối Đi Tiếp</h4>
+          <p>Học viên tốt nghiệp chuyển tiếp tự nhiên sang Thiết Kế 3D với Blender, hoặc sang Scratch và các lộ trình lập trình — Codeblocks ở Cấp 3 được thiết kế để bắc cầu cho cả hai.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Kết Quả Phát Triển Trẻ</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">Tư Duy Không Gian</h3>
+          <p class="lesson-desc">Các em học cách xoay vật thể trong đầu, hiểu khái niệm trước, sau, trên, trong, và đoán được một khối hình trông ra sao từ phía mình chưa nhìn thấy.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Phân Rã Vấn Đề</h3>
+          <p class="lesson-desc">Chia một thứ phức tạp thành những phần đơn giản đã biết cách làm. Một con chó trở thành quả cầu kéo dài, bốn ống trụ và hai hình nón — chính thói quen tư duy khiến lập trình về sau trở nên dễ tiếp cận.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">Cộng và Trừ, Bằng Hình Ảnh</h3>
+          <p class="lesson-desc">Đặc và lỗ cho các em một mô hình trực quan, cụ thể về việc kết hợp và loại bỏ. Đó là phép tính các em nhìn thấy và xoay được, từ rất lâu trước khi nó xuất hiện dưới dạng ký hiệu trên giấy.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Hoàn Thành Điều Đã Bắt Đầu</h3>
+          <p class="lesson-desc">Mỗi buổi học được thiết kế vừa đủ để một đứa trẻ làm xong. Qua hai mươi bốn tuần, thói quen làm một việc đến nơi đến chốn trở thành điều bình thường thay vì ngoại lệ.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Giải Thích Được Việc Mình Làm</h3>
+          <p class="lesson-desc">Các buổi trình diễn yêu cầu các em kể lại cách mình đã tạo ra sản phẩm và phần nào khó. Diễn đạt được quy trình của chính mình là lúc "bấm chuột lung tung" biến thành hiểu biết thật sự.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">Thoải Mái Với Việc Sửa Sai</h3>
+          <p class="lesson-desc">Lỗ khoét sai chỗ và nắp không vừa. Các em học từ sớm rằng trong thiết kế điều đó là bình thường, rằng nút Tách luôn ở đó, và rằng chỉnh sửa chính là công việc chứ không phải dấu hiệu thất bại.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Kết Quả Chương Trình</h3>
+      <ul>
+        <li>Các em thiết kế được một vật thể 3D từ đầu bằng khối cơ bản, lỗ và gộp khối, mà không cần hướng dẫn từng bước.</li>
+        <li>Các em chia được một vật thể ngoài đời thành các khối hình đơn giản tạo nên nó, rồi dựng lại.</li>
+        <li>Các em dựng được mô hình bằng khối lệnh trực quan, bao gồm cả lệnh lặp.</li>
+        <li>Các em xuất được tệp 3D thật và nói được cách thiết kế của mình đã hình thành ra sao.</li>
+        <li>Các em sẵn sàng chuyển sang Thiết Kế 3D với Blender hoặc sang các lộ trình lập trình.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Câu Hỏi Phổ Biến Của Phụ Huynh</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Sáu tuổi đã đủ lớn để học thiết kế 3D chưa?</h3>
+          <p class="lesson-desc">Có, riêng với Tinkercad thì đủ. Đây là công cụ kéo-thả, không gõ phím và gần như không cần đọc, và chương trình được dạy bằng thao tác mẫu. Điều một em sáu tuổi cần là dùng được chuột hoặc bàn di một cách tương đối chắc tay — đó mới là điều kiện thật sự, không phải tuổi.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">Gia đình có cần máy in 3D không?</h3>
+          <p class="lesson-desc">Không. Mọi thứ diễn ra trên trình duyệt, và các em xoay, chia sẻ, lưu giữ thiết kế mà không cần in gì cả. Nếu gia đình có máy in, các thiết kế từ Cấp 2 trở đi xuất ra tệp STL tiêu chuẩn và in bình thường.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">Con cần máy tính như thế nào?</h3>
+          <p class="lesson-desc">Bất kỳ laptop hoặc máy bàn nào trong khoảng sáu năm trở lại, có trình duyệt web hiện hành và kết nối internet ổn định. Tinkercad miễn phí. Chúng tôi rất khuyến khích dùng chuột rời thay vì bàn di cho trẻ nhỏ, vì kéo khối hình sẽ dễ hơn nhiều.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">Chương trình này khác gì Thiết Kế 3D?</h3>
+          <p class="lesson-desc">Thiết Kế 3D dạy Blender cho lứa 10-16 và đi sâu vào mô hình, kết cấu và kết xuất chuyên nghiệp. Tinkercad 3D Maker là bậc thang khởi đầu cho lứa 6-10, tập trung vào khối hình, lỗ và sản phẩm hoàn chỉnh. Nhiều em học chương trình này trước rồi chuyển sang Blender sau.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">Con chưa đọc trôi chảy thì có sao không?</h3>
+          <p class="lesson-desc">Không sao, và chúng tôi thiết kế sẵn cho điều đó. Hướng dẫn được làm mẫu trên màn hình và nói bằng lời, công cụ được nhận biết qua biểu tượng, và không bài học nào phụ thuộc vào việc đọc một đoạn văn. Codeblocks ở Cấp 3 dùng các khối ngắn có nhãn mà các em nhanh chóng nhận ra qua màu sắc và hình dạng.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q6</div>
+        <div>
+          <h3 class="lesson-title">Làm sao để xem con đã làm được gì?</h3>
+          <p class="lesson-desc">Mỗi thiết kế Tinkercad đều có đường liên kết chia sẻ mở được trên mọi trình duyệt, kể cả điện thoại. Bố mẹ có thể tự xoay mô hình của con, và mỗi buổi trình diễn đều tạo ra một ảnh chụp cho danh mục của con.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Bắt Đầu</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Có câu hỏi về đăng ký hoặc muốn thảo luận về lộ trình học tập của con bạn?</p>
+      <p>Phone/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://www.techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Giờ làm việc: Thứ Hai-Sáu 8:00-21:00 | Thứ Bảy-CN 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZ1XEZXB6"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18127330947"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4MZ1XEZXB6');
+  gtag('config', 'AW-18127330947');
+</script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tinkercad 3D Maker Brochure | TechTutor Academy</title>
+<link rel="icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link rel="shortcut icon" type="image/png" href="/images/robot-rocket.png?v=2" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#f4f4f5;
+    --ink:#171717;
+    --muted:#5f6368;
+    --line:#cfd4dc;
+    --brand:#244d9a;
+    --brand-soft:#eaf0fb;
+    --teal:#44bea4;
+    --panel:#1f4a97;
+    --lv1:#e8f7f3;
+    --lv2:#ecf2ff;
+    --lv3:#f4efff;
+  }
+  body{background:#ffffff;color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65;font-size:15px}
+  .hero{max-width:920px;margin:0 auto;padding:64px 56px 44px;border-bottom:1px solid var(--line);background:#ffffff}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .logo{width:250px;max-width:72%;height:auto}
+  .badge{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:20px 0 8px;font-weight:400;color:var(--brand)}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:12px;font-weight:600;color:#1f2937;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+
+  .container{max-width:920px;margin:0 auto;padding:0 56px 82px}
+  .section-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding:40px 0 14px}
+  .section-num{display:none}
+  .section-title{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.01em;color:var(--brand)}
+  .section-meta{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .overview{padding:20px 0 2px;color:#2d3748;border-bottom:1px solid var(--line)}
+  .overview p{margin-bottom:10px}
+  .overview ul{margin:6px 0 12px 18px;color:#334155}
+  .overview li{margin:4px 0}
+
+  .lesson{display:grid;grid-template-columns:50px 1fr;gap:0 20px;border-bottom:1px solid var(--line);padding:20px 0;page-break-inside:avoid}
+  .lesson-no{font-family:'DM Serif Display',serif;color:#9aa4b2;font-size:27px;line-height:1;padding-top:4px}
+  .lesson-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin-bottom:7px;font-weight:400;color:#111827}
+  .lesson-desc{font-size:14px;color:var(--muted);max-width:680px}
+  .lesson-make{display:inline-block;margin-top:7px;font-size:12px;font-weight:600;color:#1f2f57;background:var(--brand-soft);border:1px solid #d5e0f5;border-radius:999px;padding:4px 11px}
+  .level-card{padding:10px 16px 0;border-radius:14px;border:1px solid var(--line);margin-top:16px;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+  .level-lv1{background:var(--lv1);border-color:#c7e8e1}
+  .level-lv2{background:var(--lv2);border-color:#d1ddfa}
+  .level-lv3{background:var(--lv3);border-color:#e5d9f5}
+  .icon-chip{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;font-size:22px}
+
+  .tools-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:18px 0 0}
+  .tool{border:1px solid var(--line);background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;color:#1f2f57}
+
+  .accent-panel{margin-top:34px;background:var(--panel);color:#eaf0ff;border-radius:14px;padding:28px 28px;border:1px solid #1b3f80;box-shadow:0 4px 12px rgba(31,74,151,0.15)}
+  .accent-panel h3{font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:14px}
+  .accent-panel ul{list-style:none}
+  .accent-panel li{font-size:16px;margin:10px 0;padding-left:26px;position:relative;line-height:1.5}
+  .accent-panel li::before{content:'✓';position:absolute;left:4px;top:0;color:var(--teal);font-size:18px;line-height:1;font-weight:700}
+  .parent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .parent-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+  .parent-card:hover{border-color:var(--brand);box-shadow:0 2px 8px rgba(36,77,154,0.08);transform:translateY(-1px)}
+  .parent-card h4{font-size:16px;color:var(--brand);margin-bottom:6px;font-weight:600}
+  .parent-card p{font-size:14px;color:#475569;line-height:1.5}
+
+  .contact{margin-top:34px;border-top:2px solid var(--brand);padding-top:14px}
+  .contact h3{font-family:'DM Serif Display',serif;font-size:29px;font-weight:400;margin-bottom:6px;color:var(--brand)}
+  .contact p{color:var(--muted);margin-bottom:4px}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+
+  .progression{margin:24px 0;padding:20px;background:linear-gradient(to right,var(--lv1),var(--lv2),var(--lv3));border-radius:12px;border:1px solid var(--line)}
+  .progression-track{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .prog-step{flex:1;text-align:center;position:relative}
+  .prog-step::after{content:'→';position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--brand);font-size:20px;font-weight:700}
+  .prog-step:last-child::after{display:none}
+  .prog-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:#fff;border:2px solid var(--brand);border-radius:50%;font-weight:700;color:var(--brand);margin-bottom:6px}
+  .prog-label{font-size:13px;font-weight:600;color:var(--ink)}
+  @page{size:A4;margin:10mm}
+  @media print{
+    body{background:#fff}
+    .hero{page-break-after:avoid}
+    .section{page-break-inside:avoid}
+    .level-card{page-break-inside:avoid}
+  }
+  @media (max-width:820px){
+    .hero{padding:42px 20px 28px}
+    .container{padding:0 20px 56px}
+    .section-head{display:block}
+    .section-meta{margin-left:0;margin-top:8px}
+    .lesson{grid-template-columns:38px 1fr;gap:0 12px}
+    .lesson-title{font-size:18px}
+    .tools-list{grid-template-columns:1fr}
+    .parent-grid{grid-template-columns:1fr}
+    .progression-track{flex-direction:column;gap:16px}
+    .prog-step::after{display:none}
+    .prog-step{padding:8px 0}
+  }
+</style>
+  <link rel="alternate" hreflang="en" href="https://www.techtutor.academy/en/brochures/tinkercad-3d-maker.html" />
+  <link rel="alternate" hreflang="vi" href="https://www.techtutor.academy/vn/brochures/tinkercad-3d-maker.html" />
+  <link rel="alternate" hreflang="x-default" href="https://www.techtutor.academy/en/brochures/tinkercad-3d-maker.html" />
+  <link rel="canonical" href="https://www.techtutor.academy/en/brochures/tinkercad-3d-maker.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.techtutor.academy/en/" },
+    { "@type": "ListItem", "position": 2, "name": "Brochures", "item": "https://www.techtutor.academy/en/resources.html" },
+    { "@type": "ListItem", "position": 3, "name": "Tinkercad 3D Maker Brochure", "item": "https://www.techtutor.academy/en/brochures/tinkercad-3d-maker.html" }
+  ]
+}
+</script>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-top">
+      <img src="../../images/tt-new.png" alt="TechTutor logo" class="logo" />
+      <div class="badge">Program Brochure</div>
+    </div>
+    <h1>Tinkercad 3D Maker</h1>
+    <p class="hero-sub">A first 3D design program for young makers. Children build donuts, rockets, monsters and name keychains out of simple shapes in Tinkercad — and take home a real 3D file at the end of every single lesson.</p>
+    <div class="meta">
+      <div class="pill">Ages 6-10</div>
+      <div class="pill">24 Lessons Total</div>
+      <div class="pill">3 Progressive Levels</div>
+      <div class="pill">Something Finished Every Lesson</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title">Program Overview</h2>
+      </div>
+      <div class="overview">
+        <p>Tinkercad 3D Maker is where a young child's first real design skill begins. Everything in Tinkercad is built the same way — you drag a shape in, and you either <strong>add</strong> it or you <strong>subtract</strong> it. That one idea is small enough for a six-year-old to hold in their head, and big enough that professional engineers use the same logic every day. Children spend the program discovering just how much you can make out of it.</p>
+        <p>Nothing here is a worksheet. Every lesson ends with a finished object the child names, spins around, and shows you — a donut, a wobbly monster, a rocket, their own name in 3D letters. Tinkercad runs in a normal web browser, so there is nothing to install and no expensive machine required.</p>
+        <ul>
+          <li><strong>Learning Model:</strong> Drop a shape → Change it → Add or subtract → Group it → Name it and show it.</li>
+          <li><strong>Class Format:</strong> 60-minute live sessions, built around one buildable idea at a time with lots of demonstration.</li>
+          <li><strong>Parent Visibility:</strong> Every lesson produces a picture and a shareable link. You can spin your child's model on your own phone.</li>
+          <li><strong>Progress Measure:</strong> Can they build the object, explain how they made it, and change it when they want something different?</li>
+          <li><strong>Reading Load:</strong> Deliberately low. Instructions are demonstrated and spoken, so early readers are never held back.</li>
+        </ul>
+      </div>
+
+      <div class="progression">
+        <div class="progression-track">
+          <div class="prog-step">
+            <div class="prog-num">LV1</div>
+            <div class="prog-label">Shape Explorer<br/>8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV2</div>
+            <div class="prog-label">Shape Builder<br/>8 weeks</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-num">LV3</div>
+            <div class="prog-label">Shape Creator<br/>8 weeks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🚀</span>Shape Explorer (TINK-LV1)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv1">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Welcome to the Workplane</h3><p class="lesson-desc">Children meet the 3D world and learn the one thing that makes it different from drawing: you can walk around it. They spin the camera, look underneath their own creation, and drag their first blocks onto the workplane. By the end they have a snowman standing up on screen that they can view from every side.</p><span class="lesson-make">They make: a snowman</span></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Big, Small, Spin</h3><p class="lesson-desc">Every shape has handles: white ones to stretch it, black ones to lift it, and a curved arrow to spin it. Children practise squashing a cube into a pancake and stretching a ball into an egg, then stack the silliest, wobbliest tower they can manage without it toppling over.</p><span class="lesson-make">They make: the silliest tower in class</span></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">The Magic Hole</h3><p class="lesson-desc">The most important lesson in the program. Children discover that any shape can be flipped from solid to <em>hole</em> — and that a hole eats its way through whatever it touches. They punch a hole through a fat cylinder and watch a donut appear. This single idea powers everything they build for the rest of the program.</p><span class="lesson-make">They make: a donut</span></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Stick It Together</h3><p class="lesson-desc">Children learn Group — the button that glues a pile of separate shapes into one solid object — and Ungroup for when they change their mind. They assemble a rocket from a cone, a tube and three fins, then group it so it moves as one piece and can never be knocked apart.</p><span class="lesson-make">They make: a rocket</span></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Your Name in 3D</h3><p class="lesson-desc">Children use the Text shape to pull their own name out of the workplane as chunky 3D letters, sit it on a plate, and punch a hole for a keyring. This is usually the first lesson where a parent says "wait, we could actually print that" — and yes, the file is theirs to keep.</p><span class="lesson-make">They make: a name keychain</span></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Copycat: Duplicate and Mirror</h3><p class="lesson-desc">Why build the second arm when the computer can build it for you? Children learn Duplicate and Mirror, and use them to make things that match on both sides. They build a butterfly whose wings are perfect reflections, and discover symmetry by using it rather than by being told about it.</p><span class="lesson-make">They make: a symmetrical butterfly</span></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Build-a-Monster</h3><p class="lesson-desc">A free build with one rule: the monster needs at least one hole, one grouped part, and a name. Children plan their creature out loud, then build it using everything from the level so far. The constraint is loose enough to feel like play and tight enough to prove the skills have landed.</p><span class="lesson-make">They make: their own monster, named</span></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Show and Tell</h3><p class="lesson-desc">Children take a snapshot of their monster, spin it for the class, and explain in their own words which shapes they started from and where they put the holes. Being able to describe how you built something is the point — it is the difference between clicking around and designing.</p><span class="lesson-make">They make: a presentation of their own work</span></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🛠️</span>Shape Builder (TINK-LV2)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv2">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Colour It In</h3><p class="lesson-desc">Children learn that colour is a property they control, not decoration that happens by accident. They give each part of a build its own colour, discover that grouping shapes makes them share a colour, and find the trick for keeping colours after grouping. Their old monster gets a full repaint.</p><span class="lesson-make">They make: a repainted monster</span></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Snap It Straight</h3><p class="lesson-desc">The Align tool lines shapes up perfectly — centred, edge to edge, stacked. Children compare a wonky hand-placed build with an aligned one and see immediately why it matters. They build a traffic light with three lamps that are actually in a straight line.</p><span class="lesson-make">They make: a traffic light</span></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Cookie Cutter Factory</h3><p class="lesson-desc">A real, useful, printable object. Children design a cookie cutter by making an outer shape and subtracting a slightly smaller copy of it, learning that a wall needs thickness to exist at all. Stars, hearts, dinosaurs and initials all appear.</p><span class="lesson-make">They make: a printable cookie cutter</span></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Build My Pet</h3><p class="lesson-desc">Children look at a real animal and work out which simple shapes hide inside it — a body is a stretched ball, legs are tubes, ears are cones. Breaking something complicated into shapes you already know is the core skill of design, and here they practise it on something they care about.</p><span class="lesson-make">They make: their pet, or a pet they wish they had</span></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Castle on the Hill</h3><p class="lesson-desc">The first build big enough to need organising. Children work out a plan before they start, build the towers once and duplicate them, and use holes to cut windows and a doorway. They learn to zoom out and check the whole thing rather than fussing over one corner.</p><span class="lesson-make">They make: a castle with windows and a door</span></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Treasure Chest with a Lid</h3><p class="lesson-desc">Two separate pieces that have to fit together. Children build a box and a lid that sits on it properly, discovering that a lid the exact same size will not fit and needs a little room to spare. This is a young child's first taste of real engineering thinking, and it lands because the lid visibly does or does not work.</p><span class="lesson-make">They make: a two-part treasure chest</span></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Build Week</h3><p class="lesson-desc">Children choose their own project and build it with the instructor on hand for coaching rather than instruction. They say what they are making before they start, and are helped to keep it small enough to actually finish — a skill that matters more than any tool.</p><span class="lesson-make">They make: a project of their own choosing</span></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">Showcase</h3><p class="lesson-desc">Children present their build week project and answer two questions: what was the hardest part, and what would you change next time? They also learn to export their design as a 3D file, so families with access to a printer can bring one home.</p><span class="lesson-make">They make: an exported 3D file</span></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🏆</span>Shape Creator (TINK-LV3)</h2>
+        <div class="section-meta">8 Lessons</div>
+      </div>
+      <div class="level-card level-lv3">
+      <article class="lesson"><div class="lesson-no">01</div><div><h3 class="lesson-title">Scribble It</h3><p class="lesson-desc">Up to now every shape came from a menu. With the Scribble tool children draw a squiggle with the mouse and Tinkercad turns it into a solid 3D object. They draw their own initial, a lightning bolt, or a shape nobody has a name for — and it becomes real.</p><span class="lesson-make">They make: a shape they drew themselves</span></div></article>
+      <article class="lesson"><div class="lesson-no">02</div><div><h3 class="lesson-title">Shape Generators</h3><p class="lesson-desc">Children explore Tinkercad's generators — shapes with sliders that change them live, like gears with adjustable teeth and stars with adjustable points. Moving a slider and watching the object rebuild itself is their first encounter with the idea that a design can have settings.</p><span class="lesson-make">They make: a gear they tuned themselves</span></div></article>
+      <article class="lesson"><div class="lesson-no">03</div><div><h3 class="lesson-title">Codeblocks: Shapes from Code</h3><p class="lesson-desc">Children switch to Tinkercad Codeblocks, where you build models by dragging coloured instruction blocks instead of dragging shapes. They write a short sequence — add a box, move it, add a ball — press Play, and watch their model assemble itself step by step. Same skills, new superpower.</p><span class="lesson-make">They make: a model built by their own instructions</span></div></article>
+      <article class="lesson"><div class="lesson-no">04</div><div><h3 class="lesson-title">Codeblocks: Repeat!</h3><p class="lesson-desc">The Repeat block does the same thing over and over, so five lines become one. Children build a staircase, a tower and a row of fence posts from a single repeated instruction, and immediately feel why programmers care about loops: it is far less boring than doing it by hand.</p><span class="lesson-make">They make: a staircase built by a loop</span></div></article>
+      <article class="lesson"><div class="lesson-no">05</div><div><h3 class="lesson-title">Make It Light Up</h3><p class="lesson-desc">A taste of Tinkercad Circuits. Children wire a battery to an LED on screen, press Start, and see it glow — then work out why it stops glowing when they disconnect a wire. It is a first look at electronics and a natural bridge into the programming and robotics programs later on.</p><span class="lesson-make">They make: a working circuit that lights up</span></div></article>
+      <article class="lesson"><div class="lesson-no">06</div><div><h3 class="lesson-title">Dream Build: Plan It</h3><p class="lesson-desc">Children decide what their final project will be and sketch it on paper before touching the computer. They list the shapes they will need and where the holes go, and are coached to pick something ambitious enough to be exciting but small enough to finish in two lessons.</p><span class="lesson-make">They make: a plan and a shape list</span></div></article>
+      <article class="lesson"><div class="lesson-no">07</div><div><h3 class="lesson-title">Dream Build: Make It</h3><p class="lesson-desc">Build day. Children work through their own plan, using every technique from the program — grouping, holes, mirroring, alignment, generators and code if it helps. The instructor coaches rather than directs, and children practise finishing what they started rather than restarting something new.</p><span class="lesson-make">They make: their capstone project</span></div></article>
+      <article class="lesson"><div class="lesson-no">08</div><div><h3 class="lesson-title">The Big Showcase</h3><p class="lesson-desc">Children present their finished project to classmates and invited families. They spin the model, explain how they built it, name the trickiest part, and take questions. Twenty-four weeks earlier they had never opened a 3D program; now they are explaining their own design decisions out loud.</p><span class="lesson-make">They make: a portfolio piece and a presentation</span></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🧰</span>Tools Students Use</h2>
+      </div>
+      <div class="tools-list">
+        <div class="tool">🧊 Tinkercad 3D Design: Free, browser-based, made by Autodesk</div>
+        <div class="tool">🕳️ Solid &amp; Hole: Adding and subtracting shapes — the core idea</div>
+        <div class="tool">🔗 Group, Align &amp; Mirror: Turning many shapes into one clean object</div>
+        <div class="tool">🔤 Text &amp; Scribble: Names in 3D and hand-drawn custom shapes</div>
+        <div class="tool">⚙️ Shape Generators: Adjustable gears, stars and springs with live sliders</div>
+        <div class="tool">🧩 Codeblocks: Building 3D models by dragging code blocks</div>
+        <div class="tool">💡 Tinkercad Circuits: A first LED circuit, simulated safely on screen</div>
+        <div class="tool">📦 STL Export: Real 3D files families can print or keep</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🎯</span>What Students Actually Build</h2>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>A Donut, and the Idea Behind It</h4>
+          <p>The lesson where a hole punches through a cylinder is the moment 3D design clicks. Children never forget it, and they use it in every build afterwards.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Their Own Name in 3D</h4>
+          <p>Chunky 3D letters on a plate with a keyring hole — the first design most families ask to print.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Monsters, Pets and Rockets</h4>
+          <p>Creature builds where children work out which simple shapes hide inside something complicated, then assemble it.</p>
+        </article>
+        <article class="parent-card">
+          <h4>A Real Cookie Cutter</h4>
+          <p>A genuinely useful object designed from scratch, and a first lesson in why walls need thickness.</p>
+        </article>
+        <article class="parent-card">
+          <h4>A Chest and a Lid That Fits</h4>
+          <p>Two separate parts that have to work together — a young child's first real engineering problem, with visible success or failure.</p>
+        </article>
+        <article class="parent-card">
+          <h4>A Model Built by Code</h4>
+          <p>In Codeblocks, a staircase or tower assembled by a repeated instruction the child wrote themselves.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">👨‍👩‍👧‍👦</span>Why Parents Choose This Program</h2>
+      </div>
+      <div class="overview">
+        <p>Most first technology courses for this age group are either passive video-watching or games dressed up as learning. This one asks a six-year-old to make something that did not exist before, and hands them the file at the end. The progress is visible without a parent needing to understand any of the software.</p>
+      </div>
+      <div class="parent-grid">
+        <article class="parent-card">
+          <h4>Genuinely Suitable for Age 6</h4>
+          <p>Tinkercad's whole model is drag, drop, add, subtract. There is no typing, no syntax and very little reading, so an early reader is never held back by the interface.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Something Finished Every Lesson</h4>
+          <p>Children leave each session with a named, spinnable object. Nothing is left half-done between weeks, which matters enormously for holding a young child's motivation.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Spatial Thinking, Early</h4>
+          <p>Rotating objects mentally, breaking complex forms into simple ones, and reasoning about what fits inside what are the same skills that underpin later mathematics and engineering.</p>
+        </article>
+        <article class="parent-card">
+          <h4>Nothing to Buy or Install</h4>
+          <p>Tinkercad is free and runs in a browser on a modest laptop. A 3D printer is a lovely bonus, never a requirement — designs can simply be kept and shared.</p>
+        </article>
+        <article class="parent-card">
+          <h4>A Real Autodesk Tool</h4>
+          <p>Tinkercad is made by Autodesk, the company behind the professional CAD software used in architecture and engineering. It is a genuine first rung, not a toy that has to be unlearned.</p>
+        </article>
+        <article class="parent-card">
+          <h4>It Leads Somewhere</h4>
+          <p>Graduates move naturally into 3D Designer with Blender, or into Scratch and the programming tracks — Codeblocks in Level 3 is deliberately built to bridge both.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">🌱</span>Child Growth Outcomes</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">01</div>
+        <div>
+          <h3 class="lesson-title">Spatial Reasoning</h3>
+          <p class="lesson-desc">Children learn to rotate objects in their heads, understand front, back, above and inside, and predict what a shape will look like from a side they cannot currently see.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">02</div>
+        <div>
+          <h3 class="lesson-title">Decomposition</h3>
+          <p class="lesson-desc">Breaking something complicated into simple parts you already know how to make. A dog becomes a stretched ball, four tubes and two cones — the same habit of mind that later makes programming tractable.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">03</div>
+        <div>
+          <h3 class="lesson-title">Add and Subtract, Physically</h3>
+          <p class="lesson-desc">Solid and hole give children a concrete, visual model of combining and removing. It is arithmetic they can see and spin around, well before it turns up as symbols on a page.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">04</div>
+        <div>
+          <h3 class="lesson-title">Finishing What You Start</h3>
+          <p class="lesson-desc">Every lesson is scoped so a child can complete it. Over twenty-four weeks the habit of taking something all the way to done becomes the norm rather than the exception.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">05</div>
+        <div>
+          <h3 class="lesson-title">Explaining Your Own Work</h3>
+          <p class="lesson-desc">Showcases ask children to say how they built something and what was hard. Putting your own process into words is where a click-around becomes an understanding.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">06</div>
+        <div>
+          <h3 class="lesson-title">Comfort with Fixing Things</h3>
+          <p class="lesson-desc">Holes land in the wrong place and lids do not fit. Children learn early that in design this is normal, that Ungroup exists, and that adjusting your work is the job rather than a sign of failure.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="accent-panel">
+      <h3>Program Outcomes</h3>
+      <ul>
+        <li>Children can design a 3D object from scratch using primitive shapes, holes and grouping, without step-by-step instruction.</li>
+        <li>Children can break a real-world object into the simple shapes it is made from, and rebuild it.</li>
+        <li>Children can build a model using visual code blocks, including a repeated instruction.</li>
+        <li>Children can export a real 3D file and explain out loud how their design was made.</li>
+        <li>Children are ready to move into Blender-based 3D Designer or into the programming tracks.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-num"></div>
+        <h2 class="section-title"><span class="icon-chip">❓</span>Common Parent Questions</h2>
+      </div>
+      <article class="lesson">
+        <div class="lesson-no">Q1</div>
+        <div>
+          <h3 class="lesson-title">Is six really old enough for 3D design?</h3>
+          <p class="lesson-desc">Yes, for Tinkercad specifically. It is drag-and-drop with no typing and almost no reading, and the program is taught by demonstration. What a six-year-old needs is a mouse or trackpad they can use with reasonable control — that is the real prerequisite, not age.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q2</div>
+        <div>
+          <h3 class="lesson-title">Do we need a 3D printer?</h3>
+          <p class="lesson-desc">No. Everything happens in the browser, and children can spin, share and keep their designs without printing anything. If you do have access to a printer, designs from Level 2 onward export as standard STL files that will print normally.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q3</div>
+        <div>
+          <h3 class="lesson-title">What computer does my child need?</h3>
+          <p class="lesson-desc">Any laptop or desktop from roughly the last six years with a current web browser and a stable internet connection. Tinkercad is free. We strongly recommend a mouse rather than a trackpad for young children, as it makes dragging shapes far easier.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q4</div>
+        <div>
+          <h3 class="lesson-title">How is this different from the 3D Designer program?</h3>
+          <p class="lesson-desc">3D Designer teaches Blender to ages 10-16 and goes deep into professional modelling, texturing and rendering. Tinkercad 3D Maker is the on-ramp for ages 6-10, focused on shapes, holes and finished objects. Many children do this first and move to Blender later.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q5</div>
+        <div>
+          <h3 class="lesson-title">My child cannot read fluently yet. Is that a problem?</h3>
+          <p class="lesson-desc">No, and we design for it. Instructions are demonstrated on screen and spoken aloud, tools are recognised by their icons, and no lesson depends on reading a paragraph of text. Codeblocks in Level 3 uses short labelled blocks that children quickly learn to recognise by colour and shape.</p>
+        </div>
+      </article>
+      <article class="lesson">
+        <div class="lesson-no">Q6</div>
+        <div>
+          <h3 class="lesson-title">How do I see what my child has done?</h3>
+          <p class="lesson-desc">Every Tinkercad design has a share link that opens in any browser, including on a phone. You can spin your child's model yourself, and each showcase lesson produces a snapshot for their portfolio.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="contact">
+      <h3>Get Started</h3>
+      <p style="margin-bottom:16px; color:#64748b; font-size:15px;">Questions about enrollment or want to discuss your child's learning path?</p>
+      <p>Phone/WhatsApp/Zalo: <a href="tel:0902776753">0902 776 753</a></p>
+      <p>Email: <a href="mailto:hello@techtutor.academy">hello@techtutor.academy</a></p>
+      <p>Website: <a href="https://www.techtutor.academy">techtutor.academy</a></p>
+      <p style="margin-top:14px; color:#64748b; font-size:13px;">Hours: Mon-Fri 8:00-21:00 | Sat-Sun 8:00-20:00</p>
+    </section>
+  </main>
+</body>
+</html>
