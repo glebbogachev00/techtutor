@@ -704,32 +704,93 @@
       </div>
     </section>
 
-    <!-- TechBash Banner -->
-    <section class="mb-20">
-      <div class="text-center mb-10">
-        <h2 class="section-title mb-4">Learn Between Sessions<br/>with TechBash</h2>
-        <p class="text-gray-700 text-lg max-w-2xl mx-auto">Our self-paced coding portal keeps kids building and learning on their own — between every tutoring session.</p>
+    <!-- Class Photos Carousel Section -->
+    <section class="mb-20 relative overflow-x-hidden">
+      <div class="text-center mb-12">
+        <h2 class="section-title mb-4" data-i18n="carousel.title">
+          See Our Classes in Action
+        </h2>
+        <p class="text-gray-700 text-lg max-w-3xl mx-auto" data-i18n="carousel.description">
+          Take a peek inside our virtual classroom and see students learning, creating, and having fun!
+        </p>
       </div>
-      <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm" style="background:#fff;">
-        <picture><source media="(max-width:767px)" srcset="../images/techbash-mobile.png"><img src="../images/techbash.png" alt="TechBash coding portal" class="tb-img" style="width:100%; height:auto; display:block;" loading="eager" /></picture>
-        <div class="tb-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid #f1f5f9;">
-          <div class="tb-border" style="padding:2rem 2.5rem; border-right:1px solid #f1f5f9;">
-            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.75rem;">
-              <span style="width:7px;height:7px;border-radius:50%;background:#10b981;display:inline-block;animation:pulse 2s infinite;"></span>
-              <span style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#193b92;">Free to try</span>
-            </div>
-            <h2 style="font-size:1.5rem; font-weight:900; line-height:1.2; color:#0f172a; margin:0 0 0.75rem;">Learn to code<br/><span style="color:#193b92;">at your own pace.</span></h2>
-            <p style="font-size:0.875rem; line-height:1.6; color:#475569; margin:0 0 1.25rem;">TechBash is TechTutor's self-paced coding portal — story-driven missions and an AI guide that gives instant feedback. Kids build real projects between sessions, on their own schedule.</p>
-            <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-              <a href="https://bash.techtutor.academy/preview" target="_blank" rel="noreferrer" style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.625rem 1.25rem; border-radius:9999px; font-weight:700; font-size:0.85rem; background:#193b92; color:#fff; text-decoration:none;">Try it for free <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-              <a href="/us/techbash.html" style="display:inline-flex; align-items:center; padding:0.625rem 1.25rem; border-radius:9999px; font-weight:600; font-size:0.85rem; background:#f1f5f9; color:#193b92; text-decoration:none;">Learn more</a>
-            </div>
+
+      <!-- Class video -->
+      <div class="container mx-auto px-4 max-w-4xl mb-10">
+        <div class="rounded-xl overflow-hidden shadow-2xl bg-black">
+          <video
+            class="w-full h-auto block"
+            controls
+            playsinline
+            preload="none"
+            poster="../videos/classes-in-action.jpg"
+            aria-label="Watch a real TechTutor class"
+            width="1280" height="720">
+            <source src="../videos/classes-in-action.mp4" type="video/mp4">
+            Your browser cannot play this video.
+          </video>
+        </div>
+      </div>
+
+      <!-- Carousel Container -->
+      <div class="container mx-auto px-4 max-w-4xl">
+        <div class="relative overflow-visible md:overflow-hidden rounded-xl shadow-2xl">
+          <!-- Carousel Track -->
+          <div id="classCarousel" class="flex transition-transform duration-700 ease-in-out">
+          <div class="carousel-slide min-w-full flex items-center justify-center">
+            <img width="1200" height="800" loading="lazy" src="../images/students/Screenshot 2025-12-08 at 19.55.56.jpg" alt="Student-built platformer game running in class" class="w-full h-auto">
           </div>
-          <div style="padding:2rem 2.5rem; display:flex; flex-direction:column; justify-content:center; gap:1rem;">
-            <div style="display:flex; align-items:flex-start; gap:0.75rem;"><span style="width:20px;height:20px;border-radius:50%;background:#193b92;color:#fff;font-size:0.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</span><div><div style="font-weight:700; font-size:0.9rem; color:#0f172a; margin-bottom:0.2rem;">Story-driven missions</div><div style="font-size:0.8rem; color:#64748b; line-height:1.5;">Kids learn by completing real coding quests — not watching videos.</div></div></div>
-            <div style="display:flex; align-items:flex-start; gap:0.75rem;"><span style="width:20px;height:20px;border-radius:50%;background:#193b92;color:#fff;font-size:0.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</span><div><div style="font-weight:700; font-size:0.9rem; color:#0f172a; margin-bottom:0.2rem;">AI guide with instant feedback</div><div style="font-size:0.8rem; color:#64748b; line-height:1.5;">Our built-in AI teacher explains mistakes, answers questions, and guides kids to the next step — so learning never stops between sessions.</div></div></div>
-            <div style="display:flex; align-items:flex-start; gap:0.75rem;"><span style="width:20px;height:20px;border-radius:50%;background:#193b92;color:#fff;font-size:0.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</span><div><div style="font-weight:700; font-size:0.9rem; color:#0f172a; margin-bottom:0.2rem;">Real projects to show off</div><div style="font-size:0.8rem; color:#64748b; line-height:1.5;">Every mission ends with something buildable — a game, a website, a Python script.</div></div></div>
-            <div style="display:flex; align-items:flex-start; gap:0.75rem;"><span style="width:20px;height:20px;border-radius:50%;background:#193b92;color:#fff;font-size:0.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">4</span><div><div style="font-weight:700; font-size:0.9rem; color:#0f172a; margin-bottom:0.2rem;">A portfolio they actually own</div><div style="font-size:0.8rem; color:#64748b; line-height:1.5;">Projects are saved and shareable — kids leave with a real portfolio, not just a certificate.</div></div></div>
+          <div class="carousel-slide min-w-full flex items-center justify-center">
+            <img width="1200" height="800" loading="lazy" src="../images/students/Screenshot 2025-12-09 at 18.52.21.png" alt="Student-built quiz app being played" class="w-full h-auto">
+          </div>
+          <div class="carousel-slide min-w-full flex items-center justify-center">
+            <img width="1200" height="800" loading="lazy" src="../images/students/Screenshot 2025-12-09 at 18.52.27.png" alt="Quiz finished with a perfect score" class="w-full h-auto">
+          </div>
+          <div class="carousel-slide min-w-full flex items-center justify-center">
+            <img width="1200" height="800" loading="lazy" src="../images/students/Screenshot 2025-12-09 at 19.23.10.png" alt="Student building an AI-powered quiz game" class="w-full h-auto">
+          </div>
+          <div class="carousel-slide min-w-full flex items-center justify-center">
+            <img width="1200" height="800" loading="lazy" src="../images/students/baothy1.png" alt="Scratch project built by a student" class="w-full h-auto">
+          </div>
+          <div class="carousel-slide min-w-full flex items-center justify-center">
+            <img width="1200" height="800" loading="lazy" src="../images/students/duc1.png" alt="Students building a game together in class" class="w-full h-auto">
+          </div>
+          <div class="carousel-slide min-w-full flex items-center justify-center">
+            <img width="1200" height="800" loading="lazy" src="../images/students/duc2.png" alt="Student showing the maze game they built" class="w-full h-auto">
+          </div>
+          <div class="carousel-slide min-w-full flex items-center justify-center">
+            <img width="1200" height="800" loading="lazy" src="../images/students/Screenshot 2025-12-15 at 19.11.54.png" alt="Character art created by a student" class="w-full h-auto">
+          </div>
+          <div class="carousel-slide min-w-full flex items-center justify-center">
+            <img width="1200" height="800" loading="lazy" src="../images/students/Screenshot 2025-12-15 at 19.34.48.png" alt="Gallery of characters a student generated" class="w-full h-auto">
+          </div>
+          </div>
+
+          <!-- Previous Button -->
+          <button id="carouselPrev" class="absolute -left-12 md:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary rounded-full p-3 shadow-lg transition z-10" aria-label="Previous photo">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+
+          <!-- Next Button -->
+          <button id="carouselNext" class="absolute -right-12 md:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary rounded-full p-3 shadow-lg transition z-10" aria-label="Next photo">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+
+          <!-- Dots Indicator -->
+          <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition active" data-slide="0" aria-label="Go to photo 1"></button>
+          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="1" aria-label="Go to photo 2"></button>
+          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="2" aria-label="Go to photo 3"></button>
+          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="3" aria-label="Go to photo 4"></button>
+          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="4" aria-label="Go to photo 5"></button>
+          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="5" aria-label="Go to photo 6"></button>
+          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="6" aria-label="Go to photo 7"></button>
+          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="7" aria-label="Go to photo 8"></button>
+          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="8" aria-label="Go to photo 9"></button>
           </div>
         </div>
       </div>
@@ -813,143 +874,32 @@
       </div>
     </section>
 
-    <!-- Class Photos Carousel Section -->
-    <section class="mb-20 relative overflow-x-hidden">
-      <div class="text-center mb-12">
-        <h2 class="section-title mb-4" data-i18n="carousel.title">
-          See Our Classes in Action
-        </h2>
-        <p class="text-gray-700 text-lg max-w-3xl mx-auto" data-i18n="carousel.description">
-          Take a peek inside our virtual classroom and see students learning, creating, and having fun!
-        </p>
+    <!-- TechBash Banner -->
+    <section class="mb-20">
+      <div class="text-center mb-10">
+        <h2 class="section-title mb-4">Learn Between Sessions<br/>with TechBash</h2>
+        <p class="text-gray-700 text-lg max-w-2xl mx-auto">Our self-paced coding portal keeps kids building and learning on their own — between every tutoring session.</p>
       </div>
-
-      <!-- Carousel Container -->
-      <div class="container mx-auto px-4 max-w-4xl">
-        <div class="relative overflow-visible md:overflow-hidden rounded-xl shadow-2xl">
-          <!-- Carousel Track -->
-          <div id="classCarousel" class="flex transition-transform duration-700 ease-in-out">
-          <!-- Slide 1 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="791" loading="lazy" src="../images/students/Screenshot 2025-12-17 at 14.51.00 1.png" alt="Class photo 19" class="w-full h-auto">
+      <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm" style="background:#fff;">
+        <picture><source media="(max-width:767px)" srcset="../images/techbash-mobile.png"><img src="../images/techbash.png" alt="TechBash coding portal" class="tb-img" style="width:100%; height:auto; display:block;" loading="eager" /></picture>
+        <div class="tb-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid #f1f5f9;">
+          <div class="tb-border" style="padding:2rem 2.5rem; border-right:1px solid #f1f5f9;">
+            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.75rem;">
+              <span style="width:7px;height:7px;border-radius:50%;background:#10b981;display:inline-block;animation:pulse 2s infinite;"></span>
+              <span style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#193b92;">Free to try</span>
+            </div>
+            <h2 style="font-size:1.5rem; font-weight:900; line-height:1.2; color:#0f172a; margin:0 0 0.75rem;">Learn to code<br/><span style="color:#193b92;">at your own pace.</span></h2>
+            <p style="font-size:0.875rem; line-height:1.6; color:#475569; margin:0 0 1.25rem;">TechBash is TechTutor's self-paced coding portal — story-driven missions and an AI guide that gives instant feedback. Kids build real projects between sessions, on their own schedule.</p>
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+              <a href="https://bash.techtutor.academy/preview" target="_blank" rel="noreferrer" style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.625rem 1.25rem; border-radius:9999px; font-weight:700; font-size:0.85rem; background:#193b92; color:#fff; text-decoration:none;">Try it for free <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a href="/us/techbash.html" style="display:inline-flex; align-items:center; padding:0.625rem 1.25rem; border-radius:9999px; font-weight:600; font-size:0.85rem; background:#f1f5f9; color:#193b92; text-decoration:none;">Learn more</a>
+            </div>
           </div>
-          <!-- Slide 2 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="805" loading="lazy" src="../images/students/Screenshot 2025-12-08 at 19.31.08.jpg" alt="Class photo 2" class="w-full h-auto">
-          </div>
-          <!-- Slide 3 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="863" loading="lazy" src="../images/students/Screenshot 2025-12-08 at 19.55.56.jpg" alt="Class photo 3" class="w-full h-auto">
-          </div>
-
-          <!-- Slide 5 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="807" loading="lazy" src="../images/students/Screenshot 2025-12-09 at 18.52.21.png" alt="Class photo 5" class="w-full h-auto">
-          </div>
-          <!-- Slide 6 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="817" loading="lazy" src="../images/students/Screenshot 2025-12-09 at 18.52.27.png" alt="Class photo 6" class="w-full h-auto">
-          </div>
-          <!-- Slide 7 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="799" loading="lazy" src="../images/students/Screenshot 2025-12-09 at 19.23.10.png" alt="Class photo 7" class="w-full h-auto">
-          </div>
-          <!-- Slide 8 - Bao Thy -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="800" loading="lazy" src="../images/students/baothy1.png" alt="Student creative work - Bao Thy" class="w-full h-auto">
-          </div>
-          <!-- Slide 9 - Duc 1 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="800" loading="lazy" src="../images/students/duc1.png" alt="Student creative work - Duc" class="w-full h-auto">
-          </div>
-          <!-- Slide 10 - Duc 2 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="800" loading="lazy" src="../images/students/duc2.png" alt="Student creative work - Duc" class="w-full h-auto">
-          </div>
-          <!-- Slide 8 - Bao Thy -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="800" loading="lazy" src="../images/students/baothy1.png" alt="Student creative work - Bao Thy" class="w-full h-auto">
-          </div>
-          <!-- Slide 9 - Duc 1 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="800" loading="lazy" src="../images/students/duc1.png" alt="Student creative work - Duc" class="w-full h-auto">
-          </div>
-          <!-- Slide 10 - Duc 2 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="800" loading="lazy" src="../images/students/duc2.png" alt="Student creative work - Duc" class="w-full h-auto">
-          </div>
-          <!-- Slide 12 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="847" loading="lazy" src="../images/students/Screenshot 2025-12-11 at 14.15.46.png" alt="Class photo 12" class="w-full h-auto">
-          </div>
-          <!-- Slide 12 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="848" loading="lazy" src="../images/students/Screenshot 2025-12-11 at 14.33.59.png" alt="Class photo 12" class="w-full h-auto">
-          </div>
-
-          <!-- Slide 13 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="797" loading="lazy" src="../images/students/Screenshot 2025-12-15 at 19.11.54.png" alt="Class photo 13" class="w-full h-auto">
-          </div>
-          <!-- Slide 14 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="798" loading="lazy" src="../images/students/Screenshot 2025-12-15 at 19.12.03.png" alt="Class photo 14" class="w-full h-auto">
-          </div>
-          <!-- Slide 15 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="796" loading="lazy" src="../images/students/Screenshot 2025-12-15 at 19.13.03.png" alt="Class photo 15" class="w-full h-auto">
-          </div>
-          <!-- Slide 16 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="800" loading="lazy" src="../images/students/Screenshot 2025-12-15 at 19.22.29.png" alt="Class photo 16" class="w-full h-auto">
-          </div>
-          <!-- Slide 17 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="795" loading="lazy" src="../images/students/Screenshot 2025-12-15 at 19.32.12.png" alt="Class photo 17" class="w-full h-auto">
-          </div>
-          <!-- Slide 18 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="803" loading="lazy" src="../images/students/Screenshot 2025-12-15 at 19.34.48.png" alt="Class photo 18" class="w-full h-auto">
-          </div>
-          <!-- Slide 19 -->
-          <div class="carousel-slide min-w-full flex items-center justify-center">
-            <img width="1200" height="813" loading="lazy" src="../images/students/Screenshot 2025-12-08 at 19.28.42.jpg" alt="Class photo 1" class="w-full h-auto">
-          </div>
-          </div>
-
-          <!-- Previous Button -->
-          <button id="carouselPrev" class="absolute -left-12 md:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary rounded-full p-3 shadow-lg transition z-10" aria-label="Previous photo">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-          </svg>
-        </button>
-
-          <!-- Next Button -->
-          <button id="carouselNext" class="absolute -right-12 md:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary rounded-full p-3 shadow-lg transition z-10" aria-label="Next photo">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </button>
-
-          <!-- Dots Indicator -->
-          <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition active" data-slide="0" aria-label="Go to photo 1"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="1" aria-label="Go to photo 2"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="2" aria-label="Go to photo 3"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="3" aria-label="Go to photo 5"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="5" aria-label="Go to photo 6"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="6" aria-label="Go to photo 7"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="7" aria-label="Go to photo 8"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="8" aria-label="Go to photo 9"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="9" aria-label="Go to photo 10"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="10" aria-label="Go to photo 11"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="11" aria-label="Go to photo 13"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="13" aria-label="Go to photo 14"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="14" aria-label="Go to photo 15"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="15" aria-label="Go to photo 16"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="16" aria-label="Go to photo 17"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="17" aria-label="Go to photo 18"></button>
-          <button class="carousel-dot w-3 h-3 rounded-full bg-white/60 hover:bg-white transition" data-slide="18" aria-label="Go to photo 19"></button>
+          <div style="padding:2rem 2.5rem; display:flex; flex-direction:column; justify-content:center; gap:1rem;">
+            <div style="display:flex; align-items:flex-start; gap:0.75rem;"><span style="width:20px;height:20px;border-radius:50%;background:#193b92;color:#fff;font-size:0.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</span><div><div style="font-weight:700; font-size:0.9rem; color:#0f172a; margin-bottom:0.2rem;">Story-driven missions</div><div style="font-size:0.8rem; color:#64748b; line-height:1.5;">Kids learn by completing real coding quests — not watching videos.</div></div></div>
+            <div style="display:flex; align-items:flex-start; gap:0.75rem;"><span style="width:20px;height:20px;border-radius:50%;background:#193b92;color:#fff;font-size:0.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</span><div><div style="font-weight:700; font-size:0.9rem; color:#0f172a; margin-bottom:0.2rem;">AI guide with instant feedback</div><div style="font-size:0.8rem; color:#64748b; line-height:1.5;">Our built-in AI teacher explains mistakes, answers questions, and guides kids to the next step — so learning never stops between sessions.</div></div></div>
+            <div style="display:flex; align-items:flex-start; gap:0.75rem;"><span style="width:20px;height:20px;border-radius:50%;background:#193b92;color:#fff;font-size:0.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</span><div><div style="font-weight:700; font-size:0.9rem; color:#0f172a; margin-bottom:0.2rem;">Real projects to show off</div><div style="font-size:0.8rem; color:#64748b; line-height:1.5;">Every mission ends with something buildable — a game, a website, a Python script.</div></div></div>
+            <div style="display:flex; align-items:flex-start; gap:0.75rem;"><span style="width:20px;height:20px;border-radius:50%;background:#193b92;color:#fff;font-size:0.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">4</span><div><div style="font-weight:700; font-size:0.9rem; color:#0f172a; margin-bottom:0.2rem;">A portfolio they actually own</div><div style="font-size:0.8rem; color:#64748b; line-height:1.5;">Projects are saved and shareable — kids leave with a real portfolio, not just a certificate.</div></div></div>
           </div>
         </div>
       </div>
