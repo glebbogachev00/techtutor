@@ -221,21 +221,23 @@
     `;
     document.head.appendChild(style);
 
-    hideGreetingOnPhones();
+    hideChatGreeting();
   }
 
-  // On phones the "Hi! How can we help" greeting card covers a good chunk of a
-  // small screen, so we hide it there and leave the launcher button alone.
-  // Desktop keeps the greeting.
+  // Hides the "Hi! How can we help" greeting card on every screen size. The
+  // launcher button stays, so visitors can still open the chat themselves.
   //
   // None of the CSS above can do this: Tawk renders the widget into a
   // body-level div whose id — and every iframe id inside it — is regenerated
   // on each page load, with no class, title or src to match on. So we find the
   // pieces by geometry instead. The launcher is the small iframe pinned to the
   // bottom-right corner; the greeting is the wider card floating above it.
-  function hideGreetingOnPhones() {
-    const phone = window.matchMedia('(max-width: 767px)');
+  function hideChatGreeting() {
     let pending = null;
+
+    // A greeting card is a squat banner. The open chat window is always far
+    // taller than this, which is what keeps the conversation safe below.
+    const GREETING_MAX_HEIGHT = 250;
 
     // A Tawk iframe has no real document of its own — it is about:blank or
     // srcdoc — which is what separates it from the embedded class video.
@@ -257,7 +259,7 @@
       const open = window.Tawk_API && typeof Tawk_API.isChatMaximized === 'function'
         && Tawk_API.isChatMaximized();
 
-      if (!phone.matches || open) {
+      if (open) {
         frames.forEach((f) => { f.style.removeProperty('display'); });
         return;
       }
@@ -265,11 +267,10 @@
       const visible = frames
         .map((f) => ({ el: f, box: f.getBoundingClientRect() }))
         .filter((f) => f.box.width > 0 && f.box.height > 0)
-        // The open chat window fills a phone screen. Skipping anything that
-        // large means we cannot black out the conversation if the DOM mounts
-        // a frame before Tawk flips its maximized flag.
-        .filter((f) => f.box.width < window.innerWidth * 0.85
-                    && f.box.height < window.innerHeight * 0.6);
+        // Height alone separates a greeting banner from a chat window, on any
+        // viewport. Without this we could black out the conversation if the
+        // DOM mounts a frame before Tawk flips its maximized flag.
+        .filter((f) => f.box.height <= GREETING_MAX_HEIGHT);
       if (visible.length < 2) return;   // launcher only, nothing to hide
 
       // Smallest box is the launcher; everything else is the greeting card.
@@ -291,7 +292,6 @@
       attributeFilter: ['style', 'width', 'height']
     });
 
-    if (phone.addEventListener) phone.addEventListener('change', schedule);
     window.addEventListener('resize', schedule);
     if (window.Tawk_API) {
       Tawk_API.onChatMaximized = schedule;
