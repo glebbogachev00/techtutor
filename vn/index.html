@@ -631,7 +631,7 @@
           <input type="hidden" name="subject" value="New Free Course Registration" />
           <input type="hidden" name="source_page" value="index-promo-popup" />
           <input type="hidden" name="type" value="Free Course" />
-          <button type="submit" class="w-full btn-orange text-center text-sm md:text-base py-2.5 md:py-3">Nhận Khóa Học Miễn Phí</button>
+          <button type="submit" class="w-full btn-orange text-center text-sm md:text-base py-2.5 md:py-3">Đặt Lịch Học Thử Miễn Phí</button>
           <p class="text-center text-xs md:text-sm text-gray-600">✅ Không cần thẻ tín dụng</p>
         </form>
         <p id="promoTrialStatus" class="mt-3 text-xs md:text-sm text-gray-700 hidden"></p>
@@ -890,6 +890,52 @@
           Xem tất cả dự án học sinh
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
         </a>
+      </div>
+    </section>
+
+    <!-- Free Trial Section -->
+    <section id="trial" class="card p-8 md:p-12 mb-12 relative overflow-hidden">
+      <!-- Decorative elements inside the card -->
+
+      <div class="grid md:grid-cols-2 gap-8 items-center relative z-10">
+        <!-- Image on left -->
+        <div class="flex justify-center">
+          <img width="1200" height="1110" loading="lazy" src="../images/form.png" alt="Free trial" class="w-full max-w-md rounded-2xl" />
+        </div>
+
+        <!-- Form on right -->
+        <div>
+          <div class="mb-6">
+            <h2 class="text-3xl font-bold mb-4" data-i18n="trial.title">Bắt Đầu Với Buổi Học <span style="color: #193b92;">MIỄN PHÍ</span></h2>
+            <p id="trial-proof" class="text-sm font-semibold text-primary mb-2">Cùng hơn 2000 học sinh đang xây dựng sản phẩm thật.</p>
+            <p class="text-gray-700" data-i18n="trial.description">
+              Một buổi học thử miễn phí 60 phút, một kèm một với giáo viên. Con bạn sẽ tự tay làm ra một sản phẩm thật, và bạn nhận được lộ trình học tiếp theo. Cho chúng tôi biết cách liên hệ, chúng tôi sẽ xác nhận lịch trong vòng 24 giờ.
+            </p>
+          </div>
+
+          <form id="redesignTrialForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4" data-formspree data-status-target="redesignTrialStatus">
+                                    <div>
+              <label for="trial-parent-name" class="block text-sm font-semibold text-gray-700 mb-1 ml-4">Tên phụ huynh</label>
+              <input id="trial-parent-name" name="parent_name" type="text" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
+            </div>
+            <div>
+              <label for="trial-contact" class="block text-sm font-semibold text-gray-700 mb-1 ml-4">Email hoặc Zalo / WhatsApp</label>
+              <input id="trial-contact" name="contact" type="text" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
+              <p class="text-xs text-gray-500 mt-1 ml-4">Cách nào tiện nhất để chúng tôi liên hệ với bạn.</p>
+            </div>
+            <div>
+              <label for="trial-child-age" class="block text-sm font-semibold text-gray-700 mb-1 ml-4">Tuổi của con</label>
+              <input id="trial-child-age" name="child_age" type="number" min="5" max="18" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
+            </div>
+            <input type="hidden" name="access_key" value="c19cf4a2-ec55-46a6-9944-7ffe0cb4819d" />
+            <input type="hidden" name="redirect" value="/vn/thank-you.html" />
+            <input type="hidden" name="subject" value="New Trial Form Submission" />
+            <input type="hidden" name="source_page" value="index" />
+            <button type="submit" class="w-full btn-orange text-center">Đặt Lịch Học Thử Miễn Phí</button>
+            <p id="trial-reassure" class="text-xs text-gray-500 text-center mt-3">Không cần thẻ tín dụng. Không ràng buộc. Một buổi miễn phí, rồi bạn tự quyết định.</p>
+          </form>
+          <p id="redesignTrialStatus" class="mt-3 text-sm text-gray-700 hidden"></p>
+        </div>
       </div>
     </section>
 
@@ -1469,54 +1515,6 @@
       </div>
     </section>
 
-    <!-- Free Trial Section -->
-    <section id="trial" class="card p-8 md:p-12 mb-12 relative overflow-hidden">
-      <!-- Decorative elements inside the card -->
-
-      <div class="grid md:grid-cols-2 gap-8 items-center relative z-10">
-        <!-- Image on left -->
-        <div class="flex justify-center">
-          <img width="1200" height="1110" loading="lazy" src="../images/form.png" alt="Free trial" class="w-full max-w-md rounded-2xl" />
-        </div>
-
-        <!-- Form on right -->
-        <div>
-          <div class="mb-6">
-            <h2 class="text-3xl font-bold mb-4">Bắt Đầu Với Buổi Học <span style="color: #193b92;">MIỄN PHÍ</span></h2>
-            <p class="text-gray-700">Chỉ trong 90 phút: nhận tư vấn miễn phí, chuyên sâu và lộ trình từ giáo viên. <strong class="text-primary">Được tham gia nhóm Facebook độc quyền của chúng tôi.</strong> Chia sẻ thông tin bên dưới và chúng tôi sẽ sắp xếp trong vòng 24 giờ.</p>
-          </div>
-
-          <form id="redesignTrialForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4" data-formspree data-status-target="redesignTrialStatus">
-            <div>
-              <label for="trial-parent-name" class="sr-only">Parent Name</label>
-              <input id="trial-parent-name" name="parent_name" type="text" placeholder="Tên Phụ Huynh" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
-            </div>
-            <div>
-              <label for="trial-child-name" class="sr-only">Child Name</label>
-              <input id="trial-child-name" name="child_name" type="text" placeholder="Tên Con" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
-            </div>
-            <div>
-              <label for="trial-email" class="sr-only">Email</label>
-              <input id="trial-email" name="email" type="email" placeholder="Email" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
-            </div>
-            <div>
-              <label for="trial-phone" class="sr-only">Phone (Zalo/WhatsApp)</label>
-              <input id="trial-phone" name="phone" type="tel" placeholder="Số Điện Thoại (Zalo/WhatsApp)" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
-            </div>
-            <div>
-              <label for="trial-child-age" class="sr-only">Age</label>
-              <input id="trial-child-age" name="child_age" type="number" placeholder="Age" class="w-full px-4 py-3 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none" required />
-            </div>
-            <input type="hidden" name="access_key" value="c19cf4a2-ec55-46a6-9944-7ffe0cb4819d" />
-            <input type="hidden" name="redirect" value="/vn/thank-you.html" />
-            <input type="hidden" name="subject" value="New Trial Form Submission" />
-            <input type="hidden" name="source_page" value="index" />
-            <button type="submit" class="w-full btn-orange text-center">Đặt Buổi Học Thử Miễn Phí</button>
-          </form>
-          <p id="redesignTrialStatus" class="mt-3 text-sm text-gray-700 hidden"></p>
-        </div>
-      </div>
-    </section>
 
   </main>
 
