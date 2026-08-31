@@ -14,6 +14,33 @@ document.addEventListener('DOMContentLoaded', function() {
       const formData = new FormData(form);
       const redirectUrl = formData.get('redirect');
 
+      // The trial form asks for "email or Zalo/WhatsApp" in a single `contact`
+      // field. Web3Forms treats a field named `email` as the reply-to and
+      // validates it, so a phone number there could be rejected. Send `email`
+      // only when the value actually looks like an address: addresses keep a
+      // working reply-to, phone numbers still submit cleanly.
+      const contact = formData.get('contact');
+      if (contact && !formData.get('email') && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(contact).trim())) {
+        formData.append('email', String(contact).trim());
+      }
+
+      // Show progress and block a second press. Without this the button looks
+      // dead while the request is in flight, and people submit twice.
+      const submitBtn = form.querySelector('[type="submit"]');
+      const originalLabel = submitBtn ? submitBtn.textContent : null;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+        submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+      }
+
+      const restoreButton = () => {
+        if (!submitBtn) return;
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+        submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+      };
+
       // Submit to Web3Forms
       try {
         const response = await fetch('https://api.web3forms.com/submit', {
@@ -39,11 +66,13 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         } else {
           console.error('Form submission failed:', data);
-          alert('There was an error submitting the form. Please try again.');
+          restoreButton();
+          alert('There was an error submitting the form. Please try again, or message us on Zalo/WhatsApp.');
         }
       } catch (error) {
         console.error('Form submission error:', error);
-        alert('There was an error submitting the form. Please try again.');
+        restoreButton();
+        alert('Network error. Please try again, or message us on Zalo/WhatsApp.');
       }
     });
   });
