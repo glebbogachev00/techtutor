@@ -220,6 +220,84 @@
       }
     `;
     document.head.appendChild(style);
+
+    hideGreetingOnPhones();
+  }
+
+  // On phones the "Hi! How can we help" greeting card covers a good chunk of a
+  // small screen, so we hide it there and leave the launcher button alone.
+  // Desktop keeps the greeting.
+  //
+  // None of the CSS above can do this: Tawk renders the widget into a
+  // body-level div whose id — and every iframe id inside it — is regenerated
+  // on each page load, with no class, title or src to match on. So we find the
+  // pieces by geometry instead. The launcher is the small iframe pinned to the
+  // bottom-right corner; the greeting is the wider card floating above it.
+  function hideGreetingOnPhones() {
+    const phone = window.matchMedia('(max-width: 767px)');
+    let pending = null;
+
+    // A Tawk iframe has no real document of its own — it is about:blank or
+    // srcdoc — which is what separates it from the embedded class video.
+    const tawkFrames = () =>
+      Array.prototype.filter.call(
+        document.querySelectorAll('body > div > iframe'),
+        (f) => {
+          const src = f.getAttribute('src');
+          return (!src || src === 'about:blank') || f.hasAttribute('srcdoc');
+        }
+      );
+
+    const apply = () => {
+      const frames = tawkFrames();
+      if (!frames.length) return;
+
+      // Never touch the widget while it is open, or the chat window itself
+      // would disappear.
+      const open = window.Tawk_API && typeof Tawk_API.isChatMaximized === 'function'
+        && Tawk_API.isChatMaximized();
+
+      if (!phone.matches || open) {
+        frames.forEach((f) => { f.style.removeProperty('display'); });
+        return;
+      }
+
+      const visible = frames
+        .map((f) => ({ el: f, box: f.getBoundingClientRect() }))
+        .filter((f) => f.box.width > 0 && f.box.height > 0)
+        // The open chat window fills a phone screen. Skipping anything that
+        // large means we cannot black out the conversation if the DOM mounts
+        // a frame before Tawk flips its maximized flag.
+        .filter((f) => f.box.width < window.innerWidth * 0.85
+                    && f.box.height < window.innerHeight * 0.6);
+      if (visible.length < 2) return;   // launcher only, nothing to hide
+
+      // Smallest box is the launcher; everything else is the greeting card.
+      visible.sort((a, b) => (a.box.width * a.box.height) - (b.box.width * b.box.height));
+      visible.forEach((f, i) => {
+        f.el.style.setProperty('display', i === 0 ? 'block' : 'none', 'important');
+      });
+    };
+
+    const schedule = () => {
+      if (pending) cancelAnimationFrame(pending);
+      pending = requestAnimationFrame(apply);
+    };
+
+    // Tawk mounts late and resizes its frames as the greeting animates in, so
+    // watch for that rather than guessing at a delay.
+    new MutationObserver(schedule).observe(document.body, {
+      childList: true, subtree: true, attributes: true,
+      attributeFilter: ['style', 'width', 'height']
+    });
+
+    if (phone.addEventListener) phone.addEventListener('change', schedule);
+    window.addEventListener('resize', schedule);
+    if (window.Tawk_API) {
+      Tawk_API.onChatMaximized = schedule;
+      Tawk_API.onChatMinimized = schedule;
+    }
+    schedule();
   }
 
   // ==========================================
