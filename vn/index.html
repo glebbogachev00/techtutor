@@ -679,7 +679,7 @@
               <span class="inline-flex items-center justify-center w-7 h-7 md:w-9 md:h-9 rounded-full mb-1 md:mb-2" style="background-color: #FEF3C7;">
                 <svg class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8-5.3-2.8-5.3 2.8 1-5.8L3.5 9.7l5.9-.9L12 3.5Z"/></svg>
               </span>
-              <p class="text-lg md:text-3xl font-black leading-none whitespace-nowrap" style="color: #F59E0B;"><span class="stat-count" data-count-to="4.9" data-decimals="1" data-suffix="">4.9</span><span class="text-base md:text-2xl align-top">&#9733;</span></p>
+              <p class="text-lg md:text-3xl font-black leading-none flex items-center justify-center md:justify-start gap-0.5" style="color: #F59E0B;"><span class="stat-count" data-count-to="4.9" data-decimals="1" data-suffix="">4.9</span><span class="text-sm md:text-xl leading-none">&#9733;</span></p>
               <p class="text-[10px] md:text-sm text-gray-600 mt-1 leading-tight">Phụ huynh đánh giá</p>
             </div>
             <div class="flex-1 min-w-0 px-1.5 md:px-4 py-2 border-l border-gray-200">
@@ -691,30 +691,18 @@
             </div>
           </div>
           <!-- Trust Badges -->
-          <div class="mt-6 flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-gray-600">
-            <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
-              <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-              </svg>
-              <span class="font-medium">Thanh Toán An Toàn</span>
+          <div class="mt-6 grid grid-cols-3 gap-2 md:flex md:flex-wrap md:items-center md:justify-start md:gap-x-6 md:gap-y-3">
+            <div class="flex flex-col items-center gap-1.5 text-center md:flex-row md:gap-2 md:text-left">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="#0d9488" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+              <span class="text-[11px] md:text-sm font-medium text-gray-600 leading-tight">Thanh Toán An Toàn</span>
             </div>
-            <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              <span class="font-medium">Đảm Bảo Hoàn Tiền</span>
+            <div class="flex flex-col items-center gap-1.5 text-center md:flex-row md:gap-2 md:text-left">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="#16a34a" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <span class="text-[11px] md:text-sm font-medium text-gray-600 leading-tight">Đảm Bảo Hoàn Tiền</span>
             </div>
-            <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
-              <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-              </svg>
-              <span class="font-medium">Dùng Thử Miễn Phí</span>
-            </div>
-            <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
-              <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
-              </svg>
-              <span class="font-medium">Không Cần Thẻ Tín Dụng</span>
+            <div class="flex flex-col items-center gap-1.5 text-center md:flex-row md:gap-2 md:text-left">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="#F97316" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+              <span class="text-[11px] md:text-sm font-medium text-gray-600 leading-tight">Không Cần Thẻ Tín Dụng</span>
             </div>
           </div>
         </div>

@@ -2,6 +2,33 @@
 // Handles form submission and redirects to thank-you page
 // Works for both local testing and production
 
+// The admin app's booking intake. It accepts this as a "lead": a parent who
+// has asked for a trial but has not picked a slot yet, which is exactly what
+// the homepage form collects.
+const ADMIN_BOOKING_ENDPOINT = 'https://admin.techtutor.academy/api/schedule/book';
+
+function sendToAdminBookings(formData) {
+  const parentName = formData.get('parent_name');
+  const contact    = formData.get('contact') || formData.get('email');
+  if (!parentName || !contact) return;   // not the trial form
+
+  fetch(ADMIN_BOOKING_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      bookingType: 'lead',
+      parentName: String(parentName).trim(),
+      contact:    String(contact).trim(),
+      childAge:   formData.get('child_age') || null,
+      source:     formData.get('source_page') || window.location.pathname,
+    }),
+  }).catch((error) => {
+    // Never surface this to the parent — Web3Forms is still the path that
+    // decides whether their submission succeeded.
+    console.error('Admin bookings sync failed:', error);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   // Find all forms with Web3Forms action
   const forms = document.querySelectorAll('form[action*="web3forms.com"]');
@@ -40,6 +67,11 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.textContent = originalLabel;
         submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
       };
+
+      // Also drop the enquiry into the admin bookings list. Kept separate from
+      // the Web3Forms call on purpose: this is the newer path, so if it fails
+      // the submission still goes through and the parent still sees success.
+      sendToAdminBookings(formData);
 
       // Submit to Web3Forms
       try {
