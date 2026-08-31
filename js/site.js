@@ -151,3 +151,62 @@
     initFormspree();
   }
 })();
+
+// ── Hero stat counters ───────────────────────────────────────────────────────
+// Counts each stat up from zero the first time the bar scrolls into view. The
+// final value is already in the HTML, so if this never runs — no JS, an old
+// browser, reduced motion — the real numbers are still on screen.
+(function () {
+  function initStatCounters() {
+    const els = document.querySelectorAll('.stat-count');
+    if (!els.length) return;
+
+    const reduced = window.matchMedia
+      && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || typeof IntersectionObserver === 'undefined') return;
+
+    const render = (el, value) => {
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      el.textContent = value.toFixed(decimals) + (el.dataset.suffix || '');
+    };
+
+    const run = (el) => {
+      const target = parseFloat(el.dataset.countTo);
+      if (isNaN(target)) return;
+      const duration = 1600;
+      const start = performance.now();
+      render(el, 0);
+      const step = (now) => {
+        // rAF hands back the frame's start time, which can predate the
+        // performance.now() above — without the lower clamp the first frame
+        // renders a negative number and the counter flashes "-0".
+        const t = Math.min(Math.max((now - start) / duration, 0), 1);
+        // ease-out: fast first, settling at the end
+        render(el, target * (1 - Math.pow(1 - t, 3)));
+        if (t < 1) requestAnimationFrame(step);
+        else render(el, target);
+      };
+      requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || entry.target.dataset.counted) return;
+        entry.target.dataset.counted = '1';
+        observer.unobserve(entry.target);
+        // On desktop the bar sits above the fold, so without this pause the
+        // count would run while the hero is still painting and be over before
+        // anyone looks at it.
+        setTimeout(() => run(entry.target), 450);
+      });
+    }, { threshold: 0.25 });
+
+    els.forEach((el) => observer.observe(el));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStatCounters);
+  } else {
+    initStatCounters();
+  }
+})();
