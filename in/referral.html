@@ -205,7 +205,7 @@
         <div class="card p-8 flex flex-col gap-4">
           <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg" style="background:#193b92;">2</div>
           <h3 class="font-bold text-ink text-lg">Share it</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">Send your link to any parent you think would love TechTutor — WhatsApp, Zalo, email, or just copy it.</p>
+          <p class="text-gray-600 text-sm leading-relaxed">Send your link to any parent you think would love TechTutor — WhatsApp, email, or just copy it.</p>
         </div>
 
         <div class="card p-8 flex flex-col gap-4">
@@ -342,10 +342,8 @@
             <div class="max-w-md mx-auto">
               <div class="bg-white/15 rounded-2xl px-5 py-4 mb-5 break-all text-center font-mono text-sm" id="refLink"></div>
               <div class="space-y-3">
-                <a id="refZalo" href="#" target="_blank" rel="noopener"
-                  class="block text-center bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-100 transition">Share on Zalo</a>
                 <a id="refWa" href="#" target="_blank" rel="noopener"
-                  class="block text-center border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition">Share on WhatsApp</a>
+                  class="block text-center bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-100 transition">Share on WhatsApp</a>
                 <button type="button" id="refCopy"
                   class="w-full border-2 border-white/40 text-white px-8 py-4 rounded-full font-semibold text-base hover:bg-white/10 transition">Copy link</button>
               </div>
@@ -405,7 +403,6 @@
     $('refLink').textContent = link;
 
     var text = MSG + link;
-    $('refZalo').href = 'https://zalo.me/share/link?url=' + encodeURIComponent(link)
                         + '&title=' + encodeURIComponent(MSG.trim());
     $('refWa').href   = 'https://wa.me/?text=' + encodeURIComponent(text);
 
