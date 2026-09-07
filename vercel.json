@@ -13,19 +13,19 @@
       "permanent": false
     },
     {
-      "source": "/us/resources",
-      "destination": "/en/resources",
-      "permanent": false
-    },
-    {
       "source": "/in/:slug(.*-explained)",
       "destination": "/en/:slug",
       "permanent": false
     },
     {
-      "source": "/us/:slug(.*-explained)",
-      "destination": "/en/:slug",
-      "permanent": false
+      "source": "/us",
+      "destination": "/en",
+      "permanent": true
+    },
+    {
+      "source": "/us/:path*",
+      "destination": "/en/:path*",
+      "permanent": true
     }
   ],
   "headers": [

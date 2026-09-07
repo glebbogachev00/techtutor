@@ -61,7 +61,7 @@
     ];
 
     if (timezone && westernTimezones.some(tz => timezone.includes(tz))) {
-      return 'us';
+      return 'en';
     }
 
     // Fallback: Try to detect from navigator.language
@@ -80,7 +80,7 @@
           lang.includes('fr-fr') || lang.includes('de') || lang.includes('es-es') ||
           lang.includes('it') || lang.includes('nl') || lang.includes('sv') ||
           lang.includes('no') || lang.includes('da') || lang.includes('fi')) {
-        return 'us';
+        return 'en';
       }
     }
 

@@ -22,7 +22,7 @@
     // Clear localStorage and continue with auto-detection
     localStorage.removeItem('techtutor_region');
     console.log('🧹 Cleared manual region preference');
-  } else if (forceRegion && ['en', 'vn', 'in', 'us'].includes(forceRegion)) {
+  } else if (forceRegion && ['en', 'vn', 'in'].includes(forceRegion)) {
     // Force redirect to specific region
     console.log('🔗 URL parameter forcing region:', forceRegion);
     window.location.href = withQuery(`${forceRegion}/index.html`);
@@ -65,7 +65,7 @@
 
       if (asianUSTimezones.some(tz => timezone.includes(tz))) {
         console.log('✅ Asian timezone (non-India, non-Vietnam) detected');
-        return 'us';
+        return 'en';
       }
 
       // Special case: Bangkok timezone is used by Thailand AND sometimes Vietnam
@@ -77,7 +77,7 @@
           return 'vn';
         }
         console.log('✅ Bangkok timezone (Thailand) detected');
-        return 'us';
+        return 'en';
       }
 
       // Any other Asia/ timezone that's not India or Vietnam likely should go to IN
@@ -91,26 +91,26 @@
       // US and Canada: America/
       if (timezone.startsWith('America/')) {
         console.log('✅ Americas timezone detected (US/Canada)');
-        return 'us';
+        return 'en';
       }
 
       // Europe: Europe/
       if (timezone.startsWith('Europe/')) {
         console.log('✅ Europe timezone detected');
-        return 'us';
+        return 'en';
       }
 
       // Australia: Australia/
       if (timezone.startsWith('Australia/')) {
         console.log('✅ Australia timezone detected');
-        return 'us';
+        return 'en';
       }
 
       // New Zealand: Pacific/Auckland, Pacific/Wellington, etc
       if (timezone.startsWith('Pacific/') &&
           (timezone.includes('Auckland') || timezone.includes('Wellington') || timezone.includes('Chatham'))) {
         console.log('✅ New Zealand timezone detected');
-        return 'us';
+        return 'en';
       }
     }
 
@@ -140,13 +140,13 @@
           lang.includes('it') || lang.includes('nl') || lang.includes('sv') ||
           lang.includes('no') || lang.includes('da') || lang.includes('fi')) {
         console.log('✅ Western language detected');
-        return 'us';
+        return 'en';
       }
     }
 
     // Default: redirect to US version (most likely audience)
     console.log('⚠️ No specific match, defaulting to US');
-    return 'us';
+    return 'en';
   }
 
   // Perform redirection
