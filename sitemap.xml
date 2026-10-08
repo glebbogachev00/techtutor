@@ -21,6 +21,21 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.techtutor.academy/en/making-vs-watching</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.techtutor.academy/en/not-about-the-code</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.techtutor.academy/en/talking-about-ai</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.techtutor.academy/en/blog.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -123,6 +138,21 @@
   <url>
     <loc>https://www.techtutor.academy/vn/blog-tech-like-playtime.html</loc>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.techtutor.academy/vn/making-vs-watching</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.techtutor.academy/vn/not-about-the-code</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.techtutor.academy/vn/talking-about-ai</loc>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
