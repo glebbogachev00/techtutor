@@ -137,18 +137,54 @@
     });
   }
 
+  // A contact field has to be something we can reach: an email address, or a
+  // phone number (Zalo/WhatsApp) with enough digits to dial. A parent once
+  // typed their surname into "contact" and we had no way back to them.
+  // Set as the input's native validity, so the browser blocks the submit
+  // before any form handler (Web3Forms, Formspree) ever runs.
+  function initContactFields() {
+    const vi = (document.documentElement.lang || '').toLowerCase().startsWith('vi');
+    const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+    const isPhone = (v) => {
+      const digits = v.replace(/\D/g, '').length;
+      return /^\+?[\d\s().-]+$/.test(v) && digits >= 8 && digits <= 15;
+    };
+    const messages = {
+      contact: vi
+        ? 'Vui lòng nhập email hoặc số điện thoại (Zalo/WhatsApp) để chúng tôi liên hệ với bạn.'
+        : 'Please enter an email address or a phone number (Zalo/WhatsApp) so we can reach you.',
+      tel: vi
+        ? 'Vui lòng nhập số điện thoại hợp lệ, ví dụ 0902 776 753.'
+        : 'Please enter a valid phone number, e.g. 0902 776 753.',
+    };
+
+    document.querySelectorAll('input[name="contact"], input[type="tel"]').forEach((input) => {
+      const kind = input.type === 'tel' ? 'tel' : 'contact';
+      const check = () => {
+        const v = input.value.trim();
+        // Empty is left to `required`, which already has its own message.
+        const ok = !v || (kind === 'tel' ? isPhone(v) : isEmail(v) || isPhone(v));
+        input.setCustomValidity(ok ? '' : messages[kind]);
+      };
+      input.addEventListener('input', check);
+      check();
+    });
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       initNavigation();
       cacheCurrentLanguage();
       initLanguagePreference();
       initFormspree();
+      initContactFields();
     });
   } else {
     initNavigation();
     cacheCurrentLanguage();
     initLanguagePreference();
     initFormspree();
+    initContactFields();
   }
 })();
 
